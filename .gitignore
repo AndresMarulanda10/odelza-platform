@@ -60,3 +60,6 @@ output/playwright/
 screenshots/
 !**/public/screenshots/
 !**/assets/screenshots/
+
+# Odelza local operational artifacts
+/backups/
