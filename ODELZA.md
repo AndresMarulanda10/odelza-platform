@@ -14,7 +14,17 @@ Compose project name to avoid collisions with other Twenty installations.
 Run commands from the repository root.
 
 ```bash
-# Start or update the local stack
+# Start the local stack
+docker compose --project-name odelza \
+  --env-file packages/twenty-docker/.env \
+  --file packages/twenty-docker/docker-compose.yml \
+  up --detach --wait
+
+# Pull the configured images, then recreate the stack
+docker compose --project-name odelza \
+  --env-file packages/twenty-docker/.env \
+  --file packages/twenty-docker/docker-compose.yml \
+  pull
 docker compose --project-name odelza \
   --env-file packages/twenty-docker/.env \
   --file packages/twenty-docker/docker-compose.yml \
