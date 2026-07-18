@@ -11,6 +11,7 @@ import { type Note } from '@/activities/types/Note';
 import { type NoteTarget } from '@/activities/types/NoteTarget';
 import { type Task } from '@/activities/types/Task';
 import { type TaskTarget } from '@/activities/types/TaskTarget';
+import { getTaskDefaultDueAt } from '@/activities/utils/getTaskDefaultDueAt';
 import { useOpenRecordInSidePanel } from '@/side-panel/hooks/useOpenRecordInSidePanel';
 import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadataItems';
 import { useCreateOneRecord } from '@/object-record/hooks/useCreateOneRecord';
@@ -69,6 +70,7 @@ export const useOpenCreateActivityDrawer = ({
       ...(activityObjectNameSingular === CoreObjectNameSingular.Task
         ? {
             assigneeId: customAssignee?.id,
+            dueAt: getTaskDefaultDueAt(),
           }
         : {}),
       position: 'last',

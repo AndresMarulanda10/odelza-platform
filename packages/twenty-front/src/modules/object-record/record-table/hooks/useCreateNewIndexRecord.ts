@@ -1,3 +1,4 @@
+import { getTaskDefaultDueAt } from '@/activities/utils/getTaskDefaultDueAt';
 import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/EnrichedObjectMetadataItem';
 import { getLabelIdentifierFieldMetadataItem } from '@/object-metadata/utils/getLabelIdentifierFieldMetadataItem';
 import { useBuildRecordInputFromRLSPredicates } from '@/object-record/hooks/useBuildRecordInputFromRLSPredicates';
@@ -18,7 +19,7 @@ import { useAtomComponentSelectorValue } from '@/ui/utilities/state/jotai/hooks/
 import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
 import { useStore } from 'jotai';
 import { useCallback } from 'react';
-import { AppPath } from 'twenty-shared/types';
+import { AppPath, CoreObjectNameSingular } from 'twenty-shared/types';
 import { findByProperty, isDefined } from 'twenty-shared/utils';
 import { v4 } from 'uuid';
 import { ViewOpenRecordIn } from '~/generated-metadata/graphql';
@@ -80,6 +81,9 @@ export const useCreateNewIndexRecord = ({
       const recordInputFromFilters = buildRecordInputFromFilters();
 
       const mergedRecordInput = {
+        ...(objectMetadataItem.nameSingular === CoreObjectNameSingular.Task
+          ? { dueAt: getTaskDefaultDueAt() }
+          : {}),
         ...recordInputFromRLSPredicates,
         ...recordInputFromFilters,
         ...recordInput,
