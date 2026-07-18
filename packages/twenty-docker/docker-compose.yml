@@ -2,6 +2,7 @@ name: twenty
 
 services:
   server:
+    container_name: odelza-app
     image: twentycrm/twenty:${TAG:-latest}
     volumes:
       - server-local-data:/app/packages/twenty-server/.local-storage
@@ -59,6 +60,7 @@ services:
     restart: always
 
   worker:
+    container_name: odelza-jobs
     image: twentycrm/twenty:${TAG:-latest}
     volumes:
       - server-local-data:/app/packages/twenty-server/.local-storage
