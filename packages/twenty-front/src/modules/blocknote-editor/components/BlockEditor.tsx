@@ -93,7 +93,7 @@ const StyledEditor = styled.div`
   }
 
   & .bn-container .bn-suggestion-menu-item:hover {
-    background-color: blue;
+    background-color: ${themeCssVariables.background.transparent.blue};
   }
 
   & .bn-suggestion-menu {
