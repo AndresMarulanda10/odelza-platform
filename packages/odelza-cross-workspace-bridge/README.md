@@ -1,0 +1,47 @@
+# Odelza Cross-Workspace Bridge
+
+Standalone Cloudflare Worker scaffold for selective cross-workspace synchronization.
+This slice contains no webhook or synchronization business logic.
+
+## Local behavior
+
+- `GET /health` returns the service status without configuration or secrets.
+- Every other route returns `404`.
+- The Queue consumer only acknowledges typed `noop` messages. It does not log
+  payloads or call external services.
+
+Wrangler runs D1 and Queue bindings locally by default. The top-level resource
+names are local-only conventions; do not deploy the top-level environment.
+
+## Cloudflare resources
+
+Staging and production bindings are declared separately because Wrangler does
+not inherit bindings into named environments. Wrangler 4.115 supports automatic
+provisioning for D1 and Queues, so no account-specific resource IDs are stored in
+this package. The first authorized remote deployment will provision resources
+and may write their IDs back to `wrangler.jsonc`.
+
+Remote deployment and resource creation are intentionally outside this slice.
+If automatic provisioning is unavailable in the target account, obtain the D1
+IDs with an authorized operator workflow and add `database_id` to each named
+environment immediately before deployment. Package dependencies use the newest
+releases admitted by the repository's three-day package quarantine.
+Tests use the newest compatibility date supported by that admitted local
+`workerd` build; deployed environments retain the current `2026-08-01` date.
+
+## Commands
+
+Run through Nx from the repository root:
+
+```sh
+yarn nx run odelza-cross-workspace-bridge:format
+yarn nx run odelza-cross-workspace-bridge:lint
+yarn nx run odelza-cross-workspace-bridge:typecheck
+yarn nx run odelza-cross-workspace-bridge:test
+yarn nx run odelza-cross-workspace-bridge:wrangler-types
+yarn nx run odelza-cross-workspace-bridge:deploy-dry-run --configuration=staging
+yarn nx run odelza-cross-workspace-bridge:startup-check
+```
+
+Deploy only through an explicitly authorized workflow using `--env staging` or
+`--env production`. Never deploy the top-level local environment.

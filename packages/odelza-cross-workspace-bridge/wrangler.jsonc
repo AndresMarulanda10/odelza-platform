@@ -1,0 +1,88 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "odelza-cross-workspace-bridge-local",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1,
+  },
+  "d1_databases": [
+    {
+      "binding": "BRIDGE_DB",
+      "database_name": "odelza-cross-workspace-bridge-local",
+    },
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "BRIDGE_QUEUE",
+        "queue": "odelza-cross-workspace-bridge-local",
+      },
+    ],
+    "consumers": [
+      {
+        "queue": "odelza-cross-workspace-bridge-local",
+        "dead_letter_queue": "odelza-cross-workspace-bridge-local-dlq",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5,
+        "max_retries": 3,
+      },
+    ],
+  },
+  "env": {
+    "staging": {
+      "name": "odelza-cross-workspace-bridge-staging",
+      "d1_databases": [
+        {
+          "binding": "BRIDGE_DB",
+          "database_name": "odelza-cross-workspace-bridge-staging",
+        },
+      ],
+      "queues": {
+        "producers": [
+          {
+            "binding": "BRIDGE_QUEUE",
+            "queue": "odelza-cross-workspace-bridge-staging",
+          },
+        ],
+        "consumers": [
+          {
+            "queue": "odelza-cross-workspace-bridge-staging",
+            "dead_letter_queue": "odelza-cross-workspace-bridge-staging-dlq",
+            "max_batch_size": 10,
+            "max_batch_timeout": 5,
+            "max_retries": 3,
+          },
+        ],
+      },
+    },
+    "production": {
+      "name": "odelza-cross-workspace-bridge-production",
+      "d1_databases": [
+        {
+          "binding": "BRIDGE_DB",
+          "database_name": "odelza-cross-workspace-bridge-production",
+        },
+      ],
+      "queues": {
+        "producers": [
+          {
+            "binding": "BRIDGE_QUEUE",
+            "queue": "odelza-cross-workspace-bridge-production",
+          },
+        ],
+        "consumers": [
+          {
+            "queue": "odelza-cross-workspace-bridge-production",
+            "dead_letter_queue": "odelza-cross-workspace-bridge-production-dlq",
+            "max_batch_size": 10,
+            "max_batch_timeout": 5,
+            "max_retries": 3,
+          },
+        ],
+      },
+    },
+  },
+}

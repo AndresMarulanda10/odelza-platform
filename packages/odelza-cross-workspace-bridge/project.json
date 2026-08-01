@@ -1,0 +1,66 @@
+{
+  "name": "odelza-cross-workspace-bridge",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/odelza-cross-workspace-bridge/src",
+  "projectType": "application",
+  "tags": ["scope:odelza-bridge"],
+  "targets": {
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "yarn oxfmt .oxlintrc.json README.md package.json project.json tsconfig.json vitest.config.ts wrangler.jsonc src test"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "yarn oxlint --type-aware -c .oxlintrc.json ."
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "yarn tsc -p tsconfig.json --noEmit"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "yarn vitest run"
+      }
+    },
+    "wrangler-types": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "yarn wrangler types --check"
+      }
+    },
+    "deploy-dry-run": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "yarn wrangler deploy --dry-run"
+      },
+      "configurations": {
+        "staging": {
+          "command": "yarn wrangler deploy --dry-run --env staging"
+        },
+        "production": {
+          "command": "yarn wrangler deploy --dry-run --env production"
+        }
+      }
+    },
+    "startup-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "yarn wrangler check startup --args='--compatibility-date 2026-07-29' --outfile /dev/null"
+      }
+    }
+  }
+}
