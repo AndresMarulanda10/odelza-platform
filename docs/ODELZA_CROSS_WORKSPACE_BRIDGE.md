@@ -51,8 +51,9 @@ share signal even when their parent task is published.
 1. A Worker ingress endpoint accepts Twenty webhook events for one configured
    workspace route.
 2. Cloudflare Access validates a service token at the edge. The Worker then
-   verifies a workspace-specific HMAC over the raw body, timestamp, and delivery
-   identifier before parsing the event.
+   verifies a workspace-specific HMAC over the canonical
+   `timestamp:nonce:rawBody` bytes before parsing the event. Twenty serializes
+   the event once and sends those exact signed bytes.
 3. The Worker validates the event envelope and enqueues normalized metadata. It
    does not perform cross-workspace writes on the request path.
 4. A Cloudflare Queue consumer resolves object mappings and idempotency state in
@@ -77,6 +78,13 @@ Worker memory.
 
 - Cloudflare Access service-token credentials authenticate machine ingress.
   They are independent from HMAC secrets and Twenty API keys.
+- Twenty attaches Access credentials only when the normalized webhook target is
+  exactly `CROSS_WORKSPACE_BRIDGE_WEBHOOK_URL`. Host, path, suffix, or query
+  near-matches receive no credentials. Ordinary webhooks keep the legacy
+  `timestamp:rawBody` signature.
+- Bridge deliveries require HTTPS and reject redirects; ordinary webhooks retain legacy redirect handling.
+- Bridge URL, Access client ID, and Access client secret are dedicated
+  environment-only server settings. A partial configuration fails closed.
 - Each workspace has a separate HMAC secret and a separate least-privilege
   Twenty API key. A key can read or write only the objects and fields required
   for its direction of synchronization.
@@ -117,18 +125,19 @@ additional destinations or broader field synchronization.
 
 ## Chained Delivery
 
-The tracker branch integrates six chained slices. Each child stays below 400
+The tracker branch integrates seven chained slices. Each child stays below 400
 authored changed lines, targets its immediate predecessor, and includes its own
 focused verification evidence.
 
 | Slice                               | Review boundary                                                                             | Verification boundary                                                                                       | Rollback boundary                                                                                                   |
 | ----------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | 1. Contract and package shell       | This contract, package ownership, typed event and field schemas, and test harness           | Schema fixtures reject unknown destinations, fields, and identifiers                                        | Remove the package shell and this document; no runtime resources exist                                              |
-| 2. Authenticated ingress            | Worker route, Access assumptions, raw-body HMAC validation, and Queue producer              | Valid signature enqueues once; stale, malformed, or unsigned requests fail closed                           | Remove ingress route and bindings; no consumer writes exist                                                         |
-| 3. Durable delivery state           | Queue consumer, DLQ policy, D1 schema, mappings, and idempotency transaction                | Duplicate and retried events produce one receipt and one mapped operation                                   | Stop the consumer and roll back its isolated D1 migration; ingress can be disabled independently                    |
-| 4. Source projection                | Source-authoritative Company and Project context plus initial Task publication              | Allowlisted tasks publish minimal fields; unselected records and destination context edits do not flow back | Disable the destination mapping and consumer; destination records are retained                                      |
-| 5. Managed collaboration            | Bidirectional Task fields, explicit Notes, loop suppression, and conflict blocking          | Opposite-direction edits converge by field; echoed mutations deduplicate; same-field conflicts block        | Disable reverse routes and note sharing while retaining one-way source projection                                   |
-| 6. Shared files and pilot hardening | Streamed `sharedFiles`, least-privilege checks, observability, runbook, and sanitized pilot | File limits, digest deduplication, DLQ replay, credential rotation, and pilot rollback are exercised        | Disable file transfer and pilot destination, revoke scoped credentials, and retain delivered data for manual review |
+| 2. Sender hardening                 | Exact bridge targeting, canonical raw-body HMAC, and Access service-token headers           | Exact target receives nonce-bound HMAC and Access headers; near-matches and partial config fail closed       | Remove dedicated settings and sender branch; ordinary webhook behavior remains unchanged                            |
+| 3. Authenticated ingress            | Worker route, Access assumptions, raw-body HMAC validation, and Queue producer              | Valid signature enqueues once; stale, malformed, or unsigned requests fail closed                           | Remove ingress route and bindings; no consumer writes exist                                                         |
+| 4. Durable delivery state           | Queue consumer, DLQ policy, D1 schema, mappings, and idempotency transaction                | Duplicate and retried events produce one receipt and one mapped operation                                   | Stop the consumer and roll back its isolated D1 migration; ingress can be disabled independently                    |
+| 5. Source projection                | Source-authoritative Company and Project context plus initial Task publication              | Allowlisted tasks publish minimal fields; unselected records and destination context edits do not flow back | Disable the destination mapping and consumer; destination records are retained                                      |
+| 6. Managed collaboration            | Bidirectional Task fields, explicit Notes, loop suppression, and conflict blocking          | Opposite-direction edits converge by field; echoed mutations deduplicate; same-field conflicts block        | Disable reverse routes and note sharing while retaining one-way source projection                                   |
+| 7. Shared files and pilot hardening | Streamed `sharedFiles`, least-privilege checks, observability, runbook, and sanitized pilot | File limits, digest deduplication, DLQ replay, credential rotation, and pilot rollback are exercised        | Disable file transfer and pilot destination, revoke scoped credentials, and retain delivered data for manual review |
 
 No slice may require production data to verify. A slice is not ready to chain
 until its tests pass, `git diff --check` is clean, its diff contains only that
