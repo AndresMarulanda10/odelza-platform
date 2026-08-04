@@ -1,7 +1,8 @@
 # Odelza Cross-Workspace Bridge
 
 Standalone Cloudflare Worker ingress for selective cross-workspace synchronization.
-This slice authenticates and validates webhook metadata, then hands it to Queue.
+This slice authenticates and validates webhook metadata, then records Queue
+deliveries durably for a later projection slice.
 
 ## Local behavior
 
@@ -9,8 +10,9 @@ This slice authenticates and validates webhook metadata, then hands it to Queue.
 - `POST /webhooks/twenty` authenticates and validates JSON webhook metadata,
   returning `202` only after Queue accepts normalized metadata.
 - Every other route returns `404`.
-- The no-op Queue consumer scaffold is not configured here; Slice 4 owns live
-  queue consumption. It does not log payloads or call external services.
+- The Queue consumer records one delivery receipt and one pending normalized
+  event transactionally in D1. Duplicate deliveries are acknowledged without
+  repeating the write. It performs no destination writes or external calls.
 
 Wrangler runs D1 and Queue bindings locally by default. The top-level resource
 names are local-only conventions; do not deploy the top-level environment.
@@ -23,7 +25,8 @@ provisioning for D1 and Queues, so no account-specific resource IDs are stored i
 this package. The first authorized remote deployment will provision resources
 and may write their IDs back to `wrangler.jsonc`.
 
-Remote deployment and resource creation are intentionally outside this slice.
+Remote deployment, resource creation, migration application, and secret
+provisioning are intentionally outside this slice.
 If automatic provisioning is unavailable in the target account, obtain the D1
 IDs with an authorized operator workflow and add `database_id` to each named
 environment immediately before deployment. Package dependencies use the newest

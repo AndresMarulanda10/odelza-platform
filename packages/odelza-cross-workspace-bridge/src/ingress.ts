@@ -1,21 +1,30 @@
 export const MAX_BODY_BYTES = 64 * 1024;
 const SUPPORTED_OBJECTS = new Set('company project task note'.split(' '));
-const SUPPORTED_EVENTS = new Set('created updated deleted restored upserted'.split(' '));
+const SUPPORTED_EVENTS = new Set(
+  'created updated deleted restored upserted'.split(' '),
+);
 export type NormalizedBridgeMessage = {
   schemaVersion: 1;
-  sourceWorkspaceKey: string; deliveryId: string;
-  timestamp: string; eventId: string;
-  eventName: string; objectId: string;
-  objectName: string; recordId: string;
+  sourceWorkspaceKey: string;
+  deliveryId: string;
+  timestamp: string;
+  eventId: string;
+  eventName: string;
+  objectId: string;
+  objectName: string;
+  recordId: string;
   updatedFields: string[];
 };
 type IngressEnvironment = {
-  BRIDGE_HMAC_SECRET: string; BRIDGE_SOURCE_WORKSPACE_KEY: string;
+  BRIDGE_HMAC_SECRET: string;
+  BRIDGE_SOURCE_WORKSPACE_KEY: string;
   BRIDGE_QUEUE: Pick<Queue<NormalizedBridgeMessage>, 'send'>;
 };
 type JsonRecord = Record<string, unknown>;
 export const handleIngress = async (
-  request: Request, env: IngressEnvironment, now = Date.now(),
+  request: Request,
+  env: IngressEnvironment,
+  now = Date.now(),
 ): Promise<Response> => {
   if (request.method !== 'POST') return jsonResponse('not_found', 404);
   if (
@@ -72,14 +81,19 @@ export const handleIngress = async (
   if (!isRecord(body)) {
     return jsonResponse('unauthorized', 401);
   }
-  const declaredSourceWorkspaceKey = body.sourceWorkspaceKey ?? body.workspaceKey;
+  const declaredSourceWorkspaceKey =
+    body.sourceWorkspaceKey ?? body.workspaceKey;
   if (
     declaredSourceWorkspaceKey !== undefined &&
     getString(declaredSourceWorkspaceKey) !== env.BRIDGE_SOURCE_WORKSPACE_KEY
   ) {
     return jsonResponse('unauthorized', 401);
   }
-  const message = normalizeEnvelope(body, timestamp, env.BRIDGE_SOURCE_WORKSPACE_KEY);
+  const message = normalizeEnvelope(
+    body,
+    timestamp,
+    env.BRIDGE_SOURCE_WORKSPACE_KEY,
+  );
   if (!message) return jsonResponse('invalid_envelope', 400);
   try {
     await env.BRIDGE_QUEUE.send(message);
@@ -89,15 +103,21 @@ export const handleIngress = async (
   return jsonResponse('accepted', 202);
 };
 const normalizeEnvelope = (
-  value: JsonRecord, timestamp: string, configuredSourceWorkspaceKey: string,
+  value: JsonRecord,
+  timestamp: string,
+  configuredSourceWorkspaceKey: string,
 ): NormalizedBridgeMessage | undefined => {
   if (value.schemaVersion !== undefined && value.schemaVersion !== 1)
     return undefined;
   const sourceWorkspaceKey = getString(
-    value.sourceWorkspaceKey ?? value.workspaceKey ?? configuredSourceWorkspaceKey,
+    value.sourceWorkspaceKey ??
+      value.workspaceKey ??
+      configuredSourceWorkspaceKey,
   );
-  const deliveryId = getIdentifier(value.deliveryId ?? value.webhookId);
-  const eventId = getIdentifier(value.eventId ?? value.webhookId);
+  const deliveryId = getIdentifier(value.deliveryId);
+  const eventId = getIdentifier(
+    value.eventId ?? value.deliveryId ?? value.webhookId,
+  );
   const eventName = getString(value.eventName);
   const metadata = isRecord(value.objectMetadata) ? value.objectMetadata : {};
   const objectName = getString(value.objectName ?? metadata.nameSingular);
@@ -172,8 +192,11 @@ const readBoundedBody = async (
   return new Uint8Array(await new Blob(chunks).arrayBuffer());
 };
 const verifySignature = async (
-  secret: string, timestamp: string, nonce: string,
-  rawBody: Uint8Array, providedSignature: string,
+  secret: string,
+  timestamp: string,
+  nonce: string,
+  rawBody: Uint8Array,
+  providedSignature: string,
 ): Promise<boolean> => {
   if (!/^[a-f\d]{64}$/i.test(providedSignature)) return false;
   const key = await crypto.subtle.importKey(

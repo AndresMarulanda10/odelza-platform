@@ -19,9 +19,37 @@ type BridgeWebhookConfig = {
   accessClientSecret?: string;
 };
 
+export const computeBridgeDeliveryId = (data: WebhookJobData): string => {
+  const recordId =
+    'record' in data &&
+    typeof data.record === 'object' &&
+    data.record !== null &&
+    'id' in data.record &&
+    typeof data.record.id === 'string'
+      ? data.record.id
+      : 'event' in data
+        ? data.event.recordId
+        : '';
+
+  return crypto
+    .createHash('sha256')
+    .update(
+      JSON.stringify([
+        data.workspaceId,
+        data.webhookId,
+        data.eventName,
+        recordId,
+        data.eventDate.toISOString(),
+        'updatedFields' in data ? (data.updatedFields ?? []) : [],
+      ]),
+    )
+    .digest('hex');
+};
+
 export const buildWebhookRequest = ({
   targetUrl,
   payload,
+  deliveryId,
   secret,
   timestamp,
   nonce,
@@ -29,6 +57,7 @@ export const buildWebhookRequest = ({
 }: {
   targetUrl: string;
   payload: Record<string, unknown>;
+  deliveryId: string;
   secret?: string;
   timestamp: string;
   nonce: string;
@@ -49,7 +78,9 @@ export const buildWebhookRequest = ({
     throw new Error('Cross-workspace bridge webhook secret is missing');
   }
 
-  const rawBody = JSON.stringify(payload);
+  const rawBody = JSON.stringify(
+    isBridgeTarget ? { ...payload, deliveryId } : payload,
+  );
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
@@ -112,6 +143,7 @@ export class CallWebhookJob {
       const { rawBody, headers } = buildWebhookRequest({
         targetUrl,
         payload: payloadWithoutSecret,
+        deliveryId: computeBridgeDeliveryId(data),
         secret,
         timestamp,
         nonce,

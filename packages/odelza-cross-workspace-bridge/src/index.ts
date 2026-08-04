@@ -1,17 +1,8 @@
 import { handleIngress } from './ingress';
+import { processDeliveryMessage } from './delivery-state';
 
 const SERVICE_NAME = 'odelza-cross-workspace-bridge';
 const INGRESS_PATH = '/webhooks/twenty';
-
-type NoopQueueMessage = {
-  type: 'noop';
-};
-
-const isNoopQueueMessage = (body: unknown): body is NoopQueueMessage =>
-  typeof body === 'object' &&
-  body !== null &&
-  'type' in body &&
-  body.type === 'noop';
 
 const worker = {
   async fetch(request, env): Promise<Response> {
@@ -30,13 +21,12 @@ const worker = {
 
     return Response.json({ error: 'not_found' }, { status: 404 });
   },
-  queue(batch): void {
+  async queue(batch, env): Promise<void> {
     for (const message of batch.messages) {
-      if (isNoopQueueMessage(message.body)) {
-        message.ack();
-      } else {
-        message.retry();
-      }
+      // Keep each receipt transaction isolated so one permanent message does not
+      // prevent already-persisted messages from being acknowledged.
+      // oxlint-disable-next-line no-await-in-loop
+      await processDeliveryMessage(message, env.BRIDGE_DB);
     }
   },
 } satisfies ExportedHandler<Env>;

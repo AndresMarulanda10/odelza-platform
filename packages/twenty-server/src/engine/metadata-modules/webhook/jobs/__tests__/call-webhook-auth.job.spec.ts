@@ -4,6 +4,7 @@ import { validate } from 'src/engine/core-modules/twenty-config/config-variables
 import {
   buildWebhookRequest,
   CallWebhookJob,
+  computeBridgeDeliveryId,
 } from 'src/engine/metadata-modules/webhook/jobs/call-webhook.job';
 
 const BRIDGE_URL = 'https://bridge.example.com/webhooks/twenty';
@@ -21,6 +22,7 @@ const bridgeConfig = {
 const requestArgs = {
   targetUrl: BRIDGE_URL,
   payload,
+  deliveryId: 'delivery-id',
   secret: WEBHOOK_SECRET,
   timestamp: TIMESTAMP,
   nonce: NONCE,
@@ -125,8 +127,9 @@ describe('CallWebhookJob', () => {
       webhookId: 'webhook-id',
       workspaceId: 'workspace-id',
       eventName: 'task.updated',
+      eventDate: new Date('2026-08-01T00:00:00.000Z'),
       secret: WEBHOOK_SECRET,
-      event: { type: 'task.updated' },
+      record: { id: 'record-id' },
     } as never;
     return { event, incrementCounterForEvent, insertWorkspaceEvent, job, post };
   };
@@ -153,11 +156,22 @@ describe('CallWebhookJob', () => {
         .digest('hex'),
     );
     expect(parsedBody).not.toHaveProperty('secret');
+    expect(parsedBody.deliveryId).toBe(computeBridgeDeliveryId(event));
     expect(rawBody).not.toContain(ACCESS_CLIENT_ID);
     expect(rawBody).not.toContain(ACCESS_CLIENT_SECRET);
     expect(JSON.stringify(insertWorkspaceEvent.mock.calls)).not.toContain(
       ACCESS_CLIENT_SECRET,
     );
+  });
+
+  it('derives a stable identity from the existing webhook event fields', () => {
+    const first = buildJob().event;
+    const second = { ...first };
+
+    expect(computeBridgeDeliveryId(first)).toBe(computeBridgeDeliveryId(second));
+    expect(
+      computeBridgeDeliveryId({ ...first, record: { id: 'different-record' } }),
+    ).not.toBe(computeBridgeDeliveryId(first));
   });
 
   it('logs and rethrows exact bridge request failures for queue retry', async () => {
@@ -177,6 +191,7 @@ describe('CallWebhookJob', () => {
     });
     await expect(job.handle([event])).resolves.toBeUndefined();
     expect(post.mock.calls[0][2]).not.toHaveProperty('maxRedirects');
+    expect(JSON.parse(post.mock.calls[0][1])).not.toHaveProperty('deliveryId');
     expect(insertWorkspaceEvent).toHaveBeenCalled();
   });
 });

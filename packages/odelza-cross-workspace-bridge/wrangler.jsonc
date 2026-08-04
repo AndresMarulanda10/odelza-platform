@@ -18,6 +18,7 @@
     {
       "binding": "BRIDGE_DB",
       "database_name": "odelza-cross-workspace-bridge-local",
+      "migrations_dir": "migrations",
     },
   ],
   "queues": {
@@ -25,6 +26,15 @@
       {
         "binding": "BRIDGE_QUEUE",
         "queue": "odelza-cross-workspace-bridge-local",
+      },
+    ],
+    "consumers": [
+      {
+        "queue": "odelza-cross-workspace-bridge-local",
+        "dead_letter_queue": "odelza-cross-workspace-bridge-local-dlq",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5,
+        "max_retries": 3,
       },
     ],
   },
@@ -41,6 +51,7 @@
         {
           "binding": "BRIDGE_DB",
           "database_name": "odelza-cross-workspace-bridge-staging",
+          "migrations_dir": "migrations",
         },
       ],
       "queues": {
@@ -48,6 +59,15 @@
           {
             "binding": "BRIDGE_QUEUE",
             "queue": "odelza-cross-workspace-bridge-staging",
+          },
+        ],
+        "consumers": [
+          {
+            "queue": "odelza-cross-workspace-bridge-staging",
+            "dead_letter_queue": "odelza-cross-workspace-bridge-staging-dlq",
+            "max_batch_size": 10,
+            "max_batch_timeout": 5,
+            "max_retries": 3,
           },
         ],
       },
@@ -64,6 +84,7 @@
         {
           "binding": "BRIDGE_DB",
           "database_name": "odelza-cross-workspace-bridge-production",
+          "migrations_dir": "migrations",
         },
       ],
       "queues": {
@@ -71,6 +92,15 @@
           {
             "binding": "BRIDGE_QUEUE",
             "queue": "odelza-cross-workspace-bridge-production",
+          },
+        ],
+        "consumers": [
+          {
+            "queue": "odelza-cross-workspace-bridge-production",
+            "dead_letter_queue": "odelza-cross-workspace-bridge-production-dlq",
+            "max_batch_size": 10,
+            "max_batch_timeout": 5,
+            "max_retries": 3,
           },
         ],
       },
