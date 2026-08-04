@@ -8,33 +8,41 @@ import type { DestinationAdapter, SourceProjection } from '../src/projection';
 import deliverySql from '../migrations/0001_durable_delivery_state.sql?raw';
 // @ts-expect-error Vite provides raw imports during test bundling.
 import projectionSql from '../migrations/0002_source_projection.sql?raw';
+// @ts-expect-error Vite provides raw imports during test bundling.
+import managedCollaborationSql from '../migrations/0003_managed_collaboration.sql?raw';
 
-const migrations = [deliverySql, projectionSql].map((sql, index) => ({
-  name: `bridge-${index}.sql`,
-  queries: sql
-    .split(';')
-    .map((query: string) => query.trim())
-    .filter(Boolean),
-}));
+const migrations = [deliverySql, projectionSql, managedCollaborationSql].map(
+  (sql, index) => ({
+    name: `bridge-${index}.sql`,
+    queries: sql
+      .split(';')
+      .map((query: string) => query.trim())
+      .filter(Boolean),
+  }),
+);
 const event = (
   objectName: string,
   eventType: string,
   sourceFields: Record<string, unknown>,
   updatedFields = Object.keys(sourceFields),
+  options: Partial<NormalizedBridgeMessage> = {},
 ): NormalizedBridgeMessage => {
   const id = crypto.randomUUID();
   return {
     schemaVersion: 1,
     sourceWorkspaceKey: 'source-team',
     deliveryId: id,
-    timestamp: '1754053200000',
+    timestamp: options.timestamp ?? '1754053200000',
     eventId: id,
     eventName: `${objectName}.${eventType}`,
     objectId: `${objectName}-object`,
     objectName,
-    recordId: `${objectName}-record-${id}`,
+    recordId: options.recordId ?? `${objectName}-record`,
     updatedFields,
     sourceFields,
+    workspaceRole: options.workspaceRole ?? 'source',
+    ...(options.mutationId ? { mutationId: options.mutationId } : {}),
+    ...(options.shareRequested ? { shareRequested: true } : {}),
   };
 };
 type FakeAdapter = DestinationAdapter & { published: SourceProjection[] };
@@ -126,5 +134,101 @@ describe('source projection', () => {
       projection_status: 'blocked',
       blocked_reason: 'delete_not_propagated',
     });
+  });
+  it('publishes managed Task edits in either direction', async () => {
+    const adapter = fakeAdapter();
+    const source = event('task', 'updated', { title: 'Source' }, ['title'], {
+      timestamp: '1000',
+    });
+    await run(source, adapter);
+    await run(
+      event('task', 'updated', { title: 'Destination' }, ['title'], {
+        recordId: source.recordId,
+        timestamp: '2000',
+        workspaceRole: 'destination',
+      }),
+      adapter,
+    );
+    expect(adapter.published).toHaveLength(2);
+    expect(adapter.published[1]).toMatchObject({
+      authority: 'managed',
+      direction: 'to-source',
+      fields: { title: 'Destination' },
+    });
+  });
+  it('keeps Company and Project source-authoritative', async () => {
+    const adapter = fakeAdapter();
+    const body = event(
+      'company',
+      'updated',
+      { name: 'Destination' },
+      ['name'],
+      {
+        workspaceRole: 'destination',
+      },
+    );
+    await run(body, adapter);
+    expect(adapter.published).toHaveLength(0);
+    await expect(state(body.deliveryId)).resolves.toMatchObject({
+      projection_status: 'blocked',
+      blocked_reason: 'source_authoritative_object',
+    });
+  });
+  it('suppresses an echoed bridge mutation', async () => {
+    const adapter = fakeAdapter();
+    const source = event('task', 'updated', { title: 'Once' }, ['title']);
+    await run(source, adapter);
+    await run(
+      event('task', 'updated', { title: 'Once' }, ['title'], {
+        recordId: source.recordId,
+        workspaceRole: 'destination',
+        mutationId: adapter.published[0].mutationId,
+        timestamp: '1754053200001',
+      }),
+      adapter,
+    );
+    expect(adapter.published).toHaveLength(1);
+    await expect(state(source.deliveryId)).resolves.toMatchObject({
+      projection_status: 'projected',
+    });
+  });
+  it('shares Notes only with an explicit request', async () => {
+    const adapter = fakeAdapter();
+    const privateNote = event('note', 'updated', { body: 'Private' }, ['body']);
+    await run(privateNote, adapter);
+    expect(adapter.published).toHaveLength(0);
+    const sharedNote = event('note', 'updated', { body: 'Shared' }, ['body'], {
+      shareRequested: true,
+    });
+    await run(sharedNote, adapter);
+    expect(adapter.published[0].fields).toEqual({ body: 'Shared' });
+    await expect(
+      env.BRIDGE_DB.prepare(
+        'SELECT status FROM bridge_note_shares WHERE share_key = ?',
+      )
+        .bind(adapter.published[0].projectionKey)
+        .first(),
+    ).resolves.toMatchObject({ status: 'projected' });
+  });
+  it('blocks a stale same-field concurrent edit for review', async () => {
+    const adapter = fakeAdapter();
+    const source = event('task', 'updated', { status: 'TODO' }, ['status'], {
+      timestamp: '2000',
+    });
+    await run(source, adapter);
+    const conflict = event('task', 'updated', { status: 'DONE' }, ['status'], {
+      recordId: source.recordId,
+      timestamp: '1000',
+      workspaceRole: 'destination',
+    });
+    await run(conflict, adapter);
+    expect(adapter.published).toHaveLength(1);
+    await expect(
+      env.BRIDGE_DB.prepare(
+        'SELECT status FROM bridge_conflicts WHERE event_id = ?',
+      )
+        .bind(conflict.eventId)
+        .first(),
+    ).resolves.toMatchObject({ status: 'blocked' });
   });
 });

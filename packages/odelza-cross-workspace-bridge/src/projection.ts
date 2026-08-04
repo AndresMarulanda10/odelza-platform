@@ -4,6 +4,7 @@ const RULES: Record<string, readonly string[]> = {
   company: ['name'],
   project: ['name'],
   task: ['title', 'status', 'dueAt', 'progress'],
+  note: ['title', 'body'],
 };
 const PLACEHOLDER_DESTINATION = 'destination-placeholder';
 
@@ -15,7 +16,10 @@ export type SourceProjection = {
   sourceRecordId: string;
   objectName: string;
   fields: Record<string, ProjectionValue>;
-  authority: 'source';
+  authority: 'source' | 'managed';
+  direction: 'to-destination' | 'to-source';
+  mutationId: string;
+  revision: number;
 };
 export type ProjectionDecision =
   | SourceProjection
@@ -33,12 +37,30 @@ export const allowedProjectionFields = (
 export const projectSourceEvent = (
   event: NormalizedBridgeMessage,
   destinationKey = PLACEHOLDER_DESTINATION,
+  options: {
+    conflictingFields?: readonly string[];
+    revision?: number;
+  } = {},
 ): ProjectionDecision => {
   const allowed = allowedProjectionFields(event.objectName);
   if (allowed.length === 0)
     return { status: 'blocked', reason: 'unsupported_object' };
   if (event.eventName.endsWith('.deleted'))
     return { status: 'blocked', reason: 'delete_not_propagated' };
+  if (
+    (event.objectName === 'company' || event.objectName === 'project') &&
+    event.workspaceRole === 'destination'
+  )
+    return { status: 'blocked', reason: 'source_authoritative_object' };
+  if (event.objectName === 'note' && !event.shareRequested)
+    return { status: 'blocked', reason: 'note_share_required' };
+  if (event.objectName === 'note' && event.workspaceRole === 'destination')
+    return { status: 'blocked', reason: 'note_source_only' };
+  if (options.conflictingFields?.length)
+    return {
+      status: 'blocked',
+      reason: `same_field_conflict:${options.conflictingFields[0]}`,
+    };
 
   const sourceKeys = Object.keys(event.sourceFields);
   const unsupported = [...event.updatedFields, ...sourceKeys].filter(
@@ -61,25 +83,44 @@ export const projectSourceEvent = (
       return { status: 'blocked', reason: `invalid_source_field:${field}` };
     fields[field] = value;
   }
-  if (event.objectName !== 'task' && typeof fields.name !== 'string')
+  if (
+    event.objectName !== 'task' &&
+    event.objectName !== 'note' &&
+    typeof fields.name !== 'string'
+  )
     return { status: 'blocked', reason: 'missing_source_field:name' };
-  if (event.objectName === 'task' && selected.length === 0)
+  if (
+    (event.objectName === 'task' || event.objectName === 'note') &&
+    selected.length === 0
+  )
     return { status: 'blocked', reason: 'no_approved_source_fields' };
 
+  const direction =
+    event.workspaceRole === 'destination' ? 'to-source' : 'to-destination';
+  const projectionKey = [
+    destinationKey,
+    event.sourceWorkspaceKey,
+    event.objectName,
+    event.recordId,
+    event.eventId,
+  ].join(':');
+
   return {
-    projectionKey: [
-      destinationKey,
-      event.sourceWorkspaceKey,
-      event.objectName,
-      event.recordId,
-      event.eventId,
-    ].join(':'),
+    projectionKey,
     destinationKey,
     sourceWorkspaceKey: event.sourceWorkspaceKey,
     sourceRecordId: event.recordId,
     objectName: event.objectName,
     fields,
-    authority: 'source',
+    authority:
+      event.objectName === 'company' || event.objectName === 'project'
+        ? 'source'
+        : 'managed',
+    direction,
+    mutationId:
+      event.mutationId ??
+      `bridge:${direction}:${destinationKey}:${event.eventId}`,
+    revision: options.revision ?? 0,
   };
 };
 
@@ -90,7 +131,8 @@ const invalidProjectionField = (
   value: unknown,
 ): string | undefined => {
   const validString =
-    (field === 'title' || field === 'name') && typeof value === 'string';
+    (field === 'title' || field === 'name' || field === 'body') &&
+    typeof value === 'string';
   const nullableString =
     (field === 'status' || field === 'dueAt') &&
     (value === null || typeof value === 'string');

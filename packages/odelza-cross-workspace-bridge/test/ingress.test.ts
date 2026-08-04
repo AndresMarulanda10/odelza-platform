@@ -60,7 +60,11 @@ describe('authenticated bridge ingress', () => {
     const send = vi.fn().mockResolvedValue(undefined);
     const response = await handleIngress(await request(), env(send), NOW);
     expect(response.status).toBe(202);
-    const expected = { ...envelope, sourceWorkspaceKey: WORKSPACE_KEY };
+    const expected = {
+      ...envelope,
+      sourceWorkspaceKey: WORKSPACE_KEY,
+      workspaceRole: 'source',
+    };
     delete (expected as Record<string, unknown>).record;
     delete (expected as Record<string, unknown>).workspaceId;
     (expected as Record<string, unknown>).sourceFields = {

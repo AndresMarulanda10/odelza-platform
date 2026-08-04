@@ -14,6 +14,8 @@ import type { NormalizedBridgeMessage } from '../src/ingress';
 import migrationSql from '../migrations/0001_durable_delivery_state.sql?raw';
 // @ts-expect-error Vite provides raw imports during test bundling.
 import projectionMigrationSql from '../migrations/0002_source_projection.sql?raw';
+// @ts-expect-error Vite provides raw imports during test bundling.
+import managedCollaborationMigrationSql from '../migrations/0003_managed_collaboration.sql?raw';
 
 /* oxlint-disable typescript/no-unsafe-type-assertion */
 const migrations = [
@@ -31,6 +33,13 @@ const migrations = [
       .map((query: string) => query.trim())
       .filter(Boolean),
   },
+  {
+    name: '0003_managed_collaboration.sql',
+    queries: managedCollaborationMigrationSql
+      .split(';')
+      .map((query: string) => query.trim())
+      .filter(Boolean),
+  },
 ];
 const message = (deliveryId: string): NormalizedBridgeMessage => ({
   schemaVersion: 1,
@@ -44,6 +53,7 @@ const message = (deliveryId: string): NormalizedBridgeMessage => ({
   recordId: 'record-1',
   updatedFields: ['title'],
   sourceFields: { title: 'source title' },
+  workspaceRole: 'source',
 });
 const createBatch = (id: string, body = message(id), attempts = 1) =>
   createMessageBatch('bridge-test', [

@@ -16,6 +16,9 @@ export type NormalizedBridgeMessage = {
   recordId: string;
   updatedFields: string[];
   sourceFields: Record<string, unknown>;
+  workspaceRole: 'source' | 'destination';
+  mutationId?: string;
+  shareRequested?: boolean;
 };
 type IngressEnvironment = {
   BRIDGE_HMAC_SECRET: string;
@@ -128,6 +131,9 @@ const normalizeEnvelope = (
   const recordId = getIdentifier(value.recordId ?? record.id);
   const updatedFields = normalizeUpdatedFields(value.updatedFields);
   const sourceFields = normalizeSourceFields(record, objectName);
+  const workspaceRole = value.workspaceRole ?? 'source';
+  const mutationId = getIdentifier(value.mutationId);
+  const shareRequested = value.shareRequested === true;
   if (
     !sourceWorkspaceKey ||
     !isIdentifier(sourceWorkspaceKey) ||
@@ -138,7 +144,8 @@ const normalizeEnvelope = (
     !objectId ||
     !recordId ||
     !updatedFields ||
-    !sourceFields
+    !sourceFields ||
+    (workspaceRole !== 'source' && workspaceRole !== 'destination')
   )
     return undefined;
   const [eventObject, eventType, extra] = eventName.split('.');
@@ -161,6 +168,9 @@ const normalizeEnvelope = (
     recordId,
     updatedFields,
     sourceFields,
+    workspaceRole,
+    ...(mutationId ? { mutationId } : {}),
+    ...(shareRequested ? { shareRequested } : {}),
   };
 };
 const normalizeUpdatedFields = (value: unknown): string[] | undefined => {
