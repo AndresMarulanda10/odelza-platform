@@ -6,9 +6,11 @@
   "compatibility_flags": ["nodejs_compat"],
   "vars": {
     "BRIDGE_SOURCE_WORKSPACE_KEY": "source-team",
+    "BRIDGE_DESTINATION_KEY": "destination-placeholder",
+    "BRIDGE_DESTINATION_API_URL": "https://destination.example.invalid",
   },
   "secrets": {
-    "required": ["BRIDGE_HMAC_SECRET"],
+    "required": ["BRIDGE_HMAC_SECRET", "BRIDGE_DESTINATION_API_KEY"],
   },
   "observability": {
     "enabled": true,
@@ -43,9 +45,11 @@
       "name": "odelza-cross-workspace-bridge-staging",
       "vars": {
         "BRIDGE_SOURCE_WORKSPACE_KEY": "source-team-staging",
+        "BRIDGE_DESTINATION_KEY": "destination-placeholder",
+        "BRIDGE_DESTINATION_API_URL": "https://destination.example.invalid",
       },
       "secrets": {
-        "required": ["BRIDGE_HMAC_SECRET"],
+        "required": ["BRIDGE_HMAC_SECRET", "BRIDGE_DESTINATION_API_KEY"],
       },
       "d1_databases": [
         {
@@ -76,9 +80,11 @@
       "name": "odelza-cross-workspace-bridge-production",
       "vars": {
         "BRIDGE_SOURCE_WORKSPACE_KEY": "source-team-production",
+        "BRIDGE_DESTINATION_KEY": "destination-placeholder",
+        "BRIDGE_DESTINATION_API_URL": "https://destination.example.invalid",
       },
       "secrets": {
-        "required": ["BRIDGE_HMAC_SECRET"],
+        "required": ["BRIDGE_HMAC_SECRET", "BRIDGE_DESTINATION_API_KEY"],
       },
       "d1_databases": [
         {

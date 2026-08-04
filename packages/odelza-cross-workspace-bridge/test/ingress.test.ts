@@ -56,16 +56,19 @@ const env = (send = vi.fn().mockResolvedValue(undefined)) => ({
   BRIDGE_QUEUE: { send },
 });
 describe('authenticated bridge ingress', () => {
-  it('enqueues normalized metadata and excludes record values', async () => {
+  it('enqueues normalized metadata with only approved source fields', async () => {
     const send = vi.fn().mockResolvedValue(undefined);
     const response = await handleIngress(await request(), env(send), NOW);
     expect(response.status).toBe(202);
     const expected = { ...envelope, sourceWorkspaceKey: WORKSPACE_KEY };
     delete (expected as Record<string, unknown>).record;
     delete (expected as Record<string, unknown>).workspaceId;
+    (expected as Record<string, unknown>).sourceFields = {
+      title: 'must not reach the queue',
+    };
     expect(send).toHaveBeenCalledOnce();
     expect(send).toHaveBeenCalledWith({ ...expected, timestamp: String(NOW) });
-    expect(JSON.stringify(send.mock.calls)).not.toContain('must not reach');
+    expect(send.mock.calls[0][0]).not.toHaveProperty('record');
   });
   it('rejects altered, stale, future, nonce-invalid, and unknown-workspace requests', async () => {
     const current = await request();

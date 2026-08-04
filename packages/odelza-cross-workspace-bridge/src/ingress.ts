@@ -1,5 +1,6 @@
+import { allowedProjectionFields } from './projection';
+
 export const MAX_BODY_BYTES = 64 * 1024;
-const SUPPORTED_OBJECTS = new Set('company project task note'.split(' '));
 const SUPPORTED_EVENTS = new Set(
   'created updated deleted restored upserted'.split(' '),
 );
@@ -14,6 +15,7 @@ export type NormalizedBridgeMessage = {
   objectName: string;
   recordId: string;
   updatedFields: string[];
+  sourceFields: Record<string, unknown>;
 };
 type IngressEnvironment = {
   BRIDGE_HMAC_SECRET: string;
@@ -125,6 +127,7 @@ const normalizeEnvelope = (
   const record = isRecord(value.record) ? value.record : {};
   const recordId = getIdentifier(value.recordId ?? record.id);
   const updatedFields = normalizeUpdatedFields(value.updatedFields);
+  const sourceFields = normalizeSourceFields(record, objectName);
   if (
     !sourceWorkspaceKey ||
     !isIdentifier(sourceWorkspaceKey) ||
@@ -134,14 +137,14 @@ const normalizeEnvelope = (
     !objectName ||
     !objectId ||
     !recordId ||
-    !updatedFields
+    !updatedFields ||
+    !sourceFields
   )
     return undefined;
   const [eventObject, eventType, extra] = eventName.split('.');
   if (
     extra ||
     eventObject !== objectName ||
-    !SUPPORTED_OBJECTS.has(objectName) ||
     !eventType ||
     !SUPPORTED_EVENTS.has(eventType)
   )
@@ -157,11 +160,23 @@ const normalizeEnvelope = (
     objectName,
     recordId,
     updatedFields,
+    sourceFields,
   };
 };
 const normalizeUpdatedFields = (value: unknown): string[] | undefined => {
   if (value === undefined) return [];
   return Array.isArray(value) && value.every(isValidField) ? value : undefined;
+};
+const normalizeSourceFields = (
+  record: JsonRecord,
+  objectName: string | undefined,
+): Record<string, unknown> | undefined => {
+  if (!objectName) return undefined;
+  return Object.fromEntries(
+    allowedProjectionFields(objectName)
+      .filter((field) => field in record)
+      .map((field) => [field, record[field]]),
+  );
 };
 const isValidField = (value: unknown): value is string =>
   typeof value === 'string' && isIdentifier(value);

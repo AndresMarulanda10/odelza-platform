@@ -1,8 +1,8 @@
 # Odelza Cross-Workspace Bridge
 
 Standalone Cloudflare Worker ingress for selective cross-workspace synchronization.
-This slice authenticates and validates webhook metadata, then records Queue
-deliveries durably for a later projection slice.
+This slice authenticates and validates webhook metadata, records Queue
+deliveries durably, and provides a source-only projection boundary.
 
 ## Local behavior
 
@@ -13,6 +13,10 @@ deliveries durably for a later projection slice.
 - The Queue consumer records one delivery receipt and one pending normalized
   event transactionally in D1. Duplicate deliveries are acknowledged without
   repeating the write. It performs no destination writes or external calls.
+- Company and Project are name-only source context; Task is limited to title,
+  status, dueAt, and progress. Unsupported fields, objects, and deletes block.
+- The destination adapter is test-injected. Endpoint, credentials, and the
+  production adapter remain deployment prerequisites; no endpoint is invented.
 
 Wrangler runs D1 and Queue bindings locally by default. The top-level resource
 names are local-only conventions; do not deploy the top-level environment.

@@ -12,12 +12,21 @@ import { processDeliveryMessage } from '../src/delivery-state';
 import type { NormalizedBridgeMessage } from '../src/ingress';
 // @ts-expect-error Vite provides raw imports during test bundling.
 import migrationSql from '../migrations/0001_durable_delivery_state.sql?raw';
+// @ts-expect-error Vite provides raw imports during test bundling.
+import projectionMigrationSql from '../migrations/0002_source_projection.sql?raw';
 
 /* oxlint-disable typescript/no-unsafe-type-assertion */
 const migrations = [
   {
     name: '0001_durable_delivery_state.sql',
     queries: migrationSql
+      .split(';')
+      .map((query: string) => query.trim())
+      .filter(Boolean),
+  },
+  {
+    name: '0002_source_projection.sql',
+    queries: projectionMigrationSql
       .split(';')
       .map((query: string) => query.trim())
       .filter(Boolean),
@@ -34,6 +43,7 @@ const message = (deliveryId: string): NormalizedBridgeMessage => ({
   objectName: 'task',
   recordId: 'record-1',
   updatedFields: ['title'],
+  sourceFields: { title: 'source title' },
 });
 const createBatch = (id: string, body = message(id), attempts = 1) =>
   createMessageBatch('bridge-test', [
