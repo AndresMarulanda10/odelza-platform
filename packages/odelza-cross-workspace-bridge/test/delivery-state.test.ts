@@ -16,6 +16,8 @@ import migrationSql from '../migrations/0001_durable_delivery_state.sql?raw';
 import projectionMigrationSql from '../migrations/0002_source_projection.sql?raw';
 // @ts-expect-error Vite provides raw imports during test bundling.
 import managedCollaborationMigrationSql from '../migrations/0003_managed_collaboration.sql?raw';
+// @ts-expect-error Vite provides raw imports during test bundling.
+import pilotHardeningMigrationSql from '../migrations/0004_pilot_hardening.sql?raw';
 
 /* oxlint-disable typescript/no-unsafe-type-assertion */
 const migrations = [
@@ -36,6 +38,13 @@ const migrations = [
   {
     name: '0003_managed_collaboration.sql',
     queries: managedCollaborationMigrationSql
+      .split(';')
+      .map((query: string) => query.trim())
+      .filter(Boolean),
+  },
+  {
+    name: '0004_pilot_hardening.sql',
+    queries: pilotHardeningMigrationSql
       .split(';')
       .map((query: string) => query.trim())
       .filter(Boolean),

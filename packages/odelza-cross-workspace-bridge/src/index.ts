@@ -1,3 +1,4 @@
+/* oxlint-disable no-await-in-loop */
 import { handleIngress } from './ingress';
 import { processDeliveryMessage } from './delivery-state';
 
@@ -18,14 +19,12 @@ const worker = {
     if (request.method === 'POST' && url.pathname === INGRESS_PATH) {
       return handleIngress(request, env);
     }
-
     return Response.json({ error: 'not_found' }, { status: 404 });
   },
   async queue(batch, env): Promise<void> {
     for (const message of batch.messages) {
       // Keep each receipt transaction isolated so one permanent message does not
       // prevent already-persisted messages from being acknowledged.
-      // oxlint-disable-next-line no-await-in-loop
       await processDeliveryMessage(message, env.BRIDGE_DB);
     }
   },

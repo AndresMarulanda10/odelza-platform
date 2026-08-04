@@ -1,4 +1,8 @@
 import { allowedProjectionFields } from './projection';
+import {
+  validateSharedFileDescriptor,
+  type SharedFileDescriptor,
+} from './shared-files';
 
 export const MAX_BODY_BYTES = 64 * 1024;
 const SUPPORTED_EVENTS = new Set(
@@ -19,6 +23,7 @@ export type NormalizedBridgeMessage = {
   workspaceRole: 'source' | 'destination';
   mutationId?: string;
   shareRequested?: boolean;
+  sharedFiles?: SharedFileDescriptor[];
 };
 type IngressEnvironment = {
   BRIDGE_HMAC_SECRET: string;
@@ -134,6 +139,7 @@ const normalizeEnvelope = (
   const workspaceRole = value.workspaceRole ?? 'source';
   const mutationId = getIdentifier(value.mutationId);
   const shareRequested = value.shareRequested === true;
+  const sharedFiles = value.sharedFiles;
   if (
     !sourceWorkspaceKey ||
     !isIdentifier(sourceWorkspaceKey) ||
@@ -145,6 +151,10 @@ const normalizeEnvelope = (
     !recordId ||
     !updatedFields ||
     !sourceFields ||
+    (sharedFiles !== undefined &&
+      (!shareRequested ||
+        !Array.isArray(sharedFiles) ||
+        !sharedFiles.every(validateSharedFileDescriptor))) ||
     (workspaceRole !== 'source' && workspaceRole !== 'destination')
   )
     return undefined;
@@ -171,6 +181,7 @@ const normalizeEnvelope = (
     workspaceRole,
     ...(mutationId ? { mutationId } : {}),
     ...(shareRequested ? { shareRequested } : {}),
+    ...(sharedFiles ? { sharedFiles } : {}),
   };
 };
 const normalizeUpdatedFields = (value: unknown): string[] | undefined => {
@@ -190,7 +201,7 @@ const normalizeSourceFields = (
 };
 const isValidField = (value: unknown): value is string =>
   typeof value === 'string' && isIdentifier(value);
-const readBoundedBody = async (
+export const readBoundedBody = async (
   request: Request,
 ): Promise<Uint8Array | undefined> => {
   if (!request.body) return new Uint8Array();

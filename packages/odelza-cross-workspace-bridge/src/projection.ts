@@ -1,4 +1,5 @@
 import type { NormalizedBridgeMessage } from './ingress';
+import type { SharedFile, SharedFileDescriptor } from './shared-files';
 
 const RULES: Record<string, readonly string[]> = {
   company: ['name'],
@@ -20,16 +21,33 @@ export type SourceProjection = {
   direction: 'to-destination' | 'to-source';
   mutationId: string;
   revision: number;
+  sharedFiles: SharedFileDescriptor[];
 };
 export type ProjectionDecision =
   | SourceProjection
   | { status: 'blocked'; reason: string };
 export type DestinationAdapter = {
   destinationKey: string;
+  config: { apiUrl: string; apiKey: string; scopes: readonly string[] };
   publish: (
     projection: SourceProjection,
+    files?: SharedFile[],
   ) => Promise<{ destinationRecordId: string }>;
 };
+export const validateDestinationAdapterConfig = (config: {
+  apiUrl: string;
+  apiKey: string;
+  scopes: readonly string[];
+}): string | undefined =>
+  config.apiUrl.startsWith('https://') &&
+  Boolean(config.apiKey) &&
+  config.scopes.join(',') === 'records:read,records:write,files:write'
+    ? undefined
+    : 'destination_config_invalid';
+export const validateCredentialRotation = (current: string, next: string) =>
+  !current || !next || current === next
+    ? 'credential_rotation_invalid'
+    : undefined;
 export const allowedProjectionFields = (
   objectName: string,
 ): readonly string[] => RULES[objectName] ?? [];
@@ -56,6 +74,8 @@ export const projectSourceEvent = (
     return { status: 'blocked', reason: 'note_share_required' };
   if (event.objectName === 'note' && event.workspaceRole === 'destination')
     return { status: 'blocked', reason: 'note_source_only' };
+  if (event.sharedFiles && !event.shareRequested)
+    return { status: 'blocked', reason: 'shared_files_share_required' };
   if (options.conflictingFields?.length)
     return {
       status: 'blocked',
@@ -121,6 +141,7 @@ export const projectSourceEvent = (
       event.mutationId ??
       `bridge:${direction}:${destinationKey}:${event.eventId}`,
     revision: options.revision ?? 0,
+    sharedFiles: event.sharedFiles ?? [],
   };
 };
 

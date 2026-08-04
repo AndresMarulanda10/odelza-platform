@@ -10,7 +10,11 @@
     "BRIDGE_DESTINATION_API_URL": "https://destination.example.invalid",
   },
   "secrets": {
-    "required": ["BRIDGE_HMAC_SECRET", "BRIDGE_DESTINATION_API_KEY"],
+    "required": [
+      "BRIDGE_HMAC_SECRET",
+      "BRIDGE_DESTINATION_API_KEY",
+      "BRIDGE_OPERATOR_REPLAY_KEY",
+    ],
   },
   "observability": {
     "enabled": true,
@@ -49,7 +53,11 @@
         "BRIDGE_DESTINATION_API_URL": "https://destination.example.invalid",
       },
       "secrets": {
-        "required": ["BRIDGE_HMAC_SECRET", "BRIDGE_DESTINATION_API_KEY"],
+        "required": [
+          "BRIDGE_HMAC_SECRET",
+          "BRIDGE_DESTINATION_API_KEY",
+          "BRIDGE_OPERATOR_REPLAY_KEY",
+        ],
       },
       "d1_databases": [
         {
@@ -84,7 +92,11 @@
         "BRIDGE_DESTINATION_API_URL": "https://destination.example.invalid",
       },
       "secrets": {
-        "required": ["BRIDGE_HMAC_SECRET", "BRIDGE_DESTINATION_API_KEY"],
+        "required": [
+          "BRIDGE_HMAC_SECRET",
+          "BRIDGE_DESTINATION_API_KEY",
+          "BRIDGE_OPERATOR_REPLAY_KEY",
+        ],
       },
       "d1_databases": [
         {

@@ -49,6 +49,11 @@ type FakeAdapter = DestinationAdapter & { published: SourceProjection[] };
 const fakeAdapter = (): FakeAdapter => {
   const adapter: FakeAdapter = {
     destinationKey: 'fake-destination',
+    config: {
+      apiUrl: 'https://d',
+      apiKey: 'test-only',
+      scopes: ['records:read', 'records:write', 'files:write'],
+    },
     published: [],
     publish: async (projection) => {
       adapter.published.push(projection);
