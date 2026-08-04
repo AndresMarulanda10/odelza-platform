@@ -15,6 +15,10 @@ permissions:
   issues: read
   pull-requests: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.issue.number || github.ref || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   check-blocked-contributors:
     runs-on: ubuntu-latest

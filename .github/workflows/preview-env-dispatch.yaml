@@ -12,7 +12,7 @@ on:
       - .github/workflows/preview-env-dispatch.yaml
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.issue.number || github.ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
