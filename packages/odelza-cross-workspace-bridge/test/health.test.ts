@@ -7,6 +7,8 @@ import {
 import { describe, expect, it } from 'vitest';
 
 import worker from '../src/index';
+// @ts-expect-error Vite provides raw imports during test bundling.
+import wranglerConfig from '../wrangler.jsonc?raw';
 
 describe('cross-workspace bridge', () => {
   it('returns public service health', async () => {
@@ -24,6 +26,11 @@ describe('cross-workspace bridge', () => {
 
     expect(response.status).toBe(404);
     await expect(response.json()).resolves.toEqual({ error: 'not_found' });
+  });
+
+  it('keeps every environment producer-only until Slice 4 owns consumption', () => {
+    expect(wranglerConfig.match(/"producers"/g)).toHaveLength(3);
+    expect(wranglerConfig).not.toContain('"consumers"');
   });
 
   it('acknowledges noop queue messages', async () => {

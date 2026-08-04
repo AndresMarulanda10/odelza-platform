@@ -1,14 +1,16 @@
 # Odelza Cross-Workspace Bridge
 
-Standalone Cloudflare Worker scaffold for selective cross-workspace synchronization.
-This slice contains no webhook or synchronization business logic.
+Standalone Cloudflare Worker ingress for selective cross-workspace synchronization.
+This slice authenticates and validates webhook metadata, then hands it to Queue.
 
 ## Local behavior
 
 - `GET /health` returns the service status without configuration or secrets.
+- `POST /webhooks/twenty` authenticates and validates JSON webhook metadata,
+  returning `202` only after Queue accepts normalized metadata.
 - Every other route returns `404`.
-- The Queue consumer only acknowledges typed `noop` messages. It does not log
-  payloads or call external services.
+- The no-op Queue consumer scaffold is not configured here; Slice 4 owns live
+  queue consumption. It does not log payloads or call external services.
 
 Wrangler runs D1 and Queue bindings locally by default. The top-level resource
 names are local-only conventions; do not deploy the top-level environment.

@@ -1,4 +1,7 @@
+import { handleIngress } from './ingress';
+
 const SERVICE_NAME = 'odelza-cross-workspace-bridge';
+const INGRESS_PATH = '/webhooks/twenty';
 
 type NoopQueueMessage = {
   type: 'noop';
@@ -11,7 +14,7 @@ const isNoopQueueMessage = (body: unknown): body is NoopQueueMessage =>
   body.type === 'noop';
 
 const worker = {
-  fetch(request): Response {
+  async fetch(request, env): Promise<Response> {
     const url = new URL(request.url);
 
     if (request.method === 'GET' && url.pathname === '/health') {
@@ -19,6 +22,10 @@ const worker = {
         status: 'ok',
         service: SERVICE_NAME,
       });
+    }
+
+    if (request.method === 'POST' && url.pathname === INGRESS_PATH) {
+      return handleIngress(request, env);
     }
 
     return Response.json({ error: 'not_found' }, { status: 404 });
