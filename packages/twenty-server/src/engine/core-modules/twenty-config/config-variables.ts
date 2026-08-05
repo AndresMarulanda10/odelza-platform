@@ -64,6 +64,32 @@ import {
   DEFAULT_SMART_MODELS,
 } from 'src/engine/metadata-modules/ai/ai-models/utils/load-default-model-preferences.util';
 
+type CrossWorkspaceBridgeConfig = Partial<
+  Pick<
+    ConfigVariables,
+    | 'CROSS_WORKSPACE_BRIDGE_WEBHOOK_URL'
+    | 'CROSS_WORKSPACE_BRIDGE_ACCESS_CLIENT_ID'
+    | 'CROSS_WORKSPACE_BRIDGE_ACCESS_CLIENT_SECRET'
+  >
+>;
+
+export const assertCrossWorkspaceBridgeConfig = (
+  config: CrossWorkspaceBridgeConfig,
+): void => {
+  const values = [
+    config.CROSS_WORKSPACE_BRIDGE_WEBHOOK_URL,
+    config.CROSS_WORKSPACE_BRIDGE_ACCESS_CLIENT_ID,
+    config.CROSS_WORKSPACE_BRIDGE_ACCESS_CLIENT_SECRET,
+  ];
+
+  if (values.some(Boolean) && !values.every(Boolean)) {
+    throw new ConfigVariableException(
+      'Cross-workspace bridge configuration is incomplete',
+      ConfigVariableExceptionCode.VALIDATION_FAILED,
+    );
+  }
+};
+
 export class ConfigVariables {
   @ConfigVariablesMetadata({
     group: ConfigVariablesGroup.ADVANCED_SETTINGS,
@@ -1382,6 +1408,37 @@ export class ConfigVariables {
 
   @ConfigVariablesMetadata({
     group: ConfigVariablesGroup.SERVER_CONFIG,
+    description: 'Exact webhook URL reserved for the cross-workspace bridge',
+    isEnvOnly: true,
+    type: ConfigVariableType.STRING,
+  })
+  @IsUrl({ protocols: ['https'], require_tld: false, require_protocol: true })
+  @IsOptionalOrEmptyString()
+  CROSS_WORKSPACE_BRIDGE_WEBHOOK_URL?: string;
+
+  @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.SERVER_CONFIG,
+    description: 'Cloudflare Access client ID for the cross-workspace bridge',
+    isEnvOnly: true,
+    isSensitive: true,
+    type: ConfigVariableType.STRING,
+  })
+  @IsOptional()
+  CROSS_WORKSPACE_BRIDGE_ACCESS_CLIENT_ID?: string;
+
+  @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.SERVER_CONFIG,
+    description:
+      'Cloudflare Access client secret for the cross-workspace bridge',
+    isEnvOnly: true,
+    isSensitive: true,
+    type: ConfigVariableType.STRING,
+  })
+  @IsOptional()
+  CROSS_WORKSPACE_BRIDGE_ACCESS_CLIENT_SECRET?: string;
+
+  @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.SERVER_CONFIG,
     description:
       'ISO date from which HTTP logic functions are no longer served on the legacy /s/ route. Functions created on or after this date are only reachable on the isolated public domain (*.withtwenty.com). Only enforced when PUBLIC_DOMAIN_URL is set; leave empty to keep serving every function on /s/ (default for self-hosting).',
     type: ConfigVariableType.STRING,
@@ -2078,6 +2135,8 @@ export class ConfigVariables {
 }
 
 export const validate = (config: Record<string, unknown>): ConfigVariables => {
+  assertCrossWorkspaceBridgeConfig(config);
+
   const validatedConfig = plainToClass(ConfigVariables, config);
 
   const validationErrors = validateSync(validatedConfig, {

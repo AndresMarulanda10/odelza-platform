@@ -1,0 +1,127 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "odelza-cross-workspace-bridge-local",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "BRIDGE_SOURCE_WORKSPACE_KEY": "source-team",
+    "BRIDGE_DESTINATION_KEY": "destination-placeholder",
+    "BRIDGE_DESTINATION_API_URL": "https://destination.example.invalid",
+  },
+  "secrets": {
+    "required": [
+      "BRIDGE_HMAC_SECRET",
+      "BRIDGE_DESTINATION_API_KEY",
+      "BRIDGE_OPERATOR_REPLAY_KEY",
+    ],
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1,
+  },
+  "d1_databases": [
+    {
+      "binding": "BRIDGE_DB",
+      "database_name": "odelza-cross-workspace-bridge-local",
+      "migrations_dir": "migrations",
+    },
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "BRIDGE_QUEUE",
+        "queue": "odelza-cross-workspace-bridge-local",
+      },
+    ],
+    "consumers": [
+      {
+        "queue": "odelza-cross-workspace-bridge-local",
+        "dead_letter_queue": "odelza-cross-workspace-bridge-local-dlq",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5,
+        "max_retries": 3,
+      },
+    ],
+  },
+  "env": {
+    "staging": {
+      "name": "odelza-cross-workspace-bridge-staging",
+      "vars": {
+        "BRIDGE_SOURCE_WORKSPACE_KEY": "source-team-staging",
+        "BRIDGE_DESTINATION_KEY": "destination-placeholder",
+        "BRIDGE_DESTINATION_API_URL": "https://destination.example.invalid",
+      },
+      "secrets": {
+        "required": [
+          "BRIDGE_HMAC_SECRET",
+          "BRIDGE_DESTINATION_API_KEY",
+          "BRIDGE_OPERATOR_REPLAY_KEY",
+        ],
+      },
+      "d1_databases": [
+        {
+          "binding": "BRIDGE_DB",
+          "database_name": "odelza-cross-workspace-bridge-staging",
+          "migrations_dir": "migrations",
+        },
+      ],
+      "queues": {
+        "producers": [
+          {
+            "binding": "BRIDGE_QUEUE",
+            "queue": "odelza-cross-workspace-bridge-staging",
+          },
+        ],
+        "consumers": [
+          {
+            "queue": "odelza-cross-workspace-bridge-staging",
+            "dead_letter_queue": "odelza-cross-workspace-bridge-staging-dlq",
+            "max_batch_size": 10,
+            "max_batch_timeout": 5,
+            "max_retries": 3,
+          },
+        ],
+      },
+    },
+    "production": {
+      "name": "odelza-cross-workspace-bridge-production",
+      "vars": {
+        "BRIDGE_SOURCE_WORKSPACE_KEY": "source-team-production",
+        "BRIDGE_DESTINATION_KEY": "destination-placeholder",
+        "BRIDGE_DESTINATION_API_URL": "https://destination.example.invalid",
+      },
+      "secrets": {
+        "required": [
+          "BRIDGE_HMAC_SECRET",
+          "BRIDGE_DESTINATION_API_KEY",
+          "BRIDGE_OPERATOR_REPLAY_KEY",
+        ],
+      },
+      "d1_databases": [
+        {
+          "binding": "BRIDGE_DB",
+          "database_name": "odelza-cross-workspace-bridge-production",
+          "migrations_dir": "migrations",
+        },
+      ],
+      "queues": {
+        "producers": [
+          {
+            "binding": "BRIDGE_QUEUE",
+            "queue": "odelza-cross-workspace-bridge-production",
+          },
+        ],
+        "consumers": [
+          {
+            "queue": "odelza-cross-workspace-bridge-production",
+            "dead_letter_queue": "odelza-cross-workspace-bridge-production-dlq",
+            "max_batch_size": 10,
+            "max_batch_timeout": 5,
+            "max_retries": 3,
+          },
+        ],
+      },
+    },
+  },
+}
