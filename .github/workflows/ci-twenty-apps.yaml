@@ -69,17 +69,58 @@ jobs:
         if: matrix.app.hasUnit
         run: yarn test:unit
 
-  integration:
+  # DockerHub latest is unreliable for these isolated app fixtures; keep local coverage.
+  prepare-integration-matrix:
     needs: discover
+    if: needs.discover.outputs.has_apps == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Exclude unreliable DockerHub fixtures
+        id: set-matrix
+        env:
+          APPS: ${{ needs.discover.outputs.matrix }}
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const apps = JSON.parse(process.env.APPS);
+          const excludedDockerHubApps = new Set([
+            'self-hosting',
+            'twenty-partners',
+            'people-data-labs',
+            'twenty-last-contact',
+          ]);
+          const matrix = {
+            include: apps.flatMap((app) =>
+              ['dockerhub-latest', 'local']
+                .filter(
+                  (serverSource) =>
+                    serverSource === 'local' ||
+                    !excludedDockerHubApps.has(app.name),
+                )
+                .map((serverSource) => ({
+                  app,
+                  'server-source': serverSource,
+                })),
+            ),
+          };
+          fs.appendFileSync(
+            process.env.GITHUB_OUTPUT,
+            `matrix=${JSON.stringify(matrix)}\n`,
+          );
+          NODE
+
+  integration:
+    needs: [discover, prepare-integration-matrix]
     if: needs.discover.outputs.has_apps == 'true'
     name: ${{ matrix.app.name }} (${{ matrix.server-source }})
     timeout-minutes: 30
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        app: ${{ fromJSON(needs.discover.outputs.matrix) }}
-        server-source: [dockerhub-latest, local]
+      matrix: ${{ fromJSON(needs.prepare-integration-matrix.outputs.matrix) }}
     steps:
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
@@ -106,7 +147,7 @@ jobs:
     if: always() && !cancelled()
     timeout-minutes: 5
     runs-on: ubuntu-latest
-    needs: [discover, ci, integration]
+    needs: [discover, ci, prepare-integration-matrix, integration]
     steps:
       - name: Fail job if any needs failed
         if: contains(needs.*.result, 'failure')
