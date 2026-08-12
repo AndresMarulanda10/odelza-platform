@@ -5,7 +5,7 @@ type WebhookJobBase = {
   eventName: string;
   workspaceId: string;
   webhookId: string;
-  eventDate: Date;
+  eventDate: Date | string;
   userId?: string;
   apiKeyId?: string;
   secret?: string;

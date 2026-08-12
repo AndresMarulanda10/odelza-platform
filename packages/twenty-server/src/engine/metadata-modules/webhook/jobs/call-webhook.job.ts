@@ -30,6 +30,7 @@ export const computeBridgeDeliveryId = (data: WebhookJobData): string => {
       : 'event' in data
         ? data.event.recordId
         : '';
+  const eventDate = new Date(data.eventDate);
 
   return crypto
     .createHash('sha256')
@@ -39,7 +40,7 @@ export const computeBridgeDeliveryId = (data: WebhookJobData): string => {
         data.webhookId,
         data.eventName,
         recordId,
-        data.eventDate.toISOString(),
+        eventDate.toISOString(),
         'updatedFields' in data ? (data.updatedFields ?? []) : [],
       ]),
     )

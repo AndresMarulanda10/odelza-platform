@@ -167,8 +167,14 @@ describe('CallWebhookJob', () => {
   it('derives a stable identity from the existing webhook event fields', () => {
     const first = buildJob().event;
     const second = { ...first };
+    const serialized = { ...first, eventDate: first.eventDate.toISOString() };
 
-    expect(computeBridgeDeliveryId(first)).toBe(computeBridgeDeliveryId(second));
+    expect(computeBridgeDeliveryId(first)).toBe(
+      computeBridgeDeliveryId(second),
+    );
+    expect(computeBridgeDeliveryId(serialized)).toBe(
+      computeBridgeDeliveryId(first),
+    );
     expect(
       computeBridgeDeliveryId({ ...first, record: { id: 'different-record' } }),
     ).not.toBe(computeBridgeDeliveryId(first));
