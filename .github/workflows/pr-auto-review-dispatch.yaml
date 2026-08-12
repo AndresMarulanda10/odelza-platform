@@ -12,7 +12,9 @@ concurrency:
 
 jobs:
   dispatch:
-    if: github.event.pull_request.draft == false
+    if: >-
+      github.event.pull_request.draft == false &&
+      vars.TWENTY_WORKFLOW_DISPATCHER_CLIENT_ID != ''
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:

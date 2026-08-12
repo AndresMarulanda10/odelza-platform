@@ -9,8 +9,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}${{ github.ref == 'refs/heads/main' && format('-{0}', github.sha) || '' }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.issue.number || github.ref || github.run_id }}
+  cancel-in-progress: true
 
 env:
   # restore-cache action adds 'v4-' prefix and '-<branch>-<sha>' suffix to the key
