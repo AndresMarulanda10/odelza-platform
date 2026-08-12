@@ -1,0 +1,539 @@
+/* oxlint-disable no-await-in-loop */
+import type { NormalizedBridgeMessage } from './ingress';
+import { type DestinationAdapter, projectSourceEvent } from './projection';
+import { readSharedFile, type SharedFile } from './shared-files';
+
+const SUPPORTED_EVENTS = new Set(
+  'created updated deleted restored upserted'.split(' '),
+);
+export class TransientDeliveryStorageError extends Error {
+  constructor(cause: unknown) {
+    super('bridge delivery storage failed', { cause });
+    this.name = 'TransientDeliveryStorageError';
+  }
+}
+export class TransientProjectionError extends Error {
+  constructor(cause: unknown) {
+    super('bridge projection failed', { cause });
+    this.name = 'TransientProjectionError';
+  }
+}
+
+export const isNormalizedBridgeMessage = (
+  value: unknown,
+): value is NormalizedBridgeMessage => {
+  if (!isRecord(value) || value.schemaVersion !== 1) return false;
+
+  const eventName = value.eventName;
+  const objectName = value.objectName;
+  if (
+    !isNonEmptyString(eventName) ||
+    !isNonEmptyString(objectName) ||
+    ![
+      value.sourceWorkspaceKey,
+      value.deliveryId,
+      value.timestamp,
+      value.eventId,
+      value.objectId,
+      value.recordId,
+    ].every(isNonEmptyString)
+  ) {
+    return false;
+  }
+  if (
+    !Array.isArray(value.updatedFields) ||
+    !value.updatedFields.every(isNonEmptyString) ||
+    !isRecord(value.sourceFields) ||
+    (value.sharedFiles !== undefined && !Array.isArray(value.sharedFiles))
+  )
+    return false;
+  if (
+    (value.workspaceRole !== 'source' &&
+      value.workspaceRole !== 'destination') ||
+    (value.mutationId !== undefined && !isNonEmptyString(value.mutationId)) ||
+    (value.shareRequested !== undefined &&
+      typeof value.shareRequested !== 'boolean')
+  )
+    return false;
+  const [eventObject, eventType, extra] = eventName.split('.');
+
+  return (
+    !extra &&
+    eventObject === objectName &&
+    eventType !== undefined &&
+    SUPPORTED_EVENTS.has(eventType) &&
+    isNonEmptyString(objectName)
+  );
+};
+
+export const persistNormalizedEvent = async (
+  database: D1Database,
+  event: NormalizedBridgeMessage,
+  destinationKey = 'destination-placeholder',
+  receivedAt = new Date().toISOString(),
+): Promise<boolean> => {
+  try {
+    const results = await database.batch([
+      database
+        .prepare(
+          "INSERT OR IGNORE INTO bridge_delivery_receipts (delivery_id, source_workspace_key, event_id, status, received_at) VALUES (?, ?, ?, 'pending', ?)",
+        )
+        .bind(
+          event.deliveryId,
+          event.sourceWorkspaceKey,
+          event.eventId,
+          receivedAt,
+        ),
+      database
+        .prepare(
+          "INSERT OR IGNORE INTO bridge_pending_events (delivery_id, schema_version, source_workspace_key, event_id, received_timestamp, event_name, object_name, object_id, record_id, updated_fields_json, source_fields_json, projection_key, projection_status, created_at, workspace_role, mutation_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?)",
+        )
+        .bind(
+          event.deliveryId,
+          event.schemaVersion,
+          event.sourceWorkspaceKey,
+          event.eventId,
+          event.timestamp,
+          event.eventName,
+          event.objectName,
+          event.objectId,
+          event.recordId,
+          JSON.stringify(event.updatedFields),
+          JSON.stringify(event.sourceFields),
+          [
+            destinationKey,
+            event.sourceWorkspaceKey,
+            event.objectName,
+            event.recordId,
+            event.eventId,
+          ].join(':'),
+          receivedAt,
+          event.workspaceRole,
+          event.mutationId ?? null,
+        ),
+    ]);
+
+    return results[0].meta.changes === 1;
+  } catch (error) {
+    throw new TransientDeliveryStorageError(error);
+  }
+};
+
+export const processDeliveryMessage = async (
+  message: QueueMessage<unknown>,
+  database: D1Database,
+  adapter?: DestinationAdapter,
+): Promise<void> => {
+  if (!isNormalizedBridgeMessage(message.body)) {
+    if (message.id) await recordDeadLetter(message, database);
+    throw new Error('bridge queue message is malformed or unsupported');
+  }
+
+  try {
+    await persistNormalizedEvent(
+      database,
+      message.body,
+      adapter?.destinationKey,
+    );
+    if (adapter) await projectPendingEvent(database, message.body, adapter);
+    message.ack();
+    console.log(
+      JSON.stringify({
+        service: 'bridge',
+        operation: 'dlq',
+        status: 'recorded',
+      }),
+    );
+  } catch (error) {
+    if (
+      error instanceof TransientDeliveryStorageError ||
+      error instanceof TransientProjectionError
+    ) {
+      if ((message.attempts ?? 1) >= 3)
+        await recordDeadLetter(message, database);
+      message.retry();
+      return;
+    }
+
+    throw error;
+  }
+};
+
+type ProjectionRow = { projection_status: string };
+type FieldRevisionRow = {
+  field_name: string;
+  revision: number;
+  last_event_timestamp: string;
+  last_workspace_role: 'source' | 'destination';
+  last_mutation_id: string;
+  value_json: string;
+};
+
+export const projectPendingEvent = async (
+  database: D1Database,
+  event: NormalizedBridgeMessage,
+  adapter: DestinationAdapter,
+): Promise<void> => {
+  try {
+    const row = await database
+      .prepare(
+        'SELECT projection_status FROM bridge_pending_events WHERE delivery_id = ?',
+      )
+      .bind(event.deliveryId)
+      .first<ProjectionRow>();
+    if (row?.projection_status !== 'pending') return;
+
+    if (event.mutationId) {
+      const mutation = await database
+        .prepare('SELECT status FROM bridge_mutations WHERE mutation_id = ?')
+        .bind(event.mutationId)
+        .first<{ status: string }>();
+      if (mutation?.status === 'applied') {
+        await markProjected(database, event.deliveryId, event.mutationId);
+        return;
+      }
+    }
+    const revisionResult = await database
+      .prepare(
+        'SELECT field_name, revision, last_event_timestamp, last_workspace_role, last_mutation_id, value_json FROM bridge_field_revisions WHERE destination_key = ? AND source_workspace_key = ? AND object_name = ? AND record_id = ?',
+      )
+      .bind(
+        adapter.destinationKey,
+        event.sourceWorkspaceKey,
+        event.objectName,
+        event.recordId,
+      )
+      .all<FieldRevisionRow>();
+    const revisions = new Map(
+      revisionResult.results.map((revision) => [revision.field_name, revision]),
+    );
+    const conflictingFields = event.updatedFields.filter((field) => {
+      const previous = revisions.get(field);
+      return (
+        previous &&
+        previous.last_workspace_role !== event.workspaceRole &&
+        compareEventTimestamps(
+          event.timestamp,
+          previous.last_event_timestamp,
+        ) <= 0
+      );
+    });
+    const revision =
+      Math.max(
+        0,
+        ...revisionResult.results.map((revisionRow) => revisionRow.revision),
+      ) + 1;
+    const decision = projectSourceEvent(event, adapter.destinationKey, {
+      conflictingFields,
+      revision,
+    });
+    if ('status' in decision) {
+      await markBlocked(
+        database,
+        event.deliveryId,
+        decision.reason,
+        event,
+        adapter.destinationKey,
+        revisions,
+      );
+      return;
+    }
+    const files = await reserveSharedFiles(
+      database,
+      decision.sharedFiles,
+      adapter.destinationKey,
+      decision.mutationId,
+    );
+    await database
+      .prepare(
+        "INSERT OR IGNORE INTO bridge_mutations (mutation_id, projection_key, status, created_at) VALUES (?, ?, 'pending', ?)",
+      )
+      .bind(
+        decision.mutationId,
+        decision.projectionKey,
+        new Date().toISOString(),
+      )
+      .run();
+    if (event.objectName === 'note') {
+      await database
+        .prepare(
+          "INSERT OR IGNORE INTO bridge_note_shares (share_key, source_workspace_key, source_record_id, destination_key, mutation_id, status, created_at) VALUES (?, ?, ?, ?, ?, 'pending', ?)",
+        )
+        .bind(
+          decision.projectionKey,
+          event.sourceWorkspaceKey,
+          event.recordId,
+          adapter.destinationKey,
+          decision.mutationId,
+          new Date().toISOString(),
+        )
+        .run();
+    }
+    if (decision.sharedFiles.length > 0 && files.length === 0) {
+      await markProjected(database, event.deliveryId, decision.mutationId);
+      return;
+    }
+    const result = await adapter.publish(decision, files);
+    await database.batch([
+      database
+        .prepare(
+          "UPDATE bridge_mutations SET status = 'applied' WHERE mutation_id = ?",
+        )
+        .bind(decision.mutationId),
+      database
+        .prepare(
+          "UPDATE bridge_pending_events SET projection_status = 'projected', destination_record_id = ?, projected_at = ? WHERE delivery_id = ? AND projection_status = 'pending'",
+        )
+        .bind(
+          result.destinationRecordId,
+          new Date().toISOString(),
+          event.deliveryId,
+        ),
+      database
+        .prepare(
+          "UPDATE bridge_delivery_receipts SET status = 'projected' WHERE delivery_id = ?",
+        )
+        .bind(event.deliveryId),
+      ...Object.entries(decision.fields).map(([field, value]) =>
+        database
+          .prepare(
+            'INSERT INTO bridge_field_revisions (field_key, destination_key, source_workspace_key, object_name, record_id, field_name, revision, last_event_timestamp, last_workspace_role, last_mutation_id, value_json, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(field_key) DO UPDATE SET revision = excluded.revision, last_event_timestamp = excluded.last_event_timestamp, last_workspace_role = excluded.last_workspace_role, last_mutation_id = excluded.last_mutation_id, value_json = excluded.value_json, updated_at = excluded.updated_at',
+          )
+          .bind(
+            fieldKey(adapter.destinationKey, event, field),
+            adapter.destinationKey,
+            event.sourceWorkspaceKey,
+            event.objectName,
+            event.recordId,
+            field,
+            revision,
+            event.timestamp,
+            event.workspaceRole,
+            decision.mutationId,
+            JSON.stringify(value),
+            new Date().toISOString(),
+          ),
+      ),
+      ...(event.objectName === 'note'
+        ? [
+            database
+              .prepare(
+                "UPDATE bridge_note_shares SET status = 'projected' WHERE share_key = ?",
+              )
+              .bind(decision.projectionKey),
+          ]
+        : []),
+      ...files.map((file) =>
+        database
+          .prepare(
+            "UPDATE bridge_shared_file_digests SET status = 'projected' WHERE file_key = ?",
+          )
+          .bind(`${adapter.destinationKey}:${file.digest}`),
+      ),
+    ]);
+  } catch (error) {
+    if (error instanceof TransientProjectionError) throw error;
+    throw new TransientProjectionError(error);
+  }
+};
+
+const markBlocked = async (
+  database: D1Database,
+  deliveryId: string,
+  reason: string,
+  event: NormalizedBridgeMessage,
+  destinationKey: string,
+  revisions: Map<string, FieldRevisionRow>,
+): Promise<void> => {
+  const field = reason.startsWith('same_field_conflict:')
+    ? reason.slice('same_field_conflict:'.length)
+    : undefined;
+  await database.batch([
+    database
+      .prepare(
+        "UPDATE bridge_pending_events SET projection_status = 'blocked', blocked_reason = ? WHERE delivery_id = ? AND projection_status = 'pending'",
+      )
+      .bind(reason, deliveryId),
+    database
+      .prepare(
+        "UPDATE bridge_delivery_receipts SET status = 'failed' WHERE delivery_id = ?",
+      )
+      .bind(deliveryId),
+    ...(field
+      ? [
+          database
+            .prepare(
+              "INSERT OR IGNORE INTO bridge_conflicts (conflict_key, field_key, event_id, existing_mutation_id, incoming_value_json, existing_value_json, status, created_at) VALUES (?, ?, ?, ?, ?, ?, 'blocked', ?)",
+            )
+            .bind(
+              `${fieldKey(destinationKey, event, field)}:${event.eventId}`,
+              fieldKey(destinationKey, event, field),
+              event.eventId,
+              revisions.get(field)?.last_mutation_id ?? 'unknown',
+              JSON.stringify(event.sourceFields[field]),
+              revisions.get(field)?.value_json ?? 'null',
+              new Date().toISOString(),
+            ),
+        ]
+      : []),
+  ]);
+};
+
+const markProjected = async (
+  database: D1Database,
+  deliveryId: string,
+  mutationId: string,
+): Promise<void> => {
+  await database.batch([
+    database
+      .prepare(
+        "UPDATE bridge_mutations SET status = 'applied' WHERE mutation_id = ?",
+      )
+      .bind(mutationId),
+    database
+      .prepare(
+        "UPDATE bridge_pending_events SET projection_status = 'projected', blocked_reason = 'loop_suppressed' WHERE delivery_id = ?",
+      )
+      .bind(deliveryId),
+    database
+      .prepare(
+        "UPDATE bridge_delivery_receipts SET status = 'projected' WHERE delivery_id = ?",
+      )
+      .bind(deliveryId),
+  ]);
+};
+
+const reserveSharedFiles = async (
+  database: D1Database,
+  descriptors: NormalizedBridgeMessage['sharedFiles'],
+  destinationKey: string,
+  mutationId: string,
+): Promise<SharedFile[]> => {
+  const files: SharedFile[] = [];
+  for (const descriptor of descriptors ?? []) {
+    const file = await readSharedFile(descriptor);
+    const fileKey = `${destinationKey}:${file.digest}`;
+    const existing = await database
+      .prepare(
+        'SELECT status FROM bridge_shared_file_digests WHERE file_key = ?',
+      )
+      .bind(fileKey)
+      .first<{ status: string }>();
+    if (existing?.status === 'projected') continue;
+    await database
+      .prepare(
+        "INSERT OR IGNORE INTO bridge_shared_file_digests (file_key, digest, destination_key, mutation_id, status, created_at) VALUES (?, ?, ?, ?, 'pending', ?)",
+      )
+      .bind(
+        fileKey,
+        file.digest,
+        destinationKey,
+        mutationId,
+        new Date().toISOString(),
+      )
+      .run();
+    files.push(file);
+  }
+  return files;
+};
+
+const recordDeadLetter = async (
+  message: QueueMessage<unknown>,
+  database: D1Database,
+): Promise<void> => {
+  const body = JSON.stringify(message.body) ?? 'null';
+  const deliveryId = isNormalizedBridgeMessage(message.body)
+    ? message.body.deliveryId
+    : (message.id ?? crypto.randomUUID());
+  await database
+    .prepare(
+      "INSERT OR IGNORE INTO bridge_dead_letters (dead_letter_id, delivery_id, body_json, status, attempts, created_at) VALUES (?, ?, ?, 'pending', ?, ?)",
+    )
+    .bind(
+      message.id ?? deliveryId,
+      deliveryId,
+      body,
+      message.attempts ?? 1,
+      new Date().toISOString(),
+    )
+    .run();
+};
+
+export const replayDeadLetter = async (
+  database: D1Database,
+  queue: Pick<Queue<NormalizedBridgeMessage>, 'send'>,
+  deadLetterId: string,
+  providedKey: string,
+  configuredKey: string,
+): Promise<'replayed' | 'already_replayed' | 'not_found'> => {
+  if (!/^[A-Za-z0-9._:-]{1,128}$/.test(deadLetterId)) return 'not_found';
+  if (!(await secretsMatch(providedKey, configuredKey)))
+    throw new Error('unauthorized');
+  const row = await database
+    .prepare(
+      'SELECT body_json, status FROM bridge_dead_letters WHERE dead_letter_id = ?',
+    )
+    .bind(deadLetterId)
+    .first<{ body_json: string; status: string }>();
+  if (!row) return 'not_found';
+  if (row.status === 'replayed') return 'already_replayed';
+  const body: unknown = JSON.parse(row.body_json);
+  if (!isNormalizedBridgeMessage(body))
+    throw new Error('dead_letter_not_replayable');
+  await queue.send(body);
+  await database
+    .prepare(
+      "UPDATE bridge_dead_letters SET status = 'replayed', replayed_at = ? WHERE dead_letter_id = ? AND status = 'pending'",
+    )
+    .bind(new Date().toISOString(), deadLetterId)
+    .run();
+  console.log(JSON.stringify({ service: 'bridge', status: 'replay_queued' }));
+  return 'replayed';
+};
+
+const secretsMatch = async (
+  provided: string,
+  configured: string,
+): Promise<boolean> => {
+  const encoder = new TextEncoder();
+  const [left, right] = await Promise.all([
+    crypto.subtle.digest('SHA-256', encoder.encode(provided)),
+    crypto.subtle.digest('SHA-256', encoder.encode(configured)),
+  ]);
+  // @ts-expect-error Cloudflare runtime exposes timingSafeEqual.
+  return crypto.subtle.timingSafeEqual(left, right);
+};
+
+const fieldKey = (
+  destinationKey: string,
+  event: NormalizedBridgeMessage,
+  field: string,
+): string =>
+  [
+    destinationKey,
+    event.sourceWorkspaceKey,
+    event.objectName,
+    event.recordId,
+    field,
+  ].join(':');
+const compareEventTimestamps = (left: string, right: string): number => {
+  const leftNumber = Number(left);
+  const rightNumber = Number(right);
+  if (Number.isFinite(leftNumber) && Number.isFinite(rightNumber))
+    return leftNumber - rightNumber;
+  return left.localeCompare(right);
+};
+
+type QueueMessage<T> = {
+  id?: string;
+  attempts?: number;
+  body: T;
+  ack: () => void;
+  retry: () => void;
+};
+type JsonRecord = Record<string, unknown>;
+
+const isRecord = (value: unknown): value is JsonRecord =>
+  typeof value === 'object' && value !== null && !Array.isArray(value);
+const isNonEmptyString = (value: unknown): value is string =>
+  typeof value === 'string' && value.length > 0;

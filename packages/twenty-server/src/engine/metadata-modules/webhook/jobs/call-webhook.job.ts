@@ -10,7 +10,102 @@ import { MessageQueue } from 'src/engine/core-modules/message-queue/message-queu
 import { MetricsService } from 'src/engine/core-modules/metrics/metrics.service';
 import { MetricsKeys } from 'src/engine/core-modules/metrics/types/metrics-keys.type';
 import { SecureHttpClientService } from 'src/engine/core-modules/secure-http-client/secure-http-client.service';
+import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
 import { type WebhookJobData } from 'src/engine/metadata-modules/webhook/types/webhook-job-data.type';
+
+type BridgeWebhookConfig = {
+  webhookUrl?: string;
+  accessClientId?: string;
+  accessClientSecret?: string;
+};
+
+export const computeBridgeDeliveryId = (data: WebhookJobData): string => {
+  const recordId =
+    'record' in data &&
+    typeof data.record === 'object' &&
+    data.record !== null &&
+    'id' in data.record &&
+    typeof data.record.id === 'string'
+      ? data.record.id
+      : 'event' in data
+        ? data.event.recordId
+        : '';
+  const eventDate = new Date(data.eventDate);
+
+  return crypto
+    .createHash('sha256')
+    .update(
+      JSON.stringify([
+        data.workspaceId,
+        data.webhookId,
+        data.eventName,
+        recordId,
+        eventDate.toISOString(),
+        'updatedFields' in data ? (data.updatedFields ?? []) : [],
+      ]),
+    )
+    .digest('hex');
+};
+
+export const buildWebhookRequest = ({
+  targetUrl,
+  payload,
+  deliveryId,
+  secret,
+  timestamp,
+  nonce,
+  bridgeConfig,
+}: {
+  targetUrl: string;
+  payload: Record<string, unknown>;
+  deliveryId: string;
+  secret?: string;
+  timestamp: string;
+  nonce: string;
+  bridgeConfig: BridgeWebhookConfig;
+}) => {
+  const bridgeConfigValues = Object.values(bridgeConfig);
+  const hasBridgeConfig = bridgeConfigValues.some(Boolean);
+  const hasCompleteBridgeConfig = bridgeConfigValues.every(Boolean);
+
+  if (hasBridgeConfig && !hasCompleteBridgeConfig) {
+    throw new Error('Cross-workspace bridge configuration is incomplete');
+  }
+
+  const isBridgeTarget =
+    hasCompleteBridgeConfig && targetUrl === bridgeConfig.webhookUrl;
+
+  if (isBridgeTarget && !secret) {
+    throw new Error('Cross-workspace bridge webhook secret is missing');
+  }
+
+  const rawBody = JSON.stringify(
+    isBridgeTarget ? { ...payload, deliveryId } : payload,
+  );
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  };
+
+  if (secret) {
+    headers['X-Twenty-Webhook-Timestamp'] = timestamp;
+    headers['X-Twenty-Webhook-Nonce'] = nonce;
+    headers['X-Twenty-Webhook-Signature'] = crypto
+      .createHmac('sha256', secret)
+      .update(
+        isBridgeTarget
+          ? `${timestamp}:${nonce}:${rawBody}`
+          : `${timestamp}:${rawBody}`,
+      )
+      .digest('hex');
+  }
+
+  if (isBridgeTarget) {
+    headers['CF-Access-Client-Id'] = bridgeConfig.accessClientId!;
+    headers['CF-Access-Client-Secret'] = bridgeConfig.accessClientSecret!;
+  }
+
+  return { rawBody, headers };
+};
 
 @Processor(MessageQueue.webhookQueue)
 export class CallWebhookJob {
@@ -18,18 +113,8 @@ export class CallWebhookJob {
     private readonly eventLogEmitterService: EventLogEmitterService,
     private readonly metricsService: MetricsService,
     private readonly secureHttpClientService: SecureHttpClientService,
+    private readonly twentyConfigService: TwentyConfigService,
   ) {}
-
-  private generateSignature(
-    payload: Record<string, unknown>,
-    secret: string,
-    timestamp: string,
-  ): string {
-    return crypto
-      .createHmac('sha256', secret)
-      .update(`${timestamp}:${JSON.stringify(payload)}`)
-      .digest('hex');
-  }
 
   @Process(CallWebhookJob.name)
   async handle(webhookJobEvents: WebhookJobData[]): Promise<void> {
@@ -49,25 +134,33 @@ export class CallWebhookJob {
     const eventLogContext = this.eventLogEmitterService.createContext({
       workspaceId: data.workspaceId,
     });
+    let shouldRetryBridgeFailure = false;
 
     try {
-      const headers: Record<string, string> = {
-        'Content-Type': 'application/json',
-      };
-
       const { secret, ...payloadWithoutSecret } = data;
-
-      if (secret) {
-        headers['X-Twenty-Webhook-Timestamp'] = Date.now().toString();
-        headers['X-Twenty-Webhook-Signature'] = this.generateSignature(
-          payloadWithoutSecret,
-          secret,
-          headers['X-Twenty-Webhook-Timestamp'],
-        );
-        headers['X-Twenty-Webhook-Nonce'] = crypto
-          .randomBytes(16)
-          .toString('hex');
-      }
+      const targetUrl = ensureAbsoluteUrl(data.targetUrl);
+      const timestamp = Date.now().toString();
+      const nonce = crypto.randomBytes(16).toString('hex');
+      const { rawBody, headers } = buildWebhookRequest({
+        targetUrl,
+        payload: payloadWithoutSecret,
+        deliveryId: computeBridgeDeliveryId(data),
+        secret,
+        timestamp,
+        nonce,
+        bridgeConfig: {
+          webhookUrl: this.twentyConfigService.get(
+            'CROSS_WORKSPACE_BRIDGE_WEBHOOK_URL',
+          ),
+          accessClientId: this.twentyConfigService.get(
+            'CROSS_WORKSPACE_BRIDGE_ACCESS_CLIENT_ID',
+          ),
+          accessClientSecret: this.twentyConfigService.get(
+            'CROSS_WORKSPACE_BRIDGE_ACCESS_CLIENT_SECRET',
+          ),
+        },
+      });
+      shouldRetryBridgeFailure = 'CF-Access-Client-Id' in headers;
 
       const axiosClient = this.secureHttpClientService.getHttpClient(
         undefined,
@@ -78,14 +171,11 @@ export class CallWebhookJob {
         },
       );
 
-      const response = await axiosClient.post(
-        ensureAbsoluteUrl(data.targetUrl),
-        payloadWithoutSecret,
-        {
-          headers,
-          timeout: 5_000,
-        },
-      );
+      const response = await axiosClient.post(targetUrl, rawBody, {
+        headers,
+        timeout: 5_000,
+        ...(shouldRetryBridgeFailure && { maxRedirects: 0 }),
+      });
 
       const success = response.status >= 200 && response.status < 300;
 
@@ -113,6 +203,10 @@ export class CallWebhookJob {
           error: 'Webhook URL resolves to a private/internal IP address',
         }),
       });
+
+      if (shouldRetryBridgeFailure) {
+        throw err;
+      }
     }
   }
 }
