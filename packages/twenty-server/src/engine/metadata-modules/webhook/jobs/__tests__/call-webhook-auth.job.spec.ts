@@ -6,6 +6,7 @@ import {
   CallWebhookJob,
   computeBridgeDeliveryId,
 } from 'src/engine/metadata-modules/webhook/jobs/call-webhook.job';
+import { type CallWebhookJobData } from 'src/engine/metadata-modules/webhook/types/webhook-job-data.type';
 
 const BRIDGE_URL = 'https://bridge.example.com/webhooks/twenty';
 const ACCESS_CLIENT_ID = 'access-client-id';
@@ -122,15 +123,16 @@ describe('CallWebhookJob', () => {
       { getHttpClient: () => ({ post }) } as never,
       { get: () => configValues.shift() } as never,
     );
-    const event = {
+    const event: CallWebhookJobData = {
       targetUrl,
       webhookId: 'webhook-id',
       workspaceId: 'workspace-id',
       eventName: 'task.updated',
       eventDate: new Date('2026-08-01T00:00:00.000Z'),
       secret: WEBHOOK_SECRET,
+      objectMetadata: { id: 'object-metadata-id', nameSingular: 'task' },
       record: { id: 'record-id' },
-    } as never;
+    };
     return { event, incrementCounterForEvent, insertWorkspaceEvent, job, post };
   };
 
@@ -167,7 +169,13 @@ describe('CallWebhookJob', () => {
   it('derives a stable identity from the existing webhook event fields', () => {
     const first = buildJob().event;
     const second = { ...first };
-    const serialized = { ...first, eventDate: first.eventDate.toISOString() };
+    const serialized = {
+      ...first,
+      eventDate:
+        first.eventDate instanceof Date
+          ? first.eventDate.toISOString()
+          : first.eventDate,
+    };
 
     expect(computeBridgeDeliveryId(first)).toBe(
       computeBridgeDeliveryId(second),
