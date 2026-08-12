@@ -26,6 +26,7 @@
   "name": "twenty",
   "packageManager": "yarn@4.13.0",
   "resolutions": {
+    "adm-zip": "0.6.0",
     "@module-federation/dts-plugin/undici": "^7.29.0",
     "@graphql-codegen/cli/shell-quote": "1.9.0",
     "@mintlify/common/postcss": "8.5.23",
