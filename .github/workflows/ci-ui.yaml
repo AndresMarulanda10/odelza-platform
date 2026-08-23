@@ -29,7 +29,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        task: [lint, typecheck, test, size, pack-size]
+        # Keep PR feedback focused; push paths retain their existing behavior.
+        task: ${{ fromJSON(github.event_name == 'push' && '["lint", "typecheck", "test", "size", "pack-size"]' || '["lint", "typecheck", "test"]') }}
     steps:
       - name: Fetch custom Github Actions and base branch history
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1

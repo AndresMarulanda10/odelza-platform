@@ -69,7 +69,7 @@ jobs:
         if: matrix.app.hasUnit
         run: yarn test:unit
 
-  # DockerHub latest is unreliable for these isolated app fixtures; keep local coverage.
+  # Keep local coverage on PRs; external-image coverage remains on main/manual runs.
   prepare-integration-matrix:
     needs: discover
     if: needs.discover.outputs.has_apps == 'true'
@@ -82,19 +82,24 @@ jobs:
         id: set-matrix
         env:
           APPS: ${{ needs.discover.outputs.matrix }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
           node <<'NODE'
           const fs = require('fs');
           const apps = JSON.parse(process.env.APPS);
+          const isPullRequest = process.env.EVENT_NAME === 'pull_request';
           const excludedDockerHubApps = new Set([
             'self-hosting',
             'twenty-partners',
             'people-data-labs',
             'twenty-last-contact',
           ]);
+          const serverSources = isPullRequest
+            ? ['local']
+            : ['dockerhub-latest', 'local'];
           const matrix = {
             include: apps.flatMap((app) =>
-              ['dockerhub-latest', 'local']
+              serverSources
                 .filter(
                   (serverSource) =>
                     serverSource === 'local' ||
