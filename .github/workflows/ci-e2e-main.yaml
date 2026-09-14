@@ -3,9 +3,37 @@ name: CI E2E Main
 on:
   push:
     branches: [main]
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/ci-e2e-main.yaml
+      - package.json
+      - yarn.lock
+      - nx.json
+      - tsconfig.base.json
+      - .yarnrc.yml
+      - packages/twenty-e2e-testing/**
+      - packages/twenty-front/**
+      - packages/twenty-front-component-renderer/**
+      - packages/twenty-server/**
+      - packages/twenty-shared/**
+      - packages/twenty-ui/**
 
   pull_request:
     types: [labeled, synchronize, opened, reopened]
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/ci-e2e-main.yaml
+      - package.json
+      - yarn.lock
+      - nx.json
+      - tsconfig.base.json
+      - .yarnrc.yml
+      - packages/twenty-e2e-testing/**
+      - packages/twenty-front/**
+      - packages/twenty-front-component-renderer/**
+      - packages/twenty-server/**
+      - packages/twenty-shared/**
+      - packages/twenty-ui/**
 
 permissions:
   contents: read

@@ -4,8 +4,30 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-create-app-e2e-minimal.yaml
+      - packages/create-twenty-app/**
+      - packages/twenty-sdk/**
+      - '!packages/twenty-sdk/package.json'
+      - packages/twenty-client-sdk/**
+      - '!packages/twenty-client-sdk/package.json'
+      - packages/twenty-shared/**
+      - '!packages/twenty-shared/package.json'
 
   pull_request:
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-create-app-e2e-minimal.yaml
+      - packages/create-twenty-app/**
+      - packages/twenty-sdk/**
+      - '!packages/twenty-sdk/package.json'
+      - packages/twenty-client-sdk/**
+      - '!packages/twenty-client-sdk/package.json'
+      - packages/twenty-shared/**
+      - '!packages/twenty-shared/package.json'
 
 permissions:
   contents: read
@@ -19,6 +41,9 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
+        .github/workflows/ci-create-app-e2e-minimal.yaml
         packages/create-twenty-app/**
         packages/twenty-sdk/**
         packages/twenty-client-sdk/**

@@ -9,6 +9,16 @@ on:
   workflow_call:
   push:
     branches: ['main']
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/crowdin-app.yml
+      - .github/workflows/i18n-push.yaml
+      - package.json
+      - yarn.lock
+      - packages/twenty-emails/**
+      - packages/twenty-front/**
+      - packages/twenty-server/**
+      - packages/twenty-shared/**
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
