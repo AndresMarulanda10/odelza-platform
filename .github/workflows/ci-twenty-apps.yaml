@@ -4,7 +4,55 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .github/actions/deploy-twenty-app/action.yml
+      - .github/actions/install-twenty-app/action.yml
+      - .github/actions/restore-cache/action.yaml
+      - .github/actions/spawn-twenty-app-dev-test/action.yml
+      - .github/actions/spawn-twenty-server/action.yml
+      - .github/actions/test-twenty-app/action.yml
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-twenty-apps.yaml
+      - .github/workflows/discover-apps.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-apps/internal/**
+      - packages/twenty-apps/public/**
+      - packages/twenty-emails/**
+      - packages/twenty-server/**
+      - packages/twenty-shared/**
   pull_request:
+    paths:
+      - .github/actions/deploy-twenty-app/action.yml
+      - .github/actions/install-twenty-app/action.yml
+      - .github/actions/restore-cache/action.yaml
+      - .github/actions/spawn-twenty-app-dev-test/action.yml
+      - .github/actions/spawn-twenty-server/action.yml
+      - .github/actions/test-twenty-app/action.yml
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-twenty-apps.yaml
+      - .github/workflows/discover-apps.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-apps/internal/**
+      - packages/twenty-apps/public/**
+      - packages/twenty-emails/**
+      - packages/twenty-server/**
+      - packages/twenty-shared/**
   workflow_dispatch:
     inputs:
       application:
@@ -21,11 +69,54 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  app-changed-files-check:
+    if: github.event_name == 'pull_request'
+    uses: ./.github/workflows/changed-files.yaml
+    with:
+      files: |
+        packages/twenty-apps/internal/**
+        packages/twenty-apps/public/**
+
+  shared-changed-files-check:
+    if: github.event_name == 'pull_request'
+    uses: ./.github/workflows/changed-files.yaml
+    with:
+      files: |
+        .github/actions/deploy-twenty-app/action.yml
+        .github/actions/install-twenty-app/action.yml
+        .github/actions/restore-cache/action.yaml
+        .github/actions/spawn-twenty-app-dev-test/action.yml
+        .github/actions/spawn-twenty-server/action.yml
+        .github/actions/test-twenty-app/action.yml
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
+        .github/workflows/ci-twenty-apps.yaml
+        .github/workflows/discover-apps.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
+        package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
+        yarn.lock
+        packages/twenty-emails/**
+        packages/twenty-server/**
+        packages/twenty-shared/**
+
   discover:
+    needs: [app-changed-files-check, shared-changed-files-check]
+    if: >-
+      always() &&
+      (github.event_name != 'pull_request' ||
+      (needs.app-changed-files-check.result == 'success' &&
+      needs.shared-changed-files-check.result == 'success'))
     uses: ./.github/workflows/discover-apps.yaml
     with:
       scope: internal-and-public
-      changed-only: true
+      changed-only: >-
+        ${{ github.event_name != 'pull_request' && true ||
+        needs.shared-changed-files-check.outputs.any_changed != 'true' }}
       application: ${{ inputs.application }}
 
   ci:
@@ -152,7 +243,15 @@ jobs:
     if: always() && !cancelled()
     timeout-minutes: 5
     runs-on: ubuntu-latest
-    needs: [discover, ci, prepare-integration-matrix, integration]
+    needs:
+      [
+        app-changed-files-check,
+        shared-changed-files-check,
+        discover,
+        ci,
+        prepare-integration-matrix,
+        integration,
+      ]
     steps:
       - name: Fail job if any needs failed
         if: contains(needs.*.result, 'failure')

@@ -7,8 +7,34 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-emails.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-emails/**
 
   pull_request:
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-emails.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-emails/**
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.issue.number || github.ref || github.run_id }}
@@ -19,7 +45,17 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
+        .github/workflows/ci-emails.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
         package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
+        yarn.lock
         packages/twenty-emails/**
   emails-test:
     needs: changed-files-check

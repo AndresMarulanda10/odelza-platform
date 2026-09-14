@@ -4,8 +4,36 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .github/actions/nx-affected/action.yaml
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-create-app.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/create-twenty-app/**
 
   pull_request:
+    paths:
+      - .github/actions/nx-affected/action.yaml
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-create-app.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/create-twenty-app/**
 
 permissions:
   contents: read
@@ -19,8 +47,20 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
+        .github/actions/nx-affected/action.yaml
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
+        .github/workflows/ci-create-app.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
+        package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
+        yarn.lock
         packages/create-twenty-app/**
-        !packages/create-twenty-app/package.json
+        '!packages/create-twenty-app/package.json'
   create-app-test:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'

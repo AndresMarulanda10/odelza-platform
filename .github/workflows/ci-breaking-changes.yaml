@@ -1,10 +1,26 @@
 name: GraphQL and OpenAPI Breaking Changes Detection
 
 on:
- pull_request:
+  pull_request:
     types: [opened, synchronize, edited]
     branches:
       - main
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-breaking-changes.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-emails/**
+      - packages/twenty-server/**
+      - packages/twenty-shared/**
+      - packages/twenty-utils/graphql-introspection-query.graphql
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.issue.number || github.ref || github.run_id }}
@@ -22,11 +38,21 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
-        package.json
-        packages/twenty-server/**
-        packages/twenty-emails/**
-        packages/twenty-shared/**
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
         .github/workflows/ci-breaking-changes.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
+        package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
+        yarn.lock
+        packages/twenty-emails/**
+        packages/twenty-server/**
+        packages/twenty-shared/**
+        packages/twenty-utils/graphql-introspection-query.graphql
 
   api-breaking-changes:
     needs: changed-files-check

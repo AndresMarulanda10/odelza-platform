@@ -2,6 +2,36 @@ name: CI Server
 
 on:
   pull_request:
+    paths:
+      - .github/actions/deploy-twenty-app/action.yml
+      - .github/actions/install-twenty-app/action.yml
+      - .github/actions/nx-affected/action.yaml
+      - .github/actions/restore-cache/action.yaml
+      - .github/actions/save-cache/action.yaml
+      - .github/actions/spawn-twenty-app-dev-test/action.yml
+      - .github/actions/spawn-twenty-server/action.yml
+      - .github/actions/test-twenty-app/action.yml
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-cross-version-upgrade.yaml
+      - .github/workflows/ci-server.yaml
+      - .github/workflows/discover-apps.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-client-sdk/**
+      - packages/twenty-emails/**
+      - packages/twenty-front/src/generated/**
+      - packages/twenty-front/src/generated-admin/**
+      - packages/twenty-front/src/generated-metadata/**
+      - packages/twenty-server/**
+      - packages/twenty-shared/**
+      - packages/twenty-utils/**
   workflow_dispatch:
 
 permissions:
@@ -20,7 +50,26 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
+        .github/actions/deploy-twenty-app/action.yml
+        .github/actions/install-twenty-app/action.yml
+        .github/actions/nx-affected/action.yaml
+        .github/actions/restore-cache/action.yaml
+        .github/actions/save-cache/action.yaml
+        .github/actions/spawn-twenty-app-dev-test/action.yml
+        .github/actions/spawn-twenty-server/action.yml
+        .github/actions/test-twenty-app/action.yml
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
+        .github/workflows/ci-cross-version-upgrade.yaml
+        .github/workflows/ci-server.yaml
+        .github/workflows/discover-apps.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
         package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
         yarn.lock
         packages/twenty-server/**
         packages/twenty-front/src/generated/**
@@ -29,6 +78,7 @@ jobs:
         packages/twenty-client-sdk/**
         packages/twenty-emails/**
         packages/twenty-shared/**
+        packages/twenty-utils/**
 
   upgrade-changed-files-check:
     if: github.event_name == 'pull_request'

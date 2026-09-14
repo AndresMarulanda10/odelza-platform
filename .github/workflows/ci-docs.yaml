@@ -4,8 +4,34 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-docs.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-docs/**
 
   pull_request:
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-docs.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-docs/**
 
 permissions:
   contents: read
@@ -19,7 +45,17 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
+        .github/workflows/ci-docs.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
         package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
+        yarn.lock
         packages/twenty-docs/**
 
   docs-lint:
@@ -38,4 +74,3 @@ jobs:
 
       - name: Docs / Lint
         run: npx nx lint twenty-docs
-
