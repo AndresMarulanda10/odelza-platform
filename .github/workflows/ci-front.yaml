@@ -2,8 +2,52 @@ name: CI Front
 
 on:
   pull_request:
+    paths:
+      - .github/actions/nx-affected/action.yaml
+      - .github/actions/restore-cache/action.yaml
+      - .github/actions/save-cache/action.yaml
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-front.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-front/**
+      - packages/twenty-front-component-renderer/**
+      - packages/twenty-ui/**
+      - packages/twenty-shared/**
+      - packages/twenty-sdk/**
+      - packages/twenty-client-sdk/**
+      - packages/twenty-oxlint-rules/**
   push:
     branches: [main]
+    paths:
+      - .github/actions/nx-affected/action.yaml
+      - .github/actions/restore-cache/action.yaml
+      - .github/actions/save-cache/action.yaml
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-front.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-front/**
+      - packages/twenty-front-component-renderer/**
+      - packages/twenty-ui/**
+      - packages/twenty-shared/**
+      - packages/twenty-sdk/**
+      - packages/twenty-client-sdk/**
+      - packages/twenty-oxlint-rules/**
 
 permissions:
   contents: read
@@ -23,14 +67,27 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
+        .github/actions/nx-affected/action.yaml
+        .github/actions/restore-cache/action.yaml
+        .github/actions/save-cache/action.yaml
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
+        .github/workflows/ci-front.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
         package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
         yarn.lock
         packages/twenty-front/**
         packages/twenty-front-component-renderer/**
         packages/twenty-ui/**
         packages/twenty-shared/**
         packages/twenty-sdk/**
-        !packages/twenty-sdk/package.json
+        packages/twenty-client-sdk/**
+        packages/twenty-oxlint-rules/**
   front-sb-build:
     needs: changed-files-check
     if: >-
@@ -73,7 +130,8 @@ jobs:
       fail-fast: false
       matrix:
         shard: [1, 2, 3, 4]
-        storybook_scope: ${{ github.event_name == 'push' && fromJSON('["modules", "pages"]') || fromJSON('["modules", "pages", "performance"]') }}
+        # Keep PR feedback focused; main retains both Storybook scopes.
+        storybook_scope: ${{ github.event_name == 'push' && fromJSON('["modules", "pages"]') || fromJSON('["modules"]') }}
     env:
       SHARD_COUNTER: 4
       REACT_APP_SERVER_BASE_URL: http://localhost:3000
@@ -200,7 +258,7 @@ jobs:
       TASK_CACHE_KEY: front-task-${{ matrix.task }}
     strategy:
       matrix:
-        task: [lint, typecheck, test, lingui:extract, lingui:compile]
+        task: [lint, typecheck, test, 'lingui:extract', 'lingui:compile']
     steps:
       - name: Fetch custom Github Actions and base branch history
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1

@@ -2,6 +2,26 @@ name: CI Zapier
 
 on:
   pull_request:
+    paths:
+      - .github/actions/nx-affected/action.yaml
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-zapier.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-server/**
+      - packages/twenty-shared/**
+      - packages/twenty-client-sdk/**
+      - packages/twenty-emails/**
+      - packages/twenty-zapier/**
+      - packages/twenty-oxlint-rules/**
+      - '!packages/twenty-zapier/CHANGELOG.md'
 
 permissions:
   contents: read
@@ -18,9 +38,24 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
+        .github/actions/nx-affected/action.yaml
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
+        .github/workflows/ci-zapier.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
+        package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
+        yarn.lock
         packages/twenty-zapier/**
         packages/twenty-server/**
-        !packages/twenty-zapier/package.json
+        packages/twenty-shared/**
+        packages/twenty-client-sdk/**
+        packages/twenty-emails/**
+        packages/twenty-oxlint-rules/**
         !packages/twenty-zapier/CHANGELOG.md
   server-setup:
     needs: changed-files-check
@@ -89,7 +124,7 @@ jobs:
           tasks: test
 
   zapier-test:
-    needs: server-setup
+    needs: [changed-files-check, server-setup]
     if: needs.changed-files-check.outputs.any_changed == 'true'
     timeout-minutes: 30
     runs-on: ubuntu-latest
@@ -114,8 +149,11 @@ jobs:
     if: always() && !cancelled()
     timeout-minutes: 5
     runs-on: ubuntu-latest
-    needs: [changed-files-check, zapier-test]
+    needs: [changed-files-check, server-setup, zapier-test]
     steps:
-      - name: Fail job if any needs failed
-        if: contains(needs.*.result, 'failure')
+      - name: Fail job if any required need failed or was skipped
+        if: >-
+          contains(needs.*.result, 'failure') ||
+          (needs.changed-files-check.outputs.any_changed == 'true' &&
+          contains(needs.*.result, 'skipped'))
         run: exit 1

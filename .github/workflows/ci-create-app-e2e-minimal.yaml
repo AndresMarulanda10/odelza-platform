@@ -4,8 +4,48 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/verdaccio-config.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-create-app-e2e-minimal.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/create-twenty-app/**
+      - packages/twenty-sdk/**
+      - packages/twenty-client-sdk/**
+      - packages/twenty-shared/**
+      - packages/twenty-ui/**
+      - packages/twenty-server/**
+      - packages/twenty-emails/**
 
   pull_request:
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/verdaccio-config.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-create-app-e2e-minimal.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/create-twenty-app/**
+      - packages/twenty-sdk/**
+      - packages/twenty-client-sdk/**
+      - packages/twenty-shared/**
+      - packages/twenty-ui/**
+      - packages/twenty-server/**
+      - packages/twenty-emails/**
 
 permissions:
   contents: read
@@ -19,14 +59,25 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
+        .github/actions/yarn-install/action.yaml
+        .github/verdaccio-config.yaml
+        .github/workflows/changed-files.yaml
+        .github/workflows/ci-create-app-e2e-minimal.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
+        package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
+        yarn.lock
         packages/create-twenty-app/**
         packages/twenty-sdk/**
         packages/twenty-client-sdk/**
         packages/twenty-shared/**
-        !packages/create-twenty-app/package.json
-        !packages/twenty-sdk/package.json
-        !packages/twenty-client-sdk/package.json
-        !packages/twenty-shared/package.json
+        packages/twenty-ui/**
+        packages/twenty-server/**
+        packages/twenty-emails/**
   create-app-e2e-minimal:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'

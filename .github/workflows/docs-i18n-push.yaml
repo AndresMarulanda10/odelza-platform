@@ -9,7 +9,17 @@ on:
   push:
     branches: ['main']
     paths:
+      - '.github/actions/yarn-install/action.yaml'
+      - '.github/workflows/docs-i18n-push.yaml'
+      - '.nvmrc'
+      - '.yarnrc.yml'
+      - '.yarn/**'
+      - 'package.json'
+      - 'yarn.config.cjs'
+      - 'yarn.lock'
       - 'packages/twenty-docs/**/*.mdx'
+      - 'packages/twenty-docs/scripts/generate-navigation-template.ts'
+      - 'packages/twenty-docs/navigation/base-structure.json'
       - '!packages/twenty-docs/l/**'
       - 'packages/twenty-docs/navigation/navigation.template.json'
       - '.github/crowdin-docs.yml'
@@ -49,4 +59,3 @@ jobs:
           # Docs translations project
           CROWDIN_PROJECT_ID: '2'
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
-

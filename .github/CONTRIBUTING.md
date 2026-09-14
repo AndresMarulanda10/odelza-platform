@@ -59,6 +59,19 @@ git push origin your-branch-name
 
 10. **Merge:** Once approved, maintainers will merge your pull request into the main repository.
 
+## GitHub Actions cost policy
+
+This is a public repository and its workflows use standard `ubuntu-latest` runners. Keep them free and predictable by following these rules:
+
+- **Use standard Linux runners only.** Do not add larger runners, macOS, Windows, custom images, or self-hosted infrastructure without explicit maintainer approval. Larger GitHub-hosted runners are billed even for public repositories.
+- **Keep pull requests focused.** Add workflow-level `paths` filters when a workflow only applies to specific packages or configuration files. Preserve the workflow file itself in the filter so workflow changes are validated.
+- **Avoid unnecessary schedules.** Crowdin is the external service used to manage translations. The `i18n-*`, `docs-i18n-*`, and `website-i18n-*` workflows synchronize translation files with Crowdin. Keep automatic translation polling disabled unless it is needed; prefer a controlled manual dispatch or a low-frequency schedule.
+- **Do not rerun failed jobs while troubleshooting.** First inspect the failure reason and validate the workflow locally. In particular, do not use reruns to work around billing locks or unavailable runners.
+- **Limit stored output.** Keep artifact retention short, remove intermediate artifacts after aggregation, and avoid duplicating large dependency or build caches.
+- **Validate before pushing.** Parse changed workflow YAML and run static checks locally before triggering GitHub Actions. A remote run should verify a prepared change, not discover basic syntax or trigger mistakes.
+
+These rules control GitHub Actions usage; they do not replace the repository owner's billing and storage limits or any charges from external services.
+
 
 
 ## Reporting Issues

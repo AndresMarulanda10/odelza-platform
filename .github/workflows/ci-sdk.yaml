@@ -2,6 +2,26 @@ name: CI SDK
 
 on:
   pull_request:
+    paths:
+      - .github/actions/nx-affected/action.yaml
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-sdk.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-sdk/**
+      - packages/twenty-client-sdk/**
+      - packages/twenty-server/**
+      - packages/twenty-shared/**
+      - packages/twenty-ui/**
+      - packages/twenty-emails/**
+      - packages/twenty-oxlint-rules/**
 
 permissions:
   contents: read
@@ -15,10 +35,25 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
-        packages/twenty-sdk/**
-        packages/twenty-server/**
+        .github/actions/nx-affected/action.yaml
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
         .github/workflows/ci-sdk.yaml
-        !packages/twenty-sdk/package.json
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
+        package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
+        yarn.lock
+        packages/twenty-sdk/**
+        packages/twenty-client-sdk/**
+        packages/twenty-server/**
+        packages/twenty-shared/**
+        packages/twenty-ui/**
+        packages/twenty-emails/**
+        packages/twenty-oxlint-rules/**
   sdk-test:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'
@@ -26,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        task: [lint, typecheck, test:unit, test:integration]
+        task: [lint, typecheck, 'test:unit', 'test:integration']
     steps:
       - name: Fetch custom Github Actions and base branch history
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1

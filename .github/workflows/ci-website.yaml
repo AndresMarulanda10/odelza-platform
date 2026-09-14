@@ -2,6 +2,22 @@ name: CI Website
 
 on:
   pull_request:
+    paths:
+      - .github/actions/nx-affected/action.yaml
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-website.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - yarn.config.cjs
+      - yarn.lock
+      - nx.json
+      - tsconfig.base.json
+      - packages/twenty-shared/**
+      - packages/twenty-website/**
+      - packages/twenty-ui/**
 
 permissions:
   contents: read
@@ -16,9 +32,20 @@ jobs:
     with:
       files: |
         package.json
+        .github/actions/nx-affected/action.yaml
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
+        .github/workflows/ci-website.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
+        yarn.config.cjs
         yarn.lock
+        nx.json
+        tsconfig.base.json
         packages/twenty-website/**
         packages/twenty-shared/**
+        packages/twenty-ui/**
   website-task:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'

@@ -2,8 +2,38 @@ name: CI UI
 
 on:
   pull_request:
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-ui.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-ui/**
+      - packages/twenty-shared/**
+      - packages/twenty-oxlint-rules/**
   push:
     branches: [main]
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-ui.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-ui/**
+      - packages/twenty-shared/**
+      - packages/twenty-oxlint-rules/**
 
 permissions:
   contents: read
@@ -18,10 +48,20 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
+        .github/workflows/ci-ui.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
         package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
         yarn.lock
         packages/twenty-ui/**
         packages/twenty-shared/**
+        packages/twenty-oxlint-rules/**
   ui-task:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'
@@ -29,7 +69,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        task: [lint, typecheck, test, size, pack-size]
+        # Keep PR feedback focused; push paths retain their existing behavior.
+        task: ${{ fromJSON(github.event_name == 'push' && '["lint", "typecheck", "test", "size", "pack-size"]' || '["lint", "typecheck", "test"]') }}
     steps:
       - name: Fetch custom Github Actions and base branch history
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1

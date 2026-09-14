@@ -4,7 +4,45 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-example-app-postcard.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-apps/examples/postcard/**
+      - packages/twenty-client-sdk/**
+      - packages/twenty-sdk/**
+      - packages/twenty-server/**
+      - packages/twenty-shared/**
+      - packages/twenty-ui/**
+      - packages/twenty-emails/**
   pull_request:
+    paths:
+      - .github/actions/yarn-install/action.yaml
+      - .github/workflows/changed-files.yaml
+      - .github/workflows/ci-example-app-postcard.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
+      - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
+      - yarn.lock
+      - packages/twenty-apps/examples/postcard/**
+      - packages/twenty-client-sdk/**
+      - packages/twenty-sdk/**
+      - packages/twenty-server/**
+      - packages/twenty-shared/**
+      - packages/twenty-ui/**
+      - packages/twenty-emails/**
   workflow_dispatch:
 
 permissions:
@@ -19,15 +57,24 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
+        .github/actions/yarn-install/action.yaml
+        .github/workflows/changed-files.yaml
+        .github/workflows/ci-example-app-postcard.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
+        package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
+        yarn.lock
         packages/twenty-apps/examples/postcard/**
         packages/twenty-sdk/**
         packages/twenty-client-sdk/**
         packages/twenty-shared/**
         packages/twenty-server/**
-        !packages/twenty-sdk/package.json
-        !packages/twenty-client-sdk/package.json
-        !packages/twenty-shared/package.json
-        !packages/twenty-server/package.json
+        packages/twenty-ui/**
+        packages/twenty-emails/**
 
   example-app-postcard:
     needs: changed-files-check
