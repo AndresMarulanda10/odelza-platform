@@ -115,8 +115,9 @@ jobs:
     with:
       scope: internal-and-public
       changed-only: >-
-        ${{ github.event_name != 'pull_request' && true ||
-        needs.shared-changed-files-check.outputs.any_changed != 'true' }}
+        ${{ (github.event_name == 'pull_request' &&
+        needs.shared-changed-files-check.outputs.any_changed != 'true') ||
+        (github.event_name == 'workflow_dispatch' && inputs.application != '') }}
       application: ${{ inputs.application }}
 
   ci:

@@ -16,8 +16,10 @@ on:
       - yarn.config.cjs
       - yarn.lock
       - packages/twenty-sdk/**
+      - packages/twenty-client-sdk/**
       - packages/twenty-server/**
-      - '!packages/twenty-sdk/package.json'
+      - packages/twenty-shared/**
+      - packages/twenty-ui/**
 
 permissions:
   contents: read
@@ -44,8 +46,10 @@ jobs:
         yarn.config.cjs
         yarn.lock
         packages/twenty-sdk/**
+        packages/twenty-client-sdk/**
         packages/twenty-server/**
-        '!packages/twenty-sdk/package.json'
+        packages/twenty-shared/**
+        packages/twenty-ui/**
   sdk-test:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'

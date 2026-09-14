@@ -9,14 +9,19 @@ on:
       - .github/actions/yarn-install/action.yaml
       - .github/workflows/changed-files.yaml
       - .github/workflows/ci-front.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
       - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
       - yarn.lock
       - packages/twenty-front/**
       - packages/twenty-front-component-renderer/**
       - packages/twenty-ui/**
       - packages/twenty-shared/**
       - packages/twenty-sdk/**
-      - '!packages/twenty-sdk/package.json'
   push:
     branches: [main]
     paths:
@@ -26,14 +31,19 @@ on:
       - .github/actions/yarn-install/action.yaml
       - .github/workflows/changed-files.yaml
       - .github/workflows/ci-front.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
       - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
       - yarn.lock
       - packages/twenty-front/**
       - packages/twenty-front-component-renderer/**
       - packages/twenty-ui/**
       - packages/twenty-shared/**
       - packages/twenty-sdk/**
-      - '!packages/twenty-sdk/package.json'
 
 permissions:
   contents: read
@@ -59,14 +69,19 @@ jobs:
         .github/actions/yarn-install/action.yaml
         .github/workflows/changed-files.yaml
         .github/workflows/ci-front.yaml
+        .nvmrc
+        .yarnrc.yml
+        .yarn/**
         package.json
+        tsconfig.base.json
+        nx.json
+        yarn.config.cjs
         yarn.lock
         packages/twenty-front/**
         packages/twenty-front-component-renderer/**
         packages/twenty-ui/**
         packages/twenty-shared/**
         packages/twenty-sdk/**
-        !packages/twenty-sdk/package.json
   front-sb-build:
     needs: changed-files-check
     if: >-

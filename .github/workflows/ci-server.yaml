@@ -542,9 +542,16 @@ jobs:
 
   cross-version-upgrade:
     needs: [upgrade-changed-files-check, server-build]
+    if: >-
+      always() &&
+      needs.server-build.result == 'success' &&
+      (github.event_name == 'workflow_dispatch' ||
+      needs.upgrade-changed-files-check.result == 'success')
     uses: ./.github/workflows/ci-cross-version-upgrade.yaml
     with:
-      skip: ${{ needs.upgrade-changed-files-check.outputs.any_changed != 'true' }}
+      skip: >-
+        ${{ github.event_name == 'pull_request' &&
+        needs.upgrade-changed-files-check.outputs.any_changed != 'true' }}
 
   discover-public-apps:
     needs: changed-files-check
@@ -555,7 +562,9 @@ jobs:
     uses: ./.github/workflows/discover-apps.yaml
     with:
       scope: public
-      changed-only: ${{ github.event_name == 'pull_request' }}
+      changed-only: >-
+        ${{ github.event_name == 'pull_request' &&
+        needs.changed-files-check.outputs.any_changed != 'true' }}
 
   server-apps-install-smoke:
     needs: [discover-public-apps, server-build]

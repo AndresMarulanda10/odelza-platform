@@ -17,8 +17,9 @@ on:
       - yarn.lock
       - packages/twenty-server/**
       - packages/twenty-shared/**
+      - packages/twenty-client-sdk/**
+      - packages/twenty-emails/**
       - packages/twenty-zapier/**
-      - '!packages/twenty-zapier/package.json'
       - '!packages/twenty-zapier/CHANGELOG.md'
 
 permissions:
@@ -51,8 +52,9 @@ jobs:
         packages/twenty-zapier/**
         packages/twenty-server/**
         packages/twenty-shared/**
-        '!packages/twenty-zapier/package.json'
-        '!packages/twenty-zapier/CHANGELOG.md'
+        packages/twenty-client-sdk/**
+        packages/twenty-emails/**
+        !packages/twenty-zapier/CHANGELOG.md
   server-setup:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'

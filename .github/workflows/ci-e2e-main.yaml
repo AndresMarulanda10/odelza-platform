@@ -6,11 +6,14 @@ on:
     paths:
       - .github/actions/yarn-install/action.yaml
       - .github/workflows/ci-e2e-main.yaml
+      - .nvmrc
       - package.json
       - yarn.lock
       - nx.json
       - tsconfig.base.json
       - .yarnrc.yml
+      - .yarn/**
+      - yarn.config.cjs
       - packages/twenty-e2e-testing/**
       - packages/twenty-front/**
       - packages/twenty-front-component-renderer/**
@@ -23,11 +26,14 @@ on:
     paths:
       - .github/actions/yarn-install/action.yaml
       - .github/workflows/ci-e2e-main.yaml
+      - .nvmrc
       - package.json
       - yarn.lock
       - nx.json
       - tsconfig.base.json
       - .yarnrc.yml
+      - .yarn/**
+      - yarn.config.cjs
       - packages/twenty-e2e-testing/**
       - packages/twenty-front/**
       - packages/twenty-front-component-renderer/**

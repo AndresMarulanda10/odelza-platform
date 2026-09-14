@@ -18,6 +18,7 @@ on:
       - yarn.config.cjs
       - yarn.lock
       - packages/twenty-emails/**
+      - packages/twenty-client-sdk/**
       - packages/twenty-server/**
       - packages/twenty-shared/**
       - packages/twenty-utils/graphql-introspection-query.graphql
@@ -50,6 +51,7 @@ jobs:
         yarn.config.cjs
         yarn.lock
         packages/twenty-emails/**
+        packages/twenty-client-sdk/**
         packages/twenty-server/**
         packages/twenty-shared/**
         packages/twenty-utils/graphql-introspection-query.graphql

@@ -18,6 +18,8 @@ on:
       - yarn.config.cjs
       - yarn.lock
       - packages/create-twenty-app/**
+      - packages/twenty-sdk/**
+      - packages/twenty-shared/**
 
   pull_request:
     paths:
@@ -34,6 +36,8 @@ on:
       - yarn.config.cjs
       - yarn.lock
       - packages/create-twenty-app/**
+      - packages/twenty-sdk/**
+      - packages/twenty-shared/**
 
 permissions:
   contents: read
@@ -60,7 +64,8 @@ jobs:
         yarn.config.cjs
         yarn.lock
         packages/create-twenty-app/**
-        '!packages/create-twenty-app/package.json'
+        packages/twenty-sdk/**
+        packages/twenty-shared/**
   create-app-test:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'

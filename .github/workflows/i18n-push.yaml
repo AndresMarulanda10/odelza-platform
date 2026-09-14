@@ -13,7 +13,13 @@ on:
       - .github/actions/yarn-install/action.yaml
       - .github/crowdin-app.yml
       - .github/workflows/i18n-push.yaml
+      - .nvmrc
+      - .yarnrc.yml
+      - .yarn/**
       - package.json
+      - tsconfig.base.json
+      - nx.json
+      - yarn.config.cjs
       - yarn.lock
       - packages/twenty-emails/**
       - packages/twenty-front/**

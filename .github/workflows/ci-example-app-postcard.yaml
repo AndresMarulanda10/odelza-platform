@@ -21,10 +21,7 @@ on:
       - packages/twenty-sdk/**
       - packages/twenty-server/**
       - packages/twenty-shared/**
-      - '!packages/twenty-client-sdk/package.json'
-      - '!packages/twenty-server/package.json'
-      - '!packages/twenty-sdk/package.json'
-      - '!packages/twenty-shared/package.json'
+      - packages/twenty-emails/**
   pull_request:
     paths:
       - .github/actions/yarn-install/action.yaml
@@ -43,10 +40,7 @@ on:
       - packages/twenty-sdk/**
       - packages/twenty-server/**
       - packages/twenty-shared/**
-      - '!packages/twenty-client-sdk/package.json'
-      - '!packages/twenty-server/package.json'
-      - '!packages/twenty-sdk/package.json'
-      - '!packages/twenty-shared/package.json'
+      - packages/twenty-emails/**
   workflow_dispatch:
 
 permissions:
@@ -77,10 +71,7 @@ jobs:
         packages/twenty-client-sdk/**
         packages/twenty-shared/**
         packages/twenty-server/**
-        '!packages/twenty-sdk/package.json'
-        '!packages/twenty-client-sdk/package.json'
-        '!packages/twenty-shared/package.json'
-        '!packages/twenty-server/package.json'
+        packages/twenty-emails/**
 
   example-app-postcard:
     needs: changed-files-check

@@ -17,6 +17,7 @@ on:
       - tsconfig.base.json
       - packages/twenty-shared/**
       - packages/twenty-website/**
+      - packages/twenty-ui/**
 
 permissions:
   contents: read
@@ -44,6 +45,7 @@ jobs:
         tsconfig.base.json
         packages/twenty-website/**
         packages/twenty-shared/**
+        packages/twenty-ui/**
   website-task:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'
