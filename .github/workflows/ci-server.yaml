@@ -32,6 +32,7 @@ on:
       - packages/twenty-server/**
       - packages/twenty-shared/**
       - packages/twenty-utils/**
+      - packages/twenty-oxlint-rules/**
   workflow_dispatch:
 
 permissions:
@@ -79,6 +80,7 @@ jobs:
         packages/twenty-emails/**
         packages/twenty-shared/**
         packages/twenty-utils/**
+        packages/twenty-oxlint-rules/**
 
   upgrade-changed-files-check:
     if: github.event_name == 'pull_request'

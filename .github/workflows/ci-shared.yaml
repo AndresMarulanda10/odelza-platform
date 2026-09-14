@@ -16,6 +16,7 @@ on:
       - yarn.config.cjs
       - yarn.lock
       - packages/twenty-shared/**
+      - packages/twenty-oxlint-rules/**
 
 permissions:
   contents: read
@@ -42,6 +43,7 @@ jobs:
         yarn.config.cjs
         yarn.lock
         packages/twenty-shared/**
+        packages/twenty-oxlint-rules/**
   shared-test:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'

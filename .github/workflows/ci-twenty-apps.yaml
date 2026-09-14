@@ -28,6 +28,7 @@ on:
       - packages/twenty-emails/**
       - packages/twenty-server/**
       - packages/twenty-shared/**
+      - packages/twenty-client-sdk/**
   pull_request:
     paths:
       - .github/actions/deploy-twenty-app/action.yml
@@ -53,6 +54,7 @@ on:
       - packages/twenty-emails/**
       - packages/twenty-server/**
       - packages/twenty-shared/**
+      - packages/twenty-client-sdk/**
   workflow_dispatch:
     inputs:
       application:
@@ -103,6 +105,7 @@ jobs:
         packages/twenty-emails/**
         packages/twenty-server/**
         packages/twenty-shared/**
+        packages/twenty-client-sdk/**
 
   discover:
     needs: [app-changed-files-check, shared-changed-files-check]

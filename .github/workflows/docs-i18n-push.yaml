@@ -18,6 +18,8 @@ on:
       - 'yarn.config.cjs'
       - 'yarn.lock'
       - 'packages/twenty-docs/**/*.mdx'
+      - 'packages/twenty-docs/scripts/generate-navigation-template.ts'
+      - 'packages/twenty-docs/navigation/base-structure.json'
       - '!packages/twenty-docs/l/**'
       - 'packages/twenty-docs/navigation/navigation.template.json'
       - '.github/crowdin-docs.yml'

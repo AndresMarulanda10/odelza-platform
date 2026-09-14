@@ -20,6 +20,8 @@ on:
       - packages/twenty-server/**
       - packages/twenty-shared/**
       - packages/twenty-ui/**
+      - packages/twenty-emails/**
+      - packages/twenty-oxlint-rules/**
 
 permissions:
   contents: read
@@ -50,6 +52,8 @@ jobs:
         packages/twenty-server/**
         packages/twenty-shared/**
         packages/twenty-ui/**
+        packages/twenty-emails/**
+        packages/twenty-oxlint-rules/**
   sdk-test:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'

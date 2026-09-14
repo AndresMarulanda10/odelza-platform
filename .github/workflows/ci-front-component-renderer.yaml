@@ -16,8 +16,10 @@ on:
       - yarn.lock
       - packages/twenty-front-component-renderer/**
       - packages/twenty-sdk/**
+      - packages/twenty-client-sdk/**
       - packages/twenty-shared/**
       - packages/twenty-ui/**
+      - packages/twenty-oxlint-rules/**
 
 permissions:
   contents: read
@@ -44,8 +46,10 @@ jobs:
         yarn.config.cjs
         packages/twenty-front-component-renderer/**
         packages/twenty-sdk/**
+        packages/twenty-client-sdk/**
         packages/twenty-shared/**
         packages/twenty-ui/**
+        packages/twenty-oxlint-rules/**
   renderer-task:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'

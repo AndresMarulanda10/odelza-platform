@@ -19,7 +19,9 @@ on:
       - yarn.lock
       - packages/create-twenty-app/**
       - packages/twenty-sdk/**
+      - packages/twenty-client-sdk/**
       - packages/twenty-shared/**
+      - packages/twenty-oxlint-rules/**
 
   pull_request:
     paths:
@@ -37,7 +39,9 @@ on:
       - yarn.lock
       - packages/create-twenty-app/**
       - packages/twenty-sdk/**
+      - packages/twenty-client-sdk/**
       - packages/twenty-shared/**
+      - packages/twenty-oxlint-rules/**
 
 permissions:
   contents: read
@@ -65,7 +69,9 @@ jobs:
         yarn.lock
         packages/create-twenty-app/**
         packages/twenty-sdk/**
+        packages/twenty-client-sdk/**
         packages/twenty-shared/**
+        packages/twenty-oxlint-rules/**
   create-app-test:
     needs: changed-files-check
     if: needs.changed-files-check.outputs.any_changed == 'true'

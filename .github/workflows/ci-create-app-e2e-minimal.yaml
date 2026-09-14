@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - .github/actions/yarn-install/action.yaml
+      - .github/verdaccio-config.yaml
       - .github/workflows/changed-files.yaml
       - .github/workflows/ci-create-app-e2e-minimal.yaml
       - .nvmrc
@@ -26,6 +27,7 @@ on:
   pull_request:
     paths:
       - .github/actions/yarn-install/action.yaml
+      - .github/verdaccio-config.yaml
       - .github/workflows/changed-files.yaml
       - .github/workflows/ci-create-app-e2e-minimal.yaml
       - .nvmrc
@@ -56,6 +58,7 @@ jobs:
     with:
       files: |
         .github/actions/yarn-install/action.yaml
+        .github/verdaccio-config.yaml
         .github/workflows/changed-files.yaml
         .github/workflows/ci-create-app-e2e-minimal.yaml
         .nvmrc

@@ -6,6 +6,7 @@ permissions:
 on:
   pull_request:
     paths:
+      - .dockerignore
       - .nvmrc
       - .yarnrc.yml
       - .yarn/**
@@ -35,6 +36,7 @@ jobs:
     uses: ./.github/workflows/changed-files.yaml
     with:
       files: |
+        .dockerignore
         .nvmrc
         .yarnrc.yml
         .yarn/**

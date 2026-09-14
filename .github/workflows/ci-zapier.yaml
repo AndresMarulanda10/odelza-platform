@@ -20,6 +20,7 @@ on:
       - packages/twenty-client-sdk/**
       - packages/twenty-emails/**
       - packages/twenty-zapier/**
+      - packages/twenty-oxlint-rules/**
       - '!packages/twenty-zapier/CHANGELOG.md'
 
 permissions:
@@ -54,6 +55,7 @@ jobs:
         packages/twenty-shared/**
         packages/twenty-client-sdk/**
         packages/twenty-emails/**
+        packages/twenty-oxlint-rules/**
         !packages/twenty-zapier/CHANGELOG.md
   server-setup:
     needs: changed-files-check
