@@ -21,6 +21,7 @@ on:
       - packages/twenty-sdk/**
       - packages/twenty-client-sdk/**
       - packages/twenty-shared/**
+      - packages/twenty-ui/**
       - packages/twenty-server/**
       - packages/twenty-emails/**
 
@@ -42,6 +43,7 @@ on:
       - packages/twenty-sdk/**
       - packages/twenty-client-sdk/**
       - packages/twenty-shared/**
+      - packages/twenty-ui/**
       - packages/twenty-server/**
       - packages/twenty-emails/**
 
@@ -73,6 +75,7 @@ jobs:
         packages/twenty-sdk/**
         packages/twenty-client-sdk/**
         packages/twenty-shared/**
+        packages/twenty-ui/**
         packages/twenty-server/**
         packages/twenty-emails/**
   create-app-e2e-minimal:

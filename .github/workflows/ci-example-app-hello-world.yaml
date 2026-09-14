@@ -20,6 +20,7 @@ on:
       - packages/twenty-client-sdk/**
       - packages/twenty-sdk/**
       - packages/twenty-shared/**
+      - packages/twenty-ui/**
       - packages/twenty-server/**
       - packages/twenty-emails/**
   pull_request:
@@ -39,6 +40,7 @@ on:
       - packages/twenty-client-sdk/**
       - packages/twenty-sdk/**
       - packages/twenty-shared/**
+      - packages/twenty-ui/**
       - packages/twenty-server/**
       - packages/twenty-emails/**
   workflow_dispatch:
@@ -70,6 +72,7 @@ jobs:
         packages/twenty-sdk/**
         packages/twenty-client-sdk/**
         packages/twenty-shared/**
+        packages/twenty-ui/**
         packages/twenty-server/**
         packages/twenty-emails/**
 

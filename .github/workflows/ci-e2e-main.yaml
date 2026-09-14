@@ -17,6 +17,9 @@ on:
       - packages/twenty-e2e-testing/**
       - packages/twenty-front/**
       - packages/twenty-front-component-renderer/**
+      - packages/twenty-sdk/**
+      - packages/twenty-client-sdk/**
+      - packages/twenty-emails/**
       - packages/twenty-server/**
       - packages/twenty-shared/**
       - packages/twenty-ui/**
@@ -37,6 +40,9 @@ on:
       - packages/twenty-e2e-testing/**
       - packages/twenty-front/**
       - packages/twenty-front-component-renderer/**
+      - packages/twenty-sdk/**
+      - packages/twenty-client-sdk/**
+      - packages/twenty-emails/**
       - packages/twenty-server/**
       - packages/twenty-shared/**
       - packages/twenty-ui/**

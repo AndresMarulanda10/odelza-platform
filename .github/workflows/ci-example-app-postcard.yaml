@@ -21,6 +21,7 @@ on:
       - packages/twenty-sdk/**
       - packages/twenty-server/**
       - packages/twenty-shared/**
+      - packages/twenty-ui/**
       - packages/twenty-emails/**
   pull_request:
     paths:
@@ -40,6 +41,7 @@ on:
       - packages/twenty-sdk/**
       - packages/twenty-server/**
       - packages/twenty-shared/**
+      - packages/twenty-ui/**
       - packages/twenty-emails/**
   workflow_dispatch:
 
@@ -71,6 +73,7 @@ jobs:
         packages/twenty-client-sdk/**
         packages/twenty-shared/**
         packages/twenty-server/**
+        packages/twenty-ui/**
         packages/twenty-emails/**
 
   example-app-postcard:
