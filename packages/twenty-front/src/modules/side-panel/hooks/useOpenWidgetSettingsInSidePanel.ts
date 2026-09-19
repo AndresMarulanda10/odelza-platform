@@ -128,6 +128,12 @@ export const useOpenWidgetSettingsInSidePanel = (
         return;
       }
 
+      if (widgetType === WidgetType.TASK_TIMELINE) {
+        setPageLayoutEditingWidgetId(widgetId);
+        closeSidePanelMenu();
+        return;
+      }
+
       const containingTab = pageLayoutDraft.tabs.find((tab) =>
         tab.widgets.some((w) => w.id === widgetId),
       );

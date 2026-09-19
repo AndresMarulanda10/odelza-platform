@@ -13,8 +13,10 @@ import {
   type LineChartConfiguration,
   type NotesConfiguration,
   type PieChartConfiguration,
+  type PersonalFinanceConfiguration,
   type RecordTableConfiguration,
   type StandaloneRichTextConfiguration,
+  type TaskTimelineConfiguration,
   type TasksConfiguration,
   type TimelineConfiguration,
   type ViewConfiguration,
@@ -80,6 +82,12 @@ type WidgetConfigurationTypenameMap = {
   PieChartConfiguration: Omit<PieChartConfiguration, 'configurationType'> & {
     configurationType: WidgetConfigurationType.PIE_CHART;
   };
+  PersonalFinanceConfiguration: Omit<
+    PersonalFinanceConfiguration,
+    'configurationType'
+  > & {
+    configurationType: WidgetConfigurationType.PERSONAL_FINANCE;
+  };
   RecordTableConfiguration: Omit<
     RecordTableConfiguration,
     'configurationType'
@@ -91,6 +99,12 @@ type WidgetConfigurationTypenameMap = {
     'configurationType'
   > & {
     configurationType: WidgetConfigurationType.STANDALONE_RICH_TEXT;
+  };
+  TaskTimelineConfiguration: Omit<
+    TaskTimelineConfiguration,
+    'configurationType'
+  > & {
+    configurationType: WidgetConfigurationType.TASK_TIMELINE;
   };
   TasksConfiguration: Omit<TasksConfiguration, 'configurationType'> & {
     configurationType: WidgetConfigurationType.TASKS;

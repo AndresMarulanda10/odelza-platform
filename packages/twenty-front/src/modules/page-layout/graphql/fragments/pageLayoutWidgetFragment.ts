@@ -180,6 +180,9 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
       ... on TimelineConfiguration {
         configurationType
       }
+      ... on TaskTimelineConfiguration {
+        configurationType
+      }
       ... on ViewConfiguration {
         configurationType
       }

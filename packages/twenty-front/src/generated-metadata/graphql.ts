@@ -5220,6 +5220,11 @@ export type TasksConfiguration = {
   configurationType: WidgetConfigurationType;
 };
 
+export type TaskTimelineConfiguration = {
+  __typename?: 'TaskTimelineConfiguration';
+  configurationType: WidgetConfigurationType;
+};
+
 export type TimelineConfiguration = {
   __typename?: 'TimelineConfiguration';
   configurationType: WidgetConfigurationType;
@@ -6154,7 +6159,7 @@ export type Webhook = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
-export type WidgetConfiguration = AggregateChartConfiguration | BarChartConfiguration | CalendarConfiguration | EmailThreadConfiguration | EmailsConfiguration | FieldConfiguration | FieldRichTextConfiguration | FieldsConfiguration | FilesConfiguration | FrontComponentConfiguration | IframeConfiguration | LineChartConfiguration | NotesConfiguration | PieChartConfiguration | RecordTableConfiguration | StandaloneRichTextConfiguration | TasksConfiguration | TimelineConfiguration | ViewConfiguration | WorkflowConfiguration | WorkflowRunConfiguration | WorkflowVersionConfiguration;
+export type WidgetConfiguration = AggregateChartConfiguration | BarChartConfiguration | CalendarConfiguration | EmailThreadConfiguration | EmailsConfiguration | FieldConfiguration | FieldRichTextConfiguration | FieldsConfiguration | FilesConfiguration | FrontComponentConfiguration | IframeConfiguration | LineChartConfiguration | NotesConfiguration | PersonalFinanceConfiguration | PieChartConfiguration | RecordTableConfiguration | StandaloneRichTextConfiguration | TaskTimelineConfiguration | TasksConfiguration | TimelineConfiguration | ViewConfiguration | WorkflowConfiguration | WorkflowRunConfiguration | WorkflowVersionConfiguration;
 
 export enum WidgetConfigurationType {
   AGGREGATE_CHART = 'AGGREGATE_CHART',
@@ -6170,9 +6175,11 @@ export enum WidgetConfigurationType {
   IFRAME = 'IFRAME',
   LINE_CHART = 'LINE_CHART',
   NOTES = 'NOTES',
+  PERSONAL_FINANCE = 'PERSONAL_FINANCE',
   PIE_CHART = 'PIE_CHART',
   RECORD_TABLE = 'RECORD_TABLE',
   STANDALONE_RICH_TEXT = 'STANDALONE_RICH_TEXT',
+  TASK_TIMELINE = 'TASK_TIMELINE',
   TASKS = 'TASKS',
   TIMELINE = 'TIMELINE',
   VIEW = 'VIEW',
@@ -6195,6 +6202,7 @@ export enum WidgetType {
   NOTES = 'NOTES',
   RECORD_TABLE = 'RECORD_TABLE',
   STANDALONE_RICH_TEXT = 'STANDALONE_RICH_TEXT',
+  TASK_TIMELINE = 'TASK_TIMELINE',
   TASKS = 'TASKS',
   TIMELINE = 'TIMELINE',
   VIEW = 'VIEW',
@@ -6988,8 +6996,9 @@ export type PageLayoutFragmentFragment = { __typename?: 'PageLayout', id: string
         | { __typename?: 'PieChartConfiguration', configurationType: WidgetConfigurationType, groupByFieldMetadataId: string, aggregateFieldMetadataId: string, aggregateOperation: AggregateOperations, groupBySubFieldName?: string | null, dateGranularity?: ObjectRecordGroupByDateGranularity | null, orderBy?: GraphOrderBy | null, manualSortOrder?: Array<string> | null, displayDataLabel?: boolean | null, showCenterMetric?: boolean | null, displayLegend?: boolean | null, hideEmptyCategory?: boolean | null, splitMultiValueFields?: boolean | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null }
         | { __typename?: 'RecordTableConfiguration', configurationType: WidgetConfigurationType, viewId?: string | null }
         | { __typename?: 'StandaloneRichTextConfiguration', configurationType: WidgetConfigurationType, body: { __typename?: 'RichTextBody', blocknote?: string | null, markdown?: string | null } }
-        | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
-        | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
+     | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
+     | { __typename?: 'TaskTimelineConfiguration', configurationType: WidgetConfigurationType }
+     | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
         | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
         | { __typename?: 'WorkflowConfiguration', configurationType: WidgetConfigurationType }
         | { __typename?: 'WorkflowRunConfiguration', configurationType: WidgetConfigurationType }
@@ -7017,9 +7026,10 @@ export type PageLayoutTabFragmentFragment = { __typename?: 'PageLayoutTab', id: 
       | { __typename?: 'PieChartConfiguration', configurationType: WidgetConfigurationType, groupByFieldMetadataId: string, aggregateFieldMetadataId: string, aggregateOperation: AggregateOperations, groupBySubFieldName?: string | null, dateGranularity?: ObjectRecordGroupByDateGranularity | null, orderBy?: GraphOrderBy | null, manualSortOrder?: Array<string> | null, displayDataLabel?: boolean | null, showCenterMetric?: boolean | null, displayLegend?: boolean | null, hideEmptyCategory?: boolean | null, splitMultiValueFields?: boolean | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null }
       | { __typename?: 'RecordTableConfiguration', configurationType: WidgetConfigurationType, viewId?: string | null }
       | { __typename?: 'StandaloneRichTextConfiguration', configurationType: WidgetConfigurationType, body: { __typename?: 'RichTextBody', blocknote?: string | null, markdown?: string | null } }
-      | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
-      | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
-      | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
+     | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
+     | { __typename?: 'TaskTimelineConfiguration', configurationType: WidgetConfigurationType }
+     | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
+     | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
       | { __typename?: 'WorkflowConfiguration', configurationType: WidgetConfigurationType }
       | { __typename?: 'WorkflowRunConfiguration', configurationType: WidgetConfigurationType }
       | { __typename?: 'WorkflowVersionConfiguration', configurationType: WidgetConfigurationType }
@@ -7333,6 +7343,11 @@ export type ObjectRecordCountsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ObjectRecordCountsQuery = { __typename?: 'Query', objectRecordCounts: Array<{ __typename?: 'ObjectRecordCount', objectNamePlural: string, totalCount: number }> };
+
+export type PersonalFinanceConfiguration = {
+  __typename?: 'PersonalFinanceConfiguration';
+  configurationType: WidgetConfigurationType;
+};
 
 export type SkipSyncEmailOnboardingStepMutationVariables = Exact<{ [key: string]: never; }>;
 

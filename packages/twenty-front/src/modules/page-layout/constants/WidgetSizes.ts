@@ -18,4 +18,8 @@ export const WIDGET_SIZES: Partial<Record<WidgetType, WidgetSizeConfig>> = {
     default: { w: 6, h: 6 },
     minimum: { w: 4, h: 3 },
   },
+  [WidgetType.TASK_TIMELINE]: {
+    default: { w: 8, h: 8 },
+    minimum: { w: 6, h: 4 },
+  },
 };

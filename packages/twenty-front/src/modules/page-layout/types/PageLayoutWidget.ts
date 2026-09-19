@@ -3,6 +3,7 @@ import { type Nullable } from 'twenty-shared/types';
 import {
   type FieldsConfiguration,
   type PageLayoutWidget as PageLayoutWidgetGenerated,
+  type TaskTimelineConfiguration,
   type WidgetConfiguration,
 } from '~/generated-metadata/graphql';
 
@@ -11,6 +12,10 @@ export type PageLayoutWidget = Omit<
   'objectMetadataId' | 'configuration'
 > & {
   objectMetadataId?: Nullable<string>;
-  configuration: WidgetConfiguration | FieldsConfiguration | FieldConfiguration;
+  configuration:
+    | WidgetConfiguration
+    | TaskTimelineConfiguration
+    | FieldsConfiguration
+    | FieldConfiguration;
   conditionalAvailabilityExpression?: Nullable<string>;
 };
