@@ -207,6 +207,28 @@ describe('validateWidgetConfigurationInput', () => {
     });
   });
 
+  describe('new widget configurations', () => {
+    it('accepts the task timeline configuration envelope', () => {
+      expect(() =>
+        validateWidgetConfigurationInput({
+          configuration: {
+            configurationType: WidgetConfigurationType.TASK_TIMELINE,
+          },
+        }),
+      ).not.toThrow();
+    });
+
+    it('accepts the personal finance configuration envelope', () => {
+      expect(() =>
+        validateWidgetConfigurationInput({
+          configuration: {
+            configurationType: WidgetConfigurationType.PERSONAL_FINANCE,
+          },
+        }),
+      ).not.toThrow();
+    });
+  });
+
   describe('Edge cases', () => {
     it('should throw error for null configuration', () => {
       expect(() =>

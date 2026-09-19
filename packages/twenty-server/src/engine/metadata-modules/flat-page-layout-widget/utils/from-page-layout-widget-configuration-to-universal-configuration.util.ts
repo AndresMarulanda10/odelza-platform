@@ -376,6 +376,8 @@ export const fromPageLayoutWidgetConfigurationToUniversalConfiguration = ({
     case WidgetConfigurationType.IFRAME:
     case WidgetConfigurationType.STANDALONE_RICH_TEXT:
     case WidgetConfigurationType.EMAIL_THREAD:
+    case WidgetConfigurationType.TASK_TIMELINE:
+    case WidgetConfigurationType.PERSONAL_FINANCE:
       return configuration;
   }
 };

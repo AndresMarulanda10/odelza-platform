@@ -129,6 +129,14 @@ export type FrontComponentConfiguration = {
   frontComponentId: SerializedRelation;
 };
 
+export type TaskTimelineConfiguration = {
+  configurationType: 'TASK_TIMELINE';
+};
+
+export type PersonalFinanceConfiguration = {
+  configurationType: 'PERSONAL_FINANCE';
+};
+
 export type TimelineConfiguration = {
   configurationType: 'TIMELINE';
 };
@@ -169,6 +177,77 @@ export type WorkflowRunConfiguration = {
   configurationType: 'WORKFLOW_RUN';
 };
 
+export type WidgetDataState =
+  | 'loading'
+  | 'ready'
+  | 'empty'
+  | 'partial'
+  | 'stale'
+  | 'error'
+  | 'forbidden';
+
+export type TaskTimelineItem = {
+  id: string;
+  title: string;
+  startDate: string | null;
+  endDate: string | null;
+  progress: number | null;
+  isMilestone: boolean;
+  dependencies: TaskDependency[];
+  conflict: boolean;
+};
+
+export type TaskDependency = {
+  predecessorId: string;
+  successorId: string;
+  type: 'FINISH_TO_START';
+  conflict: boolean;
+};
+
+export type TaskTimelineStateEnvelope = {
+  status: WidgetDataState;
+  items?: TaskTimelineItem[];
+};
+
+export type FinancePeriodContext = {
+  granularity: string;
+  start: string;
+  end: string;
+  timezone: string;
+};
+
+export type FinanceComparisonBaseline = {
+  kind: string;
+  start: string | null;
+  end: string | null;
+};
+
+export type FinancePrecision = {
+  amountScale: number;
+  ratioScale: number;
+  rounding: string;
+};
+
+export type FinanceSection<TData = unknown> = {
+  status: WidgetDataState;
+  periodContext: FinancePeriodContext;
+  comparisonBaseline: FinanceComparisonBaseline;
+  currency: string;
+  precision: FinancePrecision;
+  freshness: string | null;
+  data?: TData;
+};
+
+export type PersonalFinanceStateEnvelope = {
+  status: WidgetDataState;
+  sections: {
+    kpiSummary: FinanceSection;
+    budgetVsActual: FinanceSection;
+    cashFlow: FinanceSection;
+    categoryAnalysis: FinanceSection;
+  };
+};
+
 export type PageLayoutWidgetConfiguration =
   | AggregateChartConfiguration
   | PieChartConfiguration
@@ -182,6 +261,8 @@ export type PageLayoutWidgetConfiguration =
   | StandaloneRichTextConfiguration
   | IframeConfiguration
   | FrontComponentConfiguration
+  | TaskTimelineConfiguration
+  | PersonalFinanceConfiguration
   | TimelineConfiguration
   | TasksConfiguration
   | NotesConfiguration

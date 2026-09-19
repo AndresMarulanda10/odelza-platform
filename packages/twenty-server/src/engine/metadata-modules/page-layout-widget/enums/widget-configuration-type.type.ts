@@ -27,6 +27,8 @@ export enum WidgetConfigurationType {
   FRONT_COMPONENT = 'FRONT_COMPONENT',
   RECORD_TABLE = 'RECORD_TABLE',
   EMAIL_THREAD = 'EMAIL_THREAD',
+  TASK_TIMELINE = 'TASK_TIMELINE',
+  PERSONAL_FINANCE = 'PERSONAL_FINANCE',
 }
 export type AllGraphWidgetConfigurationType =
   | WidgetConfigurationType.AGGREGATE_CHART

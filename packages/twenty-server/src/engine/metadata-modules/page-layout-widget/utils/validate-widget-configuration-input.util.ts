@@ -7,8 +7,10 @@ import { FrontComponentConfigurationDTO } from 'src/engine/metadata-modules/page
 import { IframeConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/iframe-configuration.dto';
 import { LineChartConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/line-chart-configuration.dto';
 import { PieChartConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/pie-chart-configuration.dto';
+import { PersonalFinanceConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/personal-finance-configuration.dto';
 import { RecordTableConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/record-table-configuration.dto';
 import { StandaloneRichTextConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/standalone-rich-text-configuration.dto';
+import { TaskTimelineConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/task-timeline-configuration.dto';
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
 import {
   PageLayoutWidgetException,
@@ -187,6 +189,18 @@ export const validateWidgetConfigurationInput = ({
         'Workflow run configuration is not supported yet',
         PageLayoutWidgetExceptionCode.INVALID_PAGE_LAYOUT_WIDGET_DATA,
       );
+    case WidgetConfigurationType.TASK_TIMELINE:
+      errors = validateWidgetConfigurationByDto(
+        TaskTimelineConfigurationDTO,
+        configuration,
+      );
+      break;
+    case WidgetConfigurationType.PERSONAL_FINANCE:
+      errors = validateWidgetConfigurationByDto(
+        PersonalFinanceConfigurationDTO,
+        configuration,
+      );
+      break;
     default:
       throw new PageLayoutWidgetException(
         `Invalid configuration type: ${configurationType}`,
