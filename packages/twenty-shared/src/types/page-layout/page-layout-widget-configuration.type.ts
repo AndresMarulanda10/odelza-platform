@@ -228,6 +228,56 @@ export type FinancePrecision = {
   rounding: string;
 };
 
+export type FinanceSectionKey =
+  | 'kpiSummary'
+  | 'budgetVsActual'
+  | 'cashFlow'
+  | 'categoryAnalysis'
+  | 'netWorth';
+
+export type FinanceSectionBoundary = {
+  permission: 'granted' | 'denied';
+  sourceStatus: 'available' | 'unavailable' | 'stale';
+};
+
+export type FinanceUnavailableReason =
+  | 'PERMISSION_DENIED'
+  | 'SOURCE_UNAVAILABLE'
+  | 'SOURCE_STALE'
+  | 'SEMANTICS_UNCONFIRMED'
+  | 'QUERY_FAILED'
+  | 'NO_DATA';
+
+export type FinanceMetric = {
+  key: string;
+  value: string;
+  label?: string;
+};
+
+export type FinanceKpiSummaryData = { metrics: FinanceMetric[] };
+export type FinanceBudgetVsActualData = {
+  rows: Array<{
+    category: string;
+    budget: string;
+    actual: string;
+    variance: string;
+  }>;
+};
+export type FinanceCashFlowData = {
+  opening: string;
+  inflows: string;
+  outflows: string;
+  closing: string;
+};
+export type FinanceCategoryAnalysisData = {
+  categories: Array<{ category: string; amount: string; share: string | null }>;
+};
+export type FinanceNetWorthData = {
+  assets: string;
+  liabilities: string;
+  netWorth: string;
+};
+
 export type FinanceSection<TData = unknown> = {
   status: WidgetDataState;
   periodContext: FinancePeriodContext;
@@ -235,16 +285,19 @@ export type FinanceSection<TData = unknown> = {
   currency: string;
   precision: FinancePrecision;
   freshness: string | null;
+  boundary: FinanceSectionBoundary;
+  unavailableReason?: FinanceUnavailableReason;
   data?: TData;
 };
 
 export type PersonalFinanceStateEnvelope = {
   status: WidgetDataState;
   sections: {
-    kpiSummary: FinanceSection;
-    budgetVsActual: FinanceSection;
-    cashFlow: FinanceSection;
-    categoryAnalysis: FinanceSection;
+    kpiSummary: FinanceSection<FinanceKpiSummaryData>;
+    budgetVsActual: FinanceSection<FinanceBudgetVsActualData>;
+    cashFlow: FinanceSection<FinanceCashFlowData>;
+    categoryAnalysis: FinanceSection<FinanceCategoryAnalysisData>;
+    netWorth: FinanceSection<FinanceNetWorthData>;
   };
 };
 
