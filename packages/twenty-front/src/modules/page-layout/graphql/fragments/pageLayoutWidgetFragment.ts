@@ -183,6 +183,9 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
       ... on TaskTimelineConfiguration {
         configurationType
       }
+      ... on PersonalFinanceConfiguration {
+        configurationType
+      }
       ... on ViewConfiguration {
         configurationType
       }
