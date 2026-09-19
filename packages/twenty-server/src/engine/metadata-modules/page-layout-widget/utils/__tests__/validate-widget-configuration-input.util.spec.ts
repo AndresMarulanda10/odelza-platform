@@ -251,6 +251,24 @@ describe('validateWidgetConfigurationInput', () => {
         }),
       ).toThrow(/Expected PERSONAL_FINANCE/);
     });
+
+    it.each([
+      {
+        type: WidgetType.TASK_TIMELINE,
+        expectedConfigurationType: WidgetConfigurationType.TASK_TIMELINE,
+      },
+      {
+        type: WidgetType.PERSONAL_FINANCE,
+        expectedConfigurationType: WidgetConfigurationType.PERSONAL_FINANCE,
+      },
+    ])(
+      'rejects a missing configuration for $type',
+      ({ type, expectedConfigurationType }) => {
+        expect(() =>
+          validatePageLayoutWidgetTypeConfiguration({ type }),
+        ).toThrow(`Expected ${expectedConfigurationType}`);
+      },
+    );
   });
 
   describe('Edge cases', () => {

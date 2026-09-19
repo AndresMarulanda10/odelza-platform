@@ -12,16 +12,26 @@ const context = {
   currency: 'USD',
   precision: { amountScale: 2, ratioScale: 2, rounding: 'APPROVED' },
   freshness: '2026-02-01T00:00:00.000Z',
-  boundary: { permission: 'granted' as const, sourceStatus: 'available' as const },
+  boundary: {
+    permission: 'granted' as const,
+    sourceStatus: 'available' as const,
+  },
 };
-const sectionContext = () => ({ ...context, boundary: { ...context.boundary } });
+const sectionContext = () => ({
+  ...context,
+  boundary: { ...context.boundary },
+});
 
 const input = (): PersonalFinanceAggregationInput => ({
   workspaceBaseCurrency: 'USD',
   semanticsApproved: true,
   sections: {
     kpiSummary: { ...sectionContext(), status: 'ready', data: { metrics: [] } },
-    budgetVsActual: { ...sectionContext(), status: 'ready', data: { rows: [] } },
+    budgetVsActual: {
+      ...sectionContext(),
+      status: 'ready',
+      data: { rows: [] },
+    },
     cashFlow: {
       ...sectionContext(),
       status: 'ready',
@@ -47,6 +57,12 @@ describe('personal-finance aggregation boundaries', () => {
     expect(result.status).toBe('ready');
     expect(result.sections.netWorth.data?.netWorth).toBe('6');
     expect(result.sections.cashFlow.currency).toBe('USD');
+    expect(result.sections.kpiSummary).toMatchObject({
+      periodContext: context.periodContext,
+      comparisonBaseline: context.comparisonBaseline,
+      precision: context.precision,
+      freshness: context.freshness,
+    });
   });
 
   it('redacts denied and unavailable sections without turning them into zeroes', () => {
