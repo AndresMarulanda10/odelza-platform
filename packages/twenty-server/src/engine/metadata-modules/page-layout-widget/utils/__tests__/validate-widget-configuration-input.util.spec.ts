@@ -21,7 +21,9 @@ import {
 } from 'test/integration/constants/widget-configuration-test-data.constants';
 
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
+import { WidgetType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-type.enum';
 import { validateWidgetConfigurationInput } from 'src/engine/metadata-modules/page-layout-widget/utils/validate-widget-configuration-input.util';
+import { validatePageLayoutWidgetTypeConfiguration } from 'src/engine/metadata-modules/page-layout-widget/utils/validate-page-layout-widget-type-configuration.util';
 
 describe('validateWidgetConfigurationInput', () => {
   describe('IFRAME widget', () => {
@@ -226,6 +228,28 @@ describe('validateWidgetConfigurationInput', () => {
           },
         }),
       ).not.toThrow();
+    });
+
+    it('keeps the task timeline widget and configuration types aligned', () => {
+      expect(() =>
+        validatePageLayoutWidgetTypeConfiguration({
+          type: WidgetType.TASK_TIMELINE,
+          configuration: {
+            configurationType: WidgetConfigurationType.PERSONAL_FINANCE,
+          },
+        }),
+      ).toThrow(/Expected TASK_TIMELINE/);
+    });
+
+    it('keeps the personal finance widget and configuration types aligned', () => {
+      expect(() =>
+        validatePageLayoutWidgetTypeConfiguration({
+          type: WidgetType.PERSONAL_FINANCE,
+          configuration: {
+            configurationType: WidgetConfigurationType.TASK_TIMELINE,
+          },
+        }),
+      ).toThrow(/Expected PERSONAL_FINANCE/);
     });
   });
 

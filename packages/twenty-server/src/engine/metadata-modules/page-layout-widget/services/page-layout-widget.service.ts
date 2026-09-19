@@ -29,6 +29,7 @@ import {
 import { type AllPageLayoutWidgetConfiguration } from 'src/engine/metadata-modules/page-layout-widget/types/all-page-layout-widget-configuration.type';
 import { fromFlatPageLayoutWidgetToPageLayoutWidgetDto } from 'src/engine/metadata-modules/page-layout-widget/utils/from-flat-page-layout-widget-to-page-layout-widget-dto.util';
 import { validateChartConfigurationFieldReferencesOrThrow } from 'src/engine/metadata-modules/page-layout-widget/utils/validate-chart-configuration-field-references.util';
+import { validatePageLayoutWidgetTypeConfiguration } from 'src/engine/metadata-modules/page-layout-widget/utils/validate-page-layout-widget-type-configuration.util';
 import { WorkspaceMigrationBuilderException } from 'src/engine/workspace-manager/workspace-migration/exceptions/workspace-migration-builder-exception';
 import { WorkspaceMigrationValidateBuildAndRunService } from 'src/engine/workspace-manager/workspace-migration/services/workspace-migration-validate-build-and-run-service';
 import { DashboardSyncService } from 'src/modules/dashboard-sync/services/dashboard-sync.service';
@@ -209,6 +210,11 @@ export class PageLayoutWidgetService {
     input: CreatePageLayoutWidgetInput;
     workspaceId: string;
   }): Promise<PageLayoutWidgetDTO> {
+    validatePageLayoutWidgetTypeConfiguration({
+      type: input.type,
+      configuration: input.configuration,
+    });
+
     const createInput = isDefined(input.configuration)
       ? {
           ...input,
@@ -354,6 +360,13 @@ export class PageLayoutWidgetService {
             ),
           }
         : updateData;
+
+    validatePageLayoutWidgetTypeConfiguration({
+      type: processedUpdateData.type ?? existingWidget.type,
+      configuration: isConfigurationBeingUpdated
+        ? processedUpdateData.configuration
+        : existingWidget.configuration,
+    });
 
     const updatePageLayoutWidgetInput: UpdatePageLayoutWidgetInputWithId = {
       id,
