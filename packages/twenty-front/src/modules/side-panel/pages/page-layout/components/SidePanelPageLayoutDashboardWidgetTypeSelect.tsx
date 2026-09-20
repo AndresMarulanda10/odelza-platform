@@ -4,6 +4,7 @@ import { useReadableObjectMetadataItems } from '@/object-metadata/hooks/useReada
 import { useCreatePageLayoutFrontComponentWidget } from '@/page-layout/hooks/useCreatePageLayoutFrontComponentWidget';
 import { useCreatePageLayoutGraphWidget } from '@/page-layout/hooks/useCreatePageLayoutGraphWidget';
 import { useCreatePageLayoutIframeWidget } from '@/page-layout/hooks/useCreatePageLayoutIframeWidget';
+import { useCreatePageLayoutPersonalFinanceWidget } from '@/page-layout/hooks/useCreatePageLayoutPersonalFinanceWidget';
 import { useCreatePageLayoutRecordTableWidget } from '@/page-layout/hooks/useCreatePageLayoutRecordTableWidget';
 import { useCreatePageLayoutStandaloneRichTextWidget } from '@/page-layout/hooks/useCreatePageLayoutStandaloneRichTextWidget';
 import { useCreatePageLayoutTaskTimelineWidget } from '@/page-layout/hooks/useCreatePageLayoutTaskTimelineWidget';
@@ -34,6 +35,7 @@ import {
   IconFrame,
   IconTable,
   IconTimelineEvent,
+  IconCoins,
 } from 'twenty-ui/icon';
 import { type FrontComponent, WidgetType } from '~/generated-metadata/graphql';
 
@@ -83,6 +85,11 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
     useCreatePageLayoutRecordTableWidget(pageLayoutId);
   const { createPageLayoutTaskTimelineWidget } =
     useCreatePageLayoutTaskTimelineWidget({
+      pageLayoutId,
+      tabListInstanceId,
+    });
+  const { createPageLayoutPersonalFinanceWidget } =
+    useCreatePageLayoutPersonalFinanceWidget({
       pageLayoutId,
       tabListInstanceId,
     });
@@ -268,12 +275,31 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
     closeSidePanelMenu();
   };
 
+  const handleCreatePersonalFinanceWidget = () => {
+    if (
+      isExistingWidgetMissingOrDifferentType(
+        existingWidget?.type,
+        WidgetType.PERSONAL_FINANCE,
+      )
+    ) {
+      if (isDefined(pageLayoutEditingWidgetId)) {
+        removePageLayoutWidgetAndPreservePosition(pageLayoutEditingWidgetId);
+      }
+
+      const newWidget = createPageLayoutPersonalFinanceWidget();
+      setPageLayoutEditingWidgetId(newWidget.id);
+    }
+
+    closeSidePanelMenu();
+  };
+
   const selectableItemIds = [
     'chart',
     'record-table',
     'iframe',
     'rich-text',
     'task-timeline',
+    'personal-finance',
     ...frontComponentsWithSelectItemId.map(({ selectItemId }) => selectItemId),
   ];
 
@@ -334,6 +360,17 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
             label={t`Task Timeline`}
             id="task-timeline"
             onClick={handleCreateTaskTimelineWidget}
+          />
+        </SelectableListItem>
+        <SelectableListItem
+          itemId="personal-finance"
+          onEnter={handleCreatePersonalFinanceWidget}
+        >
+          <CommandMenuItem
+            Icon={IconCoins}
+            label={t`Personal Finance`}
+            id="personal-finance"
+            onClick={handleCreatePersonalFinanceWidget}
           />
         </SelectableListItem>
       </SidePanelGroup>

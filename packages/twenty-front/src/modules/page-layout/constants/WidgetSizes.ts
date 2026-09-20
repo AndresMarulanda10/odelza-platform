@@ -22,4 +22,8 @@ export const WIDGET_SIZES: Partial<Record<WidgetType, WidgetSizeConfig>> = {
     default: { w: 8, h: 8 },
     minimum: { w: 6, h: 4 },
   },
+  [WidgetType.PERSONAL_FINANCE]: {
+    default: { w: 8, h: 8 },
+    minimum: { w: 6, h: 4 },
+  },
 };
