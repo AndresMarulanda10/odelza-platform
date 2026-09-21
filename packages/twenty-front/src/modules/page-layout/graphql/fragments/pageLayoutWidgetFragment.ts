@@ -182,6 +182,17 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
       }
       ... on TaskTimelineConfiguration {
         configurationType
+        barColor
+        fieldMapping {
+          titleFieldMetadataId
+          startDateFieldMetadataId
+          dueDateFieldMetadataId
+          progressFieldMetadataId
+          statusFieldMetadataId
+          milestoneFieldMetadataId
+          dependencyFieldMetadataId
+          dependencyTypeFieldMetadataId
+        }
       }
       ... on PersonalFinanceConfiguration {
         configurationType

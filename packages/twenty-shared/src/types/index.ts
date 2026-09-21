@@ -199,6 +199,7 @@ export type {
   StandaloneRichTextConfiguration,
   IframeConfiguration,
   FrontComponentConfiguration,
+  TaskTimelineFieldMapping,
   TaskTimelineConfiguration,
   PersonalFinanceConfiguration,
   TimelineConfiguration,

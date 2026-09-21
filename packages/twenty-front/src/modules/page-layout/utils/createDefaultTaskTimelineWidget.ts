@@ -27,6 +27,7 @@ export const createDefaultTaskTimelineWidget = ({
   configuration: {
     __typename: 'TaskTimelineConfiguration',
     configurationType: WidgetConfigurationType.TASK_TIMELINE,
+    barColor: '#3b82f6',
   },
   gridPosition,
   position: {

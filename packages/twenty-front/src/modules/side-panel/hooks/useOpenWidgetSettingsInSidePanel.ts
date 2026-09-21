@@ -129,10 +129,19 @@ export const useOpenWidgetSettingsInSidePanel = (
       }
 
       if (widgetType === WidgetType.TASK_TIMELINE) {
+        if (!isDashboardPageLayout) {
+          return;
+        }
+
+        navigatePageLayoutSidePanel({
+          sidePanelPage: SidePanelPages.DashboardTaskTimelineSettings,
+          pageTitle: t`Task Timeline Settings`,
+          resetNavigationStack: true,
+        });
         setPageLayoutEditingWidgetId(widgetId);
-        closeSidePanelMenu();
         return;
       }
+
 
       const containingTab = pageLayoutDraft.tabs.find((tab) =>
         tab.widgets.some((w) => w.id === widgetId),

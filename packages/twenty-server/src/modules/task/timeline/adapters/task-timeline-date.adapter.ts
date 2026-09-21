@@ -1,5 +1,6 @@
 import {
   type TaskTimelineDateRange,
+  type TaskTimelineDatePosition,
   type TaskTimelineDateValue,
   type WorkspaceCalendarContext,
 } from 'src/modules/task/timeline/types/task-timeline.types';
@@ -14,6 +15,35 @@ export class TaskTimelineDateError extends Error {
     this.name = 'TaskTimelineDateError';
   }
 }
+
+export const calculateTaskTimelineDatePosition = ({
+  taskRange,
+  timelineRange,
+}: {
+  taskRange: TaskTimelineDateRange;
+  timelineRange: TaskTimelineDateRange;
+}): TaskTimelineDatePosition | null => {
+  const timelineStart = timelineRange.startAt.getTime();
+  const timelineEndExclusive = timelineRange.endAt.getTime() + 1;
+  const taskStart = taskRange.startAt.getTime();
+  const taskEndExclusive = taskRange.endAt.getTime() + 1;
+
+  if (taskEndExclusive <= timelineStart || taskStart >= timelineEndExclusive) {
+    return null;
+  }
+
+  const start = Math.max(taskStart, timelineStart);
+  const end = Math.min(taskEndExclusive, timelineEndExclusive);
+  const totalDuration = timelineEndExclusive - timelineStart;
+  const startPosition = (start - timelineStart) / totalDuration;
+  const endPosition = (end - timelineStart) / totalDuration;
+
+  return {
+    start: startPosition,
+    end: endPosition,
+    width: endPosition - startPosition,
+  };
+};
 
 type DateParts = {
   year: number;
@@ -122,11 +152,37 @@ export class TaskTimelineDateAdapter {
     };
   }
 
+  getDatePosition({
+    taskStartDate,
+    taskEndDate,
+    timelineStartDate,
+    timelineEndDate,
+  }: {
+    taskStartDate: TaskTimelineDateValue;
+    taskEndDate: TaskTimelineDateValue;
+    timelineStartDate: TaskTimelineDateValue;
+    timelineEndDate: TaskTimelineDateValue;
+  }): TaskTimelineDatePosition | null {
+    const taskRange = this.toFullDayRange(taskStartDate, taskEndDate);
+    const timelineRange = this.toFullDayRange(
+      timelineStartDate,
+      timelineEndDate,
+    );
+
+    if (taskRange === null || timelineRange === null) {
+      return null;
+    }
+
+    return calculateTaskTimelineDatePosition({ taskRange, timelineRange });
+  }
+
   private formatDateOnly(value: Date): string {
     const parts = this.getDateParts(value);
 
     return [parts.year, parts.month, parts.day]
-      .map((part, index) => (index === 0 ? String(part) : String(part).padStart(2, '0')))
+      .map((part, index) =>
+        index === 0 ? String(part) : String(part).padStart(2, '0'),
+      )
       .join('-');
   }
 
@@ -158,7 +214,9 @@ export class TaskTimelineDateAdapter {
     const match = DATE_ONLY_PATTERN.exec(dateOnly);
 
     if (!match) {
-      throw new TaskTimelineDateError(`Invalid normalized task date: ${dateOnly}`);
+      throw new TaskTimelineDateError(
+        `Invalid normalized task date: ${dateOnly}`,
+      );
     }
 
     const [, year, month, day] = match.map(Number);
@@ -174,7 +232,9 @@ export class TaskTimelineDateAdapter {
 
     for (let attempt = 0; attempt < 3; attempt++) {
       const nextUtcTimestamp =
-        wallClock.getTime() + millisecond - this.getTimeZoneOffset(new Date(utcTimestamp));
+        wallClock.getTime() +
+        millisecond -
+        this.getTimeZoneOffset(new Date(utcTimestamp));
 
       if (nextUtcTimestamp === utcTimestamp) {
         break;
@@ -215,17 +275,8 @@ export class TaskTimelineDateAdapter {
 
   private createUtcDate(parts: DateParts): Date {
     const value = new Date(0);
-    value.setUTCFullYear(
-      parts.year,
-      parts.month - 1,
-      parts.day,
-    );
-    value.setUTCHours(
-      parts.hour ?? 0,
-      parts.minute ?? 0,
-      parts.second ?? 0,
-      0,
-    );
+    value.setUTCFullYear(parts.year, parts.month - 1, parts.day);
+    value.setUTCHours(parts.hour ?? 0, parts.minute ?? 0, parts.second ?? 0, 0);
     return value;
   }
 }

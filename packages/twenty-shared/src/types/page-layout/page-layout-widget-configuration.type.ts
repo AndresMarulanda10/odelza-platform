@@ -129,9 +129,23 @@ export type FrontComponentConfiguration = {
   frontComponentId: SerializedRelation;
 };
 
+export type TaskTimelineFieldMapping = {
+  titleFieldMetadataId?: SerializedRelation | null;
+  startDateFieldMetadataId?: SerializedRelation | null;
+  dueDateFieldMetadataId?: SerializedRelation | null;
+  progressFieldMetadataId?: SerializedRelation | null;
+  statusFieldMetadataId?: SerializedRelation | null;
+  milestoneFieldMetadataId?: SerializedRelation | null;
+  dependencyFieldMetadataId?: SerializedRelation | null;
+  dependencyTypeFieldMetadataId?: SerializedRelation | null;
+};
+
 export type TaskTimelineConfiguration = {
   configurationType: 'TASK_TIMELINE';
+  fieldMapping?: TaskTimelineFieldMapping | null;
+  barColor?: string | null;
 };
+
 
 export type PersonalFinanceConfiguration = {
   configurationType: 'PERSONAL_FINANCE';

@@ -1,5 +1,6 @@
 import {
   type ChartFilter,
+  type TaskTimelineFieldMapping,
   type UniversalChartFilter,
 } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
@@ -11,6 +12,10 @@ import {
 import { type FlatPageLayoutWidget } from 'src/engine/metadata-modules/flat-page-layout-widget/types/flat-page-layout-widget.type';
 import { type PageLayoutWidgetEntity } from 'src/engine/metadata-modules/page-layout-widget/entities/page-layout-widget.entity';
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
+import {
+  TASK_TIMELINE_FIELD_MAPPINGS,
+  type TaskTimelineFieldMappingUniversal,
+} from 'src/engine/metadata-modules/page-layout-widget/utils/task-timeline-field-mapping.util';
 
 type PageLayoutWidgetConfiguration = PageLayoutWidgetEntity['configuration'];
 
@@ -68,6 +73,43 @@ const convertChartFilterToUniversalFilter = ({
       }),
     ),
   };
+};
+
+const convertTaskTimelineFieldMappingToUniversal = ({
+  fieldMapping,
+  fieldMetadataUniversalIdentifierById,
+  shouldThrowOnMissingIdentifier,
+}: {
+  fieldMapping: TaskTimelineFieldMapping | null | undefined;
+  fieldMetadataUniversalIdentifierById: Partial<Record<string, string>>;
+  shouldThrowOnMissingIdentifier: boolean;
+}): TaskTimelineFieldMappingUniversal | null | undefined => {
+  if (fieldMapping === undefined || fieldMapping === null) {
+    return fieldMapping;
+  }
+
+  return Object.fromEntries(
+    TASK_TIMELINE_FIELD_MAPPINGS.flatMap(
+      ([fieldMetadataKey, universalIdentifierKey]) => {
+        const fieldMetadataId = fieldMapping[fieldMetadataKey];
+
+        return fieldMetadataId === undefined
+          ? []
+          : [
+              [
+                universalIdentifierKey,
+                fieldMetadataId === null
+                  ? null
+                  : getFieldMetadataUniversalIdentifier({
+                      fieldMetadataId,
+                      fieldMetadataUniversalIdentifierById,
+                      shouldThrowOnMissingIdentifier,
+                    }),
+              ],
+            ];
+      },
+    ),
+  ) as TaskTimelineFieldMappingUniversal;
 };
 
 export const fromPageLayoutWidgetConfigurationToUniversalConfiguration = ({
@@ -376,8 +418,19 @@ export const fromPageLayoutWidgetConfigurationToUniversalConfiguration = ({
     case WidgetConfigurationType.IFRAME:
     case WidgetConfigurationType.STANDALONE_RICH_TEXT:
     case WidgetConfigurationType.EMAIL_THREAD:
-    case WidgetConfigurationType.TASK_TIMELINE:
-    case WidgetConfigurationType.PERSONAL_FINANCE:
       return configuration;
+    case WidgetConfigurationType.TASK_TIMELINE: {
+      const { fieldMapping, ...rest } = configuration;
+
+      const universalFieldMapping = convertTaskTimelineFieldMappingToUniversal({
+        fieldMapping,
+        fieldMetadataUniversalIdentifierById,
+        shouldThrowOnMissingIdentifier,
+      });
+
+      return universalFieldMapping === undefined
+        ? rest
+        : { ...rest, fieldMapping: universalFieldMapping };
+    }
   }
 };

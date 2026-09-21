@@ -10,6 +10,58 @@ import {
   type TaskTimelineRecord,
 } from 'src/modules/task/timeline/types/task-timeline.types';
 
+const timelineDateAdapter = new TaskTimelineDateAdapter({
+  timeZone: 'UTC',
+  calendarStartDay: 1,
+});
+
+export const validateTaskTimelineRecordUpdate = ({
+  currentTask,
+  update,
+}: {
+  currentTask: TaskTimelineRecord;
+  update: TaskTimelineRecord;
+}): void => {
+  const hasTimelineUpdate = ['startDate', 'endDate', 'dueAt', 'progress'].some(
+    (fieldName) => fieldName in update,
+  );
+
+  if (!hasTimelineUpdate) {
+    return;
+  }
+
+  const progress = update.progress;
+
+  if (
+    progress !== undefined &&
+    progress !== null &&
+    (typeof progress !== 'number' ||
+      !Number.isFinite(progress) ||
+      progress < 0 ||
+      progress > 100)
+  ) {
+    throw new Error(
+      'Task timeline progress must be a number between 0 and 100',
+    );
+  }
+
+  const startDate =
+    'startDate' in update ? update.startDate : currentTask.startDate;
+  const endDate =
+    'endDate' in update
+      ? update.endDate
+      : 'dueAt' in update
+        ? update.dueAt
+        : (currentTask.endDate ?? currentTask.dueAt);
+
+  if (startDate !== undefined || endDate !== undefined) {
+    timelineDateAdapter.toFullDayRange(
+      startDate as Parameters<TaskTimelineDateAdapter['normalizeDate']>[0],
+      endDate as Parameters<TaskTimelineDateAdapter['normalizeDate']>[0],
+    );
+  }
+};
+
 export const evaluateTaskTimeline = ({
   items,
   dependencies,
@@ -37,7 +89,9 @@ export const evaluateTaskTimeline = ({
       !itemsById.has(dependency.predecessorId) ||
       !itemsById.has(dependency.successorId)
     ) {
-      throw new Error('A task timeline dependency must reference visible tasks');
+      throw new Error(
+        'A task timeline dependency must reference visible tasks',
+      );
     }
 
     const dependencyKey = `${dependency.predecessorId}:${dependency.successorId}`;
@@ -100,9 +154,13 @@ export const applyTaskTimelineEdit = ({
   if (
     update.progress !== undefined &&
     update.progress !== null &&
-    (!Number.isFinite(update.progress) || update.progress < 0 || update.progress > 100)
+    (!Number.isFinite(update.progress) ||
+      update.progress < 0 ||
+      update.progress > 100)
   ) {
-    throw new Error('Task timeline progress must be a number between 0 and 100');
+    throw new Error(
+      'Task timeline progress must be a number between 0 and 100',
+    );
   }
 
   const nextStartDate =
@@ -110,7 +168,9 @@ export const applyTaskTimelineEdit = ({
       ? task.startDate
       : dates.normalizeDate(update.startDate);
   const nextEndDate =
-    update.endDate === undefined ? task.endDate : dates.normalizeDate(update.endDate);
+    update.endDate === undefined
+      ? task.endDate
+      : dates.normalizeDate(update.endDate);
   const range = dates.toFullDayRange(nextStartDate, nextEndDate);
   const hasCompleteDateRange = range !== null;
 
@@ -138,13 +198,11 @@ export const applyTaskTimelineEdit = ({
 };
 
 export class TaskTimelineDomainService {
-  constructor(
-    private readonly fieldAdapter: TaskTimelineFieldAdapter,
-  ) {}
+  constructor(private readonly fieldAdapter: TaskTimelineFieldAdapter) {}
 
   buildTimeline(
     records: TaskTimelineRecord[],
-    dependencies: TaskTimelineDependencyInput[],
+    dependencies = this.fieldAdapter.toDependencies(records),
   ): TaskTimelineEvaluation {
     return evaluateTaskTimeline({
       items: this.fieldAdapter.toItems(records),

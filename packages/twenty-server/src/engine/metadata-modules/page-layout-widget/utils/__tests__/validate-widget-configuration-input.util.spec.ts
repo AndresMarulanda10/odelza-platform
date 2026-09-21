@@ -220,6 +220,32 @@ describe('validateWidgetConfigurationInput', () => {
       ).not.toThrow();
     });
 
+    it('accepts task timeline date mappings and a hex bar color', () => {
+      expect(() =>
+        validateWidgetConfigurationInput({
+          configuration: {
+            configurationType: WidgetConfigurationType.TASK_TIMELINE,
+            barColor: '#123456',
+            fieldMapping: {
+              startDateFieldMetadataId: '00000000-0000-4000-8000-000000000001',
+              dueDateFieldMetadataId: '00000000-0000-4000-8000-000000000002',
+            },
+          },
+        }),
+      ).not.toThrow();
+    });
+
+    it('rejects an invalid task timeline bar color', () => {
+      expect(() =>
+        validateWidgetConfigurationInput({
+          configuration: {
+            configurationType: WidgetConfigurationType.TASK_TIMELINE,
+            barColor: 'blue',
+          },
+        }),
+      ).toThrow(/barColor/);
+    });
+
     it('accepts the personal finance configuration envelope', () => {
       expect(() =>
         validateWidgetConfigurationInput({
@@ -229,6 +255,7 @@ describe('validateWidgetConfigurationInput', () => {
         }),
       ).not.toThrow();
     });
+
 
     it('keeps the task timeline widget and configuration types aligned', () => {
       expect(() =>

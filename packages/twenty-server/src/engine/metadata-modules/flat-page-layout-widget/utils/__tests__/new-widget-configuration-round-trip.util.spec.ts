@@ -8,6 +8,31 @@ const configurations = [
   { configurationType: WidgetConfigurationType.PERSONAL_FINANCE as const },
 ] as const;
 
+const timelineConfiguration = {
+  configurationType: WidgetConfigurationType.TASK_TIMELINE as const,
+  fieldMapping: {
+    titleFieldMetadataId: 'title-field',
+    startDateFieldMetadataId: 'start-field',
+    dueDateFieldMetadataId: 'due-field',
+    progressFieldMetadataId: 'progress-field',
+    statusFieldMetadataId: 'status-field',
+    milestoneFieldMetadataId: 'milestone-field',
+    dependencyFieldMetadataId: 'dependency-field',
+    dependencyTypeFieldMetadataId: 'dependency-type-field',
+  },
+};
+
+const timelineFieldMetadataUniversalIdentifierById = {
+  'title-field': 'title-universal',
+  'start-field': 'start-universal',
+  'due-field': 'due-universal',
+  'progress-field': 'progress-universal',
+  'status-field': 'status-universal',
+  'milestone-field': 'milestone-universal',
+  'dependency-field': 'dependency-universal',
+  'dependency-type-field': 'dependency-type-universal',
+};
+
 describe('new page-layout widget configuration persistence', () => {
   it.each(configurations)(
     'round-trips the $configurationType envelope',
@@ -31,4 +56,27 @@ describe('new page-layout widget configuration persistence', () => {
       expect(restoredConfiguration).toEqual(configuration);
     },
   );
+
+  it('round-trips mapped timeline field metadata IDs', () => {
+    const universalConfiguration =
+      fromPageLayoutWidgetConfigurationToUniversalConfiguration({
+        configuration: timelineConfiguration,
+        fieldMetadataUniversalIdentifierById:
+          timelineFieldMetadataUniversalIdentifierById,
+      });
+
+    const restoredConfiguration =
+      fromUniversalConfigurationToFlatPageLayoutWidgetConfiguration({
+        universalConfiguration,
+        flatFieldMetadataMaps: {
+          byUniversalIdentifier: Object.fromEntries(
+            Object.entries(timelineFieldMetadataUniversalIdentifierById).map(
+              ([id, universalIdentifier]) => [universalIdentifier, { id }],
+            ),
+          ),
+        } as never,
+      } as never);
+
+    expect(restoredConfiguration).toEqual(timelineConfiguration);
+  });
 });
