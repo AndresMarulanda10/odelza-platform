@@ -2,6 +2,7 @@ name: CI Server
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
     paths:
       - .github/actions/deploy-twenty-app/action.yml
       - .github/actions/install-twenty-app/action.yml
@@ -319,6 +320,11 @@ jobs:
 
   server-validation:
     needs: server-build
+    if: >-
+      github.event_name != 'pull_request' ||
+      github.event.action == 'synchronize' ||
+      !contains(github.event.pull_request.labels.*.name, 'ci:local-verified') ||
+      contains(github.event.pull_request.labels.*.name, 'run-merge-queue')
     timeout-minutes: 30
     runs-on: ubuntu-latest
     services:
@@ -458,6 +464,11 @@ jobs:
           tasks: test
 
   server-integration-test:
+    if: >-
+      github.event_name != 'pull_request' ||
+      github.event.action == 'synchronize' ||
+      !contains(github.event.pull_request.labels.*.name, 'ci:local-verified') ||
+      contains(github.event.pull_request.labels.*.name, 'run-merge-queue')
     timeout-minutes: 30
     runs-on: ubuntu-latest
     needs: server-build
@@ -546,6 +557,10 @@ jobs:
     needs: [upgrade-changed-files-check, server-build]
     if: >-
       always() &&
+      (github.event_name != 'pull_request' ||
+      github.event.action == 'synchronize' ||
+      !contains(github.event.pull_request.labels.*.name, 'ci:local-verified') ||
+      contains(github.event.pull_request.labels.*.name, 'run-merge-queue')) &&
       needs.server-build.result == 'success' &&
       (github.event_name == 'workflow_dispatch' ||
       needs.upgrade-changed-files-check.result == 'success')
@@ -570,6 +585,11 @@ jobs:
 
   server-apps-install-smoke:
     needs: [discover-public-apps, server-build]
+    if: >-
+      github.event_name != 'pull_request' ||
+      github.event.action == 'synchronize' ||
+      !contains(github.event.pull_request.labels.*.name, 'ci:local-verified') ||
+      contains(github.event.pull_request.labels.*.name, 'run-merge-queue')
     timeout-minutes: 30
     runs-on: ubuntu-latest
     strategy:
