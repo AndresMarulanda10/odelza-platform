@@ -3,7 +3,7 @@ import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
 import { CARD_CAROUSEL_DEFAULT_ITEM_COUNT } from '@/page-layout/utils/createDefaultCardCarouselWidget';
-import { extractImageUrlFromText } from '@/page-layout/widgets/card-carousel/utils/extractImageUrlFromText';
+import { extractImageUrlFromText } from '@/object-record/utils/extractImageUrlFromText';
 import { type WidgetDataState } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 

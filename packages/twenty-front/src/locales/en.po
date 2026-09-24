@@ -3610,6 +3610,11 @@ msgstr "Cash flow"
 msgid "Catalan"
 msgstr "Catalan"
 
+#. js-lingui-id: z6eNxx
+#: src/modules/views/types/ViewType.ts
+msgid "Catalog"
+msgstr "Catalog"
+
 #. js-lingui-id: K7tIrx
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 msgid "Category"
@@ -12556,6 +12561,11 @@ msgstr "No folders found for this account"
 msgid "No hay elementos para mostrar"
 msgstr "No hay elementos para mostrar"
 
+#. js-lingui-id: IKz5W+
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "No hay registros para mostrar"
+msgstr "No hay registros para mostrar"
+
 #. js-lingui-id: 9kCSLK
 #: src/pages/settings/data-model/SettingsObjectIndexTable.tsx
 msgid "No indexes match your filters."
@@ -12976,6 +12986,7 @@ msgid "Not all columns matched"
 msgstr "Not all columns matched"
 
 #. js-lingui-id: tqk+dw
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Not available for default view"
 msgstr "Not available for default view"
@@ -19833,6 +19844,11 @@ msgstr "Variable not found"
 #: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 msgid "Variance"
 msgstr "Variance"
+
+#. js-lingui-id: dEDwEM
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "Ver más"
+msgstr "Ver más"
 
 #. js-lingui-id: QDEWii
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts

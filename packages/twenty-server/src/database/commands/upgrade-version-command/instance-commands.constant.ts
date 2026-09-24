@@ -109,6 +109,7 @@ import { AddGalleryImagesToApplicationRegistrationFastInstanceCommand } from './
 import { BackfillGalleryImagesOnApplicationRegistrationSlowInstanceCommand } from './2-20/2-20-instance-command-slow-1783615890056-backfill-gallery-images-on-application-registration';
 import { AddWorkflowVersionSyncableColumnsFastInstanceCommand } from './2-20/2-20-instance-command-fast-1783603454480-add-workflow-version-syncable-columns';
 import { AddCardCarouselWidgetTypeFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1790268852585-add-card-carousel-widget-type';
+import { AddCatalogViewTypeFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1790275885952-add-catalog-view-type';
 import { AddPlanningWidgetTypesFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1790260990300-add-planning-widget-types';
 
 export const INSTANCE_COMMANDS = [
@@ -222,4 +223,5 @@ export const INSTANCE_COMMANDS = [
   AddWorkflowVersionSyncableColumnsFastInstanceCommand,
   AddPlanningWidgetTypesFastInstanceCommand,
   AddCardCarouselWidgetTypeFastInstanceCommand,
+  AddCatalogViewTypeFastInstanceCommand,
 ];

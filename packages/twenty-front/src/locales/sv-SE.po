@@ -3615,6 +3615,11 @@ msgstr ""
 msgid "Catalan"
 msgstr "Catalan"
 
+#. js-lingui-id: z6eNxx
+#: src/modules/views/types/ViewType.ts
+msgid "Catalog"
+msgstr ""
+
 #. js-lingui-id: K7tIrx
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 msgid "Category"
@@ -12563,6 +12568,11 @@ msgstr "Inga mappar hittades för detta konto"
 msgid "No hay elementos para mostrar"
 msgstr ""
 
+#. js-lingui-id: IKz5W+
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "No hay registros para mostrar"
+msgstr ""
+
 #. js-lingui-id: 9kCSLK
 #: src/pages/settings/data-model/SettingsObjectIndexTable.tsx
 msgid "No indexes match your filters."
@@ -12983,6 +12993,7 @@ msgid "Not all columns matched"
 msgstr "Inte alla kolumner matchas"
 
 #. js-lingui-id: tqk+dw
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Not available for default view"
 msgstr "Inte tillgänglig i standardvyn"
@@ -19843,6 +19854,11 @@ msgstr "Variabel hittades inte"
 #. js-lingui-id: vXTvG8
 #: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 msgid "Variance"
+msgstr ""
+
+#. js-lingui-id: dEDwEM
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "Ver más"
 msgstr ""
 
 #. js-lingui-id: QDEWii

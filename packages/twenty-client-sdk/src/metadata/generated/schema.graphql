@@ -838,6 +838,7 @@ enum ViewType {
   TABLE
   KANBAN
   CALENDAR
+  CATALOG
   FIELDS_WIDGET
   TABLE_WIDGET
 }
@@ -1376,7 +1377,7 @@ type PersonalFinanceConfiguration {
 type CardCarouselConfiguration {
   configurationType: WidgetConfigurationType!
   fieldMapping: CardCarouselFieldMapping
-  layout: String
+  cardLayout: String
   imageAspect: String
   cardRadius: String
   cardSize: String

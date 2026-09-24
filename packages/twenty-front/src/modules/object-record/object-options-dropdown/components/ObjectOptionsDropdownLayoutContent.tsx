@@ -120,10 +120,20 @@ export const ObjectOptionsDropdownLayoutContent = () => {
   const isDefaultView = currentView?.key === 'INDEX';
   const nbsp = '\u00A0';
 
+  const handleSelectCatalogViewType = async () => {
+    if (isDefaultView) {
+      return;
+    }
+    if (currentView?.type !== ViewType.CATALOG) {
+      await setAndPersistViewType(ViewType.CATALOG);
+    }
+  };
+
   const selectableItemIdArray = [
     ViewType.TABLE,
     ...(isDefaultView ? [] : [ViewType.KANBAN]),
     ...(!isDefaultView ? [ViewType.CALENDAR] : []),
+    ...(isDefaultView ? [] : [ViewType.CATALOG]),
     ViewOpenRecordIn.SIDE_PANEL,
     ...(currentView?.type === ViewType.KANBAN ? ['Group'] : []),
     ...(currentView?.type === ViewType.CALENDAR
@@ -215,6 +225,31 @@ export const ObjectOptionsDropdownLayoutContent = () => {
                 contextualTextPosition="right"
                 selected={currentView?.type === ViewType.KANBAN}
                 onClick={handleSelectKanbanViewType}
+              />
+            </SelectableListItem>
+            <SelectableListItem
+              itemId={ViewType.CATALOG}
+              onEnter={() => {
+                setAndPersistViewType(ViewType.CATALOG);
+              }}
+            >
+              <MenuItemSelect
+                LeftIcon={viewTypeIconMapping(ViewType.CATALOG)}
+                text={t(getViewTypeLabel(ViewType.CATALOG))}
+                disabled={isDefaultView}
+                contextualText={
+                  isDefaultView ? (
+                    <>
+                      {nbsp}·{nbsp}
+                      <OverflowingTextWithTooltip
+                        text={t`Not available for default view`}
+                      />
+                    </>
+                  ) : undefined
+                }
+                contextualTextPosition="right"
+                selected={currentView?.type === ViewType.CATALOG}
+                onClick={handleSelectCatalogViewType}
               />
             </SelectableListItem>
           </DropdownMenuItemsContainer>

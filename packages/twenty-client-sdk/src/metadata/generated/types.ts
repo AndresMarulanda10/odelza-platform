@@ -2685,7 +2685,7 @@ export default {
             "fieldMapping": [
                 77
             ],
-            "layout": [
+            "cardLayout": [
                 1
             ],
             "imageAspect": [

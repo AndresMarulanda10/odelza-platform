@@ -64,7 +64,12 @@ const CreateViewInputSchema = z.object({
     .default('IconList')
     .describe('Icon identifier (e.g., "IconList", "IconCheckbox")'),
   type: z
-    .enum([ViewType.TABLE, ViewType.KANBAN, ViewType.CALENDAR])
+    .enum([
+      ViewType.TABLE,
+      ViewType.KANBAN,
+      ViewType.CALENDAR,
+      ViewType.CATALOG,
+    ])
     .optional()
     .default(ViewType.TABLE)
     .describe('View type'),
@@ -207,7 +212,12 @@ const UpsertCompleteViewInputSchema = z.object({
   name: z.string().optional().describe('View name'),
   icon: z.string().optional().describe('Icon identifier (e.g. "IconList")'),
   type: z
-    .enum([ViewType.TABLE, ViewType.KANBAN, ViewType.CALENDAR])
+    .enum([
+      ViewType.TABLE,
+      ViewType.KANBAN,
+      ViewType.CALENDAR,
+      ViewType.CATALOG,
+    ])
     .optional()
     .describe('View type. Defaults to TABLE on create.'),
   visibility: z

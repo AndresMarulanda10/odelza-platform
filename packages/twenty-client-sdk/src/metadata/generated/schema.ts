@@ -597,7 +597,7 @@ export interface View {
     __typename: 'View'
 }
 
-export type ViewType = 'TABLE' | 'KANBAN' | 'CALENDAR' | 'FIELDS_WIDGET' | 'TABLE_WIDGET'
+export type ViewType = 'TABLE' | 'KANBAN' | 'CALENDAR' | 'CATALOG' | 'FIELDS_WIDGET' | 'TABLE_WIDGET'
 
 export type ViewKey = 'INDEX'
 
@@ -1051,7 +1051,7 @@ export interface PersonalFinanceConfiguration {
 export interface CardCarouselConfiguration {
     configurationType: WidgetConfigurationType
     fieldMapping?: CardCarouselFieldMapping
-    layout?: Scalars['String']
+    cardLayout?: Scalars['String']
     imageAspect?: Scalars['String']
     cardRadius?: Scalars['String']
     cardSize?: Scalars['String']
@@ -4185,7 +4185,7 @@ export interface PersonalFinanceConfigurationGenqlSelection{
 export interface CardCarouselConfigurationGenqlSelection{
     configurationType?: boolean | number
     fieldMapping?: CardCarouselFieldMappingGenqlSelection
-    layout?: boolean | number
+    cardLayout?: boolean | number
     imageAspect?: boolean | number
     cardRadius?: boolean | number
     cardSize?: boolean | number
@@ -9096,6 +9096,7 @@ export const enumViewType = {
    TABLE: 'TABLE' as const,
    KANBAN: 'KANBAN' as const,
    CALENDAR: 'CALENDAR' as const,
+   CATALOG: 'CATALOG' as const,
    FIELDS_WIDGET: 'FIELDS_WIDGET' as const,
    TABLE_WIDGET: 'TABLE_WIDGET' as const
 }

@@ -1,4 +1,4 @@
-import { extractImageUrlFromText } from '@/page-layout/widgets/card-carousel/utils/extractImageUrlFromText';
+import { extractImageUrlFromText } from '@/object-record/utils/extractImageUrlFromText';
 
 describe('extractImageUrlFromText', () => {
   it('finds the image of a markdown body', () => {

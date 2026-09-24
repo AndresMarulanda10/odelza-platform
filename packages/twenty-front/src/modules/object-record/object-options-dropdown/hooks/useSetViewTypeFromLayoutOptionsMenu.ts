@@ -73,7 +73,8 @@ export const useSetViewTypeFromLayoutOptionsMenu = () => {
           await updateCurrentView(updateCurrentViewParams);
           return;
         }
-        case ViewType.TABLE: {
+        case ViewType.TABLE:
+        case ViewType.CATALOG: {
           if (shouldChangeIcon(currentView.icon, currentView.type)) {
             updateCurrentViewParams.icon =
               viewTypeIconMapping(viewType).displayName;
@@ -151,6 +152,12 @@ export const useSetViewTypeFromLayoutOptionsMenu = () => {
     if (
       oldViewType === ViewType.CALENDAR &&
       oldIcon === viewTypeIconMapping(ViewType.CALENDAR).displayName
+    ) {
+      return true;
+    }
+    if (
+      oldViewType === ViewType.CATALOG &&
+      oldIcon === viewTypeIconMapping(ViewType.CATALOG).displayName
     ) {
       return true;
     }
