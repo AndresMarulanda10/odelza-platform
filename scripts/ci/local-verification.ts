@@ -8,6 +8,19 @@ const MAX_OUTPUT_BYTES = 8_192;
 const MAX_SUMMARY_CHARACTERS = 1_200;
 const COMMAND_TIMEOUT_MS = 30 * 60 * 1000;
 const repositoryRoot = cwd();
+const SENSITIVE_ENVIRONMENT_KEY_PATTERN =
+  /(?:^|_)(?:API[_-]?KEY|ACCESS[_-]?KEY|SECRET|TOKEN|PASSWORD|PASSWD|CREDENTIAL|AUTH|PRIVATE|CERT|SIGNING|DSN|CONNECTION)(?:_|$)|(?:DATABASE|REDIS)_(?:URL|URI)$/i;
+const safeEnvironment = Object.fromEntries(
+  Object.entries(env).filter(
+    ([key]) => !SENSITIVE_ENVIRONMENT_KEY_PATTERN.test(key),
+  ),
+);
+const sensitiveEnvironmentValues = Object.entries(env)
+  .filter(
+    ([key, value]) => SENSITIVE_ENVIRONMENT_KEY_PATTERN.test(key) && value,
+  )
+  .map(([, value]) => value)
+  .filter((value) => value.length >= 4);
 
 type Status = 'PASS' | 'FAIL' | 'N/A';
 
@@ -58,7 +71,11 @@ const markdown = (value: string): string =>
     .replaceAll('>', '&gt;');
 
 const redact = (value: string): string =>
-  value
+  sensitiveEnvironmentValues
+    .reduce(
+      (redacted, secret) => redacted.replaceAll(secret, '[REDACTED]'),
+      value,
+    )
     .replaceAll(/\u001b\[[0-?]*[ -/]*[@-~]/g, '')
     .replaceAll(
       /((?:api[_-]?key|access[_-]?token|authorization|password|secret|token)\s*[=:]\s*)([^\s,;"']+)/gi,
@@ -133,7 +150,8 @@ const run = (command: Command) =>
   }>((resolve) => {
     const child = spawn(command.executable, command.args, {
       cwd: command.cwd,
-      env,
+      detached: process.platform !== 'win32',
+      env: safeEnvironment,
       stdio: ['inherit', 'pipe', 'pipe'],
     });
     const stdout = capture();
@@ -141,6 +159,20 @@ const run = (command: Command) =>
     let finished = false;
     let timedOut = false;
     let timeout: ReturnType<typeof setTimeout> | undefined;
+    let forceKillTimeout: ReturnType<typeof setTimeout> | undefined;
+
+    const terminate = (signal: NodeJS.Signals) => {
+      if (process.platform !== 'win32' && child.pid) {
+        try {
+          process.kill(-child.pid, signal);
+          return;
+        } catch {
+          // The process group may already have exited.
+        }
+      }
+
+      child.kill(signal);
+    };
 
     child.stdout?.on('data', (chunk: Buffer | string) => stdout.add(chunk));
     child.stderr?.on('data', (chunk: Buffer | string) => stderr.add(chunk));
@@ -154,6 +186,9 @@ const run = (command: Command) =>
       if (timeout) {
         clearTimeout(timeout);
       }
+      if (forceKillTimeout) {
+        clearTimeout(forceKillTimeout);
+      }
       resolve({
         error,
         exitCode: timedOut ? 124 : exitCode,
@@ -165,8 +200,9 @@ const run = (command: Command) =>
 
     timeout = setTimeout(() => {
       timedOut = true;
-      child.kill('SIGTERM');
-      setTimeout(() => child.kill('SIGKILL'), 5_000).unref();
+      terminate('SIGTERM');
+      forceKillTimeout = setTimeout(() => terminate('SIGKILL'), 5_000);
+      forceKillTimeout.unref();
     }, COMMAND_TIMEOUT_MS);
 
     child.once('error', (error: Error) => finish(127, error.message));
@@ -306,6 +342,14 @@ const APP_PATHS = [
   /^packages\/(?:twenty-emails|twenty-server|twenty-shared|twenty-client-sdk)\//,
 ];
 
+const SHARED_IMPACT_PATHS = [
+  /^\.github\/actions\//,
+  /^\.github\/workflows\/(?:changed-files|ci-twenty-apps|discover-apps)\.yaml$/,
+  /^(?:\.nvmrc|\.yarnrc\.yml|package\.json|tsconfig\.base\.json|nx\.json|yarn\.config\.cjs|yarn\.lock)$/,
+  /^\.yarn\//,
+  /^packages\/(?:twenty-emails|twenty-server|twenty-shared|twenty-client-sdk)\//,
+];
+
 const SERVER_PATHS = [
   /^\.github\/actions\//,
   /^\.github\/workflows\/(?:changed-files|ci-cross-version-upgrade|ci-server|discover-apps)\.yaml$/,
@@ -331,12 +375,12 @@ const fastPlans = (
         'affected',
         '--nxBail',
         '--configuration=ci',
-        '-t=lint,typecheck,test,build',
+        '-t=lint,typecheck,test,build,lingui:extract,lingui:compile',
         '--parallel=3',
         `--base=${baseSha}`,
         `--head=${headSha}`,
       ]),
-      name: 'Affected lint, typecheck, unit, and build checks',
+      name: 'Affected lint, typecheck, unit, build, and Lingui checks',
     },
   ];
 
@@ -378,9 +422,11 @@ const manualSuites = (
 ): ManualSuite[] => {
   const safeFiles = files ?? [];
   const apps = changedApps(safeFiles);
-  const appIntegration = apps.some(
-    (app) => !app.parseable || typeof app.scripts.test === 'string',
-  );
+  const sharedImpact =
+    applicabilityUnknown || matches(safeFiles, SHARED_IMPACT_PATHS);
+  const appIntegration =
+    sharedImpact ||
+    apps.some((app) => !app.parseable || typeof app.scripts.test === 'string');
   const front = applicabilityUnknown || matches(safeFiles, FRONT_PATHS);
   const appWorkflow = matches(safeFiles, APP_PATHS);
   const server = applicabilityUnknown || matches(safeFiles, SERVER_PATHS);
@@ -409,11 +455,13 @@ const manualSuites = (
       name: 'Changed app integration tests',
       reason: applicabilityUnknown
         ? unknownReason
-        : appIntegration
-          ? 'Not executed by this safe verifier.'
-          : appWorkflow
-            ? 'CI has no changed app with a test script, so the integration matrix is skipped.'
-            : 'No changed app matches the CI Twenty Apps trigger paths.',
+        : sharedImpact
+          ? 'Shared-impact change expands app integration coverage to all discovered app roots.'
+          : appIntegration
+            ? 'Not executed by this safe verifier.'
+            : appWorkflow
+              ? 'CI has no changed app with a test script, so the integration matrix is skipped.'
+              : 'No changed app matches the CI Twenty Apps trigger paths.',
       reference: '.github/workflows/ci-twenty-apps.yaml#integration',
     },
     {
@@ -637,7 +685,7 @@ const main = async () => {
       ? fastPlans(files, base, head)
       : [
           {
-            name: 'Affected lint, typecheck, unit, and build checks',
+            name: 'Affected lint, typecheck, unit, build, and Lingui checks',
             reason:
               'Exact base/head SHAs or the changed-file list could not be resolved.',
           },

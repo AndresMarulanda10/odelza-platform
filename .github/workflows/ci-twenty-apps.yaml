@@ -118,20 +118,19 @@ jobs:
     uses: ./.github/workflows/discover-apps.yaml
     with:
       scope: internal-and-public
-      # PRs validate changed apps only; main/manual runs retain the full matrix.
+      # Shared-impact PRs expand to the full app matrix; other PRs validate changed apps only.
       changed-only: >-
-        ${{ github.event_name == 'pull_request' ||
+        ${{ (github.event_name == 'pull_request' &&
+        needs.shared-changed-files-check.outputs.any_changed != 'true') ||
         (github.event_name == 'workflow_dispatch' && inputs.application != '') }}
       application: ${{ inputs.application }}
 
   ci:
-    # Shared-only PRs use CI Server coverage instead of per-app static checks.
-    needs: [discover, app-changed-files-check]
+    # Shared-impact PRs use the full app matrix for compatibility coverage.
+    needs: discover
     if: >-
       always() &&
-      needs.discover.outputs.has_apps == 'true' &&
-      (github.event_name != 'pull_request' ||
-      needs.app-changed-files-check.outputs.any_changed == 'true')
+      needs.discover.outputs.has_apps == 'true'
     name: ${{ matrix.app.name }}
     timeout-minutes: 30
     runs-on: ubuntu-latest
