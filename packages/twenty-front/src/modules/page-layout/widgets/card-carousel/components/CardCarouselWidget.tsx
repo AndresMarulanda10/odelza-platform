@@ -1,7 +1,11 @@
 import { objectMetadataItemsSelector } from '@/object-metadata/states/objectMetadataItemsSelector';
 import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/EnrichedObjectMetadataItem';
+import { canOpenObjectInSidePanel } from '@/object-record/utils/canOpenObjectInSidePanel';
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
-import { CardCarousel } from '@/page-layout/widgets/card-carousel/components/CardCarousel';
+import {
+  CardCarousel,
+  type CardCarouselItem,
+} from '@/page-layout/widgets/card-carousel/components/CardCarousel';
 import { useCardCarouselData } from '@/page-layout/widgets/card-carousel/hooks/useCardCarouselData';
 import {
   normalizeCardCarouselHover,
@@ -12,11 +16,14 @@ import {
   normalizeCardCarouselTextAlign,
 } from '@/page-layout/widgets/card-carousel/utils/normalizeCardCarouselConfiguration';
 import { WidgetSkeletonLoader } from '@/page-layout/widgets/components/WidgetSkeletonLoader';
+import { useOpenRecordInSidePanel } from '@/side-panel/hooks/useOpenRecordInSidePanel';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
+import { AppPath } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { useNavigateApp } from '~/hooks/useNavigateApp';
 
 const StyledContainer = styled.div`
   box-sizing: border-box;
@@ -55,6 +62,31 @@ const CardCarouselWidgetContent = ({
     objectMetadataItem,
   });
 
+  const { openRecordInSidePanel } = useOpenRecordInSidePanel();
+  const navigate = useNavigateApp();
+
+  /*
+   * Al pulsar una tarjeta se abre su registro, como en el tablero: en el panel
+   * lateral si el objeto lo admite y, si no, en la pagina del registro.
+   */
+  const openCardRecord = (item: CardCarouselItem) => {
+    const objectNameSingular = objectMetadataItem.nameSingular;
+
+    if (canOpenObjectInSidePanel(objectNameSingular)) {
+      openRecordInSidePanel({
+        recordId: item.id,
+        objectNameSingular,
+      });
+
+      return;
+    }
+
+    navigate(AppPath.RecordShowPage, {
+      objectNameSingular,
+      objectRecordId: item.id,
+    });
+  };
+
   const configuration =
     widget.configuration?.__typename === 'CardCarouselConfiguration'
       ? widget.configuration
@@ -91,6 +123,7 @@ const CardCarouselWidgetContent = ({
     <StyledContainer>
       <CardCarousel
         items={items}
+        onCardClick={openCardRecord}
         layout={normalizeCardCarouselLayout(configuration?.cardLayout)}
         imageAspect={normalizeCardCarouselImageAspect(
           configuration?.imageAspect,
