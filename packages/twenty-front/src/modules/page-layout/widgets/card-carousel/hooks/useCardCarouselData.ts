@@ -195,7 +195,9 @@ export const useCardCarouselData = ({
   const { records, loading, error } = useFindManyRecords<ObjectRecord>({
     objectNameSingular: objectMetadataItem.nameSingular,
     limit: itemCount,
-    skip: !isDefined(objectMetadataItem) || Object.keys(recordGqlFields).length === 0,
+    // Lo mas reciente primero: es lo que se espera de un carrusel de novedades.
+    orderBy: [{ createdAt: 'DescNullsLast' }],
+    skip: Object.keys(recordGqlFields).length === 0,
     recordGqlFields,
   });
 
