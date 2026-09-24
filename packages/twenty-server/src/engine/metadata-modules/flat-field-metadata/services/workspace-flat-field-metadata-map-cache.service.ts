@@ -124,6 +124,9 @@ export class WorkspaceFlatFieldMetadataMapCacheService extends WorkspaceCachePro
       viewFieldsByFieldId,
       viewFiltersByFieldId,
       calendarViewsByFieldId,
+      catalogImageViewsByFieldId,
+      catalogSubtitleViewsByFieldId,
+      catalogDetailViewsByFieldId,
       kanbanViewsByFieldId,
       mainGroupByFieldMetadataViewsByFieldId,
       viewSortsByFieldId,
@@ -195,6 +198,12 @@ export class WorkspaceFlatFieldMetadataMapCacheService extends WorkspaceCachePro
             kanbanViewsByFieldId.get(fieldMetadataEntity.id) || [],
           calendarViews:
             calendarViewsByFieldId.get(fieldMetadataEntity.id) || [],
+          catalogImageViews:
+            catalogImageViewsByFieldId.get(fieldMetadataEntity.id) || [],
+          catalogSubtitleViews:
+            catalogSubtitleViewsByFieldId.get(fieldMetadataEntity.id) || [],
+          catalogDetailViews:
+            catalogDetailViewsByFieldId.get(fieldMetadataEntity.id) || [],
           mainGroupByFieldMetadataViews:
             mainGroupByFieldMetadataViewsByFieldId.get(
               fieldMetadataEntity.id,
