@@ -102,17 +102,12 @@ export class WorkspaceFlatFieldMetadataMapCacheService extends WorkspaceCachePro
         select: ['id', 'universalIdentifier', 'fieldMetadataId'],
         withDeleted: true,
       }),
+      // Sin `select` explicito a proposito: las columnas del catalogo se
+      // introdujeron con un comando de instancia y en los espacios de trabajo de
+      // versiones anteriores estan ocultas para el ORM; nombrarlas aqui lanza
+      // "Property ... was not found in ViewEntity" al actualizar esa version.
+      // Sin `select`, el ORM pide unicamente las columnas que existen.
       this.viewRepository.find(workspaceId, {
-        select: [
-          'id',
-          'universalIdentifier',
-          'kanbanAggregateOperationFieldMetadataId',
-          'calendarFieldMetadataId',
-          'catalogImageFieldMetadataId',
-          'catalogSubtitleFieldMetadataId',
-          'catalogDetailFieldMetadataId',
-          'mainGroupByFieldMetadataId',
-        ],
         withDeleted: true,
       }),
       this.searchFieldMetadataRepository.find(workspaceId, {

@@ -28,13 +28,16 @@ jest.mock('@/ui/utilities/state/jotai/hooks/useAtomStateValue', () => ({
   useAtomStateValue: () => mockObjectMetadataItems,
 }));
 
-jest.mock('@/page-layout/widgets/card-carousel/hooks/useCardCarouselData', () => ({
-  useCardCarouselData: () => ({
-    status: 'ready',
-    hasConfigurationGap: false,
-    items: [{ id: 'record-1', title: 'Llamar al cliente' }],
+jest.mock(
+  '@/page-layout/widgets/card-carousel/hooks/useCardCarouselData',
+  () => ({
+    useCardCarouselData: () => ({
+      status: 'ready',
+      hasConfigurationGap: false,
+      items: [{ id: 'record-1', title: 'Llamar al cliente' }],
+    }),
   }),
-}));
+);
 
 const widget = {
   id: 'widget-1',
