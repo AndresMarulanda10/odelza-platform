@@ -197,6 +197,22 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
       ... on PersonalFinanceConfiguration {
         configurationType
       }
+      ... on CardCarouselConfiguration {
+        configurationType
+        cardLayout
+        imageAspect
+        cardRadius
+        cardSize
+        textAlign
+        hoverEffect
+        itemCount
+        fieldMapping {
+          imageFieldMetadataId
+          titleFieldMetadataId
+          subtitleFieldMetadataId
+          priceFieldMetadataId
+        }
+      }
       ... on ViewConfiguration {
         configurationType
       }

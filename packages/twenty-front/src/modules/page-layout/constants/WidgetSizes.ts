@@ -26,4 +26,8 @@ export const WIDGET_SIZES: Partial<Record<WidgetType, WidgetSizeConfig>> = {
     default: { w: 8, h: 8 },
     minimum: { w: 6, h: 4 },
   },
+  [WidgetType.CARD_CAROUSEL]: {
+    default: { w: 8, h: 6 },
+    minimum: { w: 6, h: 4 },
+  },
 };

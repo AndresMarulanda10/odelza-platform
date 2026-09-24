@@ -3,6 +3,7 @@ import {
   type AggregateChartConfiguration,
   type BarChartConfiguration,
   type CalendarConfiguration,
+ CardCarouselConfiguration,
   type EmailThreadConfiguration,
   type EmailsConfiguration,
   type FieldRichTextConfiguration,
@@ -39,6 +40,12 @@ type WidgetConfigurationTypenameMap = {
   };
   CalendarConfiguration: Omit<CalendarConfiguration, 'configurationType'> & {
     configurationType: WidgetConfigurationType.CALENDAR;
+  };
+  CardCarouselConfiguration: Omit<
+    CardCarouselConfiguration,
+    'configurationType'
+  > & {
+    configurationType: WidgetConfigurationType.CARD_CAROUSEL;
   };
   FrontComponentConfiguration: Omit<
     FrontComponentConfiguration,

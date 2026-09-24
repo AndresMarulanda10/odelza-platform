@@ -11,7 +11,8 @@ export const extractFieldMetadataIdsFromWidget = (
 
   if (
     widget.type !== WidgetType.GRAPH &&
-    widget.type !== WidgetType.TASK_TIMELINE
+    widget.type !== WidgetType.TASK_TIMELINE &&
+    widget.type !== WidgetType.CARD_CAROUSEL
   ) {
     return [];
   }
@@ -55,6 +56,14 @@ export const extractFieldMetadataIdsFromWidget = (
         config.fieldMapping?.milestoneFieldMetadataId,
         config.fieldMapping?.dependencyFieldMetadataId,
         config.fieldMapping?.dependencyTypeFieldMetadataId,
+      ].filter(isDefined);
+
+    case 'CardCarouselConfiguration':
+      return [
+        config.fieldMapping?.imageFieldMetadataId,
+        config.fieldMapping?.titleFieldMetadataId,
+        config.fieldMapping?.subtitleFieldMetadataId,
+        config.fieldMapping?.priceFieldMetadataId,
       ].filter(isDefined);
 
     default:

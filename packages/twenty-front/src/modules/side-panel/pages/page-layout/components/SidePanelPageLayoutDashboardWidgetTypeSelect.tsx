@@ -1,6 +1,7 @@
 import { CommandMenuItem } from '@/command-menu/components/CommandMenuItem';
 import { FIND_MANY_FRONT_COMPONENTS } from '@/front-components/graphql/queries/findManyFrontComponents';
 import { useReadableObjectMetadataItems } from '@/object-metadata/hooks/useReadableObjectMetadataItems';
+import { useCreatePageLayoutCardCarouselWidget } from '@/page-layout/hooks/useCreatePageLayoutCardCarouselWidget';
 import { useCreatePageLayoutFrontComponentWidget } from '@/page-layout/hooks/useCreatePageLayoutFrontComponentWidget';
 import { useCreatePageLayoutGraphWidget } from '@/page-layout/hooks/useCreatePageLayoutGraphWidget';
 import { useCreatePageLayoutIframeWidget } from '@/page-layout/hooks/useCreatePageLayoutIframeWidget';
@@ -35,6 +36,7 @@ import {
   IconFrame,
   IconTable,
   IconTimelineEvent,
+  IconLayoutKanban,
   IconCoins,
 } from 'twenty-ui/icon';
 import { type FrontComponent, WidgetType } from '~/generated-metadata/graphql';
@@ -90,6 +92,12 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
     });
   const { createPageLayoutPersonalFinanceWidget } =
     useCreatePageLayoutPersonalFinanceWidget({
+      pageLayoutId,
+      tabListInstanceId,
+    });
+
+  const { createPageLayoutCardCarouselWidget } =
+    useCreatePageLayoutCardCarouselWidget({
       pageLayoutId,
       tabListInstanceId,
     });
@@ -293,6 +301,24 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
     closeSidePanelMenu();
   };
 
+  const handleCreateCardCarouselWidget = () => {
+    if (
+      isExistingWidgetMissingOrDifferentType(
+        existingWidget?.type,
+        WidgetType.CARD_CAROUSEL,
+      )
+    ) {
+      if (isDefined(pageLayoutEditingWidgetId)) {
+        removePageLayoutWidgetAndPreservePosition(pageLayoutEditingWidgetId);
+      }
+
+      const newWidget = createPageLayoutCardCarouselWidget();
+      setPageLayoutEditingWidgetId(newWidget.id);
+    }
+
+    closeSidePanelMenu();
+  };
+
   const selectableItemIds = [
     'chart',
     'record-table',
@@ -300,6 +326,7 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
     'rich-text',
     'task-timeline',
     'personal-finance',
+    'card-carousel',
     ...frontComponentsWithSelectItemId.map(({ selectItemId }) => selectItemId),
   ];
 
@@ -371,6 +398,17 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
             label={t`Personal Finance`}
             id="personal-finance"
             onClick={handleCreatePersonalFinanceWidget}
+          />
+        </SelectableListItem>
+        <SelectableListItem
+          itemId="card-carousel"
+          onEnter={handleCreateCardCarouselWidget}
+        >
+          <CommandMenuItem
+            Icon={IconLayoutKanban}
+            label={t`Card Carousel`}
+            id="card-carousel"
+            onClick={handleCreateCardCarouselWidget}
           />
         </SelectableListItem>
       </SidePanelGroup>

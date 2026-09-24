@@ -2270,6 +2270,11 @@ msgstr "Và"
 msgid "Annual"
 msgstr "Hàng năm"
 
+#. js-lingui-id: scHVBb
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "Anterior"
+msgstr ""
+
 #. js-lingui-id: 9BhGWn
 #. placeholder {0}: fieldLabel ?? ''
 #: src/modules/object-record/advanced-filter/components/AdvancedFilterCompositeSubFieldSelectMenu.tsx
@@ -3568,11 +3573,21 @@ msgstr "Captcha (kiểm tra chống bot) vẫn đang tải, thử lại"
 msgid "Card"
 msgstr "Thẻ"
 
+#. js-lingui-id: UGzcVY
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Card Carousel"
+msgstr ""
+
 #. js-lingui-id: TbCWB7
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/pages/onboarding/UpgradeFreeTrial.tsx
 msgid "Card payment is currently unavailable. Please verify your Stripe configuration or contact your workspace admin."
 msgstr "Thanh toán bằng thẻ hiện không khả dụng. Vui lòng kiểm tra cấu hình Stripe của bạn hoặc liên hệ quản trị viên không gian làm việc của bạn."
+
+#. js-lingui-id: 2kLx39
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "carrusel"
+msgstr ""
 
 #. js-lingui-id: 8MkaKf
 #: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
@@ -10073,6 +10088,12 @@ msgstr "Mời đội của bạn"
 msgid "Invoice amount may vary if you add members or credits between periods"
 msgstr "Số tiền hóa đơn có thể thay đổi nếu bạn thêm thành viên hoặc tín dụng giữa các kỳ"
 
+#. js-lingui-id: 6gmWKp
+#. placeholder {0}: index + 1
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "Ir a la tarjeta {0}"
+msgstr ""
+
 #. js-lingui-id: CUvG5b
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
 msgid "Iris"
@@ -10698,6 +10719,11 @@ msgstr ""
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "LibreChat"
 msgstr "LibreChat"
+
+#. js-lingui-id: ccXGYK
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "Librería de tarjetas"
+msgstr ""
 
 #. js-lingui-id: 3qg5Ro
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
@@ -12459,6 +12485,11 @@ msgstr "Không có thư mục nào có sẵn"
 msgid "No folders found for this account"
 msgstr "Không tìm thấy thư mục nào cho tài khoản này"
 
+#. js-lingui-id: cYD+0r
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "No hay elementos para mostrar"
+msgstr ""
+
 #. js-lingui-id: 9kCSLK
 #: src/pages/settings/data-model/SettingsObjectIndexTable.tsx
 msgid "No indexes match your filters."
@@ -13926,6 +13957,11 @@ msgstr "Chọn từ"
 #: src/pages/settings/data-model/new-index/SettingsObjectNewIndex.tsx
 msgid "Pick one or more fields. The order you select them in becomes the column order in the index — important for composite queries. For composite fields like Address, pick the specific sub-column to index."
 msgstr "Chọn một hoặc nhiều trường. Thứ tự bạn chọn sẽ trở thành thứ tự cột trong chỉ mục — điều này quan trọng đối với các truy vấn kết hợp. Với các trường phức hợp như Address, hãy chọn cột con cụ thể để lập chỉ mục."
+
+#. js-lingui-id: BIXc0k
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "Pick the fields this widget should use."
+msgstr ""
 
 #. js-lingui-id: X1kz7Q
 #: src/pages/settings/data-model/new-index/SettingsObjectNewIndex.tsx
@@ -16609,6 +16645,11 @@ msgstr "Đã thu hồi khóa ký"
 msgid "Signing Keys"
 msgstr "Khóa ký"
 
+#. js-lingui-id: /rrTRh
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "Siguiente"
+msgstr ""
+
 #. js-lingui-id: BZdVGR
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx
 msgid "Single edit"
@@ -17882,6 +17923,11 @@ msgstr "Có sự cố thanh toán với đăng ký của bạn. Vui lòng cập 
 msgid "There is no activity associated with this record."
 msgstr "Không có hoạt động nào liên kết với bản ghi này."
 
+#. js-lingui-id: NSDJmj
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "There is nothing to show yet."
+msgstr ""
+
 #. js-lingui-id: ynfkhb
 #: src/pages/auth/PasswordReset.tsx
 msgid "There was an error while updating password."
@@ -18158,6 +18204,11 @@ msgstr "Chế độ xem này sử dụng {usageLabel} trên đối tượng \"{0
 #: src/modules/settings/admin-panel/health-status/constants/WorkerQueueMetricsSelectOptions.ts
 msgid "This week"
 msgstr "Tuần này"
+
+#. js-lingui-id: gjpwN3
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "This widget needs an object to read from."
+msgstr ""
 
 #. js-lingui-id: DF2voz
 #: src/modules/side-panel/pages/page-layout/components/CanvasTabSettingsContent.tsx

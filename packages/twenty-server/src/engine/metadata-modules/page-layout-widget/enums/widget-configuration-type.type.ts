@@ -29,6 +29,7 @@ export enum WidgetConfigurationType {
   EMAIL_THREAD = 'EMAIL_THREAD',
   TASK_TIMELINE = 'TASK_TIMELINE',
   PERSONAL_FINANCE = 'PERSONAL_FINANCE',
+  CARD_CAROUSEL = 'CARD_CAROUSEL',
 }
 export type AllGraphWidgetConfigurationType =
   | WidgetConfigurationType.AGGREGATE_CHART

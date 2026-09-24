@@ -1,3 +1,4 @@
+import { CardCarouselConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/card-carousel-configuration.dto';
 import { AggregateChartConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/aggregate-chart-configuration.dto';
 import { EmailThreadConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/email-thread-configuration.dto';
 import { BarChartConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/bar-chart-configuration.dto';
@@ -51,6 +52,7 @@ export const ALL_WIDGET_CONFIGURATION_TYPE_VALIDATOR_BY_WIDGET_CONFIGURATION_TYP
     WORKFLOW_VERSION: WorkflowVersionConfigurationDTO,
     TASK_TIMELINE: TaskTimelineConfigurationDTO,
     PERSONAL_FINANCE: PersonalFinanceConfigurationDTO,
+    CARD_CAROUSEL: CardCarouselConfigurationDTO,
   } as const satisfies {
     [P in WidgetConfigurationType]: new () => PageLayoutWidgetConfigurationBase;
   };

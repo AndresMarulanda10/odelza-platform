@@ -975,6 +975,13 @@ The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](
 """
 scalar JSONObject
 
+type CardCarouselFieldMapping {
+  imageFieldMetadataId: UUID
+  titleFieldMetadataId: UUID
+  subtitleFieldMetadataId: UUID
+  priceFieldMetadataId: UUID
+}
+
 type RatioAggregateConfig {
   fieldMetadataId: UUID!
   optionValue: String!
@@ -1054,6 +1061,7 @@ enum WidgetType {
   EMAIL_THREAD
   TASK_TIMELINE
   PERSONAL_FINANCE
+  CARD_CAROUSEL
 }
 
 union PageLayoutWidgetPosition = PageLayoutWidgetGridPosition | PageLayoutWidgetVerticalListPosition | PageLayoutWidgetCanvasPosition
@@ -1081,7 +1089,7 @@ type PageLayoutWidgetCanvasPosition {
   layoutMode: PageLayoutTabLayoutMode!
 }
 
-union WidgetConfiguration = AggregateChartConfiguration | StandaloneRichTextConfiguration | PieChartConfiguration | LineChartConfiguration | IframeConfiguration | BarChartConfiguration | CalendarConfiguration | FrontComponentConfiguration | EmailsConfiguration | EmailThreadConfiguration | FieldConfiguration | FieldRichTextConfiguration | FieldsConfiguration | FilesConfiguration | NotesConfiguration | TasksConfiguration | TimelineConfiguration | ViewConfiguration | RecordTableConfiguration | WorkflowConfiguration | WorkflowRunConfiguration | WorkflowVersionConfiguration | TaskTimelineConfiguration | PersonalFinanceConfiguration
+union WidgetConfiguration = AggregateChartConfiguration | StandaloneRichTextConfiguration | PieChartConfiguration | LineChartConfiguration | IframeConfiguration | BarChartConfiguration | CalendarConfiguration | FrontComponentConfiguration | EmailsConfiguration | EmailThreadConfiguration | FieldConfiguration | FieldRichTextConfiguration | FieldsConfiguration | FilesConfiguration | NotesConfiguration | TasksConfiguration | TimelineConfiguration | ViewConfiguration | RecordTableConfiguration | WorkflowConfiguration | WorkflowRunConfiguration | WorkflowVersionConfiguration | TaskTimelineConfiguration | PersonalFinanceConfiguration | CardCarouselConfiguration
 
 type AggregateChartConfiguration {
   configurationType: WidgetConfigurationType!
@@ -1124,6 +1132,7 @@ enum WidgetConfigurationType {
   EMAIL_THREAD
   TASK_TIMELINE
   PERSONAL_FINANCE
+  CARD_CAROUSEL
 }
 
 """Format used to display the chart value"""
@@ -1362,6 +1371,18 @@ type PersonalFinanceConfiguration {
   configurationType: WidgetConfigurationType!
   baseCurrencyCode: String
   source: PersonalFinanceSourceMapping
+}
+
+type CardCarouselConfiguration {
+  configurationType: WidgetConfigurationType!
+  fieldMapping: CardCarouselFieldMapping
+  layout: String
+  imageAspect: String
+  cardRadius: String
+  cardSize: String
+  textAlign: String
+  hoverEffect: String
+  itemCount: Int
 }
 
 type PageLayoutTab {

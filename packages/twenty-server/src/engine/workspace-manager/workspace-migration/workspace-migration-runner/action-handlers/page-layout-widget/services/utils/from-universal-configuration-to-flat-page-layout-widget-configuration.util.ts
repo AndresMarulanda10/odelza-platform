@@ -1,4 +1,5 @@
 import {
+  type CardCarouselFieldMapping,
   type ChartFilter,
   type PersonalFinanceSourceMapping,
   type TaskTimelineFieldMapping,
@@ -14,6 +15,10 @@ import { type MetadataFlatEntityMaps } from 'src/engine/metadata-modules/flat-en
 import { findFlatEntityByUniversalIdentifier } from 'src/engine/metadata-modules/flat-entity/utils/find-flat-entity-by-universal-identifier.util';
 import { type FlatPageLayoutWidget } from 'src/engine/metadata-modules/flat-page-layout-widget/types/flat-page-layout-widget.type';
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
+import {
+  CARD_CAROUSEL_FIELD_MAPPINGS,
+  type CardCarouselFieldMappingUniversal,
+} from 'src/engine/metadata-modules/page-layout-widget/utils/card-carousel-field-mapping.util';
 import {
   PERSONAL_FINANCE_SOURCE_FIELD_MAPPINGS,
   type PersonalFinanceSourceMappingUniversal,
@@ -144,6 +149,41 @@ const convertTaskTimelineFieldMappingToFlat = ({
       },
     ),
   ) as TaskTimelineFieldMapping;
+};
+
+const convertCardCarouselFieldMappingToFlat = ({
+  fieldMapping,
+  flatFieldMetadataMaps,
+}: {
+  fieldMapping: CardCarouselFieldMappingUniversal | null | undefined;
+  flatFieldMetadataMaps: MetadataFlatEntityMaps<'fieldMetadata'>;
+}): CardCarouselFieldMapping | null | undefined => {
+  if (fieldMapping === undefined || fieldMapping === null) {
+    return fieldMapping;
+  }
+
+  return Object.fromEntries(
+    CARD_CAROUSEL_FIELD_MAPPINGS.flatMap(
+      ([fieldMetadataKey, universalIdentifierKey]) => {
+        const fieldMetadataUniversalIdentifier =
+          fieldMapping[universalIdentifierKey];
+
+        return fieldMetadataUniversalIdentifier === undefined
+          ? []
+          : [
+              [
+                fieldMetadataKey,
+                fieldMetadataUniversalIdentifier === null
+                  ? null
+                  : resolveFieldMetadataIdOrThrow({
+                      fieldMetadataUniversalIdentifier,
+                      flatFieldMetadataMaps,
+                    }),
+              ],
+            ];
+      },
+    ),
+  ) as CardCarouselFieldMapping;
 };
 
 export const fromUniversalConfigurationToFlatPageLayoutWidgetConfiguration = ({
@@ -459,6 +499,17 @@ export const fromUniversalConfigurationToFlatPageLayoutWidgetConfiguration = ({
       });
 
       return flatSource === undefined ? rest : { ...rest, source: flatSource };
+    }
+    case WidgetConfigurationType.CARD_CAROUSEL: {
+      const { fieldMapping, ...rest } = universalConfiguration;
+      const flatFieldMapping = convertCardCarouselFieldMappingToFlat({
+        fieldMapping,
+        flatFieldMetadataMaps,
+      });
+
+      return flatFieldMapping === undefined
+        ? rest
+        : { ...rest, fieldMapping: flatFieldMapping };
     }
   }
 };

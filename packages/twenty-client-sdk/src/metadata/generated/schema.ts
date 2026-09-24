@@ -700,6 +700,14 @@ export interface User {
 /** Onboarding status */
 export type OnboardingStatus = 'PLAN_REQUIRED' | 'WORKSPACE_ACTIVATION' | 'PROFILE_CREATION' | 'SYNC_EMAIL' | 'APPS_INSTALLATION' | 'INVITE_TEAM' | 'COMPLETED'
 
+export interface CardCarouselFieldMapping {
+    imageFieldMetadataId?: Scalars['UUID']
+    titleFieldMetadataId?: Scalars['UUID']
+    subtitleFieldMetadataId?: Scalars['UUID']
+    priceFieldMetadataId?: Scalars['UUID']
+    __typename: 'CardCarouselFieldMapping'
+}
+
 export interface RatioAggregateConfig {
     fieldMetadataId: Scalars['UUID']
     optionValue: Scalars['String']
@@ -765,7 +773,7 @@ export interface PageLayoutWidget {
     __typename: 'PageLayoutWidget'
 }
 
-export type WidgetType = 'VIEW' | 'IFRAME' | 'FIELD' | 'FIELDS' | 'GRAPH' | 'STANDALONE_RICH_TEXT' | 'TIMELINE' | 'TASKS' | 'NOTES' | 'FILES' | 'EMAILS' | 'CALENDAR' | 'FIELD_RICH_TEXT' | 'WORKFLOW' | 'WORKFLOW_VERSION' | 'WORKFLOW_RUN' | 'FRONT_COMPONENT' | 'RECORD_TABLE' | 'EMAIL_THREAD' | 'TASK_TIMELINE' | 'PERSONAL_FINANCE'
+export type WidgetType = 'VIEW' | 'IFRAME' | 'FIELD' | 'FIELDS' | 'GRAPH' | 'STANDALONE_RICH_TEXT' | 'TIMELINE' | 'TASKS' | 'NOTES' | 'FILES' | 'EMAILS' | 'CALENDAR' | 'FIELD_RICH_TEXT' | 'WORKFLOW' | 'WORKFLOW_VERSION' | 'WORKFLOW_RUN' | 'FRONT_COMPONENT' | 'RECORD_TABLE' | 'EMAIL_THREAD' | 'TASK_TIMELINE' | 'PERSONAL_FINANCE' | 'CARD_CAROUSEL'
 
 export type PageLayoutWidgetPosition = (PageLayoutWidgetGridPosition | PageLayoutWidgetVerticalListPosition | PageLayoutWidgetCanvasPosition) & { __isUnion?: true }
 
@@ -791,7 +799,7 @@ export interface PageLayoutWidgetCanvasPosition {
     __typename: 'PageLayoutWidgetCanvasPosition'
 }
 
-export type WidgetConfiguration = (AggregateChartConfiguration | StandaloneRichTextConfiguration | PieChartConfiguration | LineChartConfiguration | IframeConfiguration | BarChartConfiguration | CalendarConfiguration | FrontComponentConfiguration | EmailsConfiguration | EmailThreadConfiguration | FieldConfiguration | FieldRichTextConfiguration | FieldsConfiguration | FilesConfiguration | NotesConfiguration | TasksConfiguration | TimelineConfiguration | ViewConfiguration | RecordTableConfiguration | WorkflowConfiguration | WorkflowRunConfiguration | WorkflowVersionConfiguration | TaskTimelineConfiguration | PersonalFinanceConfiguration) & { __isUnion?: true }
+export type WidgetConfiguration = (AggregateChartConfiguration | StandaloneRichTextConfiguration | PieChartConfiguration | LineChartConfiguration | IframeConfiguration | BarChartConfiguration | CalendarConfiguration | FrontComponentConfiguration | EmailsConfiguration | EmailThreadConfiguration | FieldConfiguration | FieldRichTextConfiguration | FieldsConfiguration | FilesConfiguration | NotesConfiguration | TasksConfiguration | TimelineConfiguration | ViewConfiguration | RecordTableConfiguration | WorkflowConfiguration | WorkflowRunConfiguration | WorkflowVersionConfiguration | TaskTimelineConfiguration | PersonalFinanceConfiguration | CardCarouselConfiguration) & { __isUnion?: true }
 
 export interface AggregateChartConfiguration {
     configurationType: WidgetConfigurationType
@@ -810,7 +818,7 @@ export interface AggregateChartConfiguration {
     __typename: 'AggregateChartConfiguration'
 }
 
-export type WidgetConfigurationType = 'AGGREGATE_CHART' | 'PIE_CHART' | 'BAR_CHART' | 'LINE_CHART' | 'IFRAME' | 'STANDALONE_RICH_TEXT' | 'VIEW' | 'FIELD' | 'FIELDS' | 'TIMELINE' | 'TASKS' | 'NOTES' | 'FILES' | 'EMAILS' | 'CALENDAR' | 'FIELD_RICH_TEXT' | 'WORKFLOW' | 'WORKFLOW_VERSION' | 'WORKFLOW_RUN' | 'FRONT_COMPONENT' | 'RECORD_TABLE' | 'EMAIL_THREAD' | 'TASK_TIMELINE' | 'PERSONAL_FINANCE'
+export type WidgetConfigurationType = 'AGGREGATE_CHART' | 'PIE_CHART' | 'BAR_CHART' | 'LINE_CHART' | 'IFRAME' | 'STANDALONE_RICH_TEXT' | 'VIEW' | 'FIELD' | 'FIELDS' | 'TIMELINE' | 'TASKS' | 'NOTES' | 'FILES' | 'EMAILS' | 'CALENDAR' | 'FIELD_RICH_TEXT' | 'WORKFLOW' | 'WORKFLOW_VERSION' | 'WORKFLOW_RUN' | 'FRONT_COMPONENT' | 'RECORD_TABLE' | 'EMAIL_THREAD' | 'TASK_TIMELINE' | 'PERSONAL_FINANCE' | 'CARD_CAROUSEL'
 
 
 /** Format used to display the chart value */
@@ -1038,6 +1046,19 @@ export interface PersonalFinanceConfiguration {
     baseCurrencyCode?: Scalars['String']
     source?: PersonalFinanceSourceMapping
     __typename: 'PersonalFinanceConfiguration'
+}
+
+export interface CardCarouselConfiguration {
+    configurationType: WidgetConfigurationType
+    fieldMapping?: CardCarouselFieldMapping
+    layout?: Scalars['String']
+    imageAspect?: Scalars['String']
+    cardRadius?: Scalars['String']
+    cardSize?: Scalars['String']
+    textAlign?: Scalars['String']
+    hoverEffect?: Scalars['String']
+    itemCount?: Scalars['Int']
+    __typename: 'CardCarouselConfiguration'
 }
 
 export interface PageLayoutTab {
@@ -3781,6 +3802,15 @@ export interface UserGenqlSelection{
     __scalar?: boolean | number
 }
 
+export interface CardCarouselFieldMappingGenqlSelection{
+    imageFieldMetadataId?: boolean | number
+    titleFieldMetadataId?: boolean | number
+    subtitleFieldMetadataId?: boolean | number
+    priceFieldMetadataId?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
 export interface RatioAggregateConfigGenqlSelection{
     fieldMetadataId?: boolean | number
     optionValue?: boolean | number
@@ -3907,6 +3937,7 @@ export interface WidgetConfigurationGenqlSelection{
     on_WorkflowVersionConfiguration?:WorkflowVersionConfigurationGenqlSelection,
     on_TaskTimelineConfiguration?:TaskTimelineConfigurationGenqlSelection,
     on_PersonalFinanceConfiguration?:PersonalFinanceConfigurationGenqlSelection,
+    on_CardCarouselConfiguration?:CardCarouselConfigurationGenqlSelection,
     __typename?: boolean | number
 }
 
@@ -4147,6 +4178,20 @@ export interface PersonalFinanceConfigurationGenqlSelection{
     configurationType?: boolean | number
     baseCurrencyCode?: boolean | number
     source?: PersonalFinanceSourceMappingGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface CardCarouselConfigurationGenqlSelection{
+    configurationType?: boolean | number
+    fieldMapping?: CardCarouselFieldMappingGenqlSelection
+    layout?: boolean | number
+    imageAspect?: boolean | number
+    cardRadius?: boolean | number
+    cardSize?: boolean | number
+    textAlign?: boolean | number
+    hoverEffect?: boolean | number
+    itemCount?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -7022,6 +7067,14 @@ export interface LogicFunctionLogsInput {applicationId?: (Scalars['UUID'] | null
     
 
 
+    const CardCarouselFieldMapping_possibleTypes: string[] = ['CardCarouselFieldMapping']
+    export const isCardCarouselFieldMapping = (obj?: { __typename?: any } | null): obj is CardCarouselFieldMapping => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCardCarouselFieldMapping"')
+      return CardCarouselFieldMapping_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
     const RatioAggregateConfig_possibleTypes: string[] = ['RatioAggregateConfig']
     export const isRatioAggregateConfig = (obj?: { __typename?: any } | null): obj is RatioAggregateConfig => {
       if (!obj?.__typename) throw new Error('__typename is missing in "isRatioAggregateConfig"')
@@ -7102,7 +7155,7 @@ export interface LogicFunctionLogsInput {applicationId?: (Scalars['UUID'] | null
     
 
 
-    const WidgetConfiguration_possibleTypes: string[] = ['AggregateChartConfiguration','StandaloneRichTextConfiguration','PieChartConfiguration','LineChartConfiguration','IframeConfiguration','BarChartConfiguration','CalendarConfiguration','FrontComponentConfiguration','EmailsConfiguration','EmailThreadConfiguration','FieldConfiguration','FieldRichTextConfiguration','FieldsConfiguration','FilesConfiguration','NotesConfiguration','TasksConfiguration','TimelineConfiguration','ViewConfiguration','RecordTableConfiguration','WorkflowConfiguration','WorkflowRunConfiguration','WorkflowVersionConfiguration','TaskTimelineConfiguration','PersonalFinanceConfiguration']
+    const WidgetConfiguration_possibleTypes: string[] = ['AggregateChartConfiguration','StandaloneRichTextConfiguration','PieChartConfiguration','LineChartConfiguration','IframeConfiguration','BarChartConfiguration','CalendarConfiguration','FrontComponentConfiguration','EmailsConfiguration','EmailThreadConfiguration','FieldConfiguration','FieldRichTextConfiguration','FieldsConfiguration','FilesConfiguration','NotesConfiguration','TasksConfiguration','TimelineConfiguration','ViewConfiguration','RecordTableConfiguration','WorkflowConfiguration','WorkflowRunConfiguration','WorkflowVersionConfiguration','TaskTimelineConfiguration','PersonalFinanceConfiguration','CardCarouselConfiguration']
     export const isWidgetConfiguration = (obj?: { __typename?: any } | null): obj is WidgetConfiguration => {
       if (!obj?.__typename) throw new Error('__typename is missing in "isWidgetConfiguration"')
       return WidgetConfiguration_possibleTypes.includes(obj.__typename)
@@ -7298,6 +7351,14 @@ export interface LogicFunctionLogsInput {applicationId?: (Scalars['UUID'] | null
     export const isPersonalFinanceConfiguration = (obj?: { __typename?: any } | null): obj is PersonalFinanceConfiguration => {
       if (!obj?.__typename) throw new Error('__typename is missing in "isPersonalFinanceConfiguration"')
       return PersonalFinanceConfiguration_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const CardCarouselConfiguration_possibleTypes: string[] = ['CardCarouselConfiguration']
+    export const isCardCarouselConfiguration = (obj?: { __typename?: any } | null): obj is CardCarouselConfiguration => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCardCarouselConfiguration"')
+      return CardCarouselConfiguration_possibleTypes.includes(obj.__typename)
     }
     
 
@@ -9104,7 +9165,8 @@ export const enumWidgetType = {
    RECORD_TABLE: 'RECORD_TABLE' as const,
    EMAIL_THREAD: 'EMAIL_THREAD' as const,
    TASK_TIMELINE: 'TASK_TIMELINE' as const,
-   PERSONAL_FINANCE: 'PERSONAL_FINANCE' as const
+   PERSONAL_FINANCE: 'PERSONAL_FINANCE' as const,
+   CARD_CAROUSEL: 'CARD_CAROUSEL' as const
 }
 
 export const enumPageLayoutTabLayoutMode = {
@@ -9137,7 +9199,8 @@ export const enumWidgetConfigurationType = {
    RECORD_TABLE: 'RECORD_TABLE' as const,
    EMAIL_THREAD: 'EMAIL_THREAD' as const,
    TASK_TIMELINE: 'TASK_TIMELINE' as const,
-   PERSONAL_FINANCE: 'PERSONAL_FINANCE' as const
+   PERSONAL_FINANCE: 'PERSONAL_FINANCE' as const,
+   CARD_CAROUSEL: 'CARD_CAROUSEL' as const
 }
 
 export const enumChartNumberFormat = {

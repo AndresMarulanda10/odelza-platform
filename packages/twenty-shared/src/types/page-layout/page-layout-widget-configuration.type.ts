@@ -163,6 +163,45 @@ export type PersonalFinanceConfiguration = {
   source?: PersonalFinanceSourceMapping | null;
 };
 
+export type CardCarouselLayout =
+  | 'imageTop'
+  | 'imageCenter'
+  | 'imageOverlay'
+  | 'textOnly';
+
+export type CardCarouselImageAspect =
+  | 'square'
+  | 'portrait'
+  | 'wide'
+  | 'circle';
+
+export type CardCarouselRadius = 'square' | 'soft' | 'rounded' | 'pill';
+
+export type CardCarouselSize = 'sm' | 'md' | 'lg';
+
+export type CardCarouselTextAlign = 'left' | 'center' | 'right';
+
+export type CardCarouselHoverEffect = 'lift' | 'scale' | 'glow' | 'none';
+
+export type CardCarouselFieldMapping = {
+  imageFieldMetadataId?: SerializedRelation | null;
+  titleFieldMetadataId?: SerializedRelation | null;
+  subtitleFieldMetadataId?: SerializedRelation | null;
+  priceFieldMetadataId?: SerializedRelation | null;
+};
+
+export type CardCarouselConfiguration = {
+  configurationType: 'CARD_CAROUSEL';
+  fieldMapping?: CardCarouselFieldMapping | null;
+  cardLayout?: CardCarouselLayout | null;
+  imageAspect?: CardCarouselImageAspect | null;
+  cardRadius?: CardCarouselRadius | null;
+  cardSize?: CardCarouselSize | null;
+  textAlign?: CardCarouselTextAlign | null;
+  hoverEffect?: CardCarouselHoverEffect | null;
+  itemCount?: number | null;
+};
+
 export type TimelineConfiguration = {
   configurationType: 'TIMELINE';
 };
@@ -342,6 +381,7 @@ export type PageLayoutWidgetConfiguration =
   | FrontComponentConfiguration
   | TaskTimelineConfiguration
   | PersonalFinanceConfiguration
+  | CardCarouselConfiguration
   | TimelineConfiguration
   | TasksConfiguration
   | NotesConfiguration

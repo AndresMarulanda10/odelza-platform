@@ -1,5 +1,6 @@
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
 import { CalendarWidget } from '@/page-layout/widgets/calendar/components/CalendarWidget';
+import { CardCarouselWidget } from '@/page-layout/widgets/card-carousel/components/CardCarouselWidget';
 import { EmailThreadWidget } from '@/page-layout/widgets/email-thread/components/EmailThreadWidget';
 import { EmailWidget } from '@/page-layout/widgets/emails/components/EmailWidget';
 import { FieldRichTextWidgetRenderer } from '@/page-layout/widgets/field-rich-text/components/FieldRichTextWidgetRenderer';
@@ -49,6 +50,9 @@ export const WidgetContentRenderer = ({
 
     case WidgetType.PERSONAL_FINANCE:
       return <PersonalFinanceWidget widget={widget} />;
+
+    case WidgetType.CARD_CAROUSEL:
+      return <CardCarouselWidget widget={widget} />;
 
     case WidgetType.TASKS:
       return <TaskWidget widget={widget} />;
