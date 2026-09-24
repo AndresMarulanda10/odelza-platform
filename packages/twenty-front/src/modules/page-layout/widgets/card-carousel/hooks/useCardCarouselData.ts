@@ -3,6 +3,7 @@ import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
 import { CARD_CAROUSEL_DEFAULT_ITEM_COUNT } from '@/page-layout/utils/createDefaultCardCarouselWidget';
+import { extractImageUrlFromText } from '@/page-layout/widgets/card-carousel/utils/extractImageUrlFromText';
 import { type WidgetDataState } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 
@@ -78,10 +79,25 @@ const readImageUrlValue = (value: unknown): string | undefined => {
     return value.trim() === '' ? undefined : value;
   }
 
-  if (typeof value === 'object' && 'primaryLinkUrl' in value) {
+  if (typeof value !== 'object') {
+    return undefined;
+  }
+
+  if ('primaryLinkUrl' in value) {
     const url = (value as { primaryLinkUrl?: string | null }).primaryLinkUrl;
 
     return isDefined(url) && url !== '' ? url : undefined;
+  }
+
+  // En un campo de texto enriquecido la imagen vive dentro del cuerpo.
+  const richTextValue = value as { markdown?: unknown; blocknote?: unknown };
+
+  if (typeof richTextValue.markdown === 'string') {
+    return extractImageUrlFromText(richTextValue.markdown);
+  }
+
+  if (typeof richTextValue.blocknote === 'string') {
+    return extractImageUrlFromText(richTextValue.blocknote);
   }
 
   return undefined;
