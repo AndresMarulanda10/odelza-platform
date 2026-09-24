@@ -1,4 +1,5 @@
 import { type AggregateOperations } from '../AggregateOperations';
+import { type CurrencyCode } from '../../constants/CurrencyCode';
 import { type ObjectRecordGroupByDateGranularity } from '../ObjectRecordGroupByDateGranularity';
 import { type SerializedRelation } from '../SerializedRelation.type';
 
@@ -146,8 +147,20 @@ export type TaskTimelineConfiguration = {
   barColor?: string | null;
 };
 
+export type PersonalFinanceSourceMapping = {
+  incomeFieldMetadataId?: SerializedRelation | null;
+  expenseFieldMetadataId?: SerializedRelation | null;
+  budgetFieldMetadataId?: SerializedRelation | null;
+  assetFieldMetadataId?: SerializedRelation | null;
+  liabilityFieldMetadataId?: SerializedRelation | null;
+  dateFieldMetadataId?: SerializedRelation | null;
+  categoryFieldMetadataId?: SerializedRelation | null;
+};
+
 export type PersonalFinanceConfiguration = {
   configurationType: 'PERSONAL_FINANCE';
+  baseCurrencyCode?: CurrencyCode | null;
+  source?: PersonalFinanceSourceMapping | null;
 };
 
 export type TimelineConfiguration = {

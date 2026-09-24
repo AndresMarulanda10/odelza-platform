@@ -201,6 +201,7 @@ export type {
   FrontComponentConfiguration,
   TaskTimelineFieldMapping,
   TaskTimelineConfiguration,
+  PersonalFinanceSourceMapping,
   PersonalFinanceConfiguration,
   TimelineConfiguration,
   TasksConfiguration,

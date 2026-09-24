@@ -1,5 +1,6 @@
 import {
   type ChartFilter,
+  type PersonalFinanceSourceMapping,
   type TaskTimelineFieldMapping,
   type UniversalChartFilter,
 } from 'twenty-shared/types';
@@ -13,6 +14,10 @@ import { type MetadataFlatEntityMaps } from 'src/engine/metadata-modules/flat-en
 import { findFlatEntityByUniversalIdentifier } from 'src/engine/metadata-modules/flat-entity/utils/find-flat-entity-by-universal-identifier.util';
 import { type FlatPageLayoutWidget } from 'src/engine/metadata-modules/flat-page-layout-widget/types/flat-page-layout-widget.type';
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
+import {
+  PERSONAL_FINANCE_SOURCE_FIELD_MAPPINGS,
+  type PersonalFinanceSourceMappingUniversal,
+} from 'src/engine/metadata-modules/page-layout-widget/utils/personal-finance-source-mapping.util';
 import {
   TASK_TIMELINE_FIELD_MAPPINGS,
   type TaskTimelineFieldMappingUniversal,
@@ -70,6 +75,40 @@ const convertUniversalFilterToChartFilter = ({
       }),
     ),
   };
+};
+
+const convertPersonalFinanceSourceToFlat = ({
+  source,
+  flatFieldMetadataMaps,
+}: {
+  source: PersonalFinanceSourceMappingUniversal | null | undefined;
+  flatFieldMetadataMaps: MetadataFlatEntityMaps<'fieldMetadata'>;
+}): PersonalFinanceSourceMapping | null | undefined => {
+  if (source === undefined || source === null) {
+    return source;
+  }
+
+  return Object.fromEntries(
+    PERSONAL_FINANCE_SOURCE_FIELD_MAPPINGS.flatMap(
+      ([fieldMetadataKey, universalIdentifierKey]) => {
+        const fieldMetadataUniversalIdentifier = source[universalIdentifierKey];
+
+        return fieldMetadataUniversalIdentifier === undefined
+          ? []
+          : [
+              [
+                fieldMetadataKey,
+                fieldMetadataUniversalIdentifier === null
+                  ? null
+                  : resolveFieldMetadataIdOrThrow({
+                      fieldMetadataUniversalIdentifier,
+                      flatFieldMetadataMaps,
+                    }),
+              ],
+            ];
+      },
+    ),
+  ) as PersonalFinanceSourceMapping;
 };
 
 const convertTaskTimelineFieldMappingToFlat = ({
@@ -411,6 +450,15 @@ export const fromUniversalConfigurationToFlatPageLayoutWidgetConfiguration = ({
       return flatFieldMapping === undefined
         ? rest
         : { ...rest, fieldMapping: flatFieldMapping };
+    }
+    case WidgetConfigurationType.PERSONAL_FINANCE: {
+      const { source, ...rest } = universalConfiguration;
+      const flatSource = convertPersonalFinanceSourceToFlat({
+        source,
+        flatFieldMetadataMaps,
+      });
+
+      return flatSource === undefined ? rest : { ...rest, source: flatSource };
     }
   }
 };

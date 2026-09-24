@@ -8,6 +8,19 @@ const configurations = [
   { configurationType: WidgetConfigurationType.PERSONAL_FINANCE as const },
 ] as const;
 
+const financeConfiguration = {
+  configurationType: WidgetConfigurationType.PERSONAL_FINANCE as const,
+  source: {
+    incomeFieldMetadataId: 'income-field',
+    expenseFieldMetadataId: 'expense-field',
+  },
+};
+
+const financeFieldMetadataUniversalIdentifierById = {
+  'income-field': 'income-universal',
+  'expense-field': 'expense-universal',
+};
+
 const timelineConfiguration = {
   configurationType: WidgetConfigurationType.TASK_TIMELINE as const,
   fieldMapping: {
@@ -56,6 +69,29 @@ describe('new page-layout widget configuration persistence', () => {
       expect(restoredConfiguration).toEqual(configuration);
     },
   );
+
+  it('round-trips mapped finance field metadata IDs', () => {
+    const universalConfiguration =
+      fromPageLayoutWidgetConfigurationToUniversalConfiguration({
+        configuration: financeConfiguration,
+        fieldMetadataUniversalIdentifierById:
+          financeFieldMetadataUniversalIdentifierById,
+      });
+
+    const restoredConfiguration =
+      fromUniversalConfigurationToFlatPageLayoutWidgetConfiguration({
+        universalConfiguration,
+        flatFieldMetadataMaps: {
+          byUniversalIdentifier: Object.fromEntries(
+            Object.entries(financeFieldMetadataUniversalIdentifierById).map(
+              ([id, universalIdentifier]) => [universalIdentifier, { id }],
+            ),
+          ),
+        } as never,
+      } as never);
+
+    expect(restoredConfiguration).toEqual(financeConfiguration);
+  });
 
   it('round-trips mapped timeline field metadata IDs', () => {
     const universalConfiguration =

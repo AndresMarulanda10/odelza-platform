@@ -256,6 +256,17 @@ describe('validateWidgetConfigurationInput', () => {
       ).not.toThrow();
     });
 
+    it('rejects invalid personal finance source field IDs', () => {
+      expect(() =>
+        validateWidgetConfigurationInput({
+          configuration: {
+            configurationType: WidgetConfigurationType.PERSONAL_FINANCE,
+            source: { incomeFieldMetadataId: 'not-a-uuid' },
+          },
+        }),
+      ).toThrow(/source.incomeFieldMetadataId.*UUID/);
+    });
+
     it('keeps the task timeline widget and configuration types aligned', () => {
       expect(() =>
         validatePageLayoutWidgetTypeConfiguration({
