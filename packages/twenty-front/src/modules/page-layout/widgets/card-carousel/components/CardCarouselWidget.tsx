@@ -1,3 +1,6 @@
+import { objectMetadataItemsSelector } from '@/object-metadata/states/objectMetadataItemsSelector';
+import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/EnrichedObjectMetadataItem';
+import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
 import { CardCarousel } from '@/page-layout/widgets/card-carousel/components/CardCarousel';
 import { useCardCarouselData } from '@/page-layout/widgets/card-carousel/hooks/useCardCarouselData';
 import {
@@ -9,9 +12,10 @@ import {
   normalizeCardCarouselTextAlign,
 } from '@/page-layout/widgets/card-carousel/utils/normalizeCardCarouselConfiguration';
 import { WidgetSkeletonLoader } from '@/page-layout/widgets/components/WidgetSkeletonLoader';
-import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
+import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
+import { isDefined } from 'twenty-shared/utils';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
@@ -35,13 +39,20 @@ const StyledNotice = styled.div`
   text-align: center;
 `;
 
-export const CardCarouselWidget = ({
+/*
+ * El contenido se monta aparte a proposito: el hook que pide registros necesita
+ * el objeto ya resuelto, y no se puede llamar a medias.
+ */
+const CardCarouselWidgetContent = ({
   widget,
+  objectMetadataItem,
 }: {
   widget: PageLayoutWidget;
+  objectMetadataItem: EnrichedObjectMetadataItem;
 }) => {
   const { status, items, hasConfigurationGap } = useCardCarouselData({
     widget,
+    objectMetadataItem,
   });
 
   const configuration =
@@ -57,7 +68,7 @@ export const CardCarouselWidget = ({
     return (
       <StyledContainer>
         <StyledNotice>
-          <span>{t`This widget needs an object to read from.`}</span>
+          <span>{t`The records of this widget could not be loaded.`}</span>
         </StyledNotice>
       </StyledContainer>
     );
@@ -94,5 +105,34 @@ export const CardCarouselWidget = ({
         }}
       />
     </StyledContainer>
+  );
+};
+
+export const CardCarouselWidget = ({
+  widget,
+}: {
+  widget: PageLayoutWidget;
+}) => {
+  const objectMetadataItems = useAtomStateValue(objectMetadataItemsSelector);
+
+  const objectMetadataItem = objectMetadataItems.find(
+    (item) => item.id === widget.objectMetadataId,
+  );
+
+  if (!isDefined(objectMetadataItem)) {
+    return (
+      <StyledContainer>
+        <StyledNotice>
+          <span>{t`This widget needs an object to read from.`}</span>
+        </StyledNotice>
+      </StyledContainer>
+    );
+  }
+
+  return (
+    <CardCarouselWidgetContent
+      widget={widget}
+      objectMetadataItem={objectMetadataItem}
+    />
   );
 };

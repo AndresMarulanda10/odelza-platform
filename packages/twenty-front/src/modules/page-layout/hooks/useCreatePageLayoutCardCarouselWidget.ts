@@ -69,7 +69,8 @@ export const useCreatePageLayoutCardCarouselWidget = ({
           rowSpan: position.h,
           columnSpan: position.w,
         },
-        objectMetadataId,
+        objectMetadataId:
+          objectMetadataId ?? store.get(pageLayoutDraftState).objectMetadataId ?? undefined,
       });
       const newLayout = {
         i: widgetId,

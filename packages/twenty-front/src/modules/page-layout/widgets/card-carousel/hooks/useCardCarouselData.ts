@@ -1,9 +1,8 @@
-import { objectMetadataItemsSelector } from '@/object-metadata/states/objectMetadataItemsSelector';
+import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/EnrichedObjectMetadataItem';
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
 import { CARD_CAROUSEL_DEFAULT_ITEM_COUNT } from '@/page-layout/utils/createDefaultCardCarouselWidget';
-import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 import { type WidgetDataState } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 
@@ -131,15 +130,11 @@ const formatPriceValue = ({
 
 export const useCardCarouselData = ({
   widget,
+  objectMetadataItem,
 }: {
   widget: PageLayoutWidget;
+  objectMetadataItem: EnrichedObjectMetadataItem;
 }): CardCarouselWidgetData => {
-  const objectMetadataItems = useAtomStateValue(objectMetadataItemsSelector);
-
-  const objectMetadataItem = objectMetadataItems.find(
-    (item) => item.id === widget.objectMetadataId,
-  );
-
   const configuration =
     widget.configuration?.__typename === 'CardCarouselConfiguration'
       ? widget.configuration
@@ -182,7 +177,7 @@ export const useCardCarouselData = ({
   );
 
   const { records, loading, error } = useFindManyRecords<ObjectRecord>({
-    objectNameSingular: objectMetadataItem?.nameSingular ?? '',
+    objectNameSingular: objectMetadataItem.nameSingular,
     limit: itemCount,
     skip: !isDefined(objectMetadataItem) || Object.keys(recordGqlFields).length === 0,
     recordGqlFields,
@@ -204,10 +199,6 @@ export const useCardCarouselData = ({
         })
       : undefined,
   }));
-
-  if (!isDefined(objectMetadataItem)) {
-    return { status: 'error', items: [], hasConfigurationGap: true };
-  }
 
   if (isDefined(error)) {
     return { status: 'error', items: [], hasConfigurationGap: false };
