@@ -45,7 +45,6 @@ export const extractFieldMetadataIdsFromWidget = (
     case 'IframeConfiguration':
       return [];
 
-
     case 'TaskTimelineConfiguration':
       return [
         config.fieldMapping?.titleFieldMetadataId,

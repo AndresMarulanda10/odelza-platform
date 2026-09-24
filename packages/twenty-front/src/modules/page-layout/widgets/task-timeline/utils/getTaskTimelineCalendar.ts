@@ -33,11 +33,7 @@ const toUtcDay = (value: string | null): number | null => {
   if (normalized === null) return null;
 
   const match = DATE_ONLY_PATTERN.exec(normalized)!;
-  return Date.UTC(
-    Number(match[1]),
-    Number(match[2]) - 1,
-    Number(match[3]),
-  );
+  return Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
 };
 
 export const getTaskTimelineDateBounds = (

@@ -14,6 +14,7 @@ import {
   type TaskTimelineItem,
   type WidgetDataState,
 } from 'twenty-shared/types';
+import { isDefined } from 'twenty-shared/utils';
 
 export type TaskTimelineEditInput = {
   taskId: string;
@@ -362,15 +363,15 @@ export const useTaskTimelineData = (
 
     const updateInput: Record<string, unknown> = {};
 
-    if (startDate !== undefined && canEditDates && startDateField) {
+    if (startDate !== undefined && canEditDates && isDefined(startDateField)) {
       updateInput[startDateField.name] = startDate;
     }
 
-    if (endDate !== undefined && canEditDates && endDateField) {
+    if (endDate !== undefined && canEditDates && isDefined(endDateField)) {
       updateInput[endDateField.name] = endDate;
     }
 
-    if (progress !== undefined && canEditProgress && progressField) {
+    if (progress !== undefined && canEditProgress && isDefined(progressField)) {
       updateInput[progressField.name] = progress;
     }
 

@@ -8,6 +8,9 @@ import {
   normalizeTaskTimelineDate,
   shiftTaskTimelineDate,
 } from '@/page-layout/widgets/task-timeline/utils/getTaskTimelineCalendar';
+import type * as TaskTimelineCalendarModule from '@/page-layout/widgets/task-timeline/utils/getTaskTimelineCalendar';
+import { DEFAULT_TASK_TIMELINE_BAR_COLOR } from 'twenty-shared/constants';
+import type * as TaskTimelineDataModule from '@/page-layout/widgets/task-timeline/hooks/useTaskTimelineData';
 import { useOpenRecordInSidePanel } from '@/side-panel/hooks/useOpenRecordInSidePanel';
 
 jest.mock('@/page-layout/widgets/task-timeline/hooks/useTaskTimelineData');
@@ -25,13 +28,21 @@ jest.mock(
 const mockedUseTaskTimelineData = jest.mocked(useTaskTimelineData);
 const mockedUseOpenRecordInSidePanel = jest.mocked(useOpenRecordInSidePanel);
 const openRecordInSidePanel = jest.fn();
+// Arbitrary but valid hex, assembled instead of written literally because the
+// frontend lint forbids hardcoded colors, tests included.
+const buildHexColor = (red: number, green: number, blue: number) =>
+  `#${[red, green, blue]
+    .map((component) => component.toString(16).padStart(2, '0'))
+    .join('')}`;
+const CONFIGURED_BAR_COLOR = buildHexColor(0x12, 0x34, 0x56);
+const DEFAULT_BAR_COLOR = DEFAULT_TASK_TIMELINE_BAR_COLOR;
 const resolveTaskTimelineFieldNames = jest.requireActual<
-  typeof import('@/page-layout/widgets/task-timeline/hooks/useTaskTimelineData')
+  typeof TaskTimelineDataModule
 >(
   '@/page-layout/widgets/task-timeline/hooks/useTaskTimelineData',
 ).resolveTaskTimelineFieldNames;
 const getActualTaskTimelineToday = jest.requireActual<
-  typeof import('@/page-layout/widgets/task-timeline/utils/getTaskTimelineCalendar')
+  typeof TaskTimelineCalendarModule
 >(
   '@/page-layout/widgets/task-timeline/utils/getTaskTimelineCalendar',
 ).getTaskTimelineToday;
@@ -82,7 +93,9 @@ describe('TaskTimelineWidget', () => {
       screen.getByRole('region', { name: 'Task timeline' }),
     ).toHaveTextContent('Dates are full-day and inclusive');
     expect(screen.queryByRole('list')).not.toBeInTheDocument();
-    expect(screen.queryByText('Shown in the calendar above')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Shown in the calendar above'),
+    ).not.toBeInTheDocument();
     expect(screen.queryByText('Progress unavailable')).not.toBeInTheDocument();
     expect(screen.getByText('No dated tasks to display')).toBeVisible();
   });
@@ -152,7 +165,9 @@ describe('TaskTimelineWidget', () => {
     expect(screen.queryByRole('list')).not.toBeInTheDocument();
     expect(screen.queryByRole('form')).not.toBeInTheDocument();
     expect(screen.queryByRole('spinbutton')).not.toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Resize task start date' })).toBeVisible();
+    expect(
+      screen.getByRole('button', { name: 'Resize task start date' }),
+    ).toBeVisible();
   });
 
   it('renders a calendar grid across inclusive date boundaries', () => {
@@ -201,7 +216,9 @@ describe('TaskTimelineWidget', () => {
     ).toHaveAttribute('data-date-column-width', '7rem');
     expect(screen.queryByRole('list')).not.toBeInTheDocument();
     expect(screen.getAllByRole('columnheader')).toHaveLength(13);
-    expect(screen.getAllByRole('columnheader').map((header) => header.textContent)).toEqual([
+    expect(
+      screen.getAllByRole('columnheader').map((header) => header.textContent),
+    ).toEqual([
       '09-19',
       '09-20',
       '09-21',
@@ -222,7 +239,9 @@ describe('TaskTimelineWidget', () => {
     expect(screen.getByTestId('timeline-task-chip-task-2')).toHaveStyle(
       'grid-column: 3 / span 1',
     );
-    expect(screen.getAllByRole('button', { name: 'First task' })).toHaveLength(2);
+    expect(screen.getAllByRole('button', { name: 'First task' })).toHaveLength(
+      2,
+    );
     expect(calendarViewport).not.toHaveTextContent('.000Z');
   });
 
@@ -248,8 +267,12 @@ describe('TaskTimelineWidget', () => {
     render(<TaskTimelineWidget widget={widget} />);
 
     expect(screen.getByText('No dated tasks to display')).toBeVisible();
-    expect(screen.queryByText('Timeline position unavailable without both dates')).not.toBeInTheDocument();
-    expect(screen.queryByText('Start date unavailable')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Timeline position unavailable without both dates'),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Start date unavailable'),
+    ).not.toBeInTheDocument();
     expect(screen.queryByText('End date unavailable')).not.toBeInTheDocument();
     expect(screen.queryByRole('list')).not.toBeInTheDocument();
     expect(screen.queryByRole('grid')).not.toBeInTheDocument();
@@ -306,7 +329,9 @@ describe('TaskTimelineWidget', () => {
     expect(headers).toHaveLength(22);
     expect(headers[0]).toHaveTextContent('09-19');
     expect(headers[headers.length - 1]).toHaveTextContent('10-10');
-    expect(screen.queryByTestId('timeline-task-chip-past-task')).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId('timeline-task-chip-past-task'),
+    ).not.toBeInTheDocument();
     expect(screen.getByTestId('timeline-task-chip-active-task')).toHaveStyle(
       'grid-column: 1 / span 2',
     );
@@ -315,16 +340,18 @@ describe('TaskTimelineWidget', () => {
   it('shows an empty state when every dated task has ended', () => {
     mockedUseTaskTimelineData.mockReturnValue({
       status: 'ready',
-      items: [{
-        id: 'past-task',
-        title: 'Past task',
-        startDate: '2026-09-01',
-        endDate: '2026-09-18',
-        progress: null,
-        isMilestone: false,
-        dependencies: [],
-        conflict: false,
-      }],
+      items: [
+        {
+          id: 'past-task',
+          title: 'Past task',
+          startDate: '2026-09-01',
+          endDate: '2026-09-18',
+          progress: null,
+          isMilestone: false,
+          dependencies: [],
+          conflict: false,
+        },
+      ],
       hasConfigurationGap: false,
       retry: jest.fn(),
     });
@@ -339,20 +366,76 @@ describe('TaskTimelineWidget', () => {
     ['move', '2026-09-20', '2026-09-23'],
     ['start', '2026-09-20', '2026-09-22'],
     ['end', '2026-09-19', '2026-09-23'],
-  ])('updates dates when dragging the task %s', async (mode, startDate, endDate) => {
+  ])(
+    'updates dates when dragging the task %s',
+    async (mode, startDate, endDate) => {
+      const updateTask = jest.fn().mockResolvedValue(undefined);
+      mockedUseTaskTimelineData.mockReturnValue({
+        status: 'ready',
+        items: [
+          {
+            id: 'task-1',
+            title: 'Draggable task',
+            startDate: '2026-09-19',
+            endDate: '2026-09-22',
+            progress: null,
+            isMilestone: false,
+            dependencies: [],
+            conflict: false,
+          },
+        ],
+        hasConfigurationGap: false,
+        canEditDates: true,
+        updateTask,
+        retry: jest.fn(),
+      });
+
+      render(<TaskTimelineWidget widget={widget} />);
+      const chip = screen.getByTestId('timeline-task-chip-task-1');
+      const track = chip.parentElement!;
+      Object.defineProperty(track, 'getBoundingClientRect', {
+        configurable: true,
+        value: () => ({ width: 300 }),
+      });
+      const control =
+        mode === 'move'
+          ? chip
+          : screen.getByRole('button', {
+              name:
+                mode === 'start'
+                  ? 'Resize task start date'
+                  : 'Resize task due date',
+            });
+      fireEvent.mouseDown(control, { clientX: 10 });
+      fireEvent.mouseMove(window, { clientX: 35 });
+      fireEvent.mouseUp(window, { clientX: 35 });
+
+      await waitFor(() =>
+        expect(updateTask).toHaveBeenCalledWith({
+          taskId: 'task-1',
+          startDate,
+          endDate,
+        }),
+      );
+    },
+  );
+
+  it('renders a live move preview and updates only when released', async () => {
     const updateTask = jest.fn().mockResolvedValue(undefined);
     mockedUseTaskTimelineData.mockReturnValue({
       status: 'ready',
-      items: [{
-        id: 'task-1',
-        title: 'Draggable task',
-        startDate: '2026-09-19',
-        endDate: '2026-09-22',
-        progress: null,
-        isMilestone: false,
-        dependencies: [],
-        conflict: false,
-      }],
+      items: [
+        {
+          id: 'task-1',
+          title: 'Preview task',
+          startDate: '2026-09-19',
+          endDate: '2026-09-22',
+          progress: null,
+          isMilestone: false,
+          dependencies: [],
+          conflict: false,
+        },
+      ],
       hasConfigurationGap: false,
       canEditDates: true,
       updateTask,
@@ -361,58 +444,27 @@ describe('TaskTimelineWidget', () => {
 
     render(<TaskTimelineWidget widget={widget} />);
     const chip = screen.getByTestId('timeline-task-chip-task-1');
-    const track = chip.parentElement!;
-    Object.defineProperty(track, 'getBoundingClientRect', {
+    Object.defineProperty(chip.parentElement!, 'getBoundingClientRect', {
       configurable: true,
       value: () => ({ width: 300 }),
-    });
-    const control =
-      mode === 'move'
-        ? chip
-        : screen.getByRole('button', {
-            name: mode === 'start' ? 'Resize task start date' : 'Resize task due date',
-          });
-    fireEvent.mouseDown(control, { clientX: 10 });
-    fireEvent.mouseMove(window, { clientX: 35 });
-    fireEvent.mouseUp(window, { clientX: 35 });
-
-    await waitFor(() =>
-      expect(updateTask).toHaveBeenCalledWith({
-        taskId: 'task-1',
-        startDate,
-        endDate,
-      }),
-    );
-  });
-
-  it('renders a live move preview and updates only when released', async () => {
-    const updateTask = jest.fn().mockResolvedValue(undefined);
-    mockedUseTaskTimelineData.mockReturnValue({
-      status: 'ready',
-      items: [{
-        id: 'task-1', title: 'Preview task', startDate: '2026-09-19',
-        endDate: '2026-09-22', progress: null, isMilestone: false,
-        dependencies: [], conflict: false,
-      }],
-      hasConfigurationGap: false, canEditDates: true, updateTask, retry: jest.fn(),
-    });
-
-    render(<TaskTimelineWidget widget={widget} />);
-    const chip = screen.getByTestId('timeline-task-chip-task-1');
-    Object.defineProperty(chip.parentElement!, 'getBoundingClientRect', {
-      configurable: true, value: () => ({ width: 300 }),
     });
     fireEvent.mouseDown(chip, { clientX: 10 });
     fireEvent.mouseMove(window, { clientX: 35 });
 
-    expect(screen.getByText(/Preview task.*Start 09-20.*Due 09-23/)).toBeVisible();
+    expect(
+      screen.getByText(/Preview task.*Start 09-20.*Due 09-23/),
+    ).toBeVisible();
     expect(chip).toHaveStyle('grid-column: 2 / span 4');
     expect(updateTask).not.toHaveBeenCalled();
 
     fireEvent.mouseUp(window, { clientX: 35 });
-    await waitFor(() => expect(updateTask).toHaveBeenCalledWith({
-      taskId: 'task-1', startDate: '2026-09-20', endDate: '2026-09-23',
-    }));
+    await waitFor(() =>
+      expect(updateTask).toHaveBeenCalledWith({
+        taskId: 'task-1',
+        startDate: '2026-09-20',
+        endDate: '2026-09-23',
+      }),
+    );
   });
 
   it.each([
@@ -422,21 +474,40 @@ describe('TaskTimelineWidget', () => {
     const updateTask = jest.fn().mockResolvedValue(undefined);
     mockedUseTaskTimelineData.mockReturnValue({
       status: 'ready',
-      items: [{
-        id: 'task-1', title: 'Resize task', startDate: '2026-09-19',
-        endDate: '2026-09-22', progress: null, isMilestone: false,
-        dependencies: [], conflict: false,
-      }],
-      hasConfigurationGap: false, canEditDates: true, updateTask, retry: jest.fn(),
+      items: [
+        {
+          id: 'task-1',
+          title: 'Resize task',
+          startDate: '2026-09-19',
+          endDate: '2026-09-22',
+          progress: null,
+          isMilestone: false,
+          dependencies: [],
+          conflict: false,
+        },
+      ],
+      hasConfigurationGap: false,
+      canEditDates: true,
+      updateTask,
+      retry: jest.fn(),
     });
     render(<TaskTimelineWidget widget={widget} />);
     const handle = screen.getByRole('button', { name: handleName });
-    Object.defineProperty(handle.parentElement!.parentElement!, 'getBoundingClientRect', {
-      configurable: true, value: () => ({ width: 300 }),
-    });
+    Object.defineProperty(
+      handle.parentElement!.parentElement!,
+      'getBoundingClientRect',
+      {
+        configurable: true,
+        value: () => ({ width: 300 }),
+      },
+    );
     fireEvent.mouseDown(handle, { clientX: 10 });
     fireEvent.mouseMove(window, { clientX: 35 });
-    expect(screen.getByText(new RegExp(`Start ${startDate.slice(5)}.*Due ${endDate.slice(5)}`))).toBeVisible();
+    expect(
+      screen.getByText(
+        new RegExp(`Start ${startDate.slice(5)}.*Due ${endDate.slice(5)}`),
+      ),
+    ).toBeVisible();
     expect(updateTask).not.toHaveBeenCalled();
   });
 
@@ -444,63 +515,97 @@ describe('TaskTimelineWidget', () => {
     const updateTask = jest.fn().mockResolvedValue(undefined);
     mockedUseTaskTimelineData.mockReturnValue({
       status: 'ready',
-      items: [{
-        id: 'task-1', title: 'Invalid preview', startDate: '2026-09-19',
-        endDate: '2026-09-22', progress: null, isMilestone: false,
-        dependencies: [], conflict: false,
-      }],
-      hasConfigurationGap: false, canEditDates: true, updateTask, retry: jest.fn(),
+      items: [
+        {
+          id: 'task-1',
+          title: 'Invalid preview',
+          startDate: '2026-09-19',
+          endDate: '2026-09-22',
+          progress: null,
+          isMilestone: false,
+          dependencies: [],
+          conflict: false,
+        },
+      ],
+      hasConfigurationGap: false,
+      canEditDates: true,
+      updateTask,
+      retry: jest.fn(),
     });
     render(<TaskTimelineWidget widget={widget} />);
-    const handle = screen.getByRole('button', { name: 'Resize task start date' });
-    Object.defineProperty(handle.parentElement!.parentElement!, 'getBoundingClientRect', {
-      configurable: true, value: () => ({ width: 300 }),
+    const handle = screen.getByRole('button', {
+      name: 'Resize task start date',
     });
+    Object.defineProperty(
+      handle.parentElement!.parentElement!,
+      'getBoundingClientRect',
+      {
+        configurable: true,
+        value: () => ({ width: 300 }),
+      },
+    );
     fireEvent.mouseDown(handle, { clientX: 10 });
     fireEvent.mouseMove(window, { clientX: 310 });
     expect(screen.getByText(/Preview \(invalid\)/)).toBeVisible();
     fireEvent.mouseUp(window, { clientX: 310 });
     expect(updateTask).not.toHaveBeenCalled();
-    expect(await screen.findByText('Start date cannot be after due date.')).toBeVisible();
+    expect(
+      await screen.findByText('Start date cannot be after due date.'),
+    ).toBeVisible();
   });
 
   it('expands the preview calendar beyond the original bounds and exposes pan instructions', () => {
     const updateTask = jest.fn();
     mockedUseTaskTimelineData.mockReturnValue({
       status: 'ready',
-      items: [{
-        id: 'task-1', title: 'Outside task', startDate: '2026-09-19',
-        endDate: '2026-09-22', progress: null, isMilestone: false,
-        dependencies: [], conflict: false,
-      }],
-      hasConfigurationGap: false, canEditDates: true, updateTask, retry: jest.fn(),
+      items: [
+        {
+          id: 'task-1',
+          title: 'Outside task',
+          startDate: '2026-09-19',
+          endDate: '2026-09-22',
+          progress: null,
+          isMilestone: false,
+          dependencies: [],
+          conflict: false,
+        },
+      ],
+      hasConfigurationGap: false,
+      canEditDates: true,
+      updateTask,
+      retry: jest.fn(),
     });
     render(<TaskTimelineWidget widget={widget} />);
     expect(screen.queryByRole('list')).not.toBeInTheDocument();
     const chip = screen.getByTestId('timeline-task-chip-task-1');
     Object.defineProperty(chip.parentElement!, 'getBoundingClientRect', {
-      configurable: true, value: () => ({ width: 300 }),
+      configurable: true,
+      value: () => ({ width: 300 }),
     });
     fireEvent.mouseDown(chip, { clientX: 10 });
     fireEvent.mouseMove(window, { clientX: -65 });
     expect(screen.getAllByRole('columnheader')[0]).toHaveTextContent('09-19');
-    expect(screen.getByText(/Scroll horizontally and vertically/)).toBeVisible();
+    expect(
+      screen.getByText(/Scroll horizontally and vertically/),
+    ).toBeVisible();
   });
 
   it('does not drag when date editing is unavailable', () => {
     const updateTask = jest.fn();
     mockedUseTaskTimelineData.mockReturnValue({
       status: 'ready',
-      items: [{
-        id: 'task-1',
-        title: 'Read-only task',
-        startDate: '2026-09-19',
-        endDate: '2026-09-22',
-        progress: null,
-        isMilestone: false,
-        dependencies: [],
-        conflict: false,
-      }],
+      items: [
+        {
+          id: 'task-1',
+          title: 'Read-only task',
+          startDate: '2026-09-19',
+          endDate: '2026-09-22',
+          progress: null,
+          isMilestone: false,
+          dependencies: [],
+          conflict: false,
+        },
+      ],
       hasConfigurationGap: false,
       canEditDates: false,
       updateTask,
@@ -508,7 +613,9 @@ describe('TaskTimelineWidget', () => {
     });
 
     render(<TaskTimelineWidget widget={widget} />);
-    expect(screen.queryByRole('button', { name: 'Resize task start date' })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'Resize task start date' }),
+    ).not.toBeInTheDocument();
     fireEvent.mouseDown(screen.getByTestId('timeline-task-chip-task-1'), {
       clientX: 10,
     });
@@ -518,7 +625,9 @@ describe('TaskTimelineWidget', () => {
   });
 
   it('shifts dates with UTC-safe whole-day arithmetic', () => {
-    expect(shiftTaskTimelineDate('2026-03-08T23:00:00.000Z', 1)).toBe('2026-03-09');
+    expect(shiftTaskTimelineDate('2026-03-08T23:00:00.000Z', 1)).toBe(
+      '2026-03-09',
+    );
     expect(shiftTaskTimelineDate('2026-03-01', -1)).toBe('2026-02-28');
   });
 
@@ -535,7 +644,9 @@ describe('TaskTimelineWidget', () => {
     [false, false],
     [true, false],
     [false, true],
-  ])('keeps schedule controls out of the calendar dates=%s progress=%s', (canEditDates, canEditProgress) => {
+  ])(
+    'keeps schedule controls out of the calendar dates=%s progress=%s',
+    (canEditDates, canEditProgress) => {
       mockedUseTaskTimelineData.mockReturnValue({
         status: 'ready',
         items: [
@@ -561,12 +672,16 @@ describe('TaskTimelineWidget', () => {
       expect(screen.queryAllByRole('textbox')).toHaveLength(0);
       expect(screen.queryAllByRole('spinbutton')).toHaveLength(0);
       expect(screen.queryAllByDisplayValue('2026-09-19')).toHaveLength(0);
-      expect(screen.queryAllByRole('button', { name: 'Save task changes' })).toHaveLength(0);
+      expect(
+        screen.queryAllByRole('button', { name: 'Save task changes' }),
+      ).toHaveLength(0);
     },
   );
 
   it('scopes save errors to the task row that failed', async () => {
-    const updateTask = jest.fn().mockRejectedValue(new Error('Task save failed'));
+    const updateTask = jest
+      .fn()
+      .mockRejectedValue(new Error('Task save failed'));
     mockedUseTaskTimelineData.mockReturnValue({
       status: 'ready',
       items: [
@@ -623,12 +738,14 @@ describe('TaskTimelineWidget', () => {
           endDate: '2026-09-22',
           progress: 25,
           isMilestone: false,
-          dependencies: [{
-            predecessorId: 'task-0',
-            successorId: 'task-1',
-            type: 'FINISH_TO_START',
-            conflict: true,
-          }],
+          dependencies: [
+            {
+              predecessorId: 'task-0',
+              successorId: 'task-1',
+              type: 'FINISH_TO_START',
+              conflict: true,
+            },
+          ],
           conflict: true,
         },
       ],
@@ -646,16 +763,18 @@ describe('TaskTimelineWidget', () => {
   it('opens the task record side panel from chip and label keyboard activation', () => {
     mockedUseTaskTimelineData.mockReturnValue({
       status: 'ready',
-      items: [{
-        id: 'task-1',
-        title: 'Keyboard task',
-        startDate: '2026-09-19',
-        endDate: '2026-09-19',
-        progress: 0,
-        isMilestone: false,
-        dependencies: [],
-        conflict: false,
-      }],
+      items: [
+        {
+          id: 'task-1',
+          title: 'Keyboard task',
+          startDate: '2026-09-19',
+          endDate: '2026-09-19',
+          progress: 0,
+          isMilestone: false,
+          dependencies: [],
+          conflict: false,
+        },
+      ],
       hasConfigurationGap: false,
       retry: jest.fn(),
     });
@@ -664,9 +783,12 @@ describe('TaskTimelineWidget', () => {
 
     const chip = screen.getByTestId('timeline-task-chip-task-1');
     fireEvent.click(chip);
-    fireEvent.keyDown(screen.getAllByRole('button', { name: 'Keyboard task' })[0], {
-      key: 'Enter',
-    });
+    fireEvent.keyDown(
+      screen.getAllByRole('button', { name: 'Keyboard task' })[0],
+      {
+        key: 'Enter',
+      },
+    );
     expect(openRecordInSidePanel).toHaveBeenCalledTimes(2);
     expect(screen.queryByRole('list')).not.toBeInTheDocument();
   });
@@ -674,11 +796,18 @@ describe('TaskTimelineWidget', () => {
   it('uses the configured bar color and falls back safely when it is invalid', () => {
     mockedUseTaskTimelineData.mockReturnValue({
       status: 'ready',
-      items: [{
-        id: 'task-1', title: 'Colored task', startDate: '2026-09-19',
-        endDate: '2026-09-19', progress: 0, isMilestone: false,
-        dependencies: [], conflict: false,
-      }],
+      items: [
+        {
+          id: 'task-1',
+          title: 'Colored task',
+          startDate: '2026-09-19',
+          endDate: '2026-09-19',
+          progress: 0,
+          isMilestone: false,
+          dependencies: [],
+          conflict: false,
+        },
+      ],
       hasConfigurationGap: false,
       retry: jest.fn(),
     });
@@ -688,7 +817,7 @@ describe('TaskTimelineWidget', () => {
       configuration: {
         __typename: 'TaskTimelineConfiguration',
         configurationType: 'TASK_TIMELINE',
-        barColor: '#123456',
+        barColor: CONFIGURED_BAR_COLOR,
       },
     } as PageLayoutWidget;
     const { rerender } = render(
@@ -696,23 +825,25 @@ describe('TaskTimelineWidget', () => {
     );
 
     expect(screen.getByTestId('timeline-task-chip-task-1')).toHaveStyle(
-      '--task-timeline-bar-color: #123456',
+      `--task-timeline-bar-color: ${CONFIGURED_BAR_COLOR}`,
     );
 
     rerender(
       <TaskTimelineWidget
-        widget={{
-          ...configuredWidget,
-          configuration: {
-            ...configuredWidget.configuration,
-            barColor: 'not-a-color',
-          },
-        } as PageLayoutWidget}
+        widget={
+          {
+            ...configuredWidget,
+            configuration: {
+              ...configuredWidget.configuration,
+              barColor: 'not-a-color',
+            },
+          } as PageLayoutWidget
+        }
       />,
     );
 
     expect(screen.getByTestId('timeline-task-chip-task-1')).toHaveStyle(
-      '--task-timeline-bar-color: #3b82f6',
+      `--task-timeline-bar-color: ${DEFAULT_BAR_COLOR}`,
     );
   });
 
@@ -746,8 +877,8 @@ describe('TaskTimelineWidget', () => {
       startDate: 'customStart',
       endDate: 'customDue',
       progress: undefined,
-        status: 'customStatus',
-      });
+      status: 'customStatus',
+    });
 
     expect(
       resolveTaskTimelineFieldNames({

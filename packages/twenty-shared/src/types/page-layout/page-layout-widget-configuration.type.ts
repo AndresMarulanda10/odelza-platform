@@ -146,7 +146,6 @@ export type TaskTimelineConfiguration = {
   barColor?: string | null;
 };
 
-
 export type PersonalFinanceConfiguration = {
   configurationType: 'PERSONAL_FINANCE';
 };

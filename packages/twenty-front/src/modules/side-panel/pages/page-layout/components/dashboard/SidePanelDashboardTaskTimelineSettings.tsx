@@ -11,10 +11,9 @@ import {
   type TaskTimelineFieldMapping,
 } from 'twenty-shared/types';
 import { isFieldMetadataDateKind } from 'twenty-shared/utils';
+import { DEFAULT_TASK_TIMELINE_BAR_COLOR } from 'twenty-shared/constants';
 import { type SelectOption } from 'twenty-ui/input';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
-
-const DEFAULT_BAR_COLOR = '#3b82f6';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -82,9 +81,7 @@ export const SidePanelDashboardTaskTimelineSettings = () => {
     objectNameSingular: CoreObjectNameSingular.Task,
   });
 
-  if (
-    widgetInEditMode?.configuration?.configurationType !== 'TASK_TIMELINE'
-  ) {
+  if (widgetInEditMode?.configuration?.configurationType !== 'TASK_TIMELINE') {
     return null;
   }
 
@@ -104,7 +101,7 @@ export const SidePanelDashboardTaskTimelineSettings = () => {
     label: t`Not configured`,
     value: '',
   };
-  const barColor = configuration.barColor ?? DEFAULT_BAR_COLOR;
+  const barColor = configuration.barColor ?? DEFAULT_TASK_TIMELINE_BAR_COLOR;
 
   const updateMapping = (
     key: 'startDateFieldMetadataId' | 'dueDateFieldMetadataId',
@@ -114,7 +111,9 @@ export const SidePanelDashboardTaskTimelineSettings = () => {
       ...mapping,
       [key]: value || null,
     };
-    updateCurrentWidgetConfig({ configToUpdate: { fieldMapping: nextMapping } });
+    updateCurrentWidgetConfig({
+      configToUpdate: { fieldMapping: nextMapping },
+    });
   };
 
   return (

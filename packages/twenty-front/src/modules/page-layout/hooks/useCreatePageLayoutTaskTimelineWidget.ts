@@ -50,7 +50,9 @@ export const useCreatePageLayoutTaskTimelineWidget = ({
   const createPageLayoutTaskTimelineWidget = useCallback(
     (objectMetadataId?: string): PageLayoutWidget => {
       if (!isDefined(activeTabId)) {
-        throw new Error('A tab must be selected to create a task timeline widget');
+        throw new Error(
+          'A tab must be selected to create a task timeline widget',
+        );
       }
 
       const widgetId = uuidv4();

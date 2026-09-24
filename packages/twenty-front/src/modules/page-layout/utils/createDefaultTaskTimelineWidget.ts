@@ -1,3 +1,4 @@
+import { DEFAULT_TASK_TIMELINE_BAR_COLOR } from 'twenty-shared/constants';
 import {
   type GridPosition,
   PageLayoutTabLayoutMode,
@@ -27,7 +28,7 @@ export const createDefaultTaskTimelineWidget = ({
   configuration: {
     __typename: 'TaskTimelineConfiguration',
     configurationType: WidgetConfigurationType.TASK_TIMELINE,
-    barColor: '#3b82f6',
+    barColor: DEFAULT_TASK_TIMELINE_BAR_COLOR,
   },
   gridPosition,
   position: {

@@ -2,7 +2,6 @@ import {
   type KeyboardEvent,
   type MouseEvent as ReactMouseEvent,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 
@@ -23,7 +22,11 @@ import {
 import { useOpenRecordInSidePanel } from '@/side-panel/hooks/useOpenRecordInSidePanel';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
-import { CoreObjectNameSingular, type TaskTimelineItem } from 'twenty-shared/types';
+import { DEFAULT_TASK_TIMELINE_BAR_COLOR } from 'twenty-shared/constants';
+import {
+  CoreObjectNameSingular,
+  type TaskTimelineItem,
+} from 'twenty-shared/types';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 const TASK_TIMELINE_DATE_COLUMN_WIDTH = '7rem';
@@ -137,9 +140,9 @@ const StyledTaskChip = styled.div`
   margin: ${themeCssVariables.spacing[1]};
   overflow-wrap: anywhere;
   padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
-  z-index: 1;
   position: relative;
   touch-action: none;
+  z-index: 1;
 `;
 
 const StyledPreviewNotice = styled.span<{ $invalid?: boolean }>`
@@ -223,24 +226,25 @@ const TimelineItems = ({
     dayDelta: number;
     moved: boolean;
   } | null>(null);
-  const [panning, setPanning] = useState(false);
-  const panRef = useRef<{
+  const [pan, setPan] = useState<{
     originX: number;
     originY: number;
     scrollLeft: number;
     scrollTop: number;
     element: HTMLElement;
   } | null>(null);
-  const draggedRef = useRef(false);
-  const dragCurrentXRef = useRef(0);
+  const [dragged, setDragged] = useState(false);
   const { openRecordInSidePanel } = useOpenRecordInSidePanel();
   useEffect(() => {
     const now = new Date();
     const nextLocalMidnight = new Date(now);
     nextLocalMidnight.setHours(24, 0, 0, 0);
-    const timeout = window.setTimeout(() => {
-      setToday(getTaskTimelineToday());
-    }, Math.max(0, nextLocalMidnight.getTime() - now.getTime()));
+    const timeout = window.setTimeout(
+      () => {
+        setToday(getTaskTimelineToday());
+      },
+      Math.max(0, nextLocalMidnight.getTime() - now.getTime()),
+    );
 
     return () => window.clearTimeout(timeout);
   }, [today]);
@@ -277,20 +281,24 @@ const TimelineItems = ({
     if (dragging === null) return;
 
     const handlePointerMove = (event: MouseEvent) => {
-      dragCurrentXRef.current = event.clientX;
       const dayDelta = Math.round(
         (event.clientX - dragging.originX) / dragging.dayWidth,
       );
-      if (dayDelta !== 0) draggedRef.current = true;
+      if (dayDelta !== 0) setDragged(true);
       setDragging((current) =>
         current === null
           ? null
-          : { ...current, currentX: event.clientX, dayDelta, moved: dayDelta !== 0 },
+          : {
+              ...current,
+              currentX: event.clientX,
+              dayDelta,
+              moved: dayDelta !== 0,
+            },
       );
     };
     const handlePointerUp = () => {
       const dayDelta = Math.round(
-        (dragCurrentXRef.current - dragging.originX) / dragging.dayWidth,
+        (dragging.currentX - dragging.originX) / dragging.dayWidth,
       );
       const item = dragging.item;
       const dates = getPreviewDates(item, dragging.mode, dayDelta);
@@ -318,7 +326,7 @@ const TimelineItems = ({
       }
       setDragging(null);
       window.setTimeout(() => {
-        draggedRef.current = false;
+        setDragged(false);
       }, 0);
     };
     window.addEventListener('mousemove', handlePointerMove);
@@ -330,15 +338,14 @@ const TimelineItems = ({
   }, [dragging, updateTask]);
 
   useEffect(() => {
+    if (pan === null) return;
+
     const handlePanMove = (event: MouseEvent) => {
-      const pan = panRef.current;
-      if (!pan) return;
       pan.element.scrollLeft = pan.scrollLeft - (event.clientX - pan.originX);
       pan.element.scrollTop = pan.scrollTop - (event.clientY - pan.originY);
     };
     const endPan = () => {
-      panRef.current = null;
-      setPanning(false);
+      setPan(null);
     };
     window.addEventListener('mousemove', handlePanMove);
     window.addEventListener('mouseup', endPan);
@@ -346,7 +353,7 @@ const TimelineItems = ({
       window.removeEventListener('mousemove', handlePanMove);
       window.removeEventListener('mouseup', endPan);
     };
-  }, []);
+  }, [pan]);
 
   const beginPan = (event: ReactMouseEvent<HTMLDivElement>) => {
     if (event.button !== 0 || dragging !== null) return;
@@ -358,14 +365,13 @@ const TimelineItems = ({
     ) {
       return;
     }
-    panRef.current = {
+    setPan({
       originX: event.clientX,
       originY: event.clientY,
       scrollLeft: event.currentTarget.scrollLeft,
       scrollTop: event.currentTarget.scrollTop,
       element: event.currentTarget,
-    };
-    setPanning(true);
+    });
     event.preventDefault();
   };
 
@@ -389,11 +395,10 @@ const TimelineItems = ({
       dayDelta: 0,
       moved: false,
     });
-    dragCurrentXRef.current = event.clientX;
   };
 
   const activateTask = (event: ReactMouseEvent, itemId: string) => {
-    if (draggedRef.current) {
+    if (dragged) {
       event.preventDefault();
       return;
     }
@@ -404,10 +409,7 @@ const TimelineItems = ({
     });
   };
 
-  const activateTaskFromKeyboard = (
-    event: KeyboardEvent,
-    itemId: string,
-  ) => {
+  const activateTaskFromKeyboard = (event: KeyboardEvent, itemId: string) => {
     if (event.key !== 'Enter' && event.key !== ' ') return;
     event.preventDefault();
     openRecordInSidePanel({
@@ -424,149 +426,149 @@ const TimelineItems = ({
         role="region"
         aria-label={t`Task timeline calendar viewport`}
         onMouseDown={beginPan}
-        style={{ cursor: panning ? 'grabbing' : undefined }}
+        style={{ cursor: pan !== null ? 'grabbing' : undefined }}
       >
         <StyledNotice id="task-timeline-pan-instructions">
           {t`Scroll horizontally and vertically, or drag empty space to pan. Task bars and controls remain interactive.`}
         </StyledNotice>
         {calendarDates.length > 0 && visibleItems.length > 0 && (
-        <StyledCalendar
-          data-date-column-width={TASK_TIMELINE_DATE_COLUMN_WIDTH}
-          role="grid"
-          aria-label={t`Task timeline calendar`}
-        >
-          <StyledCalendarHeader role="row">
-            <StyledTaskTitle>{t`Task`}</StyledTaskTitle>
-            <StyledCalendarHeaderTrack $columns={calendarDates.length}>
-              {calendarDates.map((date) => (
-                <StyledCalendarDate key={date} role="columnheader">
-                  <time dateTime={date}>{date.slice(5, 10)}</time>
-                </StyledCalendarDate>
-              ))}
-            </StyledCalendarHeaderTrack>
-          </StyledCalendarHeader>
-          {visibleItems.map((item) => {
-            const isPreview = dragging?.item.id === item.id && dragging.moved;
-            const itemDates = isPreview
-              ? getPreviewDates(item, dragging.mode, dragging.dayDelta)
-              : item.startDate && item.endDate
-                ? { startDate: item.startDate, endDate: item.endDate }
-                : null;
-            const isInvalidPreview =
-              isPreview &&
-              itemDates !== null &&
-              itemDates.startDate > itemDates.endDate;
-            const visualStartDate = isInvalidPreview
-              ? itemDates.startDate < itemDates.endDate
-                ? itemDates.startDate
-                : itemDates.endDate
-              : itemDates?.startDate && itemDates.startDate < today
-                ? today
-                : itemDates?.startDate ?? null;
-            const visualEndDate = isInvalidPreview
-              ? itemDates.startDate > itemDates.endDate
-                ? itemDates.startDate
-                : itemDates.endDate
-              : itemDates?.endDate ?? null;
-            const span = getTaskTimelineCalendarSpan({
-              taskStartDate: visualStartDate,
-              taskEndDate: visualEndDate,
-              timelineStartDate: visibleBounds!.startDate,
-              timelineEndDate: visibleBounds!.endDate,
-            });
-            if (span === null) return null;
-            const conflictId = `timeline-task-conflict-${item.id}`;
-            const errorId = `timeline-task-error-${item.id}`;
-            const descriptionIds = [
-              item.conflict ? conflictId : null,
-              errors[item.id] ? errorId : null,
-            ].filter((id): id is string => id !== null);
-            return (
-              <StyledCalendarRow key={item.id} role="row">
-                <div>
-                   <StyledTaskTitle
-                     role="button"
-                     tabIndex={0}
-                     onClick={(event) => activateTask(event, item.id)}
-                     onKeyDown={(event) =>
-                       activateTaskFromKeyboard(event, item.id)
-                     }
-                   >
-                    {item.title || t`Untitled task`}
-                  </StyledTaskTitle>
-                  <StyledNotice>
-                    {item.isMilestone ? t`Milestone` : t`Task`}
-                  </StyledNotice>
-                </div>
-                <StyledCalendarTrack
-                  $columns={calendarDates.length}
-                  role="gridcell"
-                >
-                  {calendarDates.map((date) => (
-                    <StyledCalendarCell key={date} aria-hidden="true" />
-                  ))}
-                  <StyledTaskChip
-                    aria-label={item.title || t`Untitled task`}
-                    data-testid={`timeline-task-chip-${item.id}`}
-                    role="button"
-                    aria-describedby={
-                      descriptionIds.length > 0
-                        ? descriptionIds.join(' ')
-                        : undefined
-                    }
-                    onClick={(event) => activateTask(event, item.id)}
-                    onKeyDown={(event) =>
-                      activateTaskFromKeyboard(event, item.id)
-                    }
-                    onMouseDown={(event) => beginDrag(item, 'move', event)}
-                    style={{
-                      gridColumn: `${span.startColumn} / span ${span.columnSpan}`,
-                      ['--task-timeline-bar-color' as string]: barColor,
-                    }}
-                    tabIndex={0}
+          <StyledCalendar
+            data-date-column-width={TASK_TIMELINE_DATE_COLUMN_WIDTH}
+            role="grid"
+            aria-label={t`Task timeline calendar`}
+          >
+            <StyledCalendarHeader role="row">
+              <StyledTaskTitle>{t`Task`}</StyledTaskTitle>
+              <StyledCalendarHeaderTrack $columns={calendarDates.length}>
+                {calendarDates.map((date) => (
+                  <StyledCalendarDate key={date} role="columnheader">
+                    <time dateTime={date}>{date.slice(5, 10)}</time>
+                  </StyledCalendarDate>
+                ))}
+              </StyledCalendarHeaderTrack>
+            </StyledCalendarHeader>
+            {visibleItems.map((item) => {
+              const isPreview = dragging?.item.id === item.id && dragging.moved;
+              const itemDates = isPreview
+                ? getPreviewDates(item, dragging.mode, dragging.dayDelta)
+                : item.startDate && item.endDate
+                  ? { startDate: item.startDate, endDate: item.endDate }
+                  : null;
+              const isInvalidPreview =
+                isPreview &&
+                itemDates !== null &&
+                itemDates.startDate > itemDates.endDate;
+              const visualStartDate = isInvalidPreview
+                ? itemDates.startDate < itemDates.endDate
+                  ? itemDates.startDate
+                  : itemDates.endDate
+                : itemDates?.startDate && itemDates.startDate < today
+                  ? today
+                  : (itemDates?.startDate ?? null);
+              const visualEndDate = isInvalidPreview
+                ? itemDates.startDate > itemDates.endDate
+                  ? itemDates.startDate
+                  : itemDates.endDate
+                : (itemDates?.endDate ?? null);
+              const span = getTaskTimelineCalendarSpan({
+                taskStartDate: visualStartDate,
+                taskEndDate: visualEndDate,
+                timelineStartDate: visibleBounds!.startDate,
+                timelineEndDate: visibleBounds!.endDate,
+              });
+              if (span === null) return null;
+              const conflictId = `timeline-task-conflict-${item.id}`;
+              const errorId = `timeline-task-error-${item.id}`;
+              const descriptionIds = [
+                item.conflict ? conflictId : null,
+                errors[item.id] ? errorId : null,
+              ].filter((id): id is string => id !== null);
+              return (
+                <StyledCalendarRow key={item.id} role="row">
+                  <div>
+                    <StyledTaskTitle
+                      role="button"
+                      tabIndex={0}
+                      onClick={(event) => activateTask(event, item.id)}
+                      onKeyDown={(event) =>
+                        activateTaskFromKeyboard(event, item.id)
+                      }
+                    >
+                      {item.title || t`Untitled task`}
+                    </StyledTaskTitle>
+                    <StyledNotice>
+                      {item.isMilestone ? t`Milestone` : t`Task`}
+                    </StyledNotice>
+                  </div>
+                  <StyledCalendarTrack
+                    $columns={calendarDates.length}
+                    role="gridcell"
                   >
-                    {canEditDates && (
-                      <StyledLeftResizeHandle
-                        aria-label={t`Resize task start date`}
-                        onMouseDown={(event) =>
-                          beginDrag(item, 'start', event)
-                        }
-                        type="button"
-                      />
-                    )}
-                    {item.title || t`Untitled task`}
-                    {item.conflict && (
-                      <StyledConflict id={conflictId} role="alert">
-                        {t`Dependency conflict; dates were not rescheduled.`}
-                      </StyledConflict>
-                    )}
-                    {errors[item.id] && (
-                      <StyledConflict id={errorId} role="alert">
-                        {errors[item.id]}
-                      </StyledConflict>
-                    )}
-                    {isPreview && itemDates !== null && (
-                      <StyledPreviewNotice $invalid={isInvalidPreview}>
-                        {t`Preview`} {isInvalidPreview ? t`(invalid)` : ''}: {item.title || t`Untitled task`} ·{' '}
-                        {dragging.mode === 'move' ? t`Move` : t`Resize`} · {t`Start`} {itemDates.startDate.slice(5, 10)} ·{' '}
-                        {t`Due`} {itemDates.endDate.slice(5, 10)}
-                      </StyledPreviewNotice>
-                    )}
-                    {canEditDates && (
-                      <StyledRightResizeHandle
-                        aria-label={t`Resize task due date`}
-                        onMouseDown={(event) =>
-                          beginDrag(item, 'end', event)
-                        }
-                        type="button"
-                      />
-                    )}
-                  </StyledTaskChip>
-                </StyledCalendarTrack>
-              </StyledCalendarRow>
-            );
-          })}
-        </StyledCalendar>
+                    {calendarDates.map((date) => (
+                      <StyledCalendarCell key={date} aria-hidden="true" />
+                    ))}
+                    <StyledTaskChip
+                      aria-label={item.title || t`Untitled task`}
+                      data-testid={`timeline-task-chip-${item.id}`}
+                      role="button"
+                      aria-describedby={
+                        descriptionIds.length > 0
+                          ? descriptionIds.join(' ')
+                          : undefined
+                      }
+                      onClick={(event) => activateTask(event, item.id)}
+                      onKeyDown={(event) =>
+                        activateTaskFromKeyboard(event, item.id)
+                      }
+                      onMouseDown={(event) => beginDrag(item, 'move', event)}
+                      style={{
+                        gridColumn: `${span.startColumn} / span ${span.columnSpan}`,
+                        ['--task-timeline-bar-color' as string]: barColor,
+                      }}
+                      tabIndex={0}
+                    >
+                      {canEditDates && (
+                        <StyledLeftResizeHandle
+                          aria-label={t`Resize task start date`}
+                          onMouseDown={(event) =>
+                            beginDrag(item, 'start', event)
+                          }
+                          type="button"
+                        />
+                      )}
+                      {item.title || t`Untitled task`}
+                      {item.conflict && (
+                        <StyledConflict id={conflictId} role="alert">
+                          {t`Dependency conflict; dates were not rescheduled.`}
+                        </StyledConflict>
+                      )}
+                      {errors[item.id] && (
+                        <StyledConflict id={errorId} role="alert">
+                          {errors[item.id]}
+                        </StyledConflict>
+                      )}
+                      {isPreview && itemDates !== null && (
+                        <StyledPreviewNotice $invalid={isInvalidPreview}>
+                          {t`Preview`} {isInvalidPreview ? t`(invalid)` : ''}:{' '}
+                          {item.title || t`Untitled task`} ·{' '}
+                          {dragging.mode === 'move' ? t`Move` : t`Resize`} ·{' '}
+                          {t`Start`} {itemDates.startDate.slice(5, 10)} ·{' '}
+                          {t`Due`} {itemDates.endDate.slice(5, 10)}
+                        </StyledPreviewNotice>
+                      )}
+                      {canEditDates && (
+                        <StyledRightResizeHandle
+                          aria-label={t`Resize task due date`}
+                          onMouseDown={(event) => beginDrag(item, 'end', event)}
+                          type="button"
+                        />
+                      )}
+                    </StyledTaskChip>
+                  </StyledCalendarTrack>
+                </StyledCalendarRow>
+              );
+            })}
+          </StyledCalendar>
         )}
         {datedItems.length === 0 && (
           <StyledState role="status">
@@ -605,7 +607,7 @@ export const TaskTimelineWidget = ({ widget }: TaskTimelineWidgetProps) => {
       : null;
   const barColor = /^#[0-9a-fA-F]{6}$/.test(configuredBarColor ?? '')
     ? configuredBarColor!
-    : '#3b82f6';
+    : DEFAULT_TASK_TIMELINE_BAR_COLOR;
 
   if (status === 'loading') {
     return <WidgetSkeletonLoader />;

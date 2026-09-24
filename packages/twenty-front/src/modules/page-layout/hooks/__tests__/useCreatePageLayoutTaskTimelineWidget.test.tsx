@@ -23,7 +23,7 @@ describe('useCreatePageLayoutTaskTimelineWidget', () => {
   it('inserts a timeline draft and matching layout into the active tab', () => {
     const { result } = renderHook(
       () => {
-        const setDraft = useSetAtomComponentState(
+        const setPageLayoutDraft = useSetAtomComponentState(
           pageLayoutDraftComponentState,
           PAGE_LAYOUT_TEST_INSTANCE_ID,
         );
@@ -34,11 +34,11 @@ describe('useCreatePageLayoutTaskTimelineWidget', () => {
             ),
           }),
         );
-        const draft = useAtomComponentStateValue(
+        const pageLayoutDraft = useAtomComponentStateValue(
           pageLayoutDraftComponentState,
           PAGE_LAYOUT_TEST_INSTANCE_ID,
         );
-        const layouts = useAtomComponentStateValue(
+        const pageLayoutCurrentLayouts = useAtomComponentStateValue(
           pageLayoutCurrentLayoutsComponentState,
           PAGE_LAYOUT_TEST_INSTANCE_ID,
         );
@@ -49,13 +49,19 @@ describe('useCreatePageLayoutTaskTimelineWidget', () => {
           ),
         });
 
-        return { setDraft, setActiveTabId, draft, layouts, creator };
+        return {
+          setPageLayoutDraft,
+          setActiveTabId,
+          pageLayoutDraft,
+          pageLayoutCurrentLayouts,
+          creator,
+        };
       },
       { wrapper: PageLayoutTestWrapper },
     );
 
     act(() => {
-      result.current.setDraft({
+      result.current.setPageLayoutDraft({
         id: 'layout-id',
         name: 'Dashboard',
         type: PageLayoutType.DASHBOARD,
@@ -82,14 +88,18 @@ describe('useCreatePageLayoutTaskTimelineWidget', () => {
       result.current.creator.createPageLayoutTaskTimelineWidget('task-object');
     });
 
-    expect(result.current.draft.tabs[0].widgets).toHaveLength(1);
-    expect(result.current.draft.tabs[0].widgets[0]).toMatchObject({
+    expect(result.current.pageLayoutDraft.tabs[0].widgets).toHaveLength(1);
+    expect(result.current.pageLayoutDraft.tabs[0].widgets[0]).toMatchObject({
       id: 'timeline-widget-id',
       type: WidgetType.TASK_TIMELINE,
       title: 'Task Timeline',
       objectMetadataId: 'task-object',
     });
-    expect(result.current.layouts['tab-id'].desktop).toHaveLength(1);
-    expect(result.current.layouts['tab-id'].mobile).toHaveLength(1);
+    expect(
+      result.current.pageLayoutCurrentLayouts['tab-id'].desktop,
+    ).toHaveLength(1);
+    expect(
+      result.current.pageLayoutCurrentLayouts['tab-id'].mobile,
+    ).toHaveLength(1);
   });
 });

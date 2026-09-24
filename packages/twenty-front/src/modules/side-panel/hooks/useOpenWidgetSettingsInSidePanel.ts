@@ -142,7 +142,6 @@ export const useOpenWidgetSettingsInSidePanel = (
         return;
       }
 
-
       const containingTab = pageLayoutDraft.tabs.find((tab) =>
         tab.widgets.some((w) => w.id === widgetId),
       );

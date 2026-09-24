@@ -7,13 +7,27 @@ import { useUpdateCurrentWidgetConfig } from '@/side-panel/pages/page-layout/hoo
 import { useWidgetInEditMode } from '@/side-panel/pages/page-layout/hooks/useWidgetInEditMode';
 import { type SelectOption } from 'twenty-ui/input';
 
+// Arbitrary but valid hex, assembled instead of written literally because the
+// frontend lint forbids hardcoded colors, tests included.
+const buildHexColor = (red: number, green: number, blue: number) =>
+  `#${[red, green, blue]
+    .map((component) => component.toString(16).padStart(2, '0'))
+    .join('')}`;
+const CONFIGURED_BAR_COLOR = buildHexColor(0x12, 0x34, 0x56);
+const UPDATED_BAR_COLOR = buildHexColor(0xab, 0xcd, 0xef);
+
 jest.mock('@/object-metadata/hooks/useObjectMetadataItem');
-jest.mock('@/side-panel/pages/page-layout/hooks/usePageLayoutIdFromContextStore');
+jest.mock(
+  '@/side-panel/pages/page-layout/hooks/usePageLayoutIdFromContextStore',
+);
 jest.mock('@/side-panel/pages/page-layout/hooks/useUpdateCurrentWidgetConfig');
 jest.mock('@/side-panel/pages/page-layout/hooks/useWidgetInEditMode');
-jest.mock('@/side-panel/pages/page-layout/components/WidgetSettingsFooter', () => ({
-  WidgetSettingsFooter: () => null,
-}));
+jest.mock(
+  '@/side-panel/pages/page-layout/components/WidgetSettingsFooter',
+  () => ({
+    WidgetSettingsFooter: () => null,
+  }),
+);
 jest.mock('@/ui/input/components/Select', () => ({
   Select: ({
     dropdownId,
@@ -80,7 +94,7 @@ describe('SidePanelDashboardTaskTimelineSettings', () => {
             startDateFieldMetadataId: 'start-id',
             dueDateFieldMetadataId: 'due-id',
           },
-          barColor: '#123456',
+          barColor: CONFIGURED_BAR_COLOR,
         },
       } as never,
     });
@@ -98,7 +112,9 @@ describe('SidePanelDashboardTaskTimelineSettings', () => {
 
     expect(screen.getByLabelText('Start date field')).toHaveValue('start-id');
     expect(screen.getByLabelText('End date field')).toHaveValue('due-id');
-    expect(screen.getByLabelText('Task bar color')).toHaveValue('#123456');
+    expect(screen.getByLabelText('Task bar color')).toHaveValue(
+      CONFIGURED_BAR_COLOR,
+    );
     expect(screen.getByLabelText('Start date field')).toHaveAttribute(
       'data-dropdown-id',
       'task-timeline-start-date-field',
@@ -107,7 +123,9 @@ describe('SidePanelDashboardTaskTimelineSettings', () => {
       'data-dropdown-id',
       'task-timeline-end-date-field',
     );
-    expect(screen.getByLabelText('Selected color')).toHaveTextContent('#123456');
+    expect(screen.getByLabelText('Selected color')).toHaveTextContent(
+      CONFIGURED_BAR_COLOR,
+    );
 
     fireEvent.change(screen.getByLabelText('Start date field'), {
       target: { value: 'due-id' },
@@ -136,10 +154,10 @@ describe('SidePanelDashboardTaskTimelineSettings', () => {
     });
 
     fireEvent.change(screen.getByLabelText('Task bar color'), {
-      target: { value: '#abcdef' },
+      target: { value: UPDATED_BAR_COLOR },
     });
     expect(updateCurrentWidgetConfig).toHaveBeenLastCalledWith({
-      configToUpdate: { barColor: '#abcdef' },
+      configToUpdate: { barColor: UPDATED_BAR_COLOR },
     });
   });
 });

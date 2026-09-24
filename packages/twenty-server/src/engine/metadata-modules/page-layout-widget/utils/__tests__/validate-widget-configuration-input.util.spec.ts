@@ -256,7 +256,6 @@ describe('validateWidgetConfigurationInput', () => {
       ).not.toThrow();
     });
 
-
     it('keeps the task timeline widget and configuration types aligned', () => {
       expect(() =>
         validatePageLayoutWidgetTypeConfiguration({

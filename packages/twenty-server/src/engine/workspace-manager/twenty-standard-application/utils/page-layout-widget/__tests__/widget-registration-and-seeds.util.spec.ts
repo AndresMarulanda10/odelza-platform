@@ -4,7 +4,7 @@ import {
   STANDARD_PAGE_LAYOUTS,
   STANDARD_RECORD_PAGE_LAYOUTS,
 } from 'src/engine/workspace-manager/twenty-standard-application/constants/standard-page-layout.constant';
-import { AddPlanningWidgetTypesFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1820000000000-add-planning-widget-types';
+import { AddPlanningWidgetTypesFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1790260990300-add-planning-widget-types';
 import { INSTANCE_COMMANDS } from 'src/database/commands/upgrade-version-command/instance-commands.constant';
 import { PageLayoutType } from 'src/engine/metadata-modules/page-layout/enums/page-layout-type.enum';
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
