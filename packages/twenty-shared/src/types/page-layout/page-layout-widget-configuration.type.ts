@@ -169,11 +169,7 @@ export type CardCarouselLayout =
   | 'imageOverlay'
   | 'textOnly';
 
-export type CardCarouselImageAspect =
-  | 'square'
-  | 'portrait'
-  | 'wide'
-  | 'circle';
+export type CardCarouselImageAspect = 'square' | 'portrait' | 'wide' | 'circle';
 
 export type CardCarouselRadius = 'square' | 'soft' | 'rounded' | 'pill';
 
