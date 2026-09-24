@@ -122,6 +122,11 @@ msgstr "({seats} {seatCountLabel} × ${displayedPerSeatPrice})"
 msgid "(${currentCreditPriceDisplay}/{intervalLabel})"
 msgstr "(${currentCreditPriceDisplay}/{intervalLabel})"
 
+#. js-lingui-id: rdTdcw
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "(invalid)"
+msgstr ""
+
 #. js-lingui-id: L4H5SW
 #: src/modules/ui/input/components/IconPicker.tsx
 msgid "(no icon selected)"
@@ -965,6 +970,11 @@ msgstr "此工作區已接受並簽署的 DPA，以及其範本版本與日期�
 msgid "Access Key ID"
 msgstr "存取金鑰 ID"
 
+#. js-lingui-id: XcvPL5
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Access to this section is denied."
+msgstr ""
+
 #. js-lingui-id: CrjDqe
 #: src/pages/auth/Authorize.tsx
 msgid "Access your workspace data"
@@ -1114,6 +1124,11 @@ msgstr "使用中的安裝"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminHealthAccountSyncCountersTable.tsx
 msgid "Active Sync"
 msgstr "ActiveSync"
+
+#. js-lingui-id: KOPiGS
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Actual"
+msgstr ""
 
 #. js-lingui-id: m16xKo
 #: src/pages/settings/ai/components/SettingsAgentEvalsTab.tsx
@@ -1921,6 +1936,11 @@ msgstr "所有應用程式註冊"
 msgid "All application registrations across the platform, including orphaned marketplace apps"
 msgstr "整個平台上的所有應用程式註冊，包括無所屬的市集應用程式"
 
+#. js-lingui-id: zHxUsQ
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "All dated tasks have already ended."
+msgstr ""
+
 #. js-lingui-id: 1kLn6M
 #: src/modules/activities/calendar/components/CalendarEventRow.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionCreateCalendarEvent.tsx
@@ -2120,10 +2140,20 @@ msgstr "Amazon Q Developer CLI"
 msgid "Amber"
 msgstr "琥珀色"
 
+#. js-lingui-id: hehnjM
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Amount"
+msgstr ""
+
 #. js-lingui-id: s46CyD
 #: src/modules/object-record/record-field/ui/form-types/components/FormCurrencyFieldInput.tsx
 msgid "Amount Micros"
 msgstr "金額 (微單位)"
+
+#. js-lingui-id: xI4dxj
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "An approved finance data source is required; no financial values were inferred."
+msgstr ""
 
 #. js-lingui-id: Vw8l6h
 #: src/modules/views/hooks/internal/usePerformViewSortAPIPersist.ts
@@ -2137,6 +2167,16 @@ msgstr "發生錯誤"
 #: src/modules/auth/sign-in-up/hooks/useSignInUp.ts
 msgid "An error occurred while checking user existence"
 msgstr "檢查使用者存在時發生錯誤"
+
+#. js-lingui-id: TQQG2A
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "An error occurred while loading financial data."
+msgstr ""
+
+#. js-lingui-id: PAwBtR
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "An error occurred while loading tasks."
+msgstr ""
 
 #. js-lingui-id: LfKkm6
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetErrorDisplay.tsx
@@ -2615,6 +2655,11 @@ msgstr "詢問、搜尋或建立任何內容..."
 #: src/modules/ai/components/AiChatQuestionStatusRenderer.tsx
 msgid "Asking questions..."
 msgstr "正在提問..."
+
+#. js-lingui-id: GX8GKD
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Assets"
+msgstr ""
 
 #. js-lingui-id: OBqG7p
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentConfirmationModal.tsx
@@ -3173,6 +3218,21 @@ msgstr "瀏覽合作夥伴"
 msgid "BTREE (default, good for sorting and equality)"
 msgstr "BTREE（預設，適合排序和相等性查詢）"
 
+#. js-lingui-id: 3SD10y
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Budget"
+msgstr ""
+
+#. js-lingui-id: FgSd7C
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Budget versus actual"
+msgstr ""
+
+#. js-lingui-id: ysG3Pd
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Budget versus actual rows"
+msgstr ""
+
 #. js-lingui-id: pN5hZf
 #: src/pages/settings/applications/tabs/SettingsApplicationFrontComponentSettingsTab.tsx
 msgid "Build and runtime metadata for this component"
@@ -3514,6 +3574,11 @@ msgstr "卡片"
 msgid "Card payment is currently unavailable. Please verify your Stripe configuration or contact your workspace admin."
 msgstr "目前無法使用信用卡付款。請確認您的 Stripe 設定或聯絡工作區管理員。"
 
+#. js-lingui-id: 8MkaKf
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Cash flow"
+msgstr ""
+
 #. js-lingui-id: M1RLfx
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Catalan"
@@ -3523,6 +3588,16 @@ msgstr "加泰羅尼亞語"
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 msgid "Category"
 msgstr "分類"
+
+#. js-lingui-id: 8cnN/3
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Category analysis"
+msgstr ""
+
+#. js-lingui-id: ExmWe7
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Category analysis rows"
+msgstr ""
 
 #. js-lingui-id: RpYfjZ
 #: src/modules/activities/emails/components/EmailComposerFields.tsx
@@ -4101,6 +4176,11 @@ msgstr "公司"
 #: src/modules/settings/billing/components/internal/SettingsBillingSubscriptionInfoCardHeaderActions.tsx
 msgid "Compare plans"
 msgstr "比較方案"
+
+#. js-lingui-id: Nx6F8k
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Comparison"
+msgstr ""
 
 #. js-lingui-id: 3WrMP5
 #: src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx
@@ -5175,6 +5255,7 @@ msgstr "貨幣"
 
 #. js-lingui-id: Q2lUR2
 #: src/modules/object-record/record-field/ui/meta-types/input/components/CurrencyFieldInput.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 msgid "Currency"
 msgstr "貨幣"
 
@@ -5594,6 +5675,11 @@ msgstr "日期粒度 X"
 #: src/modules/side-panel/pages/page-layout/utils/__tests__/shouldHideChartSetting.test.ts
 msgid "Date Granularity Y"
 msgstr "日期粒度 Y"
+
+#. js-lingui-id: Lgnlah
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling."
+msgstr ""
 
 #. js-lingui-id: H7OUPr
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
@@ -6074,6 +6160,11 @@ msgstr "正在刪除 {objectLabel}"
 msgid "Deleting this method will remove it permanently from your account."
 msgstr "刪除此方法將永久從您的帳戶移除。"
 
+#. js-lingui-id: BhVo60
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Dependency conflict; dates were not rescheduled."
+msgstr ""
+
 #. js-lingui-id: Ssdrw4
 #: src/modules/settings/ai/components/SettingsAiModelsTable.tsx
 msgid "Deprecated"
@@ -6456,6 +6547,11 @@ msgstr "將欄位拖放到這裡"
 #: src/modules/spreadsheet-import/steps/components/UploadStep/components/DropZone.tsx
 msgid "Drop file here..."
 msgstr "將文件拖到這裡……"
+
+#. js-lingui-id: Gpfctt
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Due"
+msgstr ""
 
 #. js-lingui-id: euc6Ns
 #: src/modules/side-panel/pages/page-layout/components/RegularTabSettingsContent.tsx
@@ -6971,6 +7067,11 @@ msgstr "加密金鑰輪替"
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "End date"
 msgstr "結束日期"
+
+#. js-lingui-id: DqIce1
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "End date field"
+msgstr ""
 
 #. js-lingui-id: Fqu/aC
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
@@ -8388,6 +8489,11 @@ msgstr "篩選"
 msgid "Filters"
 msgstr "篩選"
 
+#. js-lingui-id: HuyCt8
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Financial data is unavailable."
+msgstr ""
+
 #. js-lingui-id: YTaTdm
 #: src/modules/ai/constants/crud-tool-operation-verbs.constant.ts
 msgid "Finding {objectLabel}"
@@ -8584,6 +8690,11 @@ msgstr "每位使用者可獲得的免費點數"
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "French"
 msgstr "法語"
+
+#. js-lingui-id: +r/DwW
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Freshness"
+msgstr ""
 
 #. js-lingui-id: ejVYRQ
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
@@ -10199,6 +10310,11 @@ msgstr "鍵盤快捷鍵"
 msgid "Korean"
 msgstr "韓語"
 
+#. js-lingui-id: dxWV9J
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "KPI summary"
+msgstr ""
+
 #. js-lingui-id: 87a/t/
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsDate.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsNumber.tsx
@@ -10550,6 +10666,11 @@ msgstr "小於或等於"
 msgid "Level"
 msgstr "等級"
 
+#. js-lingui-id: 1Lzpv9
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Liabilities"
+msgstr ""
+
 #. js-lingui-id: NaBPMD
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "LibreChat"
@@ -10735,6 +10856,11 @@ msgstr "正在載入文件檢視器..."
 #: src/modules/activities/emails/components/EmailLoader.tsx
 msgid "Loading emails"
 msgstr "正在載入電子郵件"
+
+#. js-lingui-id: mkGrO6
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Loading financial data…"
+msgstr ""
 
 #. js-lingui-id: IFQsdb
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
@@ -11261,6 +11387,11 @@ msgstr "方法"
 msgid "Microsoft"
 msgstr "Microsoft"
 
+#. js-lingui-id: 4YHrmD
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Milestone"
+msgstr ""
+
 #. js-lingui-id: eTUF28
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationLabel.ts
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
@@ -11450,6 +11581,11 @@ msgstr "更多小工具"
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationInstallStats.tsx
 msgid "Most installed version"
 msgstr "安裝數最多的版本"
+
+#. js-lingui-id: QWdKwH
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Move"
+msgstr ""
 
 #. js-lingui-id: 3Ib6FN
 #: src/modules/navigation-menu-item/edit/side-panel/components/SidePanelEditOrganizeActions.tsx
@@ -11660,6 +11796,12 @@ msgstr "導航分頁"
 #: src/pages/settings/communications/SettingsWorkspaceCommunicationGroupChannelDetail.tsx
 msgid "Need help to configure your shared mailbox?"
 msgstr "需要協助設定您的共用信箱嗎？"
+
+#. js-lingui-id: evw5ha
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Net worth"
+msgstr ""
 
 #. js-lingui-id: wW3b68
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsHttpRequestDetail.tsx
@@ -11991,6 +12133,11 @@ msgstr "無存取權"
 msgid "No active subscription."
 msgstr "沒有有效的訂閱。"
 
+#. js-lingui-id: kz9kIx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No active tasks to display"
+msgstr ""
+
 #. js-lingui-id: aXFOuf
 #: src/modules/activities/timeline-activities/components/TimelineCard.tsx
 msgid "No activity yet"
@@ -12046,6 +12193,11 @@ msgstr "沒有 API 密鑰符合您的搜索"
 #: src/pages/settings/applications/tabs/SettingsApplicationsAvailableTab.tsx
 msgid "No applications available"
 msgstr "沒有可用的應用程式"
+
+#. js-lingui-id: 5SYGVh
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "No approved data for this period."
+msgstr ""
 
 #. js-lingui-id: zLbFMr
 #: src/pages/onboarding/InstallAppsContent.tsx
@@ -12182,6 +12334,11 @@ msgstr "未找到數據"
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 msgid "No Date field"
 msgstr "無日期字段"
+
+#. js-lingui-id: zqwWN2
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No dated tasks to display"
+msgstr ""
 
 #. js-lingui-id: lAfu/q
 #: src/modules/side-panel/pages/page-layout/components/CanvasTabSettingsContent.tsx
@@ -12549,6 +12706,11 @@ msgstr "找不到具有檢視的系統物件"
 msgid "No targets available"
 msgstr "沒有可用的目標"
 
+#. js-lingui-id: yunxrV
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No tasks to display"
+msgstr ""
+
 #. js-lingui-id: t0t36i
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsAiAgentDetail.tsx
 msgid "No tools were called"
@@ -12704,6 +12866,11 @@ msgstr "默認視圖中不可用"
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 msgid "Not available on Default View"
 msgstr "默認視圖中不可用"
+
+#. js-lingui-id: SDND4q
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Not configured"
+msgstr ""
 
 #. js-lingui-id: 4wUkDk
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
@@ -13629,6 +13796,7 @@ msgid "Perform administrative actions or permanently delete this user"
 msgstr ""
 
 #. js-lingui-id: NtQvjo
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Period"
 msgstr "期間"
@@ -13672,6 +13840,21 @@ msgstr "權限 · {objectLabelSingular}"
 #: src/modules/activities/emails/recipients/components/EmailRecipientChipMenuContent.tsx
 msgid "Person created"
 msgstr "個人已建立"
+
+#. js-lingui-id: KOtX3r
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Personal Finance"
+msgstr ""
+
+#. js-lingui-id: pCopzO
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Personal-finance dashboard"
+msgstr ""
+
+#. js-lingui-id: r5VJ93
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Personal-finance data unavailable"
+msgstr ""
 
 #. js-lingui-id: zmwvG2
 #: src/modules/object-record/record-field/ui/meta-types/input/components/PhonesFieldInput.tsx
@@ -13926,6 +14109,11 @@ msgstr "在新的工作區上預先安裝"
 msgid "Pre-installed only"
 msgstr "僅限預裝"
 
+#. js-lingui-id: FlMg9W
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Precision"
+msgstr ""
+
 #. js-lingui-id: 0Lqxjs
 #: src/modules/auth/sign-in-up/constants/WorkspaceActivationMessages.tsx
 msgid "Prefilling your <0>workspace data</0>..."
@@ -13947,6 +14135,7 @@ msgid "Prevent from assigning the same value to different records"
 msgstr "防止用戶將相同的數值指定給不同的記錄"
 
 #. js-lingui-id: rdUucN
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/settings/data-model/components/SettingsDataModelPreviewFormCard.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectSettingsFormCard.tsx
 #: src/pages/settings/applications/SettingsApplicationFrontComponentDetail.tsx
@@ -14883,6 +15072,21 @@ msgstr "重設為靜態值"
 msgid "Reset variable"
 msgstr "重置變量"
 
+#. js-lingui-id: EP6x91
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize"
+msgstr ""
+
+#. js-lingui-id: k2DjdV
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize task due date"
+msgstr ""
+
+#. js-lingui-id: RYNDMW
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize task start date"
+msgstr ""
+
 #. js-lingui-id: N0vrR6
 #: src/modules/settings/billing/components/internal/ResourceCreditPriceSelector.tsx
 msgid "Resource credits updated."
@@ -14967,6 +15171,8 @@ msgstr "恢復"
 
 #. js-lingui-id: 6gRgw8
 #: src/modules/ai/components/AiChatErrorMessage.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobRowDropdownMenu.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminRetryJobsConfirmationModal.tsx
 #: src/pages/onboarding/PaymentSuccess.tsx
@@ -15287,6 +15493,11 @@ msgstr "範圍"
 #: src/pages/settings/ai/components/SettingsAgentLogsTab.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 msgid "Score"
+msgstr ""
+
+#. js-lingui-id: 2YCiey
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Scroll horizontally and vertically, or drag empty space to pan. Task bars and controls remain interactive."
 msgstr ""
 
 #. js-lingui-id: hJjXGo
@@ -15955,6 +16166,11 @@ msgstr "選擇哪些模型會在工作區的模型選擇器中顯示為推薦"
 msgid "Select your preferred language"
 msgstr "選擇您偏好的語言"
 
+#. js-lingui-id: YMYE4/
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Selected color"
+msgstr ""
+
 #. js-lingui-id: JlFcis
 #: src/modules/page-layout/widgets/email-thread/components/EmailThreadComposer.tsx
 #: src/modules/side-panel/pages/compose-email/components/SidePanelComposeEmailPage.tsx
@@ -16207,6 +16423,7 @@ msgstr "第七"
 
 #. js-lingui-id: Z8lGw6
 #: src/modules/activities/emails/components/EmailThreadBottomBar.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 msgid "Share"
 msgstr "分享"
 
@@ -16529,6 +16746,16 @@ msgstr "smtp.example.com"
 msgid "Some"
 msgstr "一些"
 
+#. js-lingui-id: jR8Wfb
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Some finance sections are unavailable."
+msgstr ""
+
+#. js-lingui-id: 8fz+t8
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Some finance sections could not be loaded."
+msgstr ""
+
 #. js-lingui-id: RwCYVZ
 #: src/modules/settings/accounts/components/SettingsAccountsMessageFolderCard.tsx
 msgid "Some folders"
@@ -16545,6 +16772,21 @@ msgstr "某些版面配置變更無法儲存"
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 msgid "Some log data was dropped to fit the size limit ({0} entries, {1} bytes)."
 msgstr "為符合大小限制，部分日誌資料已被捨棄（{0} 個項目，{1} 位元組）。"
+
+#. js-lingui-id: cSrzsO
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Some task data could not be loaded."
+msgstr ""
+
+#. js-lingui-id: 4aNyrb
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Some tasks have unavailable dates or progress."
+msgstr ""
+
+#. js-lingui-id: ZVl+JT
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Some values are unavailable."
+msgstr ""
 
 #. js-lingui-id: nwtY4N
 #: src/pages/auth/Authorize.tsx
@@ -16696,6 +16938,11 @@ msgstr "階段"
 msgid "Standard"
 msgstr "標準"
 
+#. js-lingui-id: tXkhj/
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Start"
+msgstr ""
+
 #. js-lingui-id: ASqWQi
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Start a new enterprise subscription to re-enable enterprise features."
@@ -16711,6 +16958,16 @@ msgstr "開始新的企業訂閱。"
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Start date"
 msgstr "開始日期"
+
+#. js-lingui-id: PdzWsW
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Start date cannot be after due date."
+msgstr ""
+
+#. js-lingui-id: AyXrhB
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Start date field"
+msgstr ""
 
 #. js-lingui-id: s+K73L
 #: src/modules/settings/billing/components/internal/SettingsBillingSubscriptionInfoModals.tsx
@@ -17210,6 +17467,54 @@ msgstr "聯結物件上的目標關聯"
 msgid "Target workspace subdomain"
 msgstr "目標工作區子網域"
 
+#. js-lingui-id: Q3P/4s
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task"
+msgstr ""
+
+#. js-lingui-id: iKS7vc
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Task bar color"
+msgstr ""
+
+#. js-lingui-id: I/ObQ6
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task date fields are not configured; unavailable dates are not inferred."
+msgstr ""
+
+#. js-lingui-id: hVUUhm
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline"
+msgstr ""
+
+#. js-lingui-id: a7kw3s
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Task Timeline"
+msgstr ""
+
+#. js-lingui-id: xZvFdS
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline calendar"
+msgstr ""
+
+#. js-lingui-id: Mv45RZ
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline calendar viewport"
+msgstr ""
+
+#. js-lingui-id: 5BZI6t
+#: src/modules/side-panel/hooks/useOpenWidgetSettingsInSidePanel.ts
+#: src/modules/side-panel/pages/page-layout/utils/getPageLayoutPageTitle.ts
+msgid "Task Timeline Settings"
+msgstr ""
+
+#. js-lingui-id: 4B+OzR
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline unavailable"
+msgstr ""
+
 #. js-lingui-id: R+s8S+
 #: src/modules/activities/tasks/components/TaskRow.tsx
 msgid "Task title"
@@ -17219,6 +17524,16 @@ msgstr "任務標題"
 #: src/modules/activities/notes/components/NoteTile.tsx
 msgid "Task Title"
 msgstr "任務標題"
+
+#. js-lingui-id: YDv82r
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Tasks with approved start and end dates will appear here."
+msgstr ""
+
+#. js-lingui-id: l9tCD6
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Tasks with both a valid start and end date will appear in the calendar."
+msgstr ""
 
 #. js-lingui-id: KM6m8p
 #: src/pages/settings/members/SettingsWorkspaceMembers.tsx
@@ -17633,6 +17948,11 @@ msgstr "此元件在沒有 UI 的情況下執行，且此處不會呈現任何�
 msgid "This connection does not exist or is not available for this application."
 msgstr "此連接不存在，或不適用於此應用程式。"
 
+#. js-lingui-id: BIE6Er
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "This data may be stale."
+msgstr ""
+
 #. js-lingui-id: SLIRqz
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "This database value overrides environment settings. "
@@ -17731,6 +18051,11 @@ msgstr "此角色已指派給這些 {roleTargetDisplayName}。"
 #. js-lingui-id: fp6HUI
 #: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
 msgid "This role is shared with other users or agents and cannot be edited here."
+msgstr ""
+
+#. js-lingui-id: evLk20
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "This section could not be loaded."
 msgstr ""
 
 #. js-lingui-id: 2iQQGR
@@ -17884,6 +18209,11 @@ msgstr "時區"
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
 msgid "Timeline"
 msgstr "時間軸"
+
+#. js-lingui-id: ewpwRb
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline data is incomplete"
+msgstr ""
 
 #. js-lingui-id: xY9s5E
 #: src/modules/settings/logic-functions/components/SettingsLogicFunctionNewForm.tsx
@@ -18378,10 +18708,25 @@ msgstr ""
 msgid "Unable to load application details. Please try again later."
 msgstr "無法載入應用程式詳細資訊。請稍後再試。"
 
+#. js-lingui-id: P9t/pW
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Unable to load personal-finance data"
+msgstr ""
+
+#. js-lingui-id: aU7aM1
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unable to load task timeline"
+msgstr ""
+
 #. js-lingui-id: l+ALBd
 #: src/modules/client-config/components/ClientConfigProvider.tsx
 msgid "Unable to Reach Back-end"
 msgstr "無法連接後端"
+
+#. js-lingui-id: 3y+qu/
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unable to save task timeline changes."
+msgstr ""
 
 #. js-lingui-id: 5JOLV9
 #: src/modules/ai/components/AiChatThreadItemMenu.tsx
@@ -18389,9 +18734,16 @@ msgid "Unarchive"
 msgstr "取消封存"
 
 #. js-lingui-id: jqzUyM
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 #: src/modules/settings/billing/hooks/useBillingPlanActions.ts
 msgid "Unavailable"
 msgstr "無法使用"
+
+#. js-lingui-id: PcSvms
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unavailable task data is not shown as zero or an invented date."
+msgstr ""
 
 #. js-lingui-id: NYFASA
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
@@ -18652,6 +19004,14 @@ msgstr "未命名清單"
 #: src/modules/settings/roles/role/components/SettingsRoleCreateEffect.tsx
 msgid "Untitled role"
 msgstr "無標題角色"
+
+#. js-lingui-id: CowgFX
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Untitled task"
+msgstr ""
 
 #. js-lingui-id: jxRjAG
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
@@ -19243,6 +19603,11 @@ msgstr "變數名稱"
 #: src/modules/object-record/record-field/ui/form-types/components/VariableChip.tsx
 msgid "Variable not found"
 msgstr "變量未找到"
+
+#. js-lingui-id: vXTvG8
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Variance"
+msgstr ""
 
 #. js-lingui-id: QDEWii
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
@@ -20224,6 +20589,11 @@ msgstr "您不能模擬您自己的帳戶"
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay.tsx
 msgid "You do not have permission to access the {objectName} object"
 msgstr "您無權訪問{objectName}對象"
+
+#. js-lingui-id: hFuTsh
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "You do not have permission to view task data."
+msgstr ""
 
 #. js-lingui-id: D0mU8n
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay.tsx

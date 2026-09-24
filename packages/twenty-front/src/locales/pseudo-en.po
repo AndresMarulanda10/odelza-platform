@@ -117,6 +117,11 @@ msgstr ""
 msgid "(${currentCreditPriceDisplay}/{intervalLabel})"
 msgstr ""
 
+#. js-lingui-id: rdTdcw
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "(invalid)"
+msgstr ""
+
 #. js-lingui-id: L4H5SW
 #: src/modules/ui/input/components/IconPicker.tsx
 msgid "(no icon selected)"
@@ -960,6 +965,11 @@ msgstr ""
 msgid "Access Key ID"
 msgstr ""
 
+#. js-lingui-id: XcvPL5
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Access to this section is denied."
+msgstr ""
+
 #. js-lingui-id: CrjDqe
 #: src/pages/auth/Authorize.tsx
 msgid "Access your workspace data"
@@ -1108,6 +1118,11 @@ msgstr ""
 #. js-lingui-id: QHjErc
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminHealthAccountSyncCountersTable.tsx
 msgid "Active Sync"
+msgstr ""
+
+#. js-lingui-id: KOPiGS
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Actual"
 msgstr ""
 
 #. js-lingui-id: m16xKo
@@ -1916,6 +1931,11 @@ msgstr ""
 msgid "All application registrations across the platform, including orphaned marketplace apps"
 msgstr ""
 
+#. js-lingui-id: zHxUsQ
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "All dated tasks have already ended."
+msgstr ""
+
 #. js-lingui-id: 1kLn6M
 #: src/modules/activities/calendar/components/CalendarEventRow.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionCreateCalendarEvent.tsx
@@ -2115,9 +2135,19 @@ msgstr ""
 msgid "Amber"
 msgstr ""
 
+#. js-lingui-id: hehnjM
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Amount"
+msgstr ""
+
 #. js-lingui-id: s46CyD
 #: src/modules/object-record/record-field/ui/form-types/components/FormCurrencyFieldInput.tsx
 msgid "Amount Micros"
+msgstr ""
+
+#. js-lingui-id: xI4dxj
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "An approved finance data source is required; no financial values were inferred."
 msgstr ""
 
 #. js-lingui-id: Vw8l6h
@@ -2131,6 +2161,16 @@ msgstr ""
 #. js-lingui-id: VD5bNu
 #: src/modules/auth/sign-in-up/hooks/useSignInUp.ts
 msgid "An error occurred while checking user existence"
+msgstr ""
+
+#. js-lingui-id: TQQG2A
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "An error occurred while loading financial data."
+msgstr ""
+
+#. js-lingui-id: PAwBtR
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "An error occurred while loading tasks."
 msgstr ""
 
 #. js-lingui-id: LfKkm6
@@ -2609,6 +2649,11 @@ msgstr ""
 #. js-lingui-id: QVL/hg
 #: src/modules/ai/components/AiChatQuestionStatusRenderer.tsx
 msgid "Asking questions..."
+msgstr ""
+
+#. js-lingui-id: GX8GKD
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Assets"
 msgstr ""
 
 #. js-lingui-id: OBqG7p
@@ -3168,6 +3213,21 @@ msgstr ""
 msgid "BTREE (default, good for sorting and equality)"
 msgstr ""
 
+#. js-lingui-id: 3SD10y
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Budget"
+msgstr ""
+
+#. js-lingui-id: FgSd7C
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Budget versus actual"
+msgstr ""
+
+#. js-lingui-id: ysG3Pd
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Budget versus actual rows"
+msgstr ""
+
 #. js-lingui-id: pN5hZf
 #: src/pages/settings/applications/tabs/SettingsApplicationFrontComponentSettingsTab.tsx
 msgid "Build and runtime metadata for this component"
@@ -3509,6 +3569,11 @@ msgstr ""
 msgid "Card payment is currently unavailable. Please verify your Stripe configuration or contact your workspace admin."
 msgstr ""
 
+#. js-lingui-id: 8MkaKf
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Cash flow"
+msgstr ""
+
 #. js-lingui-id: M1RLfx
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Catalan"
@@ -3517,6 +3582,16 @@ msgstr ""
 #. js-lingui-id: K7tIrx
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 msgid "Category"
+msgstr ""
+
+#. js-lingui-id: 8cnN/3
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Category analysis"
+msgstr ""
+
+#. js-lingui-id: ExmWe7
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Category analysis rows"
 msgstr ""
 
 #. js-lingui-id: RpYfjZ
@@ -4095,6 +4170,11 @@ msgstr ""
 #: src/modules/settings/billing/components/internal/SettingsBillingPlanComparisonTable.tsx
 #: src/modules/settings/billing/components/internal/SettingsBillingSubscriptionInfoCardHeaderActions.tsx
 msgid "Compare plans"
+msgstr ""
+
+#. js-lingui-id: Nx6F8k
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Comparison"
 msgstr ""
 
 #. js-lingui-id: 3WrMP5
@@ -5170,6 +5250,7 @@ msgstr ""
 
 #. js-lingui-id: Q2lUR2
 #: src/modules/object-record/record-field/ui/meta-types/input/components/CurrencyFieldInput.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 msgid "Currency"
 msgstr ""
 
@@ -5588,6 +5669,11 @@ msgstr ""
 #. js-lingui-id: YsCGZL
 #: src/modules/side-panel/pages/page-layout/utils/__tests__/shouldHideChartSetting.test.ts
 msgid "Date Granularity Y"
+msgstr ""
+
+#. js-lingui-id: Lgnlah
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling."
 msgstr ""
 
 #. js-lingui-id: H7OUPr
@@ -6069,6 +6155,11 @@ msgstr ""
 msgid "Deleting this method will remove it permanently from your account."
 msgstr ""
 
+#. js-lingui-id: BhVo60
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Dependency conflict; dates were not rescheduled."
+msgstr ""
+
 #. js-lingui-id: Ssdrw4
 #: src/modules/settings/ai/components/SettingsAiModelsTable.tsx
 msgid "Deprecated"
@@ -6450,6 +6541,11 @@ msgstr ""
 #. js-lingui-id: 6D/BnN
 #: src/modules/spreadsheet-import/steps/components/UploadStep/components/DropZone.tsx
 msgid "Drop file here..."
+msgstr ""
+
+#. js-lingui-id: Gpfctt
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Due"
 msgstr ""
 
 #. js-lingui-id: euc6Ns
@@ -6965,6 +7061,11 @@ msgstr ""
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "End date"
+msgstr ""
+
+#. js-lingui-id: DqIce1
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "End date field"
 msgstr ""
 
 #. js-lingui-id: Fqu/aC
@@ -8383,6 +8484,11 @@ msgstr ""
 msgid "Filters"
 msgstr ""
 
+#. js-lingui-id: HuyCt8
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Financial data is unavailable."
+msgstr ""
+
 #. js-lingui-id: YTaTdm
 #: src/modules/ai/constants/crud-tool-operation-verbs.constant.ts
 msgid "Finding {objectLabel}"
@@ -8578,6 +8684,11 @@ msgstr ""
 #. js-lingui-id: nLC6tu
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "French"
+msgstr ""
+
+#. js-lingui-id: +r/DwW
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Freshness"
 msgstr ""
 
 #. js-lingui-id: ejVYRQ
@@ -10194,6 +10305,11 @@ msgstr ""
 msgid "Korean"
 msgstr ""
 
+#. js-lingui-id: dxWV9J
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "KPI summary"
+msgstr ""
+
 #. js-lingui-id: 87a/t/
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsDate.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsNumber.tsx
@@ -10545,6 +10661,11 @@ msgstr ""
 msgid "Level"
 msgstr ""
 
+#. js-lingui-id: 1Lzpv9
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Liabilities"
+msgstr ""
+
 #. js-lingui-id: NaBPMD
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "LibreChat"
@@ -10729,6 +10850,11 @@ msgstr ""
 #. js-lingui-id: qIaOZk
 #: src/modules/activities/emails/components/EmailLoader.tsx
 msgid "Loading emails"
+msgstr ""
+
+#. js-lingui-id: mkGrO6
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Loading financial data…"
 msgstr ""
 
 #. js-lingui-id: IFQsdb
@@ -11256,6 +11382,11 @@ msgstr ""
 msgid "Microsoft"
 msgstr ""
 
+#. js-lingui-id: 4YHrmD
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Milestone"
+msgstr ""
+
 #. js-lingui-id: eTUF28
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationLabel.ts
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
@@ -11444,6 +11575,11 @@ msgstr ""
 #. js-lingui-id: SOHptZ
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationInstallStats.tsx
 msgid "Most installed version"
+msgstr ""
+
+#. js-lingui-id: QWdKwH
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Move"
 msgstr ""
 
 #. js-lingui-id: 3Ib6FN
@@ -11654,6 +11790,12 @@ msgstr ""
 #. js-lingui-id: C0P5zd
 #: src/pages/settings/communications/SettingsWorkspaceCommunicationGroupChannelDetail.tsx
 msgid "Need help to configure your shared mailbox?"
+msgstr ""
+
+#. js-lingui-id: evw5ha
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Net worth"
 msgstr ""
 
 #. js-lingui-id: wW3b68
@@ -11986,6 +12128,11 @@ msgstr ""
 msgid "No active subscription."
 msgstr ""
 
+#. js-lingui-id: kz9kIx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No active tasks to display"
+msgstr ""
+
 #. js-lingui-id: aXFOuf
 #: src/modules/activities/timeline-activities/components/TimelineCard.tsx
 msgid "No activity yet"
@@ -12040,6 +12187,11 @@ msgstr ""
 #. js-lingui-id: rxBnh8
 #: src/pages/settings/applications/tabs/SettingsApplicationsAvailableTab.tsx
 msgid "No applications available"
+msgstr ""
+
+#. js-lingui-id: 5SYGVh
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "No approved data for this period."
 msgstr ""
 
 #. js-lingui-id: zLbFMr
@@ -12176,6 +12328,11 @@ msgstr ""
 #. js-lingui-id: 5K0pqs
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 msgid "No Date field"
+msgstr ""
+
+#. js-lingui-id: zqwWN2
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No dated tasks to display"
 msgstr ""
 
 #. js-lingui-id: lAfu/q
@@ -12544,6 +12701,11 @@ msgstr ""
 msgid "No targets available"
 msgstr ""
 
+#. js-lingui-id: yunxrV
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No tasks to display"
+msgstr ""
+
 #. js-lingui-id: t0t36i
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsAiAgentDetail.tsx
 msgid "No tools were called"
@@ -12698,6 +12860,11 @@ msgstr ""
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 msgid "Not available on Default View"
+msgstr ""
+
+#. js-lingui-id: SDND4q
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Not configured"
 msgstr ""
 
 #. js-lingui-id: 4wUkDk
@@ -13624,6 +13791,7 @@ msgid "Perform administrative actions or permanently delete this user"
 msgstr ""
 
 #. js-lingui-id: NtQvjo
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Period"
 msgstr ""
@@ -13666,6 +13834,21 @@ msgstr ""
 #. js-lingui-id: qrGMTi
 #: src/modules/activities/emails/recipients/components/EmailRecipientChipMenuContent.tsx
 msgid "Person created"
+msgstr ""
+
+#. js-lingui-id: KOtX3r
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Personal Finance"
+msgstr ""
+
+#. js-lingui-id: pCopzO
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Personal-finance dashboard"
+msgstr ""
+
+#. js-lingui-id: r5VJ93
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Personal-finance data unavailable"
 msgstr ""
 
 #. js-lingui-id: zmwvG2
@@ -13921,6 +14104,11 @@ msgstr ""
 msgid "Pre-installed only"
 msgstr ""
 
+#. js-lingui-id: FlMg9W
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Precision"
+msgstr ""
+
 #. js-lingui-id: 0Lqxjs
 #: src/modules/auth/sign-in-up/constants/WorkspaceActivationMessages.tsx
 msgid "Prefilling your <0>workspace data</0>..."
@@ -13942,6 +14130,7 @@ msgid "Prevent from assigning the same value to different records"
 msgstr ""
 
 #. js-lingui-id: rdUucN
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/settings/data-model/components/SettingsDataModelPreviewFormCard.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectSettingsFormCard.tsx
 #: src/pages/settings/applications/SettingsApplicationFrontComponentDetail.tsx
@@ -14878,6 +15067,21 @@ msgstr ""
 msgid "Reset variable"
 msgstr ""
 
+#. js-lingui-id: EP6x91
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize"
+msgstr ""
+
+#. js-lingui-id: k2DjdV
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize task due date"
+msgstr ""
+
+#. js-lingui-id: RYNDMW
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize task start date"
+msgstr ""
+
 #. js-lingui-id: N0vrR6
 #: src/modules/settings/billing/components/internal/ResourceCreditPriceSelector.tsx
 msgid "Resource credits updated."
@@ -14962,6 +15166,8 @@ msgstr ""
 
 #. js-lingui-id: 6gRgw8
 #: src/modules/ai/components/AiChatErrorMessage.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobRowDropdownMenu.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminRetryJobsConfirmationModal.tsx
 #: src/pages/onboarding/PaymentSuccess.tsx
@@ -15282,6 +15488,11 @@ msgstr ""
 #: src/pages/settings/ai/components/SettingsAgentLogsTab.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 msgid "Score"
+msgstr ""
+
+#. js-lingui-id: 2YCiey
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Scroll horizontally and vertically, or drag empty space to pan. Task bars and controls remain interactive."
 msgstr ""
 
 #. js-lingui-id: hJjXGo
@@ -15950,6 +16161,11 @@ msgstr ""
 msgid "Select your preferred language"
 msgstr ""
 
+#. js-lingui-id: YMYE4/
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Selected color"
+msgstr ""
+
 #. js-lingui-id: JlFcis
 #: src/modules/page-layout/widgets/email-thread/components/EmailThreadComposer.tsx
 #: src/modules/side-panel/pages/compose-email/components/SidePanelComposeEmailPage.tsx
@@ -16202,6 +16418,7 @@ msgstr ""
 
 #. js-lingui-id: Z8lGw6
 #: src/modules/activities/emails/components/EmailThreadBottomBar.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 msgid "Share"
 msgstr ""
 
@@ -16524,6 +16741,16 @@ msgstr ""
 msgid "Some"
 msgstr ""
 
+#. js-lingui-id: jR8Wfb
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Some finance sections are unavailable."
+msgstr ""
+
+#. js-lingui-id: 8fz+t8
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Some finance sections could not be loaded."
+msgstr ""
+
 #. js-lingui-id: RwCYVZ
 #: src/modules/settings/accounts/components/SettingsAccountsMessageFolderCard.tsx
 msgid "Some folders"
@@ -16539,6 +16766,21 @@ msgstr ""
 #. placeholder {1}: stepLog.truncated.droppedBytes
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 msgid "Some log data was dropped to fit the size limit ({0} entries, {1} bytes)."
+msgstr ""
+
+#. js-lingui-id: cSrzsO
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Some task data could not be loaded."
+msgstr ""
+
+#. js-lingui-id: 4aNyrb
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Some tasks have unavailable dates or progress."
+msgstr ""
+
+#. js-lingui-id: ZVl+JT
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Some values are unavailable."
 msgstr ""
 
 #. js-lingui-id: nwtY4N
@@ -16691,6 +16933,11 @@ msgstr ""
 msgid "Standard"
 msgstr ""
 
+#. js-lingui-id: tXkhj/
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Start"
+msgstr ""
+
 #. js-lingui-id: ASqWQi
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Start a new enterprise subscription to re-enable enterprise features."
@@ -16705,6 +16952,16 @@ msgstr ""
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Start date"
+msgstr ""
+
+#. js-lingui-id: PdzWsW
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Start date cannot be after due date."
+msgstr ""
+
+#. js-lingui-id: AyXrhB
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Start date field"
 msgstr ""
 
 #. js-lingui-id: s+K73L
@@ -17205,6 +17462,54 @@ msgstr ""
 msgid "Target workspace subdomain"
 msgstr ""
 
+#. js-lingui-id: Q3P/4s
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task"
+msgstr ""
+
+#. js-lingui-id: iKS7vc
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Task bar color"
+msgstr ""
+
+#. js-lingui-id: I/ObQ6
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task date fields are not configured; unavailable dates are not inferred."
+msgstr ""
+
+#. js-lingui-id: hVUUhm
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline"
+msgstr ""
+
+#. js-lingui-id: a7kw3s
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Task Timeline"
+msgstr ""
+
+#. js-lingui-id: xZvFdS
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline calendar"
+msgstr ""
+
+#. js-lingui-id: Mv45RZ
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline calendar viewport"
+msgstr ""
+
+#. js-lingui-id: 5BZI6t
+#: src/modules/side-panel/hooks/useOpenWidgetSettingsInSidePanel.ts
+#: src/modules/side-panel/pages/page-layout/utils/getPageLayoutPageTitle.ts
+msgid "Task Timeline Settings"
+msgstr ""
+
+#. js-lingui-id: 4B+OzR
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline unavailable"
+msgstr ""
+
 #. js-lingui-id: R+s8S+
 #: src/modules/activities/tasks/components/TaskRow.tsx
 msgid "Task title"
@@ -17213,6 +17518,16 @@ msgstr ""
 #. js-lingui-id: pqXgqN
 #: src/modules/activities/notes/components/NoteTile.tsx
 msgid "Task Title"
+msgstr ""
+
+#. js-lingui-id: YDv82r
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Tasks with approved start and end dates will appear here."
+msgstr ""
+
+#. js-lingui-id: l9tCD6
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Tasks with both a valid start and end date will appear in the calendar."
 msgstr ""
 
 #. js-lingui-id: KM6m8p
@@ -17628,6 +17943,11 @@ msgstr ""
 msgid "This connection does not exist or is not available for this application."
 msgstr ""
 
+#. js-lingui-id: BIE6Er
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "This data may be stale."
+msgstr ""
+
 #. js-lingui-id: SLIRqz
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "This database value overrides environment settings. "
@@ -17726,6 +18046,11 @@ msgstr ""
 #. js-lingui-id: fp6HUI
 #: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
 msgid "This role is shared with other users or agents and cannot be edited here."
+msgstr ""
+
+#. js-lingui-id: evLk20
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "This section could not be loaded."
 msgstr ""
 
 #. js-lingui-id: 2iQQGR
@@ -17878,6 +18203,11 @@ msgstr ""
 #. js-lingui-id: cklVjM
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
 msgid "Timeline"
+msgstr ""
+
+#. js-lingui-id: ewpwRb
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline data is incomplete"
 msgstr ""
 
 #. js-lingui-id: xY9s5E
@@ -18373,9 +18703,24 @@ msgstr ""
 msgid "Unable to load application details. Please try again later."
 msgstr ""
 
+#. js-lingui-id: P9t/pW
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Unable to load personal-finance data"
+msgstr ""
+
+#. js-lingui-id: aU7aM1
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unable to load task timeline"
+msgstr ""
+
 #. js-lingui-id: l+ALBd
 #: src/modules/client-config/components/ClientConfigProvider.tsx
 msgid "Unable to Reach Back-end"
+msgstr ""
+
+#. js-lingui-id: 3y+qu/
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unable to save task timeline changes."
 msgstr ""
 
 #. js-lingui-id: 5JOLV9
@@ -18384,8 +18729,15 @@ msgid "Unarchive"
 msgstr ""
 
 #. js-lingui-id: jqzUyM
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 #: src/modules/settings/billing/hooks/useBillingPlanActions.ts
 msgid "Unavailable"
+msgstr ""
+
+#. js-lingui-id: PcSvms
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unavailable task data is not shown as zero or an invented date."
 msgstr ""
 
 #. js-lingui-id: NYFASA
@@ -18646,6 +18998,14 @@ msgstr ""
 #. js-lingui-id: xzOKup
 #: src/modules/settings/roles/role/components/SettingsRoleCreateEffect.tsx
 msgid "Untitled role"
+msgstr ""
+
+#. js-lingui-id: CowgFX
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Untitled task"
 msgstr ""
 
 #. js-lingui-id: jxRjAG
@@ -19237,6 +19597,11 @@ msgstr ""
 #. js-lingui-id: dY/1ir
 #: src/modules/object-record/record-field/ui/form-types/components/VariableChip.tsx
 msgid "Variable not found"
+msgstr ""
+
+#. js-lingui-id: vXTvG8
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Variance"
 msgstr ""
 
 #. js-lingui-id: QDEWii
@@ -20218,6 +20583,11 @@ msgstr ""
 #. js-lingui-id: eqUj2Z
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay.tsx
 msgid "You do not have permission to access the {objectName} object"
+msgstr ""
+
+#. js-lingui-id: hFuTsh
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "You do not have permission to view task data."
 msgstr ""
 
 #. js-lingui-id: D0mU8n
