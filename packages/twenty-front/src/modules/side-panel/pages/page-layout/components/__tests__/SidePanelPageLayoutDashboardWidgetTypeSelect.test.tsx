@@ -6,6 +6,9 @@ const mockCloseSidePanelMenu = jest.fn();
 const mockCreatePageLayoutPersonalFinanceWidget = jest.fn(() => ({
   id: 'personal-finance-widget-id',
 }));
+const mockCreatePageLayoutCardCarouselWidget = jest.fn(() => ({
+  id: 'card-carousel-widget-id',
+}));
 const mockSetPageLayoutEditingWidgetId = jest.fn();
 function mockEmptyHook() {
   return {};
@@ -50,6 +53,14 @@ jest.mock('@/page-layout/hooks/useCreatePageLayoutRecordTableWidget', () => ({
 jest.mock('@/page-layout/hooks/useCreatePageLayoutTaskTimelineWidget', () => ({
   useCreatePageLayoutTaskTimelineWidget: mockEmptyHook,
 }));
+jest.mock(
+  '@/page-layout/hooks/useCreatePageLayoutCardCarouselWidget',
+  () => ({
+    useCreatePageLayoutCardCarouselWidget: () => ({
+      createPageLayoutCardCarouselWidget: mockCreatePageLayoutCardCarouselWidget,
+    }),
+  }),
+);
 
 jest.mock('@/page-layout/hooks/useOpportunityDefaultChartConfig', () => ({
   useOpportunityDefaultChartConfig: mockEmptyHook,
@@ -150,6 +161,22 @@ describe('SidePanelPageLayoutDashboardWidgetTypeSelect', () => {
     expect(mockCreatePageLayoutPersonalFinanceWidget).toHaveBeenCalledTimes(1);
     expect(mockSetPageLayoutEditingWidgetId).toHaveBeenCalledWith(
       'personal-finance-widget-id',
+    );
+    expect(mockCloseSidePanelMenu).toHaveBeenCalledTimes(1);
+  });
+
+  it('exposes the card carousel and routes selection to its draft creator', () => {
+    render(<SidePanelPageLayoutDashboardWidgetTypeSelect />);
+
+    expect(
+      screen.getByRole('button', { name: 'Card Carousel' }),
+    ).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Card Carousel' }));
+
+    expect(mockCreatePageLayoutCardCarouselWidget).toHaveBeenCalledTimes(1);
+    expect(mockSetPageLayoutEditingWidgetId).toHaveBeenCalledWith(
+      'card-carousel-widget-id',
     );
     expect(mockCloseSidePanelMenu).toHaveBeenCalledTimes(1);
   });

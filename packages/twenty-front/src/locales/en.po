@@ -3573,11 +3573,27 @@ msgstr "Card"
 msgid "Card Carousel"
 msgstr "Card Carousel"
 
+#. js-lingui-id: vVPGdL
+#: src/modules/side-panel/hooks/useOpenWidgetSettingsInSidePanel.ts
+#: src/modules/side-panel/pages/page-layout/utils/getPageLayoutPageTitle.ts
+msgid "Card Carousel Settings"
+msgstr "Card Carousel Settings"
+
+#. js-lingui-id: Gwbnqj
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Card layout"
+msgstr "Card layout"
+
 #. js-lingui-id: TbCWB7
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/pages/onboarding/UpgradeFreeTrial.tsx
 msgid "Card payment is currently unavailable. Please verify your Stripe configuration or contact your workspace admin."
 msgstr "Card payment is currently unavailable. Please verify your Stripe configuration or contact your workspace admin."
+
+#. js-lingui-id: jBvtuq
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Card size"
+msgstr "Card size"
 
 #. js-lingui-id: 2kLx39
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
@@ -3829,6 +3845,11 @@ msgstr "Choose what happens when you click an email"
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
 msgid "Choose which profile fields users with the Edit Profile permission can modify"
 msgstr "Choose which profile fields users with the Edit Profile permission can modify"
+
+#. js-lingui-id: 7xMmki
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Circle"
+msgstr "Circle"
 
 #. js-lingui-id: 3wV73y
 #: src/modules/object-metadata/hooks/useSortSubFieldChoicesForField.ts
@@ -8898,6 +8919,11 @@ msgstr "GIN (full-text search and JSONB)"
 msgid "Global search"
 msgstr "Global search"
 
+#. js-lingui-id: zkQNdT
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Glow"
+msgstr "Glow"
+
 #. js-lingui-id: CKyk7Q
 #: src/modules/onboarding/components/OnboardingHeader.tsx
 msgid "Go back"
@@ -9314,6 +9340,11 @@ msgstr "Hours"
 msgid "Hours between triggers"
 msgstr "Hours between triggers"
 
+#. js-lingui-id: 3SPCSC
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Hover effect"
+msgstr "Hover effect"
+
 #. js-lingui-id: xUNmcx
 #: src/modules/settings/billing/components/SettingsBillingCreditsSection.tsx
 msgid "How credits work"
@@ -9500,6 +9531,31 @@ msgstr "iFrame Widget"
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
 msgid "Image"
 msgstr "Image"
+
+#. js-lingui-id: OHY0Nf
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image behind the text"
+msgstr "Image behind the text"
+
+#. js-lingui-id: UU42wN
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image centered"
+msgstr "Image centered"
+
+#. js-lingui-id: FYsVJm
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image field"
+msgstr "Image field"
+
+#. js-lingui-id: AVHTUF
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image on top"
+msgstr "Image on top"
+
+#. js-lingui-id: JbOau/
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image shape"
+msgstr "Image shape"
 
 #. js-lingui-id: ijW9MW
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
@@ -10387,6 +10443,11 @@ msgstr "Language"
 msgid "Languages"
 msgstr "Languages"
 
+#. js-lingui-id: k7rCa/
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Large"
+msgstr "Large"
+
 #. js-lingui-id: 59o/ag
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "Large section heading"
@@ -10725,6 +10786,11 @@ msgstr "Librería de tarjetas"
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Licensee"
 msgstr "Licensee"
+
+#. js-lingui-id: LxntJR
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Lift"
+msgstr "Lift"
 
 #. js-lingui-id: 1njn7W
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownThemesComponents.tsx
@@ -11314,6 +11380,11 @@ msgstr "Me"
 #: src/modules/settings/roles/role-permissions/object-level-permissions/record-level-permissions/components/SettingsRolePermissionsObjectLevelRecordLevelPermissionMeValueSelect.tsx
 msgid "Me (User ID)"
 msgstr "Me (User ID)"
+
+#. js-lingui-id: agPptk
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Medium"
+msgstr "Medium"
 
 #. js-lingui-id: IAcjOi
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
@@ -12884,6 +12955,7 @@ msgstr "Node"
 #: src/modules/settings/accounts/components/SettingsAccountsMessageAutoCreationCard.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceContent.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartGroupByFieldSelectionDropdownContentBase.tsx
 #: src/modules/side-panel/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
 #: src/modules/side-panel/pages/page-layout/utils/getDateGranularityLabel.ts
@@ -12917,6 +12989,7 @@ msgid "Not available on Default View"
 msgstr "Not available on Default View"
 
 #. js-lingui-id: SDND4q
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Not configured"
 msgstr "Not configured"
@@ -13330,6 +13403,11 @@ msgstr "only on {firstDay} and {secondDay}"
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
 msgid "only on {remainingDays} and {0}"
 msgstr "only on {remainingDays} and {0}"
+
+#. js-lingui-id: DHqBJO
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Only text"
+msgstr "Only text"
 
 #. js-lingui-id: saaSLd
 #: src/modules/activities/emails/components/EmailThreadNotShared.tsx
@@ -14105,6 +14183,11 @@ msgstr "Plural"
 msgid "Polish"
 msgstr "Polish"
 
+#. js-lingui-id: 3bV9gD
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Portrait"
+msgstr "Portrait"
+
 #. js-lingui-id: 0nsqwk
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Portuguese — Brazil"
@@ -14211,6 +14294,11 @@ msgstr "Previous"
 #: src/modules/ai/utils/groupThreadsByDate.ts
 msgid "Previous 7 days"
 msgstr "Previous 7 days"
+
+#. js-lingui-id: pT+yuB
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Price field"
+msgstr "Price field"
 
 #. js-lingui-id: aHCEmh
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
@@ -15497,6 +15585,11 @@ msgstr "Save as new view"
 msgid "Save or cancel dashboard changes before editing the layout."
 msgstr "Save or cancel dashboard changes before editing the layout."
 
+#. js-lingui-id: bifv6N
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Scale"
+msgstr "Scale"
+
 #. js-lingui-id: gmB6oO
 #: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
 msgid "Schedule"
@@ -16753,6 +16846,11 @@ msgstr "Skip the junction object (similar to many-to-many relations)"
 msgid "Sky"
 msgstr "Sky"
 
+#. js-lingui-id: 4Revpc
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Small"
+msgstr "Small"
+
 #. js-lingui-id: Ik7fz5
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "Small section heading"
@@ -16952,6 +17050,11 @@ msgstr "Speed up reads on the fields you filter or sort by most. Each index also
 #: src/modules/side-panel/pages/page-layout/utils/__tests__/shouldHideChartSetting.test.ts
 msgid "Split multiple values"
 msgstr "Split multiple values"
+
+#. js-lingui-id: 1DA6ap
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Square"
+msgstr "Square"
 
 #. js-lingui-id: vnS6Rf
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
@@ -17295,6 +17398,11 @@ msgstr "Subscription will be switched to Monthly the {0}."
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "subtitle"
 msgstr "subtitle"
+
+#. js-lingui-id: 8QCMSh
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Subtitle field"
+msgstr "Subtitle field"
 
 #. js-lingui-id: zzDlyQ
 #: src/modules/ui/feedback/snack-bar-manager/components/SnackBar.tsx
@@ -17833,6 +17941,11 @@ msgstr "The page your users will get redirected to to unsubscribe from your emai
 msgid "The PDF is pre-signed by Twenty and executed with your legal entity and authorized signatory."
 msgstr "The PDF is pre-signed by Twenty and executed with your legal entity and authorized signatory."
 
+#. js-lingui-id: 1Bzg5s
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "The records of this widget could not be loaded."
+msgstr "The records of this widget could not be loaded."
+
 #. js-lingui-id: wxyrqd
 #: src/modules/workflow/workflow-steps/workflow-actions/pick-record-action/components/WorkflowEditActionPickRecord.tsx
 msgid "the selected object"
@@ -18202,6 +18315,11 @@ msgstr "This view uses {usageLabel} on object \"{0}\" which is not accessible."
 msgid "This week"
 msgstr "This week"
 
+#. js-lingui-id: Ywyiu5
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "This widget needs an object before its fields can be picked."
+msgstr "This widget needs an object before its fields can be picked."
+
 #. js-lingui-id: gjpwN3
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
 msgid "This widget needs an object to read from."
@@ -18352,6 +18470,11 @@ msgstr "title"
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
 msgid "Title"
 msgstr "Title"
+
+#. js-lingui-id: 6P1iPM
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Title field"
+msgstr "Title field"
 
 #. js-lingui-id: /jQctM
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
@@ -20284,6 +20407,11 @@ msgstr "Whether this model supports chain-of-thought reasoning"
 #: src/modules/workflow/workflow-variables/utils/getWorkflowVariableSpecialItems.ts
 msgid "Whole list"
 msgstr "Whole list"
+
+#. js-lingui-id: I5S9ZE
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Wide"
+msgstr "Wide"
 
 #. js-lingui-id: dmoPOu
 #: src/pages/settings/applications/SettingsAvailableApplicationDetails.tsx

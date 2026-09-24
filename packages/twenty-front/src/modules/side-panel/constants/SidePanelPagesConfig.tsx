@@ -7,6 +7,7 @@ import { SidePanelAskAiPage } from '@/side-panel/pages/ask-ai/components/SidePan
 import { SidePanelCampaignComposerPage } from '@/side-panel/pages/compose-campaign/components/SidePanelCampaignComposerPage';
 import { SidePanelComposeEmailPage } from '@/side-panel/pages/compose-email/components/SidePanelComposeEmailPage';
 import { SidePanelFrontComponentPage } from '@/side-panel/pages/front-component/components/SidePanelFrontComponentPage';
+import { SidePanelDashboardCardCarouselSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings';
 import { SidePanelDashboardChartSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardChartSettings';
 import { SidePanelDashboardIframeSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardIframeSettings';
 import { SidePanelDashboardRecordTableSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings';
@@ -71,6 +72,10 @@ export const SIDE_PANEL_PAGES_CONFIG = new Map<SidePanelPages, React.ReactNode>(
     [
       SidePanelPages.DashboardTaskTimelineSettings,
       <SidePanelDashboardTaskTimelineSettings />,
+    ],
+    [
+      SidePanelPages.DashboardCardCarouselSettings,
+      <SidePanelDashboardCardCarouselSettings />,
     ],
     [
       SidePanelPages.RecordPageFieldsSettings,

@@ -5,6 +5,7 @@ import {
   IconAppWindow,
   IconChartPie,
   IconFrame,
+  IconLayoutKanban,
   IconList,
   IconPlus,
   IconTable,
@@ -28,6 +29,8 @@ export const getPageLayoutIcon = (page: PageLayoutSidePanelPage) => {
       return IconTable;
     case SidePanelPages.DashboardTaskTimelineSettings:
       return IconChartPie;
+    case SidePanelPages.DashboardCardCarouselSettings:
+      return IconLayoutKanban;
     case SidePanelPages.PageLayoutRecordPageWidgetTypeSelect:
       return IconPlus;
     default:

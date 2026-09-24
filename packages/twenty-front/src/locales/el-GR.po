@@ -3578,11 +3578,27 @@ msgstr "Κάρτα"
 msgid "Card Carousel"
 msgstr ""
 
+#. js-lingui-id: vVPGdL
+#: src/modules/side-panel/hooks/useOpenWidgetSettingsInSidePanel.ts
+#: src/modules/side-panel/pages/page-layout/utils/getPageLayoutPageTitle.ts
+msgid "Card Carousel Settings"
+msgstr ""
+
+#. js-lingui-id: Gwbnqj
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Card layout"
+msgstr ""
+
 #. js-lingui-id: TbCWB7
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/pages/onboarding/UpgradeFreeTrial.tsx
 msgid "Card payment is currently unavailable. Please verify your Stripe configuration or contact your workspace admin."
 msgstr "Η πληρωμή με κάρτα δεν είναι προς το παρόν διαθέσιμη. Επαληθεύστε τη ρύθμιση του Stripe ή επικοινωνήστε με τον διαχειριστή του χώρου εργασίας σας."
+
+#. js-lingui-id: jBvtuq
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Card size"
+msgstr ""
 
 #. js-lingui-id: 2kLx39
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
@@ -3833,6 +3849,11 @@ msgstr "Επιλέξτε τι συμβαίνει όταν κάνετε κλικ 
 #. js-lingui-id: 02EFne
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
 msgid "Choose which profile fields users with the Edit Profile permission can modify"
+msgstr ""
+
+#. js-lingui-id: 7xMmki
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Circle"
 msgstr ""
 
 #. js-lingui-id: 3wV73y
@@ -8903,6 +8924,11 @@ msgstr "GIN (αναζήτηση πλήρους κειμένου και JSONB)"
 msgid "Global search"
 msgstr "Καθολική αναζήτηση"
 
+#. js-lingui-id: zkQNdT
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Glow"
+msgstr ""
+
 #. js-lingui-id: CKyk7Q
 #: src/modules/onboarding/components/OnboardingHeader.tsx
 msgid "Go back"
@@ -9319,6 +9345,11 @@ msgstr "Ώρες"
 msgid "Hours between triggers"
 msgstr "Ώρες μεταξύ ενεργοποιήσεων"
 
+#. js-lingui-id: 3SPCSC
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Hover effect"
+msgstr ""
+
 #. js-lingui-id: xUNmcx
 #: src/modules/settings/billing/components/SettingsBillingCreditsSection.tsx
 msgid "How credits work"
@@ -9505,6 +9536,31 @@ msgstr "Widget iFrame"
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
 msgid "Image"
 msgstr "Εικόνα"
+
+#. js-lingui-id: OHY0Nf
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image behind the text"
+msgstr ""
+
+#. js-lingui-id: UU42wN
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image centered"
+msgstr ""
+
+#. js-lingui-id: FYsVJm
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image field"
+msgstr ""
+
+#. js-lingui-id: AVHTUF
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image on top"
+msgstr ""
+
+#. js-lingui-id: JbOau/
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image shape"
+msgstr ""
 
 #. js-lingui-id: ijW9MW
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
@@ -10392,6 +10448,11 @@ msgstr "Γλώσσα"
 msgid "Languages"
 msgstr "Γλώσσες"
 
+#. js-lingui-id: k7rCa/
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Large"
+msgstr ""
+
 #. js-lingui-id: 59o/ag
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "Large section heading"
@@ -10730,6 +10791,11 @@ msgstr ""
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Licensee"
 msgstr "Αδειούχος"
+
+#. js-lingui-id: LxntJR
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Lift"
+msgstr ""
 
 #. js-lingui-id: 1njn7W
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownThemesComponents.tsx
@@ -11319,6 +11385,11 @@ msgstr "Εγώ"
 #: src/modules/settings/roles/role-permissions/object-level-permissions/record-level-permissions/components/SettingsRolePermissionsObjectLevelRecordLevelPermissionMeValueSelect.tsx
 msgid "Me (User ID)"
 msgstr "Εγώ (Αναγνωριστικό Χρήστη)"
+
+#. js-lingui-id: agPptk
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Medium"
+msgstr ""
 
 #. js-lingui-id: IAcjOi
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
@@ -12889,6 +12960,7 @@ msgstr "Κόμβος"
 #: src/modules/settings/accounts/components/SettingsAccountsMessageAutoCreationCard.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceContent.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartGroupByFieldSelectionDropdownContentBase.tsx
 #: src/modules/side-panel/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
 #: src/modules/side-panel/pages/page-layout/utils/getDateGranularityLabel.ts
@@ -12922,6 +12994,7 @@ msgid "Not available on Default View"
 msgstr "Δεν είναι διαθέσιμο στην Προεπιλεγμένη Προβολή"
 
 #. js-lingui-id: SDND4q
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Not configured"
 msgstr ""
@@ -13335,6 +13408,11 @@ msgstr "μόνο τις {firstDay} και {secondDay}"
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
 msgid "only on {remainingDays} and {0}"
 msgstr "μόνο τις {remainingDays} και {0}"
+
+#. js-lingui-id: DHqBJO
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Only text"
+msgstr ""
 
 #. js-lingui-id: saaSLd
 #: src/modules/activities/emails/components/EmailThreadNotShared.tsx
@@ -14110,6 +14188,11 @@ msgstr "Πληθυντικός"
 msgid "Polish"
 msgstr "Πολωνικά"
 
+#. js-lingui-id: 3bV9gD
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Portrait"
+msgstr ""
+
 #. js-lingui-id: 0nsqwk
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Portuguese — Brazil"
@@ -14216,6 +14299,11 @@ msgstr "Προηγούμενο"
 #: src/modules/ai/utils/groupThreadsByDate.ts
 msgid "Previous 7 days"
 msgstr "Προηγούμενες 7 ημέρες"
+
+#. js-lingui-id: pT+yuB
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Price field"
+msgstr ""
 
 #. js-lingui-id: aHCEmh
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
@@ -15502,6 +15590,11 @@ msgstr "Αποθήκευση ως νέα προβολή"
 msgid "Save or cancel dashboard changes before editing the layout."
 msgstr "Αποθηκεύστε ή ακυρώστε τις αλλαγές του πίνακα ελέγχου πριν επεξεργαστείτε τη διάταξη."
 
+#. js-lingui-id: bifv6N
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Scale"
+msgstr ""
+
 #. js-lingui-id: gmB6oO
 #: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
 msgid "Schedule"
@@ -16760,6 +16853,11 @@ msgstr "Παράλειψη του αντικειμένου σύνδεσης (π�
 msgid "Sky"
 msgstr "Ουρανί"
 
+#. js-lingui-id: 4Revpc
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Small"
+msgstr ""
+
 #. js-lingui-id: Ik7fz5
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "Small section heading"
@@ -16959,6 +17057,11 @@ msgstr "Επιταχύνετε τις αναγνώσεις στα πεδία α�
 #: src/modules/side-panel/pages/page-layout/utils/__tests__/shouldHideChartSetting.test.ts
 msgid "Split multiple values"
 msgstr "Διαχωρισμός πολλαπλών τιμών"
+
+#. js-lingui-id: 1DA6ap
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Square"
+msgstr ""
 
 #. js-lingui-id: vnS6Rf
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
@@ -17301,6 +17404,11 @@ msgstr "Η συνδρομή θα αλλάξει στο Μηνιαίο στις {
 #. js-lingui-id: pEToQK
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "subtitle"
+msgstr ""
+
+#. js-lingui-id: 8QCMSh
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Subtitle field"
 msgstr ""
 
 #. js-lingui-id: zzDlyQ
@@ -17840,6 +17948,11 @@ msgstr "Η σελίδα στην οποία θα ανακατευθυνθούν 
 msgid "The PDF is pre-signed by Twenty and executed with your legal entity and authorized signatory."
 msgstr "Το PDF είναι προ-υπογεγραμμένο από την Twenty και εκτελείται με τη νομική σας οντότητα και τον εξουσιοδοτημένο υπογράφοντα."
 
+#. js-lingui-id: 1Bzg5s
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "The records of this widget could not be loaded."
+msgstr ""
+
 #. js-lingui-id: wxyrqd
 #: src/modules/workflow/workflow-steps/workflow-actions/pick-record-action/components/WorkflowEditActionPickRecord.tsx
 msgid "the selected object"
@@ -18209,6 +18322,11 @@ msgstr "Αυτή η προβολή χρησιμοποιεί {usageLabel} στο 
 msgid "This week"
 msgstr "Αυτή την εβδομάδα"
 
+#. js-lingui-id: Ywyiu5
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "This widget needs an object before its fields can be picked."
+msgstr ""
+
 #. js-lingui-id: gjpwN3
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
 msgid "This widget needs an object to read from."
@@ -18359,6 +18477,11 @@ msgstr "τίτλος"
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
 msgid "Title"
 msgstr "Τίτλος"
+
+#. js-lingui-id: 6P1iPM
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Title field"
+msgstr ""
 
 #. js-lingui-id: /jQctM
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
@@ -20293,6 +20416,11 @@ msgstr "Αν αυτό το μοντέλο υποστηρίζει συλλογι�
 #: src/modules/workflow/workflow-variables/utils/getWorkflowVariableSpecialItems.ts
 msgid "Whole list"
 msgstr "Ολόκληρη λίστα"
+
+#. js-lingui-id: I5S9ZE
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Wide"
+msgstr ""
 
 #. js-lingui-id: dmoPOu
 #: src/pages/settings/applications/SettingsAvailableApplicationDetails.tsx

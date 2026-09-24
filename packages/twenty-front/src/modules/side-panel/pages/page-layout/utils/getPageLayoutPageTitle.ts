@@ -21,6 +21,8 @@ export const getPageLayoutPageTitle = (page: PageLayoutSidePanelPage) => {
       return t`Record Table Settings`;
     case SidePanelPages.DashboardTaskTimelineSettings:
       return t`Task Timeline Settings`;
+    case SidePanelPages.DashboardCardCarouselSettings:
+      return t`Card Carousel Settings`;
     case SidePanelPages.PageLayoutRecordPageWidgetTypeSelect:
       return t`New widget`;
     default:

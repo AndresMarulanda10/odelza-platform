@@ -142,6 +142,20 @@ export const useOpenWidgetSettingsInSidePanel = (
         return;
       }
 
+      if (widgetType === WidgetType.CARD_CAROUSEL) {
+        if (!isDashboardPageLayout) {
+          return;
+        }
+
+        navigatePageLayoutSidePanel({
+          sidePanelPage: SidePanelPages.DashboardCardCarouselSettings,
+          pageTitle: t`Card Carousel Settings`,
+          resetNavigationStack: true,
+        });
+        setPageLayoutEditingWidgetId(widgetId);
+        return;
+      }
+
       const containingTab = pageLayoutDraft.tabs.find((tab) =>
         tab.widgets.some((w) => w.id === widgetId),
       );
