@@ -1,3 +1,4 @@
+import { useReadableObjectMetadataItems } from '@/object-metadata/hooks/useReadableObjectMetadataItems';
 import { objectMetadataItemsSelector } from '@/object-metadata/states/objectMetadataItemsSelector';
 import { WidgetSettingsFooter } from '@/side-panel/pages/page-layout/components/WidgetSettingsFooter';
 import { usePageLayoutIdFromContextStore } from '@/side-panel/pages/page-layout/hooks/usePageLayoutIdFromContextStore';
@@ -37,16 +38,13 @@ const StyledNotice = styled.div`
   padding: ${themeCssVariables.spacing[4]};
 `;
 
-const buildOptions = <T extends string>(
-  choices: Array<{ label: string; value: T }>,
-): SelectOption<T>[] => choices;
-
 export const SidePanelDashboardCardCarouselSettings = () => {
   const { pageLayoutId } = usePageLayoutIdFromContextStore();
   const { widgetInEditMode } = useWidgetInEditMode(pageLayoutId);
   const { updateCurrentWidgetConfig } =
     useUpdateCurrentWidgetConfig(pageLayoutId);
   const objectMetadataItems = useAtomStateValue(objectMetadataItemsSelector);
+  const { readableObjectMetadataItems } = useReadableObjectMetadataItems();
 
   if (widgetInEditMode?.configuration?.configurationType !== 'CARD_CAROUSEL') {
     return null;
@@ -56,22 +54,43 @@ export const SidePanelDashboardCardCarouselSettings = () => {
     fieldMapping?: CardCarouselFieldMapping | null;
     cardLayout?: string | null;
     imageAspect?: string | null;
-    cardRadius?: string | null;
     cardSize?: string | null;
-    textAlign?: string | null;
     hoverEffect?: string | null;
   };
+
+  const objectOptions: SelectOption<string>[] = readableObjectMetadataItems.map(
+    (item) => ({
+      label: item.labelPlural ?? item.namePlural,
+      value: item.id,
+    }),
+  );
 
   const objectMetadataItem = objectMetadataItems.find(
     (item) => item.id === widgetInEditMode.objectMetadataId,
   );
 
+  const objectField = (
+    <StyledField>
+      <Select
+        dropdownId="card-carousel-object"
+        fullWidth
+        label={t`Object`}
+        options={objectOptions}
+        value={widgetInEditMode.objectMetadataId ?? ''}
+        onChange={(value) => updateCurrentWidgetConfig({ objectMetadataId: value })}
+      />
+    </StyledField>
+  );
+
   if (!isDefined(objectMetadataItem)) {
     return (
       <StyledContainer>
-        <StyledNotice>
-          {t`This widget needs an object before its fields can be picked.`}
-        </StyledNotice>
+        <StyledSettings>
+          {objectField}
+          <StyledNotice>
+            {t`Pick an object to choose its fields and show its records.`}
+          </StyledNotice>
+        </StyledSettings>
         <WidgetSettingsFooter pageLayoutId={pageLayoutId} />
       </StyledContainer>
     );
@@ -113,36 +132,37 @@ export const SidePanelDashboardCardCarouselSettings = () => {
     updateCurrentWidgetConfig({ configToUpdate: { [key]: value } });
   };
 
-  const layoutOptions = buildOptions([
+  const layoutOptions: SelectOption<string>[] = [
     { label: t`Image on top`, value: 'imageTop' },
     { label: t`Image centered`, value: 'imageCenter' },
     { label: t`Image behind the text`, value: 'imageOverlay' },
     { label: t`Only text`, value: 'textOnly' },
-  ]);
+  ];
 
-  const aspectOptions = buildOptions([
+  const aspectOptions: SelectOption<string>[] = [
     { label: t`Square`, value: 'square' },
     { label: t`Portrait`, value: 'portrait' },
     { label: t`Wide`, value: 'wide' },
     { label: t`Circle`, value: 'circle' },
-  ]);
+  ];
 
-  const sizeOptions = buildOptions([
+  const sizeOptions: SelectOption<string>[] = [
     { label: t`Small`, value: 'sm' },
     { label: t`Medium`, value: 'md' },
     { label: t`Large`, value: 'lg' },
-  ]);
+  ];
 
-  const hoverOptions = buildOptions([
+  const hoverOptions: SelectOption<string>[] = [
     { label: t`Lift`, value: 'lift' },
     { label: t`Scale`, value: 'scale' },
     { label: t`Glow`, value: 'glow' },
     { label: t`None`, value: 'none' },
-  ]);
+  ];
 
   return (
     <StyledContainer>
       <StyledSettings>
+        {objectField}
         <StyledField>
           <Select
             dropdownId="card-carousel-image-field"
