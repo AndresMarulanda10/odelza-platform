@@ -406,15 +406,27 @@ export const CardCarousel = ({
     return { '--card-carousel-emphasis': emphasisColor } as React.CSSProperties;
   }, [emphasisColor]);
 
+  /*
+   * Cada pulsacion de flecha mueve una tarjeta y deja esa tarjeta pegada al
+   * borde izquierdo. El desplazamiento se calcula dentro del propio carril
+   * para no arrastrar la pagina entera, como hacia scrollIntoView.
+   */
   const scrollToIndex = (index: number) => {
     const clamped = Math.max(0, Math.min(index, items.length - 1));
-    const target = viewportRef.current?.children[clamped];
+    const viewport = viewportRef.current;
+    const target = viewport?.children[clamped] as HTMLElement | undefined;
 
-    target?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'start',
-    });
+    if (viewport && target) {
+      const offset =
+        target.getBoundingClientRect().left -
+        viewport.getBoundingClientRect().left;
+
+      viewport.scrollTo({
+        left: viewport.scrollLeft + offset,
+        behavior: 'smooth',
+      });
+    }
+
     setActiveIndex(clamped);
   };
 
@@ -426,7 +438,7 @@ export const CardCarousel = ({
     }
 
     const sync = () => {
-      const middle = viewport.scrollLeft + viewport.clientWidth / 2;
+      const viewportLeft = viewport.getBoundingClientRect().left;
       const cards = Array.from(viewport.children);
 
       let closest = 0;
@@ -434,8 +446,16 @@ export const CardCarousel = ({
 
       cards.forEach((card, index) => {
         const element = card as HTMLElement;
-        const center = element.offsetLeft + element.offsetWidth / 2;
-        const distance = Math.abs(center - middle);
+
+        /*
+         * Activa es la tarjeta pegada al borde izquierdo: es justo donde deja
+         * cada flecha la tarjeta a la que apunta. Si se mirase el centro del
+         * carril, al retroceder el indice volveria a subir y la flecha de
+         * atras no avanzaria nunca.
+         */
+        const distance = Math.abs(
+          element.getBoundingClientRect().left - viewportLeft,
+        );
 
         if (distance < smallest) {
           smallest = distance;

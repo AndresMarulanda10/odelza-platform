@@ -129,4 +129,106 @@ describe('CardCarousel', () => {
     expect(screen.queryByLabelText('Siguiente')).not.toBeInTheDocument();
     expect(screen.queryByLabelText('Ir a la tarjeta 1')).not.toBeInTheDocument();
   });
+
+  describe('navegacion con las flechas', () => {
+    const CARD_WIDTH = 200;
+    const VIEWPORT_WIDTH = 800;
+    const TOTAL_WIDTH = 1000;
+
+    const fourItems: CardCarouselItem[] = ['Uno', 'Dos', 'Tres', 'Cuatro'].map(
+      (title, index) => ({ id: `card-${index}`, title }),
+    );
+
+    const rect = (left: number, width: number) =>
+      ({
+        bottom: 300,
+        height: 300,
+        left,
+        right: left + width,
+        top: 0,
+        width,
+        x: left,
+        y: 0,
+        toJSON: () => ({}),
+      }) as DOMRect;
+
+    const mountLayout = () => {
+      const viewport = screen.getByRole('list') as HTMLElement;
+      const cards = Array.from(viewport.children) as HTMLElement[];
+
+      jest
+        .spyOn(viewport, 'getBoundingClientRect')
+        .mockImplementation(() => rect(0, VIEWPORT_WIDTH));
+
+      Object.defineProperty(viewport, 'clientWidth', {
+        configurable: true,
+        value: VIEWPORT_WIDTH,
+      });
+      Object.defineProperty(viewport, 'scrollWidth', {
+        configurable: true,
+        value: TOTAL_WIDTH,
+      });
+
+      cards.forEach((card, index) => {
+        jest
+          .spyOn(card, 'getBoundingClientRect')
+          .mockImplementation(() =>
+            rect(index * CARD_WIDTH - viewport.scrollLeft, CARD_WIDTH),
+          );
+      });
+
+      const scrollTo = jest.fn();
+
+      Object.defineProperty(viewport, 'scrollTo', {
+        configurable: true,
+        value: scrollTo,
+      });
+
+      return { viewport, scrollTo };
+    };
+
+    const scrollToOffset = (viewport: HTMLElement, left: number) => {
+      viewport.scrollLeft = left;
+      fireEvent.scroll(viewport);
+    };
+
+    it('marks as active the card stuck to the left edge', () => {
+      render(<CardCarousel items={fourItems} showArrows />);
+
+      const { viewport } = mountLayout();
+
+      scrollToOffset(viewport, 400);
+
+      const cards = Array.from(viewport.children) as HTMLElement[];
+
+      expect(cards[2].getAttribute('data-active')).toBe('on');
+      expect(cards[0].getAttribute('data-active')).toBe('off');
+    });
+
+    it('goes back one card when pressing the previous arrow', () => {
+      render(<CardCarousel items={fourItems} showArrows />);
+
+      const { viewport, scrollTo } = mountLayout();
+
+      scrollToOffset(viewport, 400);
+
+      fireEvent.click(screen.getByLabelText('Anterior'));
+
+      expect(scrollTo).toHaveBeenCalledTimes(1);
+      expect(scrollTo.mock.calls[0][0].left).toBe(200);
+      expect(scrollTo.mock.calls[0][0].left).toBeLessThan(400);
+    });
+
+    it('goes forward one card when pressing the next arrow', () => {
+      render(<CardCarousel items={fourItems} showArrows />);
+
+      const { viewport, scrollTo } = mountLayout();
+
+      scrollToOffset(viewport, 0);
+
+      fireEvent.click(screen.getByLabelText('Siguiente'));
+
+      expect(scrollTo.mock.calls[0][0].left).toBe(CARD_WIDTH);
+    });
+  });
 });
