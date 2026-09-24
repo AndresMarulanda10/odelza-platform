@@ -77,7 +77,9 @@ export const SidePanelDashboardCardCarouselSettings = () => {
         label={t`Object`}
         options={objectOptions}
         value={widgetInEditMode.objectMetadataId ?? ''}
-        onChange={(value) => updateCurrentWidgetConfig({ objectMetadataId: value })}
+        onChange={(value) =>
+          updateCurrentWidgetConfig({ objectMetadataId: value })
+        }
       />
     </StyledField>
   );
@@ -193,7 +195,9 @@ export const SidePanelDashboardCardCarouselSettings = () => {
             label={t`Subtitle field`}
             options={fieldOptions}
             value={mapping.subtitleFieldMetadataId ?? ''}
-            onChange={(value) => updateMapping('subtitleFieldMetadataId', value)}
+            onChange={(value) =>
+              updateMapping('subtitleFieldMetadataId', value)
+            }
           />
         </StyledField>
         <StyledField>

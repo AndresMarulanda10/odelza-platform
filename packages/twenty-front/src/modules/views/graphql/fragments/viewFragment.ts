@@ -32,6 +32,9 @@ export const VIEW_FRAGMENT = gql`
     anyFieldFilterValue
     calendarFieldMetadataId
     calendarLayout
+    catalogImageFieldMetadataId
+    catalogSubtitleFieldMetadataId
+    catalogDetailFieldMetadataId
     visibility
     createdByUserWorkspaceId
     isActive

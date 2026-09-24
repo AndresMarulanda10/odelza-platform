@@ -53,14 +53,11 @@ jest.mock('@/page-layout/hooks/useCreatePageLayoutRecordTableWidget', () => ({
 jest.mock('@/page-layout/hooks/useCreatePageLayoutTaskTimelineWidget', () => ({
   useCreatePageLayoutTaskTimelineWidget: mockEmptyHook,
 }));
-jest.mock(
-  '@/page-layout/hooks/useCreatePageLayoutCardCarouselWidget',
-  () => ({
-    useCreatePageLayoutCardCarouselWidget: () => ({
-      createPageLayoutCardCarouselWidget: mockCreatePageLayoutCardCarouselWidget,
-    }),
+jest.mock('@/page-layout/hooks/useCreatePageLayoutCardCarouselWidget', () => ({
+  useCreatePageLayoutCardCarouselWidget: () => ({
+    createPageLayoutCardCarouselWidget: mockCreatePageLayoutCardCarouselWidget,
   }),
-);
+}));
 
 jest.mock('@/page-layout/hooks/useOpportunityDefaultChartConfig', () => ({
   useOpportunityDefaultChartConfig: mockEmptyHook,

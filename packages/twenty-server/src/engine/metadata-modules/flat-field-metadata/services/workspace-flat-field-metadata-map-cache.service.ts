@@ -108,6 +108,9 @@ export class WorkspaceFlatFieldMetadataMapCacheService extends WorkspaceCachePro
           'universalIdentifier',
           'kanbanAggregateOperationFieldMetadataId',
           'calendarFieldMetadataId',
+          'catalogImageFieldMetadataId',
+          'catalogSubtitleFieldMetadataId',
+          'catalogDetailFieldMetadataId',
           'mainGroupByFieldMetadataId',
         ],
         withDeleted: true,
@@ -138,6 +141,18 @@ export class WorkspaceFlatFieldMetadataMapCacheService extends WorkspaceCachePro
         {
           entities: views,
           foreignKey: 'calendarFieldMetadataId',
+        },
+        {
+          entities: views,
+          foreignKey: 'catalogImageFieldMetadataId',
+        },
+        {
+          entities: views,
+          foreignKey: 'catalogSubtitleFieldMetadataId',
+        },
+        {
+          entities: views,
+          foreignKey: 'catalogDetailFieldMetadataId',
         },
         {
           entities: views,

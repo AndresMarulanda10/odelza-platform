@@ -34,6 +34,9 @@ export class CreateViewActionHandlerService extends WorkspaceMigrationRunnerActi
   }: WorkspaceMigrationActionRunnerArgs<UniversalCreateViewAction>): Promise<FlatCreateViewAction> {
     const {
       calendarFieldMetadataId,
+      catalogImageFieldMetadataId,
+      catalogSubtitleFieldMetadataId,
+      catalogDetailFieldMetadataId,
       kanbanAggregateOperationFieldMetadataId,
       mainGroupByFieldMetadataId,
       objectMetadataId,
@@ -60,6 +63,9 @@ export class CreateViewActionHandlerService extends WorkspaceMigrationRunnerActi
       flatEntity: {
         ...action.flatEntity,
         calendarFieldMetadataId,
+        catalogImageFieldMetadataId,
+        catalogSubtitleFieldMetadataId,
+        catalogDetailFieldMetadataId,
         kanbanAggregateOperationFieldMetadataId,
         mainGroupByFieldMetadataId,
         objectMetadataId,

@@ -17,6 +17,9 @@ export const getFlatFieldMetadataMock = <T extends FieldMetadataType>(
 
   return {
     calendarViewIds: [],
+    catalogImageViewIds: [],
+    catalogSubtitleViewIds: [],
+    catalogDetailViewIds: [],
     viewFilterIds: [],
     kanbanAggregateOperationViewIds: [],
     viewFieldIds: [],
@@ -54,6 +57,9 @@ export const getFlatFieldMetadataMock = <T extends FieldMetadataType>(
     fieldPermissionUniversalIdentifiers: [],
     kanbanAggregateOperationViewUniversalIdentifiers: [],
     calendarViewUniversalIdentifiers: [],
+    catalogImageViewUniversalIdentifiers: [],
+    catalogSubtitleViewUniversalIdentifiers: [],
+    catalogDetailViewUniversalIdentifiers: [],
     mainGroupByFieldMetadataViewUniversalIdentifiers: [],
     viewSortIds: [],
     viewSortUniversalIdentifiers: [],

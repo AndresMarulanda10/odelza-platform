@@ -17,14 +17,19 @@ describe('RecordCatalogCard', () => {
     const image = screen.getByAltText('Foto de la tarea');
 
     expect(image).toHaveAttribute('src', 'https://example.com/foto.jpg');
-    expect(screen.getByText('Revisar propuesta de seguros')).toBeInTheDocument();
+    expect(
+      screen.getByText('Revisar propuesta de seguros'),
+    ).toBeInTheDocument();
     expect(screen.getByText('TODO')).toBeInTheDocument();
     expect(screen.getByText('2026-09-30')).toBeInTheDocument();
   });
 
   it('falls back to the first letter of the title when there is no image', () => {
     const { container } = render(
-      <RecordCatalogCard title="Revisar propuesta de seguros" subtitle="TODO" />,
+      <RecordCatalogCard
+        title="Revisar propuesta de seguros"
+        subtitle="TODO"
+      />,
     );
 
     expect(screen.getByText('R')).toBeInTheDocument();

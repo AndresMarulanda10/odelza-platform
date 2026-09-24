@@ -50,7 +50,9 @@ export const useCreatePageLayoutCardCarouselWidget = ({
   const createPageLayoutCardCarouselWidget = useCallback(
     (objectMetadataId?: string): PageLayoutWidget => {
       if (!isDefined(activeTabId)) {
-        throw new Error('A tab must be selected to create a card carousel widget');
+        throw new Error(
+          'A tab must be selected to create a card carousel widget',
+        );
       }
 
       const widgetId = uuidv4();
@@ -70,7 +72,9 @@ export const useCreatePageLayoutCardCarouselWidget = ({
           columnSpan: position.w,
         },
         objectMetadataId:
-          objectMetadataId ?? store.get(pageLayoutDraftState).objectMetadataId ?? undefined,
+          objectMetadataId ??
+          store.get(pageLayoutDraftState).objectMetadataId ??
+          undefined,
       });
       const newLayout = {
         i: widgetId,

@@ -33,6 +33,7 @@ import {
   IconCalendar,
   IconCalendarWeek,
   IconChevronLeft,
+  IconLayoutGrid,
   IconLayoutList,
   IconLayoutNavbar,
   IconLayoutSidebarRight,
@@ -139,6 +140,7 @@ export const ObjectOptionsDropdownLayoutContent = () => {
     ...(currentView?.type === ViewType.CALENDAR
       ? ['CalendarView', 'CalendarDateField']
       : []),
+    ...(currentView?.type === ViewType.CATALOG ? ['CatalogFields'] : []),
     ...(currentView?.type !== ViewType.TABLE ? ['Compact view'] : []),
   ];
 
@@ -292,6 +294,20 @@ export const ObjectOptionsDropdownLayoutContent = () => {
                   />
                 </SelectableListItem>
               </>
+            )}
+            {currentView?.type === ViewType.CATALOG && (
+              <SelectableListItem
+                itemId="CatalogFields"
+                onEnter={() => onContentChange('catalogFields')}
+              >
+                <MenuItem
+                  focused={selectedItemId === 'CatalogFields'}
+                  onClick={() => onContentChange('catalogFields')}
+                  LeftIcon={IconLayoutGrid}
+                  text={t`Catalog fields`}
+                  hasSubMenu
+                />
+              </SelectableListItem>
             )}
             <SelectableListItem
               itemId={ViewOpenRecordIn.SIDE_PANEL}

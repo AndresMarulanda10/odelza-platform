@@ -64,7 +64,9 @@ const readTextValue = (value: unknown): string | undefined => {
   }
 
   if (typeof value === 'object' && 'primaryLinkLabel' in value) {
-    return readTextValue((value as { primaryLinkLabel: unknown }).primaryLinkLabel);
+    return readTextValue(
+      (value as { primaryLinkLabel: unknown }).primaryLinkLabel,
+    );
   }
 
   return undefined;
@@ -117,7 +119,8 @@ const formatPriceValue = ({
   }
 
   if (type === 'CURRENCY' && typeof value === 'object') {
-    const amountMicros = (value as { amountMicros?: number | null }).amountMicros;
+    const amountMicros = (value as { amountMicros?: number | null })
+      .amountMicros;
     const code = (value as { currencyCode?: string | null }).currencyCode;
 
     if (!isDefined(amountMicros)) {
@@ -180,7 +183,8 @@ export const useCardCarouselData = ({
     fallbackNames: ['amount', 'price', 'value'],
   });
 
-  const itemCount = configuration?.itemCount ?? CARD_CAROUSEL_DEFAULT_ITEM_COUNT;
+  const itemCount =
+    configuration?.itemCount ?? CARD_CAROUSEL_DEFAULT_ITEM_COUNT;
 
   const recordGqlFields = Object.fromEntries(
     [imageFieldName, titleFieldName, subtitleFieldName, priceFieldName]
@@ -206,7 +210,9 @@ export const useCardCarouselData = ({
     imageSrc: imageFieldName
       ? readImageUrlValue(record[imageFieldName])
       : undefined,
-    title: (titleFieldName ? readTextValue(record[titleFieldName]) : undefined) ?? '—',
+    title:
+      (titleFieldName ? readTextValue(record[titleFieldName]) : undefined) ??
+      '—',
     subtitle: subtitleFieldName
       ? readTextValue(record[subtitleFieldName])
       : undefined,

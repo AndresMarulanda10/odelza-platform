@@ -22,7 +22,12 @@ const pickValue = <T extends string>(
     ? (value as T)
     : fallback;
 
-const LAYOUTS = ['imageTop', 'imageCenter', 'imageOverlay', 'textOnly'] as const;
+const LAYOUTS = [
+  'imageTop',
+  'imageCenter',
+  'imageOverlay',
+  'textOnly',
+] as const;
 const IMAGE_ASPECTS = ['square', 'portrait', 'wide', 'circle'] as const;
 const RADII = ['square', 'soft', 'rounded', 'pill'] as const;
 const SIZES = ['sm', 'md', 'lg'] as const;

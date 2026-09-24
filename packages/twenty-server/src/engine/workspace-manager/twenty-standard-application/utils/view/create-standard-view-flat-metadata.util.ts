@@ -115,6 +115,9 @@ export const createStandardViewFlatMetadata = <
 
   return {
     calendarFieldMetadataUniversalIdentifier,
+    catalogImageFieldMetadataUniversalIdentifier: null,
+    catalogSubtitleFieldMetadataUniversalIdentifier: null,
+    catalogDetailFieldMetadataUniversalIdentifier: null,
     kanbanAggregateOperationFieldMetadataUniversalIdentifier,
     mainGroupByFieldMetadataUniversalIdentifier,
     objectMetadataUniversalIdentifier,
@@ -140,6 +143,9 @@ export const createStandardViewFlatMetadata = <
     kanbanColumnWidth: null,
     calendarLayout: null,
     calendarFieldMetadataId,
+    catalogImageFieldMetadataId: null,
+    catalogSubtitleFieldMetadataId: null,
+    catalogDetailFieldMetadataId: null,
     anyFieldFilterValue: null,
     visibility: ViewVisibility.WORKSPACE,
     createdByUserWorkspaceId: null,

@@ -143,6 +143,50 @@ export const fromUpdateViewInputToFlatViewToUpdateOrThrow = ({
       mainGroupByFieldMetadataUniversalIdentifier;
   }
 
+  if (updatedEditableProperties.catalogImageFieldMetadataId !== undefined) {
+    const { catalogImageFieldMetadataUniversalIdentifier } =
+      resolveEntityRelationUniversalIdentifiers({
+        metadataName: 'view',
+        foreignKeyValues: {
+          catalogImageFieldMetadataId: mergedRecord.catalogImageFieldMetadataId,
+        },
+        flatEntityMaps: { flatFieldMetadataMaps },
+      });
+
+    flatViewToUpdate.catalogImageFieldMetadataUniversalIdentifier =
+      catalogImageFieldMetadataUniversalIdentifier;
+  }
+
+  if (updatedEditableProperties.catalogSubtitleFieldMetadataId !== undefined) {
+    const { catalogSubtitleFieldMetadataUniversalIdentifier } =
+      resolveEntityRelationUniversalIdentifiers({
+        metadataName: 'view',
+        foreignKeyValues: {
+          catalogSubtitleFieldMetadataId:
+            mergedRecord.catalogSubtitleFieldMetadataId,
+        },
+        flatEntityMaps: { flatFieldMetadataMaps },
+      });
+
+    flatViewToUpdate.catalogSubtitleFieldMetadataUniversalIdentifier =
+      catalogSubtitleFieldMetadataUniversalIdentifier;
+  }
+
+  if (updatedEditableProperties.catalogDetailFieldMetadataId !== undefined) {
+    const { catalogDetailFieldMetadataUniversalIdentifier } =
+      resolveEntityRelationUniversalIdentifiers({
+        metadataName: 'view',
+        foreignKeyValues: {
+          catalogDetailFieldMetadataId:
+            mergedRecord.catalogDetailFieldMetadataId,
+        },
+        flatEntityMaps: { flatFieldMetadataMaps },
+      });
+
+    flatViewToUpdate.catalogDetailFieldMetadataUniversalIdentifier =
+      catalogDetailFieldMetadataUniversalIdentifier;
+  }
+
   if (isDefined(overrides)) {
     flatViewToUpdate.universalOverrides = fromViewOverridesToUniversalOverrides(
       {

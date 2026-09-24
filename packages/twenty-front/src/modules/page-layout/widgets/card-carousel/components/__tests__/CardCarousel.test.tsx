@@ -127,7 +127,9 @@ describe('CardCarousel', () => {
     render(<CardCarousel items={items} showArrows={false} showDots={false} />);
 
     expect(screen.queryByLabelText('Siguiente')).not.toBeInTheDocument();
-    expect(screen.queryByLabelText('Ir a la tarjeta 1')).not.toBeInTheDocument();
+    expect(
+      screen.queryByLabelText('Ir a la tarjeta 1'),
+    ).not.toBeInTheDocument();
   });
 
   describe('navegacion con las flechas', () => {

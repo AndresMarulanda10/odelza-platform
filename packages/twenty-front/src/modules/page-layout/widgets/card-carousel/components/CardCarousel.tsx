@@ -242,7 +242,11 @@ const StyledBody = styled.div<{
   $align: CardCarouselTextAlign;
 }>`
   align-items: ${({ $align }) =>
-    $align === 'center' ? 'center' : $align === 'right' ? 'flex-end' : 'stretch'};
+    $align === 'center'
+      ? 'center'
+      : $align === 'right'
+        ? 'flex-end'
+        : 'stretch'};
   display: flex;
   flex-direction: column;
   gap: ${themeCssVariables.spacing[1]};
@@ -524,7 +528,9 @@ export const CardCarousel = ({
   if (items.length === 0) {
     return (
       <StyledRoot $gap={gap}>
-        <StyledEmpty>{emptyLabel ?? t`No hay elementos para mostrar`}</StyledEmpty>
+        <StyledEmpty>
+          {emptyLabel ?? t`No hay elementos para mostrar`}
+        </StyledEmpty>
       </StyledRoot>
     );
   }
@@ -595,7 +601,9 @@ export const CardCarousel = ({
               </StyledMedia>
             )}
 
-            {show.badge && item.badge && <StyledBadge>{item.badge}</StyledBadge>}
+            {show.badge && item.badge && (
+              <StyledBadge>{item.badge}</StyledBadge>
+            )}
 
             <StyledBody $align={textAlign}>
               {show.title && <StyledTitle>{item.title}</StyledTitle>}

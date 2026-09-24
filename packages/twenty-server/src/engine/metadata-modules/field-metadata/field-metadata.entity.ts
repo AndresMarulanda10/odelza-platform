@@ -22,6 +22,7 @@ import {
 
 import { ADD_IS_SYSTEM_SIDE_EFFECT_UPGRADE_COMMAND_NAME } from 'src/database/commands/upgrade-version-command/2-15/is-system-side-effect-upgrade-command-name.constant';
 import { ADD_METADATA_OVERRIDES_COLUMN_UPGRADE_COMMAND_NAME } from 'src/database/commands/upgrade-version-command/2-19/add-metadata-overrides-column-upgrade-command-name.constant';
+import { ADD_CATALOG_FIELDS_TO_VIEW_UPGRADE_COMMAND_NAME } from 'src/database/commands/upgrade-version-command/2-21/add-catalog-fields-to-view-upgrade-command-name.constant';
 import { DROP_METADATA_STANDARD_OVERRIDES_COLUMN_UPGRADE_COMMAND_NAME } from 'src/database/commands/upgrade-version-command/2-20/drop-metadata-standard-overrides-column-upgrade-command-name.constant';
 import { WasIntroducedInUpgrade } from 'src/engine/core-modules/upgrade/decorators/was-introduced-in-upgrade.decorator';
 import { WasRemovedInUpgrade } from 'src/engine/core-modules/upgrade/decorators/was-removed-in-upgrade.decorator';
@@ -248,6 +249,24 @@ export class FieldMetadataEntity<
 
   @OneToMany(() => ViewEntity, (view) => view.calendarFieldMetadata)
   calendarViews: Relation<ViewEntity[]>;
+
+  @WasIntroducedInUpgrade({
+    upgradeCommandName: ADD_CATALOG_FIELDS_TO_VIEW_UPGRADE_COMMAND_NAME,
+  })
+  @OneToMany(() => ViewEntity, (view) => view.catalogImageFieldMetadata)
+  catalogImageViews: Relation<ViewEntity[]>;
+
+  @WasIntroducedInUpgrade({
+    upgradeCommandName: ADD_CATALOG_FIELDS_TO_VIEW_UPGRADE_COMMAND_NAME,
+  })
+  @OneToMany(() => ViewEntity, (view) => view.catalogSubtitleFieldMetadata)
+  catalogSubtitleViews: Relation<ViewEntity[]>;
+
+  @WasIntroducedInUpgrade({
+    upgradeCommandName: ADD_CATALOG_FIELDS_TO_VIEW_UPGRADE_COMMAND_NAME,
+  })
+  @OneToMany(() => ViewEntity, (view) => view.catalogDetailFieldMetadata)
+  catalogDetailViews: Relation<ViewEntity[]>;
 
   @OneToMany(() => ViewEntity, (view) => view.mainGroupByFieldMetadata)
   mainGroupByFieldMetadataViews: Relation<ViewEntity[]>;

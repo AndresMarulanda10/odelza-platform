@@ -133,13 +133,37 @@ export const RecordIndexCatalogContainer = () => {
       );
   }, [currentView, objectMetadataItem, labelIdentifierFieldMetadataItem]);
 
-  const [subtitleField, detailField] = cardFields;
+  const automaticSubtitleField = cardFields[0];
+  const automaticDetailField = cardFields[1];
+
+  const findFieldById = (fieldMetadataId?: string | null) =>
+    isDefined(fieldMetadataId)
+      ? objectMetadataItem.fields.find(
+          (fieldMetadataItem) => fieldMetadataItem.id === fieldMetadataId,
+        )
+      : undefined;
+
+  /*
+   * Si en los ajustes de la vista se eligio un campo concreto se usa ese; si no,
+   * se cae a las columnas visibles: la primera debajo del titulo y la segunda
+   * mas abajo.
+   */
+  const subtitleField =
+    findFieldById(currentView?.catalogSubtitleFieldMetadataId) ??
+    automaticSubtitleField;
+  const detailField =
+    findFieldById(currentView?.catalogDetailFieldMetadataId) ??
+    automaticDetailField;
+  const chosenImageField = findFieldById(
+    currentView?.catalogImageFieldMetadataId,
+  );
 
   const cards = records.map((record) => ({
     id: record.id,
     title: isDefined(labelIdentifierFieldMetadataItem)
-      ? (getRecordFieldTextValue(record[labelIdentifierFieldMetadataItem.name]) ??
-        '')
+      ? (getRecordFieldTextValue(
+          record[labelIdentifierFieldMetadataItem.name],
+        ) ?? '')
       : '',
     subtitle: isDefined(subtitleField)
       ? getRecordFieldTextValue(record[subtitleField.name])
@@ -147,9 +171,15 @@ export const RecordIndexCatalogContainer = () => {
     detail: isDefined(detailField)
       ? getRecordFieldTextValue(record[detailField.name])
       : undefined,
-    imageSrc: cardFields
-      .map((fieldMetadataItem) => readImageSrc(record[fieldMetadataItem.name]))
-      .find(isDefined),
+    imageSrc:
+      (isDefined(chosenImageField)
+        ? readImageSrc(record[chosenImageField.name])
+        : undefined) ??
+      cardFields
+        .map((fieldMetadataItem) =>
+          readImageSrc(record[fieldMetadataItem.name]),
+        )
+        .find(isDefined),
   }));
 
   if (!loading && cards.length === 0) {

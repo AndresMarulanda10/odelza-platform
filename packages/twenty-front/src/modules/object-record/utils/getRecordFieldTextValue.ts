@@ -35,7 +35,10 @@ export const getRecordFieldTextValue = (value: unknown): string | undefined => {
     const record = value as Record<string, unknown>;
 
     // Enlaces: se prefiere la etiqueta visible sobre la direccion.
-    if (isDefined(record.primaryLinkLabel) || isDefined(record.primaryLinkUrl)) {
+    if (
+      isDefined(record.primaryLinkLabel) ||
+      isDefined(record.primaryLinkUrl)
+    ) {
       return getRecordFieldTextValue(
         record.primaryLinkLabel ?? record.primaryLinkUrl,
       );
