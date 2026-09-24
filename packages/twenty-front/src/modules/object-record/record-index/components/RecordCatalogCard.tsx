@@ -1,5 +1,6 @@
 import { styled } from '@linaria/react';
 import { isDefined } from 'twenty-shared/utils';
+import { IconPhoto } from 'twenty-ui/icon';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledCard = styled.button`
@@ -29,16 +30,14 @@ const StyledCard = styled.button`
 `;
 
 const StyledImageFrame = styled.div`
+  align-items: center;
+  aspect-ratio: 3 / 2;
   background: ${themeCssVariables.background.tertiary};
+  display: flex;
+  justify-content: center;
   overflow: hidden;
   position: relative;
   width: 100%;
-
-  &::before {
-    content: '';
-    display: block;
-    padding-top: 66%;
-  }
 `;
 
 const StyledImage = styled.img`
@@ -47,6 +46,20 @@ const StyledImage = styled.img`
   object-fit: cover;
   position: absolute;
   width: 100%;
+`;
+
+/* Hueco de los registros sin foto: la inicial del titulo o un icono. */
+const StyledPlaceholder = styled.div`
+  align-items: center;
+  color: ${themeCssVariables.font.color.tertiary};
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledInitial = styled.span`
+  font-size: ${themeCssVariables.font.size.xxl};
+  font-weight: ${themeCssVariables.font.weight.semiBold};
+  text-transform: uppercase;
 `;
 
 const StyledBody = styled.div`
@@ -81,6 +94,8 @@ const StyledDetail = styled.span`
   white-space: nowrap;
 `;
 
+const PLACEHOLDER_ICON_SIZE = 48;
+
 export type RecordCatalogCardProps = {
   imageSrc?: string;
   imageAlt?: string;
@@ -97,17 +112,29 @@ export const RecordCatalogCard = ({
   subtitle,
   detail,
   onClick,
-}: RecordCatalogCardProps) => (
-  <StyledCard type="button" onClick={onClick} title={title}>
-    {isDefined(imageSrc) && (
+}: RecordCatalogCardProps) => {
+  const initial = title.trim().slice(0, 1);
+
+  return (
+    <StyledCard type="button" onClick={onClick} title={title}>
       <StyledImageFrame>
-        <StyledImage alt={imageAlt ?? ''} loading="lazy" src={imageSrc} />
+        {isDefined(imageSrc) ? (
+          <StyledImage alt={imageAlt ?? ''} loading="lazy" src={imageSrc} />
+        ) : (
+          <StyledPlaceholder>
+            {initial === '' ? (
+              <IconPhoto aria-hidden size={PLACEHOLDER_ICON_SIZE} />
+            ) : (
+              <StyledInitial aria-hidden="true">{initial}</StyledInitial>
+            )}
+          </StyledPlaceholder>
+        )}
       </StyledImageFrame>
-    )}
-    <StyledBody>
-      <StyledTitle>{title}</StyledTitle>
-      {isDefined(subtitle) && <StyledSubtitle>{subtitle}</StyledSubtitle>}
-      {isDefined(detail) && <StyledDetail>{detail}</StyledDetail>}
-    </StyledBody>
-  </StyledCard>
-);
+      <StyledBody>
+        <StyledTitle>{title}</StyledTitle>
+        {isDefined(subtitle) && <StyledSubtitle>{subtitle}</StyledSubtitle>}
+        {isDefined(detail) && <StyledDetail>{detail}</StyledDetail>}
+      </StyledBody>
+    </StyledCard>
+  );
+};

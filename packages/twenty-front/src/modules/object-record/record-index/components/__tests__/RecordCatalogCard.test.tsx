@@ -22,10 +22,19 @@ describe('RecordCatalogCard', () => {
     expect(screen.getByText('2026-09-30')).toBeInTheDocument();
   });
 
-  it('leaves out the empty parts of the card', () => {
-    render(<RecordCatalogCard title="Solo el título" />);
+  it('falls back to the first letter of the title when there is no image', () => {
+    const { container } = render(
+      <RecordCatalogCard title="Revisar propuesta de seguros" subtitle="TODO" />,
+    );
 
-    expect(screen.getByText('Solo el título')).toBeInTheDocument();
+    expect(screen.getByText('R')).toBeInTheDocument();
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
+    expect(container.querySelector('svg')).not.toBeInTheDocument();
+  });
+
+  it('shows the placeholder icon when there is neither image nor title', () => {
+    const { container } = render(<RecordCatalogCard title="   " />);
+
+    expect(container.querySelector('svg')).toBeInTheDocument();
   });
 });
