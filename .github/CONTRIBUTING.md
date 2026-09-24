@@ -72,7 +72,21 @@ This is a public repository and its workflows use standard `ubuntu-latest` runne
 
 These rules control GitHub Actions usage; they do not replace the repository owner's billing and storage limits or any charges from external services.
 
+## Local verification for expensive PR CI
 
+Use the local-first path when a maintainer wants to bypass expensive PR suites after reviewing a reproducible local report:
+
+- [ ] Keep the worktree clean, then run `yarn ci:local-verify` (or `yarn ci:local-verify --base <ref>`).
+- [ ] Capture the Markdown report from stdout without editing it. The command validates only safe affected fast checks; it does not run expensive service-backed suites.
+- [ ] Review every fast check, its exact command, bounded output/error summary, result, duration, and the full HEAD SHA.
+- [ ] Review local logs/results for every applicable `MANUAL REVIEW REQUIRED` suite before applying `ci:local-verified`.
+- [ ] A maintainer confirms the report SHA matches the current PR HEAD and the manual evidence covers Storybook, app integration/install, server validation/integration, and upgrade suites when applicable.
+- [ ] Shared-impact changes expand app static and integration coverage to all discovered app roots; do not treat them as changed-app-only verification.
+- [ ] A `synchronize` event forces the expensive suites to run again; `run-merge-queue` also overrides the bypass.
+
+An overall `FAST_CHECKS_PASS_MANUAL_REVIEW_REQUIRED` result means only the safe fast checks passed. It is not equivalent to full CI success. Optional app typecheck and unit rows are `N/A` only when the CI workflow skips them because the app has no corresponding script.
+
+The `ci:local-verified` label is maintainer-only scheduling metadata. It is not cryptographic proof and is not a security boundary. Main and the existing merge-queue path remain authoritative for full validation.
 
 ## Reporting Issues
 

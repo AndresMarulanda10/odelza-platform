@@ -30,6 +30,7 @@ on:
       - packages/twenty-shared/**
       - packages/twenty-client-sdk/**
   pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
     paths:
       - .github/actions/deploy-twenty-app/action.yml
       - .github/actions/install-twenty-app/action.yml
@@ -117,6 +118,7 @@ jobs:
     uses: ./.github/workflows/discover-apps.yaml
     with:
       scope: internal-and-public
+      # Shared-impact PRs expand to the full app matrix; other PRs validate changed apps only.
       changed-only: >-
         ${{ (github.event_name == 'pull_request' &&
         needs.shared-changed-files-check.outputs.any_changed != 'true') ||
@@ -124,8 +126,11 @@ jobs:
       application: ${{ inputs.application }}
 
   ci:
+    # Shared-impact PRs use the full app matrix for compatibility coverage.
     needs: discover
-    if: needs.discover.outputs.has_apps == 'true'
+    if: >-
+      always() &&
+      needs.discover.outputs.has_apps == 'true'
     name: ${{ matrix.app.name }}
     timeout-minutes: 30
     runs-on: ubuntu-latest
@@ -192,19 +197,22 @@ jobs:
           const serverSources = isPullRequest
             ? ['local']
             : ['dockerhub-latest', 'local'];
+          // Do not allocate runners for apps without integration tests.
           const matrix = {
-            include: apps.flatMap((app) =>
-              serverSources
-                .filter(
-                  (serverSource) =>
-                    serverSource === 'local' ||
-                    !excludedDockerHubApps.has(app.name),
-                )
-                .map((serverSource) => ({
-                  app,
-                  'server-source': serverSource,
-                })),
-            ),
+            include: apps
+              .filter((app) => app.hasIntegration)
+              .flatMap((app) =>
+                serverSources
+                  .filter(
+                    (serverSource) =>
+                      serverSource === 'local' ||
+                      !excludedDockerHubApps.has(app.name),
+                  )
+                  .map((serverSource) => ({
+                    app,
+                    'server-source': serverSource,
+                  })),
+              ),
           };
           fs.appendFileSync(
             process.env.GITHUB_OUTPUT,
@@ -214,7 +222,12 @@ jobs:
 
   integration:
     needs: [discover, prepare-integration-matrix]
-    if: needs.discover.outputs.has_apps == 'true'
+    if: >-
+      needs.discover.outputs.has_apps == 'true' &&
+      (github.event_name != 'pull_request' ||
+      github.event.action == 'synchronize' ||
+      !contains(github.event.pull_request.labels.*.name, 'ci:local-verified') ||
+      contains(github.event.pull_request.labels.*.name, 'run-merge-queue'))
     name: ${{ matrix.app.name }} (${{ matrix.server-source }})
     timeout-minutes: 30
     runs-on: ubuntu-latest

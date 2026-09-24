@@ -2,6 +2,7 @@ name: CI Front
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
     paths:
       - .github/actions/nx-affected/action.yaml
       - .github/actions/restore-cache/action.yaml
@@ -92,6 +93,10 @@ jobs:
     needs: changed-files-check
     if: >-
       always() &&
+      (github.event_name != 'pull_request' ||
+      github.event.action == 'synchronize' ||
+      !contains(github.event.pull_request.labels.*.name, 'ci:local-verified') ||
+      contains(github.event.pull_request.labels.*.name, 'run-merge-queue')) &&
       (github.event_name == 'push' ||
       needs.changed-files-check.outputs.any_changed == 'true')
     timeout-minutes: 30
@@ -129,11 +134,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [1, 2, 3, 4]
+        shard: ${{ github.event_name == 'pull_request' && fromJSON('[1, 2]') || fromJSON('[1, 2, 3, 4]') }}
         # Keep PR feedback focused; main retains both Storybook scopes.
         storybook_scope: ${{ github.event_name == 'push' && fromJSON('["modules", "pages"]') || fromJSON('["modules"]') }}
     env:
-      SHARD_COUNTER: 4
+      SHARD_COUNTER: ${{ github.event_name == 'pull_request' && 2 || 4 }}
       REACT_APP_SERVER_BASE_URL: http://localhost:3000
       STORYBOOK_URL: http://localhost:6006
     steps:
