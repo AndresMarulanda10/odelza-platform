@@ -1353,8 +1353,8 @@ type WorkflowVersionConfiguration {
 }
 
 type TaskTimelineConfiguration {
-  barColor: String
   configurationType: WidgetConfigurationType!
+  barColor: String
   fieldMapping: TaskTimelineFieldMapping
 }
 
@@ -2800,11 +2800,6 @@ type DuplicatedDashboard {
   updatedAt: String!
 }
 
-type PersonalFinanceData {
-  status: String!
-  sections: JSON!
-}
-
 type SendEmailOutput {
   success: Boolean!
   error: String
@@ -3184,7 +3179,6 @@ type Query {
   currentUser: User!
   getSSOIdentityProviders: [FindAvailableSSOIDP!]!
   eventLogs(input: EventLogQueryInput!): EventLogQueryResult!
-  personalFinanceData(input: PersonalFinanceDataInput!): PersonalFinanceData!
   pieChartData(input: PieChartDataInput!): PieChartData!
   lineChartData(input: LineChartDataInput!): LineChartData!
   barChartData(input: BarChartDataInput!): BarChartData!
@@ -3259,17 +3253,6 @@ input EventLogFiltersInput {
 input EventLogDateRangeInput {
   start: DateTime
   end: DateTime
-}
-
-input PersonalFinanceDataInput {
-  objectMetadataId: UUID!
-  configuration: JSON!
-  periodStart: String!
-  periodEnd: String!
-  timezone: String!
-  comparisonKind: String!
-  comparisonStart: String
-  comparisonEnd: String
 }
 
 input PieChartDataInput {
