@@ -1,6 +1,7 @@
 import { ObjectOptionsDropdownAddRecordGroupContent } from '@/object-record/object-options-dropdown/components/ObjectOptionsDropdownAddRecordGroupContent';
 import { ObjectOptionsDropdownCalendarFieldsContent } from '@/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarFieldsContent';
 import { ObjectOptionsDropdownCalendarViewContent } from '@/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent';
+import { ObjectOptionsDropdownCatalogFieldsContent } from '@/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent';
 import { ObjectOptionsDropdownFieldsContent } from '@/object-record/object-options-dropdown/components/ObjectOptionsDropdownFieldsContent';
 import { ObjectOptionsDropdownHiddenFieldsContent } from '@/object-record/object-options-dropdown/components/ObjectOptionsDropdownHiddenFieldsContent';
 import { ObjectOptionsDropdownHiddenRecordGroupsContent } from '@/object-record/object-options-dropdown/components/ObjectOptionsDropdownHiddenRecordGroupsContent';
@@ -39,6 +40,8 @@ export const ObjectOptionsDropdownContent = () => {
       return <ObjectOptionsDropdownCalendarViewContent />;
     case 'calendarFields':
       return <ObjectOptionsDropdownCalendarFieldsContent />;
+    case 'catalogFields':
+      return <ObjectOptionsDropdownCatalogFieldsContent />;
     case 'visibility':
       return <ObjectOptionsDropdownVisibilityContent />;
     default:

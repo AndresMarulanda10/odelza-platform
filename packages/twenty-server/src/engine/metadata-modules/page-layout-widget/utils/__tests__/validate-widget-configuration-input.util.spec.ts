@@ -21,7 +21,9 @@ import {
 } from 'test/integration/constants/widget-configuration-test-data.constants';
 
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
+import { WidgetType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-type.enum';
 import { validateWidgetConfigurationInput } from 'src/engine/metadata-modules/page-layout-widget/utils/validate-widget-configuration-input.util';
+import { validatePageLayoutWidgetTypeConfiguration } from 'src/engine/metadata-modules/page-layout-widget/utils/validate-page-layout-widget-type-configuration.util';
 
 describe('validateWidgetConfigurationInput', () => {
   describe('IFRAME widget', () => {
@@ -205,6 +207,105 @@ describe('validateWidgetConfigurationInput', () => {
         ).not.toThrow();
       });
     });
+  });
+
+  describe('new widget configurations', () => {
+    it('accepts the task timeline configuration envelope', () => {
+      expect(() =>
+        validateWidgetConfigurationInput({
+          configuration: {
+            configurationType: WidgetConfigurationType.TASK_TIMELINE,
+          },
+        }),
+      ).not.toThrow();
+    });
+
+    it('accepts task timeline date mappings and a hex bar color', () => {
+      expect(() =>
+        validateWidgetConfigurationInput({
+          configuration: {
+            configurationType: WidgetConfigurationType.TASK_TIMELINE,
+            barColor: '#123456',
+            fieldMapping: {
+              startDateFieldMetadataId: '00000000-0000-4000-8000-000000000001',
+              dueDateFieldMetadataId: '00000000-0000-4000-8000-000000000002',
+            },
+          },
+        }),
+      ).not.toThrow();
+    });
+
+    it('rejects an invalid task timeline bar color', () => {
+      expect(() =>
+        validateWidgetConfigurationInput({
+          configuration: {
+            configurationType: WidgetConfigurationType.TASK_TIMELINE,
+            barColor: 'blue',
+          },
+        }),
+      ).toThrow(/barColor/);
+    });
+
+    it('accepts the personal finance configuration envelope', () => {
+      expect(() =>
+        validateWidgetConfigurationInput({
+          configuration: {
+            configurationType: WidgetConfigurationType.PERSONAL_FINANCE,
+          },
+        }),
+      ).not.toThrow();
+    });
+
+    it('rejects invalid personal finance source field IDs', () => {
+      expect(() =>
+        validateWidgetConfigurationInput({
+          configuration: {
+            configurationType: WidgetConfigurationType.PERSONAL_FINANCE,
+            source: { incomeFieldMetadataId: 'not-a-uuid' },
+          },
+        }),
+      ).toThrow(/source.incomeFieldMetadataId.*UUID/);
+    });
+
+    it('keeps the task timeline widget and configuration types aligned', () => {
+      expect(() =>
+        validatePageLayoutWidgetTypeConfiguration({
+          type: WidgetType.TASK_TIMELINE,
+          configuration: {
+            configurationType: WidgetConfigurationType.PERSONAL_FINANCE,
+          },
+        }),
+      ).toThrow(/Expected TASK_TIMELINE/);
+    });
+
+    it('keeps the personal finance widget and configuration types aligned', () => {
+      expect(() =>
+        validatePageLayoutWidgetTypeConfiguration({
+          type: WidgetType.PERSONAL_FINANCE,
+          configuration: {
+            configurationType: WidgetConfigurationType.TASK_TIMELINE,
+          },
+        }),
+      ).toThrow(/Expected PERSONAL_FINANCE/);
+    });
+
+    it.each([
+      {
+        type: WidgetType.TASK_TIMELINE,
+        expectedConfigurationType: WidgetConfigurationType.TASK_TIMELINE,
+      },
+      {
+        type: WidgetType.PERSONAL_FINANCE,
+        expectedConfigurationType: WidgetConfigurationType.PERSONAL_FINANCE,
+      },
+    ])(
+      'rejects a missing configuration for $type',
+      ({ type, expectedConfigurationType }) => {
+        expect(() =>
+          validatePageLayoutWidgetTypeConfiguration({ type }),
+        ).toThrow(`Expected ${expectedConfigurationType}`);
+      },
+    );
   });
 
   describe('Edge cases', () => {

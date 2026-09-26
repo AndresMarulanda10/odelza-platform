@@ -95,6 +95,15 @@ export class FlatPageLayoutWidgetTypeValidatorService {
       EMAIL_THREAD: validateSimpleRecordPageWidgetForCreation(
         WidgetConfigurationType.EMAIL_THREAD,
       ),
+      TASK_TIMELINE: validateSimpleRecordPageWidgetForCreation(
+        WidgetConfigurationType.TASK_TIMELINE,
+      ),
+      PERSONAL_FINANCE: validateSimpleRecordPageWidgetForCreation(
+        WidgetConfigurationType.PERSONAL_FINANCE,
+      ),
+      CARD_CAROUSEL: validateSimpleRecordPageWidgetForCreation(
+        WidgetConfigurationType.CARD_CAROUSEL,
+      ),
     };
 
   private readonly PAGE_LAYOUT_WIDGET_TYPE_VALIDATOR_FOR_UPDATE_HASHMAP: FlatPageLayoutWidgetTypeValidatorForUpdate =
@@ -148,6 +157,15 @@ export class FlatPageLayoutWidgetTypeValidatorService {
       ),
       EMAIL_THREAD: validateSimpleRecordPageWidgetForUpdate(
         WidgetConfigurationType.EMAIL_THREAD,
+      ),
+      TASK_TIMELINE: validateSimpleRecordPageWidgetForUpdate(
+        WidgetConfigurationType.TASK_TIMELINE,
+      ),
+      PERSONAL_FINANCE: validateSimpleRecordPageWidgetForUpdate(
+        WidgetConfigurationType.PERSONAL_FINANCE,
+      ),
+      CARD_CAROUSEL: validateSimpleRecordPageWidgetForUpdate(
+        WidgetConfigurationType.CARD_CAROUSEL,
       ),
     };
 

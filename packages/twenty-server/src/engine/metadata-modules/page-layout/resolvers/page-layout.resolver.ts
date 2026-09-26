@@ -13,6 +13,7 @@ import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.ent
 import { AuthWorkspace } from 'src/engine/decorators/auth/auth-workspace.decorator';
 import { MetadataResolver } from 'src/engine/api/graphql/graphql-config/decorators/metadata-resolver.decorator';
 import { NoPermissionGuard } from 'src/engine/guards/no-permission.guard';
+import { PageLayoutWidgetPermissionGuard } from 'src/engine/guards/page-layout-widget-permission.guard';
 import { SettingsPermissionGuard } from 'src/engine/guards/settings-permission.guard';
 import { WorkspaceAuthGuard } from 'src/engine/guards/workspace-auth.guard';
 import { PageLayoutTabDTO } from 'src/engine/metadata-modules/page-layout-tab/dtos/page-layout-tab.dto';
@@ -113,7 +114,7 @@ export class PageLayoutResolver {
   }
 
   @Mutation(() => PageLayoutDTO)
-  @UseGuards(SettingsPermissionGuard(PermissionFlagType.LAYOUTS))
+  @UseGuards(PageLayoutWidgetPermissionGuard('duplicate'))
   async updatePageLayoutWithTabsAndWidgets(
     @Args('id', { type: () => String }) id: string,
     @Args('input') input: UpdatePageLayoutWithTabsInput,

@@ -122,6 +122,11 @@ msgstr "({seats} {seatCountLabel} × ${displayedPerSeatPrice})"
 msgid "(${currentCreditPriceDisplay}/{intervalLabel})"
 msgstr "(${currentCreditPriceDisplay}/{intervalLabel})"
 
+#. js-lingui-id: rdTdcw
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "(invalid)"
+msgstr ""
+
 #. js-lingui-id: L4H5SW
 #: src/modules/ui/input/components/IconPicker.tsx
 msgid "(no icon selected)"
@@ -965,6 +970,11 @@ msgstr "이 워크스페이스에 대해 수락 및 서명된 DPA와 해당 템�
 msgid "Access Key ID"
 msgstr "액세스 키 ID"
 
+#. js-lingui-id: XcvPL5
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Access to this section is denied."
+msgstr ""
+
 #. js-lingui-id: CrjDqe
 #: src/pages/auth/Authorize.tsx
 msgid "Access your workspace data"
@@ -1114,6 +1124,11 @@ msgstr "활성 설치 수"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminHealthAccountSyncCountersTable.tsx
 msgid "Active Sync"
 msgstr "활성 동기화"
+
+#. js-lingui-id: KOPiGS
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Actual"
+msgstr ""
 
 #. js-lingui-id: m16xKo
 #: src/pages/settings/ai/components/SettingsAgentEvalsTab.tsx
@@ -1921,6 +1936,11 @@ msgstr "모든 앱 등록"
 msgid "All application registrations across the platform, including orphaned marketplace apps"
 msgstr "고아 상태의 마켓플레이스 앱을 포함해 플랫폼 전체의 모든 앱 등록"
 
+#. js-lingui-id: zHxUsQ
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "All dated tasks have already ended."
+msgstr ""
+
 #. js-lingui-id: 1kLn6M
 #: src/modules/activities/calendar/components/CalendarEventRow.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionCreateCalendarEvent.tsx
@@ -2120,10 +2140,20 @@ msgstr "Amazon Q Developer CLI"
 msgid "Amber"
 msgstr "앰버"
 
+#. js-lingui-id: hehnjM
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Amount"
+msgstr ""
+
 #. js-lingui-id: s46CyD
 #: src/modules/object-record/record-field/ui/form-types/components/FormCurrencyFieldInput.tsx
 msgid "Amount Micros"
 msgstr "금액(마이크로 단위)"
+
+#. js-lingui-id: xI4dxj
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "An approved finance data source is required; no financial values were inferred."
+msgstr ""
 
 #. js-lingui-id: Vw8l6h
 #: src/modules/views/hooks/internal/usePerformViewSortAPIPersist.ts
@@ -2137,6 +2167,16 @@ msgstr "오류가 발생했습니다"
 #: src/modules/auth/sign-in-up/hooks/useSignInUp.ts
 msgid "An error occurred while checking user existence"
 msgstr "사용자 존재 여부 확인 중 오류가 발생했습니다"
+
+#. js-lingui-id: TQQG2A
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "An error occurred while loading financial data."
+msgstr ""
+
+#. js-lingui-id: PAwBtR
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "An error occurred while loading tasks."
+msgstr ""
 
 #. js-lingui-id: LfKkm6
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetErrorDisplay.tsx
@@ -2229,6 +2269,11 @@ msgstr "및"
 #: src/modules/settings/billing/components/internal/SettingsBillingPlanComparisonTable.tsx
 msgid "Annual"
 msgstr "연간"
+
+#. js-lingui-id: scHVBb
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "Anterior"
+msgstr ""
 
 #. js-lingui-id: 9BhGWn
 #. placeholder {0}: fieldLabel ?? ''
@@ -2616,6 +2661,11 @@ msgstr "무엇이든 질문하고, 검색하거나, 생성해 보세요..."
 msgid "Asking questions..."
 msgstr "질문하는 중..."
 
+#. js-lingui-id: GX8GKD
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Assets"
+msgstr ""
+
 #. js-lingui-id: OBqG7p
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentConfirmationModal.tsx
 msgid "Assign {roleTargetName}?"
@@ -2860,6 +2910,12 @@ msgstr "자동 생성"
 #. js-lingui-id: HX/jD4
 #: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/hooks/useWorkflowAiAgentPermissionActions.ts
 msgid "Auto-generated role for {agentDisplayName}"
+msgstr ""
+
+#. js-lingui-id: Dnn2XG
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+msgid "Automatic"
 msgstr ""
 
 #. js-lingui-id: YRT7ZW
@@ -3172,6 +3228,21 @@ msgstr "파트너 둘러보기"
 #: src/modules/settings/data-model/indexes/forms/components/SettingsObjectIndexOptionsForm.tsx
 msgid "BTREE (default, good for sorting and equality)"
 msgstr "BTREE (기본값, 정렬과 동등 비교에 적합)"
+
+#. js-lingui-id: 3SD10y
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Budget"
+msgstr ""
+
+#. js-lingui-id: FgSd7C
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Budget versus actual"
+msgstr ""
+
+#. js-lingui-id: ysG3Pd
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Budget versus actual rows"
+msgstr ""
 
 #. js-lingui-id: pN5hZf
 #: src/pages/settings/applications/tabs/SettingsApplicationFrontComponentSettingsTab.tsx
@@ -3508,21 +3579,73 @@ msgstr "Captcha (봇 방지 검사)가 여전히 로딩 중입니다. 다시 시
 msgid "Card"
 msgstr "카드"
 
+#. js-lingui-id: UGzcVY
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Card Carousel"
+msgstr ""
+
+#. js-lingui-id: vVPGdL
+#: src/modules/side-panel/hooks/useOpenWidgetSettingsInSidePanel.ts
+#: src/modules/side-panel/pages/page-layout/utils/getPageLayoutPageTitle.ts
+msgid "Card Carousel Settings"
+msgstr ""
+
+#. js-lingui-id: Gwbnqj
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Card layout"
+msgstr ""
+
 #. js-lingui-id: TbCWB7
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/pages/onboarding/UpgradeFreeTrial.tsx
 msgid "Card payment is currently unavailable. Please verify your Stripe configuration or contact your workspace admin."
 msgstr "현재 카드 결제를 사용할 수 없습니다. Stripe 구성을 확인하거나 워크스페이스 관리자에게 문의하세요."
 
+#. js-lingui-id: jBvtuq
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Card size"
+msgstr ""
+
+#. js-lingui-id: 2kLx39
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "carrusel"
+msgstr ""
+
+#. js-lingui-id: 8MkaKf
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Cash flow"
+msgstr ""
+
 #. js-lingui-id: M1RLfx
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Catalan"
 msgstr "카탈로니아어"
 
+#. js-lingui-id: z6eNxx
+#: src/modules/views/types/ViewType.ts
+msgid "Catalog"
+msgstr ""
+
+#. js-lingui-id: r8+cl4
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
+msgid "Catalog fields"
+msgstr ""
+
 #. js-lingui-id: K7tIrx
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 msgid "Category"
 msgstr "카테고리"
+
+#. js-lingui-id: 8cnN/3
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Category analysis"
+msgstr ""
+
+#. js-lingui-id: ExmWe7
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Category analysis rows"
+msgstr ""
 
 #. js-lingui-id: RpYfjZ
 #: src/modules/activities/emails/components/EmailComposerFields.tsx
@@ -3743,6 +3866,11 @@ msgstr "이메일 주소를 클릭할 때 수행할 작업을 선택하세요"
 #. js-lingui-id: 02EFne
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
 msgid "Choose which profile fields users with the Edit Profile permission can modify"
+msgstr ""
+
+#. js-lingui-id: 7xMmki
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Circle"
 msgstr ""
 
 #. js-lingui-id: 3wV73y
@@ -4101,6 +4229,11 @@ msgstr "회사"
 #: src/modules/settings/billing/components/internal/SettingsBillingSubscriptionInfoCardHeaderActions.tsx
 msgid "Compare plans"
 msgstr "플랜 비교"
+
+#. js-lingui-id: Nx6F8k
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Comparison"
+msgstr ""
 
 #. js-lingui-id: 3WrMP5
 #: src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx
@@ -5175,6 +5308,7 @@ msgstr "통화"
 
 #. js-lingui-id: Q2lUR2
 #: src/modules/object-record/record-field/ui/meta-types/input/components/CurrencyFieldInput.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 msgid "Currency"
 msgstr "통화"
 
@@ -5594,6 +5728,11 @@ msgstr "날짜 세분성 X"
 #: src/modules/side-panel/pages/page-layout/utils/__tests__/shouldHideChartSetting.test.ts
 msgid "Date Granularity Y"
 msgstr "날짜 세분성 Y"
+
+#. js-lingui-id: Lgnlah
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling."
+msgstr ""
 
 #. js-lingui-id: H7OUPr
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
@@ -6074,6 +6213,11 @@ msgstr "{objectLabel} 삭제 중"
 msgid "Deleting this method will remove it permanently from your account."
 msgstr "이 방법을 삭제하면 계정에서 영구적으로 제거됩니다."
 
+#. js-lingui-id: BhVo60
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Dependency conflict; dates were not rescheduled."
+msgstr ""
+
 #. js-lingui-id: Ssdrw4
 #: src/modules/settings/ai/components/SettingsAiModelsTable.tsx
 msgid "Deprecated"
@@ -6456,6 +6600,11 @@ msgstr "필드를 여기에 드롭하세요"
 #: src/modules/spreadsheet-import/steps/components/UploadStep/components/DropZone.tsx
 msgid "Drop file here..."
 msgstr "파일을 여기에 드롭하세요..."
+
+#. js-lingui-id: Gpfctt
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Due"
+msgstr ""
 
 #. js-lingui-id: euc6Ns
 #: src/modules/side-panel/pages/page-layout/components/RegularTabSettingsContent.tsx
@@ -6971,6 +7120,11 @@ msgstr "암호화 키 로테이션"
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "End date"
 msgstr "종료 날짜"
+
+#. js-lingui-id: DqIce1
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "End date field"
+msgstr ""
 
 #. js-lingui-id: Fqu/aC
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
@@ -7799,6 +7953,11 @@ msgstr "표현식"
 msgid "Extended"
 msgstr "연장됨"
 
+#. js-lingui-id: qlMg0V
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+msgid "Extra field"
+msgstr ""
+
 #. js-lingui-id: 7Bj3x9
 #: src/modules/ai/components/CodeExecutionDisplay.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceContent.tsx
@@ -8388,6 +8547,11 @@ msgstr "필터링"
 msgid "Filters"
 msgstr "필터"
 
+#. js-lingui-id: HuyCt8
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Financial data is unavailable."
+msgstr ""
+
 #. js-lingui-id: YTaTdm
 #: src/modules/ai/constants/crud-tool-operation-verbs.constant.ts
 msgid "Finding {objectLabel}"
@@ -8585,6 +8749,11 @@ msgstr "사용자당 무료 크레딧"
 msgid "French"
 msgstr "프랑스어"
 
+#. js-lingui-id: +r/DwW
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Freshness"
+msgstr ""
+
 #. js-lingui-id: ejVYRQ
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 #: src/modules/activities/emails/components/EmailComposerFields.tsx
@@ -8776,6 +8945,11 @@ msgstr "GIN (전문 검색 및 JSONB)"
 #: src/modules/settings/data-model/object-details/components/tabs/SettingsObjectSearchSection.tsx
 msgid "Global search"
 msgstr "전역 검색"
+
+#. js-lingui-id: zkQNdT
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Glow"
+msgstr ""
 
 #. js-lingui-id: CKyk7Q
 #: src/modules/onboarding/components/OnboardingHeader.tsx
@@ -9193,6 +9367,11 @@ msgstr "시간"
 msgid "Hours between triggers"
 msgstr "트리거 간의 시간"
 
+#. js-lingui-id: 3SPCSC
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Hover effect"
+msgstr ""
+
 #. js-lingui-id: xUNmcx
 #: src/modules/settings/billing/components/SettingsBillingCreditsSection.tsx
 msgid "How credits work"
@@ -9376,9 +9555,35 @@ msgid "iFrame Widget"
 msgstr "iFrame 위젯"
 
 #. js-lingui-id: hG89Ed
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
 msgid "Image"
 msgstr "이미지"
+
+#. js-lingui-id: OHY0Nf
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image behind the text"
+msgstr ""
+
+#. js-lingui-id: UU42wN
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image centered"
+msgstr ""
+
+#. js-lingui-id: FYsVJm
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image field"
+msgstr ""
+
+#. js-lingui-id: AVHTUF
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image on top"
+msgstr ""
+
+#. js-lingui-id: JbOau/
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image shape"
+msgstr ""
 
 #. js-lingui-id: ijW9MW
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
@@ -9962,6 +10167,12 @@ msgstr "팀 초대"
 msgid "Invoice amount may vary if you add members or credits between periods"
 msgstr "기간 사이에 멤버나 크레딧을 추가하면 청구 금액이 달라질 수 있습니다"
 
+#. js-lingui-id: 6gmWKp
+#. placeholder {0}: index + 1
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "Ir a la tarjeta {0}"
+msgstr ""
+
 #. js-lingui-id: CUvG5b
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
 msgid "Iris"
@@ -10222,6 +10433,11 @@ msgstr "키보드 단축키"
 msgid "Korean"
 msgstr "한국어"
 
+#. js-lingui-id: dxWV9J
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "KPI summary"
+msgstr ""
+
 #. js-lingui-id: 87a/t/
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsDate.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsNumber.tsx
@@ -10254,6 +10470,11 @@ msgstr "언어"
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
 msgid "Languages"
 msgstr "언어"
+
+#. js-lingui-id: k7rCa/
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Large"
+msgstr ""
 
 #. js-lingui-id: 59o/ag
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
@@ -10573,16 +10794,31 @@ msgstr "이하"
 msgid "Level"
 msgstr "레벨"
 
+#. js-lingui-id: 1Lzpv9
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Liabilities"
+msgstr ""
+
 #. js-lingui-id: NaBPMD
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "LibreChat"
 msgstr "LibreChat"
+
+#. js-lingui-id: ccXGYK
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "Librería de tarjetas"
+msgstr ""
 
 #. js-lingui-id: 3qg5Ro
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Licensee"
 msgstr "라이선스 보유자"
+
+#. js-lingui-id: LxntJR
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Lift"
+msgstr ""
 
 #. js-lingui-id: 1njn7W
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownThemesComponents.tsx
@@ -10758,6 +10994,11 @@ msgstr "문서 뷰어 로딩 중..."
 #: src/modules/activities/emails/components/EmailLoader.tsx
 msgid "Loading emails"
 msgstr "이메일 로드 중"
+
+#. js-lingui-id: mkGrO6
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Loading financial data…"
+msgstr ""
 
 #. js-lingui-id: IFQsdb
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
@@ -11168,6 +11409,11 @@ msgstr "나"
 msgid "Me (User ID)"
 msgstr "나(사용자 ID)"
 
+#. js-lingui-id: agPptk
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Medium"
+msgstr ""
+
 #. js-lingui-id: IAcjOi
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "Medium section heading"
@@ -11283,6 +11529,11 @@ msgstr "방법"
 #: src/modules/settings/security/components/SettingsSecurityAuthProvidersOptionsList.tsx
 msgid "Microsoft"
 msgstr "마이크로소프트"
+
+#. js-lingui-id: 4YHrmD
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Milestone"
+msgstr ""
 
 #. js-lingui-id: eTUF28
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationLabel.ts
@@ -11473,6 +11724,11 @@ msgstr "더 많은 위젯"
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationInstallStats.tsx
 msgid "Most installed version"
 msgstr "가장 많이 설치된 버전"
+
+#. js-lingui-id: QWdKwH
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Move"
+msgstr ""
 
 #. js-lingui-id: 3Ib6FN
 #: src/modules/navigation-menu-item/edit/side-panel/components/SidePanelEditOrganizeActions.tsx
@@ -11683,6 +11939,12 @@ msgstr "내비게이션 탭"
 #: src/pages/settings/communications/SettingsWorkspaceCommunicationGroupChannelDetail.tsx
 msgid "Need help to configure your shared mailbox?"
 msgstr "공유 메일박스 구성이 필요하신가요?"
+
+#. js-lingui-id: evw5ha
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Net worth"
+msgstr ""
 
 #. js-lingui-id: wW3b68
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsHttpRequestDetail.tsx
@@ -12014,6 +12276,11 @@ msgstr "액세스 없음"
 msgid "No active subscription."
 msgstr ""
 
+#. js-lingui-id: kz9kIx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No active tasks to display"
+msgstr ""
+
 #. js-lingui-id: aXFOuf
 #: src/modules/activities/timeline-activities/components/TimelineCard.tsx
 msgid "No activity yet"
@@ -12069,6 +12336,11 @@ msgstr "검색 조건에 맞는 API 키 없음"
 #: src/pages/settings/applications/tabs/SettingsApplicationsAvailableTab.tsx
 msgid "No applications available"
 msgstr "사용 가능한 애플리케이션이 없습니다"
+
+#. js-lingui-id: 5SYGVh
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "No approved data for this period."
+msgstr ""
 
 #. js-lingui-id: zLbFMr
 #: src/pages/onboarding/InstallAppsContent.tsx
@@ -12206,6 +12478,11 @@ msgstr "데이터를 찾을 수 없음"
 msgid "No Date field"
 msgstr "날짜 필드 없음"
 
+#. js-lingui-id: zqwWN2
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No dated tasks to display"
+msgstr ""
+
 #. js-lingui-id: lAfu/q
 #: src/modules/side-panel/pages/page-layout/components/CanvasTabSettingsContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/RegularTabSettingsContent.tsx
@@ -12301,6 +12578,16 @@ msgstr "사용 가능한 폴더가 없습니다"
 #: src/modules/settings/accounts/components/message-folders/SettingsMessageFoldersEmptyStateCard.tsx
 msgid "No folders found for this account"
 msgstr "이 계정에 대한 폴더를 찾을 수 없습니다"
+
+#. js-lingui-id: cYD+0r
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "No hay elementos para mostrar"
+msgstr ""
+
+#. js-lingui-id: IKz5W+
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "No hay registros para mostrar"
+msgstr ""
 
 #. js-lingui-id: 9kCSLK
 #: src/pages/settings/data-model/SettingsObjectIndexTable.tsx
@@ -12572,6 +12859,11 @@ msgstr "보기가 있는 시스템 개체를 찾을 수 없습니다"
 msgid "No targets available"
 msgstr "사용 가능한 대상이 없습니다"
 
+#. js-lingui-id: yunxrV
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No tasks to display"
+msgstr ""
+
 #. js-lingui-id: t0t36i
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsAiAgentDetail.tsx
 msgid "No tools were called"
@@ -12696,6 +12988,7 @@ msgstr "노드"
 #: src/modules/settings/accounts/components/SettingsAccountsMessageAutoCreationCard.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceContent.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartGroupByFieldSelectionDropdownContentBase.tsx
 #: src/modules/side-panel/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
 #: src/modules/side-panel/pages/page-layout/utils/getDateGranularityLabel.ts
@@ -12717,6 +13010,7 @@ msgstr "모든 열이 일치하지 않음"
 
 #. js-lingui-id: tqk+dw
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Not available for default view"
 msgstr "기본 보기에서 사용 불가"
 
@@ -12727,6 +13021,12 @@ msgstr "기본 보기에서 사용 불가"
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 msgid "Not available on Default View"
 msgstr "기본 보기에서 사용 불가"
+
+#. js-lingui-id: SDND4q
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Not configured"
+msgstr ""
 
 #. js-lingui-id: 4wUkDk
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
@@ -12875,6 +13175,7 @@ msgstr "개체"
 #: src/modules/settings/developers/components/WebhookEntitySelect.tsx
 #: src/modules/side-panel/components/SidePanelObjectFilterDropdownContent.tsx
 #: src/modules/side-panel/components/SidePanelObjectViewRecordInfo.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionCreateRecord.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionDeleteRecord.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpdateRecord.tsx
@@ -13137,6 +13438,11 @@ msgstr "{firstDay}일과 {secondDay}일에만"
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
 msgid "only on {remainingDays} and {0}"
 msgstr "{remainingDays}일과 {0}일에만"
+
+#. js-lingui-id: DHqBJO
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Only text"
+msgstr ""
 
 #. js-lingui-id: saaSLd
 #: src/modules/activities/emails/components/EmailThreadNotShared.tsx
@@ -13652,6 +13958,7 @@ msgid "Perform administrative actions or permanently delete this user"
 msgstr ""
 
 #. js-lingui-id: NtQvjo
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Period"
 msgstr "기간"
@@ -13696,6 +14003,21 @@ msgstr "권한 · {objectLabelSingular}"
 msgid "Person created"
 msgstr "사람이 생성되었습니다"
 
+#. js-lingui-id: KOtX3r
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Personal Finance"
+msgstr ""
+
+#. js-lingui-id: pCopzO
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Personal-finance dashboard"
+msgstr ""
+
+#. js-lingui-id: r5VJ93
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Personal-finance data unavailable"
+msgstr ""
+
 #. js-lingui-id: zmwvG2
 #: src/modules/object-record/record-field/ui/meta-types/input/components/PhonesFieldInput.tsx
 msgid "Phone"
@@ -13734,6 +14056,11 @@ msgstr "보기 선택"
 msgid "Pick an object"
 msgstr "개체 선택"
 
+#. js-lingui-id: sFHFYk
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Pick an object to choose its fields and show its records."
+msgstr ""
+
 #. js-lingui-id: c1JeA3
 #: src/modules/workflow/workflow-steps/workflow-actions/pick-record-action/components/WorkflowEditActionPickRecord.tsx
 msgid "Pick from"
@@ -13743,6 +14070,11 @@ msgstr "선택 기준"
 #: src/pages/settings/data-model/new-index/SettingsObjectNewIndex.tsx
 msgid "Pick one or more fields. The order you select them in becomes the column order in the index — important for composite queries. For composite fields like Address, pick the specific sub-column to index."
 msgstr "하나 이상의 필드를 선택하세요. 선택한 순서가 인덱스의 컬럼 순서가 되며, 이는 복합 쿼리에 중요합니다. Address와 같은 복합 필드의 경우, 인덱싱할 구체적인 하위 컬럼을 선택하세요."
+
+#. js-lingui-id: BIXc0k
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "Pick the fields this widget should use."
+msgstr ""
 
 #. js-lingui-id: X1kz7Q
 #: src/pages/settings/data-model/new-index/SettingsObjectNewIndex.tsx
@@ -13891,6 +14223,11 @@ msgstr "복수"
 msgid "Polish"
 msgstr "폴란드어"
 
+#. js-lingui-id: 3bV9gD
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Portrait"
+msgstr ""
+
 #. js-lingui-id: 0nsqwk
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Portuguese — Brazil"
@@ -13949,6 +14286,11 @@ msgstr "새 워크스페이스에 사전 설치"
 msgid "Pre-installed only"
 msgstr "사전 설치된 항목만"
 
+#. js-lingui-id: FlMg9W
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Precision"
+msgstr ""
+
 #. js-lingui-id: 0Lqxjs
 #: src/modules/auth/sign-in-up/constants/WorkspaceActivationMessages.tsx
 msgid "Prefilling your <0>workspace data</0>..."
@@ -13970,6 +14312,7 @@ msgid "Prevent from assigning the same value to different records"
 msgstr "기록에 동일한 값을 할당하지 못하도록 방지"
 
 #. js-lingui-id: rdUucN
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/settings/data-model/components/SettingsDataModelPreviewFormCard.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectSettingsFormCard.tsx
 #: src/pages/settings/applications/SettingsApplicationFrontComponentDetail.tsx
@@ -13991,6 +14334,11 @@ msgstr "이전"
 #: src/modules/ai/utils/groupThreadsByDate.ts
 msgid "Previous 7 days"
 msgstr "지난 7일"
+
+#. js-lingui-id: pT+yuB
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Price field"
+msgstr ""
 
 #. js-lingui-id: aHCEmh
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
@@ -14906,6 +15254,21 @@ msgstr "정적 값으로 재설정"
 msgid "Reset variable"
 msgstr "변수 재설정"
 
+#. js-lingui-id: EP6x91
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize"
+msgstr ""
+
+#. js-lingui-id: k2DjdV
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize task due date"
+msgstr ""
+
+#. js-lingui-id: RYNDMW
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize task start date"
+msgstr ""
+
 #. js-lingui-id: N0vrR6
 #: src/modules/settings/billing/components/internal/ResourceCreditPriceSelector.tsx
 msgid "Resource credits updated."
@@ -14990,6 +15353,8 @@ msgstr "다시 시작"
 
 #. js-lingui-id: 6gRgw8
 #: src/modules/ai/components/AiChatErrorMessage.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobRowDropdownMenu.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminRetryJobsConfirmationModal.tsx
 #: src/pages/onboarding/PaymentSuccess.tsx
@@ -15260,6 +15625,11 @@ msgstr "새 보기로 저장"
 msgid "Save or cancel dashboard changes before editing the layout."
 msgstr "레이아웃을 편집하기 전에 대시보드 변경 사항을 저장하거나 취소하세요."
 
+#. js-lingui-id: bifv6N
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Scale"
+msgstr ""
+
 #. js-lingui-id: gmB6oO
 #: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
 msgid "Schedule"
@@ -15310,6 +15680,11 @@ msgstr "범위"
 #: src/pages/settings/ai/components/SettingsAgentLogsTab.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 msgid "Score"
+msgstr ""
+
+#. js-lingui-id: 2YCiey
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Scroll horizontally and vertically, or drag empty space to pan. Task bars and controls remain interactive."
 msgstr ""
 
 #. js-lingui-id: hJjXGo
@@ -15505,6 +15880,7 @@ msgstr "검색 필드 메타데이터"
 #. js-lingui-id: 7taA9j
 #: src/modules/object-record/advanced-filter/components/AdvancedFilterFieldSelectSearchInput.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarFieldsContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownFieldsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupFieldsContent.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
@@ -15978,6 +16354,11 @@ msgstr "워크스페이스 모델 선택기에서 권장으로 표시할 모델�
 msgid "Select your preferred language"
 msgstr "선호하는 언어 선택"
 
+#. js-lingui-id: YMYE4/
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Selected color"
+msgstr ""
+
 #. js-lingui-id: JlFcis
 #: src/modules/page-layout/widgets/email-thread/components/EmailThreadComposer.tsx
 #: src/modules/side-panel/pages/compose-email/components/SidePanelComposeEmailPage.tsx
@@ -16230,6 +16611,7 @@ msgstr "일곱 번째"
 
 #. js-lingui-id: Z8lGw6
 #: src/modules/activities/emails/components/EmailThreadBottomBar.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 msgid "Share"
 msgstr "공유"
 
@@ -16392,6 +16774,11 @@ msgstr "서명 키가 취소됨"
 msgid "Signing Keys"
 msgstr "서명 키"
 
+#. js-lingui-id: /rrTRh
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "Siguiente"
+msgstr ""
+
 #. js-lingui-id: BZdVGR
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx
 msgid "Single edit"
@@ -16500,6 +16887,11 @@ msgstr "정션 오브젝트를 건너뛰기(다대다 관계와 유사)"
 msgid "Sky"
 msgstr "하늘색"
 
+#. js-lingui-id: 4Revpc
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Small"
+msgstr ""
+
 #. js-lingui-id: Ik7fz5
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "Small section heading"
@@ -16552,6 +16944,16 @@ msgstr "smtp.example.com"
 msgid "Some"
 msgstr "일부"
 
+#. js-lingui-id: jR8Wfb
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Some finance sections are unavailable."
+msgstr ""
+
+#. js-lingui-id: 8fz+t8
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Some finance sections could not be loaded."
+msgstr ""
+
 #. js-lingui-id: RwCYVZ
 #: src/modules/settings/accounts/components/SettingsAccountsMessageFolderCard.tsx
 msgid "Some folders"
@@ -16568,6 +16970,21 @@ msgstr "일부 레이아웃 변경 사항을 저장하지 못했습니다."
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 msgid "Some log data was dropped to fit the size limit ({0} entries, {1} bytes)."
 msgstr "일부 로그 데이터가 크기 제한에 맞추기 위해 삭제되었습니다 ({0}개 항목, {1}바이트)."
+
+#. js-lingui-id: cSrzsO
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Some task data could not be loaded."
+msgstr ""
+
+#. js-lingui-id: 4aNyrb
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Some tasks have unavailable dates or progress."
+msgstr ""
+
+#. js-lingui-id: ZVl+JT
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Some values are unavailable."
+msgstr ""
 
 #. js-lingui-id: nwtY4N
 #: src/pages/auth/Authorize.tsx
@@ -16675,6 +17092,11 @@ msgstr "가장 자주 필터링하거나 정렬에 사용하는 필드의 읽기
 msgid "Split multiple values"
 msgstr "여러 값 분리"
 
+#. js-lingui-id: 1DA6ap
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Square"
+msgstr ""
+
 #. js-lingui-id: vnS6Rf
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
@@ -16719,6 +17141,11 @@ msgstr "단계"
 msgid "Standard"
 msgstr "표준"
 
+#. js-lingui-id: tXkhj/
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Start"
+msgstr ""
+
 #. js-lingui-id: ASqWQi
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Start a new enterprise subscription to re-enable enterprise features."
@@ -16734,6 +17161,16 @@ msgstr "새 엔터프라이즈 구독을 시작하세요."
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Start date"
 msgstr "시작 날짜"
+
+#. js-lingui-id: PdzWsW
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Start date cannot be after due date."
+msgstr ""
+
+#. js-lingui-id: AyXrhB
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Start date field"
+msgstr ""
 
 #. js-lingui-id: s+K73L
 #: src/modules/settings/billing/components/internal/SettingsBillingSubscriptionInfoModals.tsx
@@ -17003,6 +17440,16 @@ msgstr "구독이 {0}에 월간 요금제로 전환됩니다."
 msgid "subtitle"
 msgstr ""
 
+#. js-lingui-id: a0w0iQ
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+msgid "Subtitle"
+msgstr ""
+
+#. js-lingui-id: 8QCMSh
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Subtitle field"
+msgstr ""
+
 #. js-lingui-id: zzDlyQ
 #: src/modules/ui/feedback/snack-bar-manager/components/SnackBar.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsCodeDetail.tsx
@@ -17233,6 +17680,54 @@ msgstr "정션 오브젝트의 대상 관계"
 msgid "Target workspace subdomain"
 msgstr "대상 작업공간 서브도메인"
 
+#. js-lingui-id: Q3P/4s
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task"
+msgstr ""
+
+#. js-lingui-id: iKS7vc
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Task bar color"
+msgstr ""
+
+#. js-lingui-id: I/ObQ6
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task date fields are not configured; unavailable dates are not inferred."
+msgstr ""
+
+#. js-lingui-id: hVUUhm
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline"
+msgstr ""
+
+#. js-lingui-id: a7kw3s
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Task Timeline"
+msgstr ""
+
+#. js-lingui-id: xZvFdS
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline calendar"
+msgstr ""
+
+#. js-lingui-id: Mv45RZ
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline calendar viewport"
+msgstr ""
+
+#. js-lingui-id: 5BZI6t
+#: src/modules/side-panel/hooks/useOpenWidgetSettingsInSidePanel.ts
+#: src/modules/side-panel/pages/page-layout/utils/getPageLayoutPageTitle.ts
+msgid "Task Timeline Settings"
+msgstr ""
+
+#. js-lingui-id: 4B+OzR
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline unavailable"
+msgstr ""
+
 #. js-lingui-id: R+s8S+
 #: src/modules/activities/tasks/components/TaskRow.tsx
 msgid "Task title"
@@ -17242,6 +17737,16 @@ msgstr "작업 제목"
 #: src/modules/activities/notes/components/NoteTile.tsx
 msgid "Task Title"
 msgstr "작업 제목"
+
+#. js-lingui-id: YDv82r
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Tasks with approved start and end dates will appear here."
+msgstr ""
+
+#. js-lingui-id: l9tCD6
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Tasks with both a valid start and end date will appear in the calendar."
+msgstr ""
 
 #. js-lingui-id: KM6m8p
 #: src/pages/settings/members/SettingsWorkspaceMembers.tsx
@@ -17482,6 +17987,11 @@ msgstr "사용자가 이메일 수신을 거부하기 위해 리디렉션되는 
 msgid "The PDF is pre-signed by Twenty and executed with your legal entity and authorized signatory."
 msgstr "이 PDF는 Twenty에서 미리 서명했으며, 귀하의 법인과 승인된 서명권자와 함께 체결됩니다."
 
+#. js-lingui-id: 1Bzg5s
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "The records of this widget could not be loaded."
+msgstr ""
+
 #. js-lingui-id: wxyrqd
 #: src/modules/workflow/workflow-steps/workflow-actions/pick-record-action/components/WorkflowEditActionPickRecord.tsx
 msgid "the selected object"
@@ -17566,6 +18076,11 @@ msgstr "구독에 결제 문제가 있습니다. 결제 수단을 업데이트�
 #: src/modules/activities/timeline-activities/components/TimelineCard.tsx
 msgid "There is no activity associated with this record."
 msgstr "이 레코드와 연결된 활동이 없습니다."
+
+#. js-lingui-id: NSDJmj
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "There is nothing to show yet."
+msgstr ""
 
 #. js-lingui-id: ynfkhb
 #: src/pages/auth/PasswordReset.tsx
@@ -17686,6 +18201,11 @@ msgstr "이 구성 요소는 UI 없이 실행되며 여기에는 아무것도 �
 msgid "This connection does not exist or is not available for this application."
 msgstr "이 연결이 존재하지 않거나 이 애플리케이션에서 사용할 수 없습니다."
 
+#. js-lingui-id: BIE6Er
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "This data may be stale."
+msgstr ""
+
 #. js-lingui-id: SLIRqz
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "This database value overrides environment settings. "
@@ -17786,6 +18306,11 @@ msgstr "이 역할은 이 {roleTargetDisplayName}들에게 할당되었습니다
 msgid "This role is shared with other users or agents and cannot be edited here."
 msgstr ""
 
+#. js-lingui-id: evLk20
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "This section could not be loaded."
+msgstr ""
+
 #. js-lingui-id: 2iQQGR
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "This server has an enterprise key configured. Make sure you keep a copy of it somewhere safe: you need the same key to activate a development instance or to move your license to a replacement server. If you no longer have access to your key, contact support."
@@ -17833,6 +18358,11 @@ msgstr "이 뷰는 객체 \"{0}\"에 {usageLabel}을(를) 사용하지만, 해�
 #: src/modules/settings/admin-panel/health-status/constants/WorkerQueueMetricsSelectOptions.ts
 msgid "This week"
 msgstr "이번 주"
+
+#. js-lingui-id: gjpwN3
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "This widget needs an object to read from."
+msgstr ""
 
 #. js-lingui-id: DF2voz
 #: src/modules/side-panel/pages/page-layout/components/CanvasTabSettingsContent.tsx
@@ -17938,6 +18468,11 @@ msgstr "시간대"
 msgid "Timeline"
 msgstr "타임라인"
 
+#. js-lingui-id: ewpwRb
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline data is incomplete"
+msgstr ""
+
 #. js-lingui-id: xY9s5E
 #: src/modules/settings/logic-functions/components/SettingsLogicFunctionNewForm.tsx
 msgid "Timeout"
@@ -17974,6 +18509,11 @@ msgstr "제목"
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
 msgid "Title"
 msgstr "제목"
+
+#. js-lingui-id: 6P1iPM
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Title field"
+msgstr ""
 
 #. js-lingui-id: /jQctM
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
@@ -18431,10 +18971,25 @@ msgstr ""
 msgid "Unable to load application details. Please try again later."
 msgstr "애플리케이션 세부 정보를 불러올 수 없습니다. 나중에 다시 시도해 주세요."
 
+#. js-lingui-id: P9t/pW
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Unable to load personal-finance data"
+msgstr ""
+
+#. js-lingui-id: aU7aM1
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unable to load task timeline"
+msgstr ""
+
 #. js-lingui-id: l+ALBd
 #: src/modules/client-config/components/ClientConfigProvider.tsx
 msgid "Unable to Reach Back-end"
 msgstr "백엔드에 연결할 수 없습니다"
+
+#. js-lingui-id: 3y+qu/
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unable to save task timeline changes."
+msgstr ""
 
 #. js-lingui-id: 5JOLV9
 #: src/modules/ai/components/AiChatThreadItemMenu.tsx
@@ -18442,9 +18997,16 @@ msgid "Unarchive"
 msgstr "보관 해제"
 
 #. js-lingui-id: jqzUyM
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 #: src/modules/settings/billing/hooks/useBillingPlanActions.ts
 msgid "Unavailable"
 msgstr "사용 불가"
+
+#. js-lingui-id: PcSvms
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unavailable task data is not shown as zero or an invented date."
+msgstr ""
 
 #. js-lingui-id: NYFASA
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
@@ -18705,6 +19267,14 @@ msgstr "제목 없는 목록"
 #: src/modules/settings/roles/role/components/SettingsRoleCreateEffect.tsx
 msgid "Untitled role"
 msgstr "제목 없음 역할"
+
+#. js-lingui-id: CowgFX
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Untitled task"
+msgstr ""
 
 #. js-lingui-id: jxRjAG
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
@@ -19297,6 +19867,16 @@ msgstr "변수 이름"
 msgid "Variable not found"
 msgstr "변수를 찾을 수 없음"
 
+#. js-lingui-id: vXTvG8
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Variance"
+msgstr ""
+
+#. js-lingui-id: dEDwEM
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "Ver más"
+msgstr ""
+
 #. js-lingui-id: QDEWii
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
 msgid "Verified"
@@ -19872,6 +20452,11 @@ msgstr "이 모델이 Chain-of-Thought 추론을 지원하는지 여부"
 msgid "Whole list"
 msgstr "전체 목록"
 
+#. js-lingui-id: I5S9ZE
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Wide"
+msgstr ""
+
 #. js-lingui-id: dmoPOu
 #: src/pages/settings/applications/SettingsAvailableApplicationDetails.tsx
 msgid "widget"
@@ -20277,6 +20862,11 @@ msgstr "자신의 계정을 가장할 수 없습니다."
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay.tsx
 msgid "You do not have permission to access the {objectName} object"
 msgstr "{objectName} 객체에 접근할 권한이 없습니다"
+
+#. js-lingui-id: hFuTsh
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "You do not have permission to view task data."
+msgstr ""
 
 #. js-lingui-id: D0mU8n
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay.tsx

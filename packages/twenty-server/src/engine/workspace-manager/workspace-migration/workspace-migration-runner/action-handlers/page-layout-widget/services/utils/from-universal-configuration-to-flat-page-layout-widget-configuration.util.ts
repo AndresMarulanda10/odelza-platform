@@ -1,5 +1,8 @@
 import {
+  type CardCarouselFieldMapping,
   type ChartFilter,
+  type PersonalFinanceSourceMapping,
+  type TaskTimelineFieldMapping,
   type UniversalChartFilter,
 } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
@@ -12,6 +15,18 @@ import { type MetadataFlatEntityMaps } from 'src/engine/metadata-modules/flat-en
 import { findFlatEntityByUniversalIdentifier } from 'src/engine/metadata-modules/flat-entity/utils/find-flat-entity-by-universal-identifier.util';
 import { type FlatPageLayoutWidget } from 'src/engine/metadata-modules/flat-page-layout-widget/types/flat-page-layout-widget.type';
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
+import {
+  CARD_CAROUSEL_FIELD_MAPPINGS,
+  type CardCarouselFieldMappingUniversal,
+} from 'src/engine/metadata-modules/page-layout-widget/utils/card-carousel-field-mapping.util';
+import {
+  PERSONAL_FINANCE_SOURCE_FIELD_MAPPINGS,
+  type PersonalFinanceSourceMappingUniversal,
+} from 'src/engine/metadata-modules/page-layout-widget/utils/personal-finance-source-mapping.util';
+import {
+  TASK_TIMELINE_FIELD_MAPPINGS,
+  type TaskTimelineFieldMappingUniversal,
+} from 'src/engine/metadata-modules/page-layout-widget/utils/task-timeline-field-mapping.util';
 
 const resolveFieldMetadataIdOrThrow = ({
   fieldMetadataUniversalIdentifier,
@@ -65,6 +80,110 @@ const convertUniversalFilterToChartFilter = ({
       }),
     ),
   };
+};
+
+const convertPersonalFinanceSourceToFlat = ({
+  source,
+  flatFieldMetadataMaps,
+}: {
+  source: PersonalFinanceSourceMappingUniversal | null | undefined;
+  flatFieldMetadataMaps: MetadataFlatEntityMaps<'fieldMetadata'>;
+}): PersonalFinanceSourceMapping | null | undefined => {
+  if (source === undefined || source === null) {
+    return source;
+  }
+
+  return Object.fromEntries(
+    PERSONAL_FINANCE_SOURCE_FIELD_MAPPINGS.flatMap(
+      ([fieldMetadataKey, universalIdentifierKey]) => {
+        const fieldMetadataUniversalIdentifier = source[universalIdentifierKey];
+
+        return fieldMetadataUniversalIdentifier === undefined
+          ? []
+          : [
+              [
+                fieldMetadataKey,
+                fieldMetadataUniversalIdentifier === null
+                  ? null
+                  : resolveFieldMetadataIdOrThrow({
+                      fieldMetadataUniversalIdentifier,
+                      flatFieldMetadataMaps,
+                    }),
+              ],
+            ];
+      },
+    ),
+  ) as PersonalFinanceSourceMapping;
+};
+
+const convertTaskTimelineFieldMappingToFlat = ({
+  fieldMapping,
+  flatFieldMetadataMaps,
+}: {
+  fieldMapping: TaskTimelineFieldMappingUniversal | null | undefined;
+  flatFieldMetadataMaps: MetadataFlatEntityMaps<'fieldMetadata'>;
+}): TaskTimelineFieldMapping | null | undefined => {
+  if (fieldMapping === undefined || fieldMapping === null) {
+    return fieldMapping;
+  }
+
+  return Object.fromEntries(
+    TASK_TIMELINE_FIELD_MAPPINGS.flatMap(
+      ([fieldMetadataKey, universalIdentifierKey]) => {
+        const fieldMetadataUniversalIdentifier =
+          fieldMapping[universalIdentifierKey];
+
+        return fieldMetadataUniversalIdentifier === undefined
+          ? []
+          : [
+              [
+                fieldMetadataKey,
+                fieldMetadataUniversalIdentifier === null
+                  ? null
+                  : resolveFieldMetadataIdOrThrow({
+                      fieldMetadataUniversalIdentifier,
+                      flatFieldMetadataMaps,
+                    }),
+              ],
+            ];
+      },
+    ),
+  ) as TaskTimelineFieldMapping;
+};
+
+const convertCardCarouselFieldMappingToFlat = ({
+  fieldMapping,
+  flatFieldMetadataMaps,
+}: {
+  fieldMapping: CardCarouselFieldMappingUniversal | null | undefined;
+  flatFieldMetadataMaps: MetadataFlatEntityMaps<'fieldMetadata'>;
+}): CardCarouselFieldMapping | null | undefined => {
+  if (fieldMapping === undefined || fieldMapping === null) {
+    return fieldMapping;
+  }
+
+  return Object.fromEntries(
+    CARD_CAROUSEL_FIELD_MAPPINGS.flatMap(
+      ([fieldMetadataKey, universalIdentifierKey]) => {
+        const fieldMetadataUniversalIdentifier =
+          fieldMapping[universalIdentifierKey];
+
+        return fieldMetadataUniversalIdentifier === undefined
+          ? []
+          : [
+              [
+                fieldMetadataKey,
+                fieldMetadataUniversalIdentifier === null
+                  ? null
+                  : resolveFieldMetadataIdOrThrow({
+                      fieldMetadataUniversalIdentifier,
+                      flatFieldMetadataMaps,
+                    }),
+              ],
+            ];
+      },
+    ),
+  ) as CardCarouselFieldMapping;
 };
 
 export const fromUniversalConfigurationToFlatPageLayoutWidgetConfiguration = ({
@@ -361,5 +480,36 @@ export const fromUniversalConfigurationToFlatPageLayoutWidgetConfiguration = ({
     case WidgetConfigurationType.STANDALONE_RICH_TEXT:
     case WidgetConfigurationType.EMAIL_THREAD:
       return universalConfiguration;
+    case WidgetConfigurationType.TASK_TIMELINE: {
+      const { fieldMapping, ...rest } = universalConfiguration;
+      const flatFieldMapping = convertTaskTimelineFieldMappingToFlat({
+        fieldMapping,
+        flatFieldMetadataMaps,
+      });
+
+      return flatFieldMapping === undefined
+        ? rest
+        : { ...rest, fieldMapping: flatFieldMapping };
+    }
+    case WidgetConfigurationType.PERSONAL_FINANCE: {
+      const { source, ...rest } = universalConfiguration;
+      const flatSource = convertPersonalFinanceSourceToFlat({
+        source,
+        flatFieldMetadataMaps,
+      });
+
+      return flatSource === undefined ? rest : { ...rest, source: flatSource };
+    }
+    case WidgetConfigurationType.CARD_CAROUSEL: {
+      const { fieldMapping, ...rest } = universalConfiguration;
+      const flatFieldMapping = convertCardCarouselFieldMappingToFlat({
+        fieldMapping,
+        flatFieldMetadataMaps,
+      });
+
+      return flatFieldMapping === undefined
+        ? rest
+        : { ...rest, fieldMapping: flatFieldMapping };
+    }
   }
 };

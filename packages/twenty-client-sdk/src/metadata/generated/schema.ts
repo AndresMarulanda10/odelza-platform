@@ -579,6 +579,9 @@ export interface View {
     shouldHideEmptyGroups: Scalars['Boolean']
     kanbanColumnWidth?: Scalars['Int']
     calendarFieldMetadataId?: Scalars['UUID']
+    catalogImageFieldMetadataId?: Scalars['UUID']
+    catalogSubtitleFieldMetadataId?: Scalars['UUID']
+    catalogDetailFieldMetadataId?: Scalars['UUID']
     workspaceId: Scalars['UUID']
     anyFieldFilterValue?: Scalars['String']
     calendarLayout?: ViewCalendarLayout
@@ -597,7 +600,7 @@ export interface View {
     __typename: 'View'
 }
 
-export type ViewType = 'TABLE' | 'KANBAN' | 'CALENDAR' | 'FIELDS_WIDGET' | 'TABLE_WIDGET'
+export type ViewType = 'TABLE' | 'KANBAN' | 'CALENDAR' | 'CATALOG' | 'FIELDS_WIDGET' | 'TABLE_WIDGET'
 
 export type ViewKey = 'INDEX'
 
@@ -700,16 +703,47 @@ export interface User {
 /** Onboarding status */
 export type OnboardingStatus = 'PLAN_REQUIRED' | 'WORKSPACE_ACTIVATION' | 'PROFILE_CREATION' | 'SYNC_EMAIL' | 'APPS_INSTALLATION' | 'INVITE_TEAM' | 'COMPLETED'
 
+export interface CardCarouselFieldMapping {
+    imageFieldMetadataId?: Scalars['UUID']
+    titleFieldMetadataId?: Scalars['UUID']
+    subtitleFieldMetadataId?: Scalars['UUID']
+    priceFieldMetadataId?: Scalars['UUID']
+    __typename: 'CardCarouselFieldMapping'
+}
+
 export interface RatioAggregateConfig {
     fieldMetadataId: Scalars['UUID']
     optionValue: Scalars['String']
     __typename: 'RatioAggregateConfig'
 }
 
+export interface PersonalFinanceSourceMapping {
+    incomeFieldMetadataId?: Scalars['UUID']
+    expenseFieldMetadataId?: Scalars['UUID']
+    budgetFieldMetadataId?: Scalars['UUID']
+    assetFieldMetadataId?: Scalars['UUID']
+    liabilityFieldMetadataId?: Scalars['UUID']
+    dateFieldMetadataId?: Scalars['UUID']
+    categoryFieldMetadataId?: Scalars['UUID']
+    __typename: 'PersonalFinanceSourceMapping'
+}
+
 export interface RichTextBody {
     blocknote?: Scalars['String']
     markdown?: Scalars['String']
     __typename: 'RichTextBody'
+}
+
+export interface TaskTimelineFieldMapping {
+    titleFieldMetadataId?: Scalars['UUID']
+    startDateFieldMetadataId?: Scalars['UUID']
+    dueDateFieldMetadataId?: Scalars['UUID']
+    progressFieldMetadataId?: Scalars['UUID']
+    statusFieldMetadataId?: Scalars['UUID']
+    milestoneFieldMetadataId?: Scalars['UUID']
+    dependencyFieldMetadataId?: Scalars['UUID']
+    dependencyTypeFieldMetadataId?: Scalars['UUID']
+    __typename: 'TaskTimelineFieldMapping'
 }
 
 export interface GridPosition {
@@ -742,7 +776,7 @@ export interface PageLayoutWidget {
     __typename: 'PageLayoutWidget'
 }
 
-export type WidgetType = 'VIEW' | 'IFRAME' | 'FIELD' | 'FIELDS' | 'GRAPH' | 'STANDALONE_RICH_TEXT' | 'TIMELINE' | 'TASKS' | 'NOTES' | 'FILES' | 'EMAILS' | 'CALENDAR' | 'FIELD_RICH_TEXT' | 'WORKFLOW' | 'WORKFLOW_VERSION' | 'WORKFLOW_RUN' | 'FRONT_COMPONENT' | 'RECORD_TABLE' | 'EMAIL_THREAD'
+export type WidgetType = 'VIEW' | 'IFRAME' | 'FIELD' | 'FIELDS' | 'GRAPH' | 'STANDALONE_RICH_TEXT' | 'TIMELINE' | 'TASKS' | 'NOTES' | 'FILES' | 'EMAILS' | 'CALENDAR' | 'FIELD_RICH_TEXT' | 'WORKFLOW' | 'WORKFLOW_VERSION' | 'WORKFLOW_RUN' | 'FRONT_COMPONENT' | 'RECORD_TABLE' | 'EMAIL_THREAD' | 'TASK_TIMELINE' | 'PERSONAL_FINANCE' | 'CARD_CAROUSEL'
 
 export type PageLayoutWidgetPosition = (PageLayoutWidgetGridPosition | PageLayoutWidgetVerticalListPosition | PageLayoutWidgetCanvasPosition) & { __isUnion?: true }
 
@@ -768,7 +802,7 @@ export interface PageLayoutWidgetCanvasPosition {
     __typename: 'PageLayoutWidgetCanvasPosition'
 }
 
-export type WidgetConfiguration = (AggregateChartConfiguration | StandaloneRichTextConfiguration | PieChartConfiguration | LineChartConfiguration | IframeConfiguration | BarChartConfiguration | CalendarConfiguration | FrontComponentConfiguration | EmailsConfiguration | EmailThreadConfiguration | FieldConfiguration | FieldRichTextConfiguration | FieldsConfiguration | FilesConfiguration | NotesConfiguration | TasksConfiguration | TimelineConfiguration | ViewConfiguration | RecordTableConfiguration | WorkflowConfiguration | WorkflowRunConfiguration | WorkflowVersionConfiguration) & { __isUnion?: true }
+export type WidgetConfiguration = (AggregateChartConfiguration | StandaloneRichTextConfiguration | PieChartConfiguration | LineChartConfiguration | IframeConfiguration | BarChartConfiguration | CalendarConfiguration | FrontComponentConfiguration | EmailsConfiguration | EmailThreadConfiguration | FieldConfiguration | FieldRichTextConfiguration | FieldsConfiguration | FilesConfiguration | NotesConfiguration | TasksConfiguration | TimelineConfiguration | ViewConfiguration | RecordTableConfiguration | WorkflowConfiguration | WorkflowRunConfiguration | WorkflowVersionConfiguration | TaskTimelineConfiguration | PersonalFinanceConfiguration | CardCarouselConfiguration) & { __isUnion?: true }
 
 export interface AggregateChartConfiguration {
     configurationType: WidgetConfigurationType
@@ -787,7 +821,7 @@ export interface AggregateChartConfiguration {
     __typename: 'AggregateChartConfiguration'
 }
 
-export type WidgetConfigurationType = 'AGGREGATE_CHART' | 'PIE_CHART' | 'BAR_CHART' | 'LINE_CHART' | 'IFRAME' | 'STANDALONE_RICH_TEXT' | 'VIEW' | 'FIELD' | 'FIELDS' | 'TIMELINE' | 'TASKS' | 'NOTES' | 'FILES' | 'EMAILS' | 'CALENDAR' | 'FIELD_RICH_TEXT' | 'WORKFLOW' | 'WORKFLOW_VERSION' | 'WORKFLOW_RUN' | 'FRONT_COMPONENT' | 'RECORD_TABLE' | 'EMAIL_THREAD'
+export type WidgetConfigurationType = 'AGGREGATE_CHART' | 'PIE_CHART' | 'BAR_CHART' | 'LINE_CHART' | 'IFRAME' | 'STANDALONE_RICH_TEXT' | 'VIEW' | 'FIELD' | 'FIELDS' | 'TIMELINE' | 'TASKS' | 'NOTES' | 'FILES' | 'EMAILS' | 'CALENDAR' | 'FIELD_RICH_TEXT' | 'WORKFLOW' | 'WORKFLOW_VERSION' | 'WORKFLOW_RUN' | 'FRONT_COMPONENT' | 'RECORD_TABLE' | 'EMAIL_THREAD' | 'TASK_TIMELINE' | 'PERSONAL_FINANCE' | 'CARD_CAROUSEL'
 
 
 /** Format used to display the chart value */
@@ -1001,6 +1035,33 @@ export interface WorkflowRunConfiguration {
 export interface WorkflowVersionConfiguration {
     configurationType: WidgetConfigurationType
     __typename: 'WorkflowVersionConfiguration'
+}
+
+export interface TaskTimelineConfiguration {
+    configurationType: WidgetConfigurationType
+    barColor?: Scalars['String']
+    fieldMapping?: TaskTimelineFieldMapping
+    __typename: 'TaskTimelineConfiguration'
+}
+
+export interface PersonalFinanceConfiguration {
+    configurationType: WidgetConfigurationType
+    baseCurrencyCode?: Scalars['String']
+    source?: PersonalFinanceSourceMapping
+    __typename: 'PersonalFinanceConfiguration'
+}
+
+export interface CardCarouselConfiguration {
+    configurationType: WidgetConfigurationType
+    fieldMapping?: CardCarouselFieldMapping
+    cardLayout?: Scalars['String']
+    imageAspect?: Scalars['String']
+    cardRadius?: Scalars['String']
+    cardSize?: Scalars['String']
+    textAlign?: Scalars['String']
+    hoverEffect?: Scalars['String']
+    itemCount?: Scalars['Int']
+    __typename: 'CardCarouselConfiguration'
 }
 
 export interface PageLayoutTab {
@@ -3638,6 +3699,9 @@ export interface ViewGenqlSelection{
     shouldHideEmptyGroups?: boolean | number
     kanbanColumnWidth?: boolean | number
     calendarFieldMetadataId?: boolean | number
+    catalogImageFieldMetadataId?: boolean | number
+    catalogSubtitleFieldMetadataId?: boolean | number
+    catalogDetailFieldMetadataId?: boolean | number
     workspaceId?: boolean | number
     anyFieldFilterValue?: boolean | number
     calendarLayout?: boolean | number
@@ -3744,6 +3808,15 @@ export interface UserGenqlSelection{
     __scalar?: boolean | number
 }
 
+export interface CardCarouselFieldMappingGenqlSelection{
+    imageFieldMetadataId?: boolean | number
+    titleFieldMetadataId?: boolean | number
+    subtitleFieldMetadataId?: boolean | number
+    priceFieldMetadataId?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
 export interface RatioAggregateConfigGenqlSelection{
     fieldMetadataId?: boolean | number
     optionValue?: boolean | number
@@ -3751,9 +3824,34 @@ export interface RatioAggregateConfigGenqlSelection{
     __scalar?: boolean | number
 }
 
+export interface PersonalFinanceSourceMappingGenqlSelection{
+    incomeFieldMetadataId?: boolean | number
+    expenseFieldMetadataId?: boolean | number
+    budgetFieldMetadataId?: boolean | number
+    assetFieldMetadataId?: boolean | number
+    liabilityFieldMetadataId?: boolean | number
+    dateFieldMetadataId?: boolean | number
+    categoryFieldMetadataId?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
 export interface RichTextBodyGenqlSelection{
     blocknote?: boolean | number
     markdown?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface TaskTimelineFieldMappingGenqlSelection{
+    titleFieldMetadataId?: boolean | number
+    startDateFieldMetadataId?: boolean | number
+    dueDateFieldMetadataId?: boolean | number
+    progressFieldMetadataId?: boolean | number
+    statusFieldMetadataId?: boolean | number
+    milestoneFieldMetadataId?: boolean | number
+    dependencyFieldMetadataId?: boolean | number
+    dependencyTypeFieldMetadataId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -3843,6 +3941,9 @@ export interface WidgetConfigurationGenqlSelection{
     on_WorkflowConfiguration?:WorkflowConfigurationGenqlSelection,
     on_WorkflowRunConfiguration?:WorkflowRunConfigurationGenqlSelection,
     on_WorkflowVersionConfiguration?:WorkflowVersionConfigurationGenqlSelection,
+    on_TaskTimelineConfiguration?:TaskTimelineConfigurationGenqlSelection,
+    on_PersonalFinanceConfiguration?:PersonalFinanceConfigurationGenqlSelection,
+    on_CardCarouselConfiguration?:CardCarouselConfigurationGenqlSelection,
     __typename?: boolean | number
 }
 
@@ -4067,6 +4168,36 @@ export interface WorkflowRunConfigurationGenqlSelection{
 
 export interface WorkflowVersionConfigurationGenqlSelection{
     configurationType?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface TaskTimelineConfigurationGenqlSelection{
+    configurationType?: boolean | number
+    barColor?: boolean | number
+    fieldMapping?: TaskTimelineFieldMappingGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface PersonalFinanceConfigurationGenqlSelection{
+    configurationType?: boolean | number
+    baseCurrencyCode?: boolean | number
+    source?: PersonalFinanceSourceMappingGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface CardCarouselConfigurationGenqlSelection{
+    configurationType?: boolean | number
+    fieldMapping?: CardCarouselFieldMappingGenqlSelection
+    cardLayout?: boolean | number
+    imageAspect?: boolean | number
+    cardRadius?: boolean | number
+    cardSize?: boolean | number
+    textAlign?: boolean | number
+    hoverEffect?: boolean | number
+    itemCount?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -6276,9 +6407,9 @@ export interface DestroyViewFilterInput {
 /** The id of the view filter to destroy. */
 id: Scalars['UUID']}
 
-export interface CreateViewInput {id?: (Scalars['UUID'] | null),name: Scalars['String'],objectMetadataId: Scalars['UUID'],type?: (ViewType | null),key?: (ViewKey | null),icon: Scalars['String'],position?: (Scalars['Float'] | null),isCompact?: (Scalars['Boolean'] | null),shouldHideEmptyGroups?: (Scalars['Boolean'] | null),kanbanColumnWidth?: (Scalars['Int'] | null),openRecordIn?: (ViewOpenRecordIn | null),kanbanAggregateOperation?: (AggregateOperations | null),kanbanAggregateOperationFieldMetadataId?: (Scalars['UUID'] | null),anyFieldFilterValue?: (Scalars['String'] | null),calendarLayout?: (ViewCalendarLayout | null),calendarFieldMetadataId?: (Scalars['UUID'] | null),mainGroupByFieldMetadataId?: (Scalars['UUID'] | null),visibility?: (ViewVisibility | null)}
+export interface CreateViewInput {id?: (Scalars['UUID'] | null),name: Scalars['String'],objectMetadataId: Scalars['UUID'],type?: (ViewType | null),key?: (ViewKey | null),icon: Scalars['String'],position?: (Scalars['Float'] | null),isCompact?: (Scalars['Boolean'] | null),shouldHideEmptyGroups?: (Scalars['Boolean'] | null),kanbanColumnWidth?: (Scalars['Int'] | null),openRecordIn?: (ViewOpenRecordIn | null),kanbanAggregateOperation?: (AggregateOperations | null),kanbanAggregateOperationFieldMetadataId?: (Scalars['UUID'] | null),anyFieldFilterValue?: (Scalars['String'] | null),calendarLayout?: (ViewCalendarLayout | null),calendarFieldMetadataId?: (Scalars['UUID'] | null),catalogImageFieldMetadataId?: (Scalars['UUID'] | null),catalogSubtitleFieldMetadataId?: (Scalars['UUID'] | null),catalogDetailFieldMetadataId?: (Scalars['UUID'] | null),mainGroupByFieldMetadataId?: (Scalars['UUID'] | null),visibility?: (ViewVisibility | null)}
 
-export interface UpdateViewInput {id?: (Scalars['UUID'] | null),name?: (Scalars['String'] | null),type?: (ViewType | null),icon?: (Scalars['String'] | null),position?: (Scalars['Float'] | null),isCompact?: (Scalars['Boolean'] | null),openRecordIn?: (ViewOpenRecordIn | null),kanbanAggregateOperation?: (AggregateOperations | null),kanbanAggregateOperationFieldMetadataId?: (Scalars['UUID'] | null),anyFieldFilterValue?: (Scalars['String'] | null),calendarLayout?: (ViewCalendarLayout | null),calendarFieldMetadataId?: (Scalars['UUID'] | null),visibility?: (ViewVisibility | null),mainGroupByFieldMetadataId?: (Scalars['UUID'] | null),shouldHideEmptyGroups?: (Scalars['Boolean'] | null),kanbanColumnWidth?: (Scalars['Int'] | null)}
+export interface UpdateViewInput {id?: (Scalars['UUID'] | null),name?: (Scalars['String'] | null),type?: (ViewType | null),icon?: (Scalars['String'] | null),position?: (Scalars['Float'] | null),isCompact?: (Scalars['Boolean'] | null),openRecordIn?: (ViewOpenRecordIn | null),kanbanAggregateOperation?: (AggregateOperations | null),kanbanAggregateOperationFieldMetadataId?: (Scalars['UUID'] | null),anyFieldFilterValue?: (Scalars['String'] | null),calendarLayout?: (ViewCalendarLayout | null),calendarFieldMetadataId?: (Scalars['UUID'] | null),catalogImageFieldMetadataId?: (Scalars['UUID'] | null),catalogSubtitleFieldMetadataId?: (Scalars['UUID'] | null),catalogDetailFieldMetadataId?: (Scalars['UUID'] | null),visibility?: (ViewVisibility | null),mainGroupByFieldMetadataId?: (Scalars['UUID'] | null),shouldHideEmptyGroups?: (Scalars['Boolean'] | null),kanbanColumnWidth?: (Scalars['Int'] | null)}
 
 export interface UpsertViewWidgetInput {
 /** The id of the view widget (page layout widget). */
@@ -6942,6 +7073,14 @@ export interface LogicFunctionLogsInput {applicationId?: (Scalars['UUID'] | null
     
 
 
+    const CardCarouselFieldMapping_possibleTypes: string[] = ['CardCarouselFieldMapping']
+    export const isCardCarouselFieldMapping = (obj?: { __typename?: any } | null): obj is CardCarouselFieldMapping => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCardCarouselFieldMapping"')
+      return CardCarouselFieldMapping_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
     const RatioAggregateConfig_possibleTypes: string[] = ['RatioAggregateConfig']
     export const isRatioAggregateConfig = (obj?: { __typename?: any } | null): obj is RatioAggregateConfig => {
       if (!obj?.__typename) throw new Error('__typename is missing in "isRatioAggregateConfig"')
@@ -6950,10 +7089,26 @@ export interface LogicFunctionLogsInput {applicationId?: (Scalars['UUID'] | null
     
 
 
+    const PersonalFinanceSourceMapping_possibleTypes: string[] = ['PersonalFinanceSourceMapping']
+    export const isPersonalFinanceSourceMapping = (obj?: { __typename?: any } | null): obj is PersonalFinanceSourceMapping => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPersonalFinanceSourceMapping"')
+      return PersonalFinanceSourceMapping_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
     const RichTextBody_possibleTypes: string[] = ['RichTextBody']
     export const isRichTextBody = (obj?: { __typename?: any } | null): obj is RichTextBody => {
       if (!obj?.__typename) throw new Error('__typename is missing in "isRichTextBody"')
       return RichTextBody_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TaskTimelineFieldMapping_possibleTypes: string[] = ['TaskTimelineFieldMapping']
+    export const isTaskTimelineFieldMapping = (obj?: { __typename?: any } | null): obj is TaskTimelineFieldMapping => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTaskTimelineFieldMapping"')
+      return TaskTimelineFieldMapping_possibleTypes.includes(obj.__typename)
     }
     
 
@@ -7006,7 +7161,7 @@ export interface LogicFunctionLogsInput {applicationId?: (Scalars['UUID'] | null
     
 
 
-    const WidgetConfiguration_possibleTypes: string[] = ['AggregateChartConfiguration','StandaloneRichTextConfiguration','PieChartConfiguration','LineChartConfiguration','IframeConfiguration','BarChartConfiguration','CalendarConfiguration','FrontComponentConfiguration','EmailsConfiguration','EmailThreadConfiguration','FieldConfiguration','FieldRichTextConfiguration','FieldsConfiguration','FilesConfiguration','NotesConfiguration','TasksConfiguration','TimelineConfiguration','ViewConfiguration','RecordTableConfiguration','WorkflowConfiguration','WorkflowRunConfiguration','WorkflowVersionConfiguration']
+    const WidgetConfiguration_possibleTypes: string[] = ['AggregateChartConfiguration','StandaloneRichTextConfiguration','PieChartConfiguration','LineChartConfiguration','IframeConfiguration','BarChartConfiguration','CalendarConfiguration','FrontComponentConfiguration','EmailsConfiguration','EmailThreadConfiguration','FieldConfiguration','FieldRichTextConfiguration','FieldsConfiguration','FilesConfiguration','NotesConfiguration','TasksConfiguration','TimelineConfiguration','ViewConfiguration','RecordTableConfiguration','WorkflowConfiguration','WorkflowRunConfiguration','WorkflowVersionConfiguration','TaskTimelineConfiguration','PersonalFinanceConfiguration','CardCarouselConfiguration']
     export const isWidgetConfiguration = (obj?: { __typename?: any } | null): obj is WidgetConfiguration => {
       if (!obj?.__typename) throw new Error('__typename is missing in "isWidgetConfiguration"')
       return WidgetConfiguration_possibleTypes.includes(obj.__typename)
@@ -7186,6 +7341,30 @@ export interface LogicFunctionLogsInput {applicationId?: (Scalars['UUID'] | null
     export const isWorkflowVersionConfiguration = (obj?: { __typename?: any } | null): obj is WorkflowVersionConfiguration => {
       if (!obj?.__typename) throw new Error('__typename is missing in "isWorkflowVersionConfiguration"')
       return WorkflowVersionConfiguration_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const TaskTimelineConfiguration_possibleTypes: string[] = ['TaskTimelineConfiguration']
+    export const isTaskTimelineConfiguration = (obj?: { __typename?: any } | null): obj is TaskTimelineConfiguration => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isTaskTimelineConfiguration"')
+      return TaskTimelineConfiguration_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const PersonalFinanceConfiguration_possibleTypes: string[] = ['PersonalFinanceConfiguration']
+    export const isPersonalFinanceConfiguration = (obj?: { __typename?: any } | null): obj is PersonalFinanceConfiguration => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isPersonalFinanceConfiguration"')
+      return PersonalFinanceConfiguration_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const CardCarouselConfiguration_possibleTypes: string[] = ['CardCarouselConfiguration']
+    export const isCardCarouselConfiguration = (obj?: { __typename?: any } | null): obj is CardCarouselConfiguration => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isCardCarouselConfiguration"')
+      return CardCarouselConfiguration_possibleTypes.includes(obj.__typename)
     }
     
 
@@ -8923,6 +9102,7 @@ export const enumViewType = {
    TABLE: 'TABLE' as const,
    KANBAN: 'KANBAN' as const,
    CALENDAR: 'CALENDAR' as const,
+   CATALOG: 'CATALOG' as const,
    FIELDS_WIDGET: 'FIELDS_WIDGET' as const,
    TABLE_WIDGET: 'TABLE_WIDGET' as const
 }
@@ -8990,7 +9170,10 @@ export const enumWidgetType = {
    WORKFLOW_RUN: 'WORKFLOW_RUN' as const,
    FRONT_COMPONENT: 'FRONT_COMPONENT' as const,
    RECORD_TABLE: 'RECORD_TABLE' as const,
-   EMAIL_THREAD: 'EMAIL_THREAD' as const
+   EMAIL_THREAD: 'EMAIL_THREAD' as const,
+   TASK_TIMELINE: 'TASK_TIMELINE' as const,
+   PERSONAL_FINANCE: 'PERSONAL_FINANCE' as const,
+   CARD_CAROUSEL: 'CARD_CAROUSEL' as const
 }
 
 export const enumPageLayoutTabLayoutMode = {
@@ -9021,7 +9204,10 @@ export const enumWidgetConfigurationType = {
    WORKFLOW_RUN: 'WORKFLOW_RUN' as const,
    FRONT_COMPONENT: 'FRONT_COMPONENT' as const,
    RECORD_TABLE: 'RECORD_TABLE' as const,
-   EMAIL_THREAD: 'EMAIL_THREAD' as const
+   EMAIL_THREAD: 'EMAIL_THREAD' as const,
+   TASK_TIMELINE: 'TASK_TIMELINE' as const,
+   PERSONAL_FINANCE: 'PERSONAL_FINANCE' as const,
+   CARD_CAROUSEL: 'CARD_CAROUSEL' as const
 }
 
 export const enumChartNumberFormat = {

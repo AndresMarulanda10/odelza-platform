@@ -817,6 +817,9 @@ type View {
   shouldHideEmptyGroups: Boolean!
   kanbanColumnWidth: Int
   calendarFieldMetadataId: UUID
+  catalogImageFieldMetadataId: UUID
+  catalogSubtitleFieldMetadataId: UUID
+  catalogDetailFieldMetadataId: UUID
   workspaceId: UUID!
   anyFieldFilterValue: String
   calendarLayout: ViewCalendarLayout
@@ -838,6 +841,7 @@ enum ViewType {
   TABLE
   KANBAN
   CALENDAR
+  CATALOG
   FIELDS_WIDGET
   TABLE_WIDGET
 }
@@ -975,14 +979,42 @@ The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](
 """
 scalar JSONObject
 
+type CardCarouselFieldMapping {
+  imageFieldMetadataId: UUID
+  titleFieldMetadataId: UUID
+  subtitleFieldMetadataId: UUID
+  priceFieldMetadataId: UUID
+}
+
 type RatioAggregateConfig {
   fieldMetadataId: UUID!
   optionValue: String!
 }
 
+type PersonalFinanceSourceMapping {
+  incomeFieldMetadataId: UUID
+  expenseFieldMetadataId: UUID
+  budgetFieldMetadataId: UUID
+  assetFieldMetadataId: UUID
+  liabilityFieldMetadataId: UUID
+  dateFieldMetadataId: UUID
+  categoryFieldMetadataId: UUID
+}
+
 type RichTextBody {
   blocknote: String
   markdown: String
+}
+
+type TaskTimelineFieldMapping {
+  titleFieldMetadataId: UUID
+  startDateFieldMetadataId: UUID
+  dueDateFieldMetadataId: UUID
+  progressFieldMetadataId: UUID
+  statusFieldMetadataId: UUID
+  milestoneFieldMetadataId: UUID
+  dependencyFieldMetadataId: UUID
+  dependencyTypeFieldMetadataId: UUID
 }
 
 type GridPosition {
@@ -1031,6 +1063,9 @@ enum WidgetType {
   FRONT_COMPONENT
   RECORD_TABLE
   EMAIL_THREAD
+  TASK_TIMELINE
+  PERSONAL_FINANCE
+  CARD_CAROUSEL
 }
 
 union PageLayoutWidgetPosition = PageLayoutWidgetGridPosition | PageLayoutWidgetVerticalListPosition | PageLayoutWidgetCanvasPosition
@@ -1058,7 +1093,7 @@ type PageLayoutWidgetCanvasPosition {
   layoutMode: PageLayoutTabLayoutMode!
 }
 
-union WidgetConfiguration = AggregateChartConfiguration | StandaloneRichTextConfiguration | PieChartConfiguration | LineChartConfiguration | IframeConfiguration | BarChartConfiguration | CalendarConfiguration | FrontComponentConfiguration | EmailsConfiguration | EmailThreadConfiguration | FieldConfiguration | FieldRichTextConfiguration | FieldsConfiguration | FilesConfiguration | NotesConfiguration | TasksConfiguration | TimelineConfiguration | ViewConfiguration | RecordTableConfiguration | WorkflowConfiguration | WorkflowRunConfiguration | WorkflowVersionConfiguration
+union WidgetConfiguration = AggregateChartConfiguration | StandaloneRichTextConfiguration | PieChartConfiguration | LineChartConfiguration | IframeConfiguration | BarChartConfiguration | CalendarConfiguration | FrontComponentConfiguration | EmailsConfiguration | EmailThreadConfiguration | FieldConfiguration | FieldRichTextConfiguration | FieldsConfiguration | FilesConfiguration | NotesConfiguration | TasksConfiguration | TimelineConfiguration | ViewConfiguration | RecordTableConfiguration | WorkflowConfiguration | WorkflowRunConfiguration | WorkflowVersionConfiguration | TaskTimelineConfiguration | PersonalFinanceConfiguration | CardCarouselConfiguration
 
 type AggregateChartConfiguration {
   configurationType: WidgetConfigurationType!
@@ -1099,6 +1134,9 @@ enum WidgetConfigurationType {
   FRONT_COMPONENT
   RECORD_TABLE
   EMAIL_THREAD
+  TASK_TIMELINE
+  PERSONAL_FINANCE
+  CARD_CAROUSEL
 }
 
 """Format used to display the chart value"""
@@ -1325,6 +1363,30 @@ type WorkflowRunConfiguration {
 
 type WorkflowVersionConfiguration {
   configurationType: WidgetConfigurationType!
+}
+
+type TaskTimelineConfiguration {
+  configurationType: WidgetConfigurationType!
+  barColor: String
+  fieldMapping: TaskTimelineFieldMapping
+}
+
+type PersonalFinanceConfiguration {
+  configurationType: WidgetConfigurationType!
+  baseCurrencyCode: String
+  source: PersonalFinanceSourceMapping
+}
+
+type CardCarouselConfiguration {
+  configurationType: WidgetConfigurationType!
+  fieldMapping: CardCarouselFieldMapping
+  cardLayout: String
+  imageAspect: String
+  cardRadius: String
+  cardSize: String
+  textAlign: String
+  hoverEffect: String
+  itemCount: Int
 }
 
 type PageLayoutTab {
@@ -3615,6 +3677,9 @@ input CreateViewInput {
   anyFieldFilterValue: String
   calendarLayout: ViewCalendarLayout
   calendarFieldMetadataId: UUID
+  catalogImageFieldMetadataId: UUID
+  catalogSubtitleFieldMetadataId: UUID
+  catalogDetailFieldMetadataId: UUID
   mainGroupByFieldMetadataId: UUID
   visibility: ViewVisibility
 }
@@ -3632,6 +3697,9 @@ input UpdateViewInput {
   anyFieldFilterValue: String
   calendarLayout: ViewCalendarLayout
   calendarFieldMetadataId: UUID
+  catalogImageFieldMetadataId: UUID
+  catalogSubtitleFieldMetadataId: UUID
+  catalogDetailFieldMetadataId: UUID
   visibility: ViewVisibility
   mainGroupByFieldMetadataId: UUID
   shouldHideEmptyGroups: Boolean

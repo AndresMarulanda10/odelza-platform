@@ -1,11 +1,14 @@
 import { CommandMenuItem } from '@/command-menu/components/CommandMenuItem';
 import { FIND_MANY_FRONT_COMPONENTS } from '@/front-components/graphql/queries/findManyFrontComponents';
 import { useReadableObjectMetadataItems } from '@/object-metadata/hooks/useReadableObjectMetadataItems';
+import { useCreatePageLayoutCardCarouselWidget } from '@/page-layout/hooks/useCreatePageLayoutCardCarouselWidget';
 import { useCreatePageLayoutFrontComponentWidget } from '@/page-layout/hooks/useCreatePageLayoutFrontComponentWidget';
 import { useCreatePageLayoutGraphWidget } from '@/page-layout/hooks/useCreatePageLayoutGraphWidget';
 import { useCreatePageLayoutIframeWidget } from '@/page-layout/hooks/useCreatePageLayoutIframeWidget';
+import { useCreatePageLayoutPersonalFinanceWidget } from '@/page-layout/hooks/useCreatePageLayoutPersonalFinanceWidget';
 import { useCreatePageLayoutRecordTableWidget } from '@/page-layout/hooks/useCreatePageLayoutRecordTableWidget';
 import { useCreatePageLayoutStandaloneRichTextWidget } from '@/page-layout/hooks/useCreatePageLayoutStandaloneRichTextWidget';
+import { useCreatePageLayoutTaskTimelineWidget } from '@/page-layout/hooks/useCreatePageLayoutTaskTimelineWidget';
 import { useOpportunityDefaultChartConfig } from '@/page-layout/hooks/useOpportunityDefaultChartConfig';
 import { useRemovePageLayoutWidgetAndPreservePosition } from '@/page-layout/hooks/useRemovePageLayoutWidgetAndPreservePosition';
 import { pageLayoutDraftComponentState } from '@/page-layout/states/pageLayoutDraftComponentState';
@@ -32,6 +35,9 @@ import {
   IconChartPie,
   IconFrame,
   IconTable,
+  IconTimelineEvent,
+  IconLayoutKanban,
+  IconCoins,
 } from 'twenty-ui/icon';
 import { type FrontComponent, WidgetType } from '~/generated-metadata/graphql';
 
@@ -79,6 +85,22 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
 
   const { createPageLayoutRecordTableWidget } =
     useCreatePageLayoutRecordTableWidget(pageLayoutId);
+  const { createPageLayoutTaskTimelineWidget } =
+    useCreatePageLayoutTaskTimelineWidget({
+      pageLayoutId,
+      tabListInstanceId,
+    });
+  const { createPageLayoutPersonalFinanceWidget } =
+    useCreatePageLayoutPersonalFinanceWidget({
+      pageLayoutId,
+      tabListInstanceId,
+    });
+
+  const { createPageLayoutCardCarouselWidget } =
+    useCreatePageLayoutCardCarouselWidget({
+      pageLayoutId,
+      tabListInstanceId,
+    });
 
   const { removePageLayoutWidgetAndPreservePosition } =
     useRemovePageLayoutWidgetAndPreservePosition(pageLayoutId);
@@ -237,11 +259,74 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
     closeSidePanelMenu();
   };
 
+  const handleCreateTaskTimelineWidget = () => {
+    if (
+      isExistingWidgetMissingOrDifferentType(
+        existingWidget?.type,
+        WidgetType.TASK_TIMELINE,
+      )
+    ) {
+      if (isDefined(pageLayoutEditingWidgetId)) {
+        removePageLayoutWidgetAndPreservePosition(pageLayoutEditingWidgetId);
+      }
+
+      const taskObjectMetadataItem = readableObjectMetadataItems.find(
+        (objectMetadataItem) =>
+          objectMetadataItem.nameSingular === CoreObjectNameSingular.Task,
+      );
+      const newWidget = createPageLayoutTaskTimelineWidget(
+        taskObjectMetadataItem?.id,
+      );
+      setPageLayoutEditingWidgetId(newWidget.id);
+    }
+
+    closeSidePanelMenu();
+  };
+
+  const handleCreatePersonalFinanceWidget = () => {
+    if (
+      isExistingWidgetMissingOrDifferentType(
+        existingWidget?.type,
+        WidgetType.PERSONAL_FINANCE,
+      )
+    ) {
+      if (isDefined(pageLayoutEditingWidgetId)) {
+        removePageLayoutWidgetAndPreservePosition(pageLayoutEditingWidgetId);
+      }
+
+      const newWidget = createPageLayoutPersonalFinanceWidget();
+      setPageLayoutEditingWidgetId(newWidget.id);
+    }
+
+    closeSidePanelMenu();
+  };
+
+  const handleCreateCardCarouselWidget = () => {
+    if (
+      isExistingWidgetMissingOrDifferentType(
+        existingWidget?.type,
+        WidgetType.CARD_CAROUSEL,
+      )
+    ) {
+      if (isDefined(pageLayoutEditingWidgetId)) {
+        removePageLayoutWidgetAndPreservePosition(pageLayoutEditingWidgetId);
+      }
+
+      const newWidget = createPageLayoutCardCarouselWidget();
+      setPageLayoutEditingWidgetId(newWidget.id);
+    }
+
+    closeSidePanelMenu();
+  };
+
   const selectableItemIds = [
     'chart',
     'record-table',
     'iframe',
     'rich-text',
+    'task-timeline',
+    'personal-finance',
+    'card-carousel',
     ...frontComponentsWithSelectItemId.map(({ selectItemId }) => selectItemId),
   ];
 
@@ -291,6 +376,39 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
             label={t`Rich Text`}
             id="rich-text"
             onClick={handleNavigateToRichTextSettings}
+          />
+        </SelectableListItem>
+        <SelectableListItem
+          itemId="task-timeline"
+          onEnter={handleCreateTaskTimelineWidget}
+        >
+          <CommandMenuItem
+            Icon={IconTimelineEvent}
+            label={t`Task Timeline`}
+            id="task-timeline"
+            onClick={handleCreateTaskTimelineWidget}
+          />
+        </SelectableListItem>
+        <SelectableListItem
+          itemId="personal-finance"
+          onEnter={handleCreatePersonalFinanceWidget}
+        >
+          <CommandMenuItem
+            Icon={IconCoins}
+            label={t`Personal Finance`}
+            id="personal-finance"
+            onClick={handleCreatePersonalFinanceWidget}
+          />
+        </SelectableListItem>
+        <SelectableListItem
+          itemId="card-carousel"
+          onEnter={handleCreateCardCarouselWidget}
+        >
+          <CommandMenuItem
+            Icon={IconLayoutKanban}
+            label={t`Card Carousel`}
+            id="card-carousel"
+            onClick={handleCreateCardCarouselWidget}
           />
         </SelectableListItem>
       </SidePanelGroup>

@@ -17,6 +17,7 @@ exports[`sortMetadataNamesChildrenFirst should return metadata names sorted with
   "pageLayout",
   "roleTarget",
   "rowLevelPermissionPredicateGroup",
+  "view",
   "viewGroup",
   "agent",
   "applicationVariable",
@@ -29,9 +30,8 @@ exports[`sortMetadataNamesChildrenFirst should return metadata names sorted with
   "viewFilterGroup",
   "webhook",
   "permissionFlag",
-  "view",
-  "fieldMetadata",
   "objectMetadata",
   "role",
+  "fieldMetadata",
 ]
 `;

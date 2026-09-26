@@ -12,12 +12,9 @@ import {
 } from '@nestjs/common';
 
 import { isDefined } from 'class-validator';
-import { PermissionFlagType } from 'twenty-shared/constants';
-
 import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 import { AuthWorkspace } from 'src/engine/decorators/auth/auth-workspace.decorator';
-import { NoPermissionGuard } from 'src/engine/guards/no-permission.guard';
-import { SettingsPermissionGuard } from 'src/engine/guards/settings-permission.guard';
+import { PageLayoutWidgetPermissionGuard } from 'src/engine/guards/page-layout-widget-permission.guard';
 import { WorkspaceAuthGuard } from 'src/engine/guards/workspace-auth.guard';
 import { FlatEntityMapsRestApiExceptionFilter } from 'src/engine/metadata-modules/flat-entity/filters/flat-entity-maps-rest-api-exception.filter';
 import { CreatePageLayoutWidgetInput } from 'src/engine/metadata-modules/page-layout-widget/dtos/inputs/create-page-layout-widget.input';
@@ -48,7 +45,7 @@ export class PageLayoutWidgetController {
   ) {}
 
   @Get()
-  @UseGuards(NoPermissionGuard)
+  @UseGuards(PageLayoutWidgetPermissionGuard('view'))
   async findMany(
     @AuthWorkspace() workspace: WorkspaceEntity,
     @Query('pageLayoutTabId') pageLayoutTabId: string,
@@ -69,7 +66,7 @@ export class PageLayoutWidgetController {
   }
 
   @Get(':id')
-  @UseGuards(NoPermissionGuard)
+  @UseGuards(PageLayoutWidgetPermissionGuard('view'))
   async findOne(
     @Param('id') id: string,
     @AuthWorkspace() workspace: WorkspaceEntity,
@@ -81,7 +78,7 @@ export class PageLayoutWidgetController {
   }
 
   @Post()
-  @UseGuards(SettingsPermissionGuard(PermissionFlagType.LAYOUTS))
+  @UseGuards(PageLayoutWidgetPermissionGuard('create'))
   async create(
     @Body() input: CreatePageLayoutWidgetInput,
     @AuthWorkspace() workspace: WorkspaceEntity,
@@ -93,7 +90,7 @@ export class PageLayoutWidgetController {
   }
 
   @Patch(':id')
-  @UseGuards(SettingsPermissionGuard(PermissionFlagType.LAYOUTS))
+  @UseGuards(PageLayoutWidgetPermissionGuard('edit'))
   async update(
     @Param('id') id: string,
     @Body() input: UpdatePageLayoutWidgetInput,
@@ -107,7 +104,7 @@ export class PageLayoutWidgetController {
   }
 
   @Delete(':id')
-  @UseGuards(SettingsPermissionGuard(PermissionFlagType.LAYOUTS))
+  @UseGuards(PageLayoutWidgetPermissionGuard('edit'))
   async destroy(
     @Param('id') id: string,
     @AuthWorkspace() workspace: WorkspaceEntity,

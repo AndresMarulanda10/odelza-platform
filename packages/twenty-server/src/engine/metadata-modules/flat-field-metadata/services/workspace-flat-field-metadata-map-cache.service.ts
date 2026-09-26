@@ -102,14 +102,12 @@ export class WorkspaceFlatFieldMetadataMapCacheService extends WorkspaceCachePro
         select: ['id', 'universalIdentifier', 'fieldMetadataId'],
         withDeleted: true,
       }),
+      // Sin `select` explicito a proposito: las columnas del catalogo se
+      // introdujeron con un comando de instancia y en los espacios de trabajo de
+      // versiones anteriores estan ocultas para el ORM; nombrarlas aqui lanza
+      // "Property ... was not found in ViewEntity" al actualizar esa version.
+      // Sin `select`, el ORM pide unicamente las columnas que existen.
       this.viewRepository.find(workspaceId, {
-        select: [
-          'id',
-          'universalIdentifier',
-          'kanbanAggregateOperationFieldMetadataId',
-          'calendarFieldMetadataId',
-          'mainGroupByFieldMetadataId',
-        ],
         withDeleted: true,
       }),
       this.searchFieldMetadataRepository.find(workspaceId, {
@@ -121,6 +119,9 @@ export class WorkspaceFlatFieldMetadataMapCacheService extends WorkspaceCachePro
       viewFieldsByFieldId,
       viewFiltersByFieldId,
       calendarViewsByFieldId,
+      catalogImageViewsByFieldId,
+      catalogSubtitleViewsByFieldId,
+      catalogDetailViewsByFieldId,
       kanbanViewsByFieldId,
       mainGroupByFieldMetadataViewsByFieldId,
       viewSortsByFieldId,
@@ -138,6 +139,18 @@ export class WorkspaceFlatFieldMetadataMapCacheService extends WorkspaceCachePro
         {
           entities: views,
           foreignKey: 'calendarFieldMetadataId',
+        },
+        {
+          entities: views,
+          foreignKey: 'catalogImageFieldMetadataId',
+        },
+        {
+          entities: views,
+          foreignKey: 'catalogSubtitleFieldMetadataId',
+        },
+        {
+          entities: views,
+          foreignKey: 'catalogDetailFieldMetadataId',
         },
         {
           entities: views,
@@ -180,6 +193,12 @@ export class WorkspaceFlatFieldMetadataMapCacheService extends WorkspaceCachePro
             kanbanViewsByFieldId.get(fieldMetadataEntity.id) || [],
           calendarViews:
             calendarViewsByFieldId.get(fieldMetadataEntity.id) || [],
+          catalogImageViews:
+            catalogImageViewsByFieldId.get(fieldMetadataEntity.id) || [],
+          catalogSubtitleViews:
+            catalogSubtitleViewsByFieldId.get(fieldMetadataEntity.id) || [],
+          catalogDetailViews:
+            catalogDetailViewsByFieldId.get(fieldMetadataEntity.id) || [],
           mainGroupByFieldMetadataViews:
             mainGroupByFieldMetadataViewsByFieldId.get(
               fieldMetadataEntity.id,

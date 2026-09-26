@@ -2,6 +2,7 @@ import { extractFieldMetadataIdsFromWidget } from '@/page-layout/utils/extractFi
 import {
   type PageLayoutWidget,
   WidgetType,
+  WidgetConfigurationType,
   type WidgetConfiguration,
 } from '~/generated-metadata/graphql';
 import {
@@ -125,5 +126,36 @@ describe('extractFieldMetadataIdsFromWidget', () => {
 
     expect(result).toHaveLength(2);
     expect(result).not.toContain(undefined);
+  });
+
+  it('should extract configured timeline field IDs', () => {
+    const widget = createMockWidget({
+      type: WidgetType.TASK_TIMELINE,
+      objectMetadataId: TEST_OBJECT_METADATA_ID,
+      configuration: {
+        __typename: 'TaskTimelineConfiguration',
+        configurationType: WidgetConfigurationType.TASK_TIMELINE,
+        fieldMapping: {
+          titleFieldMetadataId: TEST_FIELD_METADATA_ID_1,
+          startDateFieldMetadataId: TEST_FIELD_METADATA_ID_2,
+          dueDateFieldMetadataId: TEST_FIELD_METADATA_ID_3,
+          progressFieldMetadataId: TEST_FIELD_METADATA_ID_1,
+          statusFieldMetadataId: TEST_FIELD_METADATA_ID_2,
+          milestoneFieldMetadataId: null,
+          dependencyFieldMetadataId: TEST_FIELD_METADATA_ID_3,
+          dependencyTypeFieldMetadataId: TEST_FIELD_METADATA_ID_1,
+        },
+      },
+    });
+
+    expect(extractFieldMetadataIdsFromWidget(widget)).toEqual([
+      TEST_FIELD_METADATA_ID_1,
+      TEST_FIELD_METADATA_ID_2,
+      TEST_FIELD_METADATA_ID_3,
+      TEST_FIELD_METADATA_ID_1,
+      TEST_FIELD_METADATA_ID_2,
+      TEST_FIELD_METADATA_ID_3,
+      TEST_FIELD_METADATA_ID_1,
+    ]);
   });
 });

@@ -180,6 +180,39 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
       ... on TimelineConfiguration {
         configurationType
       }
+      ... on TaskTimelineConfiguration {
+        configurationType
+        barColor
+        fieldMapping {
+          titleFieldMetadataId
+          startDateFieldMetadataId
+          dueDateFieldMetadataId
+          progressFieldMetadataId
+          statusFieldMetadataId
+          milestoneFieldMetadataId
+          dependencyFieldMetadataId
+          dependencyTypeFieldMetadataId
+        }
+      }
+      ... on PersonalFinanceConfiguration {
+        configurationType
+      }
+      ... on CardCarouselConfiguration {
+        configurationType
+        cardLayout
+        imageAspect
+        cardRadius
+        cardSize
+        textAlign
+        hoverEffect
+        itemCount
+        fieldMapping {
+          imageFieldMetadataId
+          titleFieldMetadataId
+          subtitleFieldMetadataId
+          priceFieldMetadataId
+        }
+      }
       ... on ViewConfiguration {
         configurationType
       }

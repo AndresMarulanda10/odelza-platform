@@ -72,6 +72,9 @@ export class CompleteViewUpsertService {
     kanbanAggregateOperationFieldMetadataId,
     calendarLayout,
     calendarFieldMetadataId,
+    catalogImageFieldMetadataId,
+    catalogSubtitleFieldMetadataId,
+    catalogDetailFieldMetadataId,
     fields,
     filters,
     sorts,
@@ -89,6 +92,9 @@ export class CompleteViewUpsertService {
     kanbanAggregateOperationFieldMetadataId?: string;
     calendarLayout?: ViewCalendarLayout;
     calendarFieldMetadataId?: string;
+    catalogImageFieldMetadataId?: string;
+    catalogSubtitleFieldMetadataId?: string;
+    catalogDetailFieldMetadataId?: string;
     fields?: CompleteViewFieldSpec[];
     filters?: CompleteViewFilterSpec[];
     sorts?: CompleteViewSortSpec[];
@@ -155,6 +161,9 @@ export class CompleteViewUpsertService {
           kanbanAggregateOperationFieldMetadataId,
           calendarLayout,
           calendarFieldMetadataId,
+          catalogImageFieldMetadataId,
+          catalogSubtitleFieldMetadataId,
+          catalogDetailFieldMetadataId,
           userWorkspaceId,
           flatApplication: workspaceCustomFlatApplication,
           flatFieldMetadataMaps,
@@ -266,6 +275,9 @@ export class CompleteViewUpsertService {
     kanbanAggregateOperationFieldMetadataId?: string;
     calendarLayout?: ViewCalendarLayout;
     calendarFieldMetadataId?: string;
+    catalogImageFieldMetadataId?: string;
+    catalogSubtitleFieldMetadataId?: string;
+    catalogDetailFieldMetadataId?: string;
     userWorkspaceId?: string;
     flatApplication: FlatApplication;
     flatFieldMetadataMaps: AllFlatEntityMaps['flatFieldMetadataMaps'];

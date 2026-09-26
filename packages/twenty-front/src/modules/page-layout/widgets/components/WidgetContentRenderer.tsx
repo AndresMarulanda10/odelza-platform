@@ -1,5 +1,6 @@
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
 import { CalendarWidget } from '@/page-layout/widgets/calendar/components/CalendarWidget';
+import { CardCarouselWidget } from '@/page-layout/widgets/card-carousel/components/CardCarouselWidget';
 import { EmailThreadWidget } from '@/page-layout/widgets/email-thread/components/EmailThreadWidget';
 import { EmailWidget } from '@/page-layout/widgets/emails/components/EmailWidget';
 import { FieldRichTextWidgetRenderer } from '@/page-layout/widgets/field-rich-text/components/FieldRichTextWidgetRenderer';
@@ -13,6 +14,8 @@ import { NoteWidget } from '@/page-layout/widgets/notes/components/NoteWidget';
 import { StandaloneRichTextWidgetRenderer } from '@/page-layout/widgets/standalone-rich-text/components/StandaloneRichTextWidgetRenderer';
 import { TaskWidget } from '@/page-layout/widgets/tasks/components/TaskWidget';
 import { TimelineWidget } from '@/page-layout/widgets/timeline/components/TimelineWidget';
+import { TaskTimelineWidget } from '@/page-layout/widgets/task-timeline/components/TaskTimelineWidget';
+import { PersonalFinanceWidget } from '@/page-layout/widgets/personal-finance/components/PersonalFinanceWidget';
 import { WorkflowRunWidget } from '@/page-layout/widgets/workflow/components/WorkflowRunWidget';
 import { WorkflowVersionWidget } from '@/page-layout/widgets/workflow/components/WorkflowVersionWidget';
 import { RecordTableWidgetRenderer } from '@/page-layout/widgets/record-table/components/RecordTableWidgetRenderer';
@@ -41,6 +44,15 @@ export const WidgetContentRenderer = ({
 
     case WidgetType.TIMELINE:
       return <TimelineWidget widget={widget} />;
+
+    case WidgetType.TASK_TIMELINE:
+      return <TaskTimelineWidget widget={widget} />;
+
+    case WidgetType.PERSONAL_FINANCE:
+      return <PersonalFinanceWidget widget={widget} />;
+
+    case WidgetType.CARD_CAROUSEL:
+      return <CardCarouselWidget widget={widget} />;
 
     case WidgetType.TASKS:
       return <TaskWidget widget={widget} />;

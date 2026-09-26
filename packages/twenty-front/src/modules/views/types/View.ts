@@ -32,6 +32,9 @@ export type View = {
   shouldHideEmptyGroups: boolean;
   kanbanColumnWidth?: number | null;
   calendarFieldMetadataId?: string | null;
+  catalogImageFieldMetadataId?: string | null;
+  catalogSubtitleFieldMetadataId?: string | null;
+  catalogDetailFieldMetadataId?: string | null;
   calendarLayout?: ViewCalendarLayout | null;
   position: number;
   icon: string;

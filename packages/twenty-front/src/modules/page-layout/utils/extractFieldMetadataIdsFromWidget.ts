@@ -5,7 +5,15 @@ import { WidgetType } from '~/generated-metadata/graphql';
 export const extractFieldMetadataIdsFromWidget = (
   widget: PageLayoutWidget,
 ): string[] => {
-  if (widget.type !== WidgetType.GRAPH || !isDefined(widget.configuration)) {
+  if (!isDefined(widget.configuration)) {
+    return [];
+  }
+
+  if (
+    widget.type !== WidgetType.GRAPH &&
+    widget.type !== WidgetType.TASK_TIMELINE &&
+    widget.type !== WidgetType.CARD_CAROUSEL
+  ) {
     return [];
   }
 
@@ -37,6 +45,26 @@ export const extractFieldMetadataIdsFromWidget = (
 
     case 'IframeConfiguration':
       return [];
+
+    case 'TaskTimelineConfiguration':
+      return [
+        config.fieldMapping?.titleFieldMetadataId,
+        config.fieldMapping?.startDateFieldMetadataId,
+        config.fieldMapping?.dueDateFieldMetadataId,
+        config.fieldMapping?.progressFieldMetadataId,
+        config.fieldMapping?.statusFieldMetadataId,
+        config.fieldMapping?.milestoneFieldMetadataId,
+        config.fieldMapping?.dependencyFieldMetadataId,
+        config.fieldMapping?.dependencyTypeFieldMetadataId,
+      ].filter(isDefined);
+
+    case 'CardCarouselConfiguration':
+      return [
+        config.fieldMapping?.imageFieldMetadataId,
+        config.fieldMapping?.titleFieldMetadataId,
+        config.fieldMapping?.subtitleFieldMetadataId,
+        config.fieldMapping?.priceFieldMetadataId,
+      ].filter(isDefined);
 
     default:
       return [];
