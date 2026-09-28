@@ -465,7 +465,31 @@ export const fromUniversalConfigurationToFlatPageLayoutWidgetConfiguration = ({
       return { ...rest, fieldMetadataId, viewId };
     }
 
-    case WidgetConfigurationType.VIEW:
+    case WidgetConfigurationType.VIEW: {
+      const { viewId: viewUniversalIdentifier, ...rest } =
+        universalConfiguration;
+
+      if (!isDefined(viewUniversalIdentifier)) {
+        throw new FlatEntityMapsException(
+          'View universal identifier is required for VIEW configuration',
+          FlatEntityMapsExceptionCode.ENTITY_NOT_FOUND,
+        );
+      }
+
+      const flatView = findFlatEntityByUniversalIdentifier({
+        flatEntityMaps: flatViewMaps,
+        universalIdentifier: viewUniversalIdentifier,
+      });
+
+      if (!isDefined(flatView)) {
+        throw new FlatEntityMapsException(
+          `View not found for universal identifier: ${viewUniversalIdentifier}`,
+          FlatEntityMapsExceptionCode.ENTITY_NOT_FOUND,
+        );
+      }
+
+      return { ...rest, viewId: flatView.id };
+    }
     case WidgetConfigurationType.TIMELINE:
     case WidgetConfigurationType.TASKS:
     case WidgetConfigurationType.NOTES:
