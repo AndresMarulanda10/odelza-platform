@@ -115,6 +115,69 @@ the stack, displays service state, and requires `/healthz` to succeed. After a
 restore, also run the worker verification and log scan above and inspect the
 application's expected records and uploaded files.
 
+## Production continuous deployment
+
+Pushes to `main` and manual workflow dispatches run
+`.github/workflows/cd-odelza-production.yaml`. The job is protected by the
+GitHub `production` environment and is serialized so only one production
+activation runs at a time. Configure these as environment-scoped secrets; do
+not put their values in the repository:
+
+```text
+ODELZA_DEPLOY_HOST
+ODELZA_DEPLOY_PORT
+ODELZA_DEPLOY_USER
+ODELZA_DEPLOY_SSH_KEY
+ODELZA_DEPLOY_KNOWN_HOSTS
+```
+
+The workflow builds the full `twenty` image for `linux/amd64` from
+`packages/twenty-docker/twenty/Dockerfile`, tags it with the triggering commit
+SHA as `odelza-<SHA>`, transfers it over the guarded SSH route, and verifies the
+public `/healthz` endpoint. SSH host-key checking is strict and the job has a
+bounded timeout. The workflow fails closed if any commit in a push's
+`github.event.before..github.sha` range changes
+`packages/twenty-docker/docker-compose.yml`. Manual dispatch checks only the
+selected commit against its first parent and is permitted only from the `main`
+branch, so it does not prove the full history is safe. Production-specific
+Compose is never overwritten by CD.
+
+The remote health check discovers the host port published for the production
+app container's `3000/tcp` mapping from the authoritative production Compose
+deployment. It is currently `18300`, so the local health URL is
+`http://127.0.0.1:18300/healthz`; the local reference Compose uses port `3000`
+instead.
+
+The local Docker image ID is retained only as diagnostic metadata. Cross-host
+integrity is verified with the SHA-256 digest of the image config JSON
+referenced by `manifest.json` in the `docker save` archive. The remote script
+computes the same config digest after `docker load`; it does not compare Docker
+store-specific image IDs, because classic Docker and containerd-backed stores
+can expose different IDs for equivalent image content. Running containers are
+then checked against the VPS-local loaded image ID.
+
+Changes under
+`packages/twenty-server/src/database/migrations/` or
+`packages/twenty-server/src/database/commands/upgrade-version-command/` also
+fail closed. Those changes require the established guarded manual deployment;
+this image-only workflow never attempts to roll back PostgreSQL or Redis data.
+
+The remote `scripts/odelza-production-deploy.sh` script runs through the root
+route at `/opt/odelza`. It creates restricted timestamped PostgreSQL and
+local-storage backups under `/opt/odelza/backups/cd-data/`, while CD metadata
+under `/opt/odelza/backups/cd-metadata/` contains the previous `TAG`, Compose
+checksum/ownership/mode, deployment identities, candidate image reference,
+local image ID, config digest, and loaded VPS image ID. It never stores secrets
+or snapshots the full production `.env`; CD metadata and the `cd-*`
+data-backup directories are each bounded to the ten newest entries, and manual
+backups are never pruned. Data backup pruning runs only after successful
+activation, so the newly created rollback backup remains available if
+activation fails. The script changes only `TAG`, validates Compose, and
+recreates the application server before the worker. On failure it verifies the
+Compose checksum, restores only the previous `TAG`, and rolls back only those
+two containers. PostgreSQL and Redis identities are checked and their data is
+never destructively restored by image-only rollback.
+
 ## Safe image update
 
 Never update using `latest`. First inspect the configured reference, running
