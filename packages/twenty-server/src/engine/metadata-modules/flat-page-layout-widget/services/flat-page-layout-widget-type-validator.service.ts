@@ -8,7 +8,6 @@ import {
   type FlatPageLayoutWidgetTypeValidatorForUpdate,
 } from 'src/engine/metadata-modules/flat-page-layout-widget/types/flat-page-layout-widget-type-validator.type';
 import { type FlatPageLayoutWidgetValidationError } from 'src/engine/metadata-modules/flat-page-layout-widget/types/flat-page-layout-widget-validation-error.type';
-import { rejectWidgetType } from 'src/engine/metadata-modules/flat-page-layout-widget/validators/utils/reject-widget-type.util';
 import { validateFieldsFlatPageLayoutWidgetForCreation } from 'src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-fields-flat-page-layout-widget-for-creation.util';
 import { validateFrontComponentFlatPageLayoutWidgetForCreation } from 'src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-front-component-flat-page-layout-widget-for-creation.util';
 import { validateFrontComponentFlatPageLayoutWidgetForUpdate } from 'src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-front-component-flat-page-layout-widget-for-update.util';
@@ -18,6 +17,7 @@ import { validateIframeFlatPageLayoutWidgetForCreation } from 'src/engine/metada
 import { validateIframeFlatPageLayoutWidgetForUpdate } from 'src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-iframe-flat-page-layout-widget-for-update.util';
 import { validateSimpleRecordPageWidgetForCreation } from 'src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-simple-record-page-widget-for-creation.util';
 import { validateSimpleRecordPageWidgetForUpdate } from 'src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-simple-record-page-widget-for-update.util';
+import { validateViewFlatPageLayoutWidget } from 'src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util';
 import { validateStandaloneRichTextFlatPageLayoutWidgetForCreation } from 'src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-standalone-rich-text-flat-page-layout-widget-for-creation.util';
 import { validateStandaloneRichTextFlatPageLayoutWidgetForUpdate } from 'src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-standalone-rich-text-flat-page-layout-widget-for-update.util';
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
@@ -45,11 +45,7 @@ export class FlatPageLayoutWidgetTypeValidatorService {
 
   private readonly PAGE_LAYOUT_WIDGET_TYPE_VALIDATOR_FOR_CREATION_HASHMAP: FlatPageLayoutWidgetTypeValidatorForCreation =
     {
-      VIEW: rejectWidgetType(
-        WidgetType.VIEW,
-        'Widget type VIEW is not supported yet.',
-        msg`Widget type VIEW is not supported yet.`,
-      ),
+      VIEW: validateViewFlatPageLayoutWidget,
       IFRAME: validateIframeFlatPageLayoutWidgetForCreation,
       FIELD: validateSimpleRecordPageWidgetForCreation(
         WidgetConfigurationType.FIELD,
@@ -99,11 +95,7 @@ export class FlatPageLayoutWidgetTypeValidatorService {
 
   private readonly PAGE_LAYOUT_WIDGET_TYPE_VALIDATOR_FOR_UPDATE_HASHMAP: FlatPageLayoutWidgetTypeValidatorForUpdate =
     {
-      VIEW: rejectWidgetType(
-        WidgetType.VIEW,
-        'Widget type VIEW is not supported yet.',
-        msg`Widget type VIEW is not supported yet.`,
-      ),
+      VIEW: validateViewFlatPageLayoutWidget,
       IFRAME: validateIframeFlatPageLayoutWidgetForUpdate,
       FIELD: validateSimpleRecordPageWidgetForUpdate(
         WidgetConfigurationType.FIELD,

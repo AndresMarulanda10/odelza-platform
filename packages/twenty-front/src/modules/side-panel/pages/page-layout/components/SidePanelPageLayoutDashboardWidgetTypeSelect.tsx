@@ -6,6 +6,7 @@ import { useCreatePageLayoutGraphWidget } from '@/page-layout/hooks/useCreatePag
 import { useCreatePageLayoutIframeWidget } from '@/page-layout/hooks/useCreatePageLayoutIframeWidget';
 import { useCreatePageLayoutRecordTableWidget } from '@/page-layout/hooks/useCreatePageLayoutRecordTableWidget';
 import { useCreatePageLayoutStandaloneRichTextWidget } from '@/page-layout/hooks/useCreatePageLayoutStandaloneRichTextWidget';
+import { useCreatePageLayoutViewWidget } from '@/page-layout/hooks/useCreatePageLayoutViewWidget';
 import { useOpportunityDefaultChartConfig } from '@/page-layout/hooks/useOpportunityDefaultChartConfig';
 import { useRemovePageLayoutWidgetAndPreservePosition } from '@/page-layout/hooks/useRemovePageLayoutWidgetAndPreservePosition';
 import { pageLayoutDraftComponentState } from '@/page-layout/states/pageLayoutDraftComponentState';
@@ -31,6 +32,7 @@ import {
   IconApps,
   IconChartPie,
   IconFrame,
+  IconLayoutKanban,
   IconTable,
 } from 'twenty-ui/icon';
 import { type FrontComponent, WidgetType } from '~/generated-metadata/graphql';
@@ -79,6 +81,8 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
 
   const { createPageLayoutRecordTableWidget } =
     useCreatePageLayoutRecordTableWidget(pageLayoutId);
+  const { createPageLayoutViewWidget } =
+    useCreatePageLayoutViewWidget(pageLayoutId);
 
   const { removePageLayoutWidgetAndPreservePosition } =
     useRemovePageLayoutWidgetAndPreservePosition(pageLayoutId);
@@ -216,6 +220,27 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
     });
   };
 
+  const handleNavigateToViewSettings = () => {
+    if (
+      isExistingWidgetMissingOrDifferentType(existingWidget?.type, WidgetType.VIEW)
+    ) {
+      if (isDefined(pageLayoutEditingWidgetId)) {
+        removePageLayoutWidgetAndPreservePosition(pageLayoutEditingWidgetId);
+      }
+
+      const newViewWidget = createPageLayoutViewWidget(
+        firstAvailableObjectMetadataItem,
+      );
+
+      setPageLayoutEditingWidgetId(newViewWidget.id);
+    }
+
+    navigatePageLayoutSidePanel({
+      sidePanelPage: SidePanelPages.DashboardRecordTableSettings,
+      focusTitleInput: false,
+    });
+  };
+
   const handleCreateFrontComponentWidget = (frontComponent: FrontComponent) => {
     if (
       isExistingWidgetMissingOrDifferentType(
@@ -240,6 +265,7 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
   const selectableItemIds = [
     'chart',
     'record-table',
+    'view',
     'iframe',
     'rich-text',
     ...frontComponentsWithSelectItemId.map(({ selectItemId }) => selectItemId),
@@ -268,6 +294,17 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
             label={t`View`}
             id="record-table"
             onClick={handleNavigateToRecordTableSettings}
+          />
+        </SelectableListItem>
+        <SelectableListItem
+          itemId="view"
+          onEnter={handleNavigateToViewSettings}
+        >
+          <CommandMenuItem
+            Icon={IconLayoutKanban}
+            label={t`Kanban View`}
+            id="view"
+            onClick={handleNavigateToViewSettings}
           />
         </SelectableListItem>
         <SelectableListItem

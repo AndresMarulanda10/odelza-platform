@@ -5995,6 +5995,7 @@ export enum ViewCalendarLayout {
 export type ViewConfiguration = {
   __typename?: 'ViewConfiguration';
   configurationType: WidgetConfigurationType;
+  viewId: string;
 };
 
 export type ViewField = {
@@ -6990,7 +6991,7 @@ export type PageLayoutFragmentFragment = { __typename?: 'PageLayout', id: string
         | { __typename?: 'StandaloneRichTextConfiguration', configurationType: WidgetConfigurationType, body: { __typename?: 'RichTextBody', blocknote?: string | null, markdown?: string | null } }
         | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
         | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
-        | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
+        | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType, viewId: string }
         | { __typename?: 'WorkflowConfiguration', configurationType: WidgetConfigurationType }
         | { __typename?: 'WorkflowRunConfiguration', configurationType: WidgetConfigurationType }
         | { __typename?: 'WorkflowVersionConfiguration', configurationType: WidgetConfigurationType }
@@ -7019,7 +7020,7 @@ export type PageLayoutTabFragmentFragment = { __typename?: 'PageLayoutTab', id: 
       | { __typename?: 'StandaloneRichTextConfiguration', configurationType: WidgetConfigurationType, body: { __typename?: 'RichTextBody', blocknote?: string | null, markdown?: string | null } }
       | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
       | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
-      | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
+      | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType, viewId: string }
       | { __typename?: 'WorkflowConfiguration', configurationType: WidgetConfigurationType }
       | { __typename?: 'WorkflowRunConfiguration', configurationType: WidgetConfigurationType }
       | { __typename?: 'WorkflowVersionConfiguration', configurationType: WidgetConfigurationType }
@@ -7060,7 +7061,7 @@ export type FindOnePageLayoutQuery = { __typename?: 'Query', getPageLayout?: { _
           | { __typename?: 'StandaloneRichTextConfiguration', configurationType: WidgetConfigurationType, body: { __typename?: 'RichTextBody', blocknote?: string | null, markdown?: string | null } }
           | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
-          | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
+          | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType, viewId: string }
           | { __typename?: 'WorkflowConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'WorkflowRunConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'WorkflowVersionConfiguration', configurationType: WidgetConfigurationType }
@@ -7374,7 +7375,7 @@ export type PageLayoutWidgetFragmentFragment = { __typename?: 'PageLayoutWidget'
     | { __typename?: 'StandaloneRichTextConfiguration', configurationType: WidgetConfigurationType, body: { __typename?: 'RichTextBody', blocknote?: string | null, markdown?: string | null } }
     | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
     | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
-    | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
+    | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType, viewId: string }
     | { __typename?: 'WorkflowConfiguration', configurationType: WidgetConfigurationType }
     | { __typename?: 'WorkflowRunConfiguration', configurationType: WidgetConfigurationType }
     | { __typename?: 'WorkflowVersionConfiguration', configurationType: WidgetConfigurationType }
@@ -7408,7 +7409,7 @@ export type ResetPageLayoutTabToDefaultMutation = { __typename?: 'Mutation', res
         | { __typename?: 'StandaloneRichTextConfiguration', configurationType: WidgetConfigurationType, body: { __typename?: 'RichTextBody', blocknote?: string | null, markdown?: string | null } }
         | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
         | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
-        | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
+        | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType, viewId: string }
         | { __typename?: 'WorkflowConfiguration', configurationType: WidgetConfigurationType }
         | { __typename?: 'WorkflowRunConfiguration', configurationType: WidgetConfigurationType }
         | { __typename?: 'WorkflowVersionConfiguration', configurationType: WidgetConfigurationType }
@@ -7442,7 +7443,7 @@ export type ResetPageLayoutToDefaultMutation = { __typename?: 'Mutation', resetP
           | { __typename?: 'StandaloneRichTextConfiguration', configurationType: WidgetConfigurationType, body: { __typename?: 'RichTextBody', blocknote?: string | null, markdown?: string | null } }
           | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
-          | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
+          | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType, viewId: string }
           | { __typename?: 'WorkflowConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'WorkflowRunConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'WorkflowVersionConfiguration', configurationType: WidgetConfigurationType }
@@ -7476,7 +7477,7 @@ export type ResetPageLayoutWidgetToDefaultMutation = { __typename?: 'Mutation', 
       | { __typename?: 'StandaloneRichTextConfiguration', configurationType: WidgetConfigurationType, body: { __typename?: 'RichTextBody', blocknote?: string | null, markdown?: string | null } }
       | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
       | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
-      | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
+      | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType, viewId: string }
       | { __typename?: 'WorkflowConfiguration', configurationType: WidgetConfigurationType }
       | { __typename?: 'WorkflowRunConfiguration', configurationType: WidgetConfigurationType }
       | { __typename?: 'WorkflowVersionConfiguration', configurationType: WidgetConfigurationType }
@@ -7511,7 +7512,7 @@ export type UpdatePageLayoutWithTabsAndWidgetsMutation = { __typename?: 'Mutatio
           | { __typename?: 'StandaloneRichTextConfiguration', configurationType: WidgetConfigurationType, body: { __typename?: 'RichTextBody', blocknote?: string | null, markdown?: string | null } }
           | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
-          | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
+          | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType, viewId: string }
           | { __typename?: 'WorkflowConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'WorkflowRunConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'WorkflowVersionConfiguration', configurationType: WidgetConfigurationType }
@@ -7557,7 +7558,7 @@ export type FindAllPageLayoutsQuery = { __typename?: 'Query', getPageLayouts: Ar
           | { __typename?: 'StandaloneRichTextConfiguration', configurationType: WidgetConfigurationType, body: { __typename?: 'RichTextBody', blocknote?: string | null, markdown?: string | null } }
           | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
-          | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
+          | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType, viewId: string }
           | { __typename?: 'WorkflowConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'WorkflowRunConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'WorkflowVersionConfiguration', configurationType: WidgetConfigurationType }
@@ -7589,7 +7590,7 @@ export type FindAllRecordPageLayoutsQuery = { __typename?: 'Query', getPageLayou
           | { __typename?: 'StandaloneRichTextConfiguration', configurationType: WidgetConfigurationType, body: { __typename?: 'RichTextBody', blocknote?: string | null, markdown?: string | null } }
           | { __typename?: 'TasksConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'TimelineConfiguration', configurationType: WidgetConfigurationType }
-          | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType }
+          | { __typename?: 'ViewConfiguration', configurationType: WidgetConfigurationType, viewId: string }
           | { __typename?: 'WorkflowConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'WorkflowRunConfiguration', configurationType: WidgetConfigurationType }
           | { __typename?: 'WorkflowVersionConfiguration', configurationType: WidgetConfigurationType }
