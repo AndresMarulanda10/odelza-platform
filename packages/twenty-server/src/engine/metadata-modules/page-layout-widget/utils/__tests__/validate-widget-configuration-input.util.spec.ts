@@ -213,7 +213,7 @@ describe('validateWidgetConfigurationInput', () => {
         validateWidgetConfigurationInput({
           configuration: {
             configurationType: WidgetConfigurationType.VIEW,
-             viewId: '00000000-0000-4000-8000-000000000001',
+            viewId: '00000000-0000-4000-8000-000000000001',
           },
         }),
       ).not.toThrow();

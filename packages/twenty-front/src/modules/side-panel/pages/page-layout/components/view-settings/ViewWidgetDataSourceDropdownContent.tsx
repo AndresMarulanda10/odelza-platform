@@ -28,7 +28,8 @@ export const ViewWidgetDataSourceDropdownContent = () => {
   const { objectPermissionsByObjectMetadataId } = useObjectPermissions();
   const { pageLayoutId } = usePageLayoutIdFromContextStore();
   const { widgetInEditMode } = useWidgetInEditMode(pageLayoutId);
-  const { updateCurrentWidgetConfig } = useUpdateCurrentWidgetConfig(pageLayoutId);
+  const { updateCurrentWidgetConfig } =
+    useUpdateCurrentWidgetConfig(pageLayoutId);
   const { updatePageLayoutWidget } = useUpdatePageLayoutWidget(pageLayoutId);
   const { closeDropdown } = useCloseDropdown();
   const dropdownId = useAvailableComponentInstanceIdOrThrow(

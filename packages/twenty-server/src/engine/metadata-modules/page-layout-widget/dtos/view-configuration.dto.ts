@@ -12,8 +12,8 @@ export class ViewConfigurationDTO implements ViewConfiguration {
   @IsNotEmpty()
   configurationType: WidgetConfigurationType.VIEW;
 
-  @Field()
+  @Field(() => String, { nullable: true })
   @IsUUID()
   @IsNotEmpty()
-  viewId: string;
+  viewId: string | null;
 }

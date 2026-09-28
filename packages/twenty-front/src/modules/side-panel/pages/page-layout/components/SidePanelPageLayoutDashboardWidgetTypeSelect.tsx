@@ -222,7 +222,10 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
 
   const handleNavigateToViewSettings = () => {
     if (
-      isExistingWidgetMissingOrDifferentType(existingWidget?.type, WidgetType.VIEW)
+      isExistingWidgetMissingOrDifferentType(
+        existingWidget?.type,
+        WidgetType.VIEW,
+      )
     ) {
       if (isDefined(pageLayoutEditingWidgetId)) {
         removePageLayoutWidgetAndPreservePosition(pageLayoutEditingWidgetId);

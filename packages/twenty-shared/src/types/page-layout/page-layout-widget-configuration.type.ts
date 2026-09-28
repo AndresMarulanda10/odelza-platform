@@ -85,7 +85,7 @@ export type LineChartConfiguration = BaseChartConfiguration & {
 
 export type ViewConfiguration = {
   configurationType: 'VIEW';
-  viewId: string;
+  viewId: string | null;
 };
 
 export type RecordTableConfiguration = {

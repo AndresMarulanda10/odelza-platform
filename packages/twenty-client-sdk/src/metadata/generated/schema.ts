@@ -978,7 +978,7 @@ export interface TimelineConfiguration {
 
 export interface ViewConfiguration {
     configurationType: WidgetConfigurationType
-    viewId: Scalars['String']
+    viewId?: Scalars['String']
     __typename: 'ViewConfiguration'
 }
 

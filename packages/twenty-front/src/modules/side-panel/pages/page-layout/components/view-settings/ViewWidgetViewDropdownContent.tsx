@@ -17,14 +17,18 @@ import { t } from '@lingui/core/macro';
 import { useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { MenuItemSelect } from 'twenty-ui/navigation';
-import { ViewType, WidgetConfigurationType } from '~/generated-metadata/graphql';
+import {
+  ViewType,
+  WidgetConfigurationType,
+} from '~/generated-metadata/graphql';
 import { filterBySearchQuery } from '~/utils/filterBySearchQuery';
 
 export const ViewWidgetViewDropdownContent = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const { pageLayoutId } = usePageLayoutIdFromContextStore();
   const { widgetInEditMode } = useWidgetInEditMode(pageLayoutId);
-  const { updateCurrentWidgetConfig } = useUpdateCurrentWidgetConfig(pageLayoutId);
+  const { updateCurrentWidgetConfig } =
+    useUpdateCurrentWidgetConfig(pageLayoutId);
   const { updatePageLayoutWidget } = useUpdatePageLayoutWidget(pageLayoutId);
   const { closeDropdown } = useCloseDropdown();
   const dropdownId = useAvailableComponentInstanceIdOrThrow(

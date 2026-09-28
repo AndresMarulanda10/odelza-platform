@@ -364,7 +364,9 @@ export const fromPageLayoutWidgetConfigurationToUniversalConfiguration = ({
 
     case WidgetConfigurationType.VIEW: {
       const { viewId, ...rest } = configuration;
-      const viewUniversalIdentifier = viewUniversalIdentifierById[viewId];
+      const viewUniversalIdentifier = isDefined(viewId)
+        ? viewUniversalIdentifierById[viewId]
+        : undefined;
 
       if (
         !isDefined(viewUniversalIdentifier) &&
