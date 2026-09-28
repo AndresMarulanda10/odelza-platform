@@ -3489,6 +3489,16 @@ msgstr "Ogiltig konfigurationstyp för fristående rich text-widget"
 msgid "Invalid configuration type for standalone rich text widget \"{widgetTitle}\". Expected STANDALONE_RICH_TEXT, got {configurationTypeString}"
 msgstr "Ogiltig konfigurationstyp för standalone rich text-widgeten \"{widgetTitle}\". Förväntade STANDALONE_RICH_TEXT, fick {configurationTypeString}"
 
+#. js-lingui-id: q+6rbB
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Invalid configuration type for view widget"
+msgstr ""
+
+#. js-lingui-id: eLXKNE
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Invalid configuration type for view widget \"{widgetTitle}\". Expected VIEW"
+msgstr ""
+
 #. js-lingui-id: IptMRL
 #: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-simple-record-page-widget-for-creation.util.ts
 #: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-simple-record-page-widget-for-update.util.ts
@@ -4082,6 +4092,16 @@ msgstr "Ogiltig verifieringskod."
 #: src/engine/core-modules/two-factor-authentication/two-factor-authentication-exception.filter.ts
 msgid "Invalid verification code. Please try again."
 msgstr "Ogiltig verifieringskod. Försök igen."
+
+#. js-lingui-id: Lww+CJ
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Invalid view reference for view widget"
+msgstr ""
+
+#. js-lingui-id: SpLKMj
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Invalid view reference for view widget \"{widgetTitle}\""
+msgstr ""
 
 #. js-lingui-id: UV7Pll
 #: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-fields-flat-page-layout-widget-for-creation.util.ts
@@ -6267,6 +6287,26 @@ msgstr "Sammanfattning av inspelning"
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-calendar-channel-event-association-standard-flat-field-metadata.util.ts
 msgid "Recurring Event ID"
 msgstr "Återkommande händelse-ID"
+
+#. js-lingui-id: /Lq8ju
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Referenced view belongs to another object"
+msgstr ""
+
+#. js-lingui-id: eItpvD
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Referenced view is inactive"
+msgstr ""
+
+#. js-lingui-id: txJXD5
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Referenced view is not a Kanban view"
+msgstr ""
+
+#. js-lingui-id: RfGnMo
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Referenced view was not found"
+msgstr ""
 
 #. js-lingui-id: 1GvzpH
 #: src/engine/metadata-modules/connected-account/exceptions/connected-account-refresh-tokens.exception.ts
@@ -8550,6 +8590,26 @@ msgstr "Video"
 msgid "Video recording"
 msgstr "Videoinspelning"
 
+#. js-lingui-id: HAMZ1j
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "View {viewUniversalIdentifier} referenced by widget \"{widgetTitle}\" belongs to another object"
+msgstr ""
+
+#. js-lingui-id: 2sopGW
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "View {viewUniversalIdentifier} referenced by widget \"{widgetTitle}\" is inactive"
+msgstr ""
+
+#. js-lingui-id: U28q2V
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "View {viewUniversalIdentifier} referenced by widget \"{widgetTitle}\" is not a Kanban view"
+msgstr ""
+
+#. js-lingui-id: ZsRhTP
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "View {viewUniversalIdentifier} referenced by widget \"{widgetTitle}\" was not found"
+msgstr ""
+
 #. js-lingui-id: HhN1Bv
 #: src/engine/workspace-manager/workspace-migration/workspace-migration-builder/validators/services/flat-view-validator.service.ts
 msgid "View already exists"
@@ -9025,12 +9085,6 @@ msgstr "Widgetens positionstyp måste stämma överens med flikens layoutläge"
 #: src/engine/metadata-modules/page-layout-widget/utils/validate-widget-grid-position.util.ts
 msgid "Widget row exceeds grid height"
 msgstr "Widgetraden överskrider rutnätets höjd"
-
-#. js-lingui-id: rL2haJ
-#: src/engine/metadata-modules/flat-page-layout-widget/services/flat-page-layout-widget-type-validator.service.ts
-#: src/engine/metadata-modules/flat-page-layout-widget/services/flat-page-layout-widget-type-validator.service.ts
-msgid "Widget type VIEW is not supported yet."
-msgstr "Widgettypen VIEW stöds inte ännu."
 
 #. js-lingui-id: qRILxq
 #: src/engine/metadata-modules/view-field-group/constants/standard-view-field-group-names.ts
