@@ -9,6 +9,9 @@ const mockCreatePageLayoutPersonalFinanceWidget = jest.fn(() => ({
 const mockCreatePageLayoutCardCarouselWidget = jest.fn(() => ({
   id: 'card-carousel-widget-id',
 }));
+const mockCreatePageLayoutViewWidget = jest.fn(() => ({
+  id: 'view-widget-id',
+}));
 const mockSetPageLayoutEditingWidgetId = jest.fn();
 function mockEmptyHook() {
   return {};
@@ -56,6 +59,11 @@ jest.mock('@/page-layout/hooks/useCreatePageLayoutTaskTimelineWidget', () => ({
 jest.mock('@/page-layout/hooks/useCreatePageLayoutCardCarouselWidget', () => ({
   useCreatePageLayoutCardCarouselWidget: () => ({
     createPageLayoutCardCarouselWidget: mockCreatePageLayoutCardCarouselWidget,
+  }),
+}));
+jest.mock('@/page-layout/hooks/useCreatePageLayoutViewWidget', () => ({
+  useCreatePageLayoutViewWidget: () => ({
+    createPageLayoutViewWidget: mockCreatePageLayoutViewWidget,
   }),
 }));
 

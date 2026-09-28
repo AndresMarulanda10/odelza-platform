@@ -35,6 +35,9 @@ jest.mock(
     RecordTableWidgetRenderer: () => null,
   }),
 );
+jest.mock('@/page-layout/widgets/view/components/ViewWidgetRenderer', () => ({
+  ViewWidgetRenderer: () => null,
+}));
 
 const widget = (type: WidgetType): PageLayoutWidget =>
   ({ id: `${type}-widget`, type }) as PageLayoutWidget;
