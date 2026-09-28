@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
-import { IsIn, IsNotEmpty } from 'class-validator';
+import { IsIn, IsNotEmpty, IsUUID } from 'class-validator';
 import { type ViewConfiguration } from 'twenty-shared/types';
 
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
@@ -11,4 +11,9 @@ export class ViewConfigurationDTO implements ViewConfiguration {
   @IsIn([WidgetConfigurationType.VIEW])
   @IsNotEmpty()
   configurationType: WidgetConfigurationType.VIEW;
+
+  @Field(() => String, { nullable: true })
+  @IsUUID()
+  @IsNotEmpty()
+  viewId: string | null;
 }

@@ -9,6 +9,7 @@ import { LineChartConfigurationDTO } from 'src/engine/metadata-modules/page-layo
 import { PieChartConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/pie-chart-configuration.dto';
 import { RecordTableConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/record-table-configuration.dto';
 import { StandaloneRichTextConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/standalone-rich-text-configuration.dto';
+import { ViewConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/view-configuration.dto';
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
 import {
   PageLayoutWidgetException,
@@ -122,10 +123,11 @@ export const validateWidgetConfigurationInput = ({
       );
       break;
     case WidgetConfigurationType.VIEW:
-      throw new PageLayoutWidgetException(
-        'View configuration is not supported yet',
-        PageLayoutWidgetExceptionCode.INVALID_PAGE_LAYOUT_WIDGET_DATA,
+      errors = validateWidgetConfigurationByDto(
+        ViewConfigurationDTO,
+        configuration,
       );
+      break;
     case WidgetConfigurationType.FIELD:
       errors = validateWidgetConfigurationByDto(
         FieldConfigurationDTO,

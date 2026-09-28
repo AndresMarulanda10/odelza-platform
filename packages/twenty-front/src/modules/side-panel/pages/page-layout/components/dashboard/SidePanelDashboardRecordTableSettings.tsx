@@ -11,6 +11,7 @@ import { RecordTableFieldsDropdownContent } from '@/side-panel/pages/page-layout
 import { WidgetSettingsFooter } from '@/side-panel/pages/page-layout/components/WidgetSettingsFooter';
 import { usePageLayoutIdFromContextStore } from '@/side-panel/pages/page-layout/hooks/usePageLayoutIdFromContextStore';
 import { useRecordTableSettingsDescriptions } from '@/side-panel/pages/page-layout/hooks/useRecordTableSettingsDescriptions';
+import { SidePanelDashboardViewSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings';
 import { useUpdateCurrentWidgetConfig } from '@/side-panel/pages/page-layout/hooks/useUpdateCurrentWidgetConfig';
 import { useWidgetInEditMode } from '@/side-panel/pages/page-layout/hooks/useWidgetInEditMode';
 import { SidePanelSubPages } from '@/side-panel/types/SidePanelSubPages';
@@ -43,6 +44,20 @@ const StyledSettingsContainer = styled.div`
 `;
 
 export const SidePanelDashboardRecordTableSettings = () => {
+  const { pageLayoutId } = usePageLayoutIdFromContextStore();
+  const { widgetInEditMode } = useWidgetInEditMode(pageLayoutId);
+
+  if (
+    widgetInEditMode?.configuration.configurationType ===
+    WidgetConfigurationType.VIEW
+  ) {
+    return <SidePanelDashboardViewSettings />;
+  }
+
+  return <SidePanelDashboardRecordTableSettingsContent />;
+};
+
+const SidePanelDashboardRecordTableSettingsContent = () => {
   const { pageLayoutId } = usePageLayoutIdFromContextStore();
   const { widgetInEditMode } = useWidgetInEditMode(pageLayoutId);
   const { navigateToSidePanelSubPage } = useSidePanelSubPageHistory();

@@ -1307,6 +1307,7 @@ type TimelineConfiguration {
 
 type ViewConfiguration {
   configurationType: WidgetConfigurationType!
+  viewId: String
 }
 
 type RecordTableConfiguration {

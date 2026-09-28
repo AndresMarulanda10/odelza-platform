@@ -2527,6 +2527,9 @@ export default {
             "configurationType": [
                 89
             ],
+            "viewId": [
+                1
+            ],
             "__typename": [
                 1
             ]

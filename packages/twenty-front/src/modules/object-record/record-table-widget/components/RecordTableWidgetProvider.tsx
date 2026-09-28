@@ -12,12 +12,14 @@ import { ViewComponentInstanceContext } from '@/views/states/contexts/ViewCompon
 import { type PropsWithChildren, useCallback } from 'react';
 import { AppPath } from 'twenty-shared/types';
 import { getAppPath } from 'twenty-shared/utils';
+import { ViewType } from '~/generated-metadata/graphql';
 
 type RecordTableWidgetProviderProps = PropsWithChildren<{
   objectNameSingular: string;
   viewId: string;
   widgetId: string;
   recordLimit?: number;
+  viewType?: ViewType;
 }>;
 
 export const RecordTableWidgetProvider = ({
@@ -25,6 +27,7 @@ export const RecordTableWidgetProvider = ({
   viewId,
   widgetId,
   recordLimit,
+  viewType = ViewType.TABLE,
   children,
 }: RecordTableWidgetProviderProps) => {
   const { objectMetadataItem } = useObjectMetadataItem({
@@ -75,6 +78,7 @@ export const RecordTableWidgetProvider = ({
       <RecordTableWidgetContextStoreInitEffect
         objectMetadataItemId={objectMetadataItem.id}
         viewId={viewId}
+        viewType={viewType}
       />
       <RecordIndexContextProvider
         value={{
@@ -103,6 +107,7 @@ export const RecordTableWidgetProvider = ({
               viewId={viewId}
               widgetId={widgetId}
               objectMetadataItem={objectMetadataItem}
+              viewType={viewType}
             />
             {children}
           </RecordComponentInstanceContextsWrapper>
