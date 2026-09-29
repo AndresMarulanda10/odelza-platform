@@ -57,6 +57,16 @@ const createSignInUpServiceForTests = () => {
     release: jest.fn(),
   };
 
+  const mockDataSource = {
+    transaction: jest.fn(async (callback) =>
+      callback({ queryRunner: queryRunnerMock }),
+    ),
+    createQueryRunner: jest.fn(() => queryRunnerMock),
+  };
+
+  queryRunnerMock.manager.save.mockImplementation((_entity, entity) => entity);
+  mockWorkspaceRepository.create.mockImplementation((workspace) => workspace);
+
   const service = new SignInUpService(
     mockUserRepository as any,
     mockWorkspaceRepository as any,
@@ -69,8 +79,10 @@ const createSignInUpServiceForTests = () => {
       checkUserWorkspaceExists: jest.fn(),
     } as any,
     {
+      setOnboardingConnectAccountPending: jest.fn(),
       setOnboardingCreateProfilePending: jest.fn(),
       setOnboardingInviteTeamPending: jest.fn(),
+      setOnboardingInstallAppsPending: jest.fn(),
       createOnboardingStatusForWorkspaceMember: jest.fn(),
     } as any,
     {
@@ -79,6 +91,7 @@ const createSignInUpServiceForTests = () => {
     mockTwentyConfigService as any,
     {
       generateSubdomain: jest.fn(),
+      validateSubdomainOrThrow: jest.fn(),
     } as any,
     {
       findUserByEmail: jest.fn(),
@@ -98,9 +111,6 @@ const createSignInUpServiceForTests = () => {
       uploadWorkspaceLogoFromUrl: jest.fn(),
     } as any,
     {
-      isValid: jest.fn().mockReturnValue(false),
-    } as any,
-    {
       createContext: jest.fn().mockReturnValue({
         insertWorkspaceEvent: jest.fn(),
       }),
@@ -111,9 +121,7 @@ const createSignInUpServiceForTests = () => {
     {
       isBillingEnabled: jest.fn(),
     } as any,
-    {
-      createQueryRunner: jest.fn(() => queryRunnerMock),
-    } as any,
+    mockDataSource as any,
   );
 
   return {
@@ -121,6 +129,7 @@ const createSignInUpServiceForTests = () => {
     mockUserRepository,
     mockWorkspaceRepository,
     mockConfigurationValues,
+    queryRunnerMock,
   };
 };
 
@@ -259,6 +268,43 @@ describe('SignInUpService workspace-creation policy', () => {
     ).rejects.toMatchObject({
       code: AuthExceptionCode.FORBIDDEN_EXCEPTION,
     });
+  });
+
+  it('allows creating a workspace beyond five without a valid enterprise key', async () => {
+    const {
+      service,
+      mockUserRepository,
+      mockWorkspaceRepository,
+      mockConfigurationValues,
+      queryRunnerMock,
+    } = createSignInUpServiceForTests();
+
+    mockConfigurationValues.IS_MULTIWORKSPACE_ENABLED = true;
+    mockConfigurationValues.IS_WORKSPACE_CREATION_LIMITED_TO_SERVER_ADMINS = false;
+    mockWorkspaceRepository.count.mockResolvedValue(6);
+    mockUserRepository.count.mockResolvedValue(1);
+    (
+      service as any
+    ).applicationService.createWorkspaceCustomApplication.mockResolvedValue({
+      universalIdentifier: 'application-id',
+    });
+
+    const result = await service.signUpOnNewWorkspace(
+      {
+        type: 'existingUser',
+        existingUser: {
+          id: 'existing-user-id',
+          email: 'existing.user@acme.dev',
+          canAccessFullAdminPanel: false,
+        } as any,
+      },
+      { displayName: 'Workspace Six', subdomain: 'workspace-six' },
+    );
+
+    expect(result.workspace).toEqual(
+      expect.objectContaining({ displayName: 'Workspace Six' }),
+    );
+    expect(queryRunnerMock.manager.save).toHaveBeenCalled();
   });
 
   it('throws SIGNUP_DISABLED when creating workspace in single-workspace mode after bootstrap', async () => {
