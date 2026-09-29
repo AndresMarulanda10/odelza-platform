@@ -32,6 +32,15 @@ export const convertUpdateViewInputToGql = (
     ...(isDefined(view.calendarFieldMetadataId) && {
       calendarFieldMetadataId: view.calendarFieldMetadataId,
     }),
+    ...(view.catalogImageFieldMetadataId !== undefined && {
+      catalogImageFieldMetadataId: view.catalogImageFieldMetadataId,
+    }),
+    ...(view.catalogSubtitleFieldMetadataId !== undefined && {
+      catalogSubtitleFieldMetadataId: view.catalogSubtitleFieldMetadataId,
+    }),
+    ...(view.catalogDetailFieldMetadataId !== undefined && {
+      catalogDetailFieldMetadataId: view.catalogDetailFieldMetadataId,
+    }),
     ...(isDefined(view.visibility) && { visibility: view.visibility }),
     ...(isDefined(view.shouldHideEmptyGroups) && {
       shouldHideEmptyGroups: view.shouldHideEmptyGroups,

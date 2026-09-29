@@ -122,6 +122,11 @@ msgstr "({seats} {seatCountLabel} × ${displayedPerSeatPrice})"
 msgid "(${currentCreditPriceDisplay}/{intervalLabel})"
 msgstr "(${currentCreditPriceDisplay}/{intervalLabel})"
 
+#. js-lingui-id: rdTdcw
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "(invalid)"
+msgstr ""
+
 #. js-lingui-id: L4H5SW
 #: src/modules/ui/input/components/IconPicker.tsx
 msgid "(no icon selected)"
@@ -965,6 +970,11 @@ msgstr "Прихваћени и потписани DPA споразуми за �
 msgid "Access Key ID"
 msgstr "ID кључа за приступ"
 
+#. js-lingui-id: XcvPL5
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Access to this section is denied."
+msgstr ""
+
 #. js-lingui-id: CrjDqe
 #: src/pages/auth/Authorize.tsx
 msgid "Access your workspace data"
@@ -1114,6 +1124,11 @@ msgstr "Активне инсталације"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminHealthAccountSyncCountersTable.tsx
 msgid "Active Sync"
 msgstr "Активна синхронизација"
+
+#. js-lingui-id: KOPiGS
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Actual"
+msgstr ""
 
 #. js-lingui-id: m16xKo
 #: src/pages/settings/ai/components/SettingsAgentEvalsTab.tsx
@@ -1921,6 +1936,11 @@ msgstr "Све регистрације апликација"
 msgid "All application registrations across the platform, including orphaned marketplace apps"
 msgstr "Све регистрације апликација на платформи, укључујући осиротеле апликације са маркетплејса"
 
+#. js-lingui-id: zHxUsQ
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "All dated tasks have already ended."
+msgstr ""
+
 #. js-lingui-id: 1kLn6M
 #: src/modules/activities/calendar/components/CalendarEventRow.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionCreateCalendarEvent.tsx
@@ -2120,10 +2140,20 @@ msgstr "Amazon Q Developer CLI"
 msgid "Amber"
 msgstr "Ћилибар"
 
+#. js-lingui-id: hehnjM
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Amount"
+msgstr ""
+
 #. js-lingui-id: s46CyD
 #: src/modules/object-record/record-field/ui/form-types/components/FormCurrencyFieldInput.tsx
 msgid "Amount Micros"
 msgstr "Износ у микројединицама"
+
+#. js-lingui-id: xI4dxj
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "An approved finance data source is required; no financial values were inferred."
+msgstr ""
 
 #. js-lingui-id: Vw8l6h
 #: src/modules/views/hooks/internal/usePerformViewSortAPIPersist.ts
@@ -2137,6 +2167,16 @@ msgstr "Дошло је до грешке"
 #: src/modules/auth/sign-in-up/hooks/useSignInUp.ts
 msgid "An error occurred while checking user existence"
 msgstr "Дошло је до грешке приликом провере постојања корисника"
+
+#. js-lingui-id: TQQG2A
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "An error occurred while loading financial data."
+msgstr ""
+
+#. js-lingui-id: PAwBtR
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "An error occurred while loading tasks."
+msgstr ""
 
 #. js-lingui-id: LfKkm6
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetErrorDisplay.tsx
@@ -2229,6 +2269,11 @@ msgstr "И"
 #: src/modules/settings/billing/components/internal/SettingsBillingPlanComparisonTable.tsx
 msgid "Annual"
 msgstr "Годишње"
+
+#. js-lingui-id: scHVBb
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "Anterior"
+msgstr ""
 
 #. js-lingui-id: 9BhGWn
 #. placeholder {0}: fieldLabel ?? ''
@@ -2616,6 +2661,11 @@ msgstr "Питајте, претражујте или урадите било ш
 msgid "Asking questions..."
 msgstr "Постављање питања..."
 
+#. js-lingui-id: GX8GKD
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Assets"
+msgstr ""
+
 #. js-lingui-id: OBqG7p
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentConfirmationModal.tsx
 msgid "Assign {roleTargetName}?"
@@ -2860,6 +2910,12 @@ msgstr "Аутоматско креирање"
 #. js-lingui-id: HX/jD4
 #: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/hooks/useWorkflowAiAgentPermissionActions.ts
 msgid "Auto-generated role for {agentDisplayName}"
+msgstr ""
+
+#. js-lingui-id: Dnn2XG
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+msgid "Automatic"
 msgstr ""
 
 #. js-lingui-id: YRT7ZW
@@ -3172,6 +3228,21 @@ msgstr "Прегледајте партнере"
 #: src/modules/settings/data-model/indexes/forms/components/SettingsObjectIndexOptionsForm.tsx
 msgid "BTREE (default, good for sorting and equality)"
 msgstr "BTREE (подразумевано, добро за сортирање и једнакост)"
+
+#. js-lingui-id: 3SD10y
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Budget"
+msgstr ""
+
+#. js-lingui-id: FgSd7C
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Budget versus actual"
+msgstr ""
+
+#. js-lingui-id: ysG3Pd
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Budget versus actual rows"
+msgstr ""
 
 #. js-lingui-id: pN5hZf
 #: src/pages/settings/applications/tabs/SettingsApplicationFrontComponentSettingsTab.tsx
@@ -3508,20 +3579,72 @@ msgstr "Captcha (анти-бот провера) се још увек учита
 msgid "Card"
 msgstr "Картица"
 
+#. js-lingui-id: UGzcVY
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Card Carousel"
+msgstr ""
+
+#. js-lingui-id: vVPGdL
+#: src/modules/side-panel/hooks/useOpenWidgetSettingsInSidePanel.ts
+#: src/modules/side-panel/pages/page-layout/utils/getPageLayoutPageTitle.ts
+msgid "Card Carousel Settings"
+msgstr ""
+
+#. js-lingui-id: Gwbnqj
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Card layout"
+msgstr ""
+
 #. js-lingui-id: TbCWB7
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/pages/onboarding/UpgradeFreeTrial.tsx
 msgid "Card payment is currently unavailable. Please verify your Stripe configuration or contact your workspace admin."
 msgstr "Плаћање картицом тренутно није доступно. Проверите своја Stripe подешавања или контактирајте администратора радног простора."
 
+#. js-lingui-id: jBvtuq
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Card size"
+msgstr ""
+
+#. js-lingui-id: 2kLx39
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "carrusel"
+msgstr ""
+
+#. js-lingui-id: 8MkaKf
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Cash flow"
+msgstr ""
+
 #. js-lingui-id: M1RLfx
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Catalan"
 msgstr "Каталонски"
 
+#. js-lingui-id: z6eNxx
+#: src/modules/views/types/ViewType.ts
+msgid "Catalog"
+msgstr ""
+
+#. js-lingui-id: r8+cl4
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
+msgid "Catalog fields"
+msgstr ""
+
 #. js-lingui-id: K7tIrx
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 msgid "Category"
+msgstr ""
+
+#. js-lingui-id: 8cnN/3
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Category analysis"
+msgstr ""
+
+#. js-lingui-id: ExmWe7
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Category analysis rows"
 msgstr ""
 
 #. js-lingui-id: RpYfjZ
@@ -3743,6 +3866,11 @@ msgstr "Изаберите шта се дешава када кликнете н
 #. js-lingui-id: 02EFne
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
 msgid "Choose which profile fields users with the Edit Profile permission can modify"
+msgstr ""
+
+#. js-lingui-id: 7xMmki
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Circle"
 msgstr ""
 
 #. js-lingui-id: 3wV73y
@@ -4101,6 +4229,11 @@ msgstr "Компаније"
 #: src/modules/settings/billing/components/internal/SettingsBillingSubscriptionInfoCardHeaderActions.tsx
 msgid "Compare plans"
 msgstr "Упореди планове"
+
+#. js-lingui-id: Nx6F8k
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Comparison"
+msgstr ""
 
 #. js-lingui-id: 3WrMP5
 #: src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx
@@ -5175,6 +5308,7 @@ msgstr ""
 
 #. js-lingui-id: Q2lUR2
 #: src/modules/object-record/record-field/ui/meta-types/input/components/CurrencyFieldInput.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 msgid "Currency"
 msgstr "Валута"
 
@@ -5594,6 +5728,11 @@ msgstr "Грануларност Датума X"
 #: src/modules/side-panel/pages/page-layout/utils/__tests__/shouldHideChartSetting.test.ts
 msgid "Date Granularity Y"
 msgstr "Грануларност Датума Y"
+
+#. js-lingui-id: Lgnlah
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling."
+msgstr ""
 
 #. js-lingui-id: H7OUPr
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
@@ -6074,6 +6213,11 @@ msgstr "Брисање {objectLabel}"
 msgid "Deleting this method will remove it permanently from your account."
 msgstr "Брисањем овог метода трајно ћете га уклонити са вашег налога."
 
+#. js-lingui-id: BhVo60
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Dependency conflict; dates were not rescheduled."
+msgstr ""
+
 #. js-lingui-id: Ssdrw4
 #: src/modules/settings/ai/components/SettingsAiModelsTable.tsx
 msgid "Deprecated"
@@ -6456,6 +6600,11 @@ msgstr "Одбаците поља овде"
 #: src/modules/spreadsheet-import/steps/components/UploadStep/components/DropZone.tsx
 msgid "Drop file here..."
 msgstr "Одбаците датотеку овде..."
+
+#. js-lingui-id: Gpfctt
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Due"
+msgstr ""
 
 #. js-lingui-id: euc6Ns
 #: src/modules/side-panel/pages/page-layout/components/RegularTabSettingsContent.tsx
@@ -6971,6 +7120,11 @@ msgstr "Ротација кључева за шифровање"
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "End date"
 msgstr "Датум завршетка"
+
+#. js-lingui-id: DqIce1
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "End date field"
+msgstr ""
 
 #. js-lingui-id: Fqu/aC
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
@@ -7799,6 +7953,11 @@ msgstr "Израз"
 msgid "Extended"
 msgstr "Продужено"
 
+#. js-lingui-id: qlMg0V
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+msgid "Extra field"
+msgstr ""
+
 #. js-lingui-id: 7Bj3x9
 #: src/modules/ai/components/CodeExecutionDisplay.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceContent.tsx
@@ -8388,6 +8547,11 @@ msgstr "филтрирање"
 msgid "Filters"
 msgstr "Филтери"
 
+#. js-lingui-id: HuyCt8
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Financial data is unavailable."
+msgstr ""
+
 #. js-lingui-id: YTaTdm
 #: src/modules/ai/constants/crud-tool-operation-verbs.constant.ts
 msgid "Finding {objectLabel}"
@@ -8585,6 +8749,11 @@ msgstr "бесплатни кредити по кориснику"
 msgid "French"
 msgstr "Француски"
 
+#. js-lingui-id: +r/DwW
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Freshness"
+msgstr ""
+
 #. js-lingui-id: ejVYRQ
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 #: src/modules/activities/emails/components/EmailComposerFields.tsx
@@ -8776,6 +8945,11 @@ msgstr "GIN (претрага целог текста и JSONB)"
 #: src/modules/settings/data-model/object-details/components/tabs/SettingsObjectSearchSection.tsx
 msgid "Global search"
 msgstr "Глобална претрага"
+
+#. js-lingui-id: zkQNdT
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Glow"
+msgstr ""
 
 #. js-lingui-id: CKyk7Q
 #: src/modules/onboarding/components/OnboardingHeader.tsx
@@ -9193,6 +9367,11 @@ msgstr "Сати"
 msgid "Hours between triggers"
 msgstr "Сати између окидача"
 
+#. js-lingui-id: 3SPCSC
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Hover effect"
+msgstr ""
+
 #. js-lingui-id: xUNmcx
 #: src/modules/settings/billing/components/SettingsBillingCreditsSection.tsx
 msgid "How credits work"
@@ -9376,9 +9555,35 @@ msgid "iFrame Widget"
 msgstr "iFrame виџет"
 
 #. js-lingui-id: hG89Ed
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
 msgid "Image"
 msgstr "Слика"
+
+#. js-lingui-id: OHY0Nf
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image behind the text"
+msgstr ""
+
+#. js-lingui-id: UU42wN
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image centered"
+msgstr ""
+
+#. js-lingui-id: FYsVJm
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image field"
+msgstr ""
+
+#. js-lingui-id: AVHTUF
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image on top"
+msgstr ""
+
+#. js-lingui-id: JbOau/
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Image shape"
+msgstr ""
 
 #. js-lingui-id: ijW9MW
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
@@ -9962,6 +10167,12 @@ msgstr "Позовите свој тим"
 msgid "Invoice amount may vary if you add members or credits between periods"
 msgstr "Износ на фактури може да варира ако додате чланове или кредите између обрачунских периода"
 
+#. js-lingui-id: 6gmWKp
+#. placeholder {0}: index + 1
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "Ir a la tarjeta {0}"
+msgstr ""
+
 #. js-lingui-id: CUvG5b
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
 msgid "Iris"
@@ -10222,6 +10433,11 @@ msgstr "Пречице на тастатури"
 msgid "Korean"
 msgstr "Корејски"
 
+#. js-lingui-id: dxWV9J
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "KPI summary"
+msgstr ""
+
 #. js-lingui-id: 87a/t/
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsDate.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsNumber.tsx
@@ -10254,6 +10470,11 @@ msgstr "Језик"
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
 msgid "Languages"
 msgstr "Језици"
+
+#. js-lingui-id: k7rCa/
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Large"
+msgstr ""
 
 #. js-lingui-id: 59o/ag
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
@@ -10573,16 +10794,31 @@ msgstr "Мање или једнако"
 msgid "Level"
 msgstr "Ниво"
 
+#. js-lingui-id: 1Lzpv9
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Liabilities"
+msgstr ""
+
 #. js-lingui-id: NaBPMD
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "LibreChat"
 msgstr "LibreChat"
+
+#. js-lingui-id: ccXGYK
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "Librería de tarjetas"
+msgstr ""
 
 #. js-lingui-id: 3qg5Ro
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Licensee"
 msgstr "Носилац лиценце"
+
+#. js-lingui-id: LxntJR
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Lift"
+msgstr ""
 
 #. js-lingui-id: 1njn7W
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownThemesComponents.tsx
@@ -10758,6 +10994,11 @@ msgstr "Учитавање прегледача докумената..."
 #: src/modules/activities/emails/components/EmailLoader.tsx
 msgid "Loading emails"
 msgstr "Учитавање имејлова"
+
+#. js-lingui-id: mkGrO6
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Loading financial data…"
+msgstr ""
 
 #. js-lingui-id: IFQsdb
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
@@ -11168,6 +11409,11 @@ msgstr "Ја"
 msgid "Me (User ID)"
 msgstr "Ја (Кориснички ИД)"
 
+#. js-lingui-id: agPptk
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Medium"
+msgstr ""
+
 #. js-lingui-id: IAcjOi
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "Medium section heading"
@@ -11283,6 +11529,11 @@ msgstr "Метод"
 #: src/modules/settings/security/components/SettingsSecurityAuthProvidersOptionsList.tsx
 msgid "Microsoft"
 msgstr "Microsoft"
+
+#. js-lingui-id: 4YHrmD
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Milestone"
+msgstr ""
 
 #. js-lingui-id: eTUF28
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationLabel.ts
@@ -11473,6 +11724,11 @@ msgstr "Више виџета"
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationInstallStats.tsx
 msgid "Most installed version"
 msgstr "Најчешће инсталирана верзија"
+
+#. js-lingui-id: QWdKwH
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Move"
+msgstr ""
 
 #. js-lingui-id: 3Ib6FN
 #: src/modules/navigation-menu-item/edit/side-panel/components/SidePanelEditOrganizeActions.tsx
@@ -11683,6 +11939,12 @@ msgstr "Навигациони језичци"
 #: src/pages/settings/communications/SettingsWorkspaceCommunicationGroupChannelDetail.tsx
 msgid "Need help to configure your shared mailbox?"
 msgstr "Потребна вам је помоћ око конфигурисања дељеног поштанског сандучета?"
+
+#. js-lingui-id: evw5ha
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Net worth"
+msgstr ""
 
 #. js-lingui-id: wW3b68
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsHttpRequestDetail.tsx
@@ -12014,6 +12276,11 @@ msgstr "Нема приступа"
 msgid "No active subscription."
 msgstr "Нема активне претплате."
 
+#. js-lingui-id: kz9kIx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No active tasks to display"
+msgstr ""
+
 #. js-lingui-id: aXFOuf
 #: src/modules/activities/timeline-activities/components/TimelineCard.tsx
 msgid "No activity yet"
@@ -12068,6 +12335,11 @@ msgstr "Ниједан API кључ не одговара вашој претр�
 #. js-lingui-id: rxBnh8
 #: src/pages/settings/applications/tabs/SettingsApplicationsAvailableTab.tsx
 msgid "No applications available"
+msgstr ""
+
+#. js-lingui-id: 5SYGVh
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "No approved data for this period."
 msgstr ""
 
 #. js-lingui-id: zLbFMr
@@ -12206,6 +12478,11 @@ msgstr "Нема пронађених података"
 msgid "No Date field"
 msgstr "Нема поља за датум"
 
+#. js-lingui-id: zqwWN2
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No dated tasks to display"
+msgstr ""
+
 #. js-lingui-id: lAfu/q
 #: src/modules/side-panel/pages/page-layout/components/CanvasTabSettingsContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/RegularTabSettingsContent.tsx
@@ -12301,6 +12578,16 @@ msgstr "Нема доступних фасцикли"
 #: src/modules/settings/accounts/components/message-folders/SettingsMessageFoldersEmptyStateCard.tsx
 msgid "No folders found for this account"
 msgstr "Није пронађен ниједан фолдер за овај налог."
+
+#. js-lingui-id: cYD+0r
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "No hay elementos para mostrar"
+msgstr ""
+
+#. js-lingui-id: IKz5W+
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "No hay registros para mostrar"
+msgstr ""
 
 #. js-lingui-id: 9kCSLK
 #: src/pages/settings/data-model/SettingsObjectIndexTable.tsx
@@ -12572,6 +12859,11 @@ msgstr "Нису пронађени системски објекти са пр�
 msgid "No targets available"
 msgstr "Нема доступних циљева"
 
+#. js-lingui-id: yunxrV
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No tasks to display"
+msgstr ""
+
 #. js-lingui-id: t0t36i
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsAiAgentDetail.tsx
 msgid "No tools were called"
@@ -12696,6 +12988,7 @@ msgstr "Чвор"
 #: src/modules/settings/accounts/components/SettingsAccountsMessageAutoCreationCard.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceContent.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartGroupByFieldSelectionDropdownContentBase.tsx
 #: src/modules/side-panel/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
 #: src/modules/side-panel/pages/page-layout/utils/getDateGranularityLabel.ts
@@ -12717,6 +13010,7 @@ msgstr "Нису све колоне упарене"
 
 #. js-lingui-id: tqk+dw
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Not available for default view"
 msgstr "Није доступно у подразумеваном прегледу"
 
@@ -12727,6 +13021,12 @@ msgstr "Није доступно у подразумеваном преглед
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 msgid "Not available on Default View"
 msgstr "Није доступно у Подразумеваном Прегледу"
+
+#. js-lingui-id: SDND4q
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Not configured"
+msgstr ""
 
 #. js-lingui-id: 4wUkDk
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
@@ -12875,6 +13175,7 @@ msgstr "објекат"
 #: src/modules/settings/developers/components/WebhookEntitySelect.tsx
 #: src/modules/side-panel/components/SidePanelObjectFilterDropdownContent.tsx
 #: src/modules/side-panel/components/SidePanelObjectViewRecordInfo.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionCreateRecord.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionDeleteRecord.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpdateRecord.tsx
@@ -13137,6 +13438,11 @@ msgstr "само на {firstDay} и {secondDay}"
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
 msgid "only on {remainingDays} and {0}"
 msgstr "само на {remainingDays} и {0}"
+
+#. js-lingui-id: DHqBJO
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Only text"
+msgstr ""
 
 #. js-lingui-id: saaSLd
 #: src/modules/activities/emails/components/EmailThreadNotShared.tsx
@@ -13652,6 +13958,7 @@ msgid "Perform administrative actions or permanently delete this user"
 msgstr ""
 
 #. js-lingui-id: NtQvjo
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Period"
 msgstr "Период"
@@ -13696,6 +14003,21 @@ msgstr "Дозволе · {objectLabelSingular}"
 msgid "Person created"
 msgstr "Лице је креирано"
 
+#. js-lingui-id: KOtX3r
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Personal Finance"
+msgstr ""
+
+#. js-lingui-id: pCopzO
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Personal-finance dashboard"
+msgstr ""
+
+#. js-lingui-id: r5VJ93
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Personal-finance data unavailable"
+msgstr ""
+
 #. js-lingui-id: zmwvG2
 #: src/modules/object-record/record-field/ui/meta-types/input/components/PhonesFieldInput.tsx
 msgid "Phone"
@@ -13734,6 +14056,11 @@ msgstr "Изаберите приказ"
 msgid "Pick an object"
 msgstr "Изаберите објекат"
 
+#. js-lingui-id: sFHFYk
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Pick an object to choose its fields and show its records."
+msgstr ""
+
 #. js-lingui-id: c1JeA3
 #: src/modules/workflow/workflow-steps/workflow-actions/pick-record-action/components/WorkflowEditActionPickRecord.tsx
 msgid "Pick from"
@@ -13743,6 +14070,11 @@ msgstr "Изабери из"
 #: src/pages/settings/data-model/new-index/SettingsObjectNewIndex.tsx
 msgid "Pick one or more fields. The order you select them in becomes the column order in the index — important for composite queries. For composite fields like Address, pick the specific sub-column to index."
 msgstr "Изаберите једно или више поља. Редослед којим их бирате постаје редослед колона у индексу — важно за сложене упите. За сложена поља као што је Адреса, изаберите одређену подколону за индексирање."
+
+#. js-lingui-id: BIXc0k
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "Pick the fields this widget should use."
+msgstr ""
 
 #. js-lingui-id: X1kz7Q
 #: src/pages/settings/data-model/new-index/SettingsObjectNewIndex.tsx
@@ -13891,6 +14223,11 @@ msgstr "Множина"
 msgid "Polish"
 msgstr "Пољски"
 
+#. js-lingui-id: 3bV9gD
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Portrait"
+msgstr ""
+
 #. js-lingui-id: 0nsqwk
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Portuguese — Brazil"
@@ -13949,6 +14286,11 @@ msgstr "Прединсталирај на новим радним простор
 msgid "Pre-installed only"
 msgstr "Само прединсталиране апликације"
 
+#. js-lingui-id: FlMg9W
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Precision"
+msgstr ""
+
 #. js-lingui-id: 0Lqxjs
 #: src/modules/auth/sign-in-up/constants/WorkspaceActivationMessages.tsx
 msgid "Prefilling your <0>workspace data</0>..."
@@ -13970,6 +14312,7 @@ msgid "Prevent from assigning the same value to different records"
 msgstr "Спречите доделу исте вредности различитим записима"
 
 #. js-lingui-id: rdUucN
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/settings/data-model/components/SettingsDataModelPreviewFormCard.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectSettingsFormCard.tsx
 #: src/pages/settings/applications/SettingsApplicationFrontComponentDetail.tsx
@@ -13991,6 +14334,11 @@ msgstr "Претходно"
 #: src/modules/ai/utils/groupThreadsByDate.ts
 msgid "Previous 7 days"
 msgstr "Претходних 7 дана"
+
+#. js-lingui-id: pT+yuB
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Price field"
+msgstr ""
 
 #. js-lingui-id: aHCEmh
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
@@ -14906,6 +15254,21 @@ msgstr "Ресетуј на статичну вредност"
 msgid "Reset variable"
 msgstr "Ресетуј променљиву"
 
+#. js-lingui-id: EP6x91
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize"
+msgstr ""
+
+#. js-lingui-id: k2DjdV
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize task due date"
+msgstr ""
+
+#. js-lingui-id: RYNDMW
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize task start date"
+msgstr ""
+
 #. js-lingui-id: N0vrR6
 #: src/modules/settings/billing/components/internal/ResourceCreditPriceSelector.tsx
 msgid "Resource credits updated."
@@ -14990,6 +15353,8 @@ msgstr "Наставите"
 
 #. js-lingui-id: 6gRgw8
 #: src/modules/ai/components/AiChatErrorMessage.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobRowDropdownMenu.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminRetryJobsConfirmationModal.tsx
 #: src/pages/onboarding/PaymentSuccess.tsx
@@ -15260,6 +15625,11 @@ msgstr "Сачувај као ново приказ"
 msgid "Save or cancel dashboard changes before editing the layout."
 msgstr "Сачувајте или откажите измене на контролној табли пре уређивања распореда."
 
+#. js-lingui-id: bifv6N
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Scale"
+msgstr ""
+
 #. js-lingui-id: gmB6oO
 #: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
 msgid "Schedule"
@@ -15310,6 +15680,11 @@ msgstr "Опсези"
 #: src/pages/settings/ai/components/SettingsAgentLogsTab.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 msgid "Score"
+msgstr ""
+
+#. js-lingui-id: 2YCiey
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Scroll horizontally and vertically, or drag empty space to pan. Task bars and controls remain interactive."
 msgstr ""
 
 #. js-lingui-id: hJjXGo
@@ -15505,6 +15880,7 @@ msgstr "метаподаци поља за претрагу"
 #. js-lingui-id: 7taA9j
 #: src/modules/object-record/advanced-filter/components/AdvancedFilterFieldSelectSearchInput.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarFieldsContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownFieldsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupFieldsContent.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
@@ -15978,6 +16354,11 @@ msgstr "Изаберите који се модели приказују као 
 msgid "Select your preferred language"
 msgstr "Изаберите жељени језик"
 
+#. js-lingui-id: YMYE4/
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Selected color"
+msgstr ""
+
 #. js-lingui-id: JlFcis
 #: src/modules/page-layout/widgets/email-thread/components/EmailThreadComposer.tsx
 #: src/modules/side-panel/pages/compose-email/components/SidePanelComposeEmailPage.tsx
@@ -16230,6 +16611,7 @@ msgstr "Седми"
 
 #. js-lingui-id: Z8lGw6
 #: src/modules/activities/emails/components/EmailThreadBottomBar.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 msgid "Share"
 msgstr "Дели"
 
@@ -16392,6 +16774,11 @@ msgstr "Кључ за потписивање је опозван"
 msgid "Signing Keys"
 msgstr "Кључеви за потписивање"
 
+#. js-lingui-id: /rrTRh
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
+msgid "Siguiente"
+msgstr ""
+
 #. js-lingui-id: BZdVGR
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx
 msgid "Single edit"
@@ -16500,6 +16887,11 @@ msgstr "Прескочите везни објекат (слично релац�
 msgid "Sky"
 msgstr "Небо"
 
+#. js-lingui-id: 4Revpc
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Small"
+msgstr ""
+
 #. js-lingui-id: Ik7fz5
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "Small section heading"
@@ -16552,6 +16944,16 @@ msgstr "smtp.example.com"
 msgid "Some"
 msgstr "Неки"
 
+#. js-lingui-id: jR8Wfb
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Some finance sections are unavailable."
+msgstr ""
+
+#. js-lingui-id: 8fz+t8
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Some finance sections could not be loaded."
+msgstr ""
+
 #. js-lingui-id: RwCYVZ
 #: src/modules/settings/accounts/components/SettingsAccountsMessageFolderCard.tsx
 msgid "Some folders"
@@ -16568,6 +16970,21 @@ msgstr "Неке измене распореда нису могле бити с
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 msgid "Some log data was dropped to fit the size limit ({0} entries, {1} bytes)."
 msgstr "Део података лога је одбачен да би се испоштовало ограничење величине ({0} уноса, {1} бајтова)."
+
+#. js-lingui-id: cSrzsO
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Some task data could not be loaded."
+msgstr ""
+
+#. js-lingui-id: 4aNyrb
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Some tasks have unavailable dates or progress."
+msgstr ""
+
+#. js-lingui-id: ZVl+JT
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Some values are unavailable."
+msgstr ""
 
 #. js-lingui-id: nwtY4N
 #: src/pages/auth/Authorize.tsx
@@ -16675,6 +17092,11 @@ msgstr "Убрзајте читање поља по којима најчешћ�
 msgid "Split multiple values"
 msgstr "Раздвоји више вредности"
 
+#. js-lingui-id: 1DA6ap
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Square"
+msgstr ""
+
 #. js-lingui-id: vnS6Rf
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
@@ -16719,6 +17141,11 @@ msgstr "Фазе"
 msgid "Standard"
 msgstr "Стандардно"
 
+#. js-lingui-id: tXkhj/
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Start"
+msgstr ""
+
 #. js-lingui-id: ASqWQi
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Start a new enterprise subscription to re-enable enterprise features."
@@ -16734,6 +17161,16 @@ msgstr "Покрените нову Enterprise претплату."
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Start date"
 msgstr "Датум почетка"
+
+#. js-lingui-id: PdzWsW
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Start date cannot be after due date."
+msgstr ""
+
+#. js-lingui-id: AyXrhB
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Start date field"
+msgstr ""
 
 #. js-lingui-id: s+K73L
 #: src/modules/settings/billing/components/internal/SettingsBillingSubscriptionInfoModals.tsx
@@ -17003,6 +17440,16 @@ msgstr "Претплата ће бити пребачена на месечни 
 msgid "subtitle"
 msgstr ""
 
+#. js-lingui-id: a0w0iQ
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+msgid "Subtitle"
+msgstr ""
+
+#. js-lingui-id: 8QCMSh
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Subtitle field"
+msgstr ""
+
 #. js-lingui-id: zzDlyQ
 #: src/modules/ui/feedback/snack-bar-manager/components/SnackBar.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsCodeDetail.tsx
@@ -17233,6 +17680,54 @@ msgstr "Циљна релација на везном објекту"
 msgid "Target workspace subdomain"
 msgstr "Циљни поддомен радног простора"
 
+#. js-lingui-id: Q3P/4s
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task"
+msgstr ""
+
+#. js-lingui-id: iKS7vc
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Task bar color"
+msgstr ""
+
+#. js-lingui-id: I/ObQ6
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task date fields are not configured; unavailable dates are not inferred."
+msgstr ""
+
+#. js-lingui-id: hVUUhm
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline"
+msgstr ""
+
+#. js-lingui-id: a7kw3s
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Task Timeline"
+msgstr ""
+
+#. js-lingui-id: xZvFdS
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline calendar"
+msgstr ""
+
+#. js-lingui-id: Mv45RZ
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline calendar viewport"
+msgstr ""
+
+#. js-lingui-id: 5BZI6t
+#: src/modules/side-panel/hooks/useOpenWidgetSettingsInSidePanel.ts
+#: src/modules/side-panel/pages/page-layout/utils/getPageLayoutPageTitle.ts
+msgid "Task Timeline Settings"
+msgstr ""
+
+#. js-lingui-id: 4B+OzR
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Task timeline unavailable"
+msgstr ""
+
 #. js-lingui-id: R+s8S+
 #: src/modules/activities/tasks/components/TaskRow.tsx
 msgid "Task title"
@@ -17242,6 +17737,16 @@ msgstr "Наслов задатка"
 #: src/modules/activities/notes/components/NoteTile.tsx
 msgid "Task Title"
 msgstr "Наслов задатка"
+
+#. js-lingui-id: YDv82r
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Tasks with approved start and end dates will appear here."
+msgstr ""
+
+#. js-lingui-id: l9tCD6
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Tasks with both a valid start and end date will appear in the calendar."
+msgstr ""
 
 #. js-lingui-id: KM6m8p
 #: src/pages/settings/members/SettingsWorkspaceMembers.tsx
@@ -17482,6 +17987,11 @@ msgstr "Страница на коју ће ваши корисници бити
 msgid "The PDF is pre-signed by Twenty and executed with your legal entity and authorized signatory."
 msgstr "PDF је унапред потписан од стране Twenty и закључује се са вашим правним лицем и овлашћеним потписником."
 
+#. js-lingui-id: 1Bzg5s
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "The records of this widget could not be loaded."
+msgstr ""
+
 #. js-lingui-id: wxyrqd
 #: src/modules/workflow/workflow-steps/workflow-actions/pick-record-action/components/WorkflowEditActionPickRecord.tsx
 msgid "the selected object"
@@ -17566,6 +18076,11 @@ msgstr "Постоји проблем са плаћањем у вашој пре
 #: src/modules/activities/timeline-activities/components/TimelineCard.tsx
 msgid "There is no activity associated with this record."
 msgstr "Са овим записом нема повезаних активности."
+
+#. js-lingui-id: NSDJmj
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "There is nothing to show yet."
+msgstr ""
 
 #. js-lingui-id: ynfkhb
 #: src/pages/auth/PasswordReset.tsx
@@ -17686,6 +18201,11 @@ msgstr "Ова компонента се извршава без корисни�
 msgid "This connection does not exist or is not available for this application."
 msgstr "Ова веза не постоји или није доступна за ову апликацију."
 
+#. js-lingui-id: BIE6Er
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "This data may be stale."
+msgstr ""
+
 #. js-lingui-id: SLIRqz
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "This database value overrides environment settings. "
@@ -17786,6 +18306,11 @@ msgstr "Ова улога је додељена овим {roleTargetDisplayName}
 msgid "This role is shared with other users or agents and cannot be edited here."
 msgstr ""
 
+#. js-lingui-id: evLk20
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "This section could not be loaded."
+msgstr ""
+
 #. js-lingui-id: 2iQQGR
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "This server has an enterprise key configured. Make sure you keep a copy of it somewhere safe: you need the same key to activate a development instance or to move your license to a replacement server. If you no longer have access to your key, contact support."
@@ -17833,6 +18358,11 @@ msgstr "Овај приказ користи {usageLabel} на објекту \"
 #: src/modules/settings/admin-panel/health-status/constants/WorkerQueueMetricsSelectOptions.ts
 msgid "This week"
 msgstr "Ове недеље"
+
+#. js-lingui-id: gjpwN3
+#: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
+msgid "This widget needs an object to read from."
+msgstr ""
 
 #. js-lingui-id: DF2voz
 #: src/modules/side-panel/pages/page-layout/components/CanvasTabSettingsContent.tsx
@@ -17938,6 +18468,11 @@ msgstr "Временска зона"
 msgid "Timeline"
 msgstr "Трака времена"
 
+#. js-lingui-id: ewpwRb
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline data is incomplete"
+msgstr ""
+
 #. js-lingui-id: xY9s5E
 #: src/modules/settings/logic-functions/components/SettingsLogicFunctionNewForm.tsx
 msgid "Timeout"
@@ -17974,6 +18509,11 @@ msgstr "наслов"
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
 msgid "Title"
 msgstr "Наслов"
+
+#. js-lingui-id: 6P1iPM
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Title field"
+msgstr ""
 
 #. js-lingui-id: /jQctM
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
@@ -18431,10 +18971,25 @@ msgstr ""
 msgid "Unable to load application details. Please try again later."
 msgstr "Није могуће учитати детаље апликације. Покушајте поново касније."
 
+#. js-lingui-id: P9t/pW
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Unable to load personal-finance data"
+msgstr ""
+
+#. js-lingui-id: aU7aM1
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unable to load task timeline"
+msgstr ""
+
 #. js-lingui-id: l+ALBd
 #: src/modules/client-config/components/ClientConfigProvider.tsx
 msgid "Unable to Reach Back-end"
 msgstr "Немогуће је приступити позадинском делу"
+
+#. js-lingui-id: 3y+qu/
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unable to save task timeline changes."
+msgstr ""
 
 #. js-lingui-id: 5JOLV9
 #: src/modules/ai/components/AiChatThreadItemMenu.tsx
@@ -18442,9 +18997,16 @@ msgid "Unarchive"
 msgstr "Деархивирај"
 
 #. js-lingui-id: jqzUyM
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 #: src/modules/settings/billing/hooks/useBillingPlanActions.ts
 msgid "Unavailable"
 msgstr "Недоступно"
+
+#. js-lingui-id: PcSvms
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unavailable task data is not shown as zero or an invented date."
+msgstr ""
 
 #. js-lingui-id: NYFASA
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
@@ -18705,6 +19267,14 @@ msgstr "Неименована листа"
 #: src/modules/settings/roles/role/components/SettingsRoleCreateEffect.tsx
 msgid "Untitled role"
 msgstr "Неназвана улога"
+
+#. js-lingui-id: CowgFX
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Untitled task"
+msgstr ""
 
 #. js-lingui-id: jxRjAG
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
@@ -19297,6 +19867,16 @@ msgstr "Назив променљиве"
 msgid "Variable not found"
 msgstr "Променљива није пронађена"
 
+#. js-lingui-id: vXTvG8
+#: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
+msgid "Variance"
+msgstr ""
+
+#. js-lingui-id: dEDwEM
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "Ver más"
+msgstr ""
+
 #. js-lingui-id: QDEWii
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
 msgid "Verified"
@@ -19872,6 +20452,11 @@ msgstr "Да ли овај модел подржава ланчано резон
 msgid "Whole list"
 msgstr "Цела листа"
 
+#. js-lingui-id: I5S9ZE
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+msgid "Wide"
+msgstr ""
+
 #. js-lingui-id: dmoPOu
 #: src/pages/settings/applications/SettingsAvailableApplicationDetails.tsx
 msgid "widget"
@@ -20277,6 +20862,11 @@ msgstr "Не можете се представљати као сопствен�
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay.tsx
 msgid "You do not have permission to access the {objectName} object"
 msgstr "Немате дозволу за приступ објекту {objectName}"
+
+#. js-lingui-id: hFuTsh
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "You do not have permission to view task data."
+msgstr ""
 
 #. js-lingui-id: D0mU8n
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay.tsx

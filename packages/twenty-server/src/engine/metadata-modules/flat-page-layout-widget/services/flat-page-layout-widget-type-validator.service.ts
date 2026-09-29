@@ -21,7 +21,6 @@ import { validateViewFlatPageLayoutWidget } from 'src/engine/metadata-modules/fl
 import { validateStandaloneRichTextFlatPageLayoutWidgetForCreation } from 'src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-standalone-rich-text-flat-page-layout-widget-for-creation.util';
 import { validateStandaloneRichTextFlatPageLayoutWidgetForUpdate } from 'src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-standalone-rich-text-flat-page-layout-widget-for-update.util';
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
-import { WidgetType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-type.enum';
 import { PageLayoutWidgetExceptionCode } from 'src/engine/metadata-modules/page-layout-widget/exceptions/page-layout-widget.exception';
 import { UniversalFlatEntityUpdate } from 'src/engine/workspace-manager/workspace-migration/universal-flat-entity/types/universal-flat-entity-update.type';
 import { UniversalFlatEntityValidationArgs } from 'src/engine/workspace-manager/workspace-migration/workspace-migration-builder/types/universal-flat-entity-validation-args.type';
@@ -91,6 +90,15 @@ export class FlatPageLayoutWidgetTypeValidatorService {
       EMAIL_THREAD: validateSimpleRecordPageWidgetForCreation(
         WidgetConfigurationType.EMAIL_THREAD,
       ),
+      TASK_TIMELINE: validateSimpleRecordPageWidgetForCreation(
+        WidgetConfigurationType.TASK_TIMELINE,
+      ),
+      PERSONAL_FINANCE: validateSimpleRecordPageWidgetForCreation(
+        WidgetConfigurationType.PERSONAL_FINANCE,
+      ),
+      CARD_CAROUSEL: validateSimpleRecordPageWidgetForCreation(
+        WidgetConfigurationType.CARD_CAROUSEL,
+      ),
     };
 
   private readonly PAGE_LAYOUT_WIDGET_TYPE_VALIDATOR_FOR_UPDATE_HASHMAP: FlatPageLayoutWidgetTypeValidatorForUpdate =
@@ -140,6 +148,15 @@ export class FlatPageLayoutWidgetTypeValidatorService {
       ),
       EMAIL_THREAD: validateSimpleRecordPageWidgetForUpdate(
         WidgetConfigurationType.EMAIL_THREAD,
+      ),
+      TASK_TIMELINE: validateSimpleRecordPageWidgetForUpdate(
+        WidgetConfigurationType.TASK_TIMELINE,
+      ),
+      PERSONAL_FINANCE: validateSimpleRecordPageWidgetForUpdate(
+        WidgetConfigurationType.PERSONAL_FINANCE,
+      ),
+      CARD_CAROUSEL: validateSimpleRecordPageWidgetForUpdate(
+        WidgetConfigurationType.CARD_CAROUSEL,
       ),
     };
 

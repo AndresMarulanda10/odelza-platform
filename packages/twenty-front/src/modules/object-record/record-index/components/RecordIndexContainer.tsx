@@ -8,6 +8,7 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { useRecordIndexContextOrThrow } from '@/object-record/record-index/contexts/RecordIndexContext';
 
 import { RecordIndexCalendarContainer } from '@/object-record/record-index/components/RecordIndexCalendarContainer';
+import { RecordIndexCatalogContainer } from '@/object-record/record-index/components/RecordIndexCatalogContainer';
 import { RecordIndexEmptyStateNotShared } from '@/object-record/record-index/components/RecordIndexEmptyStateNotShared';
 import { RecordIndexFiltersToContextStoreEffect } from '@/object-record/record-index/components/RecordIndexFiltersToContextStoreEffect';
 import { useHasCurrentViewNonReadableFields } from '@/object-record/record-index/hooks/useHasCurrentViewNonReadableFields';
@@ -65,6 +66,11 @@ export const RecordIndexContainer = () => {
                 recordCalendarInstanceId={recordIndexId}
                 viewBarInstanceId={recordIndexId}
               />
+            </StyledContainerWithPadding>
+          )}
+          {recordIndexViewType === ViewType.CATALOG && (
+            <StyledContainerWithPadding>
+              <RecordIndexCatalogContainer />
             </StyledContainerWithPadding>
           )}
         </>

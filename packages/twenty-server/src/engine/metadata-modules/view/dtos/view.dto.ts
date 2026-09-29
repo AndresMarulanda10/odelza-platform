@@ -84,6 +84,15 @@ export class ViewDTO {
   @Field(() => UUIDScalarType, { nullable: true })
   calendarFieldMetadataId?: string | null;
 
+  @Field(() => UUIDScalarType, { nullable: true })
+  catalogImageFieldMetadataId?: string | null;
+
+  @Field(() => UUIDScalarType, { nullable: true })
+  catalogSubtitleFieldMetadataId?: string | null;
+
+  @Field(() => UUIDScalarType, { nullable: true })
+  catalogDetailFieldMetadataId?: string | null;
+
   @Field(() => UUIDScalarType, { nullable: false })
   workspaceId: string;
 

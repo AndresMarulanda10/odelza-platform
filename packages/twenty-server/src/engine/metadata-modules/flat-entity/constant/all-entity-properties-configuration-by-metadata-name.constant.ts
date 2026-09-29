@@ -380,6 +380,24 @@ export const ALL_ENTITY_PROPERTIES_CONFIGURATION_BY_METADATA_NAME = {
       universalProperty: 'calendarFieldMetadataUniversalIdentifier',
       isOverridable: true,
     },
+    catalogImageFieldMetadataId: {
+      toCompare: true,
+      toStringify: false,
+      universalProperty: 'catalogImageFieldMetadataUniversalIdentifier',
+      isOverridable: true,
+    },
+    catalogSubtitleFieldMetadataId: {
+      toCompare: true,
+      toStringify: false,
+      universalProperty: 'catalogSubtitleFieldMetadataUniversalIdentifier',
+      isOverridable: true,
+    },
+    catalogDetailFieldMetadataId: {
+      toCompare: true,
+      toStringify: false,
+      universalProperty: 'catalogDetailFieldMetadataUniversalIdentifier',
+      isOverridable: true,
+    },
     visibility: {
       toCompare: true,
       toStringify: false,

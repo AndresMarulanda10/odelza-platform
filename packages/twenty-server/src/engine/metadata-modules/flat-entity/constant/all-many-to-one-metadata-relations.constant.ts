@@ -174,6 +174,27 @@ export const ALL_MANY_TO_ONE_METADATA_RELATIONS = {
       isNullable: true,
       universalForeignKey: 'calendarFieldMetadataUniversalIdentifier',
     },
+    catalogImageFieldMetadata: {
+      metadataName: 'fieldMetadata',
+      foreignKey: 'catalogImageFieldMetadataId',
+      inverseOneToManyProperty: 'catalogImageViews',
+      isNullable: true,
+      universalForeignKey: 'catalogImageFieldMetadataUniversalIdentifier',
+    },
+    catalogSubtitleFieldMetadata: {
+      metadataName: 'fieldMetadata',
+      foreignKey: 'catalogSubtitleFieldMetadataId',
+      inverseOneToManyProperty: 'catalogSubtitleViews',
+      isNullable: true,
+      universalForeignKey: 'catalogSubtitleFieldMetadataUniversalIdentifier',
+    },
+    catalogDetailFieldMetadata: {
+      metadataName: 'fieldMetadata',
+      foreignKey: 'catalogDetailFieldMetadataId',
+      inverseOneToManyProperty: 'catalogDetailViews',
+      isNullable: true,
+      universalForeignKey: 'catalogDetailFieldMetadataUniversalIdentifier',
+    },
     kanbanAggregateOperationFieldMetadata: {
       metadataName: 'fieldMetadata',
       foreignKey: 'kanbanAggregateOperationFieldMetadataId',

@@ -333,6 +333,7 @@ export const resolveConfigurationFieldNamesToIds = (
         },
       };
     case WidgetConfigurationType.IFRAME:
+    case WidgetConfigurationType.VIEW:
     case WidgetConfigurationType.RECORD_TABLE:
       return configuration;
   }

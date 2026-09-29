@@ -6,6 +6,8 @@ export type PageLayoutSidePanelPage =
   | SidePanelPages.DashboardChartSettings
   | SidePanelPages.DashboardIframeSettings
   | SidePanelPages.DashboardRecordTableSettings
+  | SidePanelPages.DashboardTaskTimelineSettings
+  | SidePanelPages.DashboardCardCarouselSettings
   | SidePanelPages.RecordPageFieldsSettings
   | SidePanelPages.RecordPageFieldSettings
   | SidePanelPages.PageLayoutRecordPageWidgetTypeSelect;

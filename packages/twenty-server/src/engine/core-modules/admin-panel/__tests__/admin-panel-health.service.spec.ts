@@ -1,6 +1,5 @@
 import { Test, type TestingModule } from '@nestjs/testing';
 
-import { Queue } from 'bullmq';
 import { type Redis } from 'ioredis';
 
 import { AdminPanelHealthService } from 'src/engine/core-modules/admin-panel/admin-panel-health.service';
@@ -19,7 +18,11 @@ import { MessageQueue } from 'src/engine/core-modules/message-queue/message-queu
 import { RedisClientService } from 'src/engine/core-modules/redis-client/redis-client.service';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
 
-jest.mock('bullmq');
+jest.mock('bullmq', () => ({
+  Queue: jest.fn(),
+}));
+
+const queueMock = jest.requireMock('bullmq').Queue as jest.Mock;
 
 describe('AdminPanelHealthService', () => {
   let service: AdminPanelHealthService;
@@ -44,7 +47,7 @@ describe('AdminPanelHealthService', () => {
     } as any;
     twentyConfigService = { get: jest.fn() } as any;
 
-    (Queue as unknown as jest.Mock) = jest.fn().mockImplementation(() => ({
+    queueMock.mockImplementation(() => ({
       getMetrics: jest.fn(),
       getWorkers: jest.fn(),
       close: jest.fn(),
@@ -374,7 +377,7 @@ describe('AdminPanelHealthService', () => {
       jest.clearAllMocks();
       redisClient.getClient.mockReturnValue({} as Redis);
       redisClient.getQueueClient.mockReturnValue({} as Redis);
-      (Queue as unknown as jest.Mock).mockImplementation(() => mockQueue);
+      queueMock.mockImplementation(() => mockQueue);
     });
 
     it('should return metrics data for a queue with correct data transformation', async () => {

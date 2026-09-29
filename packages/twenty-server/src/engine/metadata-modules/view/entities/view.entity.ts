@@ -26,6 +26,7 @@ import { WasIntroducedInUpgrade } from 'src/engine/core-modules/upgrade/decorato
 import { UserWorkspaceEntity } from 'src/engine/core-modules/user-workspace/user-workspace.entity';
 import { ADD_IS_SYSTEM_SIDE_EFFECT_UPGRADE_COMMAND_NAME } from 'src/database/commands/upgrade-version-command/2-15/is-system-side-effect-upgrade-command-name.constant';
 import { ADD_VIEW_KANBAN_COLUMN_WIDTH_UPGRADE_COMMAND_NAME } from 'src/database/commands/upgrade-version-command/2-15/add-view-kanban-column-width-upgrade-command-name.constant';
+import { ADD_CATALOG_FIELDS_TO_VIEW_UPGRADE_COMMAND_NAME } from 'src/database/commands/upgrade-version-command/2-21/add-catalog-fields-to-view-upgrade-command-name.constant';
 import { FieldMetadataEntity } from 'src/engine/metadata-modules/field-metadata/field-metadata.entity';
 import { ObjectMetadataEntity } from 'src/engine/metadata-modules/object-metadata/object-metadata.entity';
 import { ViewFieldGroupEntity } from 'src/engine/metadata-modules/view-field-group/entities/view-field-group.entity';
@@ -48,6 +49,9 @@ export type ViewOverrides = {
   anyFieldFilterValue?: string | null;
   calendarLayout?: ViewCalendarLayout | null;
   calendarFieldMetadataId?: SerializedRelation | null;
+  catalogImageFieldMetadataId?: SerializedRelation | null;
+  catalogSubtitleFieldMetadataId?: SerializedRelation | null;
+  catalogDetailFieldMetadataId?: SerializedRelation | null;
   visibility?: ViewVisibility;
   mainGroupByFieldMetadataId?: SerializedRelation | null;
   shouldHideEmptyGroups?: boolean;
@@ -171,6 +175,24 @@ export class ViewEntity
   calendarFieldMetadata: Relation<FieldMetadataEntity> | null;
 
   @Column({ nullable: true, type: 'uuid' })
+  @WasIntroducedInUpgrade({
+    upgradeCommandName: ADD_CATALOG_FIELDS_TO_VIEW_UPGRADE_COMMAND_NAME,
+  })
+  catalogImageFieldMetadataId: string | null;
+
+  @Column({ nullable: true, type: 'uuid' })
+  @WasIntroducedInUpgrade({
+    upgradeCommandName: ADD_CATALOG_FIELDS_TO_VIEW_UPGRADE_COMMAND_NAME,
+  })
+  catalogSubtitleFieldMetadataId: string | null;
+
+  @Column({ nullable: true, type: 'uuid' })
+  @WasIntroducedInUpgrade({
+    upgradeCommandName: ADD_CATALOG_FIELDS_TO_VIEW_UPGRADE_COMMAND_NAME,
+  })
+  catalogDetailFieldMetadataId: string | null;
+
+  @Column({ nullable: true, type: 'uuid' })
   mainGroupByFieldMetadataId: string | null;
 
   @ManyToOne(
@@ -183,6 +205,48 @@ export class ViewEntity
   )
   @JoinColumn({ name: 'mainGroupByFieldMetadataId' })
   mainGroupByFieldMetadata: Relation<FieldMetadataEntity> | null;
+
+  @ManyToOne(
+    () => FieldMetadataEntity,
+    (fieldMetadata) => fieldMetadata.catalogImageViews,
+    {
+      onDelete: 'CASCADE',
+      nullable: true,
+    },
+  )
+  @JoinColumn({ name: 'catalogImageFieldMetadataId' })
+  @WasIntroducedInUpgrade({
+    upgradeCommandName: ADD_CATALOG_FIELDS_TO_VIEW_UPGRADE_COMMAND_NAME,
+  })
+  catalogImageFieldMetadata: Relation<FieldMetadataEntity> | null;
+
+  @ManyToOne(
+    () => FieldMetadataEntity,
+    (fieldMetadata) => fieldMetadata.catalogSubtitleViews,
+    {
+      onDelete: 'CASCADE',
+      nullable: true,
+    },
+  )
+  @JoinColumn({ name: 'catalogSubtitleFieldMetadataId' })
+  @WasIntroducedInUpgrade({
+    upgradeCommandName: ADD_CATALOG_FIELDS_TO_VIEW_UPGRADE_COMMAND_NAME,
+  })
+  catalogSubtitleFieldMetadata: Relation<FieldMetadataEntity> | null;
+
+  @ManyToOne(
+    () => FieldMetadataEntity,
+    (fieldMetadata) => fieldMetadata.catalogDetailViews,
+    {
+      onDelete: 'CASCADE',
+      nullable: true,
+    },
+  )
+  @JoinColumn({ name: 'catalogDetailFieldMetadataId' })
+  @WasIntroducedInUpgrade({
+    upgradeCommandName: ADD_CATALOG_FIELDS_TO_VIEW_UPGRADE_COMMAND_NAME,
+  })
+  catalogDetailFieldMetadata: Relation<FieldMetadataEntity> | null;
 
   @Column({ nullable: false, default: false, type: 'boolean' })
   shouldHideEmptyGroups: boolean;

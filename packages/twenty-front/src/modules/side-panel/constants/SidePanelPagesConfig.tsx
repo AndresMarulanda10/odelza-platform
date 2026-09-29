@@ -7,9 +7,11 @@ import { SidePanelAskAiPage } from '@/side-panel/pages/ask-ai/components/SidePan
 import { SidePanelCampaignComposerPage } from '@/side-panel/pages/compose-campaign/components/SidePanelCampaignComposerPage';
 import { SidePanelComposeEmailPage } from '@/side-panel/pages/compose-email/components/SidePanelComposeEmailPage';
 import { SidePanelFrontComponentPage } from '@/side-panel/pages/front-component/components/SidePanelFrontComponentPage';
+import { SidePanelDashboardCardCarouselSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings';
 import { SidePanelDashboardChartSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardChartSettings';
 import { SidePanelDashboardIframeSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardIframeSettings';
 import { SidePanelDashboardRecordTableSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings';
+import { SidePanelDashboardTaskTimelineSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings';
 import { SidePanelRecordPageFieldSettings } from '@/side-panel/pages/page-layout/components/record-page/SidePanelRecordPageFieldSettings';
 import { SidePanelRecordPageFieldsSettings } from '@/side-panel/pages/page-layout/components/record-page/SidePanelRecordPageFieldsSettings';
 import { SidePanelPageLayoutDashboardWidgetTypeSelect } from '@/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect';
@@ -66,6 +68,14 @@ export const SIDE_PANEL_PAGES_CONFIG = new Map<SidePanelPages, React.ReactNode>(
     [
       SidePanelPages.DashboardRecordTableSettings,
       <SidePanelDashboardRecordTableSettings />,
+    ],
+    [
+      SidePanelPages.DashboardTaskTimelineSettings,
+      <SidePanelDashboardTaskTimelineSettings />,
+    ],
+    [
+      SidePanelPages.DashboardCardCarouselSettings,
+      <SidePanelDashboardCardCarouselSettings />,
     ],
     [
       SidePanelPages.RecordPageFieldsSettings,

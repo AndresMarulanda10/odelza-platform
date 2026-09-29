@@ -8,6 +8,7 @@ const PAGE_LAYOUT_SIDE_PANEL_PAGES: PageLayoutSidePanelPage[] = [
   SidePanelPages.DashboardChartSettings,
   SidePanelPages.DashboardIframeSettings,
   SidePanelPages.DashboardRecordTableSettings,
+  SidePanelPages.DashboardTaskTimelineSettings,
   SidePanelPages.RecordPageFieldsSettings,
   SidePanelPages.RecordPageFieldSettings,
   SidePanelPages.PageLayoutRecordPageWidgetTypeSelect,

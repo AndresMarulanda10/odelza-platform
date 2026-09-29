@@ -118,6 +118,9 @@ exports[`fromCreateFieldInputToFlatFieldMetadatasToCreate MORPH_RELATION test su
       {
         "applicationUniversalIdentifier": Any<String>,
         "calendarViewUniversalIdentifiers": [],
+        "catalogDetailViewUniversalIdentifiers": [],
+        "catalogImageViewUniversalIdentifiers": [],
+        "catalogSubtitleViewUniversalIdentifiers": [],
         "createdAt": Any<String>,
         "defaultValue": null,
         "description": "new field description",
@@ -154,6 +157,9 @@ exports[`fromCreateFieldInputToFlatFieldMetadatasToCreate MORPH_RELATION test su
       {
         "applicationUniversalIdentifier": Any<String>,
         "calendarViewUniversalIdentifiers": [],
+        "catalogDetailViewUniversalIdentifiers": [],
+        "catalogImageViewUniversalIdentifiers": [],
+        "catalogSubtitleViewUniversalIdentifiers": [],
         "createdAt": Any<String>,
         "defaultValue": null,
         "description": "new field description",
@@ -192,6 +198,9 @@ exports[`fromCreateFieldInputToFlatFieldMetadatasToCreate MORPH_RELATION test su
       {
         "applicationUniversalIdentifier": Any<String>,
         "calendarViewUniversalIdentifiers": [],
+        "catalogDetailViewUniversalIdentifiers": [],
+        "catalogImageViewUniversalIdentifiers": [],
+        "catalogSubtitleViewUniversalIdentifiers": [],
         "createdAt": Any<String>,
         "defaultValue": null,
         "description": "new field description",
@@ -228,6 +237,9 @@ exports[`fromCreateFieldInputToFlatFieldMetadatasToCreate MORPH_RELATION test su
       {
         "applicationUniversalIdentifier": Any<String>,
         "calendarViewUniversalIdentifiers": [],
+        "catalogDetailViewUniversalIdentifiers": [],
+        "catalogImageViewUniversalIdentifiers": [],
+        "catalogSubtitleViewUniversalIdentifiers": [],
         "createdAt": Any<String>,
         "defaultValue": null,
         "description": "new field description",

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { msg } from '@lingui/core/macro';
-import { type ObjectRecord } from 'twenty-shared/types';
+import { CoreObjectNameSingular, type ObjectRecord } from 'twenty-shared/types';
 
 import { WorkspaceAuthContext } from 'src/engine/core-modules/auth/types/workspace-auth-context.type';
 import { CommonBaseQueryRunnerService } from 'src/engine/api/common/common-query-runners/common-base-query-runner.service';
@@ -23,6 +23,8 @@ import { FlatEntityMaps } from 'src/engine/metadata-modules/flat-entity/types/fl
 import { FlatFieldMetadata } from 'src/engine/metadata-modules/flat-field-metadata/types/flat-field-metadata.type';
 import { FlatObjectMetadata } from 'src/engine/metadata-modules/flat-object-metadata/types/flat-object-metadata.type';
 import { assertMutationNotOnRemoteObject } from 'src/engine/metadata-modules/object-metadata/utils/assert-mutation-not-on-remote-object.util';
+import { validateTaskTimelineRecordUpdate } from 'src/modules/task/timeline/task-timeline-domain.service';
+import { type TaskTimelineRecord } from 'src/modules/task/timeline/types/task-timeline.types';
 
 @Injectable()
 export class CommonUpdateOneQueryRunnerService extends CommonBaseQueryRunnerService<
@@ -40,6 +42,22 @@ export class CommonUpdateOneQueryRunnerService extends CommonBaseQueryRunnerServ
     args: CommonExtendedInput<UpdateOneQueryArgs>,
     queryRunnerContext: CommonExtendedQueryRunnerContext,
   ): Promise<ObjectRecord> {
+    if (
+      queryRunnerContext.flatObjectMetadata.nameSingular ===
+      CoreObjectNameSingular.Task
+    ) {
+      const currentTask = await queryRunnerContext.repository.findOneBy({
+        id: args.id,
+      });
+
+      if (currentTask) {
+        validateTaskTimelineRecordUpdate({
+          currentTask: currentTask as TaskTimelineRecord,
+          update: args.data as TaskTimelineRecord,
+        });
+      }
+    }
+
     const result = await this.commonUpdateManyQueryRunnerService.run(
       {
         ...args,

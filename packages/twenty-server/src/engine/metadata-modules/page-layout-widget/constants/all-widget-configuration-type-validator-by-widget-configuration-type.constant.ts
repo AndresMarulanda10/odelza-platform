@@ -1,3 +1,4 @@
+import { CardCarouselConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/card-carousel-configuration.dto';
 import { AggregateChartConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/aggregate-chart-configuration.dto';
 import { EmailThreadConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/email-thread-configuration.dto';
 import { BarChartConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/bar-chart-configuration.dto';
@@ -13,7 +14,9 @@ import { LineChartConfigurationDTO } from 'src/engine/metadata-modules/page-layo
 import { NotesConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/notes-configuration.dto';
 import { RecordTableConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/record-table-configuration.dto';
 import { PieChartConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/pie-chart-configuration.dto';
+import { PersonalFinanceConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/personal-finance-configuration.dto';
 import { StandaloneRichTextConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/standalone-rich-text-configuration.dto';
+import { TaskTimelineConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/task-timeline-configuration.dto';
 import { TasksConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/tasks-configuration.dto';
 import { TimelineConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/timeline-configuration.dto';
 import { ViewConfigurationDTO } from 'src/engine/metadata-modules/page-layout-widget/dtos/view-configuration.dto';
@@ -47,6 +50,9 @@ export const ALL_WIDGET_CONFIGURATION_TYPE_VALIDATOR_BY_WIDGET_CONFIGURATION_TYP
     WORKFLOW: WorkflowConfigurationDTO,
     WORKFLOW_RUN: WorkflowRunConfigurationDTO,
     WORKFLOW_VERSION: WorkflowVersionConfigurationDTO,
+    TASK_TIMELINE: TaskTimelineConfigurationDTO,
+    PERSONAL_FINANCE: PersonalFinanceConfigurationDTO,
+    CARD_CAROUSEL: CardCarouselConfigurationDTO,
   } as const satisfies {
     [P in WidgetConfigurationType]: new () => PageLayoutWidgetConfigurationBase;
   };

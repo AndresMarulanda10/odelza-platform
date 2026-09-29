@@ -71,6 +71,24 @@ export const ALL_ONE_TO_MANY_METADATA_RELATIONS = {
       universalFlatEntityForeignKeyAggregator:
         'calendarViewUniversalIdentifiers',
     },
+    catalogImageViews: {
+      metadataName: 'view',
+      flatEntityForeignKeyAggregator: 'catalogImageViewIds',
+      universalFlatEntityForeignKeyAggregator:
+        'catalogImageViewUniversalIdentifiers',
+    },
+    catalogSubtitleViews: {
+      metadataName: 'view',
+      flatEntityForeignKeyAggregator: 'catalogSubtitleViewIds',
+      universalFlatEntityForeignKeyAggregator:
+        'catalogSubtitleViewUniversalIdentifiers',
+    },
+    catalogDetailViews: {
+      metadataName: 'view',
+      flatEntityForeignKeyAggregator: 'catalogDetailViewIds',
+      universalFlatEntityForeignKeyAggregator:
+        'catalogDetailViewUniversalIdentifiers',
+    },
     mainGroupByFieldMetadataViews: {
       metadataName: 'view',
       flatEntityForeignKeyAggregator: 'mainGroupByFieldMetadataViewIds',

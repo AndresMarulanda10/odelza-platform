@@ -575,6 +575,12 @@ const recordTableConfigSchema = z.object({
     .describe('Maximum number of records displayed in the table widget.'),
 });
 
+// View configuration
+const viewConfigSchema = z.object({
+  configurationType: z.literal(WidgetConfigurationType.VIEW),
+  viewId: z.uuid().describe('UUID of the view rendered by this widget.'),
+});
+
 // Iframe configuration
 const iframeConfigSchema = z.object({
   configurationType: z.literal(WidgetConfigurationType.IFRAME),
@@ -634,6 +640,7 @@ export const widgetConfigurationSchema = z
     pieChartConfigSchema,
     iframeConfigSchema,
     richTextConfigSchema,
+    viewConfigSchema,
     recordTableConfigSchema,
   ])
   .optional()
@@ -647,6 +654,7 @@ export const widgetConfigurationSchemaWithoutDefaults = z
     pieChartConfigSchemaWithoutDefaults,
     iframeConfigSchema,
     richTextConfigSchema,
+    viewConfigSchema,
     recordTableConfigSchema,
   ])
   .optional()

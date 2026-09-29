@@ -26,6 +26,7 @@ import { UpdatePageLayoutTabWithWidgetsInput } from 'src/engine/metadata-modules
 import { UpdatePageLayoutWidgetWithIdInput } from 'src/engine/metadata-modules/page-layout-widget/dtos/inputs/update-page-layout-widget-with-id.input';
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
 import { validateChartConfigurationFieldReferencesOrThrow } from 'src/engine/metadata-modules/page-layout-widget/utils/validate-chart-configuration-field-references.util';
+import { validatePageLayoutWidgetTypeConfiguration } from 'src/engine/metadata-modules/page-layout-widget/utils/validate-page-layout-widget-type-configuration.util';
 import { UpdatePageLayoutWithTabsInput } from 'src/engine/metadata-modules/page-layout/dtos/inputs/update-page-layout-with-tabs.input';
 import { PageLayoutDTO } from 'src/engine/metadata-modules/page-layout/dtos/page-layout.dto';
 import {
@@ -542,6 +543,11 @@ export class PageLayoutUpdateService {
     widgetsToDelete: FlatPageLayoutWidget[];
   } {
     for (const widgetInput of widgets) {
+      validatePageLayoutWidgetTypeConfiguration({
+        type: widgetInput.type,
+        configuration: widgetInput.configuration,
+      });
+
       this.validateChartFieldReferences({
         widgetInput,
         flatFieldMetadataMaps,

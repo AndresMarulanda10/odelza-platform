@@ -45,6 +45,9 @@ export const fromCreateViewInputToFlatViewToCreate = ({
   const {
     objectMetadataUniversalIdentifier,
     calendarFieldMetadataUniversalIdentifier,
+    catalogImageFieldMetadataUniversalIdentifier,
+    catalogSubtitleFieldMetadataUniversalIdentifier,
+    catalogDetailFieldMetadataUniversalIdentifier,
     kanbanAggregateOperationFieldMetadataUniversalIdentifier,
     mainGroupByFieldMetadataUniversalIdentifier,
   } = resolveEntityRelationUniversalIdentifiers({
@@ -52,6 +55,11 @@ export const fromCreateViewInputToFlatViewToCreate = ({
     foreignKeyValues: {
       objectMetadataId,
       calendarFieldMetadataId: createViewInput.calendarFieldMetadataId,
+      catalogImageFieldMetadataId: createViewInput.catalogImageFieldMetadataId,
+      catalogSubtitleFieldMetadataId:
+        createViewInput.catalogSubtitleFieldMetadataId,
+      catalogDetailFieldMetadataId:
+        createViewInput.catalogDetailFieldMetadataId,
       kanbanAggregateOperationFieldMetadataId:
         createViewInput.kanbanAggregateOperationFieldMetadataId,
       mainGroupByFieldMetadataId: createViewInput.mainGroupByFieldMetadataId,
@@ -72,6 +80,9 @@ export const fromCreateViewInputToFlatViewToCreate = ({
     isCustom: true,
     anyFieldFilterValue: createViewInput.anyFieldFilterValue ?? null,
     calendarFieldMetadataUniversalIdentifier,
+    catalogImageFieldMetadataUniversalIdentifier,
+    catalogSubtitleFieldMetadataUniversalIdentifier,
+    catalogDetailFieldMetadataUniversalIdentifier,
     calendarLayout: createViewInput.calendarLayout ?? null,
     icon: createViewInput.icon,
     isCompact: createViewInput.isCompact ?? false,

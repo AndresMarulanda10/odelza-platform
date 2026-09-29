@@ -36,6 +36,12 @@ export const fromViewManifestToUniversalFlatView = ({
     calendarLayout: viewManifest.calendarLayout ?? null,
     calendarFieldMetadataUniversalIdentifier:
       viewManifest.calendarFieldMetadataUniversalIdentifier ?? null,
+    catalogImageFieldMetadataUniversalIdentifier:
+      viewManifest.catalogImageFieldMetadataUniversalIdentifier ?? null,
+    catalogSubtitleFieldMetadataUniversalIdentifier:
+      viewManifest.catalogSubtitleFieldMetadataUniversalIdentifier ?? null,
+    catalogDetailFieldMetadataUniversalIdentifier:
+      viewManifest.catalogDetailFieldMetadataUniversalIdentifier ?? null,
     mainGroupByFieldMetadataUniversalIdentifier:
       viewManifest.mainGroupByFieldMetadataUniversalIdentifier ?? null,
     shouldHideEmptyGroups: viewManifest.shouldHideEmptyGroups ?? false,

@@ -91,13 +91,15 @@ CHART FILTERS (AGGREGATE_CHART, BAR_CHART, LINE_CHART, PIE_CHART):
 - Shape: { filter: { recordFilters: [{ fieldName, operand, value, subFieldName? }] } }. Multiple rules are ANDed; use recordFilterGroups with logicalOperator AND/OR for advanced logic.
 - Relative dates: operand "IS_RELATIVE" with value like "PAST_7_DAY", "THIS_1_MONTH", "NEXT_3_WEEK" (DIRECTION_AMOUNT_UNIT; DIRECTION=PAST|THIS|NEXT, UNIT=DAY|WEEK|MONTH|QUARTER|YEAR). Use IS_IN_PAST/IS_IN_FUTURE/IS_TODAY (no value) for open-ended ranges.
 - SELECT/MULTI_SELECT/RELATION values are JSON array strings, e.g. '["WON"]'. CURRENCY value is the major unit with subFieldName "amountMicros".
-- Example (won opportunities created in the last 30 days): { type: "GRAPH", objectName: "opportunity", configuration: { configurationType: "AGGREGATE_CHART", aggregateFieldName: "amount", aggregateOperation: "SUM", filter: { recordFilters: [{ fieldName: "stage", operand: "IS", value: "[\\"WON\\"]" }, { fieldName: "createdAt", operand: "IS_RELATIVE", value: "PAST_30_DAY" }] } } }
+ - Example (won opportunities created in the last 30 days): { type: "GRAPH", objectName: "opportunity", configuration: { configurationType: "AGGREGATE_CHART", aggregateFieldName: "amount", aggregateOperation: "SUM", filter: { recordFilters: [{ fieldName: "stage", operand: "IS", value: "[\\"WON\\"]" }, { fieldName: "createdAt", operand: "IS_RELATIVE", value: "PAST_30_DAY" }] } } }
 
-5. IFRAME: { type: "IFRAME", configuration: { configurationType: "IFRAME", url: "https://..." } }
+5. VIEW: { type: "VIEW", configuration: { configurationType: "VIEW", viewId: "<view-uuid>" } }
 
-6. STANDALONE_RICH_TEXT: { type: "STANDALONE_RICH_TEXT", configuration: { configurationType: "STANDALONE_RICH_TEXT", body: { ... } } }
+6. IFRAME: { type: "IFRAME", configuration: { configurationType: "IFRAME", url: "https://..." } }
 
-7. RECORD_TABLE: displays a live, filterable record list directly on the dashboard.
+7. STANDALONE_RICH_TEXT: { type: "STANDALONE_RICH_TEXT", configuration: { configurationType: "STANDALONE_RICH_TEXT", body: { ... } } }
+
+8. RECORD_TABLE: displays a live, filterable record list directly on the dashboard.
    - IMPORTANT: you MUST create a dedicated view for the widget BEFORE creating the widget. Use create_view to create a new TABLE view for the object, then pass its ID as viewId. Never reuse an existing index-page view — widget views and record index views must not overlap.
    - Requires: objectMetadataId (top-level, UUID of the object to display) AND configuration.viewId (UUID of the dedicated view you just created)
    - configuration.configurationType must be "RECORD_TABLE"
