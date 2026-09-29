@@ -2,8 +2,12 @@ import { i18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
 import { act, renderHook } from '@testing-library/react';
 import { getDefaultStore } from 'jotai';
-import { AppPath, SidePanelPages } from 'twenty-shared/types';
+import {
+  AppPath,
+  SidePanelPages as SharedSidePanelPages,
+} from 'twenty-shared/types';
 import { type AppLocale } from 'twenty-shared/translations';
+import { type SidePanelPages as SdkSidePanelPages } from 'twenty-sdk/front-component';
 
 import { MAIN_CONTEXT_STORE_INSTANCE_ID } from '@/context-store/constants/MainContextStoreInstanceId';
 import { contextStoreRecordShowParentViewComponentState } from '@/context-store/states/contextStoreRecordShowParentViewComponentState';
@@ -30,6 +34,18 @@ const mockCopyToClipboard = jest.fn();
 
 let mockCurrentUser: { id: string } | null = { id: 'user-123' };
 let mockIsMobile = false;
+
+// The SDK bundles its own declaration of SidePanelPages, so keep the test values aligned with the API member type.
+const SDK_SIDE_PANEL_PAGES = {
+  ViewRecord:
+    SharedSidePanelPages.ViewRecord as unknown as SdkSidePanelPages.ViewRecord,
+  EditRichText:
+    SharedSidePanelPages.EditRichText as unknown as SdkSidePanelPages.EditRichText,
+  ComposeEmail:
+    SharedSidePanelPages.ComposeEmail as unknown as SdkSidePanelPages.ComposeEmail,
+  ViewFrontComponent:
+    SharedSidePanelPages.ViewFrontComponent as unknown as SdkSidePanelPages.ViewFrontComponent,
+};
 
 jest.mock('~/hooks/useNavigateApp', () => ({
   useNavigateApp: () => mockNavigateApp,
@@ -380,7 +396,7 @@ describe('useFrontComponentExecutionContext', () => {
       await act(async () => {
         await result.current.frontComponentHostCommunicationApi.openSidePanelPage(
           {
-            page: SidePanelPages.ViewRecord,
+            page: SDK_SIDE_PANEL_PAGES.ViewRecord,
             recordId: 'lead-1',
             objectNameSingular: 'lead',
             resetNavigationStack: true,
@@ -407,7 +423,7 @@ describe('useFrontComponentExecutionContext', () => {
       await act(async () => {
         await result.current.frontComponentHostCommunicationApi.openSidePanelPage(
           {
-            page: SidePanelPages.ViewRecord,
+            page: SDK_SIDE_PANEL_PAGES.ViewRecord,
             recordId: 'lead-1',
             objectNameSingular: 'lead',
           },
@@ -431,7 +447,7 @@ describe('useFrontComponentExecutionContext', () => {
       await act(async () => {
         await result.current.frontComponentHostCommunicationApi.openSidePanelPage(
           {
-            page: SidePanelPages.ViewRecord,
+            page: SDK_SIDE_PANEL_PAGES.ViewRecord,
             recordId: 'workflow-1',
             objectNameSingular: 'workflow',
           },
@@ -457,7 +473,7 @@ describe('useFrontComponentExecutionContext', () => {
       await act(async () => {
         await result.current.frontComponentHostCommunicationApi.openSidePanelPage(
           {
-            page: SidePanelPages.EditRichText,
+            page: SDK_SIDE_PANEL_PAGES.EditRichText,
             recordId: 'note-1',
             objectNameSingular: 'note',
             fieldName: 'body',
@@ -482,7 +498,7 @@ describe('useFrontComponentExecutionContext', () => {
       await act(async () => {
         await result.current.frontComponentHostCommunicationApi.openSidePanelPage(
           {
-            page: SidePanelPages.ComposeEmail,
+            page: SDK_SIDE_PANEL_PAGES.ComposeEmail,
             connectedAccountId: 'account-1',
             defaultTo: 'lead@example.com',
             pageIcon: 'IconMail',
@@ -511,7 +527,7 @@ describe('useFrontComponentExecutionContext', () => {
       await act(async () => {
         await result.current.frontComponentHostCommunicationApi.openSidePanelPage(
           {
-            page: SidePanelPages.ViewFrontComponent,
+            page: SDK_SIDE_PANEL_PAGES.ViewFrontComponent,
             frontComponentId: 'fc-1',
             pageTitle: 'My Component',
             pageIcon: 'IconBolt',
