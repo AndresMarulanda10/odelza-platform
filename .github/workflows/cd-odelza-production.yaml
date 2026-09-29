@@ -24,6 +24,12 @@ on:
       - 'packages/twenty-shared/**'
       - 'packages/twenty-ui/**'
   workflow_dispatch:
+    inputs:
+      allow_upgrade_path:
+        description: 'Explicitly approve deployment when database or workspace upgrade paths changed.'
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -56,6 +62,7 @@ jobs:
         shell: bash
         env:
           PUSH_BEFORE: ${{ github.event.before }}
+          ALLOW_UPGRADE_PATH: ${{ inputs.allow_upgrade_path }}
         run: |
           set -euo pipefail
 
@@ -126,9 +133,13 @@ jobs:
             esac
           done <<<"$changed_files"
           if [[ -n "$migration_change" ]]; then
-            printf 'Database/upgrade path changed: %s\n' "$migration_change" >&2
-            printf '%s\n' 'Use the established guarded manual deployment; automatic image-only CD is disabled.' >&2
-            exit 1
+            if [[ "$GITHUB_EVENT_NAME" != workflow_dispatch || "$ALLOW_UPGRADE_PATH" != true ]]; then
+              printf 'Database/upgrade path changed: %s\n' "$migration_change" >&2
+              printf '%s\n' 'Automatic CD is disabled. Use manual dispatch with explicit upgrade-path approval.' >&2
+              exit 1
+            fi
+
+            printf 'Manual upgrade-path deployment explicitly approved for: %s\n' "$migration_change"
           fi
 
       - name: Build immutable production image
