@@ -15,11 +15,12 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 ## Constraints
 - Preserve existing user data, metadata compatibility, permissions, and unrelated dashboard/widget behavior.
 - Do not modify unrelated Card Carousel work or local environment/configuration changes.
-- Do not push, open a PR, or merge. Local work-unit commits are used for task evidence.
+- Do not open a PR or merge without separate user authorization. The user authorized pushing `feat/catalog-custom-widget-parity` to `origin`.
 - Technical artifacts and code remain in English.
 - TDD mode: OFF, based on the project's existing testing-capabilities record (`sdd-init/odelza-platform`); use focused project-specific tests and applicable typechecks.
 - RDD mode: OFF, explicitly disabled by the user at clone scope; use ordinary functional verification and do not start receipt review or claim review approval.
 - Delivery strategy: `ask-on-risk`; forecast and running authored-line count are recorded as evidence becomes available. No size-only rework.
+- Chain strategy: `stacked-to-main`, explicitly selected by the user after CAT-02 exceeded the advisory 400-line workload budget. This does not authorize a PR or push.
 - Chosen implementation route: delegated direct for multi-file behavior changes. Trigger evidence: each implementation task spans non-trivial UI/data/test files; broad preparation is delegated with the writer.
 
 ## Acceptance criteria
@@ -48,12 +49,21 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 - Risk/verification outcome: assessment returned `high`/`unassessable` because the worktree contains untracked files; the required independent verifier passed, and RDD remained off. No RDD transaction was started.
 
 ### CAT-02 — Define one coherent Catalog field-configuration contract
-- [ ] Reconcile `Fields` (visible view fields/order) with `Catalog fields` (image/subtitle/detail roles).
-- [ ] Keep each control's purpose explicit and avoid duplicate/conflicting configuration paths.
-- [ ] Preserve existing view metadata and provide a safe migration/read-compatibility path if configuration semantics change.
+- [x] Keep `Fields` as the only user-facing Catalog field editor and remove the separate `Catalog fields` editor.
+- [x] Keep existing image/subtitle/detail roles as internal compatibility metadata for Catalog views only; `Fields` remains the sole editor for field visibility/order, and reordering does not reassign existing explicit roles.
+- [x] Idempotently expose legacy role fields through `Fields` without clearing their compatibility metadata; preserve Catalog content when users cannot persist or a write fails, and retry safely without requiring a remount.
 - Route: delegated direct. Trigger: menu, metadata/runtime mapping, and tests.
-- Checks: focused view/options and Catalog tests; frontend typecheck; formatter; `git diff --check`.
-- Evidence/commit: pending.
+- Checks:
+  - `yarn nx test twenty-front --runInBand --testPathPattern=modules/object-record` — passed: 898 suites, 5,325 tests, 139 snapshots; 11/12 dependency tasks cached. Two flaky dependency-task notices were reported, but the command succeeded. A preliminary attempt failed on a fake-timer queue assertion; removing the brittle assertion made the requested run pass.
+  - `yarn nx typecheck twenty-front` — passed; 11/12 dependency tasks cached. An earlier attempt exposed a possibly undefined current view; fixed before the passing run.
+  - `yarn nx format:write --files=packages/twenty-front/src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownContent.tsx,packages/twenty-front/src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx,packages/twenty-front/src/modules/object-record/object-options-dropdown/types/ObjectOptionsContentId.ts,packages/twenty-front/src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx,packages/twenty-front/src/modules/object-record/record-index/components/__tests__/RecordIndexCatalogContainer.test.tsx,packages/twenty-front/src/modules/object-record/object-options-dropdown/components/__tests__/ObjectOptionsDropdownContent.test.tsx,packages/twenty-front/src/modules/object-record/record-index/hooks/useMigrateCatalogViewFields.ts,packages/twenty-front/src/modules/object-record/record-index/hooks/__tests__/useMigrateCatalogViewFields.test.tsx,packages/twenty-front/src/modules/object-record/record-index/utils/buildCatalogViewFieldMigrationPlan.ts,packages/twenty-front/src/modules/object-record/record-index/utils/__tests__/buildCatalogViewFieldMigrationPlan.test.ts` — completed; normalized four files.
+  - `yarn nx format:check --files=packages/twenty-front/src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownContent.tsx,packages/twenty-front/src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx,packages/twenty-front/src/modules/object-record/object-options-dropdown/types/ObjectOptionsContentId.ts,packages/twenty-front/src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx,packages/twenty-front/src/modules/object-record/record-index/components/__tests__/RecordIndexCatalogContainer.test.tsx,packages/twenty-front/src/modules/object-record/object-options-dropdown/components/__tests__/ObjectOptionsDropdownContent.test.tsx,packages/twenty-front/src/modules/object-record/record-index/hooks/useMigrateCatalogViewFields.ts,packages/twenty-front/src/modules/object-record/record-index/hooks/__tests__/useMigrateCatalogViewFields.test.tsx,packages/twenty-front/src/modules/object-record/record-index/utils/buildCatalogViewFieldMigrationPlan.ts,packages/twenty-front/src/modules/object-record/record-index/utils/__tests__/buildCatalogViewFieldMigrationPlan.test.ts` — passed.
+  - `git diff --check` — passed in the writer run and parent spot check.
+  - Independent verification — passed with no blockers. Parent assessment remained high/unassessable because unrelated untracked files require an explicit scope declaration; RDD is off, so no review transaction was started.
+  - Runtime harness: N/A — Catalog component/migration tests cover behavior; no browser runtime was launched.
+- Product decision: user chose `Fields` as the sole field editor, requested removal of `Catalog fields`, approved internal compatibility for existing role IDs, and specified that those roles are only applied/shown for Catalog views. Preserve current role behavior; reordering `Fields` does not reassign explicit legacy roles. Keep legacy metadata schema/storage compatible.
+- Technical constraint: `ViewFieldEntity` has no image/subtitle/detail role slot and enforces one non-deleted row per `(fieldMetadataId, viewId)`. Retaining legacy role IDs as internal compatibility data avoids a wider schema change and preserves duplicate role assignments.
+- Evidence/commit: 1,228 authored changed lines across the CAT-02 implementation and tests (generated files excluded). Rollback boundary: revert the Catalog editor removal in `ObjectOptionsDropdownCatalogFieldsContent.tsx`, `ObjectOptionsDropdownContent.tsx`, `ObjectOptionsDropdownLayoutContent.tsx`, and `ObjectOptionsContentId.ts`; revert Catalog role rendering/migration in `RecordIndexCatalogContainer.tsx`, `useMigrateCatalogViewFields.ts`, and `buildCatalogViewFieldMigrationPlan.ts`; revert associated tests in `ObjectOptionsDropdownContent.test.tsx`, `RecordIndexCatalogContainer.test.tsx`, `useMigrateCatalogViewFields.test.tsx`, and `buildCatalogViewFieldMigrationPlan.test.ts`. Work-unit commit pending.
 
 ### CAT-03 — Make Catalog mappings deterministic
 - [ ] Validate configured role field IDs against current object metadata.
@@ -113,10 +123,11 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 - Evidence/commit: pending.
 
 ## Progress and verification
-- Started on branch `feat/catalog-custom-widget-parity` from the existing local HEAD; no remote operation performed.
+- Branch `feat/catalog-custom-widget-parity` is published to `origin` at `41e995faf1` and tracks its remote counterpart. No PR was created.
 - Receipt-driven development is disabled for this clone by explicit user request; global preference remains unset.
 - Baseline inspection found unrelated local changes in environment/configuration and generated planning/index directories; preserve them and stage only task-owned files.
 - Effective TDD mode is OFF per existing project testing-capabilities record; no strict-TDD RED-first requirement applies.
 - CAT-01 is complete and committed as work unit `7bba72a94f`; source/tests and this task plan are kept in separate commits so the feature document can record the resulting commit identity.
-- Current next step: begin CAT-02 after reconciling its scope and preserving all existing metadata semantics.
+- CAT-02 authored count: 1,228 lines; CAT-01 + CAT-02 total: 1,360 authored lines (generated files excluded).
+- Current next step: create the CAT-02 work-unit commit, then continue with CAT-03. No PR or push of CAT-02 is authorized yet.
 - Functional checks, failures, skipped checks, runtime evidence, authored line count, and commit identities are appended per task.

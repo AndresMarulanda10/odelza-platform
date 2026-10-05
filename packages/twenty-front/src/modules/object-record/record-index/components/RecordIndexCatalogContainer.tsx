@@ -8,9 +8,11 @@ import { RecordCatalogCard } from '@/object-record/record-index/components/Recor
 import { useRecordIndexContextOrThrow } from '@/object-record/record-index/contexts/RecordIndexContext';
 import { useOpenRecordFromIndexView } from '@/object-record/record-index/hooks/useOpenRecordFromIndexView';
 import { useRecordIndexTableQuery } from '@/object-record/record-index/hooks/useRecordIndexTableQuery';
+import { useMigrateCatalogViewFields } from '@/object-record/record-index/hooks/useMigrateCatalogViewFields';
 import { extractImageUrlFromText } from '@/object-record/utils/extractImageUrlFromText';
 import { getRecordFieldTextValue } from '@/object-record/utils/getRecordFieldTextValue';
 import { useGetCurrentViewOnly } from '@/views/hooks/useGetCurrentViewOnly';
+import { ViewType } from '@/views/types/ViewType';
 
 const StyledScroll = styled.div`
   display: flex;
@@ -46,10 +48,6 @@ const StyledEmpty = styled.div`
   justify-content: center;
 `;
 
-/*
- * La foto puede venir en un campo de imagen o en un enlace, y tambien escondida
- * dentro de un texto (el cuerpo del registro). Se prueban todas las formas.
- */
 const readImageSrc = (value: unknown): string | undefined => {
   if (!isDefined(value)) {
     return undefined;
@@ -104,21 +102,25 @@ export const RecordIndexCatalogContainer = () => {
   const { currentView } = useGetCurrentViewOnly();
   const isCompact = currentView?.isCompact ?? false;
 
+  useMigrateCatalogViewFields({
+    currentView,
+    availableFieldMetadataIds: objectMetadataItem.fields.map(
+      (fieldMetadataItem) => fieldMetadataItem.id,
+    ),
+  });
+
   const { openRecordFromIndexView } = useOpenRecordFromIndexView();
 
   const { records, loading, hasNextPage, fetchMoreRecords } =
     useRecordIndexTableQuery(objectNameSingular);
 
-  /*
-   * Los campos de la tarjeta son las columnas de la propia vista: lo que se
-   * elige en el selector de campos es lo que se ve en el catalogo. La primera
-   * columna va debajo del titulo y la segunda mas abajo.
-   */
   const cardFields = useMemo(() => {
-    const viewFields = [...(currentView?.viewFields ?? [])].sort(
-      (firstViewField, secondViewField) =>
-        firstViewField.position - secondViewField.position,
-    );
+    const viewFields = [...(currentView?.viewFields ?? [])]
+      .sort(
+        (firstViewField, secondViewField) =>
+          firstViewField.position - secondViewField.position,
+      )
+      .filter((viewField) => viewField.isVisible);
 
     return viewFields
       .map((viewField) =>
@@ -136,27 +138,43 @@ export const RecordIndexCatalogContainer = () => {
 
   const automaticSubtitleField = cardFields[0];
   const automaticDetailField = cardFields[1];
-
-  const findFieldById = (fieldMetadataId?: string | null) =>
-    isDefined(fieldMetadataId)
-      ? objectMetadataItem.fields.find(
-          (fieldMetadataItem) => fieldMetadataItem.id === fieldMetadataId,
-        )
+  const catalogRoleFieldMetadataIds =
+    currentView?.type === ViewType.CATALOG
+      ? {
+          image: currentView.catalogImageFieldMetadataId,
+          subtitle: currentView.catalogSubtitleFieldMetadataId,
+          detail: currentView.catalogDetailFieldMetadataId,
+        }
       : undefined;
 
-  /*
-   * Si en los ajustes de la vista se eligio un campo concreto se usa ese; si no,
-   * se cae a las columnas visibles: la primera debajo del titulo y la segunda
-   * mas abajo.
-   */
+  const getVisibleCatalogRoleField = (fieldMetadataId?: string | null) => {
+    if (!isDefined(fieldMetadataId)) {
+      return undefined;
+    }
+
+    const fieldMetadataItem = objectMetadataItem.fields.find(
+      (field) => field.id === fieldMetadataId,
+    );
+
+    if (!isDefined(fieldMetadataItem)) {
+      return undefined;
+    }
+
+    const viewField = currentView?.viewFields.find(
+      (field) => field.fieldMetadataId === fieldMetadataId,
+    );
+
+    return viewField?.isVisible === false ? undefined : fieldMetadataItem;
+  };
+
   const subtitleField =
-    findFieldById(currentView?.catalogSubtitleFieldMetadataId) ??
+    getVisibleCatalogRoleField(catalogRoleFieldMetadataIds?.subtitle) ??
     automaticSubtitleField;
   const detailField =
-    findFieldById(currentView?.catalogDetailFieldMetadataId) ??
+    getVisibleCatalogRoleField(catalogRoleFieldMetadataIds?.detail) ??
     automaticDetailField;
-  const chosenImageField = findFieldById(
-    currentView?.catalogImageFieldMetadataId,
+  const imageField = getVisibleCatalogRoleField(
+    catalogRoleFieldMetadataIds?.image,
   );
 
   const cards = records.map((record) => ({
@@ -173,8 +191,8 @@ export const RecordIndexCatalogContainer = () => {
       ? getRecordFieldTextValue(record[detailField.name])
       : undefined,
     imageSrc:
-      (isDefined(chosenImageField)
-        ? readImageSrc(record[chosenImageField.name])
+      (isDefined(imageField)
+        ? readImageSrc(record[imageField.name])
         : undefined) ??
       cardFields
         .map((fieldMetadataItem) =>
