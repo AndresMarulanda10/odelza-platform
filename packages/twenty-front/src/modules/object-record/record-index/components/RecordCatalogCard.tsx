@@ -99,6 +99,7 @@ const PLACEHOLDER_ICON_SIZE = 48;
 export type RecordCatalogCardProps = {
   imageSrc?: string;
   imageAlt?: string;
+  isCompact?: boolean;
   title: string;
   subtitle?: string;
   detail?: string;
@@ -108,6 +109,7 @@ export type RecordCatalogCardProps = {
 export const RecordCatalogCard = ({
   imageSrc,
   imageAlt,
+  isCompact = false,
   title,
   subtitle,
   detail,
@@ -117,23 +119,29 @@ export const RecordCatalogCard = ({
 
   return (
     <StyledCard type="button" onClick={onClick} title={title}>
-      <StyledImageFrame>
-        {isDefined(imageSrc) ? (
-          <StyledImage alt={imageAlt ?? ''} loading="lazy" src={imageSrc} />
-        ) : (
-          <StyledPlaceholder>
-            {initial === '' ? (
-              <IconPhoto aria-hidden size={PLACEHOLDER_ICON_SIZE} />
-            ) : (
-              <StyledInitial aria-hidden="true">{initial}</StyledInitial>
-            )}
-          </StyledPlaceholder>
-        )}
-      </StyledImageFrame>
+      {!isCompact && (
+        <StyledImageFrame>
+          {isDefined(imageSrc) ? (
+            <StyledImage alt={imageAlt ?? ''} loading="lazy" src={imageSrc} />
+          ) : (
+            <StyledPlaceholder>
+              {initial === '' ? (
+                <IconPhoto aria-hidden size={PLACEHOLDER_ICON_SIZE} />
+              ) : (
+                <StyledInitial aria-hidden="true">{initial}</StyledInitial>
+              )}
+            </StyledPlaceholder>
+          )}
+        </StyledImageFrame>
+      )}
       <StyledBody>
         <StyledTitle>{title}</StyledTitle>
-        {isDefined(subtitle) && <StyledSubtitle>{subtitle}</StyledSubtitle>}
-        {isDefined(detail) && <StyledDetail>{detail}</StyledDetail>}
+        {!isCompact && isDefined(subtitle) && (
+          <StyledSubtitle>{subtitle}</StyledSubtitle>
+        )}
+        {!isCompact && isDefined(detail) && (
+          <StyledDetail>{detail}</StyledDetail>
+        )}
       </StyledBody>
     </StyledCard>
   );

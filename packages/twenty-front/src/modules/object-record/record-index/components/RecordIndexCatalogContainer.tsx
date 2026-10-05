@@ -102,6 +102,7 @@ export const RecordIndexCatalogContainer = () => {
   } = useRecordIndexContextOrThrow();
 
   const { currentView } = useGetCurrentViewOnly();
+  const isCompact = currentView?.isCompact ?? false;
 
   const { openRecordFromIndexView } = useOpenRecordFromIndexView();
 
@@ -194,6 +195,7 @@ export const RecordIndexCatalogContainer = () => {
             key={card.id}
             detail={card.detail}
             imageSrc={card.imageSrc}
+            isCompact={isCompact}
             onClick={() => openRecordFromIndexView({ recordId: card.id })}
             subtitle={card.subtitle}
             title={card.title}
