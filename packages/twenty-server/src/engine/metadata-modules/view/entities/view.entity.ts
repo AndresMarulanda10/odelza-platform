@@ -210,7 +210,7 @@ export class ViewEntity
     () => FieldMetadataEntity,
     (fieldMetadata) => fieldMetadata.catalogImageViews,
     {
-      onDelete: 'CASCADE',
+      onDelete: 'SET NULL',
       nullable: true,
     },
   )
@@ -224,7 +224,7 @@ export class ViewEntity
     () => FieldMetadataEntity,
     (fieldMetadata) => fieldMetadata.catalogSubtitleViews,
     {
-      onDelete: 'CASCADE',
+      onDelete: 'SET NULL',
       nullable: true,
     },
   )
@@ -238,7 +238,7 @@ export class ViewEntity
     () => FieldMetadataEntity,
     (fieldMetadata) => fieldMetadata.catalogDetailViews,
     {
-      onDelete: 'CASCADE',
+      onDelete: 'SET NULL',
       nullable: true,
     },
   )

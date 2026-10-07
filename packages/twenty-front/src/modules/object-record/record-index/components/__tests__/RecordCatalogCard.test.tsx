@@ -24,6 +24,25 @@ describe('RecordCatalogCard', () => {
     expect(screen.getByText('2026-09-30')).toBeInTheDocument();
   });
 
+  it('keeps the title and hides optional content in compact mode', () => {
+    render(
+      <RecordCatalogCard
+        imageSrc="https://example.com/photo.jpg"
+        imageAlt="Record photo"
+        isCompact
+        title="Record title"
+        subtitle="Record subtitle"
+        detail="Record detail"
+      />,
+    );
+
+    expect(screen.getByText('Record title')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toHaveAttribute('title', 'Record title');
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+    expect(screen.queryByText('Record subtitle')).not.toBeInTheDocument();
+    expect(screen.queryByText('Record detail')).not.toBeInTheDocument();
+  });
+
   it('falls back to the first letter of the title when there is no image', () => {
     const { container } = render(
       <RecordCatalogCard

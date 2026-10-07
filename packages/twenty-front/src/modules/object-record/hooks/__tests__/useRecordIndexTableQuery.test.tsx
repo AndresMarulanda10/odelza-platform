@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { type ReactNode } from 'react';
 
 import { RecordComponentInstanceContextsWrapper } from '@/object-record/components/RecordComponentInstanceContextsWrapper';
@@ -122,10 +122,6 @@ const mocks: MockedResponse[] = [
   },
 ];
 
-const HookMockWrapper = getJestMetadataAndApolloMocksWrapper({
-  apolloMocks: mocks,
-});
-
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useLocation: jest.fn().mockReturnValue({
@@ -137,41 +133,136 @@ jest.mock('react-router-dom', () => ({
   }),
 }));
 
-const Wrapper = ({ children }: { children: ReactNode }) => {
-  return (
-    <HookMockWrapper>
-      <ViewComponentInstanceContext.Provider
-        value={{ instanceId: 'instanceId' }}
-      >
-        <RecordComponentInstanceContextsWrapper
-          componentInstanceId={recordTableId}
+const createWrapper = (apolloMocks: MockedResponse[] = mocks) => {
+  const HookMockWrapper = getJestMetadataAndApolloMocksWrapper({ apolloMocks });
+  return ({ children }: { children: ReactNode }) => {
+    return (
+      <HookMockWrapper>
+        <ViewComponentInstanceContext.Provider
+          value={{ instanceId: 'instanceId' }}
         >
-          <JestRecordIndexContextProviderWrapper
-            objectMetadataItem={mockPersonObjectMetadataItem}
+          <RecordComponentInstanceContextsWrapper
+            componentInstanceId={recordTableId}
           >
-            <RecordTableContextProvider
-              objectNameSingular={objectNameSingular}
-              recordTableId={recordTableId}
-              viewBarId="instanceId"
+            <JestRecordIndexContextProviderWrapper
+              objectMetadataItem={mockPersonObjectMetadataItem}
             >
-              <ObjectNamePluralSetter>
-                <RecordTableComponentInstance recordTableId={recordTableId}>
-                  <RecordGroupContext.Provider
-                    value={{ recordGroupId: 'default' }}
-                  >
-                    {children}
-                  </RecordGroupContext.Provider>
-                </RecordTableComponentInstance>
-              </ObjectNamePluralSetter>
-            </RecordTableContextProvider>
-          </JestRecordIndexContextProviderWrapper>
-        </RecordComponentInstanceContextsWrapper>
-      </ViewComponentInstanceContext.Provider>
-    </HookMockWrapper>
-  );
+              <RecordTableContextProvider
+                objectNameSingular={objectNameSingular}
+                recordTableId={recordTableId}
+                viewBarId="instanceId"
+              >
+                <ObjectNamePluralSetter>
+                  <RecordTableComponentInstance recordTableId={recordTableId}>
+                    <RecordGroupContext.Provider
+                      value={{ recordGroupId: 'default' }}
+                    >
+                      {children}
+                    </RecordGroupContext.Provider>
+                  </RecordTableComponentInstance>
+                </ObjectNamePluralSetter>
+              </RecordTableContextProvider>
+            </JestRecordIndexContextProviderWrapper>
+          </RecordComponentInstanceContextsWrapper>
+        </ViewComponentInstanceContext.Provider>
+      </HookMockWrapper>
+    );
+  };
 };
 
+const Wrapper = createWrapper();
+
 describe('useRecordIndexTableQuery', () => {
+  it('exposes a query error and refetches through the existing shared query', async () => {
+    const failure = new Error('Records unavailable');
+    const { result } = renderHook(
+      () => useRecordIndexTableQuery(objectNameSingular),
+      {
+        wrapper: createWrapper([
+          { request: mocks[0].request, error: failure },
+          mocks[0],
+        ]),
+      },
+    );
+    expect(result.current.loading).toBe(true);
+    await waitFor(() =>
+      expect(result.current.error?.message).toBe(failure.message),
+    );
+    expect(result.current.records).toHaveLength(0);
+    await act(async () => {
+      await result.current.refetch();
+    });
+    await waitFor(() =>
+      expect(result.current.records).toHaveLength(flatPersonRecords.length),
+    );
+    expect(result.current.error).toBeUndefined();
+    expect(result.current.loading).toBe(false);
+  });
+
+  it('retains cursor-deduplicated records when fetching the next page', async () => {
+    const firstPage = generateMockRecordConnection({
+      objectNameSingular,
+      records: flatPersonRecords.slice(0, 2),
+    });
+    const secondPage = generateMockRecordConnection({
+      objectNameSingular,
+      records: flatPersonRecords.slice(1, 3),
+    });
+    firstPage.edges = firstPage.edges.map((edge) => ({
+      ...edge,
+      cursor: edge.node.id,
+    }));
+    secondPage.edges = secondPage.edges.map((edge) => ({
+      ...edge,
+      cursor: edge.node.id,
+    }));
+    firstPage.pageInfo = {
+      ...firstPage.pageInfo,
+      endCursor: flatPersonRecords[1].id,
+      hasNextPage: true,
+      hasPreviousPage: false,
+      startCursor: flatPersonRecords[0].id,
+    };
+    const { result } = renderHook(
+      () => useRecordIndexTableQuery(objectNameSingular),
+      {
+        wrapper: createWrapper([
+          {
+            request: mocks[0].request,
+            result: {
+              data: {
+                people: {
+                  ...firstPage,
+                  pageInfo: { ...firstPage.pageInfo, hasNextPage: true },
+                },
+              },
+            },
+          },
+          {
+            request: {
+              ...mocks[0].request,
+              variables: {
+                ...mocks[0].request.variables,
+                lastCursor: firstPage.pageInfo.endCursor,
+              },
+            },
+            result: { data: { people: secondPage } },
+          },
+        ]),
+      },
+    );
+    await waitFor(() => expect(result.current.records).toHaveLength(2));
+    await waitFor(() => expect(result.current.hasNextPage).toBe(true));
+    await act(async () => {
+      await result.current.fetchMoreRecords();
+    });
+    await waitFor(() => expect(result.current.records).toHaveLength(3));
+    expect(result.current.records.map(({ id }) => id)).toEqual(
+      flatPersonRecords.slice(0, 3).map(({ id }) => id),
+    );
+    expect(result.current.hasNextPage).toBe(false);
+  });
+
   it('should fetch', async () => {
     const { result } = renderHook(
       () => {
