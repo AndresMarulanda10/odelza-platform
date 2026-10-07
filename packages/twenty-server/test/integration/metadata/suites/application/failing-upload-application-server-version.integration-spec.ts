@@ -51,6 +51,13 @@ describe('Publish application is gated by the instance server version', () => {
       expectToFail: true,
     });
 
-    expectOneNotInternalServerErrorSnapshot({ errors });
+    expectOneNotInternalServerErrorSnapshot({
+      errors,
+      normalizeMessage: (message) =>
+        message.replace(
+          /( but this server is )\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?(?=\.$)/,
+          '$1<instance-version>',
+        ),
+    });
   });
 });
