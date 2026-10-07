@@ -15,6 +15,43 @@ The sections below retain original-branch implementation chronology, including h
 
 All six additional commits transplanted without conflicts; work-unit boundaries were preserved. No unrelated accumulated history was transplanted. Changed package files match the original CAT-04 snapshot byte-for-byte. Source inspection confirmed the existing base contains the Catalog columns/foreign keys, shared query error/refetch contract, and view persistence permissions needed by these changes; no missing excluded-history dependency was found in the inspected paths.
 
+### Bounded CI correction — PR #52
+
+- Intent: replace candidate-introduced non-DOM `useRef` state with instance-scoped Jotai atoms, using synchronous store reads for concurrency and immutable updates. Keep migration completion/retry bookkeeping scoped to the hook lifetime, cancel timers on unmount, and isolate pagination state by query identity. Preserve legacy role metadata and existing cross-mount in-flight migration deduplication.
+- Scope: CAT-02/CAT-04 lifecycle correction and regression tests only; no new feature, lint suppression, workflow change, or global state registry. Existing completed CAT tasks remain completed. TDD/RDD remain off; consolidated size exception remains applicable.
+- Planned checks: scoped formatting before final checks; exact full frontend type-aware oxlint plus configured full-source formatter check using installed local binaries; six focused frontend Jest suites with `--runTestsByPath --runInBand --no-cache`; uncached/dependency-excluded frontend typecheck; `git diff --check`.
+- Correction proof: **final local verification passed**. Independent verification reran full frontend type-aware lint: **7,972 files, 0 warnings, 0 errors**; the two lifecycle suites passed (**27 tests**) and whitespace checks passed. Writer verification passed six frontend suites (**39 tests, 0 snapshots**), uncached/dependency-excluded frontend typecheck, and scoped formatter. No database/integration test or original-checkout write was performed. Remote CI remains a separate delivery gate.
+- Runtime harness: deferred-promise React hook/component tests for same-turn deduplication, old-query completion, view switching, retry/backoff, and unmount cleanup; no browser required for this storage-only correction.
+- Rollback boundary: only this correction's changes in the Catalog container, migration hook, their tests, and this evidence section; no schema or persisted metadata change.
+
+Observed correction commands (isolated worktree root unless noted):
+
+```bash
+export NX_DAEMON=false NX_NO_CLOUD=true NX_ISOLATE_PLUGINS=false npm_config_offline=true npm_config_registry=http://127.0.0.1:9 YARN_ENABLE_NETWORK=0
+# Required lint plugin dist was absent; supported offline local build, no install.
+node node_modules/nx/dist/bin/nx.js run twenty-oxlint-rules:build --excludeTaskDependencies --skipNxCache --no-cloud
+git diff --name-only -- '*.ts' '*.tsx' | xargs node node_modules/oxfmt/bin/oxfmt
+# From packages/twenty-front; full type-aware lint run exactly once:
+../../node_modules/.bin/oxlint --type-aware -c .oxlintrc.json src/
+../../node_modules/.bin/oxfmt --check src/
+# After correcting the sole reported test-helper hook name, from packages/twenty-front:
+../../node_modules/.bin/oxlint --type-aware -c .oxlintrc.json src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx src/modules/object-record/record-index/components/__tests__/RecordIndexCatalogContainer.test.tsx src/modules/object-record/record-index/hooks/useMigrateCatalogViewFields.ts src/modules/object-record/record-index/hooks/__tests__/useMigrateCatalogViewFields.test.tsx
+# Final root checks after reformatting:
+git diff --name-only -- '*.ts' '*.tsx' | xargs node node_modules/oxfmt/bin/oxfmt --check
+BASE=236d095f4c28c4a80205d28704800f463a4bcd51
+mapfile -t tests < <(git diff --name-only --diff-filter=ACM "$BASE" HEAD -- packages/twenty-front | grep -E '\.test\.tsx?$')
+node node_modules/jest/bin/jest.js --config packages/twenty-front/jest.config.mjs --runTestsByPath "${tests[@]}" --runInBand --no-cache
+node node_modules/nx/dist/bin/nx.js run twenty-front:typecheck --excludeTaskDependencies --skipNxCache --no-cloud
+git diff --check
+```
+
+- Writer full lint initially inspected 7,972 files: **0 warnings, 1 error** in the newly added test helper (`renderMigration` called a hook without a hook name). Renamed it to `useTestMigration`, reformatted, and verified all four changed source/test files with the same type-aware lint: **0 warnings, 0 errors**. The independent verifier subsequently ran `../../node_modules/.bin/oxlint --type-aware -c .oxlintrc.json src/` from `packages/twenty-front`: **7,972 files, 0 warnings, 0 errors**. No baseline failure exemption is claimed.
+- Independent focused verification: `node node_modules/jest/bin/jest.js --config packages/twenty-front/jest.config.mjs --runTestsByPath packages/twenty-front/src/modules/object-record/record-index/components/__tests__/RecordIndexCatalogContainer.test.tsx packages/twenty-front/src/modules/object-record/record-index/hooks/__tests__/useMigrateCatalogViewFields.test.tsx --runInBand --no-cache` — **2 suites / 27 tests passed**. No functional blockers found; direct timer-removal assertion and the backoff-cap boundary remain optional coverage gaps, not expanded in this correction.
+- Full-source formatter passed on 8,254 files before the helper rename; the final four-file formatter check passed after it. Final Jest and typecheck were rerun after the rename and passed. The query-failure test intentionally emits the existing `Records unavailable` error log; no new warning was observed.
+- Added six cases covering per-view completion/backoff across switches, pending/scheduled retry unmounts and remounts, simultaneous-instance migration deduplication, A→B→A pending pagination isolation, and late rejection after unmount. Existing duplicate-click cases now batch both clicks in one React turn.
+- Local output logs: `/tmp/opencode/pr52-correction-{lint,format,jest-final,typecheck}.log`. Generated lint-plugin output and the existing untracked `.codegraph/` index are excluded from the authored correction.
+- Skill resolution: paths-injected `/home/fabianvcha/.config/opencode/skills/work-unit-commits/SKILL.md`, `/home/fabianvcha/projects/odelza-platform/.cursor/skills/syncable-entity-testing/SKILL.md`, and `/home/fabianvcha/projects/odelza-platform/.cursor/skills/syncable-entity-integration/SKILL.md`; loaded before edits. Syncable-entity backend work remains out of scope.
+
 ### Fresh consolidated-candidate verification
 
 Commands run from this isolated PR worktree (not the original checkout):

@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { atom, useStore } from 'jotai';
+import { useEffect, useState } from 'react';
 
 import { usePerformViewFieldAPIPersist } from '@/views/hooks/internal/usePerformViewFieldAPIPersist';
 import { useCanPersistViewChanges } from '@/views/hooks/useCanPersistViewChanges';
@@ -20,23 +21,29 @@ export const useMigrateCatalogViewFields = ({
 }) => {
   const { canPersistChanges } = useCanPersistViewChanges();
   const { performViewFieldAPICreate } = usePerformViewFieldAPIPersist();
-  const completedMigrationKeys = useRef(new Set<string>());
-  const retryAttemptsByKey = useRef(new Map<string, number>());
-  const retryTimeoutsByKey = useRef(
-    new Map<string, ReturnType<typeof setTimeout>>(),
+  const store = useStore();
+  const [migrationState] = useState(() =>
+    atom({
+      completedKeys: new Set<string>(),
+      retryAttempts: new Map<string, number>(),
+      retryTimeouts: new Map<string, ReturnType<typeof setTimeout>>(),
+      isMounted: false,
+    }),
   );
-  const isMounted = useRef(false);
   const [retryTrigger, setRetryTrigger] = useState(0);
 
   useEffect(() => {
-    isMounted.current = true;
+    store.set(migrationState, (state) => ({ ...state, isMounted: true }));
 
     return () => {
-      isMounted.current = false;
-      retryTimeoutsByKey.current.forEach(clearTimeout);
-      retryTimeoutsByKey.current.clear();
+      store.get(migrationState).retryTimeouts.forEach(clearTimeout);
+      store.set(migrationState, (state) => ({
+        ...state,
+        isMounted: false,
+        retryTimeouts: new Map(),
+      }));
     };
-  }, []);
+  }, [migrationState, store]);
 
   useEffect(() => {
     if (
@@ -87,9 +94,9 @@ export const useMigrateCatalogViewFields = ({
     ].join('|');
 
     if (
-      completedMigrationKeys.current.has(migrationKey) ||
+      store.get(migrationState).completedKeys.has(migrationKey) ||
       inFlightMigrationKeys.has(migrationKey) ||
-      retryTimeoutsByKey.current.has(migrationKey)
+      store.get(migrationState).retryTimeouts.has(migrationKey)
     ) {
       return;
     }
@@ -109,26 +116,39 @@ export const useMigrateCatalogViewFields = ({
     inFlightMigrationKeys.add(migrationKey);
 
     const scheduleRetry = () => {
-      if (!isMounted.current || retryTimeoutsByKey.current.has(migrationKey)) {
+      const state = store.get(migrationState);
+      if (!state.isMounted || state.retryTimeouts.has(migrationKey)) {
         return;
       }
 
-      const retryAttempt =
-        (retryAttemptsByKey.current.get(migrationKey) ?? 0) + 1;
-      retryAttemptsByKey.current.set(migrationKey, retryAttempt);
+      const retryAttempt = (state.retryAttempts.get(migrationKey) ?? 0) + 1;
       const retryDelay = Math.min(
         INITIAL_RETRY_DELAY_MS * 2 ** (retryAttempt - 1),
         MAX_RETRY_DELAY_MS,
       );
       const timeout = setTimeout(() => {
-        retryTimeoutsByKey.current.delete(migrationKey);
+        store.set(migrationState, (previousState) => {
+          const retryTimeouts = new Map(previousState.retryTimeouts);
+          retryTimeouts.delete(migrationKey);
+          return { ...previousState, retryTimeouts };
+        });
 
-        if (isMounted.current) {
+        if (store.get(migrationState).isMounted) {
           setRetryTrigger((previousRetryTrigger) => previousRetryTrigger + 1);
         }
       }, retryDelay);
 
-      retryTimeoutsByKey.current.set(migrationKey, timeout);
+      store.set(migrationState, (previousState) => ({
+        ...previousState,
+        retryAttempts: new Map(previousState.retryAttempts).set(
+          migrationKey,
+          retryAttempt,
+        ),
+        retryTimeouts: new Map(previousState.retryTimeouts).set(
+          migrationKey,
+          timeout,
+        ),
+      }));
     };
 
     const runMigration = async () => {
@@ -146,8 +166,17 @@ export const useMigrateCatalogViewFields = ({
         });
 
         if (createResult.status === 'successful') {
-          completedMigrationKeys.current.add(migrationKey);
-          retryAttemptsByKey.current.delete(migrationKey);
+          if (store.get(migrationState).isMounted) {
+            store.set(migrationState, (state) => {
+              const retryAttempts = new Map(state.retryAttempts);
+              retryAttempts.delete(migrationKey);
+              return {
+                ...state,
+                completedKeys: new Set(state.completedKeys).add(migrationKey),
+                retryAttempts,
+              };
+            });
+          }
           return;
         }
 
@@ -166,5 +195,7 @@ export const useMigrateCatalogViewFields = ({
     currentView,
     performViewFieldAPICreate,
     retryTrigger,
+    migrationState,
+    store,
   ]);
 };

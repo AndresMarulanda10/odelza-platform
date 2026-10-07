@@ -251,8 +251,10 @@ describe('RecordIndexCatalogContainer', () => {
         refetch,
       });
       const button = screen.getByRole('button', { name: 'Load more' });
-      fireEvent.click(button);
-      fireEvent.click(button);
+      act(() => {
+        fireEvent.click(button);
+        fireEvent.click(button);
+      });
       expect(fetchMoreRecords).toHaveBeenCalledTimes(1);
       expect(screen.getByText('Existing card')).toBeInTheDocument();
       expect(screen.getByRole('button', { name: 'Loading' })).toBeDisabled();
@@ -304,6 +306,85 @@ describe('RecordIndexCatalogContainer', () => {
     rerender(<RecordIndexCatalogContainer />);
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
     expect(screen.getByText('No records to display')).toBeInTheDocument();
+  });
+
+  it('isolates pending requests across query switches, including returning to the original query', async () => {
+    let finishOld!: (value: { error?: Error }) => void;
+    let finishCurrent!: (value: { error?: Error }) => void;
+    const fetchMoreRecords = jest
+      .fn()
+      .mockImplementationOnce(
+        () =>
+          new Promise((resolve) => {
+            finishOld = resolve;
+          }),
+      )
+      .mockImplementationOnce(
+        () =>
+          new Promise((resolve) => {
+            finishCurrent = resolve;
+          }),
+      );
+    const query = {
+      records: [{ id: 'one', name: 'Retained card' }],
+      loading: false,
+      hasNextPage: true,
+      fetchMoreRecords,
+      queryIdentifier: 'catalog-query',
+    };
+    const { rerender } = renderState(query);
+    fireEvent.click(screen.getByRole('button', { name: 'Load more' }));
+    (useRecordIndexTableQuery as jest.Mock).mockReturnValue({
+      ...query,
+      queryIdentifier: 'second-query',
+    });
+    rerender(<RecordIndexCatalogContainer />);
+    expect(screen.getByRole('button', { name: 'Load more' })).toBeEnabled();
+    (useRecordIndexTableQuery as jest.Mock).mockReturnValue(query);
+    rerender(<RecordIndexCatalogContainer />);
+    fireEvent.click(screen.getByRole('button', { name: 'Load more' }));
+    expect(fetchMoreRecords).toHaveBeenCalledTimes(2);
+    await act(async () => {
+      finishOld({ error: new Error('Old query failed') });
+    });
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Loading' })).toBeDisabled();
+    expect(screen.getByText('Retained card')).toBeInTheDocument();
+    await act(async () => {
+      finishCurrent({});
+    });
+    expect(screen.getByRole('button', { name: 'Load more' })).toBeEnabled();
+  });
+
+  it('does not leak pending requests or late failures into a remounted Catalog', async () => {
+    let rejectOld!: (reason: Error) => void;
+    const fetchMoreRecords = jest
+      .fn()
+      .mockImplementationOnce(
+        () =>
+          new Promise((_, reject) => {
+            rejectOld = reject;
+          }),
+      )
+      .mockResolvedValue({});
+    const query = {
+      records: [{ id: 'one', name: 'Retained card' }],
+      hasNextPage: true,
+      fetchMoreRecords,
+    };
+    const { unmount } = renderState(query);
+    fireEvent.click(screen.getByRole('button', { name: 'Load more' }));
+    unmount();
+    renderState(query);
+    await act(async () => {
+      rejectOld(new Error('Unmounted request failed'));
+    });
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Load more' }));
+    await waitFor(() =>
+      expect(screen.getByRole('button', { name: 'Load more' })).toBeEnabled(),
+    );
+    expect(fetchMoreRecords).toHaveBeenCalledTimes(2);
   });
 
   it('uses the persisted compact setting when rendering Catalog cards', () => {

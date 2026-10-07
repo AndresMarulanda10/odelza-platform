@@ -1,6 +1,7 @@
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
-import { useMemo, useRef, useState } from 'react';
+import { atom, useAtomValue, useStore } from 'jotai';
+import { useEffect, useMemo } from 'react';
 import { Loader } from 'twenty-ui/feedback';
 import { isDefined } from 'twenty-shared/utils';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
@@ -128,42 +129,44 @@ export const RecordIndexCatalogContainer = () => {
     isFetchingMoreRecordsFamilyState,
     queryIdentifier,
   );
-  const pendingRequest = useRef<{ queryIdentifier: string } | null>(null);
-  const [requestState, setRequestState] = useState<{
-    queryIdentifier: string;
-    pending: boolean;
-    failed: boolean;
-  }>();
-  const currentRequest =
-    requestState?.queryIdentifier === queryIdentifier
-      ? requestState
-      : undefined;
+  const store = useStore();
+  const requestState = useMemo(
+    () => atom({ queryIdentifier, pending: false, failed: false }),
+    [queryIdentifier],
+  );
+  const currentRequest = useAtomValue(requestState);
+
+  useEffect(() => {
+    return () => {
+      // Invalidate the request identity on query changes and unmount.
+      store.set(requestState, (state) => ({ ...state, pending: false }));
+    };
+  }, [requestState, store]);
   const isBusy =
     loading || isFetchingMoreRecords || currentRequest?.pending === true;
 
   const handleRequest = async (retryQuery: boolean) => {
-    if (isBusy || pendingRequest.current?.queryIdentifier === queryIdentifier) {
+    if (isBusy || store.get(requestState).pending) {
       return;
     }
-    const request = { queryIdentifier };
-    pendingRequest.current = request;
-    setRequestState({ queryIdentifier, pending: true, failed: false });
+    const request = { queryIdentifier, pending: true, failed: false };
+    store.set(requestState, request);
     try {
       const result = await (retryQuery ? refetch() : fetchMoreRecords());
-      if (pendingRequest.current === request) {
-        setRequestState({
+      if (store.get(requestState) === request) {
+        store.set(requestState, {
           queryIdentifier,
           pending: false,
           failed: isDefined(result?.error),
         });
       }
     } catch {
-      if (pendingRequest.current === request) {
-        setRequestState({ queryIdentifier, pending: false, failed: true });
-      }
-    } finally {
-      if (pendingRequest.current === request) {
-        pendingRequest.current = null;
+      if (store.get(requestState) === request) {
+        store.set(requestState, {
+          queryIdentifier,
+          pending: false,
+          failed: true,
+        });
       }
     }
   };
