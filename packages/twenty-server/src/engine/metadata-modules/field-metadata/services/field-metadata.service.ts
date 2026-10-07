@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { TypeOrmQueryService } from '@ptc-org/nestjs-query-typeorm';
@@ -11,6 +11,7 @@ import { type CreateFieldInput } from 'src/engine/metadata-modules/field-metadat
 import { type DeleteOneFieldInput } from 'src/engine/metadata-modules/field-metadata/dtos/delete-field.input';
 import { type UpdateFieldInput } from 'src/engine/metadata-modules/field-metadata/dtos/update-field.input';
 import { FieldMetadataEntity } from 'src/engine/metadata-modules/field-metadata/field-metadata.entity';
+import { observeSeedFieldReturn } from 'src/engine/metadata-modules/field-metadata/utils/observe-seed-field-return.util';
 import {
   FieldMetadataException,
   FieldMetadataExceptionCode,
@@ -351,11 +352,13 @@ export class FieldMetadataService extends TypeOrmQueryService<FieldMetadataEntit
     workspaceId,
     ownerFlatApplication,
     isSystemBuild = false,
+    diagnoseSeedReturn = false,
   }: {
     createFieldInputs: Omit<CreateFieldInput, 'workspaceId'>[];
     workspaceId: string;
     ownerFlatApplication?: FlatApplication;
     isSystemBuild?: boolean;
+    diagnoseSeedReturn?: boolean;
   }): Promise<FlatFieldMetadata[]> {
     if (createFieldInputs.length === 0) {
       return [];
@@ -477,15 +480,57 @@ export class FieldMetadataService extends TypeOrmQueryService<FieldMetadataEntit
         },
       );
 
-    return findManyFlatEntityByUniversalIdentifierInUniversalFlatEntityMapsOrThrow(
-      {
+    const lookup = () =>
+      findManyFlatEntityByUniversalIdentifierInUniversalFlatEntityMapsOrThrow({
         universalIdentifiers: allTranspiledTranspilationInputs.map(
           ({ result: { flatFieldMetadatas } }) =>
             flatFieldMetadatas[0].universalIdentifier,
         ),
         flatEntityMaps: recomputedFlatFieldMetadataMaps,
-      },
-    );
+      });
+
+    if (
+      !diagnoseSeedReturn ||
+      createFieldInputs.length !== 1 ||
+      flatFieldMetadatasToCreate.length !== 2
+    ) {
+      return lookup();
+    }
+
+    return observeSeedFieldReturn({
+      lookup,
+      planned: () =>
+        flatFieldMetadatasToCreate.map((field) => ({
+          universalIdentifier: field.universalIdentifier,
+          inPlannedCreate:
+            validateAndBuildResult.workspaceMigration.actions.some(
+              (action) =>
+                action.type === 'create' &&
+                action.metadataName === 'fieldMetadata' &&
+                action.flatEntity.universalIdentifier ===
+                  field.universalIdentifier,
+            ),
+          objectMetadataId:
+            existingFlatObjectMetadataMaps.byUniversalIdentifier[
+              field.objectMetadataUniversalIdentifier
+            ]?.id,
+        })),
+      returned: recomputedFlatFieldMetadataMaps.byUniversalIdentifier,
+      readPersisted: () =>
+        this.fieldMetadataRepository.find({
+          where: flatFieldMetadatasToCreate.map((field) => ({
+            workspaceId,
+            universalIdentifier: field.universalIdentifier,
+          })),
+          select: {
+            id: true,
+            universalIdentifier: true,
+            objectMetadataId: true,
+          },
+        }),
+      emit: (observation) =>
+        new Logger(FieldMetadataService.name).warn(JSON.stringify(observation)),
+    });
   }
 
   public async findOneWithinWorkspace(
