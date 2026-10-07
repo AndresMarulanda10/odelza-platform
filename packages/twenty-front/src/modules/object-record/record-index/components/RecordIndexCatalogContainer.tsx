@@ -1,6 +1,7 @@
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
-import { useMemo } from 'react';
+import { useMemo, useRef, useState } from 'react';
+import { Loader } from 'twenty-ui/feedback';
 import { isDefined } from 'twenty-shared/utils';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
 
@@ -13,6 +14,8 @@ import { extractImageUrlFromText } from '@/object-record/utils/extractImageUrlFr
 import { getRecordFieldTextValue } from '@/object-record/utils/getRecordFieldTextValue';
 import { useGetCurrentViewOnly } from '@/views/hooks/useGetCurrentViewOnly';
 import { ViewType } from '@/views/types/ViewType';
+import { isFetchingMoreRecordsFamilyState } from '@/object-record/states/isFetchingMoreRecordsFamilyState';
+import { useAtomFamilyStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomFamilyStateValue';
 
 const StyledScroll = styled.div`
   display: flex;
@@ -111,8 +114,59 @@ export const RecordIndexCatalogContainer = () => {
 
   const { openRecordFromIndexView } = useOpenRecordFromIndexView();
 
-  const { records, loading, hasNextPage, fetchMoreRecords } =
-    useRecordIndexTableQuery(objectNameSingular);
+  const {
+    records,
+    loading,
+    hasNextPage,
+    fetchMoreRecords,
+    error,
+    refetch,
+    queryIdentifier,
+  } = useRecordIndexTableQuery(objectNameSingular);
+
+  const isFetchingMoreRecords = useAtomFamilyStateValue(
+    isFetchingMoreRecordsFamilyState,
+    queryIdentifier,
+  );
+  const pendingRequest = useRef<{ queryIdentifier: string } | null>(null);
+  const [requestState, setRequestState] = useState<{
+    queryIdentifier: string;
+    pending: boolean;
+    failed: boolean;
+  }>();
+  const currentRequest =
+    requestState?.queryIdentifier === queryIdentifier
+      ? requestState
+      : undefined;
+  const isBusy =
+    loading || isFetchingMoreRecords || currentRequest?.pending === true;
+
+  const handleRequest = async (retryQuery: boolean) => {
+    if (isBusy || pendingRequest.current?.queryIdentifier === queryIdentifier) {
+      return;
+    }
+    const request = { queryIdentifier };
+    pendingRequest.current = request;
+    setRequestState({ queryIdentifier, pending: true, failed: false });
+    try {
+      const result = await (retryQuery ? refetch() : fetchMoreRecords());
+      if (pendingRequest.current === request) {
+        setRequestState({
+          queryIdentifier,
+          pending: false,
+          failed: isDefined(result?.error),
+        });
+      }
+    } catch {
+      if (pendingRequest.current === request) {
+        setRequestState({ queryIdentifier, pending: false, failed: true });
+      }
+    } finally {
+      if (pendingRequest.current === request) {
+        pendingRequest.current = null;
+      }
+    }
+  };
 
   const cardFields = useMemo(() => {
     const viewFields = [...(currentView?.viewFields ?? [])]
@@ -204,8 +258,18 @@ export const RecordIndexCatalogContainer = () => {
         .find(isDefined),
   }));
 
-  if (!loading && cards.length === 0) {
-    return <StyledEmpty>{t`No hay registros para mostrar`}</StyledEmpty>;
+  const hasError = isDefined(error) || currentRequest?.failed === true;
+
+  if (isBusy && cards.length === 0) {
+    return (
+      <StyledEmpty role="status" aria-label={t`Loading`}>
+        <Loader />
+      </StyledEmpty>
+    );
+  }
+
+  if (!hasError && cards.length === 0) {
+    return <StyledEmpty>{t`No records to display`}</StyledEmpty>;
   }
 
   return (
@@ -223,9 +287,16 @@ export const RecordIndexCatalogContainer = () => {
           />
         ))}
       </StyledGrid>
-      {hasNextPage && (
-        <StyledMoreButton type="button" onClick={() => fetchMoreRecords()}>
-          {t`Ver más`}
+      {hasError && <div role="alert">{t`Unable to load records`}</div>}
+      {(hasError || hasNextPage) && (
+        <StyledMoreButton
+          type="button"
+          disabled={isBusy}
+          onClick={() =>
+            void handleRequest(isDefined(error) || cards.length === 0)
+          }
+        >
+          {isBusy ? t`Loading` : hasError ? t`Retry` : t`Load more`}
         </StyledMoreButton>
       )}
     </StyledScroll>

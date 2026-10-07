@@ -1,4 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
+import { useAtomFamilyStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomFamilyStateValue';
 
 import { useRecordIndexContextOrThrow } from '@/object-record/record-index/contexts/RecordIndexContext';
 import { useOpenRecordFromIndexView } from '@/object-record/record-index/hooks/useOpenRecordFromIndexView';
@@ -6,6 +13,48 @@ import { useRecordIndexTableQuery } from '@/object-record/record-index/hooks/use
 import { RecordIndexCatalogContainer } from '@/object-record/record-index/components/RecordIndexCatalogContainer';
 import { useGetCurrentViewOnly } from '@/views/hooks/useGetCurrentViewOnly';
 import { ViewType } from '@/views/types/ViewType';
+import { RecordIndexContainer } from '@/object-record/record-index/components/RecordIndexContainer';
+import { useHasCurrentViewNonReadableFields } from '@/object-record/record-index/hooks/useHasCurrentViewNonReadableFields';
+
+jest.mock('@/ui/utilities/state/jotai/hooks/useAtomStateValue', () => ({
+  useAtomStateValue: () => ViewType.CATALOG,
+}));
+jest.mock(
+  '@/object-record/record-index/hooks/useHasCurrentViewNonReadableFields',
+  () => ({
+    useHasCurrentViewNonReadableFields: jest.fn(),
+  }),
+);
+jest.mock(
+  '@/object-record/record-index/components/RecordIndexEmptyStateNotShared',
+  () => ({
+    RecordIndexEmptyStateNotShared: () => <div>Permission denied</div>,
+  }),
+);
+jest.mock(
+  '@/object-record/record-index/components/RecordIndexFiltersToContextStoreEffect',
+  () => ({
+    RecordIndexFiltersToContextStoreEffect: () => null,
+  }),
+);
+jest.mock(
+  '@/object-record/record-index/components/RecordIndexTableContainer',
+  () => ({
+    RecordIndexTableContainer: () => null,
+  }),
+);
+jest.mock(
+  '@/object-record/record-index/components/RecordIndexCalendarContainer',
+  () => ({
+    RecordIndexCalendarContainer: () => null,
+  }),
+);
+jest.mock(
+  '@/object-record/record-board/components/RecordBoardContainer',
+  () => ({
+    RecordBoardContainer: () => null,
+  }),
+);
 
 jest.mock('@/object-record/record-index/contexts/RecordIndexContext', () => ({
   useRecordIndexContextOrThrow: jest.fn(),
@@ -25,6 +74,9 @@ jest.mock(
 jest.mock('@/views/hooks/useGetCurrentViewOnly', () => ({
   useGetCurrentViewOnly: jest.fn(),
 }));
+jest.mock('@/ui/utilities/state/jotai/hooks/useAtomFamilyStateValue', () => ({
+  useAtomFamilyStateValue: jest.fn(() => false),
+}));
 jest.mock(
   '@/object-record/record-index/hooks/useMigrateCatalogViewFields',
   () => ({
@@ -36,10 +88,12 @@ const renderCatalog = ({
   fields,
   currentView,
   records,
+  query = {},
 }: {
   fields: { id: string; name: string }[];
   currentView: Record<string, unknown>;
   records: Record<string, unknown>[];
+  query?: Record<string, unknown>;
 }) => {
   (useRecordIndexContextOrThrow as jest.Mock).mockReturnValue({
     objectNameSingular: 'example',
@@ -55,12 +109,203 @@ const renderCatalog = ({
     loading: false,
     hasNextPage: false,
     fetchMoreRecords: jest.fn(),
+    refetch: jest.fn(),
+    queryIdentifier: 'catalog-query',
+    ...query,
   });
 
   return render(<RecordIndexCatalogContainer />);
 };
 
 describe('RecordIndexCatalogContainer', () => {
+  it('shows recovered records and removes pagination after the final page', async () => {
+    const refetch = jest.fn().mockResolvedValue({});
+    const { rerender } = renderCatalog({
+      fields: [{ id: 'name-id', name: 'name' }],
+      currentView: { type: ViewType.CATALOG, viewFields: [] },
+      records: [],
+      query: { error: new Error('Query failed'), refetch },
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    await waitFor(() => expect(refetch).toHaveBeenCalledTimes(1));
+    (useRecordIndexTableQuery as jest.Mock).mockReturnValue({
+      records: [{ id: 'one', name: 'Recovered card' }],
+      loading: false,
+      hasNextPage: false,
+      queryIdentifier: 'catalog-query',
+    });
+    rerender(<RecordIndexCatalogContainer />);
+    expect(screen.getByText('Recovered card')).toBeInTheDocument();
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'Load more' }),
+    ).not.toBeInTheDocument();
+  });
+
+  const renderState = (query: Record<string, unknown> = {}) =>
+    renderCatalog({
+      fields: [{ id: 'name-id', name: 'name' }],
+      currentView: { type: ViewType.CATALOG, viewFields: [] },
+      records: [],
+      query,
+    });
+
+  it('does not mount the Catalog query when parent filter/sort read permission is denied', () => {
+    (useRecordIndexContextOrThrow as jest.Mock).mockReturnValue({
+      objectMetadataItem: { fields: [] },
+    });
+    (useHasCurrentViewNonReadableFields as jest.Mock).mockReturnValue({
+      hasCurrentViewNonReadableFields: true,
+    });
+    (useRecordIndexTableQuery as jest.Mock).mockClear();
+    render(<RecordIndexContainer />);
+    expect(screen.getByText('Permission denied')).toBeInTheDocument();
+    expect(useRecordIndexTableQuery).not.toHaveBeenCalled();
+    expect(screen.queryByText('No records to display')).not.toBeInTheDocument();
+  });
+
+  it('allows readable records through the parent for an update-denied object', () => {
+    const { unmount } = renderState({
+      records: [{ id: 'one', name: 'Read-only card' }],
+    });
+    unmount();
+    (useRecordIndexContextOrThrow as jest.Mock).mockReturnValue({
+      objectNameSingular: 'example',
+      objectMetadataItem: {
+        id: 'example-id',
+        fields: [{ id: 'name-id', name: 'name' }],
+      },
+      labelIdentifierFieldMetadataItem: { id: 'name-id', name: 'name' },
+      objectPermissionsByObjectMetadataId: {
+        'example-id': {
+          canReadObjectRecords: true,
+          canUpdateObjectRecords: false,
+        },
+      },
+    });
+    (useHasCurrentViewNonReadableFields as jest.Mock).mockReturnValue({
+      hasCurrentViewNonReadableFields: false,
+    });
+    render(<RecordIndexContainer />);
+    expect(screen.getByText('Read-only card')).toBeInTheDocument();
+    expect(screen.queryByText('Permission denied')).not.toBeInTheDocument();
+  });
+
+  it('distinguishes initial loading from successful empty results', () => {
+    const { rerender } = renderState({ loading: true });
+    expect(screen.getByRole('status', { name: 'Loading' })).toBeInTheDocument();
+    expect(screen.queryByText('No records to display')).not.toBeInTheDocument();
+    (useRecordIndexTableQuery as jest.Mock).mockReturnValue({
+      records: [],
+      loading: false,
+      queryIdentifier: 'catalog-query',
+    });
+    rerender(<RecordIndexCatalogContainer />);
+    expect(screen.getByText('No records to display')).toBeInTheDocument();
+    expect(screen.queryByRole('status')).not.toBeInTheDocument();
+  });
+
+  it('retries a failed query, contains rejection, and prevents concurrent retries', async () => {
+    let rejectRequest!: (error: Error) => void;
+    const refetch = jest.fn(
+      () =>
+        new Promise((_, reject) => {
+          rejectRequest = reject;
+        }),
+    );
+    renderState({ error: new Error('Query failed'), refetch });
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'Unable to load records',
+    );
+    expect(screen.queryByText('No records to display')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    expect(screen.getByRole('status')).toBeInTheDocument();
+    expect(refetch).toHaveBeenCalledTimes(1);
+    await act(async () => rejectRequest(new Error('Retry failed')));
+    expect(screen.getByRole('button', { name: 'Retry' })).toBeEnabled();
+  });
+
+  it.each(['returned', 'rejected'])(
+    'preserves cards and retries %s pagination errors',
+    async (failure) => {
+      let finish!: (value: { error?: Error }) => void;
+      const fetchMoreRecords = jest.fn().mockImplementationOnce(
+        () =>
+          new Promise((resolve) => {
+            finish = resolve;
+          }),
+      );
+      if (failure === 'returned') {
+        fetchMoreRecords.mockResolvedValueOnce({
+          error: new Error('Page failed'),
+        });
+      } else {
+        fetchMoreRecords.mockRejectedValueOnce(new Error('Page failed'));
+      }
+      fetchMoreRecords.mockResolvedValueOnce({});
+      const refetch = jest.fn();
+      renderState({
+        records: [{ id: 'one', name: 'Existing card' }],
+        hasNextPage: true,
+        fetchMoreRecords,
+        refetch,
+      });
+      const button = screen.getByRole('button', { name: 'Load more' });
+      fireEvent.click(button);
+      fireEvent.click(button);
+      expect(fetchMoreRecords).toHaveBeenCalledTimes(1);
+      expect(screen.getByText('Existing card')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Loading' })).toBeDisabled();
+      await act(async () => finish({}));
+      fireEvent.click(screen.getByRole('button', { name: 'Load more' }));
+      await waitFor(() =>
+        expect(screen.getByRole('alert')).toBeInTheDocument(),
+      );
+      fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+      await waitFor(() =>
+        expect(screen.queryByRole('alert')).not.toBeInTheDocument(),
+      );
+      expect(fetchMoreRecords).toHaveBeenCalledTimes(3);
+      expect(refetch).not.toHaveBeenCalled();
+      expect(screen.getByText('Existing card')).toBeInTheDocument();
+    },
+  );
+
+  it('honors shared pagination fetching state and keeps cached cards while loading', () => {
+    (useAtomFamilyStateValue as jest.Mock).mockReturnValue(true);
+    const fetchMoreRecords = jest.fn();
+    renderState({
+      records: [{ id: 'one', name: 'Cached card' }],
+      loading: true,
+      hasNextPage: true,
+      fetchMoreRecords,
+    });
+    expect(screen.getByText('Cached card')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Loading' }));
+    expect(fetchMoreRecords).not.toHaveBeenCalled();
+    (useAtomFamilyStateValue as jest.Mock).mockReturnValue(false);
+  });
+
+  it('does not carry pagination errors into a different query', async () => {
+    const { rerender } = renderState({
+      records: [{ id: 'one', name: 'Old card' }],
+      hasNextPage: true,
+      fetchMoreRecords: jest
+        .fn()
+        .mockResolvedValue({ error: new Error('Page failed') }),
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Load more' }));
+    await waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument());
+    (useRecordIndexTableQuery as jest.Mock).mockReturnValue({
+      records: [],
+      loading: false,
+      queryIdentifier: 'new-query',
+    });
+    rerender(<RecordIndexCatalogContainer />);
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(screen.getByText('No records to display')).toBeInTheDocument();
+  });
+
   it('uses the persisted compact setting when rendering Catalog cards', () => {
     const fields = [
       { id: 'name-id', name: 'name' },
