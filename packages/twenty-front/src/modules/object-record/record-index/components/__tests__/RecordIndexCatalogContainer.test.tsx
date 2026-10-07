@@ -258,7 +258,10 @@ describe('RecordIndexCatalogContainer', () => {
       { id: 'legacy-detail-id', name: 'legacyDetail' },
       { id: 'legacy-subtitle-id', name: 'legacySubtitle' },
       { id: 'legacy-image-id', name: 'legacyImage' },
+      { id: 'fallback-detail-id', name: 'fallbackDetail' },
+      { id: 'first-fallback-image-id', name: 'firstFallbackImage' },
       { id: 'fallback-image-id', name: 'fallbackImage' },
+      { id: 'unlisted-image-id', name: 'unlistedImage' },
     ];
 
     const { container } = renderCatalog({
@@ -275,7 +278,11 @@ describe('RecordIndexCatalogContainer', () => {
             position: 0,
             isVisible: true,
           },
-          { fieldMetadataId: 'legacy-detail-id', position: 1, isVisible: true },
+          {
+            fieldMetadataId: 'legacy-detail-id',
+            position: 1,
+            isVisible: false,
+          },
           {
             fieldMetadataId: 'legacy-subtitle-id',
             position: 2,
@@ -283,8 +290,18 @@ describe('RecordIndexCatalogContainer', () => {
           },
           { fieldMetadataId: 'legacy-image-id', position: 3, isVisible: false },
           {
-            fieldMetadataId: 'fallback-image-id',
+            fieldMetadataId: 'fallback-detail-id',
             position: 4,
+            isVisible: true,
+          },
+          {
+            fieldMetadataId: 'first-fallback-image-id',
+            position: 5,
+            isVisible: true,
+          },
+          {
+            fieldMetadataId: 'fallback-image-id',
+            position: 6,
             isVisible: true,
           },
         ],
@@ -293,17 +310,78 @@ describe('RecordIndexCatalogContainer', () => {
         {
           name: 'Catalog record title',
           fallbackSubtitle: 'Visible Fields fallback',
-          legacyDetail: 'Visible explicit detail',
+          legacyDetail: 'Hidden role detail',
           legacySubtitle: 'Hidden role subtitle',
           legacyImage: 'https://example.com/hidden-role.jpg',
+          fallbackDetail: 'Visible detail fallback',
+          firstFallbackImage: 'https://example.com/first-visible.jpg',
           fallbackImage: 'https://example.com/visible-fallback.jpg',
+          unlistedImage: 'https://example.com/unlisted.jpg',
         },
       ],
     });
 
     expect(screen.getByText('Visible Fields fallback')).toBeInTheDocument();
-    expect(screen.getByText('Visible explicit detail')).toBeInTheDocument();
+    expect(screen.getByText('Visible detail fallback')).toBeInTheDocument();
     expect(screen.queryByText('Hidden role subtitle')).not.toBeInTheDocument();
+    expect(screen.queryByText('Hidden role detail')).not.toBeInTheDocument();
+    expect(container.querySelector('img')).toHaveAttribute(
+      'src',
+      'https://example.com/first-visible.jpg',
+    );
+  });
+
+  it('ignores stale and cross-object role IDs and falls back to visible Fields', () => {
+    const fields = [
+      { id: 'name-id', name: 'name' },
+      { id: 'visible-subtitle-id', name: 'visibleSubtitle' },
+      { id: 'visible-detail-id', name: 'visibleDetail' },
+      { id: 'visible-image-id', name: 'visibleImage' },
+    ];
+
+    const { container } = renderCatalog({
+      fields,
+      currentView: {
+        type: ViewType.CATALOG,
+        isCompact: false,
+        catalogImageFieldMetadataId: 'deleted-image-field-id',
+        catalogSubtitleFieldMetadataId: 'other-object-subtitle-field-id',
+        catalogDetailFieldMetadataId: 'deleted-detail-field-id',
+        viewFields: [
+          {
+            fieldMetadataId: 'visible-detail-id',
+            position: 2,
+            isVisible: true,
+          },
+          { fieldMetadataId: 'visible-image-id', position: 3, isVisible: true },
+          {
+            fieldMetadataId: 'visible-subtitle-id',
+            position: 1,
+            isVisible: true,
+          },
+        ],
+      },
+      records: [
+        {
+          name: 'Catalog record title',
+          visibleSubtitle: 'Visible subtitle fallback',
+          visibleDetail: 'Visible detail fallback',
+          visibleImage: 'https://example.com/visible-fallback.jpg',
+          deletedImage: 'https://example.com/deleted.jpg',
+          otherObjectSubtitle: 'Cross-object value must not render',
+          deletedDetail: 'Deleted detail must not render',
+        },
+      ],
+    });
+
+    expect(screen.getByText('Visible subtitle fallback')).toBeInTheDocument();
+    expect(screen.getByText('Visible detail fallback')).toBeInTheDocument();
+    expect(
+      screen.queryByText('Cross-object value must not render'),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Deleted detail must not render'),
+    ).not.toBeInTheDocument();
     expect(container.querySelector('img')).toHaveAttribute(
       'src',
       'https://example.com/visible-fallback.jpg',

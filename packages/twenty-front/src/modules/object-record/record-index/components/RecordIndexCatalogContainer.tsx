@@ -118,7 +118,10 @@ export const RecordIndexCatalogContainer = () => {
     const viewFields = [...(currentView?.viewFields ?? [])]
       .sort(
         (firstViewField, secondViewField) =>
-          firstViewField.position - secondViewField.position,
+          firstViewField.position - secondViewField.position ||
+          firstViewField.fieldMetadataId.localeCompare(
+            secondViewField.fieldMetadataId,
+          ),
       )
       .filter((viewField) => viewField.isVisible);
 

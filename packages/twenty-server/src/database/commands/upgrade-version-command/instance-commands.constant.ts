@@ -112,6 +112,7 @@ import { AddCardCarouselWidgetTypeFastInstanceCommand } from 'src/database/comma
 import { AddCatalogFieldsToViewFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1790277685431-add-catalog-fields-to-view';
 import { AddCatalogViewTypeFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1790275885952-add-catalog-view-type';
 import { AddPlanningWidgetTypesFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1790260990300-add-planning-widget-types';
+import { PreserveCatalogViewsOnFieldDeletionFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1791231000000-preserve-catalog-views-on-field-deletion';
 
 export const INSTANCE_COMMANDS = [
   AddViewFieldGroupIdIndexOnViewFieldFastInstanceCommand,
@@ -226,4 +227,5 @@ export const INSTANCE_COMMANDS = [
   AddCardCarouselWidgetTypeFastInstanceCommand,
   AddCatalogFieldsToViewFastInstanceCommand,
   AddCatalogViewTypeFastInstanceCommand,
+  PreserveCatalogViewsOnFieldDeletionFastInstanceCommand,
 ];
