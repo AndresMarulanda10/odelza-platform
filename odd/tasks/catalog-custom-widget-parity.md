@@ -1,5 +1,57 @@
 # Catalog and Custom Widget Parity
 
+## Current delivery: consolidated Catalog PR #52
+
+This branch delivers **CAT-01–CAT-04 only** in the existing PR #52, based on `236d095f4c28c4a80205d28704800f463a4bcd51`. The user explicitly accepted one Catalog PR exceeding 400 changed lines: delivery strategy **`exception-ok`**. This supersedes the prior stacked strategy for Catalog only; it is not a maintainer label or review approval. No issue approval prerequisite applies to this delivery. RDD remains disabled. TT, PF, and PAR-01 are out of scope and not started by this action. No merge or auto-merge is authorized.
+
+The sections below retain original-branch implementation chronology, including historical local-only restrictions and checks; they do not describe the current publication authorization or freshly prove this candidate. The original checkout and its task mirror remain unchanged.
+
+| Work unit | Original commits | PR branch commits |
+| --- | --- | --- |
+| CAT-01 | `7bba72a94f`, `41e995faf1` | `d3685ff1c8`, `b838bd156f` |
+| CAT-02 | `6aefe9021d`, `66eaaaaf59` | `53e3abc76a`, `0825b9ff66` |
+| CAT-03 | `6026d60b1f`, `8850805297` | `66763e776d`, `a94dcfbe99` |
+| CAT-04 | `c29ab41abc`, `4067ad5385` | `ab1439d716`, `7af6cf546d` |
+
+All six additional commits transplanted without conflicts; work-unit boundaries were preserved. No unrelated accumulated history was transplanted. Changed package files match the original CAT-04 snapshot byte-for-byte. Source inspection confirmed the existing base contains the Catalog columns/foreign keys, shared query error/refetch contract, and view persistence permissions needed by these changes; no missing excluded-history dependency was found in the inspected paths.
+
+### Fresh consolidated-candidate verification
+
+Commands run from this isolated PR worktree (not the original checkout):
+
+```bash
+BASE=236d095f4c28c4a80205d28704800f463a4bcd51
+mapfile -t tests < <(git diff --name-only --diff-filter=ACM "$BASE" HEAD -- packages/twenty-front | grep -E '\.test\.tsx?$')
+node node_modules/jest/bin/jest.js --config packages/twenty-front/jest.config.mjs --runInBand --no-cache --runTestsByPath "${tests[@]}"
+node node_modules/jest/bin/jest.js --config packages/twenty-server/jest.config.mjs --runInBand --no-cache --runTestsByPath packages/twenty-server/src/database/commands/upgrade-version-command/2-21/__tests__/preserve-catalog-views-on-field-deletion.instance-command.spec.ts
+export NX_DAEMON=false NX_NO_CLOUD=true NX_ISOLATE_PLUGINS=false npm_config_offline=true npm_config_registry=http://127.0.0.1:9 YARN_ENABLE_NETWORK=0
+node node_modules/nx/dist/bin/nx.js run twenty-front:typecheck --excludeTaskDependencies --skipNxCache --no-cloud
+node node_modules/nx/dist/bin/nx.js run twenty-server:typecheck --excludeTaskDependencies --skipNxCache --no-cloud
+mapfile -t files < <(git diff --name-only --diff-filter=ACM "$BASE" HEAD -- packages | grep -E '\.tsx?$')
+node node_modules/oxfmt/bin/oxfmt --check "${files[@]}"
+git diff --check "$BASE"...HEAD
+```
+
+- Frontend: **6 suites, 33 tests passed**, including `useRecordIndexTableQuery`, card/container, options routing, migration hook, and migration-plan suites; no snapshots. The intentional query failure emits the existing error log.
+- Server preservation migration unit test: **1 suite, 3 tests passed**, no database access.
+- Both typechecks passed uncached with dependency tasks excluded. Ordinary dependency/cache-enabled execution is not proven.
+- Scoped formatter and diff checks passed. Generated outputs and the local CodeGraph index are excluded from commits.
+- Initial server typecheck failed with missing generated exports from `twenty-emails`, `twenty-client-sdk/generate`, and `twenty-sdk/front-component-renderer/build`. Under the same offline environment, these supported builds each passed, then both typechecks passed:
+
+```bash
+node node_modules/nx/dist/bin/nx.js run twenty-emails:build --excludeTaskDependencies --skipNxCache --no-cloud
+node node_modules/nx/dist/bin/nx.js run twenty-client-sdk:build --excludeTaskDependencies --skipNxCache --no-cloud
+node node_modules/nx/dist/bin/nx.js run twenty-sdk:build --excludeTaskDependencies --skipNxCache --no-cloud
+```
+
+No installs, registry access, source repair, cache-wide reset, or original-worktree changes were needed. SDK build emitted browser externalization warnings for `perf_hooks`; final server typecheck emitted a historical flaky-task notice after the initial missing-output failure.
+
+### Pending proof and rollback
+
+PR #52 must remain **draft**: fresh database-backed CAT-03 integration on the consolidated candidate is pending and was explicitly excluded from this action. The prior original-branch post-upgrade **1 suite / 1 test pass** below is historical only, not candidate proof. No database upgrade/reset/seed, credential/config copy, integration run, browser run, full-suite run, or merge occurred. Independent candidate verification may follow; TT is not the next action in this delivery.
+
+Rollback remains per work unit below. Reverting source does not undo an applied database migration; its `down` restores destructive `CASCADE` and requires separate authorization.
+
 ## Objective
 Bring the Catalog data view and the custom Task Timeline and Personal Finance widgets into coherent structural parity with native view/widget data, configuration, persistence, permission, and error-handling patterns.
 
