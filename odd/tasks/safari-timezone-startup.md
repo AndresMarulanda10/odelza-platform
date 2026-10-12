@@ -22,7 +22,7 @@ Strategy: ask-on-risk. Forecast: under 150 authored changed lines. One work-unit
   - Native risk: unassessable/high because untracked inventory requires declaration. RDD remains disabled/unmanaged; independent verification completed, no native review started.
   - Runtime scenario: Safari reload after separately authorized delivery remains pending.
   - Rollback: remove the per-entry guard and regression test together.
-  - Commit: pending.
+  - Commit: `40356e7203` (`fix(frontend): skip unsupported timezone options during startup`); 133 authored changed lines including tests and tracking.
 
 ## Progress
 Implementation and scoped proof complete. RangeError entries are skipped; other formatter errors are rethrown. Installed Node 26 (declared 24) did not block checks. Full build/suite and real Safari reproduction were not run. Next: separately authorize delivery to the served app, then reload Safari. Mirror synchronization pending.
