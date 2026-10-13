@@ -5,6 +5,14 @@ import { getLabelIdentifierFieldMetadataItem } from '@/object-metadata/utils/get
 import { hasObjectMetadataItemPositionField } from '@/object-metadata/utils/hasObjectMetadataItemPositionField';
 import { generateActivityTargetGqlFields } from '@/object-record/graphql/record-gql-fields/utils/generateActivityTargetGqlFields';
 import { CoreObjectNameSingular } from 'twenty-shared/types';
+import { currentRecordFieldsComponentState } from '@/object-record/record-field/states/currentRecordFieldsComponentState';
+import { useGetCurrentViewOnly } from '@/views/hooks/useGetCurrentViewOnly';
+import { useCanPersistViewChanges } from '@/views/hooks/useCanPersistViewChanges';
+import { ViewType } from '@/views/types/ViewType';
+import { isActiveFieldMetadataItem } from '@/object-metadata/utils/isActiveFieldMetadataItem';
+import { getObjectPermissionsForObject } from '@/object-metadata/utils/getObjectPermissionsForObject';
+import { getTargetObjectMetadataIdsFromField } from '@/object-record/record-field/ui/utils/junction/getTargetObjectMetadataIdsFromField';
+import { getJunctionConfig } from '@/object-record/record-field/ui/utils/junction/getJunctionConfig';
 
 import { generateDepthRecordGqlFieldsFromFields } from '@/object-record/graphql/record-gql-fields/utils/generateDepthRecordGqlFieldsFromFields';
 import { visibleRecordFieldsComponentSelector } from '@/object-record/record-field/states/visibleRecordFieldsComponentSelector';
@@ -32,10 +40,76 @@ export const useRelevantRecordsGqlFields = ({
     currentRecordFiltersComponentState,
   );
 
-  const { fieldMetadataItemByFieldMetadataItemId } =
-    useRecordIndexContextOrThrow();
+  const {
+    fieldMetadataItemByFieldMetadataItemId,
+    objectPermissionsByObjectMetadataId,
+  } = useRecordIndexContextOrThrow();
 
   const { objectMetadataItems } = useObjectMetadataItems();
+  const { currentView } = useGetCurrentViewOnly();
+  const { canPersistChanges } = useCanPersistViewChanges();
+  const currentRecordFields = useAtomComponentStateValue(
+    currentRecordFieldsComponentState,
+  );
+  // Match the Catalog's no-row read-only compatibility boundary. Never widen
+  // an explicit Fields selection, including a selection containing hidden rows.
+  const legacyIds =
+    !canPersistChanges &&
+    currentView?.type === ViewType.CATALOG &&
+    currentView.viewFields.length === 0 &&
+    currentRecordFields.length === 0
+      ? [
+          currentView.catalogImageFieldMetadataId,
+          currentView.catalogSubtitleFieldMetadataId,
+          currentView.catalogDetailFieldMetadataId,
+        ]
+      : [];
+  const legacyFields = objectMetadataItem.readableFields.filter(
+    (field) =>
+      getObjectPermissionsForObject(
+        objectPermissionsByObjectMetadataId,
+        objectMetadataItem.id,
+      ).canReadObjectRecords &&
+      legacyIds.includes(field.id) &&
+      (() => {
+        const junctionConfig = getJunctionConfig({
+          settings: field.settings,
+          relationObjectMetadataId:
+            field.relation?.targetObjectMetadata.id ?? '',
+          sourceObjectMetadataId: objectMetadataItem.id,
+          objectMetadataItems,
+        });
+        const targetIds = [
+          ...getTargetObjectMetadataIdsFromField(field),
+          ...(junctionConfig?.targetFields.flatMap(
+            getTargetObjectMetadataIdsFromField,
+          ) ?? []),
+        ];
+        return targetIds.every((targetId) => {
+          const target = objectMetadataItems.find(
+            (item) => item.id === targetId,
+          );
+          return (
+            isDefined(target) &&
+            getObjectPermissionsForObject(
+              objectPermissionsByObjectMetadataId,
+              targetId,
+            ).canReadObjectRecords &&
+            (!target.labelIdentifierFieldMetadataId ||
+              target.readableFields.some(
+                (item) => item.id === target.labelIdentifierFieldMetadataId,
+              ))
+          );
+        });
+      })() &&
+      objectMetadataItem.fields.some(
+        (objectField) => objectField.id === field.id,
+      ) &&
+      isActiveFieldMetadataItem({
+        objectNameSingular: objectMetadataItem.nameSingular,
+        fieldMetadata: field,
+      }),
+  );
 
   const visibleRecordFieldMetadataItems = visibleRecordFields
     .map(
@@ -57,6 +131,7 @@ export const useRelevantRecordsGqlFields = ({
     : undefined;
 
   const fieldMetadataItemsToUse = [
+    ...legacyFields,
     ...visibleRecordFieldMetadataItems,
     ...(recordFilterFields ?? []),
     ...(isDefined(additionalFieldMetadataItem)

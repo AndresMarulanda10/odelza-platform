@@ -547,11 +547,77 @@ jobs:
         run: npx nx clickhouse:seed twenty-server
       - name: Server / Run Integration Tests
         uses: ./.github/actions/nx-affected
+        env:
+          # Applies to nested Nx commands too, without forwarding a Jest option.
+          NX_DEFAULT_OUTPUT_STYLE: stream
         with:
           tag: scope:backend
           tasks: 'test:integration'
           configuration: 'with-db-reset'
-          args: --shard=${{ matrix.shard }}/${{ env.SHARD_COUNTER }}
+          args: >-
+            --shard=${{ matrix.shard }}/${{ env.SHARD_COUNTER }}
+            --json --outputFile=${{ runner.temp }}/jest-integration-raw-${{ matrix.shard }}.json
+      - name: Prepare integration result metadata
+        if: always()
+        env:
+          RAW_REPORT: ${{ runner.temp }}/jest-integration-raw-${{ matrix.shard }}.json
+          SAFE_REPORT: ${{ runner.temp }}/jest-integration-shard-${{ matrix.shard }}.json
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const { execFileSync } = require('node:child_process');
+          const raw = process.env.RAW_REPORT;
+          if (!fs.existsSync(raw)) {
+            console.log('::warning::No Jest report: tests may not have started or completed. Inspect the test step outcome and Actions logs.');
+            process.exit(0);
+          }
+          try {
+            const results = JSON.parse(fs.readFileSync(raw, 'utf8'));
+            const tracked = new Set(execFileSync('git', ['ls-files', '-z', '--', 'packages/twenty-server/**/*.integration-spec.ts'], { encoding: 'utf8' }).split('\0'));
+            const count = value => Number.isFinite(value) && value >= 0 ? value : null;
+            const status = value => ['passed', 'failed', 'pending', 'skipped', 'todo', 'disabled', 'focused'].includes(value) ? value : 'unknown';
+            // Allowlist only: no messages, stacks, console, titles (including test.each data), or coverage.
+            const report = {
+              success: results.success === true,
+              numTotalTestSuites: count(results.numTotalTestSuites),
+              numFailedTestSuites: count(results.numFailedTestSuites),
+              numRuntimeErrorTestSuites: count(results.numRuntimeErrorTestSuites),
+              numTotalTests: count(results.numTotalTests),
+              numPassedTests: count(results.numPassedTests),
+              numFailedTests: count(results.numFailedTests),
+              numPendingTests: count(results.numPendingTests),
+              testResults: results.testResults.map(suite => {
+                const name = path.relative(process.env.GITHUB_WORKSPACE, suite.name);
+                return {
+                  name: tracked.has(name) && name.endsWith('.integration-spec.ts') ? name : '[unrecognized test path]',
+                  status: status(suite.status),
+                  startTime: count(suite.startTime),
+                  endTime: count(suite.endTime),
+                  assertionResults: suite.assertionResults.map((test, index) => ({
+                    index,
+                    status: status(test.status),
+                    duration: count(test.duration),
+                  })),
+                };
+              }),
+            };
+            fs.writeFileSync(process.env.SAFE_REPORT, JSON.stringify(report, null, 2) + '\n');
+          } catch {
+            console.error('::error::Could not prepare Jest result metadata; raw diagnostics will not be uploaded.');
+            process.exitCode = 1;
+          } finally {
+            fs.rmSync(raw, { force: true });
+          }
+          NODE
+      - name: Upload integration result metadata
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: server-integration-${{ github.run_id }}-${{ github.run_attempt }}-shard-${{ matrix.shard }}-of-${{ env.SHARD_COUNTER }}
+          path: ${{ runner.temp }}/jest-integration-shard-${{ matrix.shard }}.json
+          if-no-files-found: warn
+          retention-days: 7
 
   cross-version-upgrade:
     needs: [upgrade-changed-files-check, server-build]

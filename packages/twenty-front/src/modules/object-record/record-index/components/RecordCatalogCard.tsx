@@ -1,9 +1,10 @@
 import { styled } from '@linaria/react';
+import { type ReactNode } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconPhoto } from 'twenty-ui/icon';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
 
-const StyledCard = styled.button`
+const StyledCard = styled.div`
   background: ${themeCssVariables.background.primary};
   border: 1px solid ${themeCssVariables.border.color.light};
   border-radius: ${themeCssVariables.border.radius.md};
@@ -99,41 +100,66 @@ const PLACEHOLDER_ICON_SIZE = 48;
 export type RecordCatalogCardProps = {
   imageSrc?: string;
   imageAlt?: string;
+  isCompact?: boolean;
   title: string;
   subtitle?: string;
   detail?: string;
+  fields?: ReactNode;
   onClick?: () => void;
 };
 
 export const RecordCatalogCard = ({
   imageSrc,
   imageAlt,
+  isCompact = false,
   title,
   subtitle,
   detail,
+  fields,
   onClick,
 }: RecordCatalogCardProps) => {
   const initial = title.trim().slice(0, 1);
 
   return (
-    <StyledCard type="button" onClick={onClick} title={title}>
-      <StyledImageFrame>
-        {isDefined(imageSrc) ? (
-          <StyledImage alt={imageAlt ?? ''} loading="lazy" src={imageSrc} />
-        ) : (
-          <StyledPlaceholder>
-            {initial === '' ? (
-              <IconPhoto aria-hidden size={PLACEHOLDER_ICON_SIZE} />
-            ) : (
-              <StyledInitial aria-hidden="true">{initial}</StyledInitial>
-            )}
-          </StyledPlaceholder>
-        )}
-      </StyledImageFrame>
+    <StyledCard
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(event) => {
+        if (
+          event.target === event.currentTarget &&
+          (event.key === 'Enter' || event.key === ' ')
+        ) {
+          event.preventDefault();
+          onClick?.();
+        }
+      }}
+      title={title}
+    >
+      {!isCompact && (
+        <StyledImageFrame>
+          {isDefined(imageSrc) && imageSrc.trim() !== '' ? (
+            <StyledImage alt={imageAlt ?? ''} loading="lazy" src={imageSrc} />
+          ) : (
+            <StyledPlaceholder>
+              {initial === '' ? (
+                <IconPhoto aria-hidden size={PLACEHOLDER_ICON_SIZE} />
+              ) : (
+                <StyledInitial aria-hidden="true">{initial}</StyledInitial>
+              )}
+            </StyledPlaceholder>
+          )}
+        </StyledImageFrame>
+      )}
       <StyledBody>
         <StyledTitle>{title}</StyledTitle>
-        {isDefined(subtitle) && <StyledSubtitle>{subtitle}</StyledSubtitle>}
-        {isDefined(detail) && <StyledDetail>{detail}</StyledDetail>}
+        {!isCompact && isDefined(subtitle) && (
+          <StyledSubtitle>{subtitle}</StyledSubtitle>
+        )}
+        {!isCompact && isDefined(detail) && (
+          <StyledDetail>{detail}</StyledDetail>
+        )}
+        {!isCompact && fields}
       </StyledBody>
     </StyledCard>
   );
