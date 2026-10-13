@@ -140,9 +140,9 @@ jobs:
 
       - name: Start server
         run: |
-          npx nx start twenty-server &
+          (cd packages/twenty-server && NODE_ENV=development node dist/main.js) &
           echo "Waiting for server to be ready..."
-          timeout 60 bash -c 'until curl -s http://localhost:3000/health; do sleep 2; done'
+          timeout 60 bash -c 'until curl --fail --silent --max-time 2 http://localhost:3000/healthz; do sleep 2; done'
 
       - name: Start frontend
         run: |
@@ -152,7 +152,7 @@ jobs:
 
       - name: Start worker
         run: |
-          npx nx run twenty-server:worker &
+          (cd packages/twenty-server && NODE_ENV=development node dist/queue-worker/queue-worker.js) &
           echo "Worker started"
 
       - name: Run Playwright tests
