@@ -7,7 +7,7 @@ import { isDefined } from 'twenty-shared/utils';
  */
 const MARKDOWN_IMAGE_PATTERN = /!\[[^\]]*\]\((https?:\/\/[^\s)]+)\)/i;
 const PLAIN_IMAGE_URL_PATTERN =
-  /https?:\/\/[^\s")]+\.(?:png|jpe?g|gif|webp|avif|svg)/i;
+  /https?:\/\/[^\s"'<>)/?#]+\/[^\s"'<>)?#]*\.(?:png|jpe?g|gif|webp|avif|svg|heif|tiff?|bmp|ico)(?:[?#][^\s"'<>)]*)?(?=$|[\s"'<>])/i;
 
 export const extractImageUrlFromText = (text: string): string | undefined => {
   const markdownMatch = text.match(MARKDOWN_IMAGE_PATTERN);
