@@ -15,11 +15,28 @@ test('New workspace signup goes through every onboarding stage', async ({
   const subdomain = `test-${suffix}`;
 
   await test.step('Create a new account', async () => {
+    const clientConfigResponse = page.waitForResponse(
+      (response) => new URL(response.url()).pathname === '/client-config',
+    );
     await page.goto('/welcome');
+    const response = await clientConfigResponse;
+    expect(response.ok()).toBeTruthy();
+    const clientConfig = await response.json();
+    const globalUrl = new URL(page.url());
+    globalUrl.host = clientConfig.isMultiWorkspaceEnabled
+      ? `${clientConfig.defaultSubdomain}.${clientConfig.frontDomain}`
+      : clientConfig.frontDomain;
+    globalUrl.pathname = '/welcome';
+    globalUrl.search = '';
+    globalUrl.hash = '';
+
+    await page.goto(globalUrl.toString());
+    await expect(page).toHaveURL(globalUrl.toString());
     await loginPage.clickLoginWithEmailIfVisible();
     await loginPage.typeEmail(email);
     await loginPage.clickContinueButton();
     await loginPage.typePassword(process.env.DEFAULT_PASSWORD);
+    expect(new URL(page.url()).origin).toBe(globalUrl.origin);
     await loginPage.clickSignUpButton();
   });
 
