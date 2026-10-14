@@ -32,39 +32,53 @@ import { themeCssVariables } from 'twenty-ui/theme-constants';
 const TASK_TIMELINE_DATE_COLUMN_WIDTH = '7rem';
 
 const StyledContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: ${themeCssVariables.spacing[2]};
+  height: 100%;
+  min-height: 0;
   min-width: 0;
+  overflow: auto;
   padding: ${themeCssVariables.spacing[3]};
   width: 100%;
 `;
 
 const StyledState = styled.div`
   align-items: center;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: ${themeCssVariables.spacing[1]};
-  justify-content: center;
-  min-height: 120px;
+  height: 100%;
+  justify-content: safe center;
+  min-height: 0;
+  overflow: auto;
+  overflow-wrap: anywhere;
   text-align: center;
 `;
 
 const StyledNotice = styled.div`
   color: ${themeCssVariables.font.color.tertiary};
+  flex-shrink: 0;
   font-size: ${themeCssVariables.font.size.sm};
+  overflow-wrap: anywhere;
 `;
 
 const StyledTimeline = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: ${themeCssVariables.spacing[2]};
+  min-height: 0;
   min-width: 0;
 `;
 
 const StyledCalendarViewport = styled.div`
   cursor: grab;
-  max-height: 38rem;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
   overflow-x: auto;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -425,6 +439,7 @@ const TimelineItems = ({
         data-scrollable="horizontal vertical"
         role="region"
         aria-label={t`Task timeline calendar viewport`}
+        tabIndex={0}
         onMouseDown={beginPan}
         style={{ cursor: pan !== null ? 'grabbing' : undefined }}
       >
@@ -651,6 +666,7 @@ export const TaskTimelineWidget = ({ widget }: TaskTimelineWidgetProps) => {
       role="region"
       aria-label={t`Task timeline`}
       aria-describedby={`${widget.id}-timeline-description`}
+      tabIndex={0}
     >
       <StyledNotice id={`${widget.id}-timeline-description`}>
         {configurationReason === 'invalid-date-mapping'

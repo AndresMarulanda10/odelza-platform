@@ -8,35 +8,47 @@ import {
   type FinanceSection,
   type PersonalFinanceStateEnvelope,
 } from 'twenty-shared/types';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
+  box-sizing: border-box;
+  container-name: personal-finance;
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   gap: ${themeCssVariables.spacing[2]};
+  height: 100%;
+  min-height: 0;
   min-width: 0;
+  overflow: auto;
+  overflow-wrap: anywhere;
   padding: ${themeCssVariables.spacing[3]};
   width: 100%;
 `;
 
 const StyledState = styled.div`
   align-items: center;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: ${themeCssVariables.spacing[1]};
-  justify-content: center;
-  min-height: 120px;
+  height: 100%;
+  justify-content: safe center;
+  min-height: 0;
+  overflow: auto;
+  overflow-wrap: anywhere;
   padding: ${themeCssVariables.spacing[3]};
   text-align: center;
 `;
 
 const StyledGrid = styled.div`
   display: grid;
+  flex-shrink: 0;
   gap: ${themeCssVariables.spacing[2]};
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
-  @media (max-width: ${MOBILE_VIEWPORT}px) {
-    grid-template-columns: 1fr;
+  @container personal-finance (max-width: 36rem) {
+    grid-template-columns: minmax(0, 1fr);
   }
 `;
 
@@ -56,10 +68,15 @@ const StyledContext = styled.div`
   flex-wrap: wrap;
   font-size: ${themeCssVariables.font.size.sm};
   gap: ${themeCssVariables.spacing[1]};
+
+  > span {
+    min-width: 0;
+  }
 `;
 
 const StyledNotice = styled.div`
   color: ${themeCssVariables.font.color.tertiary};
+  flex-shrink: 0;
   font-size: ${themeCssVariables.font.size.sm};
 `;
 
@@ -71,6 +88,10 @@ const StyledValues = styled.div`
   display: grid;
   gap: ${themeCssVariables.spacing[1]};
   grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  @container personal-finance (max-width: 24rem) {
+    grid-template-columns: minmax(0, 1fr);
+  }
 `;
 
 const StyledValue = styled.div`
@@ -280,7 +301,11 @@ export const PersonalFinanceWidget = ({
   }
 
   return (
-    <StyledContainer role="region" aria-label={t`Personal-finance dashboard`}>
+    <StyledContainer
+      role="region"
+      aria-label={t`Personal-finance dashboard`}
+      tabIndex={0}
+    >
       <StyledNotice>
         {status === 'partial'
           ? t`Some finance sections are unavailable.`

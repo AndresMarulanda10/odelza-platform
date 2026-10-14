@@ -1,4 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
 import { PersonalFinanceDataProvider } from '@/page-layout/widgets/personal-finance/hooks/usePersonalFinanceData';
@@ -54,6 +56,68 @@ const envelope: PersonalFinanceStateEnvelope = {
 };
 
 describe('PersonalFinanceWidget', () => {
+  it('uses card-width queries and retains local vertical overflow', () => {
+    // Container queries are not computed by JSDOM; this checks CSS policy.
+    const source = readFileSync(
+      resolve(__dirname, '../PersonalFinanceWidget.tsx'),
+      'utf8',
+    );
+    const css = (name: string) =>
+      source.split(`const ${name} = styled.div\``)[1].split('`;')[0];
+    const root = css('StyledContainer');
+    for (const rule of [
+      'box-sizing: border-box',
+      'container-name: personal-finance',
+      'container-type: inline-size',
+      'height: 100%',
+      'min-height: 0',
+      'overflow: auto',
+      'overflow-wrap: anywhere',
+    ]) {
+      expect(root).toContain(rule);
+    }
+    expect(css('StyledGrid')).toContain('flex-shrink: 0');
+    expect(css('StyledGrid')).toContain(
+      '@container personal-finance (max-width: 36rem)',
+    );
+    expect(css('StyledValues')).toContain(
+      '@container personal-finance (max-width: 24rem)',
+    );
+    for (const name of ['StyledGrid', 'StyledValues']) {
+      expect(css(name)).toContain('grid-template-columns: minmax(0, 1fr)');
+      expect(css(name)).not.toContain('@media');
+    }
+    expect(css('StyledState')).toContain('overflow: auto');
+  });
+
+  it('preserves long values and all sections in a keyboard-scrollable region', () => {
+    const longLabel = 'LongFinanceLabel'.repeat(20);
+    const longValue = '1234567890'.repeat(20);
+    render(
+      <PersonalFinanceDataProvider
+        value={{
+          state: {
+            ...envelope,
+            sections: {
+              ...envelope.sections,
+              kpiSummary: section({
+                metrics: [{ key: 'long', label: longLabel, value: longValue }],
+              }),
+            },
+          },
+        }}
+      >
+        <PersonalFinanceWidget widget={widget} />
+      </PersonalFinanceDataProvider>,
+    );
+    const dashboard = screen.getByRole('region', {
+      name: 'Personal-finance dashboard',
+    });
+    expect(dashboard).toHaveAttribute('tabindex', '0');
+    expect(within(dashboard).getByText(longLabel)).toBeInTheDocument();
+    expect(within(dashboard).getByText(longValue)).toBeInTheDocument();
+    expect(within(dashboard).getAllByRole('region')).toHaveLength(5);
+  });
   it('renders section values and their approved context as text equivalents', () => {
     render(
       <PersonalFinanceDataProvider value={{ state: envelope }}>

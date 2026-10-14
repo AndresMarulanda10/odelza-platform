@@ -1,4 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
 import { TaskTimelineWidget } from '@/page-layout/widgets/task-timeline/components/TaskTimelineWidget';
@@ -50,6 +52,32 @@ const getActualTaskTimelineToday = jest.requireActual<
 const widget = { id: 'timeline-widget' } as PageLayoutWidget;
 
 describe('TaskTimelineWidget', () => {
+  it('keeps a shrinkable card-height chain without capping calendar height', () => {
+    // JSDOM cannot measure layout; verify the authored CSS sizing policy only.
+    const source = readFileSync(
+      resolve(__dirname, '../TaskTimelineWidget.tsx'),
+      'utf8',
+    );
+    const css = (name: string) =>
+      source.split(`const ${name} = styled.div\``)[1].split('`;')[0];
+    expect(css('StyledContainer')).toContain('box-sizing: border-box');
+    expect(css('StyledContainer')).toContain('height: 100%');
+    expect(css('StyledContainer')).toContain('overflow: auto');
+    for (const name of [
+      'StyledContainer',
+      'StyledTimeline',
+      'StyledCalendarViewport',
+    ]) {
+      expect(css(name)).toContain('min-height: 0');
+    }
+    expect(css('StyledTimeline')).toContain('flex: 1');
+    expect(css('StyledCalendarViewport')).toContain('flex: 1');
+    expect(css('StyledCalendarViewport')).toContain('overflow-x: auto');
+    expect(css('StyledCalendarViewport')).toContain('overflow-y: auto');
+    expect(css('StyledCalendarViewport')).not.toContain('max-height');
+    expect(css('StyledCalendar')).toContain('min-width: 42rem');
+    expect(css('StyledCalendar')).toContain('width: max-content');
+  });
   it('explains invalid configured dates without exposing edits', () => {
     mockedUseTaskTimelineData.mockReturnValue({
       status: 'partial',
@@ -116,6 +144,9 @@ describe('TaskTimelineWidget', () => {
     ).not.toBeInTheDocument();
     expect(screen.queryByText('Progress unavailable')).not.toBeInTheDocument();
     expect(screen.getByText('No dated tasks to display')).toBeVisible();
+    expect(
+      screen.getByRole('region', { name: 'Task timeline calendar viewport' }),
+    ).toHaveAttribute('tabindex', '0');
   });
 
   it('keeps retry available as a keyboard-safe control in the error state', () => {
