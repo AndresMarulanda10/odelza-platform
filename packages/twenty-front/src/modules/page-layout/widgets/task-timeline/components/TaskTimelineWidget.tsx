@@ -29,6 +29,7 @@ import {
   type TaskTimelineItem,
 } from 'twenty-shared/types';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { AppTooltip, TooltipDelay } from 'twenty-ui/surfaces';
 
 const TASK_TIMELINE_DATE_COLUMN_WIDTH = '7rem';
 
@@ -40,8 +41,7 @@ const StyledContainer = styled.div`
   height: 100%;
   min-height: 0;
   min-width: 0;
-  overflow: auto;
-  padding: ${themeCssVariables.spacing[3]};
+  overflow: hidden;
   width: 100%;
 `;
 
@@ -66,6 +66,25 @@ const StyledNotice = styled.div`
   overflow-wrap: anywhere;
 `;
 
+const StyledHelpBar = styled.div`
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-end;
+`;
+
+const StyledIdentifier = styled.div`
+  background: ${themeCssVariables.background.primary};
+  box-sizing: border-box;
+  left: 0;
+  padding: ${themeCssVariables.spacing[2]};
+  position: sticky;
+  z-index: 2;
+`;
+
+const StyledCorner = styled(StyledIdentifier)`
+  z-index: 4;
+`;
+
 const StyledTimeline = styled.div`
   display: flex;
   flex: 1;
@@ -76,6 +95,8 @@ const StyledTimeline = styled.div`
 `;
 
 const StyledCalendarViewport = styled.div`
+  container-name: task-timeline-calendar;
+  container-type: size;
   cursor: grab;
   flex: 1;
   min-height: 0;
@@ -96,15 +117,23 @@ const StyledCalendar = styled.div`
   display: grid;
   grid-template-columns: minmax(9rem, 14rem) max-content;
   min-width: 42rem;
-  overflow: hidden;
   width: max-content;
 `;
 
 const StyledCalendarHeader = styled.div`
-  background: ${themeCssVariables.background.transparent.light};
+  background: ${themeCssVariables.background.primary};
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: minmax(9rem, 14rem) max-content;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+
+  /* A short viewport must let its header scroll away to expose record rows. */
+  @container task-timeline-calendar (max-height: 6rem) {
+    position: relative;
+    top: auto;
+  }
 `;
 
 const StyledCalendarHeaderTrack = styled.div<{ $columns: number }>`
@@ -127,7 +156,7 @@ const StyledCalendarRow = styled.div`
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: minmax(9rem, 14rem) max-content;
-  min-height: 4.5rem;
+  min-height: 3rem;
 `;
 
 const StyledCalendarTrack = styled.div<{ $columns: number }>`
@@ -136,14 +165,14 @@ const StyledCalendarTrack = styled.div<{ $columns: number }>`
     ${({ $columns }) => $columns},
     ${TASK_TIMELINE_DATE_COLUMN_WIDTH}
   );
-  min-height: 4.5rem;
+  min-height: 3rem;
   position: relative;
 `;
 
 const StyledCalendarCell = styled.div`
   border-left: 1px solid ${themeCssVariables.border.color.medium};
   grid-row: 1;
-  min-height: 4.5rem;
+  min-height: 3rem;
 `;
 
 const StyledTaskChip = styled.div`
@@ -152,6 +181,7 @@ const StyledTaskChip = styled.div`
   border: 2px solid var(--task-timeline-bar-color);
   border-radius: ${themeCssVariables.border.radius.sm};
   font-weight: ${themeCssVariables.font.weight.medium};
+  grid-row: 1;
   margin: ${themeCssVariables.spacing[1]};
   overflow-wrap: anywhere;
   padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
@@ -376,6 +406,7 @@ const TimelineItems = ({
   }, [pan]);
 
   const beginPan = (event: ReactMouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
     if (event.button !== 0 || dragging !== null) return;
     const target = event.target as HTMLElement;
     if (
@@ -450,12 +481,23 @@ const TimelineItems = ({
             : t`Timeline calendar viewport`
         }
         tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.target !== event.currentTarget) return;
+          const delta = {
+            ArrowLeft: [-112, 0],
+            ArrowRight: [112, 0],
+            ArrowUp: [0, -48],
+            ArrowDown: [0, 48],
+          }[event.key];
+          if (!delta) return;
+          event.preventDefault();
+          event.stopPropagation();
+          event.currentTarget.scrollLeft += delta[0];
+          event.currentTarget.scrollTop += delta[1];
+        }}
         onMouseDown={beginPan}
         style={{ cursor: pan !== null ? 'grabbing' : undefined }}
       >
-        <StyledNotice id="task-timeline-pan-instructions">
-          {t`Scroll horizontally and vertically, or drag empty space to pan. Record bars and controls remain interactive.`}
-        </StyledNotice>
         {calendarDates.length > 0 && visibleItems.length > 0 && (
           <StyledCalendar
             data-date-column-width={TASK_TIMELINE_DATE_COLUMN_WIDTH}
@@ -467,7 +509,9 @@ const TimelineItems = ({
             }
           >
             <StyledCalendarHeader role="row">
-              <StyledTaskTitle>{objectLabelSingular}</StyledTaskTitle>
+              <StyledCorner>
+                <StyledTaskTitle>{objectLabelSingular}</StyledTaskTitle>
+              </StyledCorner>
               <StyledCalendarHeaderTrack $columns={calendarDates.length}>
                 {calendarDates.map((date) => (
                   <StyledCalendarDate key={date} role="columnheader">
@@ -514,7 +558,7 @@ const TimelineItems = ({
               ].filter((id): id is string => id !== null);
               return (
                 <StyledCalendarRow key={item.id} role="row">
-                  <div>
+                  <StyledIdentifier>
                     <StyledTaskTitle
                       role="button"
                       tabIndex={0}
@@ -528,13 +572,17 @@ const TimelineItems = ({
                     <StyledNotice>
                       {item.isMilestone ? t`Milestone` : objectLabelSingular}
                     </StyledNotice>
-                  </div>
+                  </StyledIdentifier>
                   <StyledCalendarTrack
                     $columns={calendarDates.length}
                     role="gridcell"
                   >
-                    {calendarDates.map((date) => (
-                      <StyledCalendarCell key={date} aria-hidden="true" />
+                    {calendarDates.map((date, index) => (
+                      <StyledCalendarCell
+                        key={date}
+                        aria-hidden="true"
+                        style={{ gridColumn: index + 1 }}
+                      />
                     ))}
                     <StyledTaskChip
                       aria-label={item.title || objectLabelSingular}
@@ -647,6 +695,7 @@ export const TaskTimelineWidget = ({ widget }: TaskTimelineWidgetProps) => {
 };
 
 const TaskTimelineWidgetContent = ({ widget }: TaskTimelineWidgetProps) => {
+  const [helpOpen, setHelpOpen] = useState(false);
   const {
     status,
     items,
@@ -720,20 +769,52 @@ const TaskTimelineWidgetContent = ({ widget }: TaskTimelineWidgetProps) => {
     <StyledContainer
       role="region"
       aria-label={isTask ? t`Task timeline` : t`Timeline`}
-      aria-describedby={`${widget.id}-timeline-description`}
-      tabIndex={0}
     >
-      <StyledNotice id={`${widget.id}-timeline-description`}>
-        {configurationReason === 'invalid-date-mapping'
-          ? isTask
-            ? t`Configured task date fields are invalid or no longer available. Update the widget field mappings.`
-            : t`Configured date fields are invalid or no longer available. Update the widget field mappings.`
-          : hasConfigurationGap
-            ? t`Choose an active source and configure readable date fields; unavailable dates are not inferred.`
-            : isTask
-              ? t`Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling.`
-              : t`Dates are full-day and inclusive. Dependencies and status are not interpreted for this source.`}
-      </StyledNotice>
+      <StyledHelpBar>
+        <button
+          type="button"
+          data-tooltip-id={`${widget.id}-timeline-help`}
+          aria-label={t`Timeline help`}
+          aria-describedby={
+            helpOpen ? `${widget.id}-timeline-help-content` : undefined
+          }
+          onMouseDown={(event) => event.stopPropagation()}
+          onFocus={() => setHelpOpen(true)}
+          onBlur={() => setHelpOpen(false)}
+          onClick={() => setHelpOpen(true)}
+          onKeyDown={(event) => {
+            if (event.key === 'Escape') setHelpOpen(false);
+          }}
+        >
+          {t`Help`}
+        </button>
+        <AppTooltip
+          anchorSelect={`[data-tooltip-id="${widget.id}-timeline-help"]`}
+          delay={TooltipDelay.noDelay}
+          isOpen={helpOpen}
+        >
+          <span role="tooltip" id={`${widget.id}-timeline-help-content`}>
+            {`${
+              isTask
+                ? t`Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling.`
+                : t`Dates are full-day and inclusive. Dependencies and status are not interpreted for this source.`
+            } ${t`Scroll horizontally and vertically, or drag empty space to pan. Record bars and controls remain interactive.`}`}
+          </span>
+        </AppTooltip>
+      </StyledHelpBar>
+      {hasConfigurationGap && (
+        <StyledNotice>
+          {configurationReason === 'invalid-date-mapping'
+            ? isTask
+              ? t`Configured task date fields are invalid or no longer available. Update the widget field mappings.`
+              : t`Configured date fields are invalid or no longer available. Update the widget field mappings.`
+            : hasConfigurationGap
+              ? t`Choose an active source and configure readable date fields; unavailable dates are not inferred.`
+              : isTask
+                ? t`Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling.`
+                : t`Dates are full-day and inclusive. Dependencies and status are not interpreted for this source.`}
+        </StyledNotice>
+      )}
       {items.length > 0 ? (
         <TimelineItems
           items={items}

@@ -117,10 +117,11 @@ describe('TaskTimelineWidget', () => {
       'utf8',
     );
     const css = (name: string) =>
-      source.split(`const ${name} = styled.div\``)[1].split('`;')[0];
+      source.split(`const ${name} = styled.`)[1].split('`')[1];
     expect(css('StyledContainer')).toContain('box-sizing: border-box');
     expect(css('StyledContainer')).toContain('height: 100%');
-    expect(css('StyledContainer')).toContain('overflow: auto');
+    expect(css('StyledContainer')).toContain('overflow: hidden');
+    expect(css('StyledContainer')).not.toContain('padding:');
     for (const name of [
       'StyledContainer',
       'StyledTimeline',
@@ -130,11 +131,30 @@ describe('TaskTimelineWidget', () => {
     }
     expect(css('StyledTimeline')).toContain('flex: 1');
     expect(css('StyledCalendarViewport')).toContain('flex: 1');
+    expect(css('StyledCalendarViewport')).toContain(
+      'container-name: task-timeline-calendar',
+    );
+    expect(css('StyledCalendarViewport')).toContain('container-type: size');
     expect(css('StyledCalendarViewport')).toContain('overflow-x: auto');
     expect(css('StyledCalendarViewport')).toContain('overflow-y: auto');
     expect(css('StyledCalendarViewport')).not.toContain('max-height');
     expect(css('StyledCalendar')).toContain('min-width: 42rem');
     expect(css('StyledCalendar')).toContain('width: max-content');
+    expect(css('StyledCalendar')).not.toContain('overflow:');
+    expect(css('StyledCalendarHeader')).toContain('position: sticky');
+    expect(css('StyledCalendarHeader')).toContain('top: 0');
+    expect(css('StyledCalendarHeader')).toContain(
+      '@container task-timeline-calendar (max-height: 6rem)',
+    );
+    expect(css('StyledCalendarHeader')).toContain('position: relative');
+    expect(css('StyledCalendarHeader')).toContain('top: auto');
+    expect(css('StyledIdentifier')).not.toContain('@container');
+    expect(css('StyledIdentifier')).toContain('position: sticky');
+    expect(css('StyledIdentifier')).toContain('left: 0');
+    expect(css('StyledIdentifier')).toContain('background:');
+    expect(css('StyledCalendarCell')).toContain('grid-row: 1');
+    expect(css('StyledTaskChip')).toContain('grid-row: 1');
+    expect(css('StyledCalendarTrack')).toContain('min-height: 3rem');
   });
   it('explains invalid configured dates without exposing edits', () => {
     mockedUseTaskTimelineData.mockReturnValue({
@@ -193,9 +213,8 @@ describe('TaskTimelineWidget', () => {
 
     render(<TaskTimelineWidget widget={widget} />);
 
-    expect(
-      screen.getByRole('region', { name: 'Task timeline' }),
-    ).toHaveTextContent('Dates are full-day and inclusive');
+    expect(screen.getByRole('button', { name: 'Timeline help' })).toBeVisible();
+    expect(screen.queryByText(/Dates are full-day/)).not.toBeInTheDocument();
     expect(screen.queryByRole('list')).not.toBeInTheDocument();
     expect(
       screen.queryByText('Shown in the calendar above'),
@@ -224,6 +243,53 @@ describe('TaskTimelineWidget', () => {
     fireEvent.click(retryButton);
     expect(retry).toHaveBeenCalledTimes(1);
   });
+
+  it.each([undefined, new Error('Partial source failure')])(
+    'retains partial warnings and accessible help beside the bounded calendar: %s',
+    (error) => {
+      mockedUseTaskTimelineData.mockReturnValue({
+        status: 'partial',
+        hasConfigurationGap: false,
+        retry: jest.fn(),
+        error,
+        items: [
+          {
+            id: 'task-1',
+            title: 'Planning',
+            startDate: '2026-09-19',
+            endDate: '2026-09-21',
+            progress: null,
+            dependencies: [],
+            isMilestone: false,
+            conflict: false,
+          },
+        ],
+      });
+      render(<TaskTimelineWidget widget={widget} />);
+      const viewport = screen.getByTestId('task-timeline-calendar-viewport');
+      const footer = screen.getByRole('status');
+      expect(footer).toHaveTextContent(
+        error
+          ? 'Some record data could not be loaded.'
+          : 'Some records have unavailable dates or progress.',
+      );
+      expect(viewport).not.toContainElement(footer);
+      expect(
+        screen.getByRole('button', { name: 'Timeline help' }),
+      ).toBeVisible();
+      expect(
+        screen.getByTestId('timeline-task-chip-task-1'),
+      ).toBeInTheDocument();
+      const wheel = new WheelEvent('wheel', {
+        bubbles: true,
+        cancelable: true,
+        deltaX: 50,
+        deltaY: 30,
+      });
+      fireEvent(viewport, wheel);
+      expect(wheel.defaultPrevented).toBe(false);
+    },
+  );
 
   it('renders the forbidden state without task data', () => {
     mockedUseTaskTimelineData.mockReturnValue({
@@ -661,7 +727,7 @@ describe('TaskTimelineWidget', () => {
     ).toBeVisible();
   });
 
-  it('expands the preview calendar beyond the original bounds and exposes pan instructions', () => {
+  it('expands the preview calendar beyond the original bounds and exposes native help on focus', async () => {
     const updateTask = jest.fn();
     mockedUseTaskTimelineData.mockReturnValue({
       status: 'ready',
@@ -692,9 +758,81 @@ describe('TaskTimelineWidget', () => {
     fireEvent.mouseDown(chip, { clientX: 10 });
     fireEvent.mouseMove(window, { clientX: -65 });
     expect(screen.getAllByRole('columnheader')[0]).toHaveTextContent('09-19');
-    expect(
-      screen.getByText(/Scroll horizontally and vertically/),
-    ).toBeVisible();
+    const help = screen.getByRole('button', { name: 'Timeline help' });
+    fireEvent.focus(help);
+    expect(await screen.findByRole('tooltip')).toHaveTextContent(
+      'Scroll horizontally and vertically',
+    );
+    expect(help).toHaveAttribute(
+      'aria-describedby',
+      'timeline-widget-timeline-help-content',
+    );
+    fireEvent.keyDown(help, { key: 'Escape' });
+    await waitFor(() =>
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument(),
+    );
+  });
+
+  it('overlaps explicit background columns and bars, scrolls only the focused viewport, and guards controls from panning', () => {
+    const updateTask = jest.fn();
+    mockedUseTaskTimelineData.mockReturnValue({
+      status: 'ready',
+      hasConfigurationGap: false,
+      retry: jest.fn(),
+      canEditDates: true,
+      updateTask,
+      items: [
+        {
+          id: 'task-1',
+          title: 'Planning',
+          startDate: '2026-09-19',
+          endDate: '2026-09-21',
+          progress: null,
+          dependencies: [],
+          isMilestone: false,
+          conflict: false,
+        },
+      ],
+    });
+    const dashboardMouseDown = jest.fn();
+    render(
+      <div onMouseDown={dashboardMouseDown}>
+        <TaskTimelineWidget widget={widget} />
+      </div>,
+    );
+    const viewport = screen.getByTestId('task-timeline-calendar-viewport');
+    const chip = screen.getByTestId('timeline-task-chip-task-1');
+    const cells = chip.parentElement!.querySelectorAll('[aria-hidden="true"]');
+    cells.forEach((cell, index) =>
+      expect(cell).toHaveStyle(`grid-column: ${index + 1}`),
+    );
+    fireEvent.keyDown(viewport, { key: 'ArrowRight' });
+    fireEvent.keyDown(viewport, { key: 'ArrowDown' });
+    expect(viewport.scrollLeft).toBe(112);
+    expect(viewport.scrollTop).toBe(48);
+    fireEvent.keyDown(chip, { key: 'ArrowRight' });
+    expect(viewport.scrollLeft).toBe(112);
+    fireEvent.mouseDown(chip, { clientX: 10, clientY: 10 });
+    fireEvent.mouseMove(window, { clientX: 50, clientY: 50 });
+    fireEvent.mouseUp(window);
+    expect(viewport.scrollLeft).toBe(112);
+    expect(updateTask).not.toHaveBeenCalled();
+    for (const control of [
+      screen.getAllByRole('button', { name: 'Planning' })[0],
+      screen.getByRole('button', { name: 'Resize task start date' }),
+      screen.getByRole('button', { name: 'Timeline help' }),
+    ]) {
+      fireEvent.mouseDown(control, { clientX: 10, clientY: 10 });
+      fireEvent.mouseMove(window, { clientX: 50, clientY: 50 });
+      fireEvent.mouseUp(window);
+      expect(viewport.scrollLeft).toBe(112);
+    }
+    fireEvent.mouseDown(cells[0], { clientX: 50, clientY: 50 });
+    fireEvent.mouseMove(window, { clientX: 10, clientY: 10 });
+    fireEvent.mouseUp(window);
+    expect(viewport.scrollLeft).toBe(152);
+    expect(viewport.scrollTop).toBe(88);
+    expect(dashboardMouseDown).not.toHaveBeenCalled();
   });
 
   it('does not drag when date editing is unavailable', () => {
