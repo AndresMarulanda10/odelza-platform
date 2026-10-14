@@ -10,6 +10,7 @@ import {
 } from '@/page-layout/widgets/task-timeline/utils/getTaskTimelineCalendar';
 import type * as TaskTimelineCalendarModule from '@/page-layout/widgets/task-timeline/utils/getTaskTimelineCalendar';
 import { DEFAULT_TASK_TIMELINE_BAR_COLOR } from 'twenty-shared/constants';
+import { FieldMetadataType } from 'twenty-shared/types';
 import type * as TaskTimelineDataModule from '@/page-layout/widgets/task-timeline/hooks/useTaskTimelineData';
 import { useOpenRecordInSidePanel } from '@/side-panel/hooks/useOpenRecordInSidePanel';
 
@@ -49,6 +50,23 @@ const getActualTaskTimelineToday = jest.requireActual<
 const widget = { id: 'timeline-widget' } as PageLayoutWidget;
 
 describe('TaskTimelineWidget', () => {
+  it('explains invalid configured dates without exposing edits', () => {
+    mockedUseTaskTimelineData.mockReturnValue({
+      status: 'partial',
+      items: [],
+      hasConfigurationGap: true,
+      configurationReason: 'invalid-date-mapping',
+      retry: jest.fn(),
+      canEditDates: false,
+    });
+    render(<TaskTimelineWidget widget={widget} />);
+    expect(screen.getByRole('region')).toHaveTextContent(
+      'Configured task date fields are invalid or no longer available',
+    );
+    expect(
+      screen.queryByRole('button', { name: 'Resize task start date' }),
+    ).not.toBeInTheDocument();
+  });
   beforeEach(() => {
     mockedUseTaskTimelineData.mockReset();
     mockedUseOpenRecordInSidePanel.mockReturnValue({
@@ -855,8 +873,18 @@ describe('TaskTimelineWidget', () => {
     const fields = [
       { id: 'default-title-id', name: 'title' },
       { id: 'title-id', name: 'customTitle' },
-      { id: 'start-id', name: 'customStart' },
-      { id: 'due-id', name: 'customDue' },
+      {
+        id: 'start-id',
+        name: 'customStart',
+        isActive: true,
+        type: FieldMetadataType.DATE,
+      },
+      {
+        id: 'due-id',
+        name: 'customDue',
+        isActive: true,
+        type: FieldMetadataType.DATE_TIME,
+      },
       { id: 'default-status-id', name: 'status' },
       { id: 'status-id', name: 'customStatus' },
     ];

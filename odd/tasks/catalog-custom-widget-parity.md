@@ -1,18 +1,22 @@
 # Catalog and Custom Widget Parity
 
 ## Objective
+
 Bring the Catalog data view and the custom Task Timeline and Personal Finance widgets into coherent structural parity with native view/widget data, configuration, persistence, permission, and error-handling patterns.
 
 ## Problem and rationale
+
 User reports cite confusing field mappings, ineffective compact mode, inconsistent runtime behavior, performance regressions, and unexplained errors. Read-only inspection found that Catalog mixes dedicated card-role mappings with visible view fields, its compact flag is not consumed by the renderer, query errors/loading are not fully represented, Task Timeline silently falls back from stale mappings and refetches after updates, and Personal Finance has persisted configuration/server aggregation but no production frontend data-provider/query wiring found.
 
 ## Authorized scope
+
 - Catalog record-index view menus, field configuration, rendering, query states, mappings, and focused tests.
 - Task Timeline widget mapping, query/cache/update behavior, permissions, states, and focused tests.
 - Personal Finance widget configuration-to-runtime data wiring, permissions, states, and focused tests.
 - Shared contract changes only when they remove divergence among these surfaces and native patterns.
 
 ## Constraints
+
 - Preserve existing user data, metadata compatibility, permissions, and unrelated dashboard/widget behavior.
 - Do not modify unrelated Card Carousel work or local environment/configuration changes.
 - Do not open a PR or merge without separate user authorization. The user authorized pushing `feat/catalog-custom-widget-parity` to `origin`.
@@ -24,6 +28,7 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 - Chosen implementation route: delegated direct for multi-file behavior changes. Trigger evidence: each implementation task spans non-trivial UI/data/test files; broad preparation is delegated with the writer.
 
 ## Acceptance criteria
+
 - Catalog configuration controls have clear, non-overlapping semantics and no stale field mapping silently changes the displayed data.
 - Catalog's persisted compact setting changes rendered content consistently with native compact-card behavior.
 - Catalog distinguishes loading, empty, permission-denied, and query-error states and retains pagination behavior.
@@ -34,6 +39,7 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 ## Tasks
 
 ### CAT-01 — Honor Catalog compact mode
+
 - [x] Read persisted `currentView.isCompact` in Catalog card rendering.
 - [x] Follow native compact behavior: retain the card's identifying title and collapse optional card body content; do not invent a new setting.
 - [x] Add focused tests for compact and expanded rendering and persisted toggle behavior.
@@ -49,6 +55,7 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 - Risk/verification outcome: assessment returned `high`/`unassessable` because the worktree contains untracked files; the required independent verifier passed, and RDD remained off. No RDD transaction was started.
 
 ### CAT-02 — Define one coherent Catalog field-configuration contract
+
 - [x] Keep `Fields` as the only user-facing Catalog field editor and remove the separate `Catalog fields` editor.
 - [x] Keep existing image/subtitle/detail roles as internal compatibility metadata for Catalog views only; `Fields` remains the sole editor for field visibility/order, and reordering does not reassign existing explicit roles.
 - [x] Idempotently expose legacy role fields through `Fields` without clearing their compatibility metadata; preserve Catalog content when users cannot persist or a write fails, and retry safely without requiring a remount.
@@ -66,6 +73,7 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 - Evidence/commit: 1,228 authored changed lines across the CAT-02 implementation and tests (generated files excluded). Rollback boundary: revert the Catalog editor removal in `ObjectOptionsDropdownCatalogFieldsContent.tsx`, `ObjectOptionsDropdownContent.tsx`, `ObjectOptionsDropdownLayoutContent.tsx`, and `ObjectOptionsContentId.ts`; revert Catalog role rendering/migration in `RecordIndexCatalogContainer.tsx`, `useMigrateCatalogViewFields.ts`, and `buildCatalogViewFieldMigrationPlan.ts`; revert associated tests in `ObjectOptionsDropdownContent.test.tsx`, `RecordIndexCatalogContainer.test.tsx`, `useMigrateCatalogViewFields.test.tsx`, and `buildCatalogViewFieldMigrationPlan.test.ts`. Work-unit commit: `6aefe9021d` (`fix(catalog): consolidate field configuration`), local only; no push or PR.
 
 ### CAT-03 — Make Catalog mappings deterministic
+
 - [x] Validate configured role field IDs against current-object metadata; ignore stale and cross-object IDs.
 - [x] Honor hidden mapped fields and use deterministic fallback to visible, ordered Fields entries; keep automatic image discovery limited to those visible entries.
 - [x] Verify field deletion preserves the view and clears only the affected role; the post-upgrade integration test reached and passed its final assertions.
@@ -90,7 +98,7 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
   - Read-only source mapping shows the test creates one metadata object and three associated text fields before creating a Catalog view that references them. The entity includes foreign-key and inherited uniqueness constraints; the converter generates IDs and source reveals no obvious bad test input. The Calendar-only check constraint does not apply to Catalog. CAT-03's `SET NULL` migration changes delete behavior, not insertion. The exact constraint and applied test-DB schema state remain unknown.
   - A subsequent explicitly authorized one-shot capture obtained PostgreSQL SQLSTATE `22P02`, which the official [PostgreSQL error-code appendix](https://www.postgresql.org/docs/current/errcodes-appendix.html) classifies as `invalid_text_representation`; this supersedes the earlier broad “constraint violation” categorization. No constraint name, table, or column was safely available. The test still failed during view creation before the deletion assertion; Jest summary was not retained. Source restoration was byte-for-byte and `.env.test` unchanged; no retry, reset, cleanup, or separate DB operation occurred.
   - After explicit authorization, one parameterized, read-only `pg_catalog` existence query against the configured loopback test DB confirmed `CATALOG` is absent from `core.view_type_enum`; the transaction rolled back and made no writes. This strongly explains the `22P02` during creation of a `ViewType.CATALOG` view, though the captured error did not identify the column directly.
-   - User explicitly authorized the full supported upgrade scope and one subsequent CAT-03 run. The command `NODE_ENV=test yarn nx run twenty-server:command -- run-instance-commands` was run exactly once and exited `1`; the runner did not confirm successful completion. Which pending legacy migrations or fast instance commands completed was unknown, as was whether Nx cleaned/recreated `dist`. The endpoint was confirmed as loopback `localhost:55432`; there was no retry, CAT-03 test, reset, cleanup, or separate database operation during that attempt.
+  - User explicitly authorized the full supported upgrade scope and one subsequent CAT-03 run. The command `NODE_ENV=test yarn nx run twenty-server:command -- run-instance-commands` was run exactly once and exited `1`; the runner did not confirm successful completion. Which pending legacy migrations or fast instance commands completed was unknown, as was whether Nx cleaned/recreated `dist`. The endpoint was confirmed as loopback `localhost:55432`; there was no retry, CAT-03 test, reset, cleanup, or separate database operation during that attempt.
   - After separate authorization, one parameterized `SELECT EXISTS` in a read-only transaction again found `CATALOG` absent from `core.view_type_enum`; the transaction rolled back. This confirms the target enum change is not currently present, but does not establish which other upgrade steps may have applied or why the command exited `1`. No writes, tests, or upgrades occurred during this check.
   - After separate authorization, a bounded read-only inspection of the two migration ledgers confirmed both exist. The legacy TypeORM ledger contains 182 completed rows; its latest is `AddIsInitialToUpgradeMigration1775909335324`. The instance-command ledger contains 109 instance-level rows, no latest `failed` attempts, and no recorded 2.21 Catalog command; its latest completed command is `2.21.0_AddPlanningWidgetTypesFastInstanceCommand_1790260990300`. The ledgers have no overall run ID, so existing completion rows cannot be attributed to the failed invocation, and absence of a failed row does not explain its exit. The first query attempt had an identifier-quoting error; a corrected read-only transaction completed. No writes, tests, or upgrades occurred during either inspection.
   - After explicit authorization, retried the supported upgrade exactly once with sanitized failure capture. It again exited `1`, at the `precheck` stage with only generic error class `Error`; SQLSTATE and specific check were unavailable. The build effect on `dist` was observable. Source confirms this precheck runs before legacy and fast migrations (`run-instance-commands.command.ts:65–68`) and verifies all active/suspended workspaces completed the last workspace command for the previous version (`:135–167`). Therefore this retry did not reach migration execution. CAT-03 was not run; no further retry or database operation occurred.
@@ -111,6 +119,7 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 - Slice: CAT-03 is one cohesive behavior/tests/migration work unit in the selected `stacked-to-main` chain, following CAT-02; keep it intact rather than splitting solely for the advisory 400-line budget. Task evidence follows the behavior commit to record its resulting identity.
 
 ### CAT-04 — Match native query-state and pagination contracts
+
 - [x] Preserve and render loading, empty, permission-denied, and query-error states distinctly (outer object-read gate source-verified only).
 - [x] Expose retry only when the shared query supports it; retain incremental pagination.
 - [x] Verify behavior against the native record-table query/container contract.
@@ -136,14 +145,34 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 - Slice boundary: CAT-04 behavior, its two tests, and task evidence form one cohesive slice after CAT-03 in the cached `stacked-to-main` chain strategy. Any evidence-only follow-up stays in this slice. No push, PR, merge, or next-task implementation is authorized for closure.
 
 ### TT-01 — Make Task Timeline field mappings fail clearly
+
 - [ ] Validate configured mappings against Task metadata and distinguish invalid/stale mapping from an intentional automatic fallback.
 - [ ] Verify dependency fields and GraphQL relation depth against the actual query shape.
 - [ ] Cover valid, missing, stale, and unauthorized mappings.
 - Route: delegated direct. Trigger: data hook/domain and tests.
+- Implementation intent: required start/due mappings must resolve to active DATE/DATE_TIME Task fields; null/undefined retains automatic discovery, but explicit invalid IDs never fall back. Required read denial is forbidden; configuration gaps skip querying and disable edits. Preserve optional status fallback and persisted schemas. Select only dependency relation identifiers and parse scalar, object-array, and connection values.
+- Authorization: TT-01 only, local implementation and ordinary checks; no Catalog/Personal Finance changes, TT-02 mutation/refetch changes, services/database operations, remote operations, installs, commits, pushes, PRs, or deployment. Parent independent verification precedes closure.
+- Forecast: 350–500 authored lines, one coherent slice in the cached `stacked-to-main` strategy; 400 lines is advisory, not a reason to omit coverage. TDD and RDD remain OFF.
+- Bounded correction intent/authorization: verify real upstream depth generation with actual `settings.relationType` metadata through final GraphQL documents for both dependency cardinalities and field/target-object read gates. Normalize this existing document mechanically using the configured formatter; historical semantics must remain unchanged. Revised forecast: 530–620 authored lines including mechanical document normalization. No TT-02 changes or commit; final five-file checks and parent verification remain required.
+- Mirror: full document synchronized to Engram #3091 (`odd/catalog-custom-widget-parity/tasks`, project `odelza-platform`) and read back; refreshed after implementation evidence.
 - Checks: focused Task Timeline Jest tests; frontend typecheck; formatter; `git diff --check`.
-- Evidence/commit: pending.
+- Implementation: active date-kind validation with explicit invalid versus missing automatic configuration reasons; required-field/object read gate skips the query and disables all edits. Dependency MANY_TO_ONE uses the selected join ID; ONE_TO_MANY selects only the configured relation's IDs and parses edges/node. Optional status fallback, shared/persisted schemas, and mutation/refetch behavior are unchanged.
+- Owned files: `packages/twenty-front/src/modules/page-layout/widgets/task-timeline/hooks/useTaskTimelineData.ts`, `packages/twenty-front/src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx`, `packages/twenty-front/src/modules/page-layout/widgets/task-timeline/components/__tests__/TaskTimelineWidget.test.tsx`, new `packages/twenty-front/src/modules/page-layout/widgets/task-timeline/hooks/__tests__/useTaskTimelineData.test.tsx`, and this document.
+- Observed checks (foreground):
+  - `node node_modules/jest/bin/jest.js --config packages/twenty-front/jest.config.mjs --runInBand --runTestsByPath packages/twenty-front/src/modules/page-layout/widgets/task-timeline/hooks/__tests__/useTaskTimelineData.test.tsx packages/twenty-front/src/modules/page-layout/widgets/task-timeline/components/__tests__/TaskTimelineWidget.test.tsx` — exit 0, 2 suites, 48 tests, 0 snapshots. Initial two runs exited 1 (14 failed/30 passed) because repository manual mocks omitted hook exports; explicit local mock factories fixed those owned fixtures. Intermediate run passed 44 tests.
+  - `npm_config_offline=true npm_config_yes=false yarn nx typecheck twenty-front --excludeTaskDependencies --skipNxCache --no-cloud` — final exit 0. Initial exit 1: TS2352/TS2322 in owned hook tests (incomplete permission fixtures) and TS2322 in owned hook (nullable metadata activity); second exit 1: TS2352 in the new read-restriction fixture. All corrected locally; no build/cache retry or unrelated fixes.
+  - `yarn nx format:write --files=<exact comma-separated owned files above>` — exit 0. Document-wide normalization altered historical CAT spacing; those changes were reverted to preserve completed history. Final normalization of only the four owned source/test files exited 0.
+  - `yarn nx format:check --files=<exact comma-separated five owned files above>` — exit 1, only `odd/tasks/catalog-custom-widget-parity.md` listed. Existing document heading/list formatting conflicts with the formatter; historical CAT bytes intentionally preserved. Four-file source/test-only format check — exit 0. Verification remains partial, not complete.
+  - `git diff --check` — exit 0.
+- Runtime harness: React hook/component integration with mocked query/metadata/permissions and real generated GraphQL documents for both relation cardinalities; no browser/live, backend, service, or database execution claimed.
+- Rollback boundary: remove only TT-01 changes in the four source/test files above and this task's intent/evidence; leave Catalog history, unrelated dirty configs/env/untracked directories, and TT-02 mutation/refetch behavior intact.
+- Bounded correction evidence: relation fixtures now include actual `settings.relationType` and distinct target-object metadata. The mocked hook delegates to REAL `generateDepthRecordGqlFieldsFromObject` with the production depth argument; generated selections flow through the timeline hook into REAL `generateFindManyRecordsQuery` documents for both cardinalities. Additional field-denied/target-object-denied document cases confirm dependency selections remain absent under read gates; required-field/object hook gates remain covered. The harness still mocks React metadata/query boundaries, not browser/live execution.
+- Normalization evidence: inspected the configured formatter diff (15 heading blank lines and one list-indent adjustment only); programmatic comparison confirmed whitespace-only differences and unchanged historical CAT text against HEAD. Existing Markdown formatting failure above is historical and resolved, not suppressed. Final owned-five-file normalization and format check exit 0; exact direct Jest command above exit 0 (2 suites, 52 tests, 0 snapshots); exact offline uncached dependency-excluded frontend typecheck above exit 0; `git diff --check` exit 0. All commands ran in foreground; no correction-run failures or build/cache retry.
+- Evidence/commit: local only, uncommitted; task checkboxes remain pending. Actual authored count: 550 lines (532 additions, 18 deletions), including the 387-line untracked hook test and mechanical existing-document normalization; one coherent `stacked-to-main` slice, advisory budget exceeded to retain coverage, no size-only split or omitted tests.
+- Next step: parent independent verification of the bounded correction, then separately authorize/perform work-unit commit and closure. No RDD review or remote delivery.
 
 ### TT-02 — Correct Task Timeline update/cache behavior
+
 - [ ] Measure requests caused by one successful edit and determine whether mutation cache updates plus explicit refetch duplicate work.
 - [ ] Keep one authoritative refresh path and preserve rollback/error behavior.
 - [ ] Add a regression assertion for request count and updated rendered record.
@@ -152,6 +181,7 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 - Evidence/commit: pending.
 
 ### PF-01 — Connect Personal Finance to production data
+
 - [ ] Trace the existing resolver/service and widget creation configuration end-to-end.
 - [ ] Wire a production frontend query/provider from the configured source; do not rely on test-only context injection.
 - [ ] Verify a newly created/configured widget reaches a data-backed state.
@@ -160,6 +190,7 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 - Evidence/commit: pending.
 
 ### PF-02 — Align Personal Finance mappings, permissions, and state handling
+
 - [ ] Validate source object and field mappings against workspace metadata.
 - [ ] Enforce source/object/field permissions at the data boundary.
 - [ ] Distinguish loading, empty, partial, forbidden, error, and unavailable outcomes.
@@ -169,6 +200,7 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 - Evidence/commit: pending.
 
 ### PAR-01 — Add native-parity integration coverage
+
 - [ ] Exercise create/configure/reload/query/render/error flows for Catalog and each custom widget.
 - [ ] Assert stable metadata round trips and observable state behavior, not implementation-only details.
 - [ ] Record remaining native/custom differences as explicit, justified boundaries.
@@ -177,6 +209,7 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 - Evidence/commit: pending.
 
 ## Progress and verification
+
 - Branch `feat/catalog-custom-widget-parity` is published to `origin` at `41e995faf1` and tracks its remote counterpart. No PR was created.
 - Receipt-driven development is disabled for this clone by explicit user request; global preference remains unset.
 - Baseline inspection found unrelated local changes in environment/configuration and generated planning/index directories; preserve them and stage only task-owned files.
@@ -185,5 +218,5 @@ User reports cite confusing field mappings, ineffective compact mode, inconsiste
 - CAT-02 authored count: 1,228 lines; CAT-01 + CAT-02 total: 1,360 authored lines (generated files excluded).
 - CAT-03 is committed locally as `6026d60b1f`; cumulative CAT-01–CAT-03 implementation/test authored count is 1,697 lines (the CAT-03 work-unit commit also includes 49 task-document lines). Its evidence-only follow-up is part of the same CAT-03 slice.
 - CAT-04 is committed locally as `c29ab41abc`; cumulative CAT-01–CAT-04 implementation/test authored count is 2,194 lines. CAT-04's five-file behavior commit and its immediately following task-evidence-only commit are one `stacked-to-main` slice after `8850805297`, with no PR created or push performed during closure. Generated SDK dist and unrelated local changes are excluded.
-- Current next step: TT-01, not started. CAT-04 is functionally verified with the bounded uncached/dependency-excluded frontend typecheck above; closure is local only, with unrelated state preserved.
+- Current next step: TT-01 parent independent verification of the bounded correction; local implementation is uncommitted and all required final checks passed. Historical CAT semantics remain unchanged after authorized mechanical Markdown normalization; unrelated state is preserved.
 - Functional checks, failures, skipped checks, runtime evidence, authored line count, and commit identities are appended per task.

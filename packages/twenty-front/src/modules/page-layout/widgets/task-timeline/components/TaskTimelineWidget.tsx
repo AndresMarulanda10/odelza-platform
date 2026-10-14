@@ -597,6 +597,7 @@ export const TaskTimelineWidget = ({ widget }: TaskTimelineWidgetProps) => {
     items,
     error,
     hasConfigurationGap,
+    configurationReason,
     retry,
     canEditDates = false,
     updateTask = async () => undefined,
@@ -652,9 +653,11 @@ export const TaskTimelineWidget = ({ widget }: TaskTimelineWidgetProps) => {
       aria-describedby={`${widget.id}-timeline-description`}
     >
       <StyledNotice id={`${widget.id}-timeline-description`}>
-        {hasConfigurationGap
-          ? t`Task date fields are not configured; unavailable dates are not inferred.`
-          : t`Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling.`}
+        {configurationReason === 'invalid-date-mapping'
+          ? t`Configured task date fields are invalid or no longer available. Update the widget field mappings.`
+          : hasConfigurationGap
+            ? t`Task date fields are not configured; unavailable dates are not inferred.`
+            : t`Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling.`}
       </StyledNotice>
       {items.length > 0 ? (
         <TimelineItems
