@@ -280,7 +280,10 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
       setPageLayoutEditingWidgetId(newWidget.id);
     }
 
-    closeSidePanelMenu();
+    navigatePageLayoutSidePanel({
+      sidePanelPage: SidePanelPages.DashboardTaskTimelineSettings,
+      focusTitleInput: false,
+    });
   };
 
   const handleCreatePersonalFinanceWidget = () => {

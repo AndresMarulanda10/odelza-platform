@@ -15,9 +15,15 @@ import { DEFAULT_TASK_TIMELINE_BAR_COLOR } from 'twenty-shared/constants';
 import { FieldMetadataType } from 'twenty-shared/types';
 import type * as TaskTimelineDataModule from '@/page-layout/widgets/task-timeline/hooks/useTaskTimelineData';
 import { useOpenRecordInSidePanel } from '@/side-panel/hooks/useOpenRecordInSidePanel';
+import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadataItems';
 
 jest.mock('@/page-layout/widgets/task-timeline/hooks/useTaskTimelineData');
 jest.mock('@/side-panel/hooks/useOpenRecordInSidePanel');
+jest.mock('@/object-metadata/hooks/useObjectMetadataItems', () => ({
+  useObjectMetadataItems: jest.fn(() => ({
+    objectMetadataItems: [{ id: 'task-object' }],
+  })),
+}));
 jest.mock(
   '@/page-layout/widgets/task-timeline/utils/getTaskTimelineCalendar',
   () => ({
@@ -52,6 +58,58 @@ const getActualTaskTimelineToday = jest.requireActual<
 const widget = { id: 'timeline-widget' } as PageLayoutWidget;
 
 describe('TaskTimelineWidget', () => {
+  it('does not mount record hooks when workspace metadata is empty', () => {
+    jest
+      .mocked(useObjectMetadataItems)
+      .mockReturnValueOnce({ objectMetadataItems: [] });
+    render(<TaskTimelineWidget widget={widget} />);
+    expect(screen.getByRole('status')).toHaveTextContent(
+      'Select a source and configure timeline date fields.',
+    );
+    expect(mockedUseTaskTimelineData).not.toHaveBeenCalled();
+  });
+  it('opens generic records by mouse and keyboard and uses accessible generic copy', () => {
+    mockedUseTaskTimelineData.mockReturnValue({
+      status: 'ready',
+      hasConfigurationGap: false,
+      retry: jest.fn(),
+      canEditDates: true,
+      updateTask: jest.fn(),
+      objectNameSingular: 'project',
+      objectLabelSingular: 'Project',
+      items: [
+        {
+          id: 'project-1',
+          title: 'Bridge',
+          startDate: '2026-09-19',
+          endDate: '2026-09-21',
+          progress: null,
+          dependencies: [],
+          isMilestone: false,
+          conflict: false,
+        },
+      ],
+    });
+    render(<TaskTimelineWidget widget={widget} />);
+    const chip = screen.getByTestId('timeline-task-chip-project-1');
+    fireEvent.click(chip);
+    fireEvent.keyDown(chip, { key: 'Enter' });
+    expect(openRecordInSidePanel).toHaveBeenNthCalledWith(1, {
+      recordId: 'project-1',
+      objectNameSingular: 'project',
+    });
+    expect(openRecordInSidePanel).toHaveBeenNthCalledWith(2, {
+      recordId: 'project-1',
+      objectNameSingular: 'project',
+    });
+    expect(
+      screen.getByRole('button', { name: 'Resize record start date' }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('region', { name: 'Timeline' }),
+    ).toBeInTheDocument();
+    expect(screen.queryByText('Task')).not.toBeInTheDocument();
+  });
   it('keeps a shrinkable card-height chain without capping calendar height', () => {
     // JSDOM cannot measure layout; verify the authored CSS sizing policy only.
     const source = readFileSync(

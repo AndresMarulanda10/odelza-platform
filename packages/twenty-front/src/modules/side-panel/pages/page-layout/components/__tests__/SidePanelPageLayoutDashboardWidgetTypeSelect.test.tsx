@@ -10,6 +10,8 @@ const mockCreatePageLayoutCardCarouselWidget = jest.fn(() => ({
   id: 'card-carousel-widget-id',
 }));
 const mockSetPageLayoutEditingWidgetId = jest.fn();
+const mockNavigatePageLayoutSidePanel = jest.fn();
+const mockCreateTimeline = jest.fn(() => ({ id: 'timeline-id' }));
 function mockEmptyHook() {
   return {};
 }
@@ -51,7 +53,9 @@ jest.mock('@/page-layout/hooks/useCreatePageLayoutRecordTableWidget', () => ({
   useCreatePageLayoutRecordTableWidget: mockEmptyHook,
 }));
 jest.mock('@/page-layout/hooks/useCreatePageLayoutTaskTimelineWidget', () => ({
-  useCreatePageLayoutTaskTimelineWidget: mockEmptyHook,
+  useCreatePageLayoutTaskTimelineWidget: () => ({
+    createPageLayoutTaskTimelineWidget: mockCreateTimeline,
+  }),
 }));
 jest.mock('@/page-layout/hooks/useCreatePageLayoutCardCarouselWidget', () => ({
   useCreatePageLayoutCardCarouselWidget: () => ({
@@ -89,7 +93,9 @@ jest.mock('@/side-panel/hooks/useSidePanelMenu', () => ({
 jest.mock(
   '@/side-panel/pages/page-layout/hooks/useNavigatePageLayoutSidePanel',
   () => ({
-    useNavigatePageLayoutSidePanel: mockEmptyHook,
+    useNavigatePageLayoutSidePanel: () => ({
+      navigatePageLayoutSidePanel: mockNavigatePageLayoutSidePanel,
+    }),
   }),
 );
 
@@ -142,6 +148,19 @@ jest.mock('@/ui/layout/selectable-list/components/SelectableListItem', () => ({
 }));
 
 describe('SidePanelPageLayoutDashboardWidgetTypeSelect', () => {
+  it('opens Timeline settings immediately after creating an unconfigured draft', () => {
+    render(<SidePanelPageLayoutDashboardWidgetTypeSelect />);
+    fireEvent.click(screen.getByRole('button', { name: 'Task Timeline' }));
+    expect(mockCreateTimeline).toHaveBeenCalledWith(undefined);
+    expect(mockSetPageLayoutEditingWidgetId).toHaveBeenCalledWith(
+      'timeline-id',
+    );
+    expect(mockNavigatePageLayoutSidePanel).toHaveBeenCalledWith({
+      sidePanelPage: 'dashboard-task-timeline-settings',
+      focusTitleInput: false,
+    });
+    expect(mockCloseSidePanelMenu).not.toHaveBeenCalled();
+  });
   beforeEach(() => {
     jest.clearAllMocks();
   });

@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { print } from 'graphql';
 import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
+import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadataItems';
 import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/EnrichedObjectMetadataItem';
 import { useGenerateDepthRecordGqlFieldsFromObject } from '@/object-record/graphql/record-gql-fields/hooks/useGenerateDepthRecordGqlFieldsFromObject';
 import { generateDepthRecordGqlFieldsFromObject } from '@/object-record/graphql/record-gql-fields/utils/generateDepthRecordGqlFieldsFromObject';
@@ -13,6 +14,7 @@ import { useTaskTimelineData } from '@/page-layout/widgets/task-timeline/hooks/u
 import { FieldMetadataType, RelationType } from 'twenty-shared/types';
 
 jest.mock('@/object-metadata/hooks/useObjectMetadataItem');
+jest.mock('@/object-metadata/hooks/useObjectMetadataItems');
 jest.mock(
   '@/object-record/graphql/record-gql-fields/hooks/useGenerateDepthRecordGqlFieldsFromObject',
 );
@@ -53,6 +55,8 @@ const metadata = (fields = [idField, start, due, status]) =>
     id: 'task-object',
     nameSingular: 'task',
     namePlural: 'tasks',
+    isActive: true,
+    labelSingular: 'Task',
     fields,
     readableFields: fields,
   }) as unknown as EnrichedObjectMetadataItem;
@@ -70,9 +74,307 @@ const query = jest.mocked(useFindManyRecords);
 let taskMetadata: EnrichedObjectMetadataItem;
 
 describe('useTaskTimelineData (React/query mock integration)', () => {
+  const generic = () => {
+    taskMetadata = {
+      ...metadata(),
+      id: 'project-object',
+      nameSingular: 'project',
+      namePlural: 'projects',
+      labelSingular: 'Project',
+      labelPlural: 'Projects',
+      labelIdentifierFieldMetadataId: 'caption',
+      fields: [
+        idField,
+        { ...start, id: 'kickoff', name: 'kickoffOn' },
+        { ...due, id: 'delivery', name: 'deliveryOn' },
+        {
+          ...status,
+          id: 'caption',
+          name: 'caption',
+          type: FieldMetadataType.TEXT,
+        },
+        status,
+      ],
+      readableFields: [],
+    } as unknown as EnrichedObjectMetadataItem;
+    taskMetadata.readableFields = taskMetadata.fields;
+    query.mockReturnValue({
+      records: [
+        {
+          id: 'project-1',
+          kickoffOn: '2026-09-19',
+          deliveryOn: '2026-09-20',
+          caption: 'Bridge',
+          status: 'DONE',
+        },
+      ],
+      loading: false,
+      refetch: jest.fn(),
+    } as unknown as ReturnType<typeof useFindManyRecords>);
+    return {
+      ...widget({
+        startDateFieldMetadataId: 'kickoff',
+        dueDateFieldMetadataId: 'delivery',
+      }),
+      objectMetadataId: 'project-object',
+    };
+  };
+
+  it('queries and edits distinct generic fields using the selected object and does not infer DONE progress', async () => {
+    const configured = generic();
+    const { result } = renderHook(() => useTaskTimelineData(configured));
+    expect(query.mock.calls[0][0]).toMatchObject({
+      objectNameSingular: 'project',
+      skip: false,
+    });
+    expect(result.current.items[0]).toMatchObject({
+      title: 'Bridge',
+      progress: null,
+      dependencies: [],
+    });
+    await result.current.updateTask!({
+      taskId: 'project-1',
+      startDate: '2026-09-18',
+    });
+    expect(updateOneRecord).toHaveBeenCalledWith(
+      expect.objectContaining({
+        objectNameSingular: 'project',
+        updateOneRecordInput: { kickoffOn: '2026-09-18' },
+      }),
+    );
+    expect(query.mock.results[0].value.refetch).not.toHaveBeenCalled();
+  });
+
+  it('does not interpret raw generic dependencies or conflict flags, and uses the record ID for an unavailable explicit title', () => {
+    const configured = generic();
+    (
+      configured.configuration as { fieldMapping: Record<string, unknown> }
+    ).fieldMapping.titleFieldMetadataId = 'foreign-title';
+    query.mockReturnValue({
+      records: [
+        {
+          id: 'project-1',
+          kickoffOn: '2026-09-19',
+          deliveryOn: '2026-09-20',
+          conflict: true,
+          dependencies: [
+            {
+              predecessorId: 'task-1',
+              successorId: 'project-1',
+              type: 'FINISH_TO_START',
+              conflict: true,
+            },
+          ],
+        },
+      ],
+      loading: false,
+      refetch: jest.fn(),
+    } as unknown as ReturnType<typeof useFindManyRecords>);
+    const { result } = renderHook(() => useTaskTimelineData(configured));
+    expect(result.current.items[0]).toMatchObject({
+      title: 'project-1',
+      conflict: false,
+      dependencies: [],
+    });
+  });
+
+  describe.each(['explicit', 'label-identifier'])(
+    'generic %s title eligibility',
+    (role) => {
+      it.each([
+        'date',
+        'date-time',
+        'stale',
+        'unreadable',
+        'inactive',
+        'permission-denied',
+      ])('falls back to record ID without extracting a %s title', (failure) => {
+        const configured = generic();
+        const titleId =
+          failure === 'date'
+            ? 'kickoff'
+            : failure === 'date-time'
+              ? 'delivery'
+              : failure === 'stale'
+                ? 'deleted-title'
+                : 'caption';
+        if (role === 'explicit') {
+          (
+            configured.configuration as {
+              fieldMapping: Record<string, unknown>;
+            }
+          ).fieldMapping.titleFieldMetadataId = titleId;
+        } else {
+          taskMetadata.labelIdentifierFieldMetadataId = titleId;
+        }
+        if (failure === 'unreadable')
+          taskMetadata.readableFields = taskMetadata.readableFields.filter(
+            (field) => field.id !== 'caption',
+          );
+        if (failure === 'inactive') {
+          taskMetadata.fields = taskMetadata.fields.map((field) =>
+            field.id === 'caption' ? { ...field, isActive: false } : field,
+          );
+          taskMetadata.readableFields = taskMetadata.fields;
+        }
+        if (failure === 'permission-denied')
+          jest.mocked(useObjectPermissionsForObject).mockReturnValue({
+            canReadObjectRecords: true,
+            canUpdateObjectRecords: true,
+            restrictedFields: { caption: { canRead: false } },
+          } as unknown as ReturnType<typeof useObjectPermissionsForObject>);
+        const extractTitle = jest.fn(() => 'Confidential title');
+        const record = {
+          id: 'project-1',
+          kickoffOn: '2026-09-19',
+          deliveryOn: '2026-09-20',
+        };
+        // Even a query-boundary payload containing forbidden label data must not
+        // be read. Date fields remain readable for their required date roles.
+        Object.defineProperty(record, 'caption', { get: extractTitle });
+        query.mockReturnValue({
+          records: [record],
+          loading: false,
+          refetch: jest.fn(),
+        } as unknown as ReturnType<typeof useFindManyRecords>);
+        const { result } = renderHook(() => useTaskTimelineData(configured));
+        expect(result.current.status).toBe('ready');
+        expect(result.current.items[0].title).toBe('project-1');
+        expect(extractTitle).not.toHaveBeenCalled();
+        expect(query.mock.calls[0][0].skip).toBe(false);
+      });
+
+      it.each([FieldMetadataType.TEXT, FieldMetadataType.FULL_NAME])(
+        'renders a readable active %s title',
+        (type) => {
+          const configured = generic();
+          if (role === 'explicit')
+            (
+              configured.configuration as {
+                fieldMapping: Record<string, unknown>;
+              }
+            ).fieldMapping.titleFieldMetadataId = 'caption';
+          taskMetadata.fields = taskMetadata.fields.map((field) =>
+            field.id === 'caption' ? { ...field, type } : field,
+          );
+          taskMetadata.readableFields = taskMetadata.fields;
+          query.mockReturnValue({
+            records: [
+              {
+                id: 'project-1',
+                kickoffOn: '2026-09-19',
+                deliveryOn: '2026-09-20',
+                caption:
+                  type === FieldMetadataType.TEXT
+                    ? 'Bridge'
+                    : { firstName: 'Ada', lastName: 'Lovelace' },
+              },
+            ],
+            loading: false,
+            refetch: jest.fn(),
+          } as unknown as ReturnType<typeof useFindManyRecords>);
+          const { result } = renderHook(() => useTaskTimelineData(configured));
+          expect(result.current.items[0].title).toBe(
+            type === FieldMetadataType.TEXT ? 'Bridge' : 'Ada Lovelace',
+          );
+        },
+      );
+    },
+  );
+
+  it('enforces generic field read/update restrictions and rejects reversed dates without a mutation', async () => {
+    const configured = generic();
+    jest.mocked(useObjectPermissionsForObject).mockReturnValue({
+      canReadObjectRecords: true,
+      canUpdateObjectRecords: true,
+      restrictedFields: { kickoff: { canRead: true, canUpdate: false } },
+    } as unknown as ReturnType<typeof useObjectPermissionsForObject>);
+    const { result, rerender } = renderHook(() =>
+      useTaskTimelineData(configured),
+    );
+    expect(result.current.canEditDates).toBe(false);
+    await expect(
+      result.current.updateTask!({
+        taskId: 'project-1',
+        startDate: '2026-09-21',
+      }),
+    ).rejects.toThrow('start date cannot be after');
+    expect(updateOneRecord).not.toHaveBeenCalled();
+    jest.mocked(useObjectPermissionsForObject).mockReturnValue({
+      canReadObjectRecords: true,
+      restrictedFields: { kickoff: { canRead: false } },
+    } as unknown as ReturnType<typeof useObjectPermissionsForObject>);
+    rerender();
+    expect(result.current.status).toBe('forbidden');
+    expect(query.mock.calls.at(-1)?.[0].skip).toBe(true);
+  });
+
+  it.each([null, undefined])(
+    'does not discover generic required dates for %s mapping',
+    (value) => {
+      const configured = generic();
+      configured.configuration = {
+        __typename: 'TaskTimelineConfiguration',
+        fieldMapping: value,
+      } as PageLayoutWidget['configuration'];
+      const { result } = renderHook(() => useTaskTimelineData(configured));
+      expect(result.current.hasConfigurationGap).toBe(true);
+      expect(query.mock.calls[0][0].skip).toBe(true);
+    },
+  );
+
+  it.each([
+    'missing',
+    'inactive',
+    'unreadable',
+    'unreadable-field',
+    'wrong-kind',
+    'stale-field',
+  ])(
+    'skips generic source/field failure %s without Task fallback',
+    (failure) => {
+      const configured = generic();
+      if (failure === 'missing') configured.objectMetadataId = 'deleted-source';
+      if (failure === 'inactive') taskMetadata.isActive = false;
+      if (failure === 'unreadable')
+        jest
+          .mocked(useObjectPermissionsForObject)
+          .mockReturnValue({ canReadObjectRecords: false } as ReturnType<
+            typeof useObjectPermissionsForObject
+          >);
+      if (failure === 'unreadable-field')
+        taskMetadata.readableFields = taskMetadata.fields.filter(
+          (field) => field.id !== 'kickoff',
+        );
+      if (failure === 'wrong-kind')
+        taskMetadata.fields = taskMetadata.fields.map((field) =>
+          field.id === 'kickoff'
+            ? { ...field, type: FieldMetadataType.TEXT }
+            : field,
+        );
+      if (failure === 'stale-field')
+        (
+          configured.configuration as {
+            fieldMapping: { startDateFieldMetadataId: string };
+          }
+        ).fieldMapping.startDateFieldMetadataId = 'foreign-id';
+      const { result } = renderHook(() => useTaskTimelineData(configured));
+      expect(query.mock.calls[0][0].skip).toBe(true);
+      expect(result.current.canEditDates).toBe(false);
+      expect(result.current.items).toEqual([]);
+      expect(result.current.status).toBe(
+        ['unreadable', 'unreadable-field'].includes(failure)
+          ? 'forbidden'
+          : 'partial',
+      );
+    },
+  );
   beforeEach(() => {
     jest.clearAllMocks();
     taskMetadata = metadata();
+    jest
+      .mocked(useObjectMetadataItems)
+      .mockImplementation(() => ({ objectMetadataItems: [taskMetadata] }));
     jest
       .mocked(useObjectMetadataItem)
       .mockImplementation(

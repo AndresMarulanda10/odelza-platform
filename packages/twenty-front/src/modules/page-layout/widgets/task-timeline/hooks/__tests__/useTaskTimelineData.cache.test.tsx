@@ -22,6 +22,7 @@ import { useObjectPermissions } from '@/object-record/hooks/useObjectPermissions
 import { useObjectPermissionsForObject } from '@/object-record/hooks/useObjectPermissionsForObject';
 import { useRefetchAggregateQueries } from '@/object-record/hooks/useRefetchAggregateQueries';
 import { useTaskTimelineData } from '@/page-layout/widgets/task-timeline/hooks/useTaskTimelineData';
+import { TaskTimelineWidget } from '@/page-layout/widgets/task-timeline/components/TaskTimelineWidget';
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
 import { getTestEnrichedObjectMetadataItemsMock } from '~/testing/utils/getTestEnrichedObjectMetadataItemsMock';
 import { setTestObjectMetadataItemsInMetadataStore } from '~/testing/utils/setTestObjectMetadataItemsInMetadataStore';
@@ -33,6 +34,18 @@ jest.mock('@/object-metadata/hooks/useObjectMetadataItems');
 jest.mock('@/object-record/hooks/useObjectPermissions');
 jest.mock('@/object-record/hooks/useObjectPermissionsForObject');
 jest.mock('@/object-record/hooks/useRefetchAggregateQueries');
+jest.mock('@/side-panel/hooks/useOpenRecordInSidePanel', () => ({
+  useOpenRecordInSidePanel: () => ({ openRecordInSidePanel: jest.fn() }),
+}));
+jest.mock(
+  '@/page-layout/widgets/task-timeline/utils/getTaskTimelineCalendar',
+  () => ({
+    ...jest.requireActual(
+      '@/page-layout/widgets/task-timeline/utils/getTaskTimelineCalendar',
+    ),
+    getTaskTimelineToday: () => '2026-09-19',
+  }),
+);
 jest.mock('@/object-record/hooks/useHandleFindManyRecordsCompleted', () => ({
   useHandleFindManyRecordsCompleted: () => ({
     handleFindManyRecordsCompleted: () => undefined,
@@ -118,9 +131,13 @@ const widget = {
     },
   },
 } as PageLayoutWidget;
+let activeMetadata = metadata;
+let activeWidget = widget;
+let startName = 'startDate';
+let endName = 'dueAt';
 
 function Harness() {
-  const timeline = useTaskTimelineData(widget);
+  const timeline = useTaskTimelineData(activeWidget);
   const [error, setError] = useState('');
   return (
     <>
@@ -144,187 +161,312 @@ function Harness() {
       </button>
       <button onClick={timeline.retry}>Retry</button>
       {error && <div role="alert">{error}</div>}
+      <TaskTimelineWidget widget={activeWidget} />
     </>
   );
 }
 
-describe('Task Timeline request/cache integration (real find-many/update hooks)', () => {
-  let client: ApolloClient;
-  let operations: string[];
-  let rejectMutation: boolean;
-  let rejectList: boolean;
-  let mutationDocument: string;
-  let finishMutation: () => void;
-  const aggregateRefresh = jest.fn();
+describe.each(['task', 'project'])(
+  'Timeline %s request/cache integration (real find-many/update hooks)',
+  (sourceName) => {
+    let client: ApolloClient;
+    let operations: string[];
+    let rejectMutation: boolean;
+    let rejectList: boolean;
+    let mutationDocument: string;
+    let finishMutation: () => void;
+    let mutationInput: Record<string, unknown>;
+    const aggregateRefresh = jest.fn();
 
-  beforeEach(() => {
-    operations = [];
-    rejectMutation = false;
-    rejectList = false;
-    mutationDocument = '';
-    jest
-      .mocked(useObjectMetadataItem)
-      .mockReturnValue({ objectMetadataItem: metadata } as ReturnType<
-        typeof useObjectMetadataItem
-      >);
-    jest
-      .mocked(useObjectMetadataItems)
-      .mockReturnValue({ objectMetadataItems: [metadata] } as ReturnType<
-        typeof useObjectMetadataItems
-      >);
-    jest.mocked(useObjectPermissions).mockReturnValue({
-      objectPermissionsByObjectMetadataId: {
-        [metadata.id]: {
-          objectMetadataId: metadata.id,
-          canReadObjectRecords: true,
-          canUpdateObjectRecords: true,
-          restrictedFields: {},
-        },
-      },
-    } as ReturnType<typeof useObjectPermissions>);
-    jest.mocked(useObjectPermissionsForObject).mockReturnValue({
-      canReadObjectRecords: true,
-      canUpdateObjectRecords: true,
-      restrictedFields: {},
-    } as ReturnType<typeof useObjectPermissionsForObject>);
-    aggregateRefresh.mockClear();
-    jest
-      .mocked(useRefetchAggregateQueries)
-      .mockReturnValue({ refetchAggregateQueries: aggregateRefresh });
-    let persistedStart = original;
-    const dependencies = {
-      __typename: 'TaskConnection',
-      edges: [
-        {
-          __typename: 'TaskEdge',
-          cursor: 'dependency',
-          node: { __typename: 'Task', id: 'dependency-1' },
-        },
-      ],
-    };
-    client = new ApolloClient({
-      cache: new InMemoryCache(),
-      link: new ApolloLink(
-        (operation) =>
-          new Observable((observer) => {
-            const mutation = operation.query.definitions.some(
-              (definition) =>
-                definition.kind === 'OperationDefinition' &&
-                definition.operation === 'mutation',
-            );
-            operations.push(mutation ? 'updateTask' : 'tasks');
-            if (mutation) mutationDocument = print(operation.query);
-            const record = {
-              __typename: 'Task',
-              id: 'task-1',
-              startDate: mutation ? authoritative : persistedStart,
-              dueAt: '2026-09-25T00:00:00.000Z',
-              ...(mutation && print(operation.query).includes('dependencies')
-                ? { dependencies }
-                : {}),
+    beforeEach(() => {
+      startName = sourceName === 'task' ? 'startDate' : 'kickoffOn';
+      endName = sourceName === 'task' ? 'dueAt' : 'deliveryOn';
+      activeMetadata =
+        sourceName === 'task'
+          ? metadata
+          : {
+              ...metadata,
+              id: 'project-object',
+              nameSingular: 'project',
+              namePlural: 'projects',
+              labelSingular: 'Project',
+              labelPlural: 'Projects',
+              fields: [
+                fields[0],
+                {
+                  ...start,
+                  name: startName,
+                  id: 'project-kickoff',
+                  objectMetadataId: 'project-object',
+                },
+                {
+                  ...due,
+                  name: endName,
+                  id: 'project-delivery',
+                  objectMetadataId: 'project-object',
+                },
+              ],
+              readableFields: [
+                fields[0],
+                {
+                  ...start,
+                  name: startName,
+                  id: 'project-kickoff',
+                  objectMetadataId: 'project-object',
+                },
+                {
+                  ...due,
+                  name: endName,
+                  id: 'project-delivery',
+                  objectMetadataId: 'project-object',
+                },
+              ],
             };
-            const complete = () => {
-              if (!mutation && rejectList)
-                observer.error(new Error('List unavailable'));
-              else if (mutation && rejectMutation)
-                observer.error(new Error('Save rejected'));
-              else {
-                if (mutation) persistedStart = authoritative;
-                observer.next({
-                  data: mutation
-                    ? { updateTask: record }
-                    : {
-                        tasks: {
-                          __typename: 'TaskConnection',
-                          edges: [
-                            {
-                              __typename: 'TaskEdge',
-                              cursor: 'one',
-                              node: { ...record, dependencies },
-                            },
-                          ],
-                          pageInfo: {
-                            __typename: 'PageInfo',
-                            hasNextPage: false,
-                            hasPreviousPage: false,
-                            startCursor: 'one',
-                            endCursor: 'one',
-                          },
-                          totalCount: 1,
-                        },
-                      },
-                });
+      activeWidget =
+        sourceName === 'task'
+          ? widget
+          : ({
+              ...widget,
+              objectMetadataId: activeMetadata.id,
+              configuration: {
+                __typename: 'TaskTimelineConfiguration',
+                configurationType: 'TASK_TIMELINE',
+                fieldMapping: {
+                  startDateFieldMetadataId: 'project-kickoff',
+                  dueDateFieldMetadataId: 'project-delivery',
+                },
+              },
+            } as PageLayoutWidget);
+      operations = [];
+      rejectMutation = false;
+      rejectList = false;
+      mutationDocument = '';
+      jest
+        .mocked(useObjectMetadataItem)
+        .mockReturnValue({ objectMetadataItem: activeMetadata } as ReturnType<
+          typeof useObjectMetadataItem
+        >);
+      jest.mocked(useObjectMetadataItems).mockReturnValue({
+        objectMetadataItems: [activeMetadata],
+      } as ReturnType<typeof useObjectMetadataItems>);
+      jest.mocked(useObjectPermissions).mockReturnValue({
+        objectPermissionsByObjectMetadataId: {
+          [activeMetadata.id]: {
+            objectMetadataId: activeMetadata.id,
+            canReadObjectRecords: true,
+            canUpdateObjectRecords: true,
+            restrictedFields: {},
+          },
+        },
+      } as ReturnType<typeof useObjectPermissions>);
+      jest.mocked(useObjectPermissionsForObject).mockReturnValue({
+        canReadObjectRecords: true,
+        canUpdateObjectRecords: true,
+        restrictedFields: {},
+      } as ReturnType<typeof useObjectPermissionsForObject>);
+      aggregateRefresh.mockClear();
+      jest
+        .mocked(useRefetchAggregateQueries)
+        .mockReturnValue({ refetchAggregateQueries: aggregateRefresh });
+      let persistedStart = original;
+      const dependencies = {
+        __typename: 'TaskConnection',
+        edges: [
+          {
+            __typename: 'TaskEdge',
+            cursor: 'dependency',
+            node: { __typename: 'Task', id: 'dependency-1' },
+          },
+        ],
+      };
+      client = new ApolloClient({
+        // Match the cache construction in useApolloFactory (ApolloCoreProvider).
+        cache: new InMemoryCache({
+          typePolicies: { RemoteTable: { keyFields: ['name'] } },
+        }),
+        link: new ApolloLink(
+          (operation) =>
+            new Observable((observer) => {
+              const mutation = operation.query.definitions.some(
+                (definition) =>
+                  definition.kind === 'OperationDefinition' &&
+                  definition.operation === 'mutation',
+              );
+              const typename = sourceName === 'task' ? 'Task' : 'Project';
+              const mutationName = `update${typename}`;
+              operations.push(
+                mutation ? mutationName : activeMetadata.namePlural,
+              );
+              if (mutation) {
+                mutationDocument = print(operation.query);
+                mutationInput = operation.variables.input;
               }
-              observer.complete();
-            };
-            if (mutation) finishMutation = complete;
-            else complete();
-          }),
-      ),
+              const record = {
+                __typename: typename,
+                id: 'task-1',
+                [startName]: mutation ? authoritative : persistedStart,
+                [endName]: '2026-09-25T00:00:00.000Z',
+                ...(mutation && print(operation.query).includes('dependencies')
+                  ? { dependencies }
+                  : {}),
+              };
+              const complete = () => {
+                if (!mutation && rejectList)
+                  observer.error(new Error('List unavailable'));
+                else if (mutation && rejectMutation)
+                  observer.error(new Error('Save rejected'));
+                else {
+                  if (mutation) persistedStart = authoritative;
+                  observer.next({
+                    data: mutation
+                      ? { [mutationName]: record }
+                      : {
+                          [activeMetadata.namePlural]: {
+                            __typename: `${typename}Connection`,
+                            edges: [
+                              {
+                                __typename: `${typename}Edge`,
+                                cursor: 'one',
+                                node:
+                                  sourceName === 'task'
+                                    ? { ...record, dependencies }
+                                    : record,
+                              },
+                            ],
+                            pageInfo: {
+                              __typename: 'PageInfo',
+                              hasNextPage: false,
+                              hasPreviousPage: false,
+                              startCursor: 'one',
+                              endCursor: 'one',
+                            },
+                            totalCount: 1,
+                          },
+                        },
+                  });
+                }
+                observer.complete();
+              };
+              if (mutation) finishMutation = complete;
+              else complete();
+            }),
+        ),
+      });
+      jest.mocked(useApolloCoreClient).mockReturnValue(client);
     });
-    jest.mocked(useApolloCoreClient).mockReturnValue(client);
-  });
 
-  afterEach(() => client.stop());
+    afterEach(() => client.stop());
 
-  async function mount() {
-    const store = createStore();
-    setTestObjectMetadataItemsInMetadataStore(store, [metadata]);
-    const Wrapper = ({ children }: { children: ReactNode }) => (
-      <Provider store={store}>
-        <ApolloProvider client={client}>{children}</ApolloProvider>
-      </Provider>
-    );
-    render(<Harness />, { wrapper: Wrapper });
-    await waitFor(() =>
-      expect(screen.getByTestId('dates')).toHaveTextContent(original),
-    );
-    expect(screen.getByTestId('dependencies')).toHaveTextContent(
-      'dependency-1',
-    );
-    operations.length = 0;
-  }
+    async function mount() {
+      const store = createStore();
+      setTestObjectMetadataItemsInMetadataStore(store, [activeMetadata]);
+      const Wrapper = ({ children }: { children: ReactNode }) => (
+        <Provider store={store}>
+          <ApolloProvider client={client}>{children}</ApolloProvider>
+        </Provider>
+      );
+      render(<Harness />, { wrapper: Wrapper });
+      await waitFor(() =>
+        expect(screen.getByTestId('dates')).toHaveTextContent(original),
+      );
+      expect(screen.getByTestId('dependencies')).toHaveTextContent(
+        sourceName === 'task' ? 'dependency-1' : '',
+      );
+      operations.length = 0;
+    }
 
-  it.each([false, true])(
-    'uses the authoritative mutation response without a second list request (list unavailable: %s)',
-    async (listUnavailable) => {
+    it.each([false, true])(
+      'uses the authoritative mutation response without a second list request (list unavailable: %s)',
+      async (listUnavailable) => {
+        await mount();
+        rejectList = listUnavailable;
+        fireEvent.click(screen.getByText('Edit'));
+        const mutationName =
+          sourceName === 'task' ? 'updateTask' : 'updateProject';
+        await waitFor(() => expect(operations).toEqual([mutationName]));
+        expect(mutationInput).toEqual({ [startName]: requested });
+        await act(async () => finishMutation());
+        await waitFor(() =>
+          expect(screen.getByTestId('dates')).toHaveTextContent(authoritative),
+        );
+        expect(operations).toEqual([mutationName]);
+        expect(mutationDocument).toContain(startName);
+        expect(mutationDocument).toContain(endName);
+        expect(mutationDocument).not.toContain('dependencies');
+        expect(screen.getByTestId('dependencies')).toHaveTextContent(
+          sourceName === 'task' ? 'dependency-1' : '',
+        );
+        expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+        expect(aggregateRefresh).toHaveBeenCalledTimes(1);
+        rejectList = false;
+        fireEvent.click(screen.getByText('Retry'));
+        await waitFor(() =>
+          expect(operations).toEqual([mutationName, activeMetadata.namePlural]),
+        );
+      },
+    );
+
+    it('restores optimistic dates and exposes the mutation error without fetching the list', async () => {
       await mount();
-      rejectList = listUnavailable;
+      rejectMutation = true;
       fireEvent.click(screen.getByText('Edit'));
-      await waitFor(() => expect(operations).toEqual(['updateTask']));
+      await waitFor(() =>
+        expect(screen.getByTestId('dates')).toHaveTextContent(requested),
+      );
       await act(async () => finishMutation());
       await waitFor(() =>
-        expect(screen.getByTestId('dates')).toHaveTextContent(authoritative),
+        expect(screen.getByRole('alert')).toHaveTextContent('Save rejected'),
       );
-      expect(operations).toEqual(['updateTask']);
-      expect(mutationDocument).not.toContain('dependencies');
+      expect(screen.getByTestId('dates')).toHaveTextContent(original);
       expect(screen.getByTestId('dependencies')).toHaveTextContent(
-        'dependency-1',
+        sourceName === 'task' ? 'dependency-1' : '',
       );
-      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
-      expect(aggregateRefresh).toHaveBeenCalledTimes(1);
-      rejectList = false;
-      fireEvent.click(screen.getByText('Retry'));
-      await waitFor(() => expect(operations).toEqual(['updateTask', 'tasks']));
-    },
-  );
+      expect(operations).toEqual([
+        sourceName === 'task' ? 'updateTask' : 'updateProject',
+      ]);
+      expect(aggregateRefresh).not.toHaveBeenCalled();
+    });
 
-  it('restores optimistic dates and exposes the mutation error without fetching the list', async () => {
-    await mount();
-    rejectMutation = true;
-    fireEvent.click(screen.getByText('Edit'));
-    await waitFor(() =>
-      expect(screen.getByTestId('dates')).toHaveTextContent(requested),
+    it.each([false, true])(
+      'renders real chip cache updates and gesture rollback (rejected: %s)',
+      async (rejected) => {
+        await mount();
+        rejectMutation = rejected;
+        const chip = screen.getByTestId('timeline-task-chip-task-1');
+        expect(chip).toHaveStyle({ gridColumn: '1 / span 7' });
+        const track = chip.closest('[role="gridcell"]')!;
+        jest.spyOn(track, 'getBoundingClientRect').mockReturnValue({
+          width: screen.getAllByRole('columnheader').length * 112,
+        } as DOMRect);
+        fireEvent.mouseDown(
+          screen.getByRole('button', {
+            name:
+              sourceName === 'task'
+                ? 'Resize task start date'
+                : 'Resize record start date',
+          }),
+          { clientX: 0 },
+        );
+        fireEvent.mouseMove(window, { clientX: 224 });
+        fireEvent.mouseUp(window, { clientX: 224 });
+        const operation =
+          sourceName === 'task' ? 'updateTask' : 'updateProject';
+        await waitFor(() => expect(operations).toEqual([operation]));
+        expect(mutationInput).toEqual({
+          [startName]: requested,
+          [endName]: '2026-09-25',
+        });
+        await act(async () => finishMutation());
+        await waitFor(() =>
+          expect(chip).toHaveStyle({
+            gridColumn: rejected ? '1 / span 7' : '4 / span 4',
+          }),
+        );
+        if (rejected)
+          expect(screen.getByRole('alert')).toHaveTextContent('Save rejected');
+        else expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+        expect(operations).toEqual([operation]);
+      },
     );
-    await act(async () => finishMutation());
-    await waitFor(() =>
-      expect(screen.getByRole('alert')).toHaveTextContent('Save rejected'),
-    );
-    expect(screen.getByTestId('dates')).toHaveTextContent(original);
-    expect(screen.getByTestId('dependencies')).toHaveTextContent(
-      'dependency-1',
-    );
-    expect(operations).toEqual(['updateTask']);
-    expect(aggregateRefresh).not.toHaveBeenCalled();
-  });
-});
+  },
+);
