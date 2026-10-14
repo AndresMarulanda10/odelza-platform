@@ -441,8 +441,8 @@ export const useTaskTimelineData = (
       objectNameSingular: CoreObjectNameSingular.Task,
       idToUpdate: taskId,
       updateOneRecordInput: updateInput,
+      recordGqlFields,
     });
-    await recordsQuery.refetch();
   };
 
   if (!hasReadPermission) {

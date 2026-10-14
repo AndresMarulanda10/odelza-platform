@@ -355,7 +355,7 @@ describe('useTaskTimelineData (React/query mock integration)', () => {
     },
   );
 
-  it('blocks edits but keeps readable dates when updates are denied', () => {
+  it('blocks edits but keeps readable dates when updates are denied', async () => {
     jest.mocked(useObjectPermissionsForObject).mockReturnValue({
       canReadObjectRecords: true,
       canUpdateObjectRecords: false,
@@ -367,6 +367,10 @@ describe('useTaskTimelineData (React/query mock integration)', () => {
       canEditProgress: false,
     });
     expect(query.mock.calls[0][0].skip).toBe(false);
+    await expect(
+      result.current.updateTask!({ taskId: 'task-1', startDate: '2026-09-19' }),
+    ).rejects.toThrow('Task timeline editing is unavailable');
+    expect(updateOneRecord).not.toHaveBeenCalled();
   });
 
   it('honors a required-field read restriction even with stale readable metadata', () => {
