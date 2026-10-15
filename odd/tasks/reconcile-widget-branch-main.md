@@ -1,6 +1,39 @@
 # Reconcile widget branch with main
 
-## State: resolved, corrected and locally verified; independent parent gate pending
+## State: ordinary parent gate passed; merge committed; publication pending
+
+## Delivery closure
+
+Parent reports independent final functional verification and explicitly grants
+the ordinary commit/push gate for this existing PR #54 branch. This is not a
+native review receipt or a claim of new runtime/CI approval.
+
+The normal, non-bypassed merge commit is
+`f8138c868fd23d5f43d7ad3b2f599bd1ccee713b`
+(`chore(widgets): reconcile main and preserve dashboard features`). Its parents,
+in order, are feature `7bc50177091fca9d38dbb3116c34b792e25cf30d` and fetched main
+`25888259c01a4fc19823f6a8a52fafea8e1e27c3`; main is now an ancestor. Its tree is
+exactly the independently verified staged candidate
+`6b9561a3e188ff0aa8a72bd2ee4e30804541b4e6`. Normal commit completion preserved
+every frozen file hash and left no pending working-tree changes. No dependency
+bindings, caches, private snapshots, environment/config files, or new symlinks
+were included.
+
+This closure changes only this task document; it is an evidence-only follow-up
+in the same work unit, not a source or test correction. Fresh final proof remains
+62 application Jest suites / 868 tests / 55 snapshots, plus 4 SDK Vitest files /
+23 tests, SDK native offline typecheck/build and built enum-export proof. Earlier
+application typecheck/full frontend lint and 332-document codegen validation are
+retained through unchanged-source proof, not newly executed by this commit.
+
+Publication will use one normal push to the same existing feature branch and
+PR #54, never a duplicate PR or rewritten history. Remote CI status is pending
+a post-push read-only snapshot; no queued/running check is claimed passed. No
+live app/browser/API/database/migration execution or service restart occurred.
+The unrelated raw-rule unused-fragment observation remains documented below.
+Original checkout synchronization is conditional on unchanged private dirty
+fingerprints and a no-overlap fast-forward safety gate; no stash/reset/forced
+checkout is authorized. The isolated worktree is retained for verification.
 
 ## Scoped SDK filter-enum completion
 
