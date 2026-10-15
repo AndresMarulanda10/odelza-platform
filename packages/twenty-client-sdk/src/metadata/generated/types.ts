@@ -2625,9 +2625,6 @@ export default {
             ]
         },
         "RecordTableConfiguration": {
-            "presentationMode": [
-                1
-            ],
             "configurationType": [
                 92
             ],
@@ -2636,6 +2633,9 @@ export default {
             ],
             "recordLimit": [
                 21
+            ],
+            "presentationMode": [
+                1
             ],
             "__typename": [
                 1

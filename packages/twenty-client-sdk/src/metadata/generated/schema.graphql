@@ -1350,10 +1350,10 @@ type ViewConfiguration {
 }
 
 type RecordTableConfiguration {
-  presentationMode: String
   configurationType: WidgetConfigurationType!
   viewId: String
   recordLimit: Int
+  presentationMode: String
 }
 
 type WorkflowConfiguration {

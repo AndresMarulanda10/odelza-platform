@@ -4150,10 +4150,10 @@ export interface ViewConfigurationGenqlSelection{
 }
 
 export interface RecordTableConfigurationGenqlSelection{
-    presentationMode?: boolean | number
     configurationType?: boolean | number
     viewId?: boolean | number
     recordLimit?: boolean | number
+    presentationMode?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
