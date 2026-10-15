@@ -29,4 +29,9 @@ export class RecordTableConfigurationDTO implements RecordTableConfiguration {
   @IsInt()
   @Min(1)
   recordLimit?: number;
+
+  @Field(() => String, { nullable: true })
+  @IsOptional()
+  @IsIn(['TABLE', 'OVERDUE_ATTENTION'])
+  presentationMode?: 'TABLE' | 'OVERDUE_ATTENTION' | null;
 }

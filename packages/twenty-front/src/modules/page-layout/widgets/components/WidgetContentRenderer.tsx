@@ -15,7 +15,7 @@ import { StandaloneRichTextWidgetRenderer } from '@/page-layout/widgets/standalo
 import { TaskWidget } from '@/page-layout/widgets/tasks/components/TaskWidget';
 import { TimelineWidget } from '@/page-layout/widgets/timeline/components/TimelineWidget';
 import { TaskTimelineWidget } from '@/page-layout/widgets/task-timeline/components/TaskTimelineWidget';
-import { PersonalFinanceWidget } from '@/page-layout/widgets/personal-finance/components/PersonalFinanceWidget';
+import { RetiredWidgetPlaceholder } from '@/page-layout/widgets/components/RetiredWidgetPlaceholder';
 import { WorkflowRunWidget } from '@/page-layout/widgets/workflow/components/WorkflowRunWidget';
 import { WorkflowVersionWidget } from '@/page-layout/widgets/workflow/components/WorkflowVersionWidget';
 import { RecordTableWidgetRenderer } from '@/page-layout/widgets/record-table/components/RecordTableWidgetRenderer';
@@ -49,7 +49,7 @@ export const WidgetContentRenderer = ({
       return <TaskTimelineWidget widget={widget} />;
 
     case WidgetType.PERSONAL_FINANCE:
-      return <PersonalFinanceWidget widget={widget} />;
+      return <RetiredWidgetPlaceholder />;
 
     case WidgetType.CARD_CAROUSEL:
       return <CardCarouselWidget widget={widget} />;

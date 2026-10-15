@@ -12,6 +12,7 @@ import { SettingsRolePermissionsObjectLevelRecordLevelPermissionFieldSelect } fr
 import { SettingsRolePermissionsObjectLevelRecordLevelPermissionLogicalOperatorCell } from '@/settings/roles/role-permissions/object-level-permissions/record-level-permissions/components/SettingsRolePermissionsObjectLevelRecordLevelPermissionLogicalOperatorCell';
 import { SettingsRolePermissionsObjectLevelRecordLevelPermissionValueInput } from '@/settings/roles/role-permissions/object-level-permissions/record-level-permissions/components/SettingsRolePermissionsObjectLevelRecordLevelPermissionValueInput';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { ViewFilterOperand } from 'twenty-shared/types';
 
 const StyledFilterRow = styled.div`
   align-items: center;
@@ -55,6 +56,7 @@ export const SettingsRolePermissionsObjectLevelRecordLevelPermissionFilterRow =
           <StyledOperandSelectContainer>
             <AdvancedFilterSidePanelRecordFilterOperandSelect
               recordFilterId={recordFilter.id}
+              excludedOperands={[ViewFilterOperand.IS_BEFORE_TODAY]}
             />
           </StyledOperandSelectContainer>
           <SettingsRolePermissionsObjectLevelRecordLevelPermissionValueInput

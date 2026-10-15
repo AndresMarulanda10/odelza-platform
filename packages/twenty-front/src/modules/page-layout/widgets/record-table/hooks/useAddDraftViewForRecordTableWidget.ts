@@ -1,4 +1,5 @@
 import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/EnrichedObjectMetadataItem';
+import { type RecordTableWidgetViewSnapshot } from '@/page-layout/widgets/record-table/types/RecordTableWidgetViewSnapshot';
 import { useUpdatePageLayoutWidget } from '@/page-layout/hooks/useUpdatePageLayoutWidget';
 import { recordTableWidgetViewDraftComponentState } from '@/page-layout/states/recordTableWidgetViewDraftComponentState';
 import { buildRecordTableWidgetViewSnapshot } from '@/page-layout/widgets/record-table/utils/buildRecordTableWidgetViewSnapshot';
@@ -18,8 +19,18 @@ export const useAddDraftViewForRecordTableWidget = (pageLayoutId: string) => {
   const store = useStore();
 
   const addDraftViewForRecordTableWidget = useCallback(
-    (widgetId: string, objectMetadataItem: EnrichedObjectMetadataItem) => {
-      const snapshot = buildRecordTableWidgetViewSnapshot(objectMetadataItem);
+    (
+      widgetId: string,
+      objectMetadataItem: EnrichedObjectMetadataItem,
+      initialView?: {
+        snapshot: RecordTableWidgetViewSnapshot;
+        recordLimit: number;
+        presentationMode?: 'TABLE' | 'OVERDUE_ATTENTION';
+      },
+    ) => {
+      const snapshot =
+        initialView?.snapshot ??
+        buildRecordTableWidgetViewSnapshot(objectMetadataItem);
 
       store.set(recordTableWidgetViewDraftState, (prev) => ({
         ...prev,
@@ -27,10 +38,16 @@ export const useAddDraftViewForRecordTableWidget = (pageLayoutId: string) => {
       }));
 
       requestAnimationFrame(() => {
+        // A source switch or cancellation may supersede this deferred draft.
+        if (store.get(recordTableWidgetViewDraftState)[widgetId] !== snapshot) {
+          return;
+        }
         updatePageLayoutWidget(widgetId, {
           configuration: {
             configurationType: WidgetConfigurationType.RECORD_TABLE,
             viewId: snapshot.view.id,
+            presentationMode: initialView?.presentationMode ?? 'TABLE',
+            ...(initialView ? { recordLimit: initialView.recordLimit } : {}),
           },
         });
       });

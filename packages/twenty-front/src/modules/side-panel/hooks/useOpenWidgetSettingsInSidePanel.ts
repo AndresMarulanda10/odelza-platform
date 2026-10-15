@@ -14,9 +14,11 @@ import { useSetAtomComponentState } from '@/ui/utilities/state/jotai/hooks/useSe
 import { useSetAtomState } from '@/ui/utilities/state/jotai/hooks/useSetAtomState';
 import { t } from '@lingui/core/macro';
 import { SidePanelPages } from 'twenty-shared/types';
+import { IconClock } from 'twenty-ui/icon';
 import {
   PageLayoutTabLayoutMode,
   WidgetType,
+  WidgetConfigurationType,
 } from '~/generated-metadata/graphql';
 
 export const useOpenWidgetSettingsInSidePanel = (
@@ -56,6 +58,8 @@ export const useOpenWidgetSettingsInSidePanel = (
       widgetId: string;
       widgetType: WidgetType;
     }) => {
+      // Retired widgets keep the dashboard's explicit remove action, not settings.
+      if (widgetType === WidgetType.PERSONAL_FINANCE) return;
       if (widgetType === WidgetType.IFRAME) {
         if (!isDashboardPageLayout) {
           return;
@@ -113,9 +117,18 @@ export const useOpenWidgetSettingsInSidePanel = (
           return;
         }
 
+        const configuration = pageLayoutDraft.tabs
+          .flatMap((tab) => tab.widgets)
+          .find((widget) => widget.id === widgetId)?.configuration;
+        const isOverdue =
+          configuration?.configurationType ===
+            WidgetConfigurationType.RECORD_TABLE &&
+          'presentationMode' in configuration &&
+          configuration.presentationMode === 'OVERDUE_ATTENTION';
         navigatePageLayoutSidePanel({
           sidePanelPage: SidePanelPages.DashboardRecordTableSettings,
           pageTitle: t`Edit Record Table`,
+          ...(isOverdue ? { pageIcon: IconClock } : {}),
           resetNavigationStack: true,
         });
         setPageLayoutEditingWidgetId(widgetId);

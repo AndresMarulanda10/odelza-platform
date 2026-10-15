@@ -92,6 +92,7 @@ export type RecordTableConfiguration = {
   configurationType: 'RECORD_TABLE';
   viewId?: string;
   recordLimit?: number;
+  presentationMode?: 'TABLE' | 'OVERDUE_ATTENTION' | null;
 };
 
 export type FieldConfiguration = {
@@ -147,6 +148,7 @@ export type TaskTimelineConfiguration = {
   barColor?: string | null;
 };
 
+/** @deprecated Retained for saved widget import/export and configuration validation. */
 export type PersonalFinanceSourceMapping = {
   incomeFieldMetadataId?: SerializedRelation | null;
   expenseFieldMetadataId?: SerializedRelation | null;
@@ -157,6 +159,7 @@ export type PersonalFinanceSourceMapping = {
   categoryFieldMetadataId?: SerializedRelation | null;
 };
 
+/** @deprecated Retained for saved widgets; no active finance widget is available. */
 export type PersonalFinanceConfiguration = {
   configurationType: 'PERSONAL_FINANCE';
   baseCurrencyCode?: CurrencyCode | null;
@@ -268,98 +271,6 @@ export type TaskDependency = {
 export type TaskTimelineStateEnvelope = {
   status: WidgetDataState;
   items?: TaskTimelineItem[];
-};
-
-export type FinancePeriodContext = {
-  granularity: string;
-  start: string;
-  end: string;
-  timezone: string;
-};
-
-export type FinanceComparisonBaseline = {
-  kind: string;
-  start: string | null;
-  end: string | null;
-};
-
-export type FinancePrecision = {
-  amountScale: number;
-  ratioScale: number;
-  rounding: string;
-};
-
-export type FinanceSectionKey =
-  | 'kpiSummary'
-  | 'budgetVsActual'
-  | 'cashFlow'
-  | 'categoryAnalysis'
-  | 'netWorth';
-
-export type FinanceSectionBoundary = {
-  permission: 'granted' | 'denied';
-  sourceStatus: 'available' | 'unavailable' | 'stale';
-};
-
-export type FinanceUnavailableReason =
-  | 'PERMISSION_DENIED'
-  | 'SOURCE_UNAVAILABLE'
-  | 'SOURCE_STALE'
-  | 'SEMANTICS_UNCONFIRMED'
-  | 'QUERY_FAILED'
-  | 'NO_DATA';
-
-export type FinanceMetric = {
-  key: string;
-  value: string;
-  label?: string;
-};
-
-export type FinanceKpiSummaryData = { metrics: FinanceMetric[] };
-export type FinanceBudgetVsActualData = {
-  rows: Array<{
-    category: string;
-    budget: string;
-    actual: string;
-    variance: string;
-  }>;
-};
-export type FinanceCashFlowData = {
-  opening: string;
-  inflows: string;
-  outflows: string;
-  closing: string;
-};
-export type FinanceCategoryAnalysisData = {
-  categories: Array<{ category: string; amount: string; share: string | null }>;
-};
-export type FinanceNetWorthData = {
-  assets: string;
-  liabilities: string;
-  netWorth: string;
-};
-
-export type FinanceSection<TData = unknown> = {
-  status: WidgetDataState;
-  periodContext: FinancePeriodContext;
-  comparisonBaseline: FinanceComparisonBaseline;
-  currency: string;
-  precision: FinancePrecision;
-  freshness: string | null;
-  boundary: FinanceSectionBoundary;
-  unavailableReason?: FinanceUnavailableReason;
-  data?: TData;
-};
-
-export type PersonalFinanceStateEnvelope = {
-  status: WidgetDataState;
-  sections: {
-    kpiSummary: FinanceSection<FinanceKpiSummaryData>;
-    budgetVsActual: FinanceSection<FinanceBudgetVsActualData>;
-    cashFlow: FinanceSection<FinanceCashFlowData>;
-    categoryAnalysis: FinanceSection<FinanceCategoryAnalysisData>;
-    netWorth: FinanceSection<FinanceNetWorthData>;
-  };
 };
 
 export type PageLayoutWidgetConfiguration =

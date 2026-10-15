@@ -1,0 +1,34 @@
+# Retire Personal Finance widget
+
+## Objective, problem and rationale
+
+Remove active Personal Finance widget creation, settings, rendering and widget-only aggregation. The existing widget has no production data-provider wiring; keeping an active unsupported product surface is misleading. Existing saved dashboards must remain readable without deleting financial business data or widget metadata automatically.
+
+## Scope and constraints
+
+Replace saved widget content with an accessible retired placeholder: “This widget is no longer available. Remove it from the dashboard.” Preserve the normal user-initiated removal controls. Remove creation options/handlers and active financial settings/provider/aggregation code only after consumer inspection. Retain deprecated serialized enums/configuration DTOs, GraphQL union, conversion/validation/import/export compatibility, historical migrations and legacy layout sizes as needed. No financial records, objects, tasks or persisted metadata deletion; no DB queries/writes, authentication, migrations, builds, service restarts, installs, remote operations, commits or PRs. Preserve all pre-existing dirty files and generated contracts. English artifacts only.
+
+## Route and forecast
+
+Parent-authorized delegated direct, one writer, no additional delegates. Trigger: cross-layer UI retirement with storage compatibility. Natural unit: retirement plus compatibility tests/docs. Forecast: 300–600 additions and 800–1,600 deletions; count both, likely above the advisory 400-line budget. No artificial test splitting, omitted proof or code-golf. Delivery ask-on-risk; parent decides strategy after independent verification. TDD OFF (canonical parity doc testing-capabilities source); RDD OFF (explicit clone-local user decision). Backend historical enum retained.
+
+## Stable tasks and acceptance
+
+- [x] PF01 — Removed creation option/keyboard ID/handler and creator/default factory. No active financial settings component/route exists in this checkout; retired type now explicitly bypasses generic settings navigation.
+- [x] PF02 — Saved widgets render the retired placeholder without a finance provider. Existing native header/user-initiated dashboard removal remains; no automatic mutation.
+- [x] PF03 — Removed widget-only frontend presentation/provider and isolated server aggregation/types/tests (eight deleted files). Removed unused shared finance presentation envelopes, retained deprecated serialized configuration/source contracts, DTO/GraphQL union and conversion/validation/import/export paths.
+- [x] PF04 — Local verification passed; independent parent verification pending. Exact checks and all 34 refinement-owned paths are in the OVD07–09 evidence section of `overdue-native-task-widget.md`.
+
+## Verification and rollback
+
+Selected verification: 32 suites, 518 tests, 55 snapshots across shared/front/server, rerunning every prior 451-test overdue baseline path plus native side-panel guards, retired renderer/creation absence/removal access, frontend legacy envelope cache/save/export and backend mapped-field round trips/DTO validation/registration. All three offline dependency-excluded uncached typechecks pass. Deleted finance feature tests are not counted. Owned-path normalization preceded final source proof; format/diff and source-hash checks are recorded with exact commands in the overdue document. No source build/install was run.
+
+CodeGraph preceded structural searches; capped responses required targeted direct-file reads for omitted symbols. Global consumer audit confirms no active finance creator/provider/renderer/aggregation consumers remain. Intentionally retained: serialized PERSONAL_FINANCE/configuration enum and GraphQL union, SDK/generated contracts, source mapping validators/converters, historical enum migration and legacy WidgetSizes. Generic metadata API compatibility still accepts legacy configuration; this is not an active financial data endpoint. The pre-existing frontend fragment selects only the finance configuration envelope, not financial mappings; full mapped-field compatibility is verified at backend converter/DTO boundaries, not falsely claimed as new frontend mapping support.
+
+Browser: `node /tmp/opencode/overdue-refinements/browser.cjs` uses actual component/native card ancestry and extracted Linaria CSS with synthetic sources/navigation; safe placeholder screenshot is `retired-placeholder.png`. No authenticated app, real persistence or business data operations. Final browser bundling has two nonfatal existing shared-dist sideEffects warnings. Initial harness import and frontend union-guard failures were corrected before final passing proof; logs retained.
+
+Review counts and exact paths: `overdue-native-task-widget.md` refinement evidence and `/tmp/opencode/overdue-refinements/line-counts.json`: combined accumulated 4,695 authored + 52 generated lines across 76 paths; this refinement touches 34 paths, adding an accumulated-diff delta of 1,978 authored + 0 generated beyond incoming work. Authored additions plus deletions count toward the advisory budget; this is not an incremental edit-churn measurement. Rollback only retirement-owned presentation/creation/aggregation edits/tests and restore deleted implementation files; never alter historical migrations, saved data or unrelated work. No commit before parent independent verification and delivery decision. Historical parity documentation remains an audit record with a current retirement scope note.
+
+Bounded verification follow-up adds real shell/retired-content/native-header/remove-callback integration with real Jotai hover state; only unrelated email/field/table renderer imports are stubbed for the existing marked ESM boundary. No automatic deletion or domain/backend delete call is made. The paired overdue provider test executes the actual native provider/view loading/opening state path; browser uses a real context/provider/opening wrapper with a synthetic context value and lowest native open-action spy. Exact final commands/results and updated counts are in the bounded provider-proof correction section of the overdue document. Production source is unchanged; previous shared/server passes remain valid. No authenticated app or persistence proof is claimed.
+
+Latest bounded proof: affected 2 suites/4 tests pass; full frontend 22 suites/227 tests/55 snapshots and uncached dependency-excluded frontend typecheck pass. Together with byte-unchanged shared/server proof: 34 suites/522 tests/55 snapshots. Real-context browser hit-testing preserves provider object/UUID and Jotai parent filters/groups/sorts on all seven activations; native provider/view-loading/native-opening state is independently covered in Jest. Current accumulated scope is 5,064 authored + 52 generated lines/78 paths, a 369 authored + 0 generated correction delta; production source is unchanged. No production behavior changes, source commits or data/service operations.

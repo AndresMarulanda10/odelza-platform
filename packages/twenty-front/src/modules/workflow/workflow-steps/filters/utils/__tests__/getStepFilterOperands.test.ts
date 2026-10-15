@@ -27,6 +27,14 @@ const filterTypesWithoutSubField = [
 ] as const;
 
 describe('getStepFilterOperands', () => {
+  it('does not expose a member-timezone-only view operand to workflow evaluation', () => {
+    expect(
+      getStepFilterOperands({
+        filterType: 'DATE_TIME',
+        subFieldName: undefined,
+      }),
+    ).not.toContain('IS_BEFORE_TODAY');
+  });
   it.each(filterTypesWithoutSubField)(
     'returns the expected operands for filterType=%s',
     (filterType) => {

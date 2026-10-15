@@ -1,5 +1,7 @@
 # Catalog and Custom Widget Parity
 
+> Current product scope: Personal Finance is being retired under [Retire Personal Finance widget](retire-personal-finance-widget.md). Its implementation objectives below are historical, not active delivery requirements. Saved-widget storage compatibility and financial business data are preserved.
+
 ## Objective
 
 Bring the Catalog data view and the custom Task Timeline and Personal Finance widgets into coherent structural parity with native view/widget data, configuration, persistence, permission, and error-handling patterns.

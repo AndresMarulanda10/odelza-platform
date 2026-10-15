@@ -99,6 +99,7 @@ exports[`getRecordFilterOperands returns the expected operands for filterType=DA
 exports[`getRecordFilterOperands returns the expected operands for filterType=DATE_TIME 1`] = `
 [
   "IS",
+  "IS_BEFORE_TODAY",
   "IS_RELATIVE",
   "IS_IN_PAST",
   "IS_IN_FUTURE",

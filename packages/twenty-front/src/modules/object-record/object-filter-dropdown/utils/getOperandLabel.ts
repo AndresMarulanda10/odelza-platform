@@ -24,6 +24,8 @@ export const getOperandLabel = (
       return t`Less than or equal`;
     case ViewFilterOperand.IS_BEFORE:
       return t`Is before`;
+    case ViewFilterOperand.IS_BEFORE_TODAY:
+      return t`Is before today${timeZoneAbbreviationSuffix}`;
     case ViewFilterOperand.IS_AFTER:
       return t`Is after or equal`;
     case ViewFilterOperand.IS:
@@ -79,6 +81,8 @@ export const getOperandLabelShort = (
       return '\u00A0≤ ';
     case ViewFilterOperand.IS_BEFORE:
       return '\u00A0< ';
+    case ViewFilterOperand.IS_BEFORE_TODAY:
+      return t`: Before today${timeZoneAbbreviationSuffix}`;
     case ViewFilterOperand.IS_AFTER:
       return '\u00A0≥ ';
     case ViewFilterOperand.IS_IN_PAST:

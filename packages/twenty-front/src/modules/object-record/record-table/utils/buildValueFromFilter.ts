@@ -127,6 +127,7 @@ const computeValueFromFilterDate = (
         ? Temporal.Now.plainDateISO(timeZone).toString()
         : Temporal.Now.instant().toString();
     case ViewFilterOperand.IS_EMPTY:
+    case ViewFilterOperand.IS_BEFORE_TODAY:
       return undefined;
     default:
       assertUnreachable(operand);

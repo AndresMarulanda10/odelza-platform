@@ -8,13 +8,16 @@ import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/use
 import { t } from '@lingui/core/macro';
 import { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
+import { type ViewFilterOperand } from 'twenty-shared/types';
 
 type AdvancedFilterSidePanelRecordFilterOperandSelectProps = {
   recordFilterId: string;
+  excludedOperands?: readonly ViewFilterOperand[];
 };
 
 export const AdvancedFilterSidePanelRecordFilterOperandSelect = ({
   recordFilterId,
+  excludedOperands = [],
 }: AdvancedFilterSidePanelRecordFilterOperandSelectProps) => {
   const { readonly, isWorkflowFindRecords } = useContext(AdvancedFilterContext);
   const currentRecordFilters = useAtomComponentStateValue(
@@ -57,7 +60,9 @@ export const AdvancedFilterSidePanelRecordFilterOperandSelect = ({
     <AdvancedFilterRecordFilterOperandSelectContent
       recordFilterId={recordFilterId}
       filter={filter}
-      operandsForFilterType={operandsForFilterType}
+      operandsForFilterType={operandsForFilterType.filter(
+        (operand) => !excludedOperands.includes(operand),
+      )}
     />
   );
 };

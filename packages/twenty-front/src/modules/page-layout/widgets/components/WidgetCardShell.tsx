@@ -12,9 +12,12 @@ import { WidgetCardHeader } from '@/page-layout/widgets/widget-card/components/W
 import { styled } from '@linaria/react';
 import { type MouseEvent, useContext } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { IconLock } from 'twenty-ui/icon';
+import { IconClock, IconLock } from 'twenty-ui/icon';
 import { ThemeContext } from 'twenty-ui/theme-constants';
-import { WidgetType } from '~/generated-metadata/graphql';
+import {
+  WidgetType,
+  WidgetConfigurationType,
+} from '~/generated-metadata/graphql';
 
 const StyledNoAccessContainer = styled.div`
   align-items: center;
@@ -96,6 +99,15 @@ export const WidgetCardShell = ({
             isReorderEnabled={isReorderEnabled}
             isDeletingWidgetEnabled={isDeletingWidgetEnabled}
             title={widget.title}
+            Icon={
+              widget.type === WidgetType.RECORD_TABLE &&
+              widget.configuration?.configurationType ===
+                WidgetConfigurationType.RECORD_TABLE &&
+              'presentationMode' in widget.configuration &&
+              widget.configuration.presentationMode === 'OVERDUE_ATTENTION'
+                ? IconClock
+                : undefined
+            }
             onRemove={onRemove}
             actions={actions}
             forbiddenDisplay={

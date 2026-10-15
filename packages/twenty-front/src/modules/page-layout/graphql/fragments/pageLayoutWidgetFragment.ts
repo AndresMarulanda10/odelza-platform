@@ -219,6 +219,8 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
       ... on RecordTableConfiguration {
         configurationType
         viewId
+        recordLimit
+        presentationMode
       }
       ... on WorkflowConfiguration {
         configurationType

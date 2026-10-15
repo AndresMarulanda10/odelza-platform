@@ -44,7 +44,10 @@ export const getStepFilterOperands = ({
       return FILTER_OPERANDS_MAP.RAW_JSON;
     case 'DATE_TIME':
     case 'DATE':
-      return FILTER_OPERANDS_MAP.DATE_TIME;
+      // Workflow evaluation has no member timezone; keep this view-only operand out.
+      return FILTER_OPERANDS_MAP.DATE_TIME.filter(
+        (operand) => operand !== ViewFilterOperand.IS_BEFORE_TODAY,
+      );
     case 'RATING':
       return FILTER_OPERANDS_MAP.RATING;
     case 'RELATION':

@@ -744,6 +744,7 @@ enum ViewFilterOperand {
   LESS_THAN_OR_EQUAL
   GREATER_THAN_OR_EQUAL
   IS_BEFORE
+  IS_BEFORE_TODAY
   IS_AFTER
   CONTAINS
   DOES_NOT_CONTAIN
@@ -1348,6 +1349,7 @@ type ViewConfiguration {
 }
 
 type RecordTableConfiguration {
+  presentationMode: String
   configurationType: WidgetConfigurationType!
   viewId: String
   recordLimit: Int

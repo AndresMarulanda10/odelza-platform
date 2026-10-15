@@ -19,6 +19,7 @@ export enum WidgetType {
   RECORD_TABLE = 'RECORD_TABLE',
   EMAIL_THREAD = 'EMAIL_THREAD',
   TASK_TIMELINE = 'TASK_TIMELINE',
+  /** @deprecated Saved-widget compatibility only; no active finance widget. */
   PERSONAL_FINANCE = 'PERSONAL_FINANCE',
   CARD_CAROUSEL = 'CARD_CAROUSEL',
 }

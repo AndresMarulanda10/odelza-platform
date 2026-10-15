@@ -1,5 +1,6 @@
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
 import { RecordTableWidgetRendererContent } from '@/page-layout/widgets/record-table/components/RecordTableWidgetRendererContent';
+import { OverdueAttentionWidget } from '@/page-layout/widgets/record-table/components/OverdueAttentionWidget';
 import { isDefined } from 'twenty-shared/utils';
 import { WidgetConfigurationType } from '~/generated-metadata/graphql';
 
@@ -27,6 +28,21 @@ export const RecordTableWidgetRenderer = ({
 
   if (!isDefined(widget.objectMetadataId) || !isDefined(viewId)) {
     return null;
+  }
+
+  if (
+    isRecordTableConfiguration &&
+    'presentationMode' in configuration &&
+    configuration.presentationMode === 'OVERDUE_ATTENTION'
+  ) {
+    return (
+      <OverdueAttentionWidget
+        objectMetadataId={widget.objectMetadataId}
+        viewId={viewId}
+        widgetId={widget.id}
+        recordLimit={recordLimit}
+      />
+    );
   }
 
   return (
