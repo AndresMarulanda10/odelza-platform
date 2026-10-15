@@ -1,5 +1,11 @@
 # Retire Personal Finance widget
 
+## Authorized delivery boundary
+
+Behavior commit: `7a3cf597b2b18d656208955e0c7f35a22179e0e7`, against `29121e2714`, includes the approved eight implementation/test deletions and preserves legacy serialized compatibility. The user authorized the exact combined 80-path commit and a normal, non-force push of `feat/catalog-custom-widget-parity` to `origin` (`github.com/AndresMarulanda10/odelza-platform`); push confirmation is pending at this documentation boundary. This supersedes historical no-commit restrictions below. No additional deletion, business-data operation, PR or chain strategy is authorized or claimed.
+
+The combined final retained proof is **35 suites / 526 tests / 55 snapshots**, with all existing owned package bytes matched to the refinement/provider-correction and OVD10 manifests and verified unchanged in the commit. Tests and typechecks were not rerun during delivery. Exact commands and scope remain in the overdue task document; its authorized delivery section records the 5,314 authored plus 52 generated changed-line boundary and rationale for keeping overlapping verified files together. This follow-up changes documentation only.
+
 ## Objective, problem and rationale
 
 Remove active Personal Finance widget creation, settings, rendering and widget-only aggregation. The existing widget has no production data-provider wiring; keeping an active unsupported product surface is misleading. Existing saved dashboards must remain readable without deleting financial business data or widget metadata automatically.

@@ -1,5 +1,13 @@
 # Overdue native task widget
 
+## Authorized delivery boundary
+
+Behavior commit: `7a3cf597b2b18d656208955e0c7f35a22179e0e7`, against `29121e2714`. The user authorized committing the exact 80 owned paths and a normal, non-force push of `feat/catalog-custom-widget-parity` to `origin` (`github.com/AndresMarulanda10/odelza-platform`). Push confirmation is pending at this documentation boundary. This supersedes historical no-commit restrictions below; no PR or chain strategy is selected.
+
+The cohesive commit preserves all latest overdue behavior, shared parent-object isolation and approved Personal Finance retirement. Shared selector/settings/configuration/tests overlap, so no unverified partial-hunk split was introduced. Its review size is 5,314 authored changed lines (4,089 additions, 1,225 deletions) plus 52 generated lines (29 additions, 23 deletions). The eight approved retirement deletions are unchanged; unrelated configuration, environment, private artifacts and user data remain outside the commit.
+
+Retained proof totals **35 suites / 526 tests / 55 snapshots**: shared 4/136, server 8/159 and frontend 23/231/55. All existing owned package files matched the combined provider-correction and OVD10 source manifests immediately before staging; committed blobs and working files were verified unchanged afterward. Prior passing typechecks remain prior evidence, not new runs. Staged path identity and diff checks passed; normal commit hooks were not bypassed. Runtime success and the applied native upgrade remain parent/user-supplied evidence; DataCloneError is unclassified. No authenticated runtime, CI result or PR is claimed. This documentation-only follow-up does not change the verified source boundary.
+
 ## Objective and rationale
 
 Create an **Overdue tasks** creation preset for the native record table with the approved attention presentation. Members need actionable overdue tasks without completed, statusless, or undated tasks.
