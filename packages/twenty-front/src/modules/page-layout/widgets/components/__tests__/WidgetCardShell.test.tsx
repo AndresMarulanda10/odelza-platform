@@ -79,7 +79,27 @@ describe('widget shell icon and retained removal boundary', () => {
   it.each([undefined, 'TABLE', 'OVERDUE_ATTENTION'])(
     'adds a header clock only for overdue mode %s',
     (mode) => {
-      render(<WidgetCardShell {...props(WidgetType.RECORD_TABLE, mode)} />);
+      const input = props(WidgetType.RECORD_TABLE, mode);
+      render(
+        <WidgetCardShell
+          widget={input.widget}
+          variant={input.variant}
+          isEditable={input.isEditable}
+          isEditing={input.isEditing}
+          isDragging={input.isDragging}
+          isResizing={input.isResizing}
+          isLastWidget={input.isLastWidget}
+          showHeader={input.showHeader}
+          hasAccess={input.hasAccess}
+          restriction={input.restriction}
+          actions={input.actions}
+          isInVerticalListTab={input.isInVerticalListTab}
+          isMobile={input.isMobile}
+          isReorderEnabled={input.isReorderEnabled}
+          isDeletingWidgetEnabled={input.isDeletingWidgetEnabled}
+          onRemove={input.onRemove}
+        />,
+      );
       expect(mockHeaderIcon).toBe(
         mode === 'OVERDUE_ATTENTION' ? IconClock : undefined,
       );
@@ -87,7 +107,26 @@ describe('widget shell icon and retained removal boundary', () => {
   );
   it('keeps the saved retired widget remove action without invoking it automatically', () => {
     const saved = props(WidgetType.PERSONAL_FINANCE);
-    render(<WidgetCardShell {...saved} />);
+    render(
+      <WidgetCardShell
+        widget={saved.widget}
+        variant={saved.variant}
+        isEditable={saved.isEditable}
+        isEditing={saved.isEditing}
+        isDragging={saved.isDragging}
+        isResizing={saved.isResizing}
+        isLastWidget={saved.isLastWidget}
+        showHeader={saved.showHeader}
+        hasAccess={saved.hasAccess}
+        restriction={saved.restriction}
+        actions={saved.actions}
+        isInVerticalListTab={saved.isInVerticalListTab}
+        isMobile={saved.isMobile}
+        isReorderEnabled={saved.isReorderEnabled}
+        isDeletingWidgetEnabled={saved.isDeletingWidgetEnabled}
+        onRemove={saved.onRemove}
+      />,
+    );
     expect(screen.getByRole('status')).toHaveTextContent(
       'This widget is no longer available.',
     );

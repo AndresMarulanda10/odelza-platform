@@ -467,6 +467,9 @@ export class DevSeederMetadataService {
         },
       ],
       workspaceId,
+      diagnoseSeedReturn:
+        process.env.CI === 'true' &&
+        process.env.SEED_RELATION_RETURN_DIAGNOSTICS === 'true',
     });
   }
 

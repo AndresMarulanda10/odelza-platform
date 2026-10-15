@@ -48,9 +48,11 @@ export const createAddDashboardWidgetTool = (
 Use get_dashboard first to get pageLayoutTabId and existing widget positions.
 You can reference the object and fields by NAME instead of UUID: pass objectName on the widget and the *FieldName variants in configuration (aggregateFieldName, primaryAxisGroupByFieldName, secondaryAxisGroupByFieldName, groupByFieldName). They are resolved server-side, so get_object_metadata / get_field_metadata are usually unnecessary. UUID variants still work and take precedence.
 
-Chart widgets (AGGREGATE_CHART, BAR_CHART, LINE_CHART, PIE_CHART) accept configuration.filter to restrict which records feed the chart, e.g. filter: { recordFilters: [{ fieldName: "createdAt", operand: "IS_RELATIVE", value: "PAST_7_DAY" }] }. Filter fields can be referenced by fieldName or fieldMetadataId and must belong to the widget object.
+ Chart widgets (AGGREGATE_CHART, BAR_CHART, LINE_CHART, PIE_CHART) accept configuration.filter to restrict which records feed the chart, e.g. filter: { recordFilters: [{ fieldName: "createdAt", operand: "IS_RELATIVE", value: "PAST_7_DAY" }] }. Filter fields can be referenced by fieldName or fieldMetadataId and must belong to the widget object.
 
-For RECORD_TABLE widgets: create a dedicated view first with upsert_complete_view (type TABLE, with its fields/filters/sorts in one call), then pass its viewId in configuration. Never reuse an existing record index view.
+VIEW widgets require configuration { configurationType: "VIEW", viewId } with the UUID of the view to render.
+
+ For RECORD_TABLE widgets: create a dedicated view first with upsert_complete_view (type TABLE, with its fields/filters/sorts in one call), then pass its viewId in configuration. Never reuse an existing record index view.
 
 See create_complete_dashboard for full configuration examples.`,
   inputSchema: addDashboardWidgetSchema,

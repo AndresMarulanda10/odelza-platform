@@ -22,6 +22,9 @@ jest.mock(
   '@/page-layout/widgets/record-table/components/RecordTableWidgetRenderer',
   () => ({ RecordTableWidgetRenderer: () => null }),
 );
+jest.mock('@/page-layout/widgets/view/components/ViewWidgetRenderer', () => ({
+  ViewWidgetRenderer: () => null,
+}));
 
 it('binds the real retired renderer and native header remove action without automatically mutating a saved widget', () => {
   const store = createStore();

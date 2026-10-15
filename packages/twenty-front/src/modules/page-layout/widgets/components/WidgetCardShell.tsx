@@ -127,7 +127,10 @@ export const WidgetCardShell = ({
           isEditable={isEditable}
           isInVerticalListTab={isInVerticalListTab}
           isMobile={isMobile}
-          hasInteractiveContent={widget.type === WidgetType.RECORD_TABLE}
+          hasInteractiveContent={
+            widget.type === WidgetType.RECORD_TABLE ||
+            widget.type === WidgetType.VIEW
+          }
         >
           {hasAccess ? (
             <ErrorBoundary

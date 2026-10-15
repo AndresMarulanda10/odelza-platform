@@ -16,6 +16,7 @@ import { useCreatePageLayoutIframeWidget } from '@/page-layout/hooks/useCreatePa
 import { useCreatePageLayoutRecordTableWidget } from '@/page-layout/hooks/useCreatePageLayoutRecordTableWidget';
 import { useCreatePageLayoutStandaloneRichTextWidget } from '@/page-layout/hooks/useCreatePageLayoutStandaloneRichTextWidget';
 import { useCreatePageLayoutTaskTimelineWidget } from '@/page-layout/hooks/useCreatePageLayoutTaskTimelineWidget';
+import { useCreatePageLayoutViewWidget } from '@/page-layout/hooks/useCreatePageLayoutViewWidget';
 import { useOpportunityDefaultChartConfig } from '@/page-layout/hooks/useOpportunityDefaultChartConfig';
 import { useRemovePageLayoutWidgetAndPreservePosition } from '@/page-layout/hooks/useRemovePageLayoutWidgetAndPreservePosition';
 import { pageLayoutDraftComponentState } from '@/page-layout/states/pageLayoutDraftComponentState';
@@ -41,9 +42,9 @@ import {
   IconApps,
   IconChartPie,
   IconFrame,
+  IconLayoutKanban,
   IconTable,
   IconTimelineEvent,
-  IconLayoutKanban,
   IconClock,
 } from 'twenty-ui/icon';
 import { type FrontComponent, WidgetType } from '~/generated-metadata/graphql';
@@ -103,6 +104,8 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
       pageLayoutId,
       tabListInstanceId,
     });
+  const { createPageLayoutViewWidget } =
+    useCreatePageLayoutViewWidget(pageLayoutId);
 
   const { removePageLayoutWidgetAndPreservePosition } =
     useRemovePageLayoutWidgetAndPreservePosition(pageLayoutId);
@@ -246,6 +249,30 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
     });
   };
 
+  const handleNavigateToViewSettings = () => {
+    if (
+      isExistingWidgetMissingOrDifferentType(
+        existingWidget?.type,
+        WidgetType.VIEW,
+      )
+    ) {
+      if (isDefined(pageLayoutEditingWidgetId)) {
+        removePageLayoutWidgetAndPreservePosition(pageLayoutEditingWidgetId);
+      }
+
+      const newViewWidget = createPageLayoutViewWidget(
+        firstAvailableObjectMetadataItem,
+      );
+
+      setPageLayoutEditingWidgetId(newViewWidget.id);
+    }
+
+    navigatePageLayoutSidePanel({
+      sidePanelPage: SidePanelPages.DashboardRecordTableSettings,
+      focusTitleInput: false,
+    });
+  };
+
   const handleCreateFrontComponentWidget = (frontComponent: FrontComponent) => {
     if (
       isExistingWidgetMissingOrDifferentType(
@@ -347,6 +374,7 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
     'chart',
     'record-table',
     ...(overdueTaskObject ? [OVERDUE_TASKS_PRESET_ID] : []),
+    'view',
     'iframe',
     'rich-text',
     'task-timeline',
@@ -392,6 +420,17 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
             />
           </SelectableListItem>
         )}
+        <SelectableListItem
+          itemId="view"
+          onEnter={handleNavigateToViewSettings}
+        >
+          <CommandMenuItem
+            Icon={IconLayoutKanban}
+            label={t`Kanban View`}
+            id="view"
+            onClick={handleNavigateToViewSettings}
+          />
+        </SelectableListItem>
         <SelectableListItem
           itemId="iframe"
           onEnter={handleNavigateToIframeSettings}

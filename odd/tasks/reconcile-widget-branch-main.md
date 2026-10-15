@@ -1,0 +1,518 @@
+# Reconcile widget branch with main
+
+## State: resolved, corrected and locally verified; independent parent gate pending
+
+## Scoped SDK filter-enum completion
+
+Parent clarifies that `enumViewFilterOperand.IS_BEFORE_TODAY` is part of the
+introduced native before-today filter contract, not unrelated SDK drift. The
+earlier out-of-scope classification below is historical and incorrect for this
+delivery boundary. Continue the same bounded SDK correction from staged tree
+`0f49b434c32e798e294e12a68a931e99ffc4bdf3`.
+
+The already-produced offline generator output contains exactly one missing
+convenience-object member. Add that member without a wider refresh. Genql's
+compressed `types.ts` enum entry is intentionally an empty scalar/enum marker,
+not a member-value map; current and generated runtime maps are identical except
+for the preserved trailing newline, so no runtime-map edit is needed there.
+
+Extend the existing SDK contract test with one focused case comparing this
+enum's SDL values, generated TypeScript union and actual exported convenience
+object, including a typed `IS_BEFORE_TODAY` fixture. No other enum/type audit.
+Normalize the owned test before proof; run SDK tests/native typecheck/build and
+the existing 868-test application inventories against the rebuilt isolated SDK.
+Retain unchanged application lint/compile source proofs, capture a new source
+freeze/staged tree, and compare original dirty fingerprints. No commit/push,
+network/install, database or service operation is authorized.
+
+### Filter-enum completion proof
+
+The final generated delta for this continuation is exactly the native generator's
+single `IS_BEFORE_TODAY: 'IS_BEFORE_TODAY' as const` member in
+`enumViewFilterOperand`. No compressed runtime-map change was needed. A
+pre-freeze generator-block comparison caught a broad patch-context match in a
+neighboring enum; it was corrected before freezing or running final tests, and
+no neighboring enum remains modified.
+
+The existing contract test now has one additional enum case: all 17 SDL values
+match the generated TypeScript union and actual convenience object's keys and
+values, with a typed before-today fixture. The two RecordTable cases remain.
+Native SDK Vitest passed **4 files / 23 tests**; fresh offline SDK typecheck and
+build passed. A separate read-only assertion loaded the rebuilt worktree
+`twenty-client-sdk/metadata` export and verified that
+`MetadataSchema.enumViewFilterOperand` matches all 17 SDL values and exposes
+`IS_BEFORE_TODAY`. No client/query was instantiated or sent.
+
+After that local rebuild, a fresh final application rerun passed **42 frontend
+suites / 532 tests / 55 snapshots**, **16 server suites / 200 tests**, and **4
+shared suites / 136 tests**: the same **62 suites / 868 tests / 55 snapshots**.
+The separate SDK count increased from 22 to 23; no old tests or snapshots were
+removed or rewritten. Exact prior inventories and native commands are unchanged;
+fresh evidence is `sdk-enum-{tests,typecheck,build,built-runtime}.log` and
+`sdk-enum-{front,server,shared}-jest.log` with corresponding `-results.json`.
+
+Application compile/lint and 332-document native validation proofs remain
+retained, not fresh: application source, local SDL, and configurations are
+unchanged. The existing unused standalone fragment observation remains a
+follow-up only; no automatic unrelated correction was made. The known introduced
+RecordTable and before-today SDK contract scope is now complete, without claiming
+an audit of all SDK types or native review authority. Final owned-file format,
+freeze/bindings/integrity checks and staged tree are captured in the handoff
+manifest; independent parent readback is still required before commit/push.
+
+## Bounded SDK contract correction plan
+
+Independent verification identified an inherited inconsistency in both merge
+parents: local SDL and the generated RecordTableConfiguration result interface
+contain `presentationMode`, but the Genql selection interface and runtime type
+map omit it. Parent authorizes one minimal offline correction, not a project-wide
+generator refresh. The prior candidate tree is
+`cd3ddaa62a6ebd95feebdf07c7938e6db8bbb675`.
+
+Trace: the ordinary metadata script introspects a server and will not be run.
+Its internal generator delegates to vendored `src/generate/genql/generate`, whose
+config accepts an SDL string and whose schema loader only calls local GraphQL
+build/validation. Generate from the merged SDK SDL into private scratch using
+the installed local TypeScript runner and the same scalar mappings. Compare the
+generator output, then apply only the RecordTableConfiguration field additions.
+Add a read-only AST regression in the existing SDK generator test directory that
+audits every SDL field of this configuration against result/selection interfaces
+and runtime mappings, including `recordLimit` and `presentationMode`.
+
+Planned checks: scoped generated diff/format checks; SDK test and native offline
+typecheck; strict local SDL parse/build/schema validation and every configured
+frontend metadata document; rebuild only the isolated SDK if runtime proof needs
+it, then rerun the existing exact 62-suite/868-test inventories. Retain frontend
+lint and other compile proof only with explicit unchanged-source hashes. Finish
+with staged candidate/source hashes and original checkout integrity comparison.
+No API introspection/network, installs, original builds, schema/application
+contract edits, database/services, commit, or push are authorized.
+
+### SDK correction observations and scope
+
+The installed runner executed the vendored schema-string generator into
+`/tmp/opencode/main-reconciliation/sdk-genql-scratch`, with the metadata wrapper's
+DateTime/JSON/UUID/Upload scalar mappings. Its relevant selection-interface and
+runtime-object blocks match the corrected source exactly. Applied output is
+only four generated additions: one selection property and its three-line runtime
+String-index mapping. Result-interface field order and generated trailing newline
+were deliberately preserved; no wholesale regeneration was applied.
+
+The scratch comparison also exposed an existing missing `IS_BEFORE_TODAY` member
+in the generated `enumViewFilterOperand` convenience object, although its union
+type and SDL include the operand. This is outside the authorized RecordTable
+field-map correction and is unchanged. No whole-SDK synchronization claim is made;
+the regression audits all four RecordTable SDL fields, not unrelated enums/types.
+
+The new read-only AST regression checks complete result/selection field sets,
+result nullability, selectable scalar syntax, runtime named-type indices, and
+scalar/enum classification. Typed fixtures explicitly select both `recordLimit`
+and `presentationMode`; the native SDK typecheck verifies their generated types.
+The existing SDK Vitest suite passed **4 files / 22 tests**, including the two new
+contract cases. Native offline uncached SDK typecheck and build both passed;
+all new runtime/declaration output is isolated to this worktree.
+
+Strict merged-SDL parse/build/schema validation passed. The actual configured
+frontend document loader found **332 local documents**. Native codegen validation
+reported zero errors. An additional raw GraphQL specified-rules invocation
+reported the pre-existing unused `AvailableSSOIdentityProvidersFragment` only;
+this observation is retained in a separate log, not silently waived. The installed
+codegen itself excludes unused-fragment/unused-variable/known-directive rules;
+using its existing validator required no project configuration change.
+
+Evidence: `sdk-offline-generation.log`, `sdk-contract-tests.log`,
+`sdk-contract-typecheck.log`, `sdk-contract-build.log`,
+`sdk-contract-sdl-documents.log` (raw rules), and
+`sdk-contract-native-documents.json` (exact native rules/results), all under the
+same private evidence directory. Final existing 868-test rerun and candidate
+freeze/integrity checks follow after normalization; no new live runtime claim.
+
+### Final SDK correction proof
+
+After normalization and a new non-document source freeze, the rebuilt isolated
+client SDK was followed by a fresh rerun of all existing exact inventories:
+**42 frontend suites / 532 tests / 55 snapshots**, **16 server suites / 200 tests**,
+and **4 shared suites / 136 tests**, all passed. This retains **62 suites / 868
+tests / 55 snapshots** without adding SDK tests to the old count. Separately, SDK
+Vitest passed **4 files / 22 tests**, including the two new AST/type-map cases.
+No existing tests or snapshots were removed or updated.
+
+Exact inventories remain `lint-final-{front,server,shared}-tests.json`; the fresh
+execution logs/results are `sdk-contract-{front,server,shared}-jest.log` and
+matching `-results.json`. The direct Jest command recipe above is unchanged.
+SDK commands were:
+
+```bash
+# From packages/twenty-client-sdk; existing native Vitest config, mocked transport:
+TMPDIR=/tmp/opencode/main-reconciliation node ../../node_modules/vitest/vitest.mjs run --config vitest.config.ts
+# From the isolated root, with the same offline/Nx environment recorded above:
+node node_modules/nx/dist/bin/nx.js run twenty-client-sdk:typecheck --excludeTaskDependencies --skipNxCache --no-cloud
+node node_modules/nx/dist/bin/nx.js run twenty-client-sdk:build --excludeTaskDependencies --skipNxCache --no-cloud
+```
+
+The previous frontend lint and shared/frontend/server compile successes are
+retained evidence, not fresh executions in this SDK action. Application source,
+lint configuration, and SDL are unchanged; the correction adds only one optional
+generated selection property, its runtime String mapping, and a read-only SDK
+regression. The SDK's new native typecheck/build establish the additive generated
+contract. `sdk-contract-retained-source-proof.json` records unchanged previous
+application-source hashes. No broader build dependency graph or contract-wide
+SDK synchronization is claimed.
+
+Scoped normal formatter checks pass for the new SDK test. The generated files
+are excluded by normal formatting policy; their corrected blocks exactly match
+the native offline generator's formatting and content, with unrelated output
+differences deliberately not applied. Diff/marker/index checks and the final
+source freeze are part of the handoff manifest. Runtime/type module bindings
+still point to this worktree, and original checkout fingerprints are rechecked
+at handoff. No new authorizing/native review authority, commit or push occurred.
+
+## Bounded lint correction plan
+
+Parent authorizes correcting the 18 observed frontend lint errors in exactly the
+seven files listed in the lint evidence below. Published-feature provenance is
+not an exemption. Route: direct isolated local correction, no additional writers.
+No rules/configuration, suppressions, database/API contracts, or unrelated files
+will change. The previous staged candidate tree is
+`d750fe888719cdf94331cf7ba7897d8b8de246c9`.
+
+Expected semantic preservation: use the native Jotai store pattern for per-hook
+request ownership/latest-query bookkeeping instead of state-bearing refs; retain
+same-turn request serialization, identity guards, pagination rows/count and retry.
+Use the required state-derived variable and component-prop type names; explicitly
+forward widget/test props without spreading or removing assertions. Express
+missing permissions with an explicit undefined guard. Sort CSS declarations and
+bind the existing warning/urgent orange/red severity roles to native theme
+accent/tag tokens. Layout, two-column breakpoint, keyboard/click activation,
+severity thresholds, and retirement behavior remain unchanged; theme colors now
+follow the native palette rather than custom hardcoded hex values.
+
+Checks: normalize only the owned seven sources before freezing; run full frontend
+type-aware lint once on final correction; run all existing disjoint 62-suite /
+868-test inventories and frontend typecheck. Preserve valid shared/server compile
+proof by verifying their unchanged source hashes. Existing hook race/retry tests
+are the request-ownership runtime boundary; no live runtime is authorized. Finish
+with formatting/diff/marker checks, complete staged candidate hashes, and original
+checkout integrity comparison. No commit/push before independent parent gate.
+
+- Feature head: `7bc50177091fca9d38dbb3116c34b792e25cf30d`.
+- Fetched main: `25888259c01a4fc19823f6a8a52fafea8e1e27c3`.
+- Merge ancestor: `e88cd9b1421b454132d75e39d5c702151a7ee08256`.
+- Isolated branch: `fix/reconcile-widgets-main-20261015`.
+- Existing PR #54 remains the delivery boundary; accepted large-PR exception applies.
+- No history rewriting, final commit, push, PR mutation, database execution, service changes, or installation is permitted in this preparation action.
+- TDD and RDD remain off under the existing project capability; functional verification is required, not invented review receipts.
+
+## Resolution plan and forecast
+
+The native merge reports 29 conflicted files. The exact inventory and native
+merge output are retained privately under `/tmp/opencode/main-reconciliation/`.
+Catalog cards, data lifecycle, image validation, and view-field migration must
+retain main's PR #52 fixes while adding feature subtitle/detail compatibility.
+Timeline source/date/request isolation, native overdue table presentation, and
+retired personal finance compatibility must retain the feature's later behavior.
+Main's newer view configuration and unrelated administration/CI changes must be
+preserved. Generated metadata contracts must contain both branches' additions.
+Tests are reconciled by intended contract, not weakened to fit an older UI.
+Authored-line forecast remains above the normal review budget; no slicing or
+new PR is authorized. Actual changed-line counts will be recorded after resolution.
+
+## Routes and checks
+
+- [x] Verify authorized HTTPS origin and fetch exact main/feature refs.
+- [x] Snapshot original HEAD, index diff, worktree diff, dirty-file hashes/modes privately.
+- [x] Create isolated worktree and run native no-commit merge.
+- [x] Resolve conflicts with both semantic contracts preserved.
+- [x] Prove dependency/test resolution targets isolated source before verification.
+- [x] Run scoped Catalog, Timeline, overdue, shared, and server offline checks.
+- [x] Run relevant offline type checks and formatting/marker/diff checks.
+- [x] Freeze source hashes before final tests; final candidate/original comparison at handoff.
+- [ ] Obtain independent parent verification before any final commit or push.
+
+## Runtime and rollback boundary
+
+Live runtime checks are not authorized: no services, databases, or migrations are
+run. Offline test harnesses are the available runtime boundary. Rollback is the
+isolated reconciliation worktree/temporary branch only; preserve it on blockers
+and never discard or reset the original checkout.
+
+## Evidence and blocker
+
+Continuation authorizes individual third-party dependency links and isolated
+workspace package bindings, with offline local builds. The worktree now has its
+own node_modules directory; all 20 recognized workspace packages link to this
+worktree's packages, never the original checkout. Third-party links reuse existing
+installed packages. No package manager installation or lockfile change occurred.
+Missing local workspace dist exports are expected until merged source is built.
+Shared type conflicts are reconciled as the union of main View/finance legacy
+contracts and feature overdue/Timeline contracts, retaining finance deprecation.
+The earlier dependency stop below is historical, not the current task state.
+
+### Initial dependency stop (historical)
+
+At the initial stop, no resolution edits had been applied. The native merge and
+unmerged stages were retained. The following describes that earlier checkpoint.
+
+`createRequire(worktree + '/package.json').resolve(...)` reports
+`MODULE_NOT_FOUND` for `jest/package.json`, `twenty-shared/types`, and
+`twenty-ui/icon`. The isolated checkout has no `node_modules`, no shared build,
+and only tracked theme CSS under the UI dist directory. The original checkout
+resolves the workspace packages to its own `packages/*/dist/*.cjs` files, through
+workspace links in its node_modules. Reusing that directory without isolated
+workspace-package bindings would therefore exercise original-checkout builds,
+not the reconciled source. Per the explicit dependency-gap stop instruction,
+no installation, dependency link, build, or custom resolver workaround was
+attempted. Next step: establish safe isolated workspace-package resolution using
+existing third-party dependencies before continuing conflict resolution/checks.
+
+The original HEAD, every recorded dirty-file hash and mode, binary worktree
+diff, and binary index diff were compared after the merge and remain unchanged.
+No tests, typechecks, live runtime checks, migrations, commit, or push occurred.
+Native merge exit was 1, with 29 conflicted paths and 69 unmerged index stages.
+The staged numstat currently reports 98 entries, 4,133 additions and 104 deletions
+(including zero-count unmerged entries); this is not a final authored or PR count.
+
+History inspection confirms main's Timeline differences come from its older
+`804472ce4f` implementation, while Catalog has six subsequent focused fixes.
+Main's new View widget is separate from the native record-table View and must
+remain available without resurrecting retired finance creation. The main Catalog
+container intentionally replaces legacy subtitle/detail output with native
+visible fields; do not blindly reintroduce duplicate role output.
+
+## Exact conflict inventory
+
+```text
+odd/tasks/catalog-custom-widget-parity.md
+packages/twenty-client-sdk/src/metadata/generated/types.ts
+packages/twenty-e2e-testing/tests/create-new-widgets.spec.ts
+packages/twenty-front/src/generated-metadata/graphql.ts
+packages/twenty-front/src/modules/object-record/record-index/components/RecordCatalogCard.tsx
+packages/twenty-front/src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+packages/twenty-front/src/modules/object-record/record-index/components/__tests__/RecordCatalogCard.test.tsx
+packages/twenty-front/src/modules/object-record/record-index/components/__tests__/RecordIndexCatalogContainer.test.tsx
+packages/twenty-front/src/modules/object-record/record-index/hooks/__tests__/useMigrateCatalogViewFields.test.tsx
+packages/twenty-front/src/modules/object-record/record-index/hooks/useMigrateCatalogViewFields.ts
+packages/twenty-front/src/modules/object-record/utils/__tests__/extractImageUrlFromText.test.ts
+packages/twenty-front/src/modules/object-record/utils/extractImageUrlFromText.ts
+packages/twenty-front/src/modules/page-layout/constants/WidgetSizes.ts
+packages/twenty-front/src/modules/page-layout/widgets/components/WidgetContentRenderer.tsx
+packages/twenty-front/src/modules/page-layout/widgets/components/__tests__/WidgetContentRenderer.test.tsx
+packages/twenty-front/src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+packages/twenty-front/src/modules/page-layout/widgets/task-timeline/components/__tests__/TaskTimelineWidget.test.tsx
+packages/twenty-front/src/modules/page-layout/widgets/task-timeline/hooks/useTaskTimelineData.ts
+packages/twenty-front/src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+packages/twenty-front/src/modules/side-panel/pages/page-layout/components/__tests__/SidePanelPageLayoutDashboardWidgetTypeSelect.test.tsx
+packages/twenty-front/src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+packages/twenty-front/src/modules/side-panel/pages/page-layout/components/dashboard/__tests__/SidePanelDashboardTaskTimelineSettings.test.tsx
+packages/twenty-server/src/database/commands/upgrade-version-command/instance-commands.constant.ts
+packages/twenty-server/src/engine/metadata-modules/page-layout-widget/dtos/personal-finance-configuration.dto.ts
+packages/twenty-server/src/engine/metadata-modules/page-layout-widget/enums/widget-type.enum.ts
+packages/twenty-server/src/engine/metadata-modules/page-layout-widget/utils/__tests__/validate-widget-configuration-input.util.spec.ts
+packages/twenty-server/src/engine/metadata-modules/page-layout-widget/utils/validate-widget-configuration-input.util.ts
+packages/twenty-shared/src/types/index.ts
+packages/twenty-shared/src/types/page-layout/page-layout-widget-configuration.type.ts
+```
+
+## Reconciled semantics
+
+- Catalog's eight conflicted source/test files use main's later PR #52 native
+  visible-field, readable-label, image validation, Jotai request lifecycle, and
+  migration retry fixes. Main retains standalone card subtitle/detail compatibility;
+  the container uses native visible fields rather than duplicate role output.
+- Timeline's five conflicted source/test files retain the feature's later generic
+  source selection, permissions, explicit mapping failures, date/calendar logic,
+  request/cache isolation, and native settings. Main's only Timeline ancestor in
+  the merge range was the earlier #42 implementation.
+- Menu, renderer, settings and sizes combine main's separate View widget with
+  native table/overdue modes. Finance remains absent from creation/keyboard menus,
+  and saved finance renders the retired placeholder. Legacy main modules/types
+  and server financial aggregation remain stored but are not active widget routes.
+- Added explicit tests for separate Kanban creation, View renderer dispatch, and
+  View settings delegation; retained overdue icons and table behavior assertions.
+- Retired-widget shell integration now excludes the newly introduced unrelated
+  View branch just as it already excluded table/email/field branches. It still
+  binds the real retired renderer and real remove action with all assertions.
+- E2E saved finance round-trip remains covered, now expecting the retirement
+  notice rather than an active finance empty state. Browser execution is excluded.
+- Server DTO validation, View validation tests, the single before-today upgrade
+  registration, shared types, SDK metadata schema and generated contracts contain
+  both branches' changes. Main CI/admin/onboarding changes remain auto-merged.
+- Metadata GraphQL regenerated offline using the normal document globs/plugins
+  and the merged client-SDK SDL instead of a live server. No API/codegen network.
+- Catalog task history preserves main's publication record plus later feature
+  continuation, explicitly labeling superseded checkpoints.
+
+## Dependency and initial verification evidence
+
+- Individual dependency links exist only under worktree node_modules directories.
+  All 20 recognized workspace names link to worktree packages. Shared/UI runtime
+  export realpaths are worktree `dist/*.cjs`; third-party binaries remain installed
+  original dependencies. No original node_modules or source modifications.
+- Shared Vite runtime build and standard tsgo/tsc-alias declarations passed. UI
+  first build failed because `tsc` was not on PATH; adding local executable links
+  and running the same build passed. No source repair was needed for that failure.
+- Standard offline uncached dependency-excluded client-SDK, emails, and SDK builds
+  passed. The SDK emitted existing `perf_hooks` browser externalization warnings.
+- Renderer declarations were emitted from worktree source with the standard
+  declaration/alias commands; no sandbox runtime generation or runtime build is
+  claimed or needed for frontend typechecking.
+- Actual Jest rootDir, image/CSS mocks, and `@/` / `~/` aliases target the isolated
+  frontend. Initial front tests passed 35 suites, 429 tests and 30 snapshots; one
+  shell integration suite failed while importing the new unrelated View/DnD ESM
+  branch. The narrow boundary mock above addresses that import, not behavior.
+- Initial server tests passed 11 suites / 86 tests; two suites could not load
+  unbuilt emails/client-SDK exports. Both worktree packages are now built.
+- Shared tests passed 2 suites / 29 tests. Initial shared/server typechecks passed;
+  frontend initially lacked renderer declarations and is pending a final check.
+
+## Pre-correction verification checkpoint (historical)
+
+The resolved merge remains uncommitted. No independent approval or all-checks
+pass is claimed: the full frontend lint result below is a delivery blocker.
+
+| Check | Observed result |
+| --- | --- |
+| Frontend focused tests | 36 suites, 431 tests, 30 snapshots passed |
+| Frontend disjoint supplemental tests | 6 suites, 101 tests, 25 snapshots passed |
+| Server focused tests | 13 suites, 97 tests passed |
+| Server disjoint supplemental tests | 3 suites, 103 tests passed |
+| Shared focused tests | 2 suites, 29 tests passed |
+| Shared disjoint supplemental tests | 2 suites, 107 tests passed |
+| Total, without duplicate suite counting | **62 suites, 868 tests, 55 snapshots passed** |
+| Shared/frontend/server offline typechecks | All passed |
+| Full frontend type-aware lint | **Failed: 18 errors, 0 warnings, 7 files, 8,004 scanned** |
+| Pre-test source freeze | SHA-256 of changed non-document files matches final checked bytes |
+| Jest source-origin assertion | Every executed test path is inside the isolated checkout |
+| Workspace link assertion | All 20 workspace package links point to isolated packages |
+| Unmerged index / marker / whitespace checks | No unmerged stages; no conflict markers; diff checks passed |
+
+The extra tests are disjoint, not reruns counted as additional coverage. They
+include the existing documented overdue native-filter/workflow/seed regression
+boundary plus card-carousel compatibility. Existing snapshots were not updated.
+
+### Exact command recipes
+
+Commands run from the isolated root unless noted. The JSON inventories under the
+evidence directory contain exact complete path arrays, not glob assumptions.
+
+```bash
+export PATH="$PWD/node_modules/.bin:$PATH"
+export NX_WORKSPACE_ROOT="$PWD" NX_DAEMON=false NX_NO_CLOUD=true NX_ISOLATE_PLUGINS=false
+export npm_config_offline=true npm_config_yes=false YARN_ENABLE_NETWORK=0
+node node_modules/nx/dist/bin/nx.js run twenty-shared:typecheck --excludeTaskDependencies --skipNxCache --no-cloud
+node node_modules/nx/dist/bin/nx.js run twenty-front:typecheck --excludeTaskDependencies --skipNxCache --no-cloud
+node node_modules/nx/dist/bin/nx.js run twenty-server:typecheck --excludeTaskDependencies --skipNxCache --no-cloud
+# Each direct Jest invocation uses the appropriate project's actual jest.config.mjs:
+node node_modules/jest/bin/jest.js --config packages/PROJECT/jest.config.mjs \
+  --runTestsByPath PATHS_FROM_EXACT_JSON_INVENTORY --runInBand --no-cache \
+  --cacheDirectory "$PWD/.cache/jest/PROJECT" --json --outputFile PRIVATE_RESULT_PATH
+# From packages/twenty-front; run once, without waiver or retry:
+../../node_modules/.bin/oxlint --type-aware -c .oxlintrc.json src/
+```
+
+Exact focused path inventories are `twenty-{front,server,shared}-tests.json`;
+disjoint supplemental inventories are `{front,server,shared}-supplemental-tests.json`.
+The frozen direct frontend/server logs are `front-tests-final.log` and
+`server-tests-final.log`; shared uses `shared-tests.log`. Supplemental logs/results
+use their matching names. Typecheck logs are `shared-typecheck.log`,
+`server-typecheck.log`, and `front-typecheck-final.log`. Builds and first failed
+attempts remain recorded separately; no failure was overwritten or waived.
+
+### Initial lint blocker and boundary (historical; corrected below)
+
+The full frontend lint findings are in `front-lint.log`. All seven files were
+compared byte-for-byte against approved published feature HEAD `7bc5017709` and
+are unchanged by reconciliation (`lint-feature-byte-provenance.json`). This is
+source provenance, **not** a claim that a separate main control run was executed.
+The findings are naming, CSS ordering/colors, useRef state policy, prop spreading,
+and strict boolean conditions in:
+
+- `page-layout/widgets/components/__tests__/WidgetCardShell.test.tsx`
+- `page-layout/widgets/record-table/components/OverdueAttentionList.tsx`
+- `page-layout/widgets/record-table/components/OverdueAttentionViewGate.tsx`
+- `page-layout/widgets/record-table/components/OverdueAttentionWidget.tsx`
+- `page-layout/widgets/record-table/hooks/useOverdueAttentionRecords.ts`
+- `page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx`
+- `side-panel/pages/page-layout/hooks/__tests__/useUpdateCurrentWidgetConfig.test.tsx`
+
+Paths above are relative to `packages/twenty-front/src/modules/`. No broad lint
+refactor, visual change, rule suppression, assertion weakening, or approval bypass
+was made. Parent must address or explicitly adjudicate this blocker before any
+delivery approval, conventional merge commit, or normal same-feature push.
+
+### Candidate identity and proof limits
+
+Before adding this new tracking document, reconciliation versus feature was 92
+paths / 5,855 changed lines; expected PR versus main was 83 paths / 7,553 changed
+lines, including five generated/snapshot paths. Those are complete line counts,
+not authored-only estimates. Final tree ID, counts including this document,
+module bindings, source hashes and original-checkout comparison are recorded in
+the private final evidence manifest at handoff. The accepted large-PR exception
+applies; no splitting or PR mutation was performed.
+
+Logs, machine-readable suite results, inventories, resolved Jest config and
+private original fingerprints are under `/tmp/opencode/main-reconciliation/`.
+No CI pass, database integration, browser acceptance, independent review, final
+commit or push is claimed. Original live services were not touched.
+
+## Final bounded lint correction evidence
+
+The one authorized correction fixes all 18 reported errors within exactly the
+seven owned files. Source/test delta versus prior candidate tree
+`d750fe888719cdf94331cf7ba7897d8b8de246c9` is **131 additions / 60 deletions**
+(191 changed lines), plus this task-document continuation. No lint configuration,
+rule suppression, assertion deletion, package/lockfile change, or unrelated source
+modification was used. The old lint blocker above is retained as history, not a
+current waiver or failure.
+
+- Request state now uses one instance-local Jotai atom with the current native
+  callbacks, identity and request token. Original active/identity/ownership guards,
+  request sequencing, row/count preservation and retry behavior are retained.
+- Native orange/red accent/tag tokens replace six custom severity hex literals.
+  This intentionally follows the active theme palette; exact old hex appearance
+  is not claimed. Severity thresholds, two-column CSS breakpoint, activation and
+  the task-only scope are unchanged. CSS ordering otherwise changes no values.
+- Widget forwarding and shell tests explicitly name every previously supplied
+  prop; all assertions remain. The configuration equality assertion keeps the
+  same mapped expected value without its always-truthy conjunction.
+- State-derived local naming and internal Timeline prop-type naming now match
+  their native rules. Missing permission uses an explicit undefined guard.
+
+### Final observed checks after normalization and source freeze
+
+| Check | Result |
+| --- | --- |
+| Full frontend type-aware lint, executed once for this correction | **0 errors / 0 warnings, 8,004 files** |
+| Frontend direct Jest, 42 exact suites | **532 tests / 55 snapshots passed** |
+| Server direct Jest, 16 exact suites | **200 tests passed** |
+| Shared direct Jest, 4 exact suites | **136 tests passed** |
+| Combined final direct Jest | **62 suites / 868 tests / 55 snapshots passed** |
+| Fresh frontend offline uncached typecheck | Passed |
+| Shared/server typechecks from preceding candidate | Retained: exact shared/server source hashes unchanged |
+| Scoped formatter, seven owned files | Passed |
+| Full frontend source formatter | Passed, 8,286 files |
+
+No tests were added or removed; existing deferred-promise hook tests exercise the
+same request/race/retry semantics after the storage-pattern correction. The final
+runtime boundary remains the existing offline React/native-hook harness, not a
+live app/API claim. Shared/server typechecks were not needlessly repeated: the
+entire correction diff is the seven frontend files plus this document, and the
+retained source-hash proof is recorded separately.
+
+Exact final test inventories are `lint-final-{front,server,shared}-tests.json` under
+the existing private evidence directory. They combine the preceding focused and
+supplemental arrays without duplicate paths. Commands retain the direct Jest
+recipe above, with the project's actual config and local cache directory. Results
+and full commands are in `lint-final-{front,server,shared}-jest.log` and matching
+`-results.json`; fresh typecheck log is `lint-final-front-typecheck.log` and uses
+the exact offline Nx command above. Full lint is
+`../../node_modules/.bin/oxlint --type-aware -c .oxlintrc.json src/` from the
+isolated frontend, recorded in `lint-correction-final-lint.log`. Full format log
+is `lint-final-format.log`.
+
+`lint-correction-source-freeze.json` records the checked non-document bytes;
+`retained-compile-source-proof.json` records unchanged shared/server identities.
+The final handoff manifest records the staged tree, complete hashes, counts,
+module-binding recheck and original-checkout integrity comparison. All 29 merge
+conflicts remain resolved. No independent verification, hook/native review
+authority, commit, push, PR update, database or service operation is claimed.

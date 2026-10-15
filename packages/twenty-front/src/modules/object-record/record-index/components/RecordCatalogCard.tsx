@@ -1,9 +1,10 @@
 import { styled } from '@linaria/react';
+import { type ReactNode } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconPhoto } from 'twenty-ui/icon';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
 
-const StyledCard = styled.button`
+const StyledCard = styled.div`
   background: ${themeCssVariables.background.primary};
   border: 1px solid ${themeCssVariables.border.color.light};
   border-radius: ${themeCssVariables.border.radius.md};
@@ -103,6 +104,7 @@ export type RecordCatalogCardProps = {
   title: string;
   subtitle?: string;
   detail?: string;
+  fields?: ReactNode;
   onClick?: () => void;
 };
 
@@ -113,15 +115,30 @@ export const RecordCatalogCard = ({
   title,
   subtitle,
   detail,
+  fields,
   onClick,
 }: RecordCatalogCardProps) => {
   const initial = title.trim().slice(0, 1);
 
   return (
-    <StyledCard type="button" onClick={onClick} title={title}>
+    <StyledCard
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(event) => {
+        if (
+          event.target === event.currentTarget &&
+          (event.key === 'Enter' || event.key === ' ')
+        ) {
+          event.preventDefault();
+          onClick?.();
+        }
+      }}
+      title={title}
+    >
       {!isCompact && (
         <StyledImageFrame>
-          {isDefined(imageSrc) ? (
+          {isDefined(imageSrc) && imageSrc.trim() !== '' ? (
             <StyledImage alt={imageAlt ?? ''} loading="lazy" src={imageSrc} />
           ) : (
             <StyledPlaceholder>
@@ -142,6 +159,7 @@ export const RecordCatalogCard = ({
         {!isCompact && isDefined(detail) && (
           <StyledDetail>{detail}</StyledDetail>
         )}
+        {!isCompact && fields}
       </StyledBody>
     </StyledCard>
   );

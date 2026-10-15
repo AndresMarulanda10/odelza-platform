@@ -1,5 +1,6 @@
 import { test as base, expect } from '@playwright/test';
 import path from 'path';
+import type { GetCurrentUserQuery } from '../../twenty-front/src/generated-metadata/graphql';
 import { LoginPage } from '../lib/pom/loginPage';
 
 // fixture
@@ -24,13 +25,33 @@ test('Login test', async ({ loginPage, page }) => {
       await loginPage.clickContinueButton();
       await loginPage.typePassword(process.env.DEFAULT_PASSWORD);
       await page.waitForLoadState('networkidle');
+      const currentUserResponse = page.waitForResponse((response) => {
+        const request = response.request();
+        return (
+          request.method() === 'POST' &&
+          new URL(response.url()).pathname === '/metadata' &&
+          request.postDataJSON()?.operationName === 'GetCurrentUser'
+        );
+      });
+      const expectedOrigin = new URL(page.url()).origin;
       await loginPage.clickSignInButton();
+      const response = await currentUserResponse;
+      expect(response.ok()).toBeTruthy();
+      const result: { data?: GetCurrentUserQuery; errors?: unknown[] } =
+        await response.json();
+      expect(result.errors === undefined).toBeTruthy();
+      const user = result.data?.currentUser;
+      expect(process.env.DEFAULT_LOGIN === 'tim@apple.dev').toBeTruthy();
+      expect(user?.email === process.env.DEFAULT_LOGIN).toBeTruthy();
+      expect(user?.currentWorkspace?.displayName).toBe('Apple');
+      expect(user?.currentWorkspace?.subdomain).toBe('apple');
+      expect(
+        new URL(user!.currentWorkspace!.workspaceUrls.subdomainUrl).origin,
+      ).toBe(expectedOrigin);
       await page.waitForLoadState('networkidle');
       await expect(page.getByText(/Welcome, .+/)).not.toBeVisible();
-      await expect(page.getByText('Choose a workspace')).toBeVisible();
-      await page.getByText('Apple', {exact: true}).click();
-      await page.waitForFunction(() => window.location.href.includes('verify'));
-      await page.waitForFunction(() => !window.location.href.includes('verify'));
+      await expect(page.getByTestId('workspace-dropdown')).toBeVisible();
+      expect(new URL(page.url()).origin).toBe(expectedOrigin);
       process.env.LINK = page.url();
     },
   );

@@ -6,6 +6,59 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { useAtomFamilyStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomFamilyStateValue';
+import { useAtomComponentSelectorValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentSelectorValue';
+import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
+import { useCanPersistViewChanges } from '@/views/hooks/useCanPersistViewChanges';
+import { createStore, Provider, type PrimitiveAtom } from 'jotai';
+import { objectMetadataItemsSelector } from '@/object-metadata/states/objectMetadataItemsSelector';
+import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/EnrichedObjectMetadataItem';
+import { currentRecordFieldsComponentState } from '@/object-record/record-field/states/currentRecordFieldsComponentState';
+import { useChangeRecordFieldVisibility } from '@/object-record/record-field/hooks/useChangeRecordFieldVisibility';
+import { useSaveCurrentViewFields } from '@/views/hooks/useSaveCurrentViewFields';
+
+jest.mock('@/object-metadata/states/objectMetadataItemsSelector', () => ({
+  objectMetadataItemsSelector: { atom: jest.requireActual('jotai').atom([]) },
+}));
+jest.mock('@/views/hooks/useSaveCurrentViewFields', () => ({
+  useSaveCurrentViewFields: jest.fn(),
+}));
+
+jest.mock(
+  '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue',
+  () => ({
+    useAtomComponentStateValue: jest.fn(() => []),
+  }),
+);
+jest.mock('@/views/hooks/useCanPersistViewChanges', () => ({
+  useCanPersistViewChanges: jest.fn(() => ({ canPersistChanges: true })),
+}));
+
+jest.mock(
+  '@/ui/utilities/state/jotai/hooks/useAtomComponentSelectorValue',
+  () => ({
+    useAtomComponentSelectorValue: jest.fn(() => []),
+  }),
+);
+jest.mock('@/object-record/record-index/components/RecordCatalogField', () => ({
+  RecordCatalogField: ({
+    recordId,
+    fieldDefinition,
+  }: {
+    recordId: string;
+    fieldDefinition: { metadata: { fieldName: string } };
+  }) => {
+    const { records } = useRecordIndexTableQuery('example');
+    return (
+      <div>
+        {String(
+          records.find((record) => record.id === recordId)?.[
+            fieldDefinition.metadata.fieldName
+          ] ?? '',
+        )}
+      </div>
+    );
+  },
+}));
 
 import { useRecordIndexContextOrThrow } from '@/object-record/record-index/contexts/RecordIndexContext';
 import { useOpenRecordFromIndexView } from '@/object-record/record-index/hooks/useOpenRecordFromIndexView';
@@ -97,9 +150,34 @@ const renderCatalog = ({
 }) => {
   (useRecordIndexContextOrThrow as jest.Mock).mockReturnValue({
     objectNameSingular: 'example',
-    objectMetadataItem: { fields },
+    objectMetadataItem: { fields, readableFields: fields },
     labelIdentifierFieldMetadataItem: fields[0],
+    recordIndexId: String(currentView.id ?? 'catalog-index'),
+    fieldDefinitionByFieldMetadataItemId: Object.fromEntries(
+      fields.map((field) => [
+        field.id,
+        { fieldMetadataId: field.id, metadata: { fieldName: field.name } },
+      ]),
+    ),
   });
+  (useAtomComponentStateValue as jest.Mock).mockReturnValue(
+    currentView.viewFields ?? [],
+  );
+  (useAtomComponentSelectorValue as jest.Mock).mockReturnValue(
+    (
+      (currentView.viewFields ?? []) as {
+        fieldMetadataId: string;
+        position: number;
+        isVisible: boolean;
+      }[]
+    )
+      .filter((field) => field.isVisible)
+      .sort((first, second) => first.position - second.position)
+      .map((field) => ({
+        ...field,
+        fieldMetadataItemId: field.fieldMetadataId,
+      })),
+  );
   (useGetCurrentViewOnly as jest.Mock).mockReturnValue({ currentView });
   (useOpenRecordFromIndexView as jest.Mock).mockReturnValue({
     openRecordFromIndexView: jest.fn(),
@@ -118,6 +196,374 @@ const renderCatalog = ({
 };
 
 describe('RecordIndexCatalogContainer', () => {
+  it('prefers a valid visible mapping but never a hidden mapping', () => {
+    const { rerender } = renderCatalog({
+      fields: [
+        { id: 'name', name: 'name' },
+        { id: 'a', name: 'a' },
+        { id: 'b', name: 'b' },
+      ],
+      currentView: {
+        type: ViewType.CATALOG,
+        catalogImageFieldMetadataId: 'b',
+        viewFields: [
+          { fieldMetadataId: 'a', position: 0, isVisible: true },
+          { fieldMetadataId: 'b', position: 1, isVisible: true },
+        ],
+      },
+      records: [
+        {
+          name: 'Record',
+          a: 'https://example.com/a.png',
+          b: 'https://example.com/b.png',
+        },
+      ],
+    });
+    expect(screen.getByRole('presentation')).toHaveAttribute(
+      'src',
+      'https://example.com/b.png',
+    );
+    (useAtomComponentSelectorValue as jest.Mock).mockReturnValue([
+      { fieldMetadataItemId: 'a' },
+    ]);
+    rerender(<RecordIndexCatalogContainer />);
+    expect(screen.getByRole('presentation')).toHaveAttribute(
+      'src',
+      'https://example.com/a.png',
+    );
+  });
+  it.each([
+    '',
+    '   ',
+    { primaryLinkUrl: '' },
+    { primaryLinkUrl: 'https://example.com' },
+    { url: 'https://example.com/page' },
+    { url: 'https://example.com/page?next=photo.png' },
+    { primaryLinkUrl: 'https://example.com/page#photo.png' },
+    [{ url: '' }, { url: 'https://example.com/report.pdf' }],
+    { markdown: 'https://example.com/page' },
+    { blocknote: '   ' },
+  ])(
+    'skips invalid mapped image candidate %p and respects visible A/B order',
+    (invalid) => {
+      const imageA =
+        'http://localhost:53001/images/placeholders/moving-image/no_task.png';
+      const imageB =
+        'http://localhost:53001/images/placeholders/moving-image/no_file.png';
+      const { rerender } = renderCatalog({
+        fields: [
+          { id: 'name', name: 'name' },
+          { id: 'invalid', name: 'invalid' },
+          { id: 'a', name: 'a' },
+          { id: 'b', name: 'b' },
+        ],
+        currentView: {
+          type: ViewType.CATALOG,
+          catalogImageFieldMetadataId: 'invalid',
+          viewFields: ['invalid', 'a', 'b'].map(
+            (fieldMetadataId, position) => ({
+              fieldMetadataId,
+              position,
+              isVisible: true,
+            }),
+          ),
+        },
+        records: [{ name: 'Image record', invalid, a: imageA, b: imageB }],
+      });
+      expect(screen.getByRole('presentation')).toHaveAttribute('src', imageA);
+      (useAtomComponentSelectorValue as jest.Mock).mockReturnValue([
+        { fieldMetadataItemId: 'b' },
+        { fieldMetadataItemId: 'a' },
+      ]);
+      rerender(<RecordIndexCatalogContainer />);
+      expect(screen.getByRole('presentation')).toHaveAttribute('src', imageB);
+      (useAtomComponentSelectorValue as jest.Mock).mockReturnValue([
+        { fieldMetadataItemId: 'a' },
+      ]);
+      rerender(<RecordIndexCatalogContainer />);
+      expect(screen.getByRole('presentation')).toHaveAttribute('src', imageA);
+      (useAtomComponentSelectorValue as jest.Mock).mockReturnValue([]);
+      rerender(<RecordIndexCatalogContainer />);
+      expect(screen.queryByRole('presentation')).not.toBeInTheDocument();
+    },
+  );
+
+  it.each([
+    { url: 'https://example.com/photo.PNG?token=value#preview' },
+    [{ url: '' }, { url: 'https://example.com/photo.PNG?token=value#preview' }],
+    { primaryLinkUrl: 'https://example.com/photo.PNG?token=value#preview' },
+    { markdown: '![image](https://example.com/photo.PNG?token=value#preview)' },
+    {
+      blocknote:
+        '<img src="https://example.com/photo.PNG?token=value#preview">',
+    },
+  ])('preserves complete valid object image URL %p', (value) => {
+    renderCatalog({
+      fields: [
+        { id: 'name', name: 'name' },
+        { id: 'image', name: 'image' },
+      ],
+      currentView: {
+        type: ViewType.CATALOG,
+        viewFields: [
+          { fieldMetadataId: 'image', position: 0, isVisible: true },
+        ],
+      },
+      records: [{ name: 'Image record', image: value }],
+    });
+    expect(screen.getByRole('presentation')).toHaveAttribute(
+      'src',
+      'https://example.com/photo.PNG?token=value#preview',
+    );
+  });
+
+  it('accepts extensionless native image attachments but not unsafe attachment protocols', () => {
+    renderCatalog({
+      fields: [
+        { id: 'name', name: 'name' },
+        { id: 'image', name: 'image' },
+      ],
+      currentView: {
+        type: ViewType.CATALOG,
+        viewFields: [
+          { fieldMetadataId: 'image', position: 0, isVisible: true },
+        ],
+      },
+      records: [
+        {
+          name: 'Image record',
+          image: [
+            {
+              fileCategory: 'IMAGE',
+              url: ['javascript', 'alert(1)'].join(':'),
+            },
+            {
+              fileCategory: 'IMAGE',
+              url: ' https://example.com/attachment?id=1 ',
+            },
+          ],
+        },
+      ],
+    });
+    expect(screen.getByRole('presentation')).toHaveAttribute(
+      'src',
+      'https://example.com/attachment?id=1',
+    );
+  });
+
+  beforeEach(() => {
+    (useCanPersistViewChanges as jest.Mock).mockReturnValue({
+      canPersistChanges: true,
+    });
+  });
+
+  it('reacts to real local visibility updates immediately and isolates views after persistence completion', async () => {
+    const { unmount } = renderCatalog({
+      fields: [
+        { id: 'name-id', name: 'name' },
+        { id: 'field', name: 'value' },
+      ],
+      currentView: {
+        id: 'view-a',
+        type: ViewType.CATALOG,
+        viewFields: [
+          { fieldMetadataId: 'field', position: 0, isVisible: true },
+        ],
+      },
+      records: [{ name: 'Record', value: 'Local field value' }],
+    });
+    unmount();
+    const context = (useRecordIndexContextOrThrow as jest.Mock).mock.results.at(
+      -1,
+    )?.value;
+    const store = createStore();
+    store.set(
+      objectMetadataItemsSelector.atom as PrimitiveAtom<
+        EnrichedObjectMetadataItem[]
+      >,
+      [context.objectMetadataItem],
+    );
+    const fieldStateA = currentRecordFieldsComponentState.atomFamily({
+      instanceId: 'view-a',
+    });
+    const fieldStateB = currentRecordFieldsComponentState.atomFamily({
+      instanceId: 'view-b',
+    });
+    store.set(fieldStateA, [
+      {
+        id: 'view-field',
+        fieldMetadataItemId: 'field',
+        position: 0,
+        isVisible: true,
+        size: 100,
+      },
+    ]);
+    store.set(fieldStateB, []);
+    (useAtomComponentSelectorValue as jest.Mock).mockImplementation(
+      jest.requireActual(
+        '@/ui/utilities/state/jotai/hooks/useAtomComponentSelectorValue',
+      ).useAtomComponentSelectorValue,
+    );
+    (useAtomComponentStateValue as jest.Mock).mockImplementation(
+      jest.requireActual(
+        '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue',
+      ).useAtomComponentStateValue,
+    );
+    const saveViewFields = jest.fn().mockResolvedValue(undefined);
+    (useSaveCurrentViewFields as jest.Mock).mockReturnValue({ saveViewFields });
+    const Controls = () => {
+      const { changeRecordFieldVisibility } =
+        useChangeRecordFieldVisibility('view-a');
+      return (
+        <button
+          onClick={() =>
+            void changeRecordFieldVisibility({
+              fieldMetadataId: 'field',
+              isVisible: false,
+            })
+          }
+        >
+          Hide field
+        </button>
+      );
+    };
+    const tree = (
+      <Provider store={store}>
+        <RecordIndexCatalogContainer />
+        <Controls />
+      </Provider>
+    );
+    const { rerender } = render(tree);
+    expect(screen.getByText('Local field value')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Hide field' }));
+    expect(screen.queryByText('Local field value')).not.toBeInTheDocument();
+    expect(saveViewFields).toHaveBeenCalledWith([
+      expect.objectContaining({ isVisible: false }),
+    ]);
+    // Persistence completion does not require a metadata/SSE update to render local Fields.
+    await act(async () => {
+      await Promise.resolve();
+    });
+    expect(store.get(fieldStateA)[0].isVisible).toBe(false);
+    (useRecordIndexContextOrThrow as jest.Mock).mockReturnValue({
+      ...context,
+      recordIndexId: 'view-b',
+    });
+    rerender(
+      <Provider store={store}>
+        <RecordIndexCatalogContainer />
+      </Provider>,
+    );
+    expect(screen.queryByText('Local field value')).not.toBeInTheDocument();
+    (useRecordIndexContextOrThrow as jest.Mock).mockReturnValue(context);
+    rerender(
+      <Provider store={store}>
+        <RecordIndexCatalogContainer />
+      </Provider>,
+    );
+    expect(screen.queryByText('Local field value')).not.toBeInTheDocument();
+    act(() =>
+      store.set(fieldStateA, (fields) =>
+        fields.map((field) => ({ ...field, isVisible: true })),
+      ),
+    );
+    expect(screen.getByText('Local field value')).toBeInTheDocument();
+  });
+
+  it('uses immediate instance-local Fields order and visibility rather than delayed view metadata', () => {
+    const { rerender } = renderCatalog({
+      fields: [
+        { id: 'name-id', name: 'name' },
+        { id: 'a', name: 'first' },
+        { id: 'b', name: 'second' },
+        { id: 'c', name: 'third' },
+      ],
+      currentView: {
+        id: 'view-a',
+        type: ViewType.CATALOG,
+        catalogSubtitleFieldMetadataId: 'a',
+        viewFields: [{ fieldMetadataId: 'a', isVisible: true, position: 0 }],
+      },
+      records: [
+        {
+          name: 'Fixed title',
+          first: 'First',
+          second: 'Second',
+          third: 'Third',
+        },
+      ],
+    });
+    (useAtomComponentSelectorValue as jest.Mock).mockReturnValue([
+      { fieldMetadataItemId: 'c', position: 0, isVisible: true },
+      { fieldMetadataItemId: 'b', position: 1, isVisible: true },
+      { fieldMetadataItemId: 'name-id', position: 2, isVisible: true },
+    ]);
+    rerender(<RecordIndexCatalogContainer />);
+    expect(screen.queryByText('First')).not.toBeInTheDocument();
+    expect(screen.getAllByText('Fixed title')).toHaveLength(1);
+    expect(
+      screen
+        .getByText('Third')
+        .compareDocumentPosition(screen.getByText('Second')),
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(useAtomComponentSelectorValue).toHaveBeenLastCalledWith(
+      expect.anything(),
+      'view-a',
+    );
+    (useAtomComponentSelectorValue as jest.Mock).mockReturnValue([]);
+    rerender(<RecordIndexCatalogContainer />);
+    expect(screen.queryByText('Third')).not.toBeInTheDocument();
+    expect(screen.queryByText('Second')).not.toBeInTheDocument();
+    expect(screen.getByText('Fixed title')).toBeInTheDocument();
+  });
+
+  it('restricts read-only legacy compatibility to views without any Fields rows', () => {
+    (useCanPersistViewChanges as jest.Mock).mockReturnValue({
+      canPersistChanges: false,
+    });
+    const { rerender } = renderCatalog({
+      fields: [
+        { id: 'name-id', name: 'name' },
+        { id: 'legacy', name: 'legacy' },
+      ],
+      currentView: {
+        type: ViewType.CATALOG,
+        catalogSubtitleFieldMetadataId: 'legacy',
+        viewFields: [],
+      },
+      records: [{ name: 'Title', legacy: 'Read-only legacy' }],
+    });
+    expect(screen.getByText('Read-only legacy')).toBeInTheDocument();
+    (useAtomComponentStateValue as jest.Mock).mockReturnValue([
+      { fieldMetadataItemId: 'legacy', isVisible: false },
+    ]);
+    rerender(<RecordIndexCatalogContainer />);
+    expect(screen.queryByText('Read-only legacy')).not.toBeInTheDocument();
+  });
+
+  it('renders more than two selected fields and does not duplicate the fixed title', () => {
+    renderCatalog({
+      fields: [
+        { id: 'name-id', name: 'name' },
+        { id: 'a', name: 'a' },
+        { id: 'b', name: 'b' },
+        { id: 'c', name: 'c' },
+      ],
+      currentView: {
+        type: ViewType.CATALOG,
+        viewFields: ['name-id', 'a', 'b', 'c'].map((id, position) => ({
+          fieldMetadataId: id,
+          position,
+          isVisible: true,
+        })),
+      },
+      records: [{ name: 'Only title', a: 'One', b: 'Two', c: 'Three' }],
+    });
+    expect(screen.getAllByText('Only title')).toHaveLength(1);
+    for (const value of ['One', 'Two', 'Three'])
+      expect(screen.getByText(value)).toBeInTheDocument();
+  });
+
   it('shows recovered records and removes pagination after the final page', async () => {
     const refetch = jest.fn().mockResolvedValue({});
     const { rerender } = renderCatalog({
@@ -174,6 +620,7 @@ describe('RecordIndexCatalogContainer', () => {
       objectMetadataItem: {
         id: 'example-id',
         fields: [{ id: 'name-id', name: 'name' }],
+        readableFields: [{ id: 'name-id', name: 'name' }],
       },
       labelIdentifierFieldMetadataItem: { id: 'name-id', name: 'name' },
       objectPermissionsByObjectMetadataId: {
@@ -251,8 +698,10 @@ describe('RecordIndexCatalogContainer', () => {
         refetch,
       });
       const button = screen.getByRole('button', { name: 'Load more' });
-      fireEvent.click(button);
-      fireEvent.click(button);
+      act(() => {
+        fireEvent.click(button);
+        fireEvent.click(button);
+      });
       expect(fetchMoreRecords).toHaveBeenCalledTimes(1);
       expect(screen.getByText('Existing card')).toBeInTheDocument();
       expect(screen.getByRole('button', { name: 'Loading' })).toBeDisabled();
@@ -304,6 +753,85 @@ describe('RecordIndexCatalogContainer', () => {
     rerender(<RecordIndexCatalogContainer />);
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
     expect(screen.getByText('No records to display')).toBeInTheDocument();
+  });
+
+  it('isolates pending requests across query switches, including returning to the original query', async () => {
+    let finishOld!: (value: { error?: Error }) => void;
+    let finishCurrent!: (value: { error?: Error }) => void;
+    const fetchMoreRecords = jest
+      .fn()
+      .mockImplementationOnce(
+        () =>
+          new Promise((resolve) => {
+            finishOld = resolve;
+          }),
+      )
+      .mockImplementationOnce(
+        () =>
+          new Promise((resolve) => {
+            finishCurrent = resolve;
+          }),
+      );
+    const query = {
+      records: [{ id: 'one', name: 'Retained card' }],
+      loading: false,
+      hasNextPage: true,
+      fetchMoreRecords,
+      queryIdentifier: 'catalog-query',
+    };
+    const { rerender } = renderState(query);
+    fireEvent.click(screen.getByRole('button', { name: 'Load more' }));
+    (useRecordIndexTableQuery as jest.Mock).mockReturnValue({
+      ...query,
+      queryIdentifier: 'second-query',
+    });
+    rerender(<RecordIndexCatalogContainer />);
+    expect(screen.getByRole('button', { name: 'Load more' })).toBeEnabled();
+    (useRecordIndexTableQuery as jest.Mock).mockReturnValue(query);
+    rerender(<RecordIndexCatalogContainer />);
+    fireEvent.click(screen.getByRole('button', { name: 'Load more' }));
+    expect(fetchMoreRecords).toHaveBeenCalledTimes(2);
+    await act(async () => {
+      finishOld({ error: new Error('Old query failed') });
+    });
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Loading' })).toBeDisabled();
+    expect(screen.getByText('Retained card')).toBeInTheDocument();
+    await act(async () => {
+      finishCurrent({});
+    });
+    expect(screen.getByRole('button', { name: 'Load more' })).toBeEnabled();
+  });
+
+  it('does not leak pending requests or late failures into a remounted Catalog', async () => {
+    let rejectOld!: (reason: Error) => void;
+    const fetchMoreRecords = jest
+      .fn()
+      .mockImplementationOnce(
+        () =>
+          new Promise((_, reject) => {
+            rejectOld = reject;
+          }),
+      )
+      .mockResolvedValue({});
+    const query = {
+      records: [{ id: 'one', name: 'Retained card' }],
+      hasNextPage: true,
+      fetchMoreRecords,
+    };
+    const { unmount } = renderState(query);
+    fireEvent.click(screen.getByRole('button', { name: 'Load more' }));
+    unmount();
+    renderState(query);
+    await act(async () => {
+      rejectOld(new Error('Unmounted request failed'));
+    });
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Load more' }));
+    await waitFor(() =>
+      expect(screen.getByRole('button', { name: 'Load more' })).toBeEnabled(),
+    );
+    expect(fetchMoreRecords).toHaveBeenCalledTimes(2);
   });
 
   it('uses the persisted compact setting when rendering Catalog cards', () => {
@@ -382,7 +910,7 @@ describe('RecordIndexCatalogContainer', () => {
     );
   });
 
-  it('preserves explicit Catalog roles ahead of unrelated visible fields', () => {
+  it('preserves image mapping without excluding other selected fields', () => {
     const fields = [
       { id: 'name-id', name: 'name' },
       { id: 'unrelated-subtitle-id', name: 'unrelatedSubtitle' },
@@ -434,16 +962,14 @@ describe('RecordIndexCatalogContainer', () => {
 
     expect(screen.getByText('Explicit Catalog subtitle')).toBeInTheDocument();
     expect(screen.getByText('Explicit Catalog detail')).toBeInTheDocument();
-    expect(
-      screen.queryByText('Wrong automatic subtitle'),
-    ).not.toBeInTheDocument();
+    expect(screen.getByText('Wrong automatic subtitle')).toBeInTheDocument();
     expect(container.querySelector('img')).toHaveAttribute(
       'src',
       'https://example.com/legacy.jpg',
     );
   });
 
-  it('uses unlisted legacy roles as a compatibility fallback before migration', () => {
+  it('does not let unlisted legacy body roles override selected fields', () => {
     const fields = [
       { id: 'name-id', name: 'name' },
       { id: 'automatic-subtitle-id', name: 'automaticSubtitle' },
@@ -486,14 +1012,14 @@ describe('RecordIndexCatalogContainer', () => {
       ],
     });
 
-    expect(screen.getByText('Fallback Catalog subtitle')).toBeInTheDocument();
-    expect(screen.getByText('Fallback Catalog detail')).toBeInTheDocument();
     expect(
-      screen.queryByText('Wrong automatic subtitle'),
+      screen.queryByText('Fallback Catalog subtitle'),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByText('Wrong automatic detail'),
+      screen.queryByText('Fallback Catalog detail'),
     ).not.toBeInTheDocument();
+    expect(screen.getByText('Wrong automatic subtitle')).toBeInTheDocument();
+    expect(screen.getByText('Wrong automatic detail')).toBeInTheDocument();
   });
 
   it('does not render hidden role fields and falls back to visible Fields', () => {
@@ -693,11 +1219,11 @@ describe('RecordIndexCatalogContainer', () => {
     expect(screen.getByText('Automatic subtitle')).toBeInTheDocument();
     expect(screen.getByText('Automatic detail')).toBeInTheDocument();
     expect(
-      screen.queryByText('Legacy subtitle must be ignored'),
-    ).not.toBeInTheDocument();
+      screen.getByText('Legacy subtitle must be ignored'),
+    ).toBeInTheDocument();
     expect(
-      screen.queryByText('Legacy detail must be ignored'),
-    ).not.toBeInTheDocument();
+      screen.getByText('Legacy detail must be ignored'),
+    ).toBeInTheDocument();
     expect(container.querySelector('img')).toHaveAttribute(
       'src',
       'https://example.com/automatic.jpg',

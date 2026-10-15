@@ -87,6 +87,8 @@ runs:
     - name: Write server env and create databases
       if: inputs.source == 'local'
       shell: bash
+      env:
+        SEED_RELATION_RETURN_DIAGNOSTICS: 'true'
       run: |
         npx nx reset:env:e2e-testing-server twenty-server
         PGPASSWORD=postgres psql -h localhost -p 5432 -U postgres -d postgres -c 'CREATE DATABASE "default";'

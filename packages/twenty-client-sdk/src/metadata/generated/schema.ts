@@ -1012,6 +1012,7 @@ export interface TimelineConfiguration {
 
 export interface ViewConfiguration {
     configurationType: WidgetConfigurationType
+    viewId?: Scalars['String']
     __typename: 'ViewConfiguration'
 }
 
@@ -4143,11 +4144,13 @@ export interface TimelineConfigurationGenqlSelection{
 
 export interface ViewConfigurationGenqlSelection{
     configurationType?: boolean | number
+    viewId?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
 
 export interface RecordTableConfigurationGenqlSelection{
+    presentationMode?: boolean | number
     configurationType?: boolean | number
     viewId?: boolean | number
     recordLimit?: boolean | number
@@ -9082,6 +9085,7 @@ export const enumViewFilterOperand = {
    LESS_THAN_OR_EQUAL: 'LESS_THAN_OR_EQUAL' as const,
    GREATER_THAN_OR_EQUAL: 'GREATER_THAN_OR_EQUAL' as const,
    IS_BEFORE: 'IS_BEFORE' as const,
+   IS_BEFORE_TODAY: 'IS_BEFORE_TODAY' as const,
    IS_AFTER: 'IS_AFTER' as const,
    CONTAINS: 'CONTAINS' as const,
    DOES_NOT_CONTAIN: 'DOES_NOT_CONTAIN' as const,

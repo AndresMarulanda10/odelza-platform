@@ -220,6 +220,17 @@ describe('validateWidgetConfigurationInput', () => {
       ).not.toThrow();
     });
 
+    it('should not throw for a referenced view configuration', () => {
+      expect(() =>
+        validateWidgetConfigurationInput({
+          configuration: {
+            configurationType: WidgetConfigurationType.VIEW,
+            viewId: '00000000-0000-4000-8000-000000000001',
+          },
+        }),
+      ).not.toThrow();
+    });
+
     it('accepts task timeline date mappings and a hex bar color', () => {
       expect(() =>
         validateWidgetConfigurationInput({
@@ -306,6 +317,16 @@ describe('validateWidgetConfigurationInput', () => {
         ).toThrow(`Expected ${expectedConfigurationType}`);
       },
     );
+
+    it('should throw when the referenced view is missing', () => {
+      expect(() =>
+        validateWidgetConfigurationInput({
+          configuration: {
+            configurationType: WidgetConfigurationType.VIEW,
+          },
+        }),
+      ).toThrow(/viewId/);
+    });
   });
 
   describe('Edge cases', () => {

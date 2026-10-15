@@ -132,12 +132,11 @@ describe('widget draft updates and real layout save-input conversion', () => {
     });
     const reloaded = { ...configured.tabs[0].widgets[0], ...persisted };
     expect(reloaded.configuration.fieldMapping).toEqual(
-      configured.tabs[0].widgets[0].configuration &&
-        (
-          configured.tabs[0].widgets[0].configuration as {
-            fieldMapping: object;
-          }
-        ).fieldMapping,
+      (
+        configured.tabs[0].widgets[0].configuration as {
+          fieldMapping: object;
+        }
+      ).fieldMapping,
     );
     expect(reloaded.objectMetadataId).toBe('project-object');
   });

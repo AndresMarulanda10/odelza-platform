@@ -31,7 +31,15 @@ jest.mock(
 const widget = (type: WidgetType): PageLayoutWidget =>
   ({ id: `${type}-widget`, type }) as PageLayoutWidget;
 
+jest.mock('@/page-layout/widgets/view/components/ViewWidgetRenderer', () => ({
+  ViewWidgetRenderer: () => <div data-testid="view-renderer" />,
+}));
+
 describe('WidgetContentRenderer', () => {
+  it('preserves the separate main View renderer', () => {
+    render(<WidgetContentRenderer widget={widget(WidgetType.VIEW)} />);
+    expect(screen.getByTestId('view-renderer')).toBeInTheDocument();
+  });
   it.each([[WidgetType.TASK_TIMELINE, 'task-timeline-renderer']])(
     'dispatches %s to its native renderer',
     (type, testId) => {

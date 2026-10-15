@@ -17,7 +17,7 @@ export const OverdueAttentionWidget = (props: {
   );
   const permission =
     objectPermissionsByObjectMetadataId[props.objectMetadataId];
-  if (!object || !permission)
+  if (!object || permission === undefined)
     return <div role="status">Loading overdue tasks…</div>;
   if (!permission.canReadObjectRecords)
     return (
@@ -32,7 +32,10 @@ export const OverdueAttentionWidget = (props: {
   }
   return (
     <RecordTableWidgetRendererContent
-      {...props}
+      objectMetadataId={props.objectMetadataId}
+      viewId={props.viewId}
+      widgetId={props.widgetId}
+      recordLimit={props.recordLimit}
       presentationMode="OVERDUE_ATTENTION"
     />
   );

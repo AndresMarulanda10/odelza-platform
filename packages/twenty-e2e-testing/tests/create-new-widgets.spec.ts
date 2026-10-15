@@ -141,6 +141,7 @@ test.describe.serial('Create new page-layout widgets', () => {
     }
 
     let widgetId: string | undefined;
+    let financeWidgetId: string | undefined;
     let duplicateDashboardId: string | undefined;
 
     try {
@@ -157,6 +158,19 @@ test.describe.serial('Create new page-layout widgets', () => {
       });
       widgetId = created.createPageLayoutWidget.id;
 
+      const financeCreated = await postGraphQL<{
+        createPageLayoutWidget: { id: string; title: string; type: string };
+      }>(page, metadataGraphQLUrl, CREATE_WIDGET, {
+        input: {
+          title: 'E2E Personal Finance',
+          type: 'PERSONAL_FINANCE',
+          configuration: { configurationType: 'PERSONAL_FINANCE' },
+          pageLayoutTabId: tab.id,
+          gridPosition: { column: 0, columnSpan: 4, row: 4, rowSpan: 4 },
+        },
+      });
+      financeWidgetId = financeCreated.createPageLayoutWidget.id;
+
       const updatedTitle = 'E2E Task Timeline Edited';
       await postGraphQL(page, metadataGraphQLUrl, UPDATE_WIDGET, {
         id: widgetId,
@@ -166,6 +180,11 @@ test.describe.serial('Create new page-layout widgets', () => {
       await page.goto(`/object/dashboard/${dashboard.id}`);
       await expect(page.getByText(updatedTitle, { exact: true })).toBeVisible();
       await expect(page.getByText('Timeline data is incomplete')).toBeVisible();
+      await expect(
+        page.getByText(
+          'This widget is no longer available. Remove it from the dashboard.',
+        ),
+      ).toBeVisible();
 
       const duplicate = await postGraphQL<{
         duplicateDashboard: { id: string; pageLayoutId: string };
@@ -197,6 +216,13 @@ test.describe.serial('Create new page-layout widgets', () => {
           configuration: { __typename: 'TaskTimelineConfiguration' },
         }),
       );
+      expect(duplicatedWidgets).toContainEqual(
+        expect.objectContaining({
+          title: 'E2E Personal Finance',
+          type: 'PERSONAL_FINANCE',
+          configuration: { __typename: 'PersonalFinanceConfiguration' },
+        }),
+      );
 
       const deniedResponse = await page.request.post(metadataGraphQLUrl, {
         data: { query: FIND_PAGE_LAYOUT, variables: { id: pageLayoutId } },
@@ -210,6 +236,11 @@ test.describe.serial('Create new page-layout widgets', () => {
       if (widgetId !== undefined) {
         await postGraphQL(page, metadataGraphQLUrl, DESTROY_WIDGET, {
           id: widgetId,
+        });
+      }
+      if (financeWidgetId !== undefined) {
+        await postGraphQL(page, metadataGraphQLUrl, DESTROY_WIDGET, {
+          id: financeWidgetId,
         });
       }
       if (duplicateDashboardId !== undefined) {

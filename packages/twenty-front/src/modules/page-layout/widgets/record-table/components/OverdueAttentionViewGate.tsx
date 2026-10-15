@@ -8,7 +8,7 @@ import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/use
 
 export const OverdueAttentionViewGate = ({ viewId }: { viewId: string }) => {
   const { objectMetadataItem } = useRecordIndexContextOrThrow();
-  const loaded = useAtomComponentStateValue(
+  const lastLoadedRecordTableWidgetViewId = useAtomComponentStateValue(
     lastLoadedRecordTableWidgetViewIdComponentState,
   );
   const { objectMetadataItems } = useObjectMetadataItems();
@@ -22,8 +22,9 @@ export const OverdueAttentionViewGate = ({ viewId }: { viewId: string }) => {
     return <div role="status">The overdue task source is unavailable.</div>;
   }
   if (
-    loaded?.viewId !== viewId ||
-    loaded.objectMetadataItemUpdatedAt !== objectMetadataItem.updatedAt
+    lastLoadedRecordTableWidgetViewId?.viewId !== viewId ||
+    lastLoadedRecordTableWidgetViewId.objectMetadataItemUpdatedAt !==
+      objectMetadataItem.updatedAt
   ) {
     return <div role="status">Loading overdue tasks…</div>;
   }

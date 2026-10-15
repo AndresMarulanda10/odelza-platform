@@ -14,7 +14,10 @@ describe('fromPageLayoutWidgetManifestToUniversalFlatPageLayoutWidget', () => {
         universalIdentifier: 'widget-uuid-1',
         title: 'My Widget',
         type: WidgetType.VIEW,
-        configuration: { configurationType: 'VIEW' },
+        configuration: {
+          configurationType: 'VIEW',
+          viewId: 'view-uuid-1',
+        },
       },
       pageLayoutTabUniversalIdentifier,
       applicationUniversalIdentifier,
@@ -41,6 +44,7 @@ describe('fromPageLayoutWidgetManifestToUniversalFlatPageLayoutWidget', () => {
     expect(result.position).toBeNull();
     expect(result.universalConfiguration).toEqual({
       configurationType: 'VIEW',
+      viewId: 'view-uuid-1',
     });
   });
 
@@ -83,7 +87,10 @@ describe('fromPageLayoutWidgetManifestToUniversalFlatPageLayoutWidget', () => {
         title: 'Positioned Widget',
         type: WidgetType.GRAPH,
         gridPosition: { row: 2, column: 6, rowSpan: 4, columnSpan: 6 },
-        configuration: { configurationType: 'VIEW' },
+        configuration: {
+          configurationType: 'VIEW',
+          viewId: 'view-uuid-2',
+        },
       },
       pageLayoutTabUniversalIdentifier,
       applicationUniversalIdentifier,

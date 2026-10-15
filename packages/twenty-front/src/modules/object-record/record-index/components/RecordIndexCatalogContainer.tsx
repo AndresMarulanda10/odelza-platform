@@ -1,11 +1,19 @@
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
-import { useMemo, useRef, useState } from 'react';
+import { atom, useAtomValue, useStore } from 'jotai';
+import { useEffect, useMemo } from 'react';
 import { Loader } from 'twenty-ui/feedback';
 import { isDefined } from 'twenty-shared/utils';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 import { RecordCatalogCard } from '@/object-record/record-index/components/RecordCatalogCard';
+import { RecordCatalogField } from '@/object-record/record-index/components/RecordCatalogField';
+import { visibleRecordFieldsComponentSelector } from '@/object-record/record-field/states/visibleRecordFieldsComponentSelector';
+import { useAtomComponentSelectorValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentSelectorValue';
+import { currentRecordFieldsComponentState } from '@/object-record/record-field/states/currentRecordFieldsComponentState';
+import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
+import { useCanPersistViewChanges } from '@/views/hooks/useCanPersistViewChanges';
+import { isActiveFieldMetadataItem } from '@/object-metadata/utils/isActiveFieldMetadataItem';
 import { useRecordIndexContextOrThrow } from '@/object-record/record-index/contexts/RecordIndexContext';
 import { useOpenRecordFromIndexView } from '@/object-record/record-index/hooks/useOpenRecordFromIndexView';
 import { useRecordIndexTableQuery } from '@/object-record/record-index/hooks/useRecordIndexTableQuery';
@@ -75,20 +83,31 @@ const readImageSrc = (value: unknown): string | undefined => {
   if (typeof value === 'object') {
     const record = value as Record<string, unknown>;
 
-    if (typeof record.primaryLinkUrl === 'string') {
-      return record.primaryLinkUrl;
+    // Native FILES metadata can identify an image without a URL extension.
+    if (record.fileCategory === 'IMAGE' && typeof record.url === 'string') {
+      const url = record.url.trim();
+      try {
+        if (['http:', 'https:'].includes(new URL(url).protocol)) {
+          return url;
+        }
+      } catch {
+        // Invalid attachment URLs must not prevent later candidates.
+      }
     }
 
-    if (typeof record.url === 'string') {
-      return record.url;
-    }
-
-    if (typeof record.markdown === 'string') {
-      return extractImageUrlFromText(record.markdown);
-    }
-
-    if (typeof record.blocknote === 'string') {
-      return extractImageUrlFromText(record.blocknote);
+    for (const candidate of [
+      record.primaryLinkUrl,
+      record.url,
+      record.markdown,
+      record.blocknote,
+    ]) {
+      const src =
+        typeof candidate === 'string'
+          ? extractImageUrlFromText(candidate)
+          : undefined;
+      if (isDefined(src)) {
+        return src;
+      }
     }
   }
 
@@ -100,10 +119,21 @@ export const RecordIndexCatalogContainer = () => {
     objectNameSingular,
     objectMetadataItem,
     labelIdentifierFieldMetadataItem,
+    fieldDefinitionByFieldMetadataItemId,
+    recordIndexId,
   } = useRecordIndexContextOrThrow();
 
   const { currentView } = useGetCurrentViewOnly();
   const isCompact = currentView?.isCompact ?? false;
+  const visibleRecordFields = useAtomComponentSelectorValue(
+    visibleRecordFieldsComponentSelector,
+    recordIndexId,
+  );
+  const currentRecordFields = useAtomComponentStateValue(
+    currentRecordFieldsComponentState,
+    recordIndexId,
+  );
+  const { canPersistChanges } = useCanPersistViewChanges();
 
   useMigrateCatalogViewFields({
     currentView,
@@ -128,62 +158,54 @@ export const RecordIndexCatalogContainer = () => {
     isFetchingMoreRecordsFamilyState,
     queryIdentifier,
   );
-  const pendingRequest = useRef<{ queryIdentifier: string } | null>(null);
-  const [requestState, setRequestState] = useState<{
-    queryIdentifier: string;
-    pending: boolean;
-    failed: boolean;
-  }>();
-  const currentRequest =
-    requestState?.queryIdentifier === queryIdentifier
-      ? requestState
-      : undefined;
+  const store = useStore();
+  const requestState = useMemo(
+    () => atom({ queryIdentifier, pending: false, failed: false }),
+    [queryIdentifier],
+  );
+  const currentRequest = useAtomValue(requestState);
+
+  useEffect(() => {
+    return () => {
+      // Invalidate the request identity on query changes and unmount.
+      store.set(requestState, (state) => ({ ...state, pending: false }));
+    };
+  }, [requestState, store]);
   const isBusy =
     loading || isFetchingMoreRecords || currentRequest?.pending === true;
 
   const handleRequest = async (retryQuery: boolean) => {
-    if (isBusy || pendingRequest.current?.queryIdentifier === queryIdentifier) {
+    if (isBusy || store.get(requestState).pending) {
       return;
     }
-    const request = { queryIdentifier };
-    pendingRequest.current = request;
-    setRequestState({ queryIdentifier, pending: true, failed: false });
+    const request = { queryIdentifier, pending: true, failed: false };
+    store.set(requestState, request);
     try {
       const result = await (retryQuery ? refetch() : fetchMoreRecords());
-      if (pendingRequest.current === request) {
-        setRequestState({
+      if (store.get(requestState) === request) {
+        store.set(requestState, {
           queryIdentifier,
           pending: false,
           failed: isDefined(result?.error),
         });
       }
     } catch {
-      if (pendingRequest.current === request) {
-        setRequestState({ queryIdentifier, pending: false, failed: true });
-      }
-    } finally {
-      if (pendingRequest.current === request) {
-        pendingRequest.current = null;
+      if (store.get(requestState) === request) {
+        store.set(requestState, {
+          queryIdentifier,
+          pending: false,
+          failed: true,
+        });
       }
     }
   };
 
   const cardFields = useMemo(() => {
-    const viewFields = [...(currentView?.viewFields ?? [])]
-      .sort(
-        (firstViewField, secondViewField) =>
-          firstViewField.position - secondViewField.position ||
-          firstViewField.fieldMetadataId.localeCompare(
-            secondViewField.fieldMetadataId,
-          ),
-      )
-      .filter((viewField) => viewField.isVisible);
-
-    return viewFields
-      .map((viewField) =>
+    const selectedFields = visibleRecordFields
+      .map((recordField) =>
         objectMetadataItem.fields.find(
           (fieldMetadataItem) =>
-            fieldMetadataItem.id === viewField.fieldMetadataId,
+            fieldMetadataItem.id === recordField.fieldMetadataItemId,
         ),
       )
       .filter(isDefined)
@@ -191,10 +213,41 @@ export const RecordIndexCatalogContainer = () => {
         (fieldMetadataItem) =>
           fieldMetadataItem.id !== labelIdentifierFieldMetadataItem?.id,
       );
-  }, [currentView, objectMetadataItem, labelIdentifierFieldMetadataItem]);
 
-  const automaticSubtitleField = cardFields[0];
-  const automaticDetailField = cardFields[1];
+    // A read-only, unmigrated legacy view has no Fields selection yet.
+    // Any existing local or persisted row (including hidden rows) ends this fallback.
+    if (
+      !canPersistChanges &&
+      currentView?.type === ViewType.CATALOG &&
+      currentView.viewFields.length === 0 &&
+      currentRecordFields.length === 0
+    ) {
+      const legacyIds = new Set([
+        currentView.catalogImageFieldMetadataId,
+        currentView.catalogSubtitleFieldMetadataId,
+        currentView.catalogDetailFieldMetadataId,
+      ]);
+      return objectMetadataItem.readableFields.filter(
+        (field) =>
+          legacyIds.has(field.id) &&
+          field.id !== labelIdentifierFieldMetadataItem?.id &&
+          isActiveFieldMetadataItem({
+            objectNameSingular,
+            fieldMetadata: field,
+          }),
+      );
+    }
+    return selectedFields;
+  }, [
+    visibleRecordFields,
+    objectMetadataItem,
+    labelIdentifierFieldMetadataItem,
+    canPersistChanges,
+    currentView,
+    currentRecordFields,
+    objectNameSingular,
+  ]);
+
   const catalogRoleFieldMetadataIds =
     currentView?.type === ViewType.CATALOG
       ? {
@@ -209,7 +262,7 @@ export const RecordIndexCatalogContainer = () => {
       return undefined;
     }
 
-    const fieldMetadataItem = objectMetadataItem.fields.find(
+    const fieldMetadataItem = cardFields.find(
       (field) => field.id === fieldMetadataId,
     );
 
@@ -217,36 +270,23 @@ export const RecordIndexCatalogContainer = () => {
       return undefined;
     }
 
-    const viewField = currentView?.viewFields.find(
-      (field) => field.fieldMetadataId === fieldMetadataId,
-    );
-
-    return viewField?.isVisible === false ? undefined : fieldMetadataItem;
+    return fieldMetadataItem;
   };
-
-  const subtitleField =
-    getVisibleCatalogRoleField(catalogRoleFieldMetadataIds?.subtitle) ??
-    automaticSubtitleField;
-  const detailField =
-    getVisibleCatalogRoleField(catalogRoleFieldMetadataIds?.detail) ??
-    automaticDetailField;
   const imageField = getVisibleCatalogRoleField(
     catalogRoleFieldMetadataIds?.image,
   );
 
   const cards = records.map((record) => ({
     id: record.id,
-    title: isDefined(labelIdentifierFieldMetadataItem)
-      ? (getRecordFieldTextValue(
-          record[labelIdentifierFieldMetadataItem.name],
-        ) ?? '')
-      : '',
-    subtitle: isDefined(subtitleField)
-      ? getRecordFieldTextValue(record[subtitleField.name])
-      : undefined,
-    detail: isDefined(detailField)
-      ? getRecordFieldTextValue(record[detailField.name])
-      : undefined,
+    title:
+      isDefined(labelIdentifierFieldMetadataItem) &&
+      objectMetadataItem.readableFields.some(
+        (field) => field.id === labelIdentifierFieldMetadataItem.id,
+      )
+        ? (getRecordFieldTextValue(
+            record[labelIdentifierFieldMetadataItem.name],
+          ) ?? '')
+        : '',
     imageSrc:
       (isDefined(imageField)
         ? readImageSrc(record[imageField.name])
@@ -278,11 +318,22 @@ export const RecordIndexCatalogContainer = () => {
         {cards.map((card) => (
           <RecordCatalogCard
             key={card.id}
-            detail={card.detail}
             imageSrc={card.imageSrc}
             isCompact={isCompact}
             onClick={() => openRecordFromIndexView({ recordId: card.id })}
-            subtitle={card.subtitle}
+            fields={cardFields.map((field) => {
+              const fieldDefinition =
+                fieldDefinitionByFieldMetadataItemId[field.id];
+              return isDefined(fieldDefinition) ? (
+                <RecordCatalogField
+                  key={field.id}
+                  recordId={card.id}
+                  recordIndexId={recordIndexId}
+                  fieldDefinition={fieldDefinition}
+                  fieldMetadataItem={field}
+                />
+              ) : null;
+            })}
             title={card.title}
           />
         ))}

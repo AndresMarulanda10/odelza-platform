@@ -213,3 +213,21 @@ describe('resolveWidgetFieldNamesToIds - chart filters', () => {
     );
   });
 });
+
+describe('resolveWidgetFieldNamesToIds - view widgets', () => {
+  it('preserves a VIEW configuration', () => {
+    const widget: WidgetIdentifiersInput = {
+      title: 'Kanban View',
+      type: WidgetType.VIEW,
+      gridPosition: { row: 0, column: 0, rowSpan: 8, columnSpan: 12 },
+      configuration: {
+        configurationType: WidgetConfigurationType.VIEW,
+        viewId: '55555555-5555-4555-8555-555555555555',
+      },
+    };
+
+    const result = resolveWidgetFieldNamesToIds(widget, buildMaps());
+
+    expect(result.configuration).toEqual(widget.configuration);
+  });
+});

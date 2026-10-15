@@ -694,7 +694,11 @@ export const TaskTimelineWidget = ({ widget }: TaskTimelineWidgetProps) => {
   return <TaskTimelineWidgetContent widget={widget} />;
 };
 
-const TaskTimelineWidgetContent = ({ widget }: TaskTimelineWidgetProps) => {
+type TaskTimelineWidgetContentProps = TaskTimelineWidgetProps;
+
+const TaskTimelineWidgetContent = ({
+  widget,
+}: TaskTimelineWidgetContentProps) => {
   const [helpOpen, setHelpOpen] = useState(false);
   const {
     status,

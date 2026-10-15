@@ -3,7 +3,8 @@ import { useRelevantRecordsGqlFields } from '@/object-record/record-field/hooks/
 import { useRecordIndexContextOrThrow } from '@/object-record/record-index/contexts/RecordIndexContext';
 import { useFindManyRecordIndexTableParams } from '@/object-record/record-index/hooks/useFindManyRecordIndexTableParams';
 import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
-import { useEffect, useRef, useState } from 'react';
+import { atom, useStore } from 'jotai';
+import { useEffect, useState } from 'react';
 import { type RecordGqlOperationGqlRecordFields } from 'twenty-shared/types';
 
 type AttentionPage = {
@@ -55,24 +56,34 @@ export const useOverdueAttentionRecords = (
     nativeQuery.queryIdentifier,
     recordGqlFields,
   ]);
-  const queryRef = useRef(nativeQuery);
-  queryRef.current = nativeQuery;
-  const identityRef = useRef(identity);
-  identityRef.current = identity;
-  const requestRef = useRef<object | null>(null);
+  const store = useStore();
+  const [requestState] = useState(() =>
+    atom<{
+      query: typeof nativeQuery;
+      identity: string;
+      request: object | null;
+    }>({ query: nativeQuery, identity, request: null }),
+  );
+  // Keep the latest native callbacks without restarting an unchanged query.
+  store.set(requestState, (state) => ({
+    ...state,
+    query: nativeQuery,
+    identity,
+  }));
   const [page, setPage] = useState(() => initialPage(identity));
   const [retry, setRetry] = useState(0);
 
   useEffect(() => {
     let active = true;
     const request = {};
-    requestRef.current = request;
+    store.set(requestState, (state) => ({ ...state, request }));
     setPage(initialPage(identity));
-    void queryRef.current
-      .findManyRecordsLazy()
+    void store
+      .get(requestState)
+      .query.findManyRecordsLazy()
       .then(
         (result) => {
-          if (!active || identityRef.current !== identity) return;
+          if (!active || store.get(requestState).identity !== identity) return;
           const failed = !!result.error || !result.data;
           setPage({
             identity,
@@ -84,29 +95,38 @@ export const useOverdueAttentionRecords = (
           });
         },
         () => {
-          if (active && identityRef.current === identity) {
+          if (active && store.get(requestState).identity === identity) {
             setPage({ ...initialPage(identity), loading: false, error: true });
           }
         },
       )
       .finally(() => {
-        if (requestRef.current === request) requestRef.current = null;
+        if (store.get(requestState).request === request) {
+          store.set(requestState, (state) => ({ ...state, request: null }));
+        }
       });
     return () => {
       active = false;
-      if (requestRef.current === request) requestRef.current = null;
+      if (store.get(requestState).request === request) {
+        store.set(requestState, (state) => ({ ...state, request: null }));
+      }
     };
-  }, [identity, retry]);
+  }, [identity, retry, requestState, store]);
 
   const currentPage = page.identity === identity ? page : initialPage(identity);
   const loadMore = async () => {
-    if (requestRef.current || !currentPage.hasNextPage) return;
+    if (store.get(requestState).request || !currentPage.hasNextPage) return;
     const request = {};
-    requestRef.current = request;
+    store.set(requestState, (state) => ({ ...state, request }));
     setPage((previous) => ({ ...previous, loading: true, error: false }));
     try {
-      const result = await queryRef.current.fetchMoreRecordsLazy(25);
-      if (identityRef.current !== identity || requestRef.current !== request)
+      const result = await store
+        .get(requestState)
+        .query.fetchMoreRecordsLazy(25);
+      if (
+        store.get(requestState).identity !== identity ||
+        store.get(requestState).request !== request
+      )
         return;
       if (
         !result ||
@@ -130,11 +150,16 @@ export const useOverdueAttentionRecords = (
         error: false,
       }));
     } catch {
-      if (identityRef.current === identity && requestRef.current === request) {
+      if (
+        store.get(requestState).identity === identity &&
+        store.get(requestState).request === request
+      ) {
         setPage((previous) => ({ ...previous, loading: false, error: true }));
       }
     } finally {
-      if (requestRef.current === request) requestRef.current = null;
+      if (store.get(requestState).request === request) {
+        store.set(requestState, (state) => ({ ...state, request: null }));
+      }
     }
   };
 

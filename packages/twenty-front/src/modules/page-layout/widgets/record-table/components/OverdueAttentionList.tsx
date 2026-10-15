@@ -11,15 +11,15 @@ import { type RecordGqlOperationGqlRecordFields } from 'twenty-shared/types';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContent = styled.div`
+  color: ${themeCssVariables.font.color.primary};
   container: overdue-attention / inline-size;
   display: flex;
   flex-direction: column;
+  font-size: 13px;
   height: 100%;
   min-height: 0;
   min-width: 0;
   overflow: hidden;
-  color: ${themeCssVariables.font.color.primary};
-  font-size: 13px;
 `;
 const StyledHeader = styled.div`
   color: ${themeCssVariables.font.color.secondary};
@@ -27,54 +27,54 @@ const StyledHeader = styled.div`
   padding: 4px 12px 8px;
 `;
 const StyledList = styled.ul`
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-auto-rows: max-content;
   align-content: start;
   column-gap: 20px;
-  @container overdue-attention (min-width: 700px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  display: grid;
+  flex: 1 1 auto;
+  grid-auto-rows: max-content;
+  grid-template-columns: minmax(0, 1fr);
   list-style: none;
   margin: 0;
   min-height: 0;
   overflow: auto;
   overscroll-behavior: contain;
   padding: 0 12px;
-  flex: 1 1 auto;
+  @container overdue-attention (min-width: 700px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 `;
 const StyledRow = styled.li`
-  position: relative;
-  --overdue-accent: #c88b43;
-  --overdue-background: #fcf1e5;
-  --overdue-text: #85501b;
-  &[data-severity='urgent'] {
-    --overdue-accent: #cf6259;
-    --overdue-background: #fcf0ee;
-    --overdue-text: #a53930;
-  }
+  --overdue-accent: ${themeCssVariables.color.orange};
+  --overdue-background: ${themeCssVariables.tag.background.orange};
+  --overdue-text: ${themeCssVariables.tag.text.orange};
   align-items: center;
   border-bottom: 1px solid ${themeCssVariables.border.color.light};
   display: flex;
   gap: 12px;
-  padding: 10px 0;
   min-width: 0;
+  padding: 10px 0;
+  position: relative;
+  &[data-severity='urgent'] {
+    --overdue-accent: ${themeCssVariables.color.red};
+    --overdue-background: ${themeCssVariables.tag.background.red};
+    --overdue-text: ${themeCssVariables.tag.text.red};
+  }
 `;
 const StyledDetails = styled.div`
-  pointer-events: none;
   border-left: 3px solid var(--overdue-accent);
   flex: 1 1 auto;
   min-width: 0;
   padding-left: 10px;
+  pointer-events: none;
 `;
 const StyledActivation = styled.button`
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   background: none;
   border: 0;
   cursor: pointer;
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
   &:focus-visible {
     outline: 2px solid currentColor;
     outline-offset: -2px;
@@ -110,18 +110,18 @@ const StyledMetadata = styled.div`
   min-width: 0;
   overflow-wrap: anywhere;
   > span {
-    min-width: 0;
     max-width: 100%;
+    min-width: 0;
   }
 `;
 const StyledBadge = styled.span`
-  pointer-events: none;
   background: var(--overdue-background);
   border-radius: 6px;
   color: var(--overdue-text);
   flex: 0 0 auto;
   font-size: 11px;
   padding: 4px 6px;
+  pointer-events: none;
   text-align: center;
 `;
 const StyledFooter = styled.div`

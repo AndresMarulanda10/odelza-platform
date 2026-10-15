@@ -11,17 +11,20 @@ import { useAtomFamilySelectorValue } from '@/ui/utilities/state/jotai/hooks/use
 import { viewFromViewIdFamilySelector } from '@/views/states/selectors/viewFromViewIdFamilySelector';
 import { useEffect } from 'react';
 import { isDefined } from 'twenty-shared/utils';
+import { ViewType } from '~/generated-metadata/graphql';
 
 type RecordTableWidgetViewLoadEffectProps = {
   viewId: string;
   widgetId: string;
   objectMetadataItem: EnrichedObjectMetadataItem;
+  viewType?: ViewType;
 };
 
 export const RecordTableWidgetViewLoadEffect = ({
   viewId,
   widgetId,
   objectMetadataItem,
+  viewType = ViewType.TABLE,
 }: RecordTableWidgetViewLoadEffectProps) => {
   const { loadRecordIndexStates } = useLoadRecordIndexStates();
 
@@ -76,7 +79,7 @@ export const RecordTableWidgetViewLoadEffect = ({
     }
 
     loadRecordIndexStates(currentView, objectMetadataItem, {
-      skipGlobalIndexStates: true,
+      skipGlobalIndexStates: viewType !== ViewType.KANBAN,
     });
 
     setLastLoadedRecordTableWidgetViewId({
@@ -92,6 +95,7 @@ export const RecordTableWidgetViewLoadEffect = ({
     viewHasFields,
     objectMetadataItem,
     loadRecordIndexStates,
+    viewType,
   ]);
 
   return null;

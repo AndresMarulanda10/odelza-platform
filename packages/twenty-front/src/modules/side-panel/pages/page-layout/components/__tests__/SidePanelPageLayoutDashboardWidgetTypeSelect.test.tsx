@@ -31,6 +31,12 @@ const mockCreatePageLayoutCardCarouselWidget = jest.fn(() => ({
 const mockSetPageLayoutEditingWidgetId = jest.fn();
 const mockNavigatePageLayoutSidePanel = jest.fn();
 const mockCreateTimeline = jest.fn(() => ({ id: 'timeline-id' }));
+const mockCreateView = jest.fn(() => ({ id: 'kanban-view-id' }));
+jest.mock('@/page-layout/hooks/useCreatePageLayoutViewWidget', () => ({
+  useCreatePageLayoutViewWidget: () => ({
+    createPageLayoutViewWidget: mockCreateView,
+  }),
+}));
 function mockEmptyHook() {
   return {};
 }
@@ -263,6 +269,19 @@ describe('SidePanelPageLayoutDashboardWidgetTypeSelect', () => {
     expect(mockAddDraft).toHaveBeenCalledWith('overdue-id', mockObjects[0]);
     expect(mockUpdateWidget).not.toHaveBeenCalled();
     expect(mockMenuIcons.View).toBe(IconTable);
+  });
+
+  it('keeps the separate Kanban View path without replacing native table View', () => {
+    mockObjects = [getMockObjectMetadataItemOrThrow('company')];
+    render(<SidePanelPageLayoutDashboardWidgetTypeSelect />);
+    expect(mockSelectableIds).toContain('view');
+    fireEvent.click(screen.getByRole('button', { name: 'Kanban View' }));
+    expect(mockCreateView).toHaveBeenCalledWith(mockObjects[0]);
+    expect(mockSetPageLayoutEditingWidgetId).toHaveBeenCalledWith(
+      'kanban-view-id',
+    );
+    expect(mockCreateTable).not.toHaveBeenCalled();
+    expect(mockAddDraft).not.toHaveBeenCalled();
   });
 
   it('does not expose retired personal finance visually or to keyboard selection', () => {

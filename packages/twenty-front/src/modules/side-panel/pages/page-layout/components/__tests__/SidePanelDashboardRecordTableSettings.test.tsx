@@ -1,8 +1,9 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { SidePanelDashboardRecordTableSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings';
 import { IconClock, IconTable, type IconComponent } from 'twenty-ui/icon';
 
 let mockMode: string | null;
+let mockConfigurationType = 'RECORD_TABLE';
 let mockLayoutIcon: IconComponent;
 let mockDescription: string;
 jest.mock(
@@ -16,12 +17,18 @@ jest.mock('@/side-panel/pages/page-layout/hooks/useWidgetInEditMode', () => ({
     widgetInEditMode: {
       id: 'widget',
       configuration: {
-        configurationType: 'RECORD_TABLE',
+        configurationType: mockConfigurationType,
         presentationMode: mockMode,
       },
     },
   }),
 }));
+jest.mock(
+  '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings',
+  () => ({
+    SidePanelDashboardViewSettings: () => <div data-testid="view-settings" />,
+  }),
+);
 jest.mock('@/side-panel/hooks/useSidePanelSubPageHistory', () => ({
   useSidePanelSubPageHistory: () => ({ navigateToSidePanelSubPage: jest.fn() }),
 }));
@@ -76,6 +83,7 @@ jest.mock('@/command-menu/components/CommandMenuItemDropdown', () => ({
 it.each([null, 'TABLE', 'OVERDUE_ATTENTION'])(
   'settings layout icon is scoped to mode %s',
   (mode) => {
+    mockConfigurationType = 'RECORD_TABLE';
     mockMode = mode;
     render(<SidePanelDashboardRecordTableSettings />);
     expect(mockLayoutIcon).toBe(
@@ -86,3 +94,9 @@ it.each([null, 'TABLE', 'OVERDUE_ATTENTION'])(
     );
   },
 );
+
+it('routes main View widgets to their own settings instead of native table settings', () => {
+  mockConfigurationType = 'VIEW';
+  render(<SidePanelDashboardRecordTableSettings />);
+  expect(screen.getByTestId('view-settings')).toBeInTheDocument();
+});
