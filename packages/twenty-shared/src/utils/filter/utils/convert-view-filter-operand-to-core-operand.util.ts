@@ -26,6 +26,7 @@ const operandMapping: Record<string, ViewFilterOperand> = {
   [ViewFilterOperand.GREATER_THAN_OR_EQUAL]:
     ViewFilterOperand.GREATER_THAN_OR_EQUAL,
   [ViewFilterOperand.IS_BEFORE]: ViewFilterOperand.IS_BEFORE,
+  [ViewFilterOperand.IS_BEFORE_TODAY]: ViewFilterOperand.IS_BEFORE_TODAY,
   [ViewFilterOperand.IS_AFTER]: ViewFilterOperand.IS_AFTER,
   [ViewFilterOperand.CONTAINS]: ViewFilterOperand.CONTAINS,
   [ViewFilterOperand.DOES_NOT_CONTAIN]: ViewFilterOperand.DOES_NOT_CONTAIN,

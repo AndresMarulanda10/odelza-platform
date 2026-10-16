@@ -38,7 +38,10 @@ export const useUpdateCurrentWidgetConfig = (pageLayoutIdFromProps: string) => {
             widget.id === pageLayoutEditingWidgetId
               ? {
                   ...widget,
-                  objectMetadataId: objectMetadataId ?? widget.objectMetadataId,
+                  objectMetadataId:
+                    objectMetadataId !== undefined
+                      ? objectMetadataId
+                      : widget.objectMetadataId,
                   configuration: {
                     ...(widget.configuration ?? {}),
                     ...configToUpdate,

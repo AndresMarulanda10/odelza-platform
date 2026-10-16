@@ -57,6 +57,7 @@ export const useApplyObjectFilterDropdownOperand = () => {
       RecordFilterOperand.IS_IN_PAST,
       RecordFilterOperand.IS_IN_FUTURE,
       RecordFilterOperand.IS_TODAY,
+      RecordFilterOperand.IS_BEFORE_TODAY,
     ].includes(newOperand);
 
     let recordFilterToUpsert: RecordFilter | null | undefined = null;

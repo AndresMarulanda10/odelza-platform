@@ -206,6 +206,20 @@ const buildDirectFieldGqlOperationFilter = ({
 
   const filterType = getFilterTypeFromFieldType(fieldMetadataItem.type);
 
+  if (recordFilter.operand === RecordFilterOperand.IS_BEFORE_TODAY) {
+    if (filterType !== 'DATE_TIME') {
+      throw new Error('IS_BEFORE_TODAY requires a DATE_TIME field');
+    }
+
+    const now = Temporal.Now.zonedDateTimeISO(filterValueDependencies.timeZone);
+
+    return {
+      [fieldMetadataItem.name]: {
+        lt: getPeriodStart(now, 'DAY').toInstant().toString(),
+      } as DateTimeFilter,
+    };
+  }
+
   switch (filterType) {
     case 'TEXT':
       switch (recordFilter.operand) {

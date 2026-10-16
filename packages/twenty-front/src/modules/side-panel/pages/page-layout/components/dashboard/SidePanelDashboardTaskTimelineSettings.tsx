@@ -1,169 +1,324 @@
-import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
+import { CommandMenuItemDropdown } from '@/command-menu/components/CommandMenuItemDropdown';
+import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadataItems';
+import { ObjectMetadataIcon } from '@/object-metadata/components/ObjectMetadataIcon';
+import { useObjectPermissions } from '@/object-record/hooks/useObjectPermissions';
+import { getObjectPermissionsForObject } from '@/object-metadata/utils/getObjectPermissionsForObject';
+import {
+  emptyTimelineMapping,
+  getTimelineFields,
+  getTimelineSources,
+  isLegacyTaskSource,
+} from '@/page-layout/widgets/task-timeline/utils/timelineSource';
+import { SidePanelGroup } from '@/side-panel/components/SidePanelGroup';
+import { SidePanelList } from '@/side-panel/components/SidePanelList';
+import { WidgetSettingsFooter } from '@/side-panel/pages/page-layout/components/WidgetSettingsFooter';
+import { TimelineSettingsDropdown } from '@/side-panel/pages/page-layout/components/dashboard/TimelineSettingsDropdown';
 import { usePageLayoutIdFromContextStore } from '@/side-panel/pages/page-layout/hooks/usePageLayoutIdFromContextStore';
 import { useUpdateCurrentWidgetConfig } from '@/side-panel/pages/page-layout/hooks/useUpdateCurrentWidgetConfig';
 import { useWidgetInEditMode } from '@/side-panel/pages/page-layout/hooks/useWidgetInEditMode';
-import { WidgetSettingsFooter } from '@/side-panel/pages/page-layout/components/WidgetSettingsFooter';
-import { Select } from '@/ui/input/components/Select';
+import { DropdownContent } from '@/ui/layout/dropdown/components/DropdownContent';
+import { DropdownMenuSearchInput } from '@/ui/layout/dropdown/components/DropdownMenuSearchInput';
+import { DropdownMenuItemsContainer } from '@/ui/layout/dropdown/components/DropdownMenuItemsContainer';
+import { SelectableListItem } from '@/ui/layout/selectable-list/components/SelectableListItem';
+import { SelectableList } from '@/ui/layout/selectable-list/components/SelectableList';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
-import {
-  CoreObjectNameSingular,
-  type TaskTimelineFieldMapping,
-} from 'twenty-shared/types';
-import { isFieldMetadataDateKind } from 'twenty-shared/utils';
+import { useContext, useState } from 'react';
+import { ThemeContext } from 'twenty-ui/theme-constants';
 import { DEFAULT_TASK_TIMELINE_BAR_COLOR } from 'twenty-shared/constants';
-import { type SelectOption } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { type TaskTimelineFieldMapping } from 'twenty-shared/types';
+import {
+  IconBox,
+  IconCalendar,
+  IconColorSwatch,
+  IconListDetails,
+  IconTypography,
+} from 'twenty-ui/icon';
+import { MenuItemSelectColor } from 'twenty-ui/navigation';
+import { MAIN_COLOR_NAMES } from 'twenty-ui/theme';
+import * as RadixColors from '@radix-ui/colors';
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 0;
 `;
 
 const StyledSettings = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
-  padding: ${themeCssVariables.spacing[4]};
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
 `;
 
-const StyledField = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
-`;
-
-const StyledLabel = styled.label`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-`;
-
-const StyledColorControl = styled.div`
-  align-items: center;
-  background: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
-  display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  min-height: ${themeCssVariables.spacing[8]};
-  padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
-`;
-
-const StyledColorInput = styled.input`
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  height: ${themeCssVariables.spacing[6]};
-  padding: 0;
-  width: ${themeCssVariables.spacing[6]};
-
-  &:focus-visible {
-    border-radius: ${themeCssVariables.border.radius.sm};
-    outline: 2px solid ${themeCssVariables.color.blue};
-    outline-offset: 2px;
-  }
-`;
-
-const StyledColorValue = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-family: ${themeCssVariables.code.font.family}, monospace;
-  font-size: ${themeCssVariables.font.size.sm};
-`;
+const TimelineColorDropdown = ({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (color: string) => void;
+}) => {
+  const { colorScheme } = useContext(ThemeContext);
+  const [hex, setHex] = useState(value);
+  // Native swatches use display-P3 CSS. Persist their corresponding sRGB
+  // palette value, because the existing Timeline contract stores six-digit hex.
+  const paletteHex = (color: (typeof MAIN_COLOR_NAMES)[number]) => {
+    const paletteName =
+      color === 'blue' ? 'indigo' : color === 'turquoise' ? 'teal' : color;
+    const palette = (RadixColors as Record<string, Record<string, string>>)[
+      `${paletteName}${colorScheme === 'dark' ? 'Dark' : ''}`
+    ];
+    return palette[`${paletteName}9`];
+  };
+  return (
+    <DropdownContent>
+      <DropdownMenuSearchInput
+        placeholder={t`Hex color`}
+        value={hex}
+        onChange={(event) => {
+          setHex(event.target.value);
+          if (/^#[0-9a-fA-F]{6}$/.test(event.target.value))
+            onChange(event.target.value);
+        }}
+      />
+      <DropdownMenuItemsContainer>
+        {MAIN_COLOR_NAMES.map((color) => (
+          <MenuItemSelectColor
+            key={color}
+            color={color}
+            selected={paletteHex(color).toLowerCase() === value.toLowerCase()}
+            onClick={() => {
+              const nextColor = paletteHex(color);
+              if (/^#[0-9a-fA-F]{6}$/.test(nextColor)) {
+                setHex(nextColor);
+                onChange(nextColor);
+              }
+            }}
+          />
+        ))}
+      </DropdownMenuItemsContainer>
+    </DropdownContent>
+  );
+};
 
 export const SidePanelDashboardTaskTimelineSettings = () => {
   const { pageLayoutId } = usePageLayoutIdFromContextStore();
   const { widgetInEditMode } = useWidgetInEditMode(pageLayoutId);
   const { updateCurrentWidgetConfig } =
     useUpdateCurrentWidgetConfig(pageLayoutId);
-  const { objectMetadataItem } = useObjectMetadataItem({
-    objectNameSingular: CoreObjectNameSingular.Task,
-  });
-
-  if (widgetInEditMode?.configuration?.configurationType !== 'TASK_TIMELINE') {
+  const { objectMetadataItems } = useObjectMetadataItems();
+  const { objectPermissionsByObjectMetadataId } = useObjectPermissions();
+  if (widgetInEditMode?.configuration?.configurationType !== 'TASK_TIMELINE')
     return null;
-  }
-
   const configuration = widgetInEditMode.configuration as {
     fieldMapping?: TaskTimelineFieldMapping | null;
     barColor?: string | null;
   };
   const mapping = configuration.fieldMapping ?? {};
-  const dateFields = objectMetadataItem.fields.filter((field) =>
-    isFieldMetadataDateKind(field.type),
+  const sources = getTimelineSources(
+    objectMetadataItems,
+    objectPermissionsByObjectMetadataId,
   );
-  const dateFieldOptions: SelectOption<string>[] = dateFields.map((field) => ({
-    label: field.label ?? field.name,
-    value: field.id,
-  }));
-  const emptyDateOption: SelectOption<string> = {
-    label: t`Not configured`,
-    value: '',
+  const source = sources.find(
+    (object) => object.id === widgetInEditMode.objectMetadataId,
+  );
+  const permissions = source
+    ? getObjectPermissionsForObject(
+        objectPermissionsByObjectMetadataId,
+        source.id,
+      )
+    : undefined;
+  const isTask = source !== undefined && isLegacyTaskSource(source);
+  const fields = (kind: 'date' | 'title') =>
+    source && permissions ? getTimelineFields(source, permissions, kind) : [];
+  const roleMenu = (
+    key:
+      | 'startDateFieldMetadataId'
+      | 'dueDateFieldMetadataId'
+      | 'titleFieldMetadataId',
+    label: string,
+    kind: 'date' | 'title',
+  ) => {
+    const eligible = fields(kind);
+    const id = `timeline-${key}`;
+    const value = mapping[key];
+    const description =
+      value == null
+        ? isTask && kind === 'date'
+          ? t`Automatic`
+          : kind === 'title'
+            ? t`Record label`
+            : t`Not configured`
+        : (eligible.find((field) => field.id === value)?.label ??
+          t`Unavailable field`);
+    return (
+      <SelectableListItem key={id} itemId={id}>
+        <CommandMenuItemDropdown
+          id={id}
+          dropdownId={id}
+          label={label}
+          Icon={kind === 'date' ? IconCalendar : IconTypography}
+          description={description}
+          contextualTextPosition="right"
+          dropdownPlacement="bottom-end"
+          dropdownComponents={
+            <DropdownContent>
+              <TimelineSettingsDropdown
+                options={eligible.map((field) => ({
+                  id: field.id,
+                  label: field.label,
+                  searchTerms: [field.name],
+                  Icon: kind === 'date' ? IconCalendar : IconTypography,
+                }))}
+                value={value}
+                searchPlaceholder={t`Search fields`}
+                emptyLabel={t`No readable compatible fields. Choose another source or update its fields.`}
+                clearLabel={
+                  isTask && kind === 'date'
+                    ? t`Automatic`
+                    : kind === 'title'
+                      ? t`Record label`
+                      : t`Not configured`
+                }
+                onChange={(next) =>
+                  updateCurrentWidgetConfig({
+                    configToUpdate: {
+                      fieldMapping: { ...mapping, [key]: next },
+                    },
+                  })
+                }
+              />
+            </DropdownContent>
+          }
+        />
+      </SelectableListItem>
+    );
   };
   const barColor = configuration.barColor ?? DEFAULT_TASK_TIMELINE_BAR_COLOR;
-
-  const updateMapping = (
-    key: 'startDateFieldMetadataId' | 'dueDateFieldMetadataId',
-    value: string,
-  ) => {
-    const nextMapping: TaskTimelineFieldMapping = {
-      ...mapping,
-      [key]: value || null,
-    };
-    updateCurrentWidgetConfig({
-      configToUpdate: { fieldMapping: nextMapping },
-    });
-  };
-
   return (
     <StyledContainer>
       <StyledSettings>
-        <StyledField>
-          <Select
-            dropdownId="task-timeline-start-date-field"
-            emptyOption={emptyDateOption}
-            fullWidth
-            label={t`Start date field`}
-            options={dateFieldOptions}
-            value={mapping.startDateFieldMetadataId ?? ''}
-            onChange={(value) =>
-              updateMapping('startDateFieldMetadataId', value)
-            }
-          />
-        </StyledField>
-        <StyledField>
-          <Select
-            dropdownId="task-timeline-end-date-field"
-            emptyOption={emptyDateOption}
-            fullWidth
-            label={t`End date field`}
-            options={dateFieldOptions}
-            value={mapping.dueDateFieldMetadataId ?? ''}
-            onChange={(value) => updateMapping('dueDateFieldMetadataId', value)}
-          />
-        </StyledField>
-        <StyledField>
-          <StyledLabel htmlFor="task-timeline-bar-color">
-            {t`Task bar color`}
-          </StyledLabel>
-          <StyledColorControl>
-            <StyledColorInput
-              id="task-timeline-bar-color"
-              aria-label={t`Task bar color`}
-              type="color"
-              value={barColor}
-              onChange={(event) =>
-                updateCurrentWidgetConfig({
-                  configToUpdate: { barColor: event.target.value },
-                })
-              }
-            />
-            <StyledColorValue aria-label={t`Selected color`}>
-              {barColor}
-            </StyledColorValue>
-          </StyledColorControl>
-        </StyledField>
+        <SidePanelList
+          selectableItemIds={[
+            'timeline-source',
+            'timeline-fields',
+            'timeline-color',
+          ]}
+        >
+          <SidePanelGroup heading={t`Settings`}>
+            <SelectableListItem itemId="timeline-source">
+              <CommandMenuItemDropdown
+                id="timeline-source"
+                dropdownId="timeline-source"
+                label={t`Source`}
+                Icon={IconBox}
+                description={source?.labelPlural ?? t`Not configured`}
+                contextualTextPosition="right"
+                dropdownPlacement="bottom-end"
+                dropdownComponents={
+                  <DropdownContent>
+                    <TimelineSettingsDropdown
+                      options={[...sources]
+                        .sort((a, b) =>
+                          a.labelPlural.localeCompare(b.labelPlural),
+                        )
+                        .map((object) => ({
+                          id: object.id,
+                          label: object.labelPlural,
+                          searchTerms: [object.nameSingular, object.namePlural],
+                          Icon: () => (
+                            <ObjectMetadataIcon objectMetadataItem={object} />
+                          ),
+                        }))}
+                      value={source?.id}
+                      searchPlaceholder={t`Search objects`}
+                      emptyLabel={t`No readable active objects available.`}
+                      clearLabel={t`Not configured`}
+                      onChange={(objectMetadataId) => {
+                        if (
+                          objectMetadataId !== widgetInEditMode.objectMetadataId
+                        )
+                          updateCurrentWidgetConfig({
+                            objectMetadataId,
+                            configToUpdate: {
+                              fieldMapping: emptyTimelineMapping(),
+                            },
+                          });
+                      }}
+                    />
+                  </DropdownContent>
+                }
+              />
+            </SelectableListItem>
+            <SelectableListItem itemId="timeline-fields">
+              <CommandMenuItemDropdown
+                id="timeline-fields"
+                dropdownId="timeline-fields"
+                label={t`Fields`}
+                Icon={IconListDetails}
+                description={t`Title and dates`}
+                contextualTextPosition="right"
+                dropdownPlacement="bottom-end"
+                dropdownComponents={
+                  <DropdownContent>
+                    <SelectableList
+                      selectableListInstanceId="timeline-fields"
+                      focusId="timeline-fields"
+                      selectableItemIdArray={[
+                        'timeline-titleFieldMetadataId',
+                        'timeline-startDateFieldMetadataId',
+                        'timeline-dueDateFieldMetadataId',
+                      ]}
+                    >
+                      {roleMenu(
+                        'titleFieldMetadataId',
+                        t`Title field`,
+                        'title',
+                      )}
+                      {roleMenu(
+                        'startDateFieldMetadataId',
+                        t`Start date field`,
+                        'date',
+                      )}
+                      {roleMenu(
+                        'dueDateFieldMetadataId',
+                        t`End date field`,
+                        'date',
+                      )}
+                    </SelectableList>
+                  </DropdownContent>
+                }
+              />
+            </SelectableListItem>
+            <SelectableListItem itemId="timeline-color">
+              <CommandMenuItemDropdown
+                id="timeline-color"
+                dropdownId="timeline-color"
+                label={t`Bar color`}
+                Icon={IconColorSwatch}
+                description={barColor}
+                contextualTextPosition="right"
+                dropdownPlacement="bottom-end"
+                dropdownComponents={
+                  <TimelineColorDropdown
+                    value={barColor}
+                    onChange={(color) =>
+                      updateCurrentWidgetConfig({
+                        configToUpdate: { barColor: color },
+                      })
+                    }
+                  />
+                }
+              />
+            </SelectableListItem>
+          </SidePanelGroup>
+        </SidePanelList>
+        {!source && (
+          <div role="status">{t`Choose a readable active source to configure its fields.`}</div>
+        )}
+        {source && !isTask && (
+          <div role="status">{t`Status and dependencies are Task-only. Numeric progress and boolean milestones are retained only when compatible; they are not inferred.`}</div>
+        )}
       </StyledSettings>
       <WidgetSettingsFooter pageLayoutId={pageLayoutId} />
     </StyledContainer>

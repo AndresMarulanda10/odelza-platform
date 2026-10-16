@@ -515,7 +515,7 @@ export interface ViewFilter {
     __typename: 'ViewFilter'
 }
 
-export type ViewFilterOperand = 'IS' | 'IS_NOT_NULL' | 'IS_NOT' | 'LESS_THAN_OR_EQUAL' | 'GREATER_THAN_OR_EQUAL' | 'IS_BEFORE' | 'IS_AFTER' | 'CONTAINS' | 'DOES_NOT_CONTAIN' | 'IS_EMPTY' | 'IS_NOT_EMPTY' | 'IS_RELATIVE' | 'IS_IN_PAST' | 'IS_IN_FUTURE' | 'IS_TODAY' | 'VECTOR_SEARCH'
+export type ViewFilterOperand = 'IS' | 'IS_NOT_NULL' | 'IS_NOT' | 'LESS_THAN_OR_EQUAL' | 'GREATER_THAN_OR_EQUAL' | 'IS_BEFORE' | 'IS_BEFORE_TODAY' | 'IS_AFTER' | 'CONTAINS' | 'DOES_NOT_CONTAIN' | 'IS_EMPTY' | 'IS_NOT_EMPTY' | 'IS_RELATIVE' | 'IS_IN_PAST' | 'IS_IN_FUTURE' | 'IS_TODAY' | 'VECTOR_SEARCH'
 
 export interface ViewGroup {
     id: Scalars['UUID']
@@ -1020,6 +1020,7 @@ export interface RecordTableConfiguration {
     configurationType: WidgetConfigurationType
     viewId?: Scalars['String']
     recordLimit?: Scalars['Int']
+    presentationMode?: Scalars['String']
     __typename: 'RecordTableConfiguration'
 }
 
@@ -4152,6 +4153,7 @@ export interface RecordTableConfigurationGenqlSelection{
     configurationType?: boolean | number
     viewId?: boolean | number
     recordLimit?: boolean | number
+    presentationMode?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -9083,6 +9085,7 @@ export const enumViewFilterOperand = {
    LESS_THAN_OR_EQUAL: 'LESS_THAN_OR_EQUAL' as const,
    GREATER_THAN_OR_EQUAL: 'GREATER_THAN_OR_EQUAL' as const,
    IS_BEFORE: 'IS_BEFORE' as const,
+   IS_BEFORE_TODAY: 'IS_BEFORE_TODAY' as const,
    IS_AFTER: 'IS_AFTER' as const,
    CONTAINS: 'CONTAINS' as const,
    DOES_NOT_CONTAIN: 'DOES_NOT_CONTAIN' as const,

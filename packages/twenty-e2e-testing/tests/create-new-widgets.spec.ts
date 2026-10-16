@@ -181,7 +181,9 @@ test.describe.serial('Create new page-layout widgets', () => {
       await expect(page.getByText(updatedTitle, { exact: true })).toBeVisible();
       await expect(page.getByText('Timeline data is incomplete')).toBeVisible();
       await expect(
-        page.getByText('Personal-finance data unavailable'),
+        page.getByText(
+          'This widget is no longer available. Remove it from the dashboard.',
+        ),
       ).toBeVisible();
 
       const duplicate = await postGraphQL<{

@@ -2634,6 +2634,9 @@ export default {
             "recordLimit": [
                 21
             ],
+            "presentationMode": [
+                1
+            ],
             "__typename": [
                 1
             ]

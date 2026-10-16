@@ -1,11 +1,18 @@
 import { CommandMenuItem } from '@/command-menu/components/CommandMenuItem';
 import { FIND_MANY_FRONT_COMPONENTS } from '@/front-components/graphql/queries/findManyFrontComponents';
 import { useReadableObjectMetadataItems } from '@/object-metadata/hooks/useReadableObjectMetadataItems';
+import { useObjectPermissions } from '@/object-record/hooks/useObjectPermissions';
+import { useUpdatePageLayoutWidget } from '@/page-layout/hooks/useUpdatePageLayoutWidget';
+import {
+  buildOverdueTaskRecordTableWidgetPreset,
+  getOverdueTaskPresetObject,
+  OVERDUE_TASKS_PRESET_ID,
+  OVERDUE_TASKS_RECORD_LIMIT,
+} from '@/page-layout/widgets/record-table/utils/buildOverdueTaskRecordTableWidgetPreset';
 import { useCreatePageLayoutCardCarouselWidget } from '@/page-layout/hooks/useCreatePageLayoutCardCarouselWidget';
 import { useCreatePageLayoutFrontComponentWidget } from '@/page-layout/hooks/useCreatePageLayoutFrontComponentWidget';
 import { useCreatePageLayoutGraphWidget } from '@/page-layout/hooks/useCreatePageLayoutGraphWidget';
 import { useCreatePageLayoutIframeWidget } from '@/page-layout/hooks/useCreatePageLayoutIframeWidget';
-import { useCreatePageLayoutPersonalFinanceWidget } from '@/page-layout/hooks/useCreatePageLayoutPersonalFinanceWidget';
 import { useCreatePageLayoutRecordTableWidget } from '@/page-layout/hooks/useCreatePageLayoutRecordTableWidget';
 import { useCreatePageLayoutStandaloneRichTextWidget } from '@/page-layout/hooks/useCreatePageLayoutStandaloneRichTextWidget';
 import { useCreatePageLayoutTaskTimelineWidget } from '@/page-layout/hooks/useCreatePageLayoutTaskTimelineWidget';
@@ -38,7 +45,7 @@ import {
   IconLayoutKanban,
   IconTable,
   IconTimelineEvent,
-  IconCoins,
+  IconClock,
 } from 'twenty-ui/icon';
 import { type FrontComponent, WidgetType } from '~/generated-metadata/graphql';
 
@@ -91,11 +98,6 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
       pageLayoutId,
       tabListInstanceId,
     });
-  const { createPageLayoutPersonalFinanceWidget } =
-    useCreatePageLayoutPersonalFinanceWidget({
-      pageLayoutId,
-      tabListInstanceId,
-    });
 
   const { createPageLayoutCardCarouselWidget } =
     useCreatePageLayoutCardCarouselWidget({
@@ -111,6 +113,12 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
   const { addDraftViewForRecordTableWidget } =
     useAddDraftViewForRecordTableWidget(pageLayoutId);
   const { readableObjectMetadataItems } = useReadableObjectMetadataItems();
+  const { objectPermissionsByObjectMetadataId } = useObjectPermissions();
+  const { updatePageLayoutWidget } = useUpdatePageLayoutWidget(pageLayoutId);
+  const overdueTaskObject = getOverdueTaskPresetObject(
+    readableObjectMetadataItems,
+    objectPermissionsByObjectMetadataId,
+  );
 
   const firstAvailableObjectMetadataItem =
     readableObjectMetadataItems.find(
@@ -286,6 +294,37 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
     closeSidePanelMenu();
   };
 
+  const handleCreateOverdueTasks = () => {
+    // Recheck current metadata/permissions before replacing any existing draft.
+    const object = getOverdueTaskPresetObject(
+      readableObjectMetadataItems,
+      objectPermissionsByObjectMetadataId,
+    );
+    if (!object) return;
+    const snapshot = buildOverdueTaskRecordTableWidgetPreset(
+      object,
+      objectPermissionsByObjectMetadataId,
+    );
+    if (!snapshot) return;
+
+    if (isDefined(pageLayoutEditingWidgetId)) {
+      removePageLayoutWidgetAndPreservePosition(pageLayoutEditingWidgetId);
+    }
+    const widget = createPageLayoutRecordTableWidget(object);
+    updatePageLayoutWidget(widget.id, { title: 'Overdue tasks' });
+    setPageLayoutEditingWidgetId(widget.id);
+    addDraftViewForRecordTableWidget(widget.id, object, {
+      snapshot,
+      recordLimit: OVERDUE_TASKS_RECORD_LIMIT,
+      presentationMode: 'OVERDUE_ATTENTION',
+    });
+    navigatePageLayoutSidePanel({
+      sidePanelPage: SidePanelPages.DashboardRecordTableSettings,
+      focusTitleInput: false,
+      pageIcon: IconClock,
+    });
+  };
+
   const handleCreateTaskTimelineWidget = () => {
     if (
       isExistingWidgetMissingOrDifferentType(
@@ -307,25 +346,10 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
       setPageLayoutEditingWidgetId(newWidget.id);
     }
 
-    closeSidePanelMenu();
-  };
-
-  const handleCreatePersonalFinanceWidget = () => {
-    if (
-      isExistingWidgetMissingOrDifferentType(
-        existingWidget?.type,
-        WidgetType.PERSONAL_FINANCE,
-      )
-    ) {
-      if (isDefined(pageLayoutEditingWidgetId)) {
-        removePageLayoutWidgetAndPreservePosition(pageLayoutEditingWidgetId);
-      }
-
-      const newWidget = createPageLayoutPersonalFinanceWidget();
-      setPageLayoutEditingWidgetId(newWidget.id);
-    }
-
-    closeSidePanelMenu();
+    navigatePageLayoutSidePanel({
+      sidePanelPage: SidePanelPages.DashboardTaskTimelineSettings,
+      focusTitleInput: false,
+    });
   };
 
   const handleCreateCardCarouselWidget = () => {
@@ -349,11 +373,11 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
   const selectableItemIds = [
     'chart',
     'record-table',
+    ...(overdueTaskObject ? [OVERDUE_TASKS_PRESET_ID] : []),
     'view',
     'iframe',
     'rich-text',
     'task-timeline',
-    'personal-finance',
     'card-carousel',
     ...frontComponentsWithSelectItemId.map(({ selectItemId }) => selectItemId),
   ];
@@ -383,6 +407,19 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
             onClick={handleNavigateToRecordTableSettings}
           />
         </SelectableListItem>
+        {overdueTaskObject && (
+          <SelectableListItem
+            itemId={OVERDUE_TASKS_PRESET_ID}
+            onEnter={handleCreateOverdueTasks}
+          >
+            <CommandMenuItem
+              Icon={IconClock}
+              label={t`Overdue tasks`}
+              id={OVERDUE_TASKS_PRESET_ID}
+              onClick={handleCreateOverdueTasks}
+            />
+          </SelectableListItem>
+        )}
         <SelectableListItem
           itemId="view"
           onEnter={handleNavigateToViewSettings}
@@ -426,17 +463,6 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
             label={t`Task Timeline`}
             id="task-timeline"
             onClick={handleCreateTaskTimelineWidget}
-          />
-        </SelectableListItem>
-        <SelectableListItem
-          itemId="personal-finance"
-          onEnter={handleCreatePersonalFinanceWidget}
-        >
-          <CommandMenuItem
-            Icon={IconCoins}
-            label={t`Personal Finance`}
-            id="personal-finance"
-            onClick={handleCreatePersonalFinanceWidget}
           />
         </SelectableListItem>
         <SelectableListItem

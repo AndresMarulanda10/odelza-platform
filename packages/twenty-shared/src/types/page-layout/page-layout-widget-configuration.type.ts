@@ -93,6 +93,7 @@ export type RecordTableConfiguration = {
   configurationType: 'RECORD_TABLE';
   viewId?: string;
   recordLimit?: number;
+  presentationMode?: 'TABLE' | 'OVERDUE_ATTENTION' | null;
 };
 
 export type FieldConfiguration = {
@@ -148,6 +149,7 @@ export type TaskTimelineConfiguration = {
   barColor?: string | null;
 };
 
+/** @deprecated Retained for saved widget import/export and configuration validation. */
 export type PersonalFinanceSourceMapping = {
   incomeFieldMetadataId?: SerializedRelation | null;
   expenseFieldMetadataId?: SerializedRelation | null;
@@ -158,6 +160,7 @@ export type PersonalFinanceSourceMapping = {
   categoryFieldMetadataId?: SerializedRelation | null;
 };
 
+/** @deprecated Retained for saved widgets; no active finance widget is available. */
 export type PersonalFinanceConfiguration = {
   configurationType: 'PERSONAL_FINANCE';
   baseCurrencyCode?: CurrencyCode | null;

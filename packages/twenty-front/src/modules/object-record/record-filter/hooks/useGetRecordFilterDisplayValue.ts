@@ -136,6 +136,7 @@ export const useGetRecordFilterDisplayValue = () => {
           return `${relativeDateDisplayValue}`;
         }
         case RecordFilterOperand.IS_TODAY:
+        case RecordFilterOperand.IS_BEFORE_TODAY:
           return shouldDisplayTimeZoneAbbreviation
             ? `(${timeZoneAbbreviation})`
             : '';

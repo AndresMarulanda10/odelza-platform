@@ -27,6 +27,7 @@ import {
   IconFilter,
   IconListDetails,
   IconTable,
+  IconClock,
 } from 'twenty-ui/icon';
 import { WidgetConfigurationType } from '~/generated-metadata/graphql';
 
@@ -65,6 +66,10 @@ const SidePanelDashboardRecordTableSettingsContent = () => {
   const configuration = widgetInEditMode?.configuration;
   const isRecordTableConfiguration =
     configuration?.configurationType === WidgetConfigurationType.RECORD_TABLE;
+  const isOverdue =
+    isRecordTableConfiguration &&
+    'presentationMode' in configuration &&
+    configuration.presentationMode === 'OVERDUE_ATTENTION';
 
   const viewId =
     isRecordTableConfiguration &&
@@ -147,13 +152,13 @@ const SidePanelDashboardRecordTableSettingsContent = () => {
             <SidePanelGroup heading={t`Settings`}>
               <SelectableListItem itemId="object-view-layout">
                 <CommandMenuItemDropdown
-                  Icon={IconTable}
+                  Icon={isOverdue ? IconClock : IconTable}
                   label={t`Layout`}
                   id="object-view-layout"
                   dropdownId="object-view-layout"
                   dropdownComponents={<></>}
                   dropdownPlacement="bottom-end"
-                  description={t`Table`}
+                  description={isOverdue ? t`Overdue tasks` : t`Table`}
                   disabled={true}
                   contextualTextPosition="right"
                 />

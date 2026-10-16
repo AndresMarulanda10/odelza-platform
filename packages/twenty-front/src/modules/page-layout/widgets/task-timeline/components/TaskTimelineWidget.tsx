@@ -20,6 +20,7 @@ import {
   shiftTaskTimelineDate,
 } from '@/page-layout/widgets/task-timeline/utils/getTaskTimelineCalendar';
 import { useOpenRecordInSidePanel } from '@/side-panel/hooks/useOpenRecordInSidePanel';
+import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadataItems';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { DEFAULT_TASK_TIMELINE_BAR_COLOR } from 'twenty-shared/constants';
@@ -28,43 +29,78 @@ import {
   type TaskTimelineItem,
 } from 'twenty-shared/types';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { AppTooltip, TooltipDelay } from 'twenty-ui/surfaces';
 
 const TASK_TIMELINE_DATE_COLUMN_WIDTH = '7rem';
 
 const StyledContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: ${themeCssVariables.spacing[2]};
+  height: 100%;
+  min-height: 0;
   min-width: 0;
-  padding: ${themeCssVariables.spacing[3]};
+  overflow: hidden;
   width: 100%;
 `;
 
 const StyledState = styled.div`
   align-items: center;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: ${themeCssVariables.spacing[1]};
-  justify-content: center;
-  min-height: 120px;
+  height: 100%;
+  justify-content: safe center;
+  min-height: 0;
+  overflow: auto;
+  overflow-wrap: anywhere;
   text-align: center;
 `;
 
 const StyledNotice = styled.div`
   color: ${themeCssVariables.font.color.tertiary};
+  flex-shrink: 0;
   font-size: ${themeCssVariables.font.size.sm};
+  overflow-wrap: anywhere;
+`;
+
+const StyledHelpBar = styled.div`
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-end;
+`;
+
+const StyledIdentifier = styled.div`
+  background: ${themeCssVariables.background.primary};
+  box-sizing: border-box;
+  left: 0;
+  padding: ${themeCssVariables.spacing[2]};
+  position: sticky;
+  z-index: 2;
+`;
+
+const StyledCorner = styled(StyledIdentifier)`
+  z-index: 4;
 `;
 
 const StyledTimeline = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: ${themeCssVariables.spacing[2]};
+  min-height: 0;
   min-width: 0;
 `;
 
 const StyledCalendarViewport = styled.div`
+  container-name: task-timeline-calendar;
+  container-type: size;
   cursor: grab;
-  max-height: 38rem;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
   overflow-x: auto;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -81,15 +117,23 @@ const StyledCalendar = styled.div`
   display: grid;
   grid-template-columns: minmax(9rem, 14rem) max-content;
   min-width: 42rem;
-  overflow: hidden;
   width: max-content;
 `;
 
 const StyledCalendarHeader = styled.div`
-  background: ${themeCssVariables.background.transparent.light};
+  background: ${themeCssVariables.background.primary};
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: minmax(9rem, 14rem) max-content;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+
+  /* A short viewport must let its header scroll away to expose record rows. */
+  @container task-timeline-calendar (max-height: 6rem) {
+    position: relative;
+    top: auto;
+  }
 `;
 
 const StyledCalendarHeaderTrack = styled.div<{ $columns: number }>`
@@ -112,7 +156,7 @@ const StyledCalendarRow = styled.div`
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: minmax(9rem, 14rem) max-content;
-  min-height: 4.5rem;
+  min-height: 3rem;
 `;
 
 const StyledCalendarTrack = styled.div<{ $columns: number }>`
@@ -121,14 +165,14 @@ const StyledCalendarTrack = styled.div<{ $columns: number }>`
     ${({ $columns }) => $columns},
     ${TASK_TIMELINE_DATE_COLUMN_WIDTH}
   );
-  min-height: 4.5rem;
+  min-height: 3rem;
   position: relative;
 `;
 
 const StyledCalendarCell = styled.div`
   border-left: 1px solid ${themeCssVariables.border.color.medium};
   grid-row: 1;
-  min-height: 4.5rem;
+  min-height: 3rem;
 `;
 
 const StyledTaskChip = styled.div`
@@ -137,6 +181,7 @@ const StyledTaskChip = styled.div`
   border: 2px solid var(--task-timeline-bar-color);
   border-radius: ${themeCssVariables.border.radius.sm};
   font-weight: ${themeCssVariables.font.weight.medium};
+  grid-row: 1;
   margin: ${themeCssVariables.spacing[1]};
   overflow-wrap: anywhere;
   padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
@@ -209,12 +254,17 @@ const TimelineItems = ({
   barColor,
   canEditDates,
   updateTask,
+  objectNameSingular,
+  objectLabelSingular,
 }: {
   items: TaskTimelineItem[];
   barColor: string;
   canEditDates: boolean;
   updateTask: (input: TaskTimelineEditInput) => Promise<void>;
+  objectNameSingular: string;
+  objectLabelSingular: string;
 }) => {
+  const isTask = objectNameSingular === CoreObjectNameSingular.Task;
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [today, setToday] = useState(() => getTaskTimelineToday());
   const [dragging, setDragging] = useState<{
@@ -314,7 +364,7 @@ const TimelineItems = ({
               [item.id]:
                 updateError instanceof Error
                   ? updateError.message
-                  : t`Unable to save task timeline changes.`,
+                  : t`Unable to save timeline changes.`,
             })),
           );
         } else {
@@ -356,6 +406,7 @@ const TimelineItems = ({
   }, [pan]);
 
   const beginPan = (event: ReactMouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
     if (event.button !== 0 || dragging !== null) return;
     const target = event.target as HTMLElement;
     if (
@@ -405,7 +456,7 @@ const TimelineItems = ({
     event.preventDefault();
     openRecordInSidePanel({
       recordId: itemId,
-      objectNameSingular: CoreObjectNameSingular.Task,
+      objectNameSingular,
     });
   };
 
@@ -414,7 +465,7 @@ const TimelineItems = ({
     event.preventDefault();
     openRecordInSidePanel({
       recordId: itemId,
-      objectNameSingular: CoreObjectNameSingular.Task,
+      objectNameSingular,
     });
   };
 
@@ -424,21 +475,43 @@ const TimelineItems = ({
         data-testid="task-timeline-calendar-viewport"
         data-scrollable="horizontal vertical"
         role="region"
-        aria-label={t`Task timeline calendar viewport`}
+        aria-label={
+          objectNameSingular === 'task'
+            ? t`Task timeline calendar viewport`
+            : t`Timeline calendar viewport`
+        }
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.target !== event.currentTarget) return;
+          const delta = {
+            ArrowLeft: [-112, 0],
+            ArrowRight: [112, 0],
+            ArrowUp: [0, -48],
+            ArrowDown: [0, 48],
+          }[event.key];
+          if (!delta) return;
+          event.preventDefault();
+          event.stopPropagation();
+          event.currentTarget.scrollLeft += delta[0];
+          event.currentTarget.scrollTop += delta[1];
+        }}
         onMouseDown={beginPan}
         style={{ cursor: pan !== null ? 'grabbing' : undefined }}
       >
-        <StyledNotice id="task-timeline-pan-instructions">
-          {t`Scroll horizontally and vertically, or drag empty space to pan. Task bars and controls remain interactive.`}
-        </StyledNotice>
         {calendarDates.length > 0 && visibleItems.length > 0 && (
           <StyledCalendar
             data-date-column-width={TASK_TIMELINE_DATE_COLUMN_WIDTH}
             role="grid"
-            aria-label={t`Task timeline calendar`}
+            aria-label={
+              objectNameSingular === 'task'
+                ? t`Task timeline calendar`
+                : t`Timeline calendar`
+            }
           >
             <StyledCalendarHeader role="row">
-              <StyledTaskTitle>{t`Task`}</StyledTaskTitle>
+              <StyledCorner>
+                <StyledTaskTitle>{objectLabelSingular}</StyledTaskTitle>
+              </StyledCorner>
               <StyledCalendarHeaderTrack $columns={calendarDates.length}>
                 {calendarDates.map((date) => (
                   <StyledCalendarDate key={date} role="columnheader">
@@ -485,7 +558,7 @@ const TimelineItems = ({
               ].filter((id): id is string => id !== null);
               return (
                 <StyledCalendarRow key={item.id} role="row">
-                  <div>
+                  <StyledIdentifier>
                     <StyledTaskTitle
                       role="button"
                       tabIndex={0}
@@ -494,21 +567,25 @@ const TimelineItems = ({
                         activateTaskFromKeyboard(event, item.id)
                       }
                     >
-                      {item.title || t`Untitled task`}
+                      {item.title || objectLabelSingular}
                     </StyledTaskTitle>
                     <StyledNotice>
-                      {item.isMilestone ? t`Milestone` : t`Task`}
+                      {item.isMilestone ? t`Milestone` : objectLabelSingular}
                     </StyledNotice>
-                  </div>
+                  </StyledIdentifier>
                   <StyledCalendarTrack
                     $columns={calendarDates.length}
                     role="gridcell"
                   >
-                    {calendarDates.map((date) => (
-                      <StyledCalendarCell key={date} aria-hidden="true" />
+                    {calendarDates.map((date, index) => (
+                      <StyledCalendarCell
+                        key={date}
+                        aria-hidden="true"
+                        style={{ gridColumn: index + 1 }}
+                      />
                     ))}
                     <StyledTaskChip
-                      aria-label={item.title || t`Untitled task`}
+                      aria-label={item.title || objectLabelSingular}
                       data-testid={`timeline-task-chip-${item.id}`}
                       role="button"
                       aria-describedby={
@@ -529,14 +606,18 @@ const TimelineItems = ({
                     >
                       {canEditDates && (
                         <StyledLeftResizeHandle
-                          aria-label={t`Resize task start date`}
+                          aria-label={
+                            isTask
+                              ? t`Resize task start date`
+                              : t`Resize record start date`
+                          }
                           onMouseDown={(event) =>
                             beginDrag(item, 'start', event)
                           }
                           type="button"
                         />
                       )}
-                      {item.title || t`Untitled task`}
+                      {item.title || objectLabelSingular}
                       {item.conflict && (
                         <StyledConflict id={conflictId} role="alert">
                           {t`Dependency conflict; dates were not rescheduled.`}
@@ -550,7 +631,7 @@ const TimelineItems = ({
                       {isPreview && itemDates !== null && (
                         <StyledPreviewNotice $invalid={isInvalidPreview}>
                           {t`Preview`} {isInvalidPreview ? t`(invalid)` : ''}:{' '}
-                          {item.title || t`Untitled task`} ·{' '}
+                          {item.title || objectLabelSingular} ·{' '}
                           {dragging.mode === 'move' ? t`Move` : t`Resize`} ·{' '}
                           {t`Start`} {itemDates.startDate.slice(5, 10)} ·{' '}
                           {t`Due`} {itemDates.endDate.slice(5, 10)}
@@ -558,7 +639,11 @@ const TimelineItems = ({
                       )}
                       {canEditDates && (
                         <StyledRightResizeHandle
-                          aria-label={t`Resize task due date`}
+                          aria-label={
+                            isTask
+                              ? t`Resize task due date`
+                              : t`Resize record end date`
+                          }
                           onMouseDown={(event) => beginDrag(item, 'end', event)}
                           type="button"
                         />
@@ -572,14 +657,22 @@ const TimelineItems = ({
         )}
         {datedItems.length === 0 && (
           <StyledState role="status">
-            <strong>{t`No dated tasks to display`}</strong>
-            <span>{t`Tasks with both a valid start and end date will appear in the calendar.`}</span>
+            <strong>
+              {isTask
+                ? t`No dated tasks to display`
+                : t`No dated records to display`}
+            </strong>
+            <span>{t`Records with both a valid start and end date will appear in the calendar.`}</span>
           </StyledState>
         )}
         {datedItems.length > 0 && visibleItems.length === 0 && (
           <StyledState role="status">
-            <strong>{t`No active tasks to display`}</strong>
-            <span>{t`All dated tasks have already ended.`}</span>
+            <strong>
+              {isTask
+                ? t`No active tasks to display`
+                : t`No active records to display`}
+            </strong>
+            <span>{t`All dated records have already ended.`}</span>
           </StyledState>
         )}
       </StyledCalendarViewport>
@@ -592,15 +685,34 @@ type TaskTimelineWidgetProps = {
 };
 
 export const TaskTimelineWidget = ({ widget }: TaskTimelineWidgetProps) => {
+  const { objectMetadataItems } = useObjectMetadataItems();
+  if (objectMetadataItems.length === 0) {
+    return (
+      <StyledState role="status">{t`Select a source and configure timeline date fields.`}</StyledState>
+    );
+  }
+  return <TaskTimelineWidgetContent widget={widget} />;
+};
+
+type TaskTimelineWidgetContentProps = TaskTimelineWidgetProps;
+
+const TaskTimelineWidgetContent = ({
+  widget,
+}: TaskTimelineWidgetContentProps) => {
+  const [helpOpen, setHelpOpen] = useState(false);
   const {
     status,
     items,
     error,
     hasConfigurationGap,
+    configurationReason,
     retry,
     canEditDates = false,
     updateTask = async () => undefined,
+    objectNameSingular = CoreObjectNameSingular.Task,
+    objectLabelSingular = t`Task`,
   } = useTaskTimelineData(widget);
+  const isTask = objectNameSingular === CoreObjectNameSingular.Task;
   const configuredBarColor =
     widget.configuration?.__typename === 'TaskTimelineConfiguration'
       ? widget.configuration.barColor
@@ -616,8 +728,14 @@ export const TaskTimelineWidget = ({ widget }: TaskTimelineWidgetProps) => {
   if (status === 'forbidden') {
     return (
       <StyledState role="alert">
-        <strong>{t`Task timeline unavailable`}</strong>
-        <span>{t`You do not have permission to view task data.`}</span>
+        <strong>
+          {isTask ? t`Task timeline unavailable` : t`Timeline unavailable`}
+        </strong>
+        <span>
+          {isTask
+            ? t`You do not have permission to view task data.`
+            : t`You do not have permission to view source data.`}
+        </span>
       </StyledState>
     );
   }
@@ -625,9 +743,13 @@ export const TaskTimelineWidget = ({ widget }: TaskTimelineWidgetProps) => {
   if (status === 'error') {
     return (
       <StyledState role="alert">
-        <strong>{t`Unable to load task timeline`}</strong>
+        <strong>
+          {isTask
+            ? t`Unable to load task timeline`
+            : t`Unable to load timeline`}
+        </strong>
         <span>
-          {error?.message ?? t`An error occurred while loading tasks.`}
+          {error?.message ?? t`An error occurred while loading records.`}
         </span>
         <button type="button" onClick={retry}>
           {t`Retry`}
@@ -639,8 +761,10 @@ export const TaskTimelineWidget = ({ widget }: TaskTimelineWidgetProps) => {
   if (status === 'empty') {
     return (
       <StyledState role="status">
-        <strong>{t`No tasks to display`}</strong>
-        <span>{t`Tasks with approved start and end dates will appear here.`}</span>
+        <strong>
+          {isTask ? t`No tasks to display` : t`No records to display`}
+        </strong>
+        <span>{t`Records with configured start and end dates will appear here.`}</span>
       </StyledState>
     );
   }
@@ -648,32 +772,73 @@ export const TaskTimelineWidget = ({ widget }: TaskTimelineWidgetProps) => {
   return (
     <StyledContainer
       role="region"
-      aria-label={t`Task timeline`}
-      aria-describedby={`${widget.id}-timeline-description`}
+      aria-label={isTask ? t`Task timeline` : t`Timeline`}
     >
-      <StyledNotice id={`${widget.id}-timeline-description`}>
-        {hasConfigurationGap
-          ? t`Task date fields are not configured; unavailable dates are not inferred.`
-          : t`Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling.`}
-      </StyledNotice>
+      <StyledHelpBar>
+        <button
+          type="button"
+          data-tooltip-id={`${widget.id}-timeline-help`}
+          aria-label={t`Timeline help`}
+          aria-describedby={
+            helpOpen ? `${widget.id}-timeline-help-content` : undefined
+          }
+          onMouseDown={(event) => event.stopPropagation()}
+          onFocus={() => setHelpOpen(true)}
+          onBlur={() => setHelpOpen(false)}
+          onClick={() => setHelpOpen(true)}
+          onKeyDown={(event) => {
+            if (event.key === 'Escape') setHelpOpen(false);
+          }}
+        >
+          {t`Help`}
+        </button>
+        <AppTooltip
+          anchorSelect={`[data-tooltip-id="${widget.id}-timeline-help"]`}
+          delay={TooltipDelay.noDelay}
+          isOpen={helpOpen}
+        >
+          <span role="tooltip" id={`${widget.id}-timeline-help-content`}>
+            {`${
+              isTask
+                ? t`Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling.`
+                : t`Dates are full-day and inclusive. Dependencies and status are not interpreted for this source.`
+            } ${t`Scroll horizontally and vertically, or drag empty space to pan. Record bars and controls remain interactive.`}`}
+          </span>
+        </AppTooltip>
+      </StyledHelpBar>
+      {hasConfigurationGap && (
+        <StyledNotice>
+          {configurationReason === 'invalid-date-mapping'
+            ? isTask
+              ? t`Configured task date fields are invalid or no longer available. Update the widget field mappings.`
+              : t`Configured date fields are invalid or no longer available. Update the widget field mappings.`
+            : hasConfigurationGap
+              ? t`Choose an active source and configure readable date fields; unavailable dates are not inferred.`
+              : isTask
+                ? t`Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling.`
+                : t`Dates are full-day and inclusive. Dependencies and status are not interpreted for this source.`}
+        </StyledNotice>
+      )}
       {items.length > 0 ? (
         <TimelineItems
           items={items}
           barColor={barColor}
           canEditDates={canEditDates}
           updateTask={updateTask}
+          objectNameSingular={objectNameSingular}
+          objectLabelSingular={objectLabelSingular}
         />
       ) : (
         <StyledState role="status">
           <strong>{t`Timeline data is incomplete`}</strong>
-          <span>{t`Unavailable task data is not shown as zero or an invented date.`}</span>
+          <span>{t`Unavailable record data is not shown as zero or an invented date.`}</span>
         </StyledState>
       )}
       {status === 'partial' && items.length > 0 && (
         <StyledNotice role="status">
           {error
-            ? t`Some task data could not be loaded.`
-            : t`Some tasks have unavailable dates or progress.`}
+            ? t`Some record data could not be loaded.`
+            : t`Some records have unavailable dates or progress.`}
         </StyledNotice>
       )}
     </StyledContainer>

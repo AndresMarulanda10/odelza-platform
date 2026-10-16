@@ -21,6 +21,21 @@ afterAll(() => {
 });
 
 describe('buildValueFromFilter', () => {
+  it('does not prefill a new overdue date from a before-today filter', () => {
+    expect(
+      buildValueFromFilter({
+        filter: {
+          id: 'due',
+          fieldMetadataId: 'due',
+          type: 'DATE_TIME',
+          operand: ViewFilterOperand.IS_BEFORE_TODAY,
+          value: '',
+          displayValue: '',
+          label: 'Due date',
+        },
+      }),
+    ).toBeUndefined();
+  });
   const createTestFilter = (
     operand: ViewFilterOperand,
     value: string,

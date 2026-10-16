@@ -57,6 +57,7 @@ export class PersonalFinanceSourceMappingDTO implements PersonalFinanceSourceMap
   categoryFieldMetadataId?: SerializedRelation | null;
 }
 
+// Retain the GraphQL union member and validation for existing saved dashboards.
 @ObjectType('PersonalFinanceConfiguration')
 export class PersonalFinanceConfigurationDTO implements PersonalFinanceConfiguration {
   @Field(() => WidgetConfigurationType)

@@ -13,14 +13,6 @@ jest.mock(
   }),
 );
 jest.mock(
-  '@/page-layout/widgets/personal-finance/components/PersonalFinanceWidget',
-  () => ({
-    PersonalFinanceWidget: ({ widget }: { widget: PageLayoutWidget }) => (
-      <div data-testid="personal-finance-renderer">{widget.id}</div>
-    ),
-  }),
-);
-jest.mock(
   '@/page-layout/widgets/email-thread/components/EmailThreadWidget',
   () => ({
     EmailThreadWidget: () => null,
@@ -35,20 +27,35 @@ jest.mock(
     RecordTableWidgetRenderer: () => null,
   }),
 );
-jest.mock('@/page-layout/widgets/view/components/ViewWidgetRenderer', () => ({
-  ViewWidgetRenderer: () => null,
-}));
 
 const widget = (type: WidgetType): PageLayoutWidget =>
   ({ id: `${type}-widget`, type }) as PageLayoutWidget;
 
-describe('WidgetContentRenderer', () => {
-  it.each([
-    [WidgetType.TASK_TIMELINE, 'task-timeline-renderer'],
-    [WidgetType.PERSONAL_FINANCE, 'personal-finance-renderer'],
-  ])('dispatches %s to its native renderer', (type, testId) => {
-    render(<WidgetContentRenderer widget={widget(type)} />);
+jest.mock('@/page-layout/widgets/view/components/ViewWidgetRenderer', () => ({
+  ViewWidgetRenderer: () => <div data-testid="view-renderer" />,
+}));
 
-    expect(screen.getByTestId(testId)).toHaveTextContent(`${type}-widget`);
+describe('WidgetContentRenderer', () => {
+  it('preserves the separate main View renderer', () => {
+    render(<WidgetContentRenderer widget={widget(WidgetType.VIEW)} />);
+    expect(screen.getByTestId('view-renderer')).toBeInTheDocument();
+  });
+  it.each([[WidgetType.TASK_TIMELINE, 'task-timeline-renderer']])(
+    'dispatches %s to its native renderer',
+    (type, testId) => {
+      render(<WidgetContentRenderer widget={widget(type)} />);
+
+      expect(screen.getByTestId(testId)).toHaveTextContent(`${type}-widget`);
+    },
+  );
+  it('keeps a saved finance widget readable as a retired placeholder', () => {
+    render(
+      <WidgetContentRenderer widget={widget(WidgetType.PERSONAL_FINANCE)} />,
+    );
+    expect(screen.getByRole('status')).toHaveTextContent(
+      'This widget is no longer available. Remove it from the dashboard.',
+    );
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    expect(screen.queryByText(/finance data/i)).not.toBeInTheDocument();
   });
 });

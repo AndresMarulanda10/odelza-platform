@@ -5,7 +5,7 @@ import { useAtomComponentFamilyStateValue } from '@/ui/utilities/state/jotai/hoo
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { type ReactNode, useContext } from 'react';
-import { IconTrash } from 'twenty-ui/icon';
+import { IconTrash, type IconComponent } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { IconButton } from 'twenty-ui/input';
 
@@ -20,6 +20,7 @@ export type WidgetCardHeaderProps = {
   isInEditMode: boolean;
   isEmpty?: boolean;
   title: string;
+  Icon?: IconComponent;
   onRemove?: (e?: React.MouseEvent) => void;
   forbiddenDisplay?: ReactNode;
   actions?: WidgetAction[];
@@ -76,6 +77,7 @@ export const WidgetCardHeader = ({
   isReorderEnabled = true,
   isDeletingWidgetEnabled = true,
   title,
+  Icon,
   onRemove,
   forbiddenDisplay,
   actions,
@@ -97,6 +99,7 @@ export const WidgetCardHeader = ({
           />
         )}
       </AnimatePresence>
+      {Icon && <Icon size={16} aria-hidden />}
       <StyledTitleContainer variant={variant}>
         <OverflowingTextWithTooltip text={isEmpty ? t`Add Widget` : title} />
       </StyledTitleContainer>

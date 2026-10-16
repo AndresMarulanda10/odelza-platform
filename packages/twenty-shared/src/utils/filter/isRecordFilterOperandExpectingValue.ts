@@ -8,6 +8,7 @@ export const isRecordFilterOperandExpectingValue = (
     case ViewFilterOperand.IS_EMPTY:
     case ViewFilterOperand.IS_NOT_EMPTY:
     case ViewFilterOperand.IS_IN_PAST:
+    case ViewFilterOperand.IS_BEFORE_TODAY:
     case ViewFilterOperand.IS_IN_FUTURE:
     case ViewFilterOperand.IS_TODAY:
       return false;

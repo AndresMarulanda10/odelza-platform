@@ -2,6 +2,7 @@ import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMeta
 import { RecordTableWidget } from '@/object-record/record-table-widget/components/RecordTableWidget';
 import { RecordTableWidgetProvider } from '@/object-record/record-table-widget/components/RecordTableWidgetProvider';
 import { RecordTableWidgetViewDraftInitEffect } from '@/page-layout/widgets/record-table/components/RecordTableWidgetViewDraftInitEffect';
+import { OverdueAttentionViewGate } from '@/page-layout/widgets/record-table/components/OverdueAttentionViewGate';
 
 type RecordTableWidgetRendererContentProps = {
   objectMetadataId: string;
@@ -10,6 +11,7 @@ type RecordTableWidgetRendererContentProps = {
   isReadOnly?: boolean;
   isEmptyStateHidden?: boolean;
   recordLimit?: number;
+  presentationMode?: string | null;
 };
 
 export const RecordTableWidgetRendererContent = ({
@@ -19,6 +21,7 @@ export const RecordTableWidgetRendererContent = ({
   isReadOnly = true,
   isEmptyStateHidden = false,
   recordLimit,
+  presentationMode,
 }: RecordTableWidgetRendererContentProps) => {
   const { objectMetadataItem } = useObjectMetadataItemById({
     objectId: objectMetadataId,
@@ -36,10 +39,14 @@ export const RecordTableWidgetRendererContent = ({
         widgetId={widgetId}
         recordLimit={recordLimit}
       >
-        <RecordTableWidget
-          isReadOnly={isReadOnly}
-          isEmptyStateHidden={isEmptyStateHidden}
-        />
+        {presentationMode === 'OVERDUE_ATTENTION' ? (
+          <OverdueAttentionViewGate viewId={viewId} />
+        ) : (
+          <RecordTableWidget
+            isReadOnly={isReadOnly}
+            isEmptyStateHidden={isEmptyStateHidden}
+          />
+        )}
       </RecordTableWidgetProvider>
     </>
   );

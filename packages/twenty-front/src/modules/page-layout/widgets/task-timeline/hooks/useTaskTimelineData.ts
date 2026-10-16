@@ -2,19 +2,25 @@ import { useGenerateDepthRecordGqlFieldsFromObject } from '@/object-record/graph
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import { useObjectPermissionsForObject } from '@/object-record/hooks/useObjectPermissionsForObject';
 import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';
-import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
+import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadataItems';
+import {
+  getTimelineSources,
+  getTimelineFields,
+  isLegacyTaskSource,
+} from '@/page-layout/widgets/task-timeline/utils/timelineSource';
 import { isFieldMetadataReadOnlyByPermissions } from '@/object-record/read-only/utils/internal/isFieldMetadataReadOnlyByPermissions';
 import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
 import { normalizeTaskTimelineDate } from '@/page-layout/widgets/task-timeline/utils/getTaskTimelineCalendar';
 import {
-  CoreObjectNameSingular,
+  FieldMetadataType,
+  RelationType,
   type TaskDependency,
   type TaskTimelineFieldMapping,
   type TaskTimelineItem,
   type WidgetDataState,
 } from 'twenty-shared/types';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined, isFieldMetadataDateKind } from 'twenty-shared/utils';
 
 export type TaskTimelineEditInput = {
   taskId: string;
@@ -27,10 +33,13 @@ export type TaskTimelineData = {
   status: WidgetDataState;
   items: TaskTimelineItem[];
   hasConfigurationGap: boolean;
+  configurationReason?: 'invalid-date-mapping' | 'missing-date-mapping';
   retry: () => void;
   error?: Error;
   canEditDates?: boolean;
   canEditProgress?: boolean;
+  objectNameSingular?: string;
+  objectLabelSingular?: string;
   updateTask?: (input: TaskTimelineEditInput) => Promise<void>;
 };
 
@@ -82,74 +91,105 @@ const getConfiguredFieldName = ({
   fields,
   configuredFieldMetadataId,
   fallbackNames,
+  requiredDate = false,
 }: {
-  fields: Array<{ id: string; name: string }>;
+  fields: Array<{
+    id: string;
+    name: string;
+    isActive?: boolean | null;
+    type?: FieldMetadataType;
+  }>;
   configuredFieldMetadataId: string | null | undefined;
   fallbackNames: string[];
+  requiredDate?: boolean;
 }): string | undefined => {
+  const candidates = requiredDate
+    ? fields.filter(
+        (field) =>
+          field.isActive === true && isFieldMetadataDateKind(field.type),
+      )
+    : fields;
   if (configuredFieldMetadataId != null) {
-    const configuredFieldName = fields.find(
+    const configuredFieldName = candidates.find(
       ({ id }) => id === configuredFieldMetadataId,
     )?.name;
 
-    if (configuredFieldName !== undefined) {
+    if (configuredFieldName !== undefined || requiredDate) {
       return configuredFieldName;
     }
   }
 
-  return fields.find(({ name }) => fallbackNames.includes(name))?.name;
+  return candidates.find(({ name }) => fallbackNames.includes(name))?.name;
 };
 
 export const resolveTaskTimelineFieldNames = ({
   fields,
   fieldMapping,
+  isTask = true,
+  labelIdentifierFieldMetadataId,
 }: {
-  fields: Array<{ id: string; name: string }>;
+  fields: Array<{
+    id: string;
+    name: string;
+    isActive?: boolean | null;
+    type?: FieldMetadataType;
+  }>;
   fieldMapping: TaskTimelineFieldMapping | null | undefined;
+  isTask?: boolean;
+  labelIdentifierFieldMetadataId?: string | null;
 }) => ({
   title: getConfiguredFieldName({
     fields,
-    configuredFieldMetadataId: fieldMapping?.titleFieldMetadataId,
-    fallbackNames: ['title'],
+    configuredFieldMetadataId:
+      fieldMapping?.titleFieldMetadataId ?? labelIdentifierFieldMetadataId,
+    fallbackNames: isTask ? ['title'] : [],
   }),
   startDate: getConfiguredFieldName({
     fields,
     configuredFieldMetadataId: fieldMapping?.startDateFieldMetadataId,
-    fallbackNames: ['startDate'],
+    fallbackNames: isTask ? ['startDate'] : [],
+    requiredDate: true,
   }),
   endDate: getConfiguredFieldName({
     fields,
     configuredFieldMetadataId: fieldMapping?.dueDateFieldMetadataId,
-    fallbackNames: ['endDate', 'dueAt'],
+    fallbackNames: isTask ? ['endDate', 'dueAt'] : [],
+    requiredDate: true,
   }),
   progress: getConfiguredFieldName({
     fields,
     configuredFieldMetadataId: fieldMapping?.progressFieldMetadataId,
-    fallbackNames: ['progress'],
+    fallbackNames: isTask ? ['progress'] : [],
   }),
   status: getConfiguredFieldName({
     fields,
     configuredFieldMetadataId: fieldMapping?.statusFieldMetadataId,
-    fallbackNames: ['status'],
+    fallbackNames: isTask ? ['status'] : [],
   }),
   milestone: getConfiguredFieldName({
     fields,
     configuredFieldMetadataId: fieldMapping?.milestoneFieldMetadataId,
-    fallbackNames: ['isMilestone'],
+    fallbackNames: isTask ? ['isMilestone'] : [],
   }),
   dependency: getConfiguredFieldName({
     fields,
     configuredFieldMetadataId: fieldMapping?.dependencyFieldMetadataId,
-    fallbackNames: ['dependencies'],
+    fallbackNames: isTask ? ['dependencies'] : [],
   }),
   dependencyType: getConfiguredFieldName({
     fields,
     configuredFieldMetadataId: fieldMapping?.dependencyTypeFieldMetadataId,
-    fallbackNames: ['dependencyType'],
+    fallbackNames: isTask ? ['dependencyType'] : [],
   }),
 });
 
 const getDependencyIds = (value: unknown): string[] => {
+  if (typeof value === 'object' && value !== null && 'edges' in value) {
+    const edges = (value as { edges?: unknown }).edges;
+    return Array.isArray(edges)
+      ? edges.flatMap((edge) => getDependencyIds(edge?.node))
+      : [];
+  }
   const values = Array.isArray(value) ? value : [value];
 
   return values.flatMap((dependency) => {
@@ -210,8 +250,10 @@ const getDependencies = ({
 const toTimelineItem = ({
   record,
   fields,
+  isTask,
 }: {
   record: ObjectRecord;
+  isTask: boolean;
   fields: {
     title?: string;
     startDate?: string;
@@ -225,9 +267,9 @@ const toTimelineItem = ({
 }): TaskTimelineItem => ({
   id: record.id,
   title:
-    fields.title === undefined || typeof record[fields.title] !== 'string'
-      ? ''
-      : record[fields.title],
+    fields.title === undefined
+      ? record.id
+      : getTimelineTitle(record[fields.title], record.id),
   startDate:
     fields.startDate === undefined ? null : getDate(record[fields.startDate]),
   endDate:
@@ -238,12 +280,14 @@ const toTimelineItem = ({
   ),
   isMilestone:
     fields.milestone === undefined ? false : record[fields.milestone] === true,
-  dependencies: getDependencies({
-    record,
-    dependencyFieldName: fields.dependency,
-    dependencyTypeFieldName: fields.dependencyType,
-  }),
-  conflict: record.conflict === true,
+  dependencies: isTask
+    ? getDependencies({
+        record,
+        dependencyFieldName: fields.dependency,
+        dependencyTypeFieldName: fields.dependencyType,
+      })
+    : [],
+  conflict: isTask && record.conflict === true,
 });
 
 const getTaskTimelineFieldMapping = (
@@ -256,32 +300,102 @@ const getTaskTimelineFieldMapping = (
   return widget.configuration.fieldMapping;
 };
 
+const getTimelineTitle = (value: unknown, fallback: string): string => {
+  if (typeof value === 'string') return value || fallback;
+  if (typeof value === 'object' && value !== null) {
+    const name = value as { firstName?: unknown; lastName?: unknown };
+    return (
+      [name.firstName, name.lastName]
+        .filter((part) => typeof part === 'string')
+        .join(' ')
+        .trim() || fallback
+    );
+  }
+  return fallback;
+};
+
 export const useTaskTimelineData = (
   widget: PageLayoutWidget,
 ): TaskTimelineData => {
-  const { objectMetadataItem } = useObjectMetadataItem({
-    objectNameSingular: CoreObjectNameSingular.Task,
-  });
+  const { objectMetadataItems } = useObjectMetadataItems();
+  const source = objectMetadataItems.find(
+    (object) =>
+      object.id === widget.objectMetadataId && object.isActive === true,
+  );
+  const sourceIdentity = {
+    objectNameSingular: source?.nameSingular ?? '',
+    objectLabelSingular: source?.labelSingular ?? 'Record',
+  };
+  // Shared record hooks require metadata even when skipped. This binding is
+  // never queried or used for edits when the configured source is unavailable.
+  // The widget's outer gate handles the empty-workspace metadata case.
+  const objectMetadataItem = source ?? objectMetadataItems[0];
   const { recordGqlFields } = useGenerateDepthRecordGqlFieldsFromObject({
-    objectNameSingular: CoreObjectNameSingular.Task,
+    objectNameSingular: objectMetadataItem.nameSingular,
     depth: 0,
   });
   const objectPermissions = useObjectPermissionsForObject(
     objectMetadataItem.id,
   );
   const fieldMapping = getTaskTimelineFieldMapping(widget);
+  const isTask = isLegacyTaskSource(objectMetadataItem);
+  const eligibleTitleFields = getTimelineFields(
+    objectMetadataItem,
+    objectPermissions,
+    'title',
+  );
   const timelineFields = resolveTaskTimelineFieldNames({
-    fields: objectMetadataItem.fields,
+    fields: isTask
+      ? objectMetadataItem.fields
+      : objectMetadataItem.fields.filter((field) => field.isActive === true),
     fieldMapping,
+    isTask,
+    labelIdentifierFieldMetadataId: isTask
+      ? undefined
+      : objectMetadataItem.labelIdentifierFieldMetadataId,
   });
   const startDateFieldName = timelineFields.startDate;
   const endDateFieldName = timelineFields.endDate;
-  const titleFieldName = timelineFields.title;
-  const progressFieldName = timelineFields.progress;
-  const statusFieldName = timelineFields.status;
-  const milestoneFieldName = timelineFields.milestone;
-  const dependencyFieldName = timelineFields.dependency;
-  const dependencyTypeFieldName = timelineFields.dependencyType;
+  const titleFieldName =
+    isTask ||
+    eligibleTitleFields.some((field) => field.name === timelineFields.title)
+      ? timelineFields.title
+      : undefined;
+  const optionalField = (name: string | undefined, type: FieldMetadataType) =>
+    objectMetadataItem.readableFields.find(
+      (field) =>
+        field.name === name &&
+        field.isActive === true &&
+        field.type === type &&
+        objectPermissions.restrictedFields?.[field.id]?.canRead !== false,
+    )?.name;
+  const progressFieldName = isTask
+    ? timelineFields.progress
+    : optionalField(timelineFields.progress, FieldMetadataType.NUMBER);
+  // Generic status values and dependencies have no Task-specific meaning.
+  const statusFieldName = isTask ? timelineFields.status : undefined;
+  const milestoneFieldName = isTask
+    ? timelineFields.milestone
+    : optionalField(timelineFields.milestone, FieldMetadataType.BOOLEAN);
+  const dependencyFieldName = isTask ? timelineFields.dependency : undefined;
+  const dependencyTypeFieldName = isTask
+    ? timelineFields.dependencyType
+    : undefined;
+  const dependencyField = objectMetadataItem.readableFields.find(
+    (field) => field.name === dependencyFieldName && field.isActive,
+  );
+  const dependencyValueFieldName =
+    dependencyField?.type === FieldMetadataType.RELATION &&
+    dependencyField.relation?.type === RelationType.MANY_TO_ONE
+      ? `${dependencyField.name}Id`
+      : dependencyFieldName;
+  const timelineRecordGqlFields = {
+    ...recordGqlFields,
+    ...(dependencyField?.type === FieldMetadataType.RELATION &&
+    dependencyField.relation?.type === RelationType.ONE_TO_MANY
+      ? { [dependencyField.name]: { id: true } }
+      : {}),
+  };
   const startDateField = objectMetadataItem.fields.find(
     (field) => field.name === startDateFieldName,
   );
@@ -293,11 +407,24 @@ export const useTaskTimelineData = (
   );
   const hasDateFields =
     startDateField !== undefined && endDateField !== undefined;
-  const hasConfiguredSource = widget.objectMetadataId === objectMetadataItem.id;
-  const hasReadPermission = objectPermissions.canReadObjectRecords !== false;
+  const hasConfiguredSource = source !== undefined;
+  const hasReadPermission =
+    getTimelineSources([objectMetadataItem], {
+      [objectMetadataItem.id]: objectPermissions,
+    }).length > 0 &&
+    [startDateField, endDateField].every(
+      (field) =>
+        field === undefined ||
+        (objectPermissions.restrictedFields?.[field.id]?.canRead !== false &&
+          objectMetadataItem.readableFields.some(
+            (readable) => readable.id === field.id,
+          )),
+    );
   const hasUpdatePermission =
     objectPermissions.canUpdateObjectRecords !== false;
   const canEditDates =
+    hasConfiguredSource &&
+    hasReadPermission &&
     startDateField !== undefined &&
     endDateField !== undefined &&
     hasUpdatePermission &&
@@ -310,6 +437,9 @@ export const useTaskTimelineData = (
       fieldMetadataId: endDateField.id,
     });
   const canEditProgress =
+    hasConfiguredSource &&
+    hasDateFields &&
+    hasReadPermission &&
     progressField !== undefined &&
     hasUpdatePermission &&
     !isFieldMetadataReadOnlyByPermissions({
@@ -318,8 +448,8 @@ export const useTaskTimelineData = (
     });
   const { updateOneRecord } = useUpdateOneRecord();
   const recordsQuery = useFindManyRecords<ObjectRecord>({
-    objectNameSingular: CoreObjectNameSingular.Task,
-    recordGqlFields,
+    objectNameSingular: objectMetadataItem.nameSingular,
+    recordGqlFields: timelineRecordGqlFields,
     skip: !hasConfiguredSource || !hasDateFields || !hasReadPermission,
     fetchPolicy: 'cache-and-network',
   });
@@ -334,6 +464,7 @@ export const useTaskTimelineData = (
       .map((record) =>
         toTimelineItem({
           record,
+          isTask,
           fields: {
             title: titleFieldName,
             startDate: startDateFieldName,
@@ -341,7 +472,7 @@ export const useTaskTimelineData = (
             progress: progressFieldName,
             status: statusFieldName,
             milestone: milestoneFieldName,
-            dependency: dependencyFieldName,
+            dependency: dependencyValueFieldName,
             dependencyType: dependencyTypeFieldName,
           },
         }),
@@ -358,7 +489,11 @@ export const useTaskTimelineData = (
       nextEndDate !== undefined &&
       nextStartDate > nextEndDate
     ) {
-      throw new Error('A task start date cannot be after its due date');
+      throw new Error(
+        isTask
+          ? 'A task start date cannot be after its due date'
+          : 'A record start date cannot be after its end date',
+      );
     }
 
     const updateInput: Record<string, unknown> = {};
@@ -376,19 +511,24 @@ export const useTaskTimelineData = (
     }
 
     if (Object.keys(updateInput).length === 0) {
-      throw new Error('Task timeline editing is unavailable');
+      throw new Error(
+        isTask
+          ? 'Task timeline editing is unavailable'
+          : 'Timeline editing is unavailable',
+      );
     }
 
     await updateOneRecord({
-      objectNameSingular: CoreObjectNameSingular.Task,
+      objectNameSingular: objectMetadataItem.nameSingular,
       idToUpdate: taskId,
       updateOneRecordInput: updateInput,
+      recordGqlFields,
     });
-    await recordsQuery.refetch();
   };
 
-  if (!hasReadPermission) {
+  if (hasConfiguredSource && !hasReadPermission) {
     return {
+      ...sourceIdentity,
       status: 'forbidden',
       items: [],
       hasConfigurationGap: false,
@@ -401,9 +541,15 @@ export const useTaskTimelineData = (
 
   if (!hasConfiguredSource || !hasDateFields) {
     return {
+      ...sourceIdentity,
       status: 'partial',
       items: [],
       hasConfigurationGap: true,
+      configurationReason:
+        (!startDateField && fieldMapping?.startDateFieldMetadataId != null) ||
+        (!endDateField && fieldMapping?.dueDateFieldMetadataId != null)
+          ? 'invalid-date-mapping'
+          : 'missing-date-mapping',
       retry: () => undefined,
       canEditDates,
       canEditProgress,
@@ -414,6 +560,7 @@ export const useTaskTimelineData = (
   const items = recordsQuery.records.map((record) =>
     toTimelineItem({
       record,
+      isTask,
       fields: {
         title: titleFieldName,
         startDate: startDateFieldName,
@@ -421,7 +568,7 @@ export const useTaskTimelineData = (
         progress: progressFieldName,
         status: statusFieldName,
         milestone: milestoneFieldName,
-        dependency: dependencyFieldName,
+        dependency: dependencyValueFieldName,
         dependencyType: dependencyTypeFieldName,
       },
     }),
@@ -429,6 +576,7 @@ export const useTaskTimelineData = (
 
   if (recordsQuery.loading && items.length === 0) {
     return {
+      ...sourceIdentity,
       status: 'loading',
       items,
       hasConfigurationGap: false,
@@ -441,6 +589,7 @@ export const useTaskTimelineData = (
 
   if (recordsQuery.error && items.length === 0) {
     return {
+      ...sourceIdentity,
       status: 'error',
       items,
       error: recordsQuery.error,
@@ -454,6 +603,7 @@ export const useTaskTimelineData = (
 
   if (items.length === 0) {
     return {
+      ...sourceIdentity,
       status: 'empty',
       items,
       hasConfigurationGap: false,
@@ -465,6 +615,7 @@ export const useTaskTimelineData = (
   }
 
   return {
+    ...sourceIdentity,
     status:
       recordsQuery.error ||
       items.some((item) => !item.startDate || !item.endDate)

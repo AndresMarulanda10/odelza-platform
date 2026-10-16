@@ -72,6 +72,7 @@ export const FILTER_OPERANDS_MAP = {
   ],
   DATE_TIME: [
     ViewFilterOperand.IS,
+    ViewFilterOperand.IS_BEFORE_TODAY,
     ViewFilterOperand.IS_RELATIVE,
     ViewFilterOperand.IS_IN_PAST,
     ViewFilterOperand.IS_IN_FUTURE,

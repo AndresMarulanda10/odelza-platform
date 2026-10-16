@@ -74,7 +74,15 @@ describe('getOperandsForFilterType', () => {
     ],
     ['NUMBER', [...numberOperands, ...emptyOperands]],
     ['DATE', [...dateOperands, ...emptyOperands]],
-    ['DATE_TIME', [...dateOperands, ...emptyOperands]],
+    [
+      'DATE_TIME',
+      [
+        RecordFilterOperand.IS,
+        RecordFilterOperand.IS_BEFORE_TODAY,
+        ...dateOperands.slice(1),
+        ...emptyOperands,
+      ],
+    ],
     ['RELATION', [...relationOperand, ...emptyOperands]],
   ] satisfies (
     | [FieldType, RecordFilterOperand[], CompositeFieldSubFieldName]
