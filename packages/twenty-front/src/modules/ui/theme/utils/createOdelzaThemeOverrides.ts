@@ -1,9 +1,14 @@
 import { type ThemeOverrides } from 'twenty-ui/theme-constants';
 
-type GruvboxPalette = {
+type OdelzaPalette = {
   background: readonly [string, string, string, string];
   foreground: readonly [string, string, string, string, string];
   neutralRamp: readonly string[];
+  primary: {
+    base: string;
+    hover: string;
+    pressed: string;
+  };
   accents: {
     red: string;
     green: string;
@@ -15,8 +20,8 @@ type GruvboxPalette = {
   };
 };
 
-type GruvboxThemeConfig = {
-  palette: GruvboxPalette;
+type OdelzaThemeConfig = {
+  palette: OdelzaPalette;
   invertedBackground: string;
   invertedForeground: string;
   overlay: string;
@@ -62,7 +67,7 @@ const neutralColorFamilies = [
 const withAlpha = (color: string, alpha: string) => `${color}${alpha}`;
 
 const createRamp = (
-  palette: GruvboxPalette,
+  palette: OdelzaPalette,
   accent: string,
 ): readonly string[] => [
   ...palette.neutralRamp.slice(0, 7),
@@ -71,6 +76,16 @@ const createRamp = (
   accent,
   accent,
   palette.foreground[0],
+];
+
+// Twenty's buttons read hover from step 10 and pressed from step 12
+const createPrimaryRamp = (palette: OdelzaPalette): readonly string[] => [
+  ...palette.neutralRamp.slice(0, 7),
+  palette.primary.base,
+  palette.primary.base,
+  palette.primary.hover,
+  palette.primary.base,
+  palette.primary.pressed,
 ];
 
 const addRamp = (
@@ -85,7 +100,7 @@ const addRamp = (
 
 const addColorFamilies = (
   overrides: ThemeOverrides,
-  palette: GruvboxPalette,
+  palette: OdelzaPalette,
 ) => {
   for (const [family, accentName] of Object.entries(colorFamilyAliases)) {
     const accent = palette.accents[accentName];
@@ -103,24 +118,24 @@ const addColorFamilies = (
   }
 };
 
-export const createGruvboxThemeOverrides = ({
+export const createOdelzaThemeOverrides = ({
   palette,
   invertedBackground,
   invertedForeground,
   overlay,
   shadow,
-}: GruvboxThemeConfig): ThemeOverrides => {
-  const { accents, background, foreground, neutralRamp } = palette;
-  const blueRamp = createRamp(palette, accents.blue);
+}: OdelzaThemeConfig): ThemeOverrides => {
+  const { accents, background, foreground, neutralRamp, primary } = palette;
+  const primaryRamp = createPrimaryRamp(palette);
 
   const overrides: ThemeOverrides = {
-    '--t-buttons-secondary-text-color': accents.blue,
-    '--t-accent-primary': accents.blue,
-    '--t-accent-secondary': accents.blue,
-    '--t-accent-tertiary': withAlpha(accents.blue, '33'),
-    '--t-accent-quaternary': withAlpha(accents.blue, '1f'),
-    '--t-accent-accent3570': accents.blue,
-    '--t-accent-accent4060': accents.blue,
+    '--t-buttons-secondary-text-color': primary.base,
+    '--t-accent-primary': primary.base,
+    '--t-accent-secondary': primary.base,
+    '--t-accent-tertiary': withAlpha(primary.base, '33'),
+    '--t-accent-quaternary': withAlpha(primary.base, '1f'),
+    '--t-accent-accent3570': primary.base,
+    '--t-accent-accent4060': primary.base,
     '--t-background-primary': background[0],
     '--t-background-secondary': background[1],
     '--t-background-tertiary': background[2],
@@ -135,7 +150,7 @@ export const createGruvboxThemeOverrides = ({
     '--t-background-transparent-light': withAlpha(foreground[0], '14'),
     '--t-background-transparent-lighter': withAlpha(foreground[0], '0a'),
     '--t-background-transparent-danger': withAlpha(accents.red, '24'),
-    '--t-background-transparent-blue': withAlpha(accents.blue, '24'),
+    '--t-background-transparent-blue': withAlpha(primary.base, '24'),
     '--t-background-transparent-orange': withAlpha(accents.orange, '29'),
     '--t-background-transparent-success': withAlpha(accents.green, '24'),
     '--t-background-overlay-primary': withAlpha(overlay, 'b8'),
@@ -149,7 +164,7 @@ export const createGruvboxThemeOverrides = ({
     '--t-border-color-secondary-inverted': foreground[2],
     '--t-border-color-inverted': invertedBackground,
     '--t-border-color-danger': accents.red,
-    '--t-border-color-blue': accents.blue,
+    '--t-border-color-blue': primary.base,
     '--t-border-color-transparent-strong': withAlpha(foreground[0], '29'),
     '--t-box-shadow-color': withAlpha(shadow, '66'),
     '--t-font-color-primary': foreground[0],
@@ -180,13 +195,19 @@ export const createGruvboxThemeOverrides = ({
     '--t--illustration-icon-fill-gray': background[3],
   };
 
-  blueRamp.forEach((color, index) => {
+  primaryRamp.forEach((color, index) => {
     overrides[`--t-accent-accent${index + 1}`] = color;
   });
   neutralRamp.forEach((color, index) => {
     overrides[`--t-gray-scale-gray${index + 1}`] = color;
   });
   addColorFamilies(overrides, palette);
+
+  // Twenty uses the blue family as its action color (buttons, focus, checkboxes),
+  // so it carries the Odelza primary while blue tags and info states keep the
+  // informational blue set by addColorFamilies
+  overrides['--t-color-blue'] = primary.base;
+  addRamp(overrides, 'blue', primaryRamp);
 
   return overrides;
 };
