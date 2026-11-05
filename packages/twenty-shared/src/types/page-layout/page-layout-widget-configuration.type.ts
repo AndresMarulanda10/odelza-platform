@@ -93,7 +93,7 @@ export type RecordTableConfiguration = {
   configurationType: 'RECORD_TABLE';
   viewId?: string;
   recordLimit?: number;
-  presentationMode?: 'TABLE' | 'OVERDUE_ATTENTION' | null;
+  presentationMode?: 'TABLE' | 'OVERDUE_ATTENTION' | 'TIMELINE' | null;
 };
 
 export type FieldConfiguration = {

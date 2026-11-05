@@ -708,6 +708,7 @@ export class ObjectMetadataService extends TypeOrmQueryService<ObjectMetadataEnt
       id: v4(),
       objectMetadataUniversalIdentifier: objectMetadata.universalIdentifier,
       name: `All {objectLabelPlural}`,
+      timelineConfiguration: null,
       key: ViewKey.INDEX,
       icon: 'IconList',
       type: ViewType.TABLE,

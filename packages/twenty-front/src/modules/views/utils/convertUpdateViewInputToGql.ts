@@ -7,6 +7,20 @@ export const convertUpdateViewInputToGql = (
 ): UpdateViewInput => {
   return {
     id: view.id,
+    ...(view.timelineConfiguration !== undefined && {
+      timelineConfiguration:
+        view.timelineConfiguration === null
+          ? null
+          : {
+              startDateFieldMetadataUniversalIdentifier:
+                view.timelineConfiguration
+                  .startDateFieldMetadataUniversalIdentifier,
+              endDateFieldMetadataUniversalIdentifier:
+                view.timelineConfiguration
+                  .endDateFieldMetadataUniversalIdentifier,
+              barColor: view.timelineConfiguration.barColor,
+            },
+    }),
     ...(view.name && { name: view.name }),
     ...(view.icon && { icon: view.icon }),
     ...(isDefined(view.position) && { position: view.position }),

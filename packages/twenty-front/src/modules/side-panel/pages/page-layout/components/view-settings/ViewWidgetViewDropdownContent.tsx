@@ -43,8 +43,10 @@ export const ViewWidgetViewDropdownContent = () => {
     viewsByObjectMetadataIdFamilySelector,
     objectMetadataId,
   );
-  const kanbanViews = views.filter(
-    (view) => view.isActive && view.type === ViewType.KANBAN,
+  const supportedViews = views.filter(
+    (view) =>
+      view.isActive &&
+      (view.type === ViewType.KANBAN || view.type === ViewType.TIMELINE),
   );
   const selectedViewId =
     widgetInEditMode?.configuration.configurationType ===
@@ -54,13 +56,13 @@ export const ViewWidgetViewDropdownContent = () => {
       ? widgetInEditMode.configuration.viewId
       : undefined;
   const filteredViews = filterBySearchQuery({
-    items: kanbanViews,
+    items: supportedViews,
     searchQuery,
     getSearchableValues: (view) => [view.name],
   });
 
   const handleSelectView = (viewId: string) => {
-    const selectedView = kanbanViews.find((view) => view.id === viewId);
+    const selectedView = supportedViews.find((view) => view.id === viewId);
 
     if (!isDefined(selectedView) || !isDefined(widgetInEditMode)) {
       return;
@@ -76,7 +78,7 @@ export const ViewWidgetViewDropdownContent = () => {
       <DropdownMenuSearchInput
         autoFocus
         type="text"
-        placeholder={t`Search Kanban views`}
+        placeholder={t`Search views`}
         onChange={(event) => setSearchQuery(event.target.value)}
         value={searchQuery}
       />

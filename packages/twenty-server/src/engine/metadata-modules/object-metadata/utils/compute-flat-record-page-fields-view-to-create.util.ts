@@ -22,6 +22,7 @@ export const computeFlatRecordPageFieldsViewToCreate = ({
     id: v4(),
     objectMetadataUniversalIdentifier: objectMetadata.universalIdentifier,
     name: `${objectMetadata.labelSingular} Record Page Fields`,
+    timelineConfiguration: null,
     key: null,
     icon: 'IconList',
     type: ViewType.FIELDS_WIDGET,

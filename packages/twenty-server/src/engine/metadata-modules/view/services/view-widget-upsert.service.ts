@@ -5,6 +5,7 @@ import {
   ViewFilterGroupLogicalOperator,
   ViewFilterOperand,
   ViewSortDirection,
+  ViewType,
 } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { IsNull } from 'typeorm';
@@ -37,6 +38,7 @@ import { type UpsertViewWidgetViewFilterGroupInput } from 'src/engine/metadata-m
 import { type UpsertViewWidgetViewFilterInput } from 'src/engine/metadata-modules/view/dtos/inputs/upsert-view-widget-view-filter.input';
 import { type UpsertViewWidgetViewSortInput } from 'src/engine/metadata-modules/view/dtos/inputs/upsert-view-widget-view-sort.input';
 import { type UpsertViewWidgetInput } from 'src/engine/metadata-modules/view/dtos/inputs/upsert-view-widget.input';
+import { fromUpdateViewInputToFlatViewToUpdateOrThrow } from 'src/engine/metadata-modules/flat-view/utils/from-update-view-input-to-flat-view-to-update-or-throw.util';
 import { ViewEntity } from 'src/engine/metadata-modules/view/entities/view.entity';
 import {
   ViewException,
@@ -102,6 +104,7 @@ export class ViewWidgetUpsertService {
       flatViewFilterGroupMaps,
       flatViewSortMaps,
       flatViewMaps,
+      flatViewGroupMaps,
     } =
       await this.workspaceManyOrAllFlatEntityMapsCacheService.getOrRecomputeManyOrAllFlatEntityMaps(
         {
@@ -114,6 +117,7 @@ export class ViewWidgetUpsertService {
             'flatViewFilterGroupMaps',
             'flatViewSortMaps',
             'flatViewMaps',
+            'flatViewGroupMaps',
           ],
         },
       );
@@ -181,11 +185,41 @@ export class ViewWidgetUpsertService {
       now: new Date().toISOString(),
     };
 
+    const hasTimelineUpdate = input.timelineConfiguration !== undefined;
+    if (
+      hasTimelineUpdate &&
+      (!isRecordTableWidget ||
+        flatView.type !== ViewType.TABLE_WIDGET ||
+        flatView.isActive !== true ||
+        flatView.objectMetadataId !== widget.objectMetadataId)
+    ) {
+      throw new ViewException(
+        t`Timeline settings require this widget's private view and source`,
+        ViewExceptionCode.INVALID_VIEW_DATA,
+      );
+    }
+    const timelineViewUpdate = hasTimelineUpdate
+      ? fromUpdateViewInputToFlatViewToUpdateOrThrow({
+          updateViewInput: {
+            id: viewId,
+            timelineConfiguration: input.timelineConfiguration,
+          },
+          flatViewMaps,
+          flatViewGroupMaps,
+          flatFieldMetadataMaps,
+          callerApplicationUniversalIdentifier:
+            upsertContext.applicationUniversalIdentifier,
+          workspaceCustomApplicationUniversalIdentifier:
+            upsertContext.applicationUniversalIdentifier,
+        }).flatViewToUpdate
+      : undefined;
+
     if (
       !isDefined(input.viewFields) &&
       !isDefined(input.viewFilterGroups) &&
       !isDefined(input.viewFilters) &&
-      !isDefined(input.viewSorts)
+      !isDefined(input.viewSorts) &&
+      !hasTimelineUpdate
     ) {
       const view = await this.viewRepository.findOne(
         upsertContext.workspaceId,
@@ -312,6 +346,15 @@ export class ViewWidgetUpsertService {
       await this.workspaceMigrationValidateBuildAndRunService.validateBuildAndRunWorkspaceMigration(
         {
           allFlatEntityOperationByMetadataName: {
+            ...(timelineViewUpdate
+              ? {
+                  view: {
+                    flatEntityToCreate: [],
+                    flatEntityToDelete: [],
+                    flatEntityToUpdate: [timelineViewUpdate],
+                  },
+                }
+              : {}),
             viewField: {
               flatEntityToCreate: viewFieldOperations.fieldsToCreate,
               flatEntityToDelete: [],

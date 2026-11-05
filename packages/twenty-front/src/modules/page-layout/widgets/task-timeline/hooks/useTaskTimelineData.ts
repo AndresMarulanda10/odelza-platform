@@ -1,5 +1,8 @@
 import { useGenerateDepthRecordGqlFieldsFromObject } from '@/object-record/graphql/record-gql-fields/hooks/useGenerateDepthRecordGqlFieldsFromObject';
-import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
+import {
+  useFindManyRecords,
+  type UseFindManyRecordsParams,
+} from '@/object-record/hooks/useFindManyRecords';
 import { useObjectPermissionsForObject } from '@/object-record/hooks/useObjectPermissionsForObject';
 import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';
 import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadataItems';
@@ -41,6 +44,8 @@ export type TaskTimelineData = {
   objectNameSingular?: string;
   objectLabelSingular?: string;
   updateTask?: (input: TaskTimelineEditInput) => Promise<void>;
+  hasNextPage?: boolean;
+  loadMore?: () => Promise<void>;
 };
 
 const getDate = (value: unknown): string | null =>
@@ -316,11 +321,30 @@ const getTimelineTitle = (value: unknown, fallback: string): string => {
 
 export const useTaskTimelineData = (
   widget: PageLayoutWidget,
-): TaskTimelineData => {
+): TaskTimelineData =>
+  useTimelineData({
+    sourceObjectMetadataId: widget.objectMetadataId,
+    fieldMapping: getTaskTimelineFieldMapping(widget),
+  });
+
+export const useTimelineData = ({
+  sourceObjectMetadataId,
+  fieldMapping,
+  query,
+  requireConfiguredDates = false,
+}: {
+  sourceObjectMetadataId?: string | null;
+  fieldMapping?: TaskTimelineFieldMapping | null;
+  query?: Pick<
+    UseFindManyRecordsParams<ObjectRecord>,
+    'filter' | 'orderBy' | 'limit'
+  >;
+  requireConfiguredDates?: boolean;
+}): TaskTimelineData => {
   const { objectMetadataItems } = useObjectMetadataItems();
   const source = objectMetadataItems.find(
     (object) =>
-      object.id === widget.objectMetadataId && object.isActive === true,
+      object.id === sourceObjectMetadataId && object.isActive === true,
   );
   const sourceIdentity = {
     objectNameSingular: source?.nameSingular ?? '',
@@ -337,7 +361,6 @@ export const useTaskTimelineData = (
   const objectPermissions = useObjectPermissionsForObject(
     objectMetadataItem.id,
   );
-  const fieldMapping = getTaskTimelineFieldMapping(widget);
   const isTask = isLegacyTaskSource(objectMetadataItem);
   const eligibleTitleFields = getTimelineFields(
     objectMetadataItem,
@@ -406,7 +429,13 @@ export const useTaskTimelineData = (
     (field) => field.name === progressFieldName,
   );
   const hasDateFields =
-    startDateField !== undefined && endDateField !== undefined;
+    startDateField !== undefined &&
+    endDateField !== undefined &&
+    (!requireConfiguredDates ||
+      Boolean(
+        fieldMapping?.startDateFieldMetadataId &&
+        fieldMapping?.dueDateFieldMetadataId,
+      ));
   const hasConfiguredSource = source !== undefined;
   const hasReadPermission =
     getTimelineSources([objectMetadataItem], {
@@ -424,6 +453,7 @@ export const useTaskTimelineData = (
     objectPermissions.canUpdateObjectRecords !== false;
   const canEditDates =
     hasConfiguredSource &&
+    hasDateFields &&
     hasReadPermission &&
     startDateField !== undefined &&
     endDateField !== undefined &&
@@ -448,6 +478,7 @@ export const useTaskTimelineData = (
     });
   const { updateOneRecord } = useUpdateOneRecord();
   const recordsQuery = useFindManyRecords<ObjectRecord>({
+    ...query,
     objectNameSingular: objectMetadataItem.nameSingular,
     recordGqlFields: timelineRecordGqlFields,
     skip: !hasConfiguredSource || !hasDateFields || !hasReadPermission,
@@ -628,5 +659,14 @@ export const useTaskTimelineData = (
     canEditDates,
     canEditProgress,
     updateTask,
+    ...(requireConfiguredDates
+      ? {
+          hasNextPage: recordsQuery.hasNextPage,
+          loadMore: async () => {
+            const result = await recordsQuery.fetchMoreRecords();
+            if (result?.error) throw result.error;
+          },
+        }
+      : {}),
   };
 };

@@ -1,4 +1,5 @@
 import { type RecordTableWidgetViewSnapshot } from '@/page-layout/widgets/record-table/types/RecordTableWidgetViewSnapshot';
+import { indigo } from '@radix-ui/colors';
 import { cloneRecordTableWidgetViewSnapshot } from '@/page-layout/widgets/record-table/utils/cloneRecordTableWidgetViewSnapshot';
 import { ViewFilterOperand } from 'twenty-shared/types';
 import {
@@ -77,6 +78,28 @@ const sourceSnapshot: RecordTableWidgetViewSnapshot = {
 };
 
 describe('cloneRecordTableWidgetViewSnapshot', () => {
+  it('retains Timeline mappings/color and table state when duplicating the same private View', () => {
+    const configuration = {
+      startDateFieldMetadataUniversalIdentifier: 'start-universal',
+      endDateFieldMetadataUniversalIdentifier: 'end-universal',
+      barColor: indigo.indigo9,
+    };
+    const source = {
+      ...sourceSnapshot,
+      view: { ...sourceSnapshot.view, timelineConfiguration: configuration },
+    };
+    const before = JSON.stringify(source);
+    const cloned = cloneRecordTableWidgetViewSnapshot(source);
+    expect(cloned.view.timelineConfiguration).toEqual(configuration);
+    expect(cloned.view.type).toBe(ViewType.TABLE_WIDGET);
+    expect(cloned.view.id).not.toBe(source.view.id);
+    expect(cloned.viewFilters[0].value).toBe(source.viewFilters[0].value);
+    expect(cloned.viewSorts[0].direction).toBe(source.viewSorts[0].direction);
+    expect(cloned.viewFields[0].fieldMetadataId).toBe(
+      source.viewFields[0].fieldMetadataId,
+    );
+    expect(JSON.stringify(source)).toBe(before);
+  });
   it('should assign a new view id and re-point every nested viewId to it', () => {
     const clonedSnapshot = cloneRecordTableWidgetViewSnapshot(sourceSnapshot);
 

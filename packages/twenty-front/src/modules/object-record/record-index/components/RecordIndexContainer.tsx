@@ -2,6 +2,7 @@ import { styled } from '@linaria/react';
 
 import { RecordBoardContainer } from '@/object-record/record-board/components/RecordBoardContainer';
 import { RecordIndexTableContainer } from '@/object-record/record-index/components/RecordIndexTableContainer';
+import { RecordIndexTimelineContainer } from '@/object-record/record-index/components/RecordIndexTimelineContainer';
 import { recordIndexViewTypeState } from '@/object-record/record-index/states/recordIndexViewTypeState';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 
@@ -48,6 +49,9 @@ export const RecordIndexContainer = () => {
       ) : (
         <>
           <RecordIndexFiltersToContextStoreEffect />
+          {recordIndexViewType === ViewType.TIMELINE && (
+            <RecordIndexTimelineContainer />
+          )}
           {recordIndexViewType === ViewType.TABLE && (
             <RecordIndexTableContainer recordTableId={recordIndexId} />
           )}

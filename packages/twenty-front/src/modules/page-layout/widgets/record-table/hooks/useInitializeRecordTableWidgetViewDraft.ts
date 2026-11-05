@@ -5,23 +5,30 @@ import { useAtomComponentStateCallbackState } from '@/ui/utilities/state/jotai/h
 import { type View } from '@/views/types/View';
 import { useStore } from 'jotai';
 import { useCallback, useEffect } from 'react';
+import { isDefined } from 'twenty-shared/utils';
 
 type UseInitializeRecordTableWidgetViewDraftParams = {
   widgetId: string;
   view: View | undefined;
+  pageLayoutId?: string;
+  allowEmptyFields?: boolean;
 };
 
 export const useInitializeRecordTableWidgetViewDraft = ({
   widgetId,
   view,
+  pageLayoutId,
+  allowEmptyFields = false,
 }: UseInitializeRecordTableWidgetViewDraftParams) => {
   const recordTableWidgetViewDraftState = useAtomComponentStateCallbackState(
     recordTableWidgetViewDraftComponentState,
+    pageLayoutId,
   );
 
   const recordTableWidgetViewPersistedState =
     useAtomComponentStateCallbackState(
       recordTableWidgetViewPersistedComponentState,
+      pageLayoutId,
     );
 
   const store = useStore();
@@ -29,11 +36,19 @@ export const useInitializeRecordTableWidgetViewDraft = ({
   const initializeDraft = useCallback(() => {
     const currentDraft = store.get(recordTableWidgetViewDraftState);
 
-    if (widgetId in currentDraft) {
+    if (!view) return;
+
+    const existing = currentDraft[widgetId];
+    if (
+      isDefined(existing) &&
+      (!allowEmptyFields ||
+        (existing.view.id === view.id &&
+          existing.view.objectMetadataId === view.objectMetadataId))
+    ) {
       return;
     }
 
-    if (!view || view.viewFields.length === 0) {
+    if (!allowEmptyFields && view.viewFields.length === 0) {
       return;
     }
 
@@ -53,6 +68,7 @@ export const useInitializeRecordTableWidgetViewDraft = ({
     recordTableWidgetViewPersistedState,
     widgetId,
     view,
+    allowEmptyFields,
     store,
   ]);
 

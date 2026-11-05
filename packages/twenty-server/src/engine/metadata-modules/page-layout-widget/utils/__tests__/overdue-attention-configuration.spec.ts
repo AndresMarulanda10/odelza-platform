@@ -8,7 +8,7 @@ import { createEmptyFlatEntityMaps } from 'src/engine/metadata-modules/flat-enti
 import { WidgetConfigurationType } from 'src/engine/metadata-modules/page-layout-widget/enums/widget-configuration-type.type';
 
 describe('record table presentation configuration (offline)', () => {
-  it.each([undefined, null, 'TABLE', 'OVERDUE_ATTENTION'])(
+  it.each([undefined, null, 'TABLE', 'OVERDUE_ATTENTION', 'TIMELINE'])(
     'accepts backward-compatible mode %s through actual validator dispatch',
     (presentationMode) => {
       expect(() =>
@@ -46,7 +46,7 @@ describe('record table presentation configuration (offline)', () => {
       ).map((error) => error.property),
     ).toEqual(['recordLimit']);
   });
-  it.each([undefined, null, 'TABLE', 'OVERDUE_ATTENTION'] as const)(
+  it.each([undefined, null, 'TABLE', 'OVERDUE_ATTENTION', 'TIMELINE'] as const)(
     'retains mode %s and limit in both real flat/universal converters',
     (presentationMode) => {
       const configuration = {

@@ -15,6 +15,10 @@ import { useStore } from 'jotai';
 import { useCallback } from 'react';
 import { assertUnreachable, isDefined } from 'twenty-shared/utils';
 import { ViewCalendarLayout } from '~/generated-metadata/graphql';
+import { useObjectPermissions } from '@/object-record/hooks/useObjectPermissions';
+import { getObjectPermissionsForObject } from '@/object-metadata/utils/getObjectPermissionsForObject';
+import { getTimelineFields } from '@/page-layout/widgets/task-timeline/utils/timelineSource';
+import { getDefaultTimelineViewConfiguration } from '@/views/utils/timelineViewConfiguration';
 
 export const useSetViewTypeFromLayoutOptionsMenu = () => {
   const { updateCurrentView } = useUpdateCurrentView();
@@ -22,6 +26,7 @@ export const useSetViewTypeFromLayoutOptionsMenu = () => {
   const { availableFieldsForGrouping } =
     useGetAvailableFieldsToGroupRecordsBy();
   const { objectMetadataItem } = useRecordIndexContextOrThrow();
+  const { objectPermissionsByObjectMetadataId } = useObjectPermissions();
 
   const { loadRecordIndexStates } = useLoadRecordIndexStates();
 
@@ -55,6 +60,29 @@ export const useSetViewTypeFromLayoutOptionsMenu = () => {
       updateCurrentViewParams.type = viewType;
 
       switch (viewType) {
+        case ViewType.TIMELINE: {
+          if (
+            objectMetadataItem.nameSingular !== 'task' ||
+            currentView.key === 'INDEX'
+          )
+            return;
+          const permissions = getObjectPermissionsForObject(
+            objectPermissionsByObjectMetadataId,
+            objectMetadataItem.id,
+          );
+          updateCurrentViewParams.mainGroupByFieldMetadataId = null;
+          updateCurrentViewParams.timelineConfiguration =
+            currentView.timelineConfiguration ??
+            getDefaultTimelineViewConfiguration(
+              getTimelineFields(objectMetadataItem, permissions, 'date'),
+            );
+          if (shouldChangeIcon(currentView.icon, currentView.type))
+            updateCurrentViewParams.icon =
+              viewTypeIconMapping(viewType).displayName;
+          await updateCurrentView(updateCurrentViewParams);
+          setRecordIndexViewType(viewType);
+          return;
+        }
         case ViewType.KANBAN: {
           if (availableFieldsForGrouping.length === 0) {
             throw new Error('No fields for kanban - should not happen');
@@ -130,6 +158,7 @@ export const useSetViewTypeFromLayoutOptionsMenu = () => {
       availableFieldsForCalendar,
       loadRecordIndexStates,
       objectMetadataItem,
+      objectPermissionsByObjectMetadataId,
     ],
   );
 
@@ -137,6 +166,11 @@ export const useSetViewTypeFromLayoutOptionsMenu = () => {
     oldIcon: string,
     oldViewType: ViewType,
   ): boolean => {
+    if (
+      oldViewType === ViewType.TIMELINE &&
+      oldIcon === viewTypeIconMapping(ViewType.TIMELINE).displayName
+    )
+      return true;
     if (
       oldViewType === ViewType.KANBAN &&
       oldIcon === viewTypeIconMapping(ViewType.KANBAN).displayName

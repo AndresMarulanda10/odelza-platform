@@ -3,7 +3,10 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
-import { TaskTimelineWidget } from '@/page-layout/widgets/task-timeline/components/TaskTimelineWidget';
+import {
+  TaskTimeline,
+  TaskTimelineWidget,
+} from '@/page-layout/widgets/task-timeline/components/TaskTimelineWidget';
 import { useTaskTimelineData } from '@/page-layout/widgets/task-timeline/hooks/useTaskTimelineData';
 import {
   getTaskTimelineCalendarDates,
@@ -57,7 +60,234 @@ const getActualTaskTimelineToday = jest.requireActual<
 ).getTaskTimelineToday;
 const widget = { id: 'timeline-widget' } as PageLayoutWidget;
 
+describe('controlled timeline compatibility', () => {
+  it('keeps a long one-day label in a dedicated compact bar with its full accessible name', () => {
+    const title =
+      'A long readable record label that must not expand a one-day timeline bar';
+    render(
+      <TaskTimeline
+        instanceId="compact"
+        data={{
+          status: 'ready',
+          items: [
+            {
+              id: 'long-label',
+              title,
+              startDate: '2026-09-19',
+              endDate: '2026-09-19',
+              progress: null,
+              isMilestone: false,
+              dependencies: [],
+              conflict: false,
+            },
+          ],
+          hasConfigurationGap: false,
+          retry: jest.fn(),
+        }}
+      />,
+    );
+    const chip = screen.getByTestId('timeline-task-chip-long-label');
+    expect(chip).toHaveAccessibleName(title);
+    expect(chip).toHaveAttribute('title', title);
+    expect(
+      chip.querySelector('[data-testid="timeline-bar-label"]'),
+    ).toHaveTextContent(title);
+    fireEvent.keyDown(chip, { key: 'Enter' });
+    expect(openRecordInSidePanel).toHaveBeenCalled();
+  });
+  it('namespaces conflict and independent save-error descriptions for duplicate records', async () => {
+    const data = {
+      status: 'ready' as const,
+      items: [
+        {
+          id: 'same-record',
+          title: 'Shared task',
+          startDate: '2026-09-19',
+          endDate: '2026-09-21',
+          progress: null,
+          isMilestone: false,
+          dependencies: [],
+          conflict: true,
+        },
+      ],
+      hasConfigurationGap: false,
+      canEditDates: true,
+      updateTask: jest.fn().mockRejectedValue(new Error('First save failed')),
+      retry: jest.fn(),
+    };
+    const secondUpdate = jest
+      .fn()
+      .mockRejectedValue(new Error('Second save failed'));
+    render(
+      <>
+        <TaskTimeline instanceId="widget-a" data={data} />
+        <TaskTimeline
+          instanceId="widget-b"
+          data={{ ...data, updateTask: secondUpdate }}
+        />
+      </>,
+    );
+    const chips = screen.getAllByTestId('timeline-task-chip-same-record');
+    expect(chips[0].getAttribute('aria-describedby')).not.toBe(
+      chips[1].getAttribute('aria-describedby'),
+    );
+    for (const chip of chips) {
+      Object.defineProperty(chip.parentElement!, 'getBoundingClientRect', {
+        configurable: true,
+        value: () => ({ width: 300 }),
+      });
+      fireEvent.mouseDown(chip, { clientX: 10 });
+      fireEvent.mouseMove(window, { clientX: 85 });
+      fireEvent.mouseUp(window, { clientX: 85 });
+    }
+    await waitFor(() =>
+      expect(screen.getByText('Second save failed')).toBeInTheDocument(),
+    );
+    expect(chips[0]).toHaveAccessibleDescription(
+      'Dependency conflict; dates were not rescheduled. First save failed',
+    );
+    expect(chips[1]).toHaveAccessibleDescription(
+      'Dependency conflict; dates were not rescheduled. Second save failed',
+    );
+    expect(data.updateTask).toHaveBeenCalledTimes(1);
+    expect(secondUpdate).toHaveBeenCalledTimes(1);
+  });
+  it('uses view-specific recovery copy only when requested and preserves legacy widget copy', () => {
+    const data = {
+      status: 'partial' as const,
+      items: [],
+      hasConfigurationGap: true,
+      configurationReason: 'invalid-date-mapping' as const,
+      retry: jest.fn(),
+    };
+    const { rerender } = render(
+      <TaskTimeline instanceId="view" data={data} configurationScope="view" />,
+    );
+    expect(
+      screen.getByText(
+        'Configured date fields are invalid or no longer available. Update the view field mappings.',
+      ),
+    ).toBeInTheDocument();
+    rerender(<TaskTimeline instanceId="widget" data={data} />);
+    expect(
+      screen.getByText(
+        'Configured task date fields are invalid or no longer available. Update the widget field mappings.',
+      ),
+    ).toBeInTheDocument();
+  });
+  beforeEach(() => {
+    mockedUseTaskTimelineData.mockReset();
+    mockedUseOpenRecordInSidePanel.mockReturnValue({ openRecordInSidePanel });
+  });
+
+  it.each(['loading', 'forbidden', 'empty', 'error', 'ready'] as const)(
+    'preserves legacy markup for %s with no records',
+    (status) => {
+      const data = {
+        status,
+        items: [],
+        hasConfigurationGap: false,
+        retry: jest.fn(),
+      };
+      mockedUseTaskTimelineData.mockReturnValue(data);
+      const legacy = render(<TaskTimelineWidget widget={widget} />);
+      const html = legacy.container.innerHTML;
+      legacy.unmount();
+      mockedUseTaskTimelineData.mockClear();
+      const controlled = render(
+        <TaskTimeline instanceId={widget.id} data={data} />,
+      );
+      expect(controlled.container.innerHTML).toBe(html);
+      expect(mockedUseTaskTimelineData).not.toHaveBeenCalled();
+    },
+  );
+
+  it('switches supplied errors and retry callbacks without a legacy request', () => {
+    const first = jest.fn();
+    const second = jest.fn();
+    const data = {
+      status: 'error' as const,
+      items: [],
+      hasConfigurationGap: false,
+      retry: first,
+      error: new Error('first'),
+    };
+    const view = render(<TaskTimeline instanceId="view" data={data} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    view.rerender(
+      <TaskTimeline
+        instanceId="view"
+        data={{ ...data, retry: second, error: new Error('second') }}
+      />,
+    );
+    expect(screen.getByRole('alert')).toHaveTextContent('second');
+    expect(screen.getByRole('alert')).not.toHaveTextContent('first');
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    expect(first).toHaveBeenCalledTimes(1);
+    expect(second).toHaveBeenCalledTimes(1);
+    expect(mockedUseTaskTimelineData).not.toHaveBeenCalled();
+  });
+});
+
 describe('TaskTimelineWidget', () => {
+  it('renders supplied view data without loading legacy widget records', () => {
+    jest.mocked(useObjectMetadataItems).mockClear();
+    const retry = jest.fn();
+    const data = {
+      status: 'ready' as const,
+      hasConfigurationGap: false,
+      retry,
+      items: [
+        {
+          id: 'view-task',
+          title: 'Plan delivery',
+          startDate: '2026-09-19',
+          endDate: '2026-09-21',
+          progress: null,
+          dependencies: [],
+          isMilestone: false,
+          conflict: false,
+        },
+      ],
+    };
+
+    render(<TaskTimeline instanceId="saved-view" data={data} />);
+
+    expect(
+      screen.getByTestId('timeline-task-chip-view-task'),
+    ).toHaveTextContent('Plan delivery');
+    fireEvent.click(screen.getByTestId('timeline-task-chip-view-task'));
+    expect(openRecordInSidePanel).toHaveBeenCalledWith({
+      recordId: 'view-task',
+      objectNameSingular: 'task',
+    });
+    expect(mockedUseTaskTimelineData).not.toHaveBeenCalled();
+    expect(jest.mocked(useObjectMetadataItems)).not.toHaveBeenCalled();
+  });
+
+  it('uses the supplied view retry action without mounting a widget loader', () => {
+    const retry = jest.fn();
+    render(
+      <TaskTimeline
+        instanceId="saved-view"
+        data={{
+          status: 'error',
+          items: [],
+          hasConfigurationGap: false,
+          retry,
+          error: new Error('View records unavailable'),
+        }}
+      />,
+    );
+
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'View records unavailable',
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    expect(retry).toHaveBeenCalledTimes(1);
+    expect(mockedUseTaskTimelineData).not.toHaveBeenCalled();
+  });
+
   it('does not mount record hooks when workspace metadata is empty', () => {
     jest
       .mocked(useObjectMetadataItems)
