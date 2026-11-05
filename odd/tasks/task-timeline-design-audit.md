@@ -94,3 +94,15 @@ Independent70-assertion source probes and focused frontend171/server59 tests wit
 **Pending browser proof:** saving/reloading the corrected private View configuration requires a new explicit temporary QA LAYOUTS grant, since the previous grant was retired. The preview did not save or elevate permissions. A390×844 capture with sidebar open is not responsive acceptance. Full nonempty filter/sort browser roundtrip, keyboard menu activation and a stored legacy Timeline instance were not re-exercised. Source switching retains the existing behavior of resetting layout to Table; no unrequested change was made to that path.
 
 Safe preview artifacts: `/tmp/opencode/view-browser.VZIZ9ctj/` (`menu.png`, `default-table.png`, `timeline-unconfigured.png`, `roundtrip-table.png`, `roundtrip-timeline.png`, `canvas-desktop.png`, `cancel-reload.png`). Do not publish private state.json. The initial plural dashboard URL error was a harness mistake, not a demonstrated product defect.
+
+### Corrected private Save/reload result
+
+After the user explicitly selected **Autorizar prueba temporal**, QA-only LAYOUTS was granted through the previously owned dedicated role with fresh guarded receipts. The real **View** saved as RECORD_TABLE/TIMELINE and loaded in new authenticated contexts with the same widget/private TABLE_WIDGET view IDs, Companies source, both Creation date mappings, color `#246A73`, record limit2 and six visible fields. Public save operations returned no GraphQL errors and public readback corroborated persistence. Parent inspected `persist-before-save.png` and `inspect-persisted.png`.
+
+The one normal dashboard Save created widget `c72cf629-1044-41b1-b21f-c9e402ae8bf5`, private view `106fcfb3-a35e-4326-a593-7f41a84a483d` and12 private ViewField entries (six visible). Existing QA widget IDs/configuration/title/positions were preserved; bulk-save updatedAt timestamps changed. No Company/Task records or metadata fields were created.
+
+QA was restored to Member immediately afterward and the temporary role was left unassigned with no flags; eleven selected-state preservation checks passed. No shared Member/human account changes occurred. There was no authentication logging incident in this corrected run.
+
+**Remaining limit:** browser harness reopening failed after the successful persisted reload, so additional saved Timeline→Table→Timeline cycles were not attempted. The Table/Timeline preview roundtrip, state preservation, Cancel, private-save contract, baseline Table render path and independent ownership tests passed; these do not replace that unexecuted browser cycle. Nonempty filter/sort browser roundtrip, full pagination/load and stored legacy widget runtime checks remain unapproved. No additional permission grant is active.
+
+Sanitized evidence: `persist-report.json`; private authentication artifact `persist-state.json` must not be published. Broader prior acceptance limits remain unchanged.
