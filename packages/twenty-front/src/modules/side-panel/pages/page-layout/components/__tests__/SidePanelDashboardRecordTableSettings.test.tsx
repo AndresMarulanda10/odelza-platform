@@ -1,11 +1,27 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { SidePanelDashboardRecordTableSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings';
-import { IconClock, IconTable, type IconComponent } from 'twenty-ui/icon';
+import {
+  IconClock,
+  IconTable,
+  IconTimelineEvent,
+  type IconComponent,
+} from 'twenty-ui/icon';
 
 let mockMode: string | null;
 let mockConfigurationType = 'RECORD_TABLE';
 let mockLayoutIcon: IconComponent;
 let mockDescription: string;
+let mockDisabled: boolean;
+let mockExposeLayout = false;
+const mockUpdateConfig = jest.fn();
+jest.mock('@/ui/layout/dropdown/hooks/useCloseDropdown', () => ({
+  useCloseDropdown: () => ({ closeDropdown: jest.fn() }),
+}));
+jest.mock('@/ui/layout/selectable-list/components/SelectableList', () => ({
+  SelectableList: ({ children }: { children: React.ReactNode }) => (
+    <>{children}</>
+  ),
+}));
 jest.mock(
   '@/side-panel/pages/page-layout/hooks/usePageLayoutIdFromContextStore',
   () => ({
@@ -40,7 +56,7 @@ jest.mock(
   '@/side-panel/pages/page-layout/hooks/useUpdateCurrentWidgetConfig',
   () => ({
     useUpdateCurrentWidgetConfig: () => ({
-      updateCurrentWidgetConfig: jest.fn(),
+      updateCurrentWidgetConfig: mockUpdateConfig,
     }),
   }),
 );
@@ -67,18 +83,48 @@ jest.mock('@/command-menu/components/CommandMenuItemDropdown', () => ({
     id,
     Icon,
     description,
+    disabled,
+    dropdownComponents,
   }: {
     id: string;
     Icon: IconComponent;
     description: string;
+    disabled: boolean;
+    dropdownComponents: React.ReactNode;
   }) => {
     if (id === 'object-view-layout') {
       mockLayoutIcon = Icon;
       mockDescription = description;
+      mockDisabled = disabled;
+      if (mockExposeLayout) return <>{dropdownComponents}</>;
     }
     return null;
   },
 }));
+
+it('enables Table/Timeline only for the real View layout and leaves Overdue locked', () => {
+  mockConfigurationType = 'RECORD_TABLE';
+  mockExposeLayout = true;
+  mockMode = 'TABLE';
+  const { rerender } = render(<SidePanelDashboardRecordTableSettings />);
+  expect(mockDisabled).toBe(false);
+  fireEvent.click(screen.getByText('Timeline'));
+  expect(mockUpdateConfig).toHaveBeenLastCalledWith({
+    configToUpdate: { presentationMode: 'TIMELINE' },
+  });
+  mockMode = 'TIMELINE';
+  rerender(<SidePanelDashboardRecordTableSettings />);
+  expect(mockDescription).toBe('Timeline');
+  expect(mockLayoutIcon).toBe(IconTimelineEvent);
+  fireEvent.click(screen.getByText('Table'));
+  expect(mockUpdateConfig).toHaveBeenLastCalledWith({
+    configToUpdate: { presentationMode: 'TABLE' },
+  });
+  mockMode = 'OVERDUE_ATTENTION';
+  rerender(<SidePanelDashboardRecordTableSettings />);
+  expect(mockDisabled).toBe(true);
+  mockExposeLayout = false;
+});
 
 it.each([null, 'TABLE', 'OVERDUE_ATTENTION'])(
   'settings layout icon is scoped to mode %s',

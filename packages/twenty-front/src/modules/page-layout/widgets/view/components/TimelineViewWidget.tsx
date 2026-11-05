@@ -11,12 +11,14 @@ type Props = {
   view: View;
   objectMetadataItem: EnrichedObjectMetadataItem;
   widgetId: string;
+  recordLimit?: number;
 };
 
 const TimelineViewWidgetData = ({
   view,
   objectMetadataItem,
   instanceId,
+  recordLimit,
 }: Omit<Props, 'widgetId'> & { instanceId: string }) => {
   const query = useFindManyTimelineViewParams(
     objectMetadataItem.nameSingular,
@@ -27,7 +29,10 @@ const TimelineViewWidgetData = ({
       view={view}
       objectMetadataItem={objectMetadataItem}
       instanceId={instanceId}
-      query={query}
+      query={
+        recordLimit === undefined ? query : { ...query, limit: recordLimit }
+      }
+      recordLimit={recordLimit}
     />
   );
 };
@@ -36,6 +41,7 @@ const TimelineViewWidgetScope = ({
   view,
   objectMetadataItem,
   widgetId,
+  recordLimit,
 }: Props) => {
   const instanceId = `view-timeline-widget-${widgetId}`;
   const ready = useTimelineViewWidgetQueryState(
@@ -54,6 +60,7 @@ const TimelineViewWidgetScope = ({
               view={view}
               objectMetadataItem={objectMetadataItem}
               instanceId={instanceId}
+              recordLimit={recordLimit}
             />
           )}
         </RecordComponentInstanceContextsWrapper>

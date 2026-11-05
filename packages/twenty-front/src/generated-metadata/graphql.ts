@@ -5845,6 +5845,7 @@ export type UpsertRowLevelPermissionPredicatesResult = {
 };
 
 export type UpsertViewWidgetInput = {
+  timelineConfiguration?: InputMaybe<ViewTimelineConfigurationInput>;
   /** The view fields to upsert. */
   viewFields?: InputMaybe<Array<UpsertViewWidgetViewFieldInput>>;
   /** The view filter groups to upsert. */

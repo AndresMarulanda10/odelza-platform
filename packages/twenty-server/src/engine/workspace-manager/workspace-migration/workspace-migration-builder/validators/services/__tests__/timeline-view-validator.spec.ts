@@ -5,6 +5,22 @@ import { type FlatEntityUpdateValidationArgs } from 'src/engine/workspace-manage
 import { FlatViewValidatorService } from 'src/engine/workspace-manager/workspace-migration/workspace-migration-builder/validators/services/flat-view-validator.service';
 
 describe('saved timeline view configuration', () => {
+  it('validates private Table-widget timeline configuration with the same ownership rules', () => {
+    const args = makeArgs({
+      type: ViewType.TABLE_WIDGET,
+      timelineConfiguration: {
+        startDateFieldMetadataUniversalIdentifier: 'missing',
+        endDateFieldMetadataUniversalIdentifier: 'end',
+      },
+    });
+    const before = JSON.stringify(args);
+    expect(
+      validator.validateFlatViewCreation(
+        args as unknown as UniversalFlatEntityValidationArgs<'view'>,
+      ).errors,
+    ).not.toEqual([]);
+    expect(JSON.stringify(args)).toBe(before);
+  });
   const validator = new FlatViewValidatorService();
   const configuration = {
     startDateFieldMetadataUniversalIdentifier: 'start',

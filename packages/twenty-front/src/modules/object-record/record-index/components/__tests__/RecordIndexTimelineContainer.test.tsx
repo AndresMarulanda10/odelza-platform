@@ -88,6 +88,41 @@ const query = {
   orderBy: [{ title: 'AscNullsFirst' as const }],
 };
 const loadMore = jest.fn();
+it('caps widget records at the total limit without offering pagination beyond that limit', () => {
+  const items = ['one', 'two'].map((id) => ({
+    id,
+    title: id,
+    startDate: '2026-11-05',
+    endDate: '2026-11-06',
+    progress: null,
+    dependencies: [],
+    isMilestone: false,
+    conflict: false,
+  }));
+  jest.mocked(useTimelineData).mockReturnValue({
+    status: 'ready',
+    items,
+    hasConfigurationGap: false,
+    retry: jest.fn(),
+    hasNextPage: true,
+    loadMore,
+  });
+  render(
+    <TimelineView
+      view={view}
+      objectMetadataItem={source}
+      instanceId="limited-widget"
+      query={{ ...query, limit: 1 }}
+      recordLimit={1}
+    />,
+  );
+  expect(jest.mocked(TaskTimeline).mock.calls.at(-1)![0].data.items).toEqual([
+    items[0],
+  ]);
+  expect(
+    screen.queryByRole('button', { name: 'Load more' }),
+  ).not.toBeInTheDocument();
+});
 beforeEach(() => {
   jest.clearAllMocks();
   jest.mocked(useTimelineData).mockReturnValue({

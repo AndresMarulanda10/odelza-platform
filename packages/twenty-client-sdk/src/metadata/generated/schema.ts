@@ -6434,7 +6434,7 @@ export interface ViewTimelineConfigurationInput {startDateFieldMetadataUniversal
 
 export interface UpdateViewInput {timelineConfiguration?: (ViewTimelineConfigurationInput | null),id?: (Scalars['UUID'] | null),name?: (Scalars['String'] | null),type?: (ViewType | null),icon?: (Scalars['String'] | null),position?: (Scalars['Float'] | null),isCompact?: (Scalars['Boolean'] | null),openRecordIn?: (ViewOpenRecordIn | null),kanbanAggregateOperation?: (AggregateOperations | null),kanbanAggregateOperationFieldMetadataId?: (Scalars['UUID'] | null),anyFieldFilterValue?: (Scalars['String'] | null),calendarLayout?: (ViewCalendarLayout | null),calendarFieldMetadataId?: (Scalars['UUID'] | null),catalogImageFieldMetadataId?: (Scalars['UUID'] | null),catalogSubtitleFieldMetadataId?: (Scalars['UUID'] | null),catalogDetailFieldMetadataId?: (Scalars['UUID'] | null),visibility?: (ViewVisibility | null),mainGroupByFieldMetadataId?: (Scalars['UUID'] | null),shouldHideEmptyGroups?: (Scalars['Boolean'] | null),kanbanColumnWidth?: (Scalars['Int'] | null)}
 
-export interface UpsertViewWidgetInput {
+export interface UpsertViewWidgetInput {timelineConfiguration?: (ViewTimelineConfigurationInput | null),
 /** The id of the view widget (page layout widget). */
 widgetId: Scalars['UUID'],
 /** The view fields to upsert. */

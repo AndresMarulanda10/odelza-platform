@@ -38,6 +38,7 @@ type TimelineViewProps = {
   instanceId: string;
   query: NonNullable<Parameters<typeof useTimelineData>[0]['query']>;
   settings?: ReactNode;
+  recordLimit?: number;
 };
 
 // The saved-view widget can use this controller without native index state.
@@ -47,6 +48,7 @@ export const TimelineView = ({
   instanceId,
   query,
   settings,
+  recordLimit,
 }: TimelineViewProps) => {
   const data = useTimelineData({
     sourceObjectMetadataId: view.objectMetadataId,
@@ -84,12 +86,20 @@ export const TimelineView = ({
       <StyledTimeline>
         <TaskTimeline
           instanceId={instanceId}
-          data={data}
+          data={
+            recordLimit === undefined
+              ? data
+              : {
+                  ...data,
+                  items: data.items.slice(0, recordLimit),
+                  hasNextPage: false,
+                }
+          }
           barColor={view.timelineConfiguration?.barColor}
           configurationScope="view"
         />
       </StyledTimeline>
-      {(data.hasNextPage || pageError) && (
+      {recordLimit === undefined && (data.hasNextPage || pageError) && (
         <StyledFooter>
           {pageError && <span role="alert">{pageError}</span>}
           <Button

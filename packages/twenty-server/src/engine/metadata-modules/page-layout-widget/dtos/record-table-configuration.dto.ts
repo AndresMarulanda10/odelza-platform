@@ -32,6 +32,6 @@ export class RecordTableConfigurationDTO implements RecordTableConfiguration {
 
   @Field(() => String, { nullable: true })
   @IsOptional()
-  @IsIn(['TABLE', 'OVERDUE_ATTENTION'])
-  presentationMode?: 'TABLE' | 'OVERDUE_ATTENTION' | null;
+  @IsIn(['TABLE', 'OVERDUE_ATTENTION', 'TIMELINE'])
+  presentationMode?: 'TABLE' | 'OVERDUE_ATTENTION' | 'TIMELINE' | null;
 }

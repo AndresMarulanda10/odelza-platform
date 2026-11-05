@@ -23,7 +23,12 @@ export class FlatViewValidatorService {
     const effectiveView = { ...view, ...(view.universalOverrides ?? {}) };
     const configuration = effectiveView.timelineConfiguration;
 
-    if (effectiveView.type !== ViewType.TIMELINE || !isDefined(configuration)) {
+    if (
+      ![ViewType.TIMELINE, ViewType.TABLE_WIDGET].includes(
+        effectiveView.type,
+      ) ||
+      !isDefined(configuration)
+    ) {
       return [];
     }
 

@@ -9815,6 +9815,9 @@ export default {
             ]
         },
         "UpsertViewWidgetInput": {
+            "timelineConfiguration": [
+                375
+            ],
             "widgetId": [
                 3
             ],

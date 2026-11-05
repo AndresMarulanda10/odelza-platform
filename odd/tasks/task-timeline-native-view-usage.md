@@ -1,6 +1,6 @@
 # Use a saved Tasks Timeline
 
-Create a Tasks view and choose **Timeline**, or change a non-default Tasks view under **Layout → Timeline**. The default index view retains its existing layout restrictions. Other objects do not offer Timeline creation.
+Create a native Tasks view and choose **Timeline**, or change a non-default Tasks view under **Layout → Timeline**. The default index view retains its existing layout restrictions. Other objects do not offer native Timeline creation; the dashboard View widget supports its selected readable object, including Companies.
 
 ## Configure the view
 
@@ -13,9 +13,20 @@ Create a Tasks view and choose **Timeline**, or change a non-default Tasks view 
 
 Timeline retains the existing calendar window, full-day inclusive dates, record titles, record opening, scrolling, drag/resize and dependency-conflict behavior. Configuration labels do not replace record titles. Switching layouts preserves saved Timeline mappings and color; creating from the current view retains its existing filter/sort copy flow.
 
-## Embed a saved view
+## Choose a dashboard View layout
 
-In the **View** widget settings, choose an active **Kanban** or **Timeline** view for the widget's object. **Search views** filters this list. Selecting a view updates the widget title. Table views remain available through the separate Table widget.
+1. Add or edit the widget labeled **View** and choose its **Source**.
+2. Open **Layout** and choose **Table** or **Timeline**. This keeps the same widget and private view; fields, filters, sorts and record limit are retained when switching back.
+3. In Timeline mode, configure readable active **Start date**, **End date** and **Bar color**. Unavailable mappings remain unconfigured; no date values are invented or written to records.
+4. Use the dashboard **Save** action to persist the layout and private settings. **Cancel** discards draft changes. Configuration is not written immediately to a native saved view.
+
+The existing Limit caps total Timeline records; a limited widget does not offer Load more beyond the cap. The Overdue tasks preset retains its existing locked presentation and is not converted by this selector.
+
+Standalone **Task Timeline** is no longer offered when creating widgets. Already-saved legacy Timeline widgets continue to render and use their existing settings; no automatic conversion or deletion occurs.
+
+## Existing Kanban View compatibility
+
+The separate **Kanban View** entry can still select an active saved **Kanban** or **Timeline** view for its object. **Search views** filters that list. This compatibility path is distinct from the main **View → Layout** control above.
 
 Timeline widgets share the native Timeline renderer and strict configured-date loader. Each widget has its own saved filters, filter groups, sort order and search scope, even when two widgets select the same view. Empty view-field lists are supported. Saved-query or metadata changes refresh that scope before loading; changing mappings or color does not reset local search. Missing, inactive, unsupported or mismatched references display **This view is unavailable.** without mounting a data child or showing the private view name.
 

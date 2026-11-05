@@ -3726,6 +3726,8 @@ input UpdateViewInput {
 }
 
 input UpsertViewWidgetInput {
+  timelineConfiguration: ViewTimelineConfigurationInput
+
   """The id of the view widget (page layout widget)."""
   widgetId: UUID!
 

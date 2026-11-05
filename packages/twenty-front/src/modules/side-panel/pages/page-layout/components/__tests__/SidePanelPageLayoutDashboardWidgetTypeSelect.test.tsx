@@ -186,15 +186,20 @@ jest.mock('@/ui/layout/selectable-list/components/SelectableListItem', () => ({
 }));
 
 describe('SidePanelPageLayoutDashboardWidgetTypeSelect', () => {
-  it('opens Timeline settings immediately after creating an unconfigured draft', () => {
+  it('offers the unified View instead of a standalone Task Timeline creation path', () => {
+    const company = getMockObjectMetadataItemOrThrow('company');
+    mockObjects = [company];
     render(<SidePanelPageLayoutDashboardWidgetTypeSelect />);
-    fireEvent.click(screen.getByRole('button', { name: 'Task Timeline' }));
-    expect(mockCreateTimeline).toHaveBeenCalledWith(undefined);
-    expect(mockSetPageLayoutEditingWidgetId).toHaveBeenCalledWith(
-      'timeline-id',
-    );
+    expect(
+      screen.queryByRole('button', { name: 'Task Timeline' }),
+    ).not.toBeInTheDocument();
+    expect(mockSelectableIds).not.toContain('task-timeline');
+    expect(mockCreateTimeline).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: /^View$/ }));
+    expect(mockCreateTable).toHaveBeenCalledWith(company);
+    expect(mockAddDraft).toHaveBeenCalledWith('overdue-id', company);
     expect(mockNavigatePageLayoutSidePanel).toHaveBeenCalledWith({
-      sidePanelPage: 'dashboard-task-timeline-settings',
+      sidePanelPage: 'dashboard-record-table-settings',
       focusTitleInput: false,
     });
     expect(mockCloseSidePanelMenu).not.toHaveBeenCalled();
