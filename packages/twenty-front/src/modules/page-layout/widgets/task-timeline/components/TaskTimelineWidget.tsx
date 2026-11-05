@@ -699,6 +699,29 @@ type TaskTimelineWidgetContentProps = TaskTimelineWidgetProps;
 const TaskTimelineWidgetContent = ({
   widget,
 }: TaskTimelineWidgetContentProps) => {
+  const data = useTaskTimelineData(widget);
+  const barColor =
+    widget.configuration?.__typename === 'TaskTimelineConfiguration'
+      ? widget.configuration.barColor
+      : null;
+
+  return (
+    <TaskTimeline instanceId={widget.id} data={data} barColor={barColor} />
+  );
+};
+
+type TaskTimelineProps = {
+  instanceId: string;
+  data: ReturnType<typeof useTaskTimelineData>;
+  barColor?: string | null;
+};
+
+// Both saved views and legacy widgets supply their own data controller.
+export const TaskTimeline = ({
+  instanceId,
+  data,
+  barColor: configuredBarColor,
+}: TaskTimelineProps) => {
   const [helpOpen, setHelpOpen] = useState(false);
   const {
     status,
@@ -711,12 +734,8 @@ const TaskTimelineWidgetContent = ({
     updateTask = async () => undefined,
     objectNameSingular = CoreObjectNameSingular.Task,
     objectLabelSingular = t`Task`,
-  } = useTaskTimelineData(widget);
+  } = data;
   const isTask = objectNameSingular === CoreObjectNameSingular.Task;
-  const configuredBarColor =
-    widget.configuration?.__typename === 'TaskTimelineConfiguration'
-      ? widget.configuration.barColor
-      : null;
   const barColor = /^#[0-9a-fA-F]{6}$/.test(configuredBarColor ?? '')
     ? configuredBarColor!
     : DEFAULT_TASK_TIMELINE_BAR_COLOR;
@@ -777,10 +796,10 @@ const TaskTimelineWidgetContent = ({
       <StyledHelpBar>
         <button
           type="button"
-          data-tooltip-id={`${widget.id}-timeline-help`}
+          data-tooltip-id={`${instanceId}-timeline-help`}
           aria-label={t`Timeline help`}
           aria-describedby={
-            helpOpen ? `${widget.id}-timeline-help-content` : undefined
+            helpOpen ? `${instanceId}-timeline-help-content` : undefined
           }
           onMouseDown={(event) => event.stopPropagation()}
           onFocus={() => setHelpOpen(true)}
@@ -793,11 +812,11 @@ const TaskTimelineWidgetContent = ({
           {t`Help`}
         </button>
         <AppTooltip
-          anchorSelect={`[data-tooltip-id="${widget.id}-timeline-help"]`}
+          anchorSelect={`[data-tooltip-id="${instanceId}-timeline-help"]`}
           delay={TooltipDelay.noDelay}
           isOpen={helpOpen}
         >
-          <span role="tooltip" id={`${widget.id}-timeline-help-content`}>
+          <span role="tooltip" id={`${instanceId}-timeline-help-content`}>
             {`${
               isTask
                 ? t`Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling.`

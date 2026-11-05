@@ -1,0 +1,35 @@
+# Native Task Timeline View
+Objective: reuse the existing task timeline as a saved native view and in the View widget, preserving existing widgets.
+Branch: `feat/task-timeline-native-view`; baseline: `be0c339f45928957843ab9abf161b5b4020fcc9d`; delivery: ask-on-risk / feature-branch-chain (user selected; forecast 1,200–2,000 authored lines); tests: installed Jest runners and local Playwright.
+
+## Specs
+
+- S1: "necesito hacerlo una vista, como ya se tenia el widget ahora lo requiero hacer una vista". Add a native saved Timeline view for Tasks; retain the current timeline interactions and appearance, with persistent date mappings and applicable visual configuration.
+- S2: "quiero saber la posibilidad de fisionar este widged con el de el time line, con el fin de adaptar el time line al widget view". The user accepted the proposal to share the timeline implementation, embed a saved Timeline view by viewId, and retain existing Timeline, Table and Kanban widgets. Native and embedded views must respect saved filters/order/search and permissions without a second legacy query.
+- S3: "PARECE PERFECTO AGREGA UN AUDITORIA DEL DISENO PORFAVOR". Include initial and final design audits of the full native view and embedded widget: visual consistency, readability, interactions, responsive/touch behavior, keyboard/focus/contrast, meaningful data states, themes and performance. Report observed evidence and distinguish inherited defects from new regressions; do not redesign unrelated UI.
+- S4: "PERFECTO, YA PUEDES PROCEDER". Implement the accepted plan locally. No production deployment, remote server operations, automatic legacy-widget conversion or automatic dependency rescheduling. Preserve existing human changes and local account/data.
+
+## Tasks
+
+- T1 [S3] inline — in progress: source/interaction baseline recorded in `odd/tasks/task-timeline-design-audit.md`; baseline 3 suites / 95 tests pass; initial browser captures pending; commit pending.
+- T2 [S1,S2] inline — verified, commit pending: controlled `TaskTimeline` renderer separated from legacy loader; observed RED (2 tests fail before export), GREEN (38 component tests), independent baseline/current checks and six durable probes, parent spot check (3 suites / 103 tests); Risk item 3 (shared existing widget renderer); no verifier blockers.
+- T3 [S1] inline — pending: additive saved-view schema/configuration, validation and generated contracts; Risk items 1 and 3 (persisted schema and consumed contracts); commit pending.
+- T4 [S1,S2] inline — pending: native Task Timeline selector/configuration and view-aware data controller; preserve permissions and filters/sorts/search; Risk items 2 and 3; commit pending.
+- T5 [S2] inline — pending: View-widget Timeline dispatch and validation, scoped view state, legacy compatibility; Risk items 2 and 3; commit pending.
+- T6 [S1,S2,S3,S4] inline — pending: regression/integration/browser checks, final audit and one independent verifier for named high-risk items; commit pending.
+
+## Log
+
+- L1 (2026-11-04): Original request verbatim: "necesito hacerlo una vista, como ya se tenia el widget ahora lo requiero hacer una vista, y otr cosa, hay un widget llamado vista, que el diseno es tabla, quiero saber la posibilidad de fisionar este widged con el de el time line, con el fin de adaptar el time line al widget view".
+- L2: User accepted proposed architecture and requested plan: "me parece bastante bien, plantea un plan de desarrollo y presentamelo para saber como se piensa implementar".
+- L3: User expanded accepted plan: "PARECE PERFECTO AGREGA UN AUDITORIA DEL DISENO PORFAVOR".
+- L4: Implementation authorized: "PERFECTO, YA PUEDES PROCEDER".
+- L5: Current VIEW widget is Kanban-only, including backend guard; RECORD_TABLE is separate. Native view type uses a database enum. Timeline currently queries separately from saved views. Shared native query parameter helpers already compose filters/sorts/search.
+- L6: Route: inline implementation because units depend on one shared contract and overlapping surfaces; no independent parallel writer units. Read-only mapping delegated because understanding exceeded parent evidence budget. Risk will be verified independently at feature end; RDD is off by clone-local/global preference and remains off.
+- L7: Baseline git changes preserved: `.claude/settings.json`, `.mcp.json`, `packages/twenty-server/.env.test`; pre-existing untracked harness directories and `openspec/`. Existing app runs on loopback ports 3000/3001 with isolated PostgreSQL/Redis; do not reset its data.
+- L8: Forecast exceeds 400 authored lines. Ask once for chained delivery strategy before the first work-unit commit; no push, PR creation or merge authorized. Engram mirror saved as observation 4219 and read back.
+- L9: Initial audit records inherited mouse-only gesture handling, narrow resize controls, per-record rather than per-instance error IDs, and unmeasured theme/contrast/performance concerns. No browser/contrast pass claimed. Unit T2 preserves existing DOM/style/interaction behavior while allowing a saved-view controller to provide data without invoking the legacy query.
+- L10: Installed Jest runner baseline passed 95 tests; two new controlled-renderer tests failed as expected before implementation and passed afterward. Scoped oxfmt ran before functional verification. Final timeline suite: 97 tests pass. Known baseline warnings: Apollo duplicate fragment names and React act notices. Temporary evidence directory is located by `/tmp/opencode/odelza-timeline-baseline-current` and must remain outside commits.
+- L11: Initial scoped design detector returned an empty finding list; this is not a browser/contrast/touch verdict. `git diff --check` passed. T2 source/test diff is 89 additions / 10 deletions. No commits or production operations performed; native view/schema and widget integration remain pending. Next required decision: feature-branch chain (recommended because schema and view integration depend on each other) versus independently landable stacked-to-main units, before first work-unit commit.
+- L12: User selected "Cadena feature (recomendada)". Use feature-branch-chain, retain per-unit commit boundaries, and prepare child branch refs locally; no push, PR creation or merge authorized. First slice: controlled shared timeline + tests and initial audit; second: additive saved-view contract; third: native view; fourth: embedded view and final acceptance. Adjust boundaries only to keep cohesive behavior, not to suppress tests/docs or shrink generated contracts cosmetically.
+- L13: Independent verifier tested isolated baseline95/current97, then six probes103; no blockers. Parent committed probes to tests and observed103/103 after fixing one mock-history dependency. Baseline/current identical markup for five states and new retry callback replacement verified. Scratch `/tmp/opencode/timeline-verifier.xeQvrA` is parent-owned cleanup; no repository writes by verifier. Native RDD remains disabled/unmanaged, not an approval receipt.
