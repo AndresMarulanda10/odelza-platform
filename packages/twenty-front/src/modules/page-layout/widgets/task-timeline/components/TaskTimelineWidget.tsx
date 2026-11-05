@@ -714,6 +714,7 @@ type TaskTimelineProps = {
   instanceId: string;
   data: ReturnType<typeof useTaskTimelineData>;
   barColor?: string | null;
+  configurationScope?: 'widget' | 'view';
 };
 
 // Both saved views and legacy widgets supply their own data controller.
@@ -721,6 +722,7 @@ export const TaskTimeline = ({
   instanceId,
   data,
   barColor: configuredBarColor,
+  configurationScope = 'widget',
 }: TaskTimelineProps) => {
   const [helpOpen, setHelpOpen] = useState(false);
   const {
@@ -828,9 +830,11 @@ export const TaskTimeline = ({
       {hasConfigurationGap && (
         <StyledNotice>
           {configurationReason === 'invalid-date-mapping'
-            ? isTask
-              ? t`Configured task date fields are invalid or no longer available. Update the widget field mappings.`
-              : t`Configured date fields are invalid or no longer available. Update the widget field mappings.`
+            ? configurationScope === 'view'
+              ? t`Configured date fields are invalid or no longer available. Update the view field mappings.`
+              : isTask
+                ? t`Configured task date fields are invalid or no longer available. Update the widget field mappings.`
+                : t`Configured date fields are invalid or no longer available. Update the widget field mappings.`
             : hasConfigurationGap
               ? t`Choose an active source and configure readable date fields; unavailable dates are not inferred.`
               : isTask

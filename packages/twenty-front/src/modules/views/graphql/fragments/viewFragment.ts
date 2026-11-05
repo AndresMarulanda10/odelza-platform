@@ -15,6 +15,11 @@ export const VIEW_FRAGMENT = gql`
   ${VIEW_GROUP_FRAGMENT}
 
   fragment ViewFragment on View {
+    timelineConfiguration {
+      startDateFieldMetadataUniversalIdentifier
+      endDateFieldMetadataUniversalIdentifier
+      barColor
+    }
     id
     name
     objectMetadataId

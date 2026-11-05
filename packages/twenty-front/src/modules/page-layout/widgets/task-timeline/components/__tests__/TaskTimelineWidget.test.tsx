@@ -61,6 +61,29 @@ const getActualTaskTimelineToday = jest.requireActual<
 const widget = { id: 'timeline-widget' } as PageLayoutWidget;
 
 describe('controlled timeline compatibility', () => {
+  it('uses view-specific recovery copy only when requested and preserves legacy widget copy', () => {
+    const data = {
+      status: 'partial' as const,
+      items: [],
+      hasConfigurationGap: true,
+      configurationReason: 'invalid-date-mapping' as const,
+      retry: jest.fn(),
+    };
+    const { rerender } = render(
+      <TaskTimeline instanceId="view" data={data} configurationScope="view" />,
+    );
+    expect(
+      screen.getByText(
+        'Configured date fields are invalid or no longer available. Update the view field mappings.',
+      ),
+    ).toBeInTheDocument();
+    rerender(<TaskTimeline instanceId="widget" data={data} />);
+    expect(
+      screen.getByText(
+        'Configured task date fields are invalid or no longer available. Update the widget field mappings.',
+      ),
+    ).toBeInTheDocument();
+  });
   beforeEach(() => {
     mockedUseTaskTimelineData.mockReset();
     mockedUseOpenRecordInSidePanel.mockReturnValue({ openRecordInSidePanel });

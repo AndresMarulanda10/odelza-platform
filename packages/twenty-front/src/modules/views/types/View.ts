@@ -12,8 +12,10 @@ import {
   type ViewVisibility,
 } from '~/generated-metadata/graphql';
 import { type ViewSort } from '@/views/types/ViewSort';
+import { type ViewTimelineConfiguration } from 'twenty-shared/types';
 
 export type View = {
+  timelineConfiguration?: ViewTimelineConfiguration | null;
   id: string;
   name: string;
   type: ViewType;

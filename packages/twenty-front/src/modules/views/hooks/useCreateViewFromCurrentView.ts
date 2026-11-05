@@ -14,6 +14,11 @@ import { usePerformViewSortAPIPersist } from '@/views/hooks/internal/usePerformV
 import { viewFromViewIdFamilySelector } from '@/views/states/selectors/viewFromViewIdFamilySelector';
 import { type GraphQLView } from '@/views/types/GraphQLView';
 import { ViewType } from '@/views/types/ViewType';
+import { getDefaultTimelineViewConfiguration } from '@/views/utils/timelineViewConfiguration';
+import { convertUpdateViewInputToGql } from '@/views/utils/convertUpdateViewInputToGql';
+import { useObjectPermissions } from '@/object-record/hooks/useObjectPermissions';
+import { getObjectPermissionsForObject } from '@/object-metadata/utils/getObjectPermissionsForObject';
+import { getTimelineFields } from '@/page-layout/widgets/task-timeline/utils/timelineSource';
 import { duplicateViewFiltersAndViewFilterGroups } from '@/views/utils/duplicateViewFiltersAndViewFilterGroups';
 import { mapRecordFilterGroupToViewFilterGroup } from '@/views/utils/mapRecordFilterGroupToViewFilterGroup';
 import { mapRecordFilterToViewFilter } from '@/views/utils/mapRecordFilterToViewFilter';
@@ -29,6 +34,7 @@ export const useCreateViewFromCurrentView = (viewBarComponentId?: string) => {
   const { performViewAPICreate } = usePerformViewAPIPersist();
 
   const { objectMetadataItem, recordIndexId } = useRecordIndexContextOrThrow();
+  const { objectPermissionsByObjectMetadataId } = useObjectPermissions();
 
   const currentViewId = useAtomComponentStateCallbackState(
     contextStoreCurrentViewIdComponentState,
@@ -76,6 +82,7 @@ export const useCreateViewFromCurrentView = (viewBarComponentId?: string) => {
         calendarFieldMetadataId,
         type,
         visibility,
+        timelineConfiguration,
       }: Partial<
         Pick<
           GraphQLView,
@@ -86,6 +93,7 @@ export const useCreateViewFromCurrentView = (viewBarComponentId?: string) => {
           | 'calendarFieldMetadataId'
           | 'type'
           | 'visibility'
+          | 'timelineConfiguration'
         >
       >,
       shouldCopyFiltersAndSortsAndAggregate?: boolean,
@@ -107,6 +115,22 @@ export const useCreateViewFromCurrentView = (viewBarComponentId?: string) => {
       }
 
       const viewType = type ?? sourceView.type;
+      const permissions = getObjectPermissionsForObject(
+        objectPermissionsByObjectMetadataId,
+        objectMetadataItem.id,
+      );
+      const readableDates = getTimelineFields(
+        objectMetadataItem,
+        permissions,
+        'date',
+      );
+      const savedTimelineConfiguration =
+        timelineConfiguration !== undefined
+          ? timelineConfiguration
+          : (sourceView.timelineConfiguration ??
+            (viewType === ViewType.TIMELINE
+              ? getDefaultTimelineViewConfiguration(readableDates)
+              : undefined));
 
       const result = await performViewAPICreate(
         {
@@ -125,9 +149,15 @@ export const useCreateViewFromCurrentView = (viewBarComponentId?: string) => {
             kanbanColumnWidth: shouldCopyFiltersAndSortsAndAggregate
               ? sourceView.kanbanColumnWidth
               : undefined,
-            mainGroupByFieldMetadataId: shouldCopyFiltersAndSortsAndAggregate
-              ? sourceView.mainGroupByFieldMetadataId
-              : mainGroupByFieldMetadataId,
+            timelineConfiguration: convertUpdateViewInputToGql({
+              timelineConfiguration: savedTimelineConfiguration,
+            }).timelineConfiguration,
+            mainGroupByFieldMetadataId:
+              viewType === ViewType.TIMELINE
+                ? null
+                : shouldCopyFiltersAndSortsAndAggregate
+                  ? sourceView.mainGroupByFieldMetadataId
+                  : mainGroupByFieldMetadataId,
             type: viewType,
             objectMetadataId: sourceView.objectMetadataId,
             openRecordIn: sourceView.openRecordIn,
@@ -253,6 +283,7 @@ export const useCreateViewFromCurrentView = (viewBarComponentId?: string) => {
       performViewAPICreate,
       anyFieldFilterValue,
       objectMetadataItem,
+      objectPermissionsByObjectMetadataId,
       performViewFieldAPICreate,
       store,
       currentRecordFilterGroups,
