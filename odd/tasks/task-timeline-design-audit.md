@@ -55,6 +55,8 @@ The existing QA dashboard's VIEW configuration selected the saved Timeline and r
 
 **Native and embedded persistence verified; overall runtime acceptance remains partial.** After explicit authorization, a dedicated QA-only role temporarily added LAYOUTS. Two VIEW widgets saved successfully and rendered after reload. The account was subsequently restored to Member, all temporary grants removed, and normal Member read access rechecked. The shared Member role and human accounts were unchanged. The dedicated role remains unassigned without flags.
 
+On2026-11-05, the user explicitly selected **"Aceptar entrega local parcial"**. This accepts the bounded local delivery, not a full runtime/accessibility/performance approval. All limitations below remain open follow-up evidence; publication and deployment are not authorized.
+
 | Check | Observed result | Limit |
 | --- | --- | --- |
 | Native save/reload | PASS: selected Timeline, both date mappings and custom color survive reload. | Both mappings intentionally use Due Date in this fixture. |
