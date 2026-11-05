@@ -1369,6 +1369,7 @@ export type CreateViewInput = {
   openRecordIn?: InputMaybe<ViewOpenRecordIn>;
   position?: InputMaybe<Scalars['Float']['input']>;
   shouldHideEmptyGroups?: InputMaybe<Scalars['Boolean']['input']>;
+  timelineConfiguration?: InputMaybe<ViewTimelineConfigurationInput>;
   type?: InputMaybe<ViewType>;
   visibility?: InputMaybe<ViewVisibility>;
 };
@@ -5725,6 +5726,7 @@ export type UpdateViewInput = {
   openRecordIn?: InputMaybe<ViewOpenRecordIn>;
   position?: InputMaybe<Scalars['Float']['input']>;
   shouldHideEmptyGroups?: InputMaybe<Scalars['Boolean']['input']>;
+  timelineConfiguration?: InputMaybe<ViewTimelineConfigurationInput>;
   type?: InputMaybe<ViewType>;
   visibility?: InputMaybe<ViewVisibility>;
 };
@@ -6042,6 +6044,7 @@ export type View = {
   openRecordIn: ViewOpenRecordIn;
   position: Scalars['Float']['output'];
   shouldHideEmptyGroups: Scalars['Boolean']['output'];
+  timelineConfiguration?: Maybe<ViewTimelineConfiguration>;
   type: ViewType;
   updatedAt: Scalars['DateTime']['output'];
   viewFieldGroups: Array<ViewFieldGroup>;
@@ -6198,13 +6201,27 @@ export enum ViewSortDirection {
   DESC = 'DESC'
 }
 
+export type ViewTimelineConfiguration = {
+  __typename?: 'ViewTimelineConfiguration';
+  barColor?: Maybe<Scalars['String']['output']>;
+  endDateFieldMetadataUniversalIdentifier?: Maybe<Scalars['UUID']['output']>;
+  startDateFieldMetadataUniversalIdentifier?: Maybe<Scalars['UUID']['output']>;
+};
+
+export type ViewTimelineConfigurationInput = {
+  barColor?: InputMaybe<Scalars['String']['input']>;
+  endDateFieldMetadataUniversalIdentifier?: InputMaybe<Scalars['UUID']['input']>;
+  startDateFieldMetadataUniversalIdentifier?: InputMaybe<Scalars['UUID']['input']>;
+};
+
 export enum ViewType {
   CALENDAR = 'CALENDAR',
   CATALOG = 'CATALOG',
   FIELDS_WIDGET = 'FIELDS_WIDGET',
   KANBAN = 'KANBAN',
   TABLE = 'TABLE',
-  TABLE_WIDGET = 'TABLE_WIDGET'
+  TABLE_WIDGET = 'TABLE_WIDGET',
+  TIMELINE = 'TIMELINE'
 }
 
 export enum ViewVisibility {

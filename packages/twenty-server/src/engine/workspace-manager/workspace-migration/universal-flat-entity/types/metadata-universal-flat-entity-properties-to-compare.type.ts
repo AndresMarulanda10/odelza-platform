@@ -49,6 +49,7 @@ type Assertions = [
   Expect<
     Equal<
       MetadataUniversalFlatEntityPropertiesToCompare<'view'>,
+      | 'timelineConfiguration'
       | 'name'
       | 'icon'
       | 'deletedAt'

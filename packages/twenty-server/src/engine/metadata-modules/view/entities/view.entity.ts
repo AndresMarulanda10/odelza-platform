@@ -20,6 +20,7 @@ import {
   ViewOpenRecordIn,
   ViewType,
   ViewVisibility,
+  type ViewTimelineConfiguration,
 } from 'twenty-shared/types';
 
 import { WasIntroducedInUpgrade } from 'src/engine/core-modules/upgrade/decorators/was-introduced-in-upgrade.decorator';
@@ -27,6 +28,7 @@ import { UserWorkspaceEntity } from 'src/engine/core-modules/user-workspace/user
 import { ADD_IS_SYSTEM_SIDE_EFFECT_UPGRADE_COMMAND_NAME } from 'src/database/commands/upgrade-version-command/2-15/is-system-side-effect-upgrade-command-name.constant';
 import { ADD_VIEW_KANBAN_COLUMN_WIDTH_UPGRADE_COMMAND_NAME } from 'src/database/commands/upgrade-version-command/2-15/add-view-kanban-column-width-upgrade-command-name.constant';
 import { ADD_CATALOG_FIELDS_TO_VIEW_UPGRADE_COMMAND_NAME } from 'src/database/commands/upgrade-version-command/2-21/add-catalog-fields-to-view-upgrade-command-name.constant';
+import { ADD_TIMELINE_VIEW_UPGRADE_COMMAND_NAME } from 'src/database/commands/upgrade-version-command/2-21/add-timeline-view-upgrade-command-name.constant';
 import { FieldMetadataEntity } from 'src/engine/metadata-modules/field-metadata/field-metadata.entity';
 import { ObjectMetadataEntity } from 'src/engine/metadata-modules/object-metadata/object-metadata.entity';
 import { ViewFieldGroupEntity } from 'src/engine/metadata-modules/view-field-group/entities/view-field-group.entity';
@@ -38,6 +40,7 @@ import { ViewSortEntity } from 'src/engine/metadata-modules/view-sort/entities/v
 import { OverridableEntity } from 'src/engine/workspace-manager/types/overridable-entity';
 
 export type ViewOverrides = {
+  timelineConfiguration?: ViewTimelineConfiguration | null;
   name?: string;
   type?: ViewType;
   icon?: string;
@@ -79,6 +82,12 @@ export class ViewEntity
   extends OverridableEntity<ViewOverrides>
   implements Required<ViewEntity>
 {
+  @Column({ type: 'jsonb', nullable: true })
+  @WasIntroducedInUpgrade({
+    upgradeCommandName: ADD_TIMELINE_VIEW_UPGRADE_COMMAND_NAME,
+  })
+  timelineConfiguration: ViewTimelineConfiguration | null;
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

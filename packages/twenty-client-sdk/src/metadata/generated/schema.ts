@@ -562,7 +562,15 @@ export interface ViewFieldGroup {
     __typename: 'ViewFieldGroup'
 }
 
+export interface ViewTimelineConfiguration {
+    startDateFieldMetadataUniversalIdentifier?: Scalars['UUID']
+    endDateFieldMetadataUniversalIdentifier?: Scalars['UUID']
+    barColor?: Scalars['String']
+    __typename: 'ViewTimelineConfiguration'
+}
+
 export interface View {
+    timelineConfiguration?: ViewTimelineConfiguration
     id: Scalars['UUID']
     name: Scalars['String']
     objectMetadataId: Scalars['UUID']
@@ -600,7 +608,7 @@ export interface View {
     __typename: 'View'
 }
 
-export type ViewType = 'TABLE' | 'KANBAN' | 'CALENDAR' | 'CATALOG' | 'FIELDS_WIDGET' | 'TABLE_WIDGET'
+export type ViewType = 'TABLE' | 'KANBAN' | 'CALENDAR' | 'CATALOG' | 'TIMELINE' | 'FIELDS_WIDGET' | 'TABLE_WIDGET'
 
 export type ViewKey = 'INDEX'
 
@@ -3684,7 +3692,16 @@ export interface ViewFieldGroupGenqlSelection{
     __scalar?: boolean | number
 }
 
+export interface ViewTimelineConfigurationGenqlSelection{
+    startDateFieldMetadataUniversalIdentifier?: boolean | number
+    endDateFieldMetadataUniversalIdentifier?: boolean | number
+    barColor?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
 export interface ViewGenqlSelection{
+    timelineConfiguration?: ViewTimelineConfigurationGenqlSelection
     id?: boolean | number
     name?: boolean | number
     objectMetadataId?: boolean | number
@@ -6411,9 +6428,11 @@ export interface DestroyViewFilterInput {
 /** The id of the view filter to destroy. */
 id: Scalars['UUID']}
 
-export interface CreateViewInput {id?: (Scalars['UUID'] | null),name: Scalars['String'],objectMetadataId: Scalars['UUID'],type?: (ViewType | null),key?: (ViewKey | null),icon: Scalars['String'],position?: (Scalars['Float'] | null),isCompact?: (Scalars['Boolean'] | null),shouldHideEmptyGroups?: (Scalars['Boolean'] | null),kanbanColumnWidth?: (Scalars['Int'] | null),openRecordIn?: (ViewOpenRecordIn | null),kanbanAggregateOperation?: (AggregateOperations | null),kanbanAggregateOperationFieldMetadataId?: (Scalars['UUID'] | null),anyFieldFilterValue?: (Scalars['String'] | null),calendarLayout?: (ViewCalendarLayout | null),calendarFieldMetadataId?: (Scalars['UUID'] | null),catalogImageFieldMetadataId?: (Scalars['UUID'] | null),catalogSubtitleFieldMetadataId?: (Scalars['UUID'] | null),catalogDetailFieldMetadataId?: (Scalars['UUID'] | null),mainGroupByFieldMetadataId?: (Scalars['UUID'] | null),visibility?: (ViewVisibility | null)}
+export interface CreateViewInput {timelineConfiguration?: (ViewTimelineConfigurationInput | null),id?: (Scalars['UUID'] | null),name: Scalars['String'],objectMetadataId: Scalars['UUID'],type?: (ViewType | null),key?: (ViewKey | null),icon: Scalars['String'],position?: (Scalars['Float'] | null),isCompact?: (Scalars['Boolean'] | null),shouldHideEmptyGroups?: (Scalars['Boolean'] | null),kanbanColumnWidth?: (Scalars['Int'] | null),openRecordIn?: (ViewOpenRecordIn | null),kanbanAggregateOperation?: (AggregateOperations | null),kanbanAggregateOperationFieldMetadataId?: (Scalars['UUID'] | null),anyFieldFilterValue?: (Scalars['String'] | null),calendarLayout?: (ViewCalendarLayout | null),calendarFieldMetadataId?: (Scalars['UUID'] | null),catalogImageFieldMetadataId?: (Scalars['UUID'] | null),catalogSubtitleFieldMetadataId?: (Scalars['UUID'] | null),catalogDetailFieldMetadataId?: (Scalars['UUID'] | null),mainGroupByFieldMetadataId?: (Scalars['UUID'] | null),visibility?: (ViewVisibility | null)}
 
-export interface UpdateViewInput {id?: (Scalars['UUID'] | null),name?: (Scalars['String'] | null),type?: (ViewType | null),icon?: (Scalars['String'] | null),position?: (Scalars['Float'] | null),isCompact?: (Scalars['Boolean'] | null),openRecordIn?: (ViewOpenRecordIn | null),kanbanAggregateOperation?: (AggregateOperations | null),kanbanAggregateOperationFieldMetadataId?: (Scalars['UUID'] | null),anyFieldFilterValue?: (Scalars['String'] | null),calendarLayout?: (ViewCalendarLayout | null),calendarFieldMetadataId?: (Scalars['UUID'] | null),catalogImageFieldMetadataId?: (Scalars['UUID'] | null),catalogSubtitleFieldMetadataId?: (Scalars['UUID'] | null),catalogDetailFieldMetadataId?: (Scalars['UUID'] | null),visibility?: (ViewVisibility | null),mainGroupByFieldMetadataId?: (Scalars['UUID'] | null),shouldHideEmptyGroups?: (Scalars['Boolean'] | null),kanbanColumnWidth?: (Scalars['Int'] | null)}
+export interface ViewTimelineConfigurationInput {startDateFieldMetadataUniversalIdentifier?: (Scalars['UUID'] | null),endDateFieldMetadataUniversalIdentifier?: (Scalars['UUID'] | null),barColor?: (Scalars['String'] | null)}
+
+export interface UpdateViewInput {timelineConfiguration?: (ViewTimelineConfigurationInput | null),id?: (Scalars['UUID'] | null),name?: (Scalars['String'] | null),type?: (ViewType | null),icon?: (Scalars['String'] | null),position?: (Scalars['Float'] | null),isCompact?: (Scalars['Boolean'] | null),openRecordIn?: (ViewOpenRecordIn | null),kanbanAggregateOperation?: (AggregateOperations | null),kanbanAggregateOperationFieldMetadataId?: (Scalars['UUID'] | null),anyFieldFilterValue?: (Scalars['String'] | null),calendarLayout?: (ViewCalendarLayout | null),calendarFieldMetadataId?: (Scalars['UUID'] | null),catalogImageFieldMetadataId?: (Scalars['UUID'] | null),catalogSubtitleFieldMetadataId?: (Scalars['UUID'] | null),catalogDetailFieldMetadataId?: (Scalars['UUID'] | null),visibility?: (ViewVisibility | null),mainGroupByFieldMetadataId?: (Scalars['UUID'] | null),shouldHideEmptyGroups?: (Scalars['Boolean'] | null),kanbanColumnWidth?: (Scalars['Int'] | null)}
 
 export interface UpsertViewWidgetInput {
 /** The id of the view widget (page layout widget). */
@@ -7051,6 +7070,14 @@ export interface LogicFunctionLogsInput {applicationId?: (Scalars['UUID'] | null
       return ViewFieldGroup_possibleTypes.includes(obj.__typename)
     }
     
+
+
+    const ViewTimelineConfiguration_possibleTypes: string[] = ['ViewTimelineConfiguration']
+    export const isViewTimelineConfiguration = (obj?: { __typename?: any } | null): obj is ViewTimelineConfiguration => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isViewTimelineConfiguration"')
+      return ViewTimelineConfiguration_possibleTypes.includes(obj.__typename)
+    }
+
 
 
     const View_possibleTypes: string[] = ['View']
@@ -9108,6 +9135,7 @@ export const enumViewType = {
    KANBAN: 'KANBAN' as const,
    CALENDAR: 'CALENDAR' as const,
    CATALOG: 'CATALOG' as const,
+   TIMELINE: 'TIMELINE' as const,
    FIELDS_WIDGET: 'FIELDS_WIDGET' as const,
    TABLE_WIDGET: 'TABLE_WIDGET' as const
 }

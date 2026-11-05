@@ -17,6 +17,7 @@ export const fromViewManifestToUniversalFlatView = ({
   now: string;
 }): UniversalFlatView => {
   return {
+    timelineConfiguration: null,
     universalIdentifier: viewManifest.universalIdentifier,
     applicationUniversalIdentifier,
     name: viewManifest.name,

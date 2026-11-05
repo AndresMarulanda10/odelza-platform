@@ -801,7 +801,14 @@ type ViewFieldGroup {
   isOverridden: Boolean! @deprecated(reason: "isOverridden is deprecated")
 }
 
+type ViewTimelineConfiguration {
+  startDateFieldMetadataUniversalIdentifier: UUID
+  endDateFieldMetadataUniversalIdentifier: UUID
+  barColor: String
+}
+
 type View {
+  timelineConfiguration: ViewTimelineConfiguration
   id: UUID!
   name: String!
   objectMetadataId: UUID!
@@ -843,6 +850,7 @@ enum ViewType {
   KANBAN
   CALENDAR
   CATALOG
+  TIMELINE
   FIELDS_WIDGET
   TABLE_WIDGET
 }
@@ -3664,6 +3672,7 @@ input DestroyViewFilterInput {
 }
 
 input CreateViewInput {
+  timelineConfiguration: ViewTimelineConfigurationInput
   id: UUID
   name: String!
   objectMetadataId: UUID!
@@ -3687,7 +3696,14 @@ input CreateViewInput {
   visibility: ViewVisibility
 }
 
+input ViewTimelineConfigurationInput {
+  startDateFieldMetadataUniversalIdentifier: UUID
+  endDateFieldMetadataUniversalIdentifier: UUID
+  barColor: String
+}
+
 input UpdateViewInput {
+  timelineConfiguration: ViewTimelineConfigurationInput
   id: UUID
   name: String
   type: ViewType

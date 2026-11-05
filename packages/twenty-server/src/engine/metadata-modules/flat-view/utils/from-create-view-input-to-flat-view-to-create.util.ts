@@ -71,6 +71,7 @@ export const fromCreateViewInputToFlatViewToCreate = ({
     createViewInput.mainGroupByFieldMetadataId ?? null;
 
   const flatViewToCreate: UniversalFlatView & { id: string } = {
+    timelineConfiguration: createViewInput.timelineConfiguration ?? null,
     id: viewId,
     objectMetadataUniversalIdentifier,
     name: createViewInput.name,

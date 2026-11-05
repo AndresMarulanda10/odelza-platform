@@ -16,6 +16,64 @@ import { type UniversalFlatEntityValidationArgs } from 'src/engine/workspace-man
 export class FlatViewValidatorService {
   constructor() {}
 
+  private validateTimelineConfiguration(
+    view: UniversalFlatView,
+    flatFieldMetadataMaps: UniversalFlatEntityValidationArgs<'view'>['optimisticFlatEntityMapsAndRelatedFlatEntityMaps']['flatFieldMetadataMaps'],
+  ): FailedFlatEntityValidation<'view', 'create'>['errors'] {
+    const effectiveView = { ...view, ...(view.universalOverrides ?? {}) };
+    const configuration = effectiveView.timelineConfiguration;
+
+    if (effectiveView.type !== ViewType.TIMELINE || !isDefined(configuration)) {
+      return [];
+    }
+
+    const invalidConfiguration = () => [
+      {
+        code: ViewExceptionCode.INVALID_VIEW_DATA,
+        message: t`Timeline configuration must use active date fields from this object and a valid bar color`,
+        userFriendlyMessage: msg`Choose available start and end date fields and a valid timeline color`,
+      },
+    ];
+
+    if (typeof configuration !== 'object' || Array.isArray(configuration)) {
+      return invalidConfiguration();
+    }
+
+    if (
+      isDefined(configuration.barColor) &&
+      (typeof configuration.barColor !== 'string' ||
+        !/^#[0-9a-fA-F]{6}$/.test(configuration.barColor))
+    ) {
+      return invalidConfiguration();
+    }
+
+    for (const identifier of [
+      configuration.startDateFieldMetadataUniversalIdentifier,
+      configuration.endDateFieldMetadataUniversalIdentifier,
+    ]) {
+      // Null mappings represent an intentionally unconfigured timeline.
+      if (!isDefined(identifier)) continue;
+      if (typeof identifier !== 'string') return invalidConfiguration();
+      const field = findFlatEntityByUniversalIdentifier({
+        universalIdentifier: identifier,
+        flatEntityMaps: flatFieldMetadataMaps,
+      });
+      if (
+        !isDefined(field) ||
+        !field.isActive ||
+        field.objectMetadataUniversalIdentifier !==
+          view.objectMetadataUniversalIdentifier ||
+        ![FieldMetadataType.DATE, FieldMetadataType.DATE_TIME].includes(
+          field.type,
+        )
+      ) {
+        return invalidConfiguration();
+      }
+    }
+
+    return [];
+  }
+
   private isAllowedKanbanMainGroupByField({
     mainGroupByFieldMetadata,
   }: {
@@ -75,6 +133,13 @@ export class FlatViewValidatorService {
       ...existingFlatView,
       ...flatEntityUpdate,
     };
+
+    validationResult.errors.push(
+      ...this.validateTimelineConfiguration(
+        updatedFlatView,
+        flatFieldMetadataMaps,
+      ),
+    );
 
     const kanbanAggregateOperationFieldMetadataUniversalIdentifierUpdate =
       flatEntityUpdate.kanbanAggregateOperationFieldMetadataUniversalIdentifier;
@@ -260,6 +325,13 @@ export class FlatViewValidatorService {
       universalIdentifier: flatViewToValidate.objectMetadataUniversalIdentifier,
       flatEntityMaps: flatObjectMetadataMaps,
     });
+
+    validationResult.errors.push(
+      ...this.validateTimelineConfiguration(
+        flatViewToValidate,
+        flatFieldMetadataMaps,
+      ),
+    );
 
     if (!isDefined(optimisticFlatObjectMetadata)) {
       validationResult.errors.push({

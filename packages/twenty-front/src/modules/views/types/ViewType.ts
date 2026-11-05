@@ -6,6 +6,7 @@ import {
   IconLayoutGrid,
   IconLayoutKanban,
   IconTable,
+  IconTimelineEvent,
 } from 'twenty-ui/icon';
 
 export { ViewType } from '~/generated-metadata/graphql';
@@ -18,6 +19,7 @@ export const VIEW_TYPE_LABELS = {
   [ViewType.KANBAN]: msg`Kanban`,
   [ViewType.CALENDAR]: msg`Calendar`,
   [ViewType.CATALOG]: msg`Catalog`,
+  [ViewType.TIMELINE]: msg`Timeline`,
   [ViewType.FIELDS_WIDGET]: msg`Fields widget`,
   [ViewType.TABLE_WIDGET]: msg`Table widget`,
 } satisfies Record<ViewTypeLabelKey, MessageDescriptor>;
@@ -32,6 +34,7 @@ const VIEW_TYPE_ICON_MAPPING = [
   { icon: IconTable, value: ViewType.TABLE },
   { icon: IconCalendar, value: ViewType.CALENDAR },
   { icon: IconLayoutGrid, value: ViewType.CATALOG },
+  { icon: IconTimelineEvent, value: ViewType.TIMELINE },
 ] as const satisfies {
   icon: IconComponent;
   value: ViewType;
