@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { indigo, teal } from '@radix-ui/colors';
 import { Provider, createStore } from 'jotai';
 import { I18nProvider } from '@lingui/react';
 import { i18n } from '@lingui/core';
@@ -44,7 +45,7 @@ const source = {
 const configuration = {
   startDateFieldMetadataUniversalIdentifier: 'Start-universal',
   endDateFieldMetadataUniversalIdentifier: 'End-universal',
-  barColor: '#123456',
+  barColor: indigo.indigo9,
 };
 const mount = () =>
   render(
@@ -83,13 +84,13 @@ it('offers only readable active date fields and persists universal mappings with
 it('persists a custom hexadecimal color with the existing native color picker', async () => {
   mount();
   fireEvent.click(screen.getAllByRole('button', { name: /Bar color/ }).at(-1)!);
-  expect(screen.getByPlaceholderText('Hex color')).toHaveValue('#123456');
+  expect(screen.getByPlaceholderText('Hex color')).toHaveValue(indigo.indigo9);
   fireEvent.change(screen.getByPlaceholderText('Hex color'), {
-    target: { value: '#abcdef' },
+    target: { value: teal.teal9 },
   });
   await waitFor(() =>
     expect(updateCurrentView).toHaveBeenCalledWith({
-      timelineConfiguration: { ...configuration, barColor: '#abcdef' },
+      timelineConfiguration: { ...configuration, barColor: teal.teal9 },
     }),
   );
 });
@@ -106,7 +107,7 @@ it('reloads saved universal mappings and custom color without persisting a secon
   const saved = {
     ...configuration,
     startDateFieldMetadataUniversalIdentifier: 'End-universal',
-    barColor: '#abcdef',
+    barColor: teal.teal9,
   };
   render(
     <Provider store={createStore()}>
@@ -122,11 +123,11 @@ it('reloads saved universal mappings and custom color without persisting a secon
   expect(screen.queryByText('Start', { exact: true })).not.toBeInTheDocument();
   expect(screen.getAllByText('End', { exact: true })).toHaveLength(2);
   fireEvent.click(screen.getAllByRole('button', { name: /Bar color/ }).at(-1)!);
-  expect(screen.getByPlaceholderText('Hex color')).toHaveValue('#abcdef');
+  expect(screen.getByPlaceholderText('Hex color')).toHaveValue(teal.teal9);
   expect(updateCurrentView).not.toHaveBeenCalled();
 });
 
-it.each(['', '#abc', '#12345g', '#1234567', 'red'])(
+it.each(['', indigo.indigo9.slice(0, 4), '#12345g', '#1234567', 'red'])(
   'rejects invalid color %j without persistence',
   (value) => {
     const before = JSON.stringify(configuration);
@@ -158,6 +159,6 @@ it('rechecks permission after opening color controls', () => {
     </Provider>,
   );
   const input = screen.queryByPlaceholderText('Hex color');
-  if (input) fireEvent.change(input, { target: { value: '#abcdef' } });
+  if (input) fireEvent.change(input, { target: { value: teal.teal9 } });
   expect(updateCurrentView).not.toHaveBeenCalled();
 });

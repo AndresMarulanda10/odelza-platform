@@ -26,8 +26,8 @@ const StyledTimeline = styled.div`
   overflow: hidden;
 `;
 const StyledFooter = styled.div`
-  display: flex;
   align-items: center;
+  display: flex;
   gap: ${themeCssVariables.spacing[2]};
   padding: ${themeCssVariables.spacing[2]};
 `;

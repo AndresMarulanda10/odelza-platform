@@ -7,12 +7,17 @@ import { useRecordTableWidgetViewForDisplay } from '@/page-layout/widgets/record
 import { usePageLayoutIdFromContextStore } from '@/side-panel/pages/page-layout/hooks/usePageLayoutIdFromContextStore';
 import { TimelineViewWidget } from '@/page-layout/widgets/view/components/TimelineViewWidget';
 
+type RecordTableTimelineProps = Pick<
+  RecordTableWidgetRendererContentProps,
+  'objectMetadataId' | 'viewId' | 'widgetId' | 'recordLimit'
+>;
+
 const RecordTableTimeline = ({
   objectMetadataId,
   viewId,
   widgetId,
   recordLimit,
-}: RecordTableWidgetRendererContentProps) => {
+}: RecordTableTimelineProps) => {
   const { pageLayoutId } = usePageLayoutIdFromContextStore();
   const { objectMetadataItem } = useObjectMetadataItemById({
     objectId: objectMetadataId,

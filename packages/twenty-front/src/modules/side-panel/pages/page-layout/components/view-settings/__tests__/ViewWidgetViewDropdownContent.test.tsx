@@ -72,7 +72,19 @@ jest.mock('@/ui/layout/selectable-list/components/SelectableListItem', () => ({
   SelectableListItem: ({ children }: any) => <div>{children}</div>,
 }));
 jest.mock('@/ui/layout/dropdown/components/DropdownMenuSearchInput', () => ({
-  DropdownMenuSearchInput: (props: any) => <input {...props} />,
+  DropdownMenuSearchInput: ({
+    value,
+    onChange,
+    placeholder,
+    autoFocus,
+  }: any) => (
+    <input
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      autoFocus={autoFocus}
+    />
+  ),
 }));
 
 beforeEach(() => jest.clearAllMocks());

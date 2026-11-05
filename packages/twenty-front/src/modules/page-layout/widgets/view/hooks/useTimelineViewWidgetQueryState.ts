@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { atom, useStore } from 'jotai';
 import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/EnrichedObjectMetadataItem';
 import { flattenedFieldMetadataItemsSelector } from '@/object-metadata/states/flattenedFieldMetadataItemsSelector';
@@ -22,9 +22,13 @@ export const useTimelineViewWidgetQueryState = (
   instanceId: string,
 ) => {
   const store = useStore();
-  const fields = useAtomStateValue(flattenedFieldMetadataItemsSelector);
+  const flattenedFieldMetadataItems = useAtomStateValue(
+    flattenedFieldMetadataItemsSelector,
+  );
   const savedSearch = view.anyFieldFilterValue ?? '';
-  const previousSearch = useRef<string | undefined>(undefined);
+  // Keep the saved-search checkpoint private to this mounted hook and update it
+  // in the same transaction, without triggering another initialization effect.
+  const [previousSearchAtom] = useState(() => atom<string | undefined>());
   const scope = JSON.stringify([
     instanceId,
     view.id,
@@ -33,17 +37,20 @@ export const useTimelineViewWidgetQueryState = (
     view.viewFilterGroups,
     view.viewSorts,
     savedSearch,
-    fields,
+    flattenedFieldMetadataItems,
   ]);
   const [initializedScope, setInitializedScope] = useState<string>();
 
   useEffect(() => {
-    const filters = mapViewFiltersToFilters(view.viewFilters, fields);
+    const filters = mapViewFiltersToFilters(
+      view.viewFilters,
+      flattenedFieldMetadataItems,
+    );
     const groups = mapViewFilterGroupsToRecordFilterGroups(
       view.viewFilterGroups ?? [],
     );
     store.set(
-      atom(null, (_get, set) => {
+      atom(null, (get, set) => {
         set(
           currentRecordFiltersComponentState.atomFamily({ instanceId }),
           filters,
@@ -56,12 +63,13 @@ export const useTimelineViewWidgetQueryState = (
           currentRecordSortsComponentState.atomFamily({ instanceId }),
           view.viewSorts,
         );
-        if (previousSearch.current !== savedSearch) {
+        if (get(previousSearchAtom) !== savedSearch) {
           set(
             anyFieldFilterValueComponentState.atomFamily({ instanceId }),
             savedSearch,
           );
         }
+        set(previousSearchAtom, savedSearch);
         set(
           contextStoreCurrentObjectMetadataItemIdComponentState.atomFamily({
             instanceId,
@@ -78,7 +86,6 @@ export const useTimelineViewWidgetQueryState = (
         );
       }),
     );
-    previousSearch.current = savedSearch;
     setInitializedScope(scope);
   }, [
     store,
@@ -89,7 +96,8 @@ export const useTimelineViewWidgetQueryState = (
     view.viewFilterGroups,
     view.viewSorts,
     savedSearch,
-    fields,
+    flattenedFieldMetadataItems,
+    previousSearchAtom,
     objectMetadataItem.id,
   ]);
 

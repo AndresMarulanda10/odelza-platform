@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
+import { indigo } from '@radix-ui/colors';
 import { createStore, Provider } from 'jotai';
 import { type ReactNode } from 'react';
 import { useSaveRecordTableWidgetViews } from '@/page-layout/hooks/useSaveRecordTableWidgetViews';
@@ -17,7 +18,7 @@ jest.mock('@/object-metadata/states/objectMetadataItemsSelector', () => {
 
 it.each([
   {
-    barColor: '#123456',
+    barColor: indigo.indigo9,
     startDateFieldMetadataUniversalIdentifier: 'start',
     endDateFieldMetadataUniversalIdentifier: 'end',
     __typename: 'ViewTimelineConfiguration',
@@ -93,7 +94,7 @@ it.each([
         timelineConfiguration === null
           ? null
           : {
-              barColor: '#123456',
+              barColor: indigo.indigo9,
               startDateFieldMetadataUniversalIdentifier: 'start',
               endDateFieldMetadataUniversalIdentifier: 'end',
             },

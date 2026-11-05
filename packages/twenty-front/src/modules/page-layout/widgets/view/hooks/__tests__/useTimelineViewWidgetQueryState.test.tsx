@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
+import { indigo } from '@radix-ui/colors';
 import { useStore } from 'jotai';
 import { useTimelineViewWidgetQueryState } from '@/page-layout/widgets/view/hooks/useTimelineViewWidgetQueryState';
 import { useFindManyTimelineViewParams } from '@/object-record/record-index/hooks/useFindManyRecordIndexTableParams';
@@ -86,9 +87,13 @@ it('initializes zero-field scopes using real parsers without touching another wi
     store.get(nativeSorts),
     store.get(recordIndexViewTypeState.atom),
   ];
+  const searchValues: string[] = [];
+  const unsubscribe = store.sub(search('view-timeline-widget-a'), () => {
+    searchValues.push(store.get(search('view-timeline-widget-a')));
+  });
   act(() => store.set(search('view-timeline-widget-a'), 'local'));
   rerender({
-    saved: { ...view, timelineConfiguration: { barColor: '#112233' } },
+    saved: { ...view, timelineConfiguration: { barColor: indigo.indigo9 } },
   });
   expect(store.get(search('view-timeline-widget-a'))).toBe('local');
   rerender({
@@ -139,4 +144,33 @@ it('initializes zero-field scopes using real parsers without touching another wi
   ).toBe('Subject');
   expect(JSON.stringify(result.current.query.filter)).toContain('subject');
   expect(store.get(search('view-timeline-widget-b'))).toBe('needle');
+  expect(searchValues).toEqual(['local', '']);
+  unsubscribe();
+});
+
+it('restores saved search on remount without sharing the previous mounted checkpoint', () => {
+  const wrapper = getJestMetadataAndApolloMocksWrapper({
+    objectMetadataItems: [task, getMockObjectMetadataItemOrThrow('company')],
+  });
+  const mount = () =>
+    renderHook(
+      () => {
+        const ready = useTimelineViewWidgetQueryState(
+          view,
+          task,
+          'remounted-timeline',
+        );
+        return { ready, store: useStore() };
+      },
+      { wrapper },
+    );
+  const first = mount();
+  const store = first.result.current.store;
+  expect(first.result.current.ready).toBe(true);
+  act(() => store.set(search('remounted-timeline'), 'local-only'));
+  first.unmount();
+  const second = mount();
+  expect(second.result.current.store).toBe(store);
+  expect(second.result.current.ready).toBe(true);
+  expect(store.get(search('remounted-timeline'))).toBe('needle');
 });

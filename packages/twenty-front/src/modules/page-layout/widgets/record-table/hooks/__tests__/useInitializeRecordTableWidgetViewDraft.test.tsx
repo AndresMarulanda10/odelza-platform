@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react';
+import { indigo, teal } from '@radix-ui/colors';
 import { createStore, Provider } from 'jotai';
 import { type ReactNode } from 'react';
 import { useInitializeRecordTableWidgetViewDraft } from '@/page-layout/widgets/record-table/hooks/useInitializeRecordTableWidgetViewDraft';
@@ -17,7 +18,7 @@ const view = {
   viewFilters: [],
   viewSorts: [],
   viewGroups: [],
-  timelineConfiguration: { barColor: '#123456' },
+  timelineConfiguration: { barColor: indigo.indigo9 },
 } as unknown as View;
 const setup = (initial = buildRecordTableWidgetViewSnapshotFromView(view)) => {
   const store = createStore();
@@ -59,7 +60,7 @@ it('initializes a saved Timeline with no table columns and preserves its draft o
     ...store.get(draft).widget,
     view: {
       ...store.get(draft).widget?.view,
-      timelineConfiguration: { barColor: '#abcdef' },
+      timelineConfiguration: { barColor: teal.teal9 },
     },
   } as ReturnType<typeof buildRecordTableWidgetViewSnapshotFromView>;
   store.set(draft, { ...store.get(draft), widget: edited });

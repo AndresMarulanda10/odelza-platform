@@ -5,6 +5,7 @@ import { useAtomComponentStateCallbackState } from '@/ui/utilities/state/jotai/h
 import { type View } from '@/views/types/View';
 import { useStore } from 'jotai';
 import { useCallback, useEffect } from 'react';
+import { isDefined } from 'twenty-shared/utils';
 
 type UseInitializeRecordTableWidgetViewDraftParams = {
   widgetId: string;
@@ -39,7 +40,7 @@ export const useInitializeRecordTableWidgetViewDraft = ({
 
     const existing = currentDraft[widgetId];
     if (
-      existing &&
+      isDefined(existing) &&
       (!allowEmptyFields ||
         (existing.view.id === view.id &&
           existing.view.objectMetadataId === view.objectMetadataId))

@@ -7,6 +7,7 @@ jest.mock(
   () => ({ RecordTableWidgetProvider: () => null }),
 );
 import { act, render } from '@testing-library/react';
+import { indigo } from '@radix-ui/colors';
 import { useStore } from 'jotai';
 import { TimelineViewWidget } from '@/page-layout/widgets/view/components/TimelineViewWidget';
 import { anyFieldFilterValueComponentState as search } from '@/object-record/record-filter/states/anyFieldFilterValueComponentState';
@@ -15,7 +16,7 @@ import {
   ViewFilterOperand,
   RecordFilterGroupLogicalOperator,
 } from 'twenty-shared/types';
-import { ViewSortDirection } from '~/generated-metadata/graphql';
+import { ViewSortDirection, ViewType } from '~/generated-metadata/graphql';
 import { type View } from '@/views/types/View';
 import { getJestMetadataAndApolloMocksWrapper } from '~/testing/jest/getJestMetadataAndApolloMocksWrapper';
 import { getMockObjectMetadataItemOrThrow } from '~/testing/utils/getMockObjectMetadataItemOrThrow';
@@ -103,7 +104,10 @@ it('S2: public mounts gate every query transition and leave other scopes byte-id
   );
   mockLoads.length = 0;
   rerender(
-    ui({ ...saved('new'), timelineConfiguration: { barColor: '#123456' } }),
+    ui({
+      ...saved('new'),
+      timelineConfiguration: { barColor: indigo.indigo9 },
+    }),
   );
   expect(
     mockLoads
@@ -151,7 +155,6 @@ it('S2: public mounts gate every query transition and leave other scopes byte-id
 
 import { ViewWidgetRendererContent } from '@/page-layout/widgets/view/components/ViewWidgetRendererContent';
 import { metadataStoreState } from '@/metadata-store/states/metadataStoreState';
-import { ViewType } from '~/generated-metadata/graphql';
 it('S2: real saved-view selector revokes rendering for inactive and mismatched references', () => {
   const flat = {
     ...saved('guarded'),

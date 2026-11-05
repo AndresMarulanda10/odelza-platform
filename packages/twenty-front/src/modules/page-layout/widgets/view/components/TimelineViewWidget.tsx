@@ -7,7 +7,7 @@ import { useTimelineViewWidgetQueryState } from '@/page-layout/widgets/view/hook
 import { ViewComponentInstanceContext } from '@/views/states/contexts/ViewComponentInstanceContext';
 import { type View } from '@/views/types/View';
 
-type Props = {
+type TimelineViewWidgetProps = {
   view: View;
   objectMetadataItem: EnrichedObjectMetadataItem;
   widgetId: string;
@@ -19,7 +19,7 @@ const TimelineViewWidgetData = ({
   objectMetadataItem,
   instanceId,
   recordLimit,
-}: Omit<Props, 'widgetId'> & { instanceId: string }) => {
+}: Omit<TimelineViewWidgetProps, 'widgetId'> & { instanceId: string }) => {
   const query = useFindManyTimelineViewParams(
     objectMetadataItem.nameSingular,
     instanceId,
@@ -37,12 +37,14 @@ const TimelineViewWidgetData = ({
   );
 };
 
+type TimelineViewWidgetScopeProps = TimelineViewWidgetProps;
+
 const TimelineViewWidgetScope = ({
   view,
   objectMetadataItem,
   widgetId,
   recordLimit,
-}: Props) => {
+}: TimelineViewWidgetScopeProps) => {
   const instanceId = `view-timeline-widget-${widgetId}`;
   const ready = useTimelineViewWidgetQueryState(
     view,
@@ -69,6 +71,17 @@ const TimelineViewWidgetScope = ({
   );
 };
 
-export const TimelineViewWidget = (props: Props) => (
-  <TimelineViewWidgetScope key={props.view.id} {...props} />
+export const TimelineViewWidget = ({
+  view,
+  objectMetadataItem,
+  widgetId,
+  recordLimit,
+}: TimelineViewWidgetProps) => (
+  <TimelineViewWidgetScope
+    key={view.id}
+    view={view}
+    objectMetadataItem={objectMetadataItem}
+    widgetId={widgetId}
+    recordLimit={recordLimit}
+  />
 );

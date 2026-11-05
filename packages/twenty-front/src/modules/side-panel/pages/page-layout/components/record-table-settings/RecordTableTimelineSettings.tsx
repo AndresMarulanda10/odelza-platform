@@ -15,6 +15,7 @@ import { SelectableListItem } from '@/ui/layout/selectable-list/components/Selec
 import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
 import { DEFAULT_TASK_TIMELINE_BAR_COLOR } from 'twenty-shared/constants';
 import { type ViewTimelineConfiguration } from 'twenty-shared/types';
+import { isDefined } from 'twenty-shared/utils';
 import { IconCalendar, IconColorSwatch } from 'twenty-ui/icon';
 
 // Changes remain in this widget's draft until the existing dashboard Save/Cancel flow.
@@ -44,7 +45,7 @@ export const RecordTableTimelineSettings = ({
         ? savedView
         : undefined,
   });
-  const drafts = useAtomComponentStateValue(
+  const recordTableWidgetViewDraft = useAtomComponentStateValue(
     recordTableWidgetViewDraftComponentState,
     pageLayoutId,
   );
@@ -56,7 +57,7 @@ export const RecordTableTimelineSettings = ({
     objectPermissionsByObjectMetadataId,
     objectMetadataId,
   );
-  const candidate = drafts[widgetId];
+  const candidate = recordTableWidgetViewDraft[widgetId];
   const snapshot =
     candidate?.view.id === viewId &&
     candidate.view.objectMetadataId === objectMetadataId
@@ -82,7 +83,7 @@ export const RecordTableTimelineSettings = ({
       (current) => {
         const draft = current[widgetId];
         if (
-          !draft ||
+          !isDefined(draft) ||
           draft.view.id !== viewId ||
           draft.view.objectMetadataId !== objectMetadataId
         )

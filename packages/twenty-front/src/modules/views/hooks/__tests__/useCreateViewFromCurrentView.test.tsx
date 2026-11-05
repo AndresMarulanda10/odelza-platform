@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
+import { indigo } from '@radix-ui/colors';
 import { useCreateViewFromCurrentView } from '@/views/hooks/useCreateViewFromCurrentView';
 import { ViewType } from '@/views/types/ViewType';
 
@@ -128,7 +129,7 @@ it('duplicates existing custom Timeline configuration without GraphQL typenames'
     __typename: 'ViewTimelineConfiguration',
     startDateFieldMetadataUniversalIdentifier: 'custom-start',
     endDateFieldMetadataUniversalIdentifier: 'custom-end',
-    barColor: '#123456',
+    barColor: indigo.indigo9,
   };
   sourceView.type = ViewType.TIMELINE;
   const { result } = renderHook(() => useCreateViewFromCurrentView());
@@ -141,7 +142,7 @@ it('duplicates existing custom Timeline configuration without GraphQL typenames'
   expect(create.mock.calls[0][0].input.timelineConfiguration).toEqual({
     startDateFieldMetadataUniversalIdentifier: 'custom-start',
     endDateFieldMetadataUniversalIdentifier: 'custom-end',
-    barColor: '#123456',
+    barColor: indigo.indigo9,
   });
 });
 

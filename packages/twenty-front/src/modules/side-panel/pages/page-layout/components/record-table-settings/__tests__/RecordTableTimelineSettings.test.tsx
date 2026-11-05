@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { gray, indigo, teal } from '@radix-ui/colors';
 import { createStore, Provider } from 'jotai';
 import { I18nProvider } from '@lingui/react';
 import { i18n } from '@lingui/core';
@@ -71,7 +72,7 @@ it('edits readable generic-source dates and color only in the widget draft, pres
     view: {
       id: 'private',
       objectMetadataId: 'company',
-      timelineConfiguration: { barColor: '#123456' },
+      timelineConfiguration: { barColor: indigo.indigo9 },
     },
     viewFields: [{ fieldMetadataId: 'name' }],
     viewFilters: [{ id: 'filter' }],
@@ -104,12 +105,12 @@ it('edits readable generic-source dates and color only in the widget draft, pres
   fireEvent.click(screen.getByText('Created date'));
   fireEvent.click(screen.getByText('Bar color'));
   fireEvent.change(screen.getByPlaceholderText('Hex color'), {
-    target: { value: '#abcdef' },
+    target: { value: teal.teal9 },
   });
   const updated = store.get(atom);
   expect(updated.widget.view.timelineConfiguration).toMatchObject({
     startDateFieldMetadataUniversalIdentifier: 'start-universal',
-    barColor: '#abcdef',
+    barColor: teal.teal9,
   });
   expect(updated.widget.view.id).toBe('private');
   expect(updated.widget.viewFields).toBe(snapshot.viewFields);
@@ -136,7 +137,7 @@ it('edits readable generic-source dates and color only in the widget draft, pres
     </Provider>,
   );
   fireEvent.change(screen.getByPlaceholderText('Hex color'), {
-    target: { value: '#000000' },
+    target: { value: gray.gray12 },
   });
   expect(JSON.stringify(store.get(atom))).toBe(before);
 });

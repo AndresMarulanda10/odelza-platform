@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { indigo } from '@radix-ui/colors';
 import { RecordTableWidgetRenderer } from '@/page-layout/widgets/record-table/components/RecordTableWidgetRenderer';
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
 
@@ -6,7 +7,7 @@ const mockTimeline = jest.fn();
 const mockPrivateView = {
   id: 'private-view',
   objectMetadataId: 'companies',
-  timelineConfiguration: { barColor: '#123456' },
+  timelineConfiguration: { barColor: indigo.indigo9 },
 };
 jest.mock('@/object-metadata/hooks/useObjectMetadataItemById', () => ({
   useObjectMetadataItemById: () => ({

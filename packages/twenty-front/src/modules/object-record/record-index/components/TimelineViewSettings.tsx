@@ -14,11 +14,12 @@ import { useUpdateCurrentView } from '@/views/hooks/useUpdateCurrentView';
 import { type View } from '@/views/types/View';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
 import { DEFAULT_TASK_TIMELINE_BAR_COLOR } from 'twenty-shared/constants';
+import { isDefined } from 'twenty-shared/utils';
 
 const StyledSettings = styled.div`
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   gap: ${themeCssVariables.spacing[2]};
   padding: ${themeCssVariables.spacing[2]};
 `;
@@ -39,7 +40,7 @@ export const TimelineViewSettings = ({
     objectPermissionsByObjectMetadataId,
     objectMetadataItem.id,
   );
-  const fields = permissions
+  const fields = isDefined(permissions)
     ? getTimelineFields(objectMetadataItem, permissions, 'date')
     : [];
   const [saving, setSaving] = useState(false);

@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
+import { indigo } from '@radix-ui/colors';
 import { useSetViewTypeFromLayoutOptionsMenu } from '@/object-record/object-options-dropdown/hooks/useSetViewTypeFromLayoutOptionsMenu';
 import { ViewType } from '@/views/types/ViewType';
 
@@ -96,7 +97,7 @@ it('retains custom configuration on return to Timeline', async () => {
   currentView.timelineConfiguration = {
     startDateFieldMetadataUniversalIdentifier: 'custom-start',
     endDateFieldMetadataUniversalIdentifier: 'custom-end',
-    barColor: '#123456',
+    barColor: indigo.indigo9,
   };
   const { result } = renderHook(() => useSetViewTypeFromLayoutOptionsMenu());
   await act(async () => {
