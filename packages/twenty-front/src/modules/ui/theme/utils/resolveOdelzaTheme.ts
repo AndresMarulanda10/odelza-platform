@@ -1,5 +1,5 @@
-import { GRUVBOX_DARK_THEME_OVERRIDES } from '@/ui/theme/constants/gruvboxDarkThemeOverrides';
-import { GRUVBOX_LIGHT_THEME_OVERRIDES } from '@/ui/theme/constants/gruvboxLightThemeOverrides';
+import { ODELZA_DARK_THEME_OVERRIDES } from '@/ui/theme/constants/odelzaDarkThemeOverrides';
+import { ODELZA_LIGHT_THEME_OVERRIDES } from '@/ui/theme/constants/odelzaLightThemeOverrides';
 import { type ColorScheme } from 'twenty-ui/input';
 import { type ThemeOverrides } from 'twenty-ui/theme-constants';
 
@@ -39,7 +39,7 @@ export const resolveOdelzaTheme = (
     colorScheme,
     overrides:
       colorScheme === 'dark'
-        ? GRUVBOX_DARK_THEME_OVERRIDES
-        : GRUVBOX_LIGHT_THEME_OVERRIDES,
+        ? ODELZA_DARK_THEME_OVERRIDES
+        : ODELZA_LIGHT_THEME_OVERRIDES,
   } as const;
 };
