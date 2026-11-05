@@ -7,12 +7,15 @@ import { useObjectPermissions } from '@/object-record/hooks/useObjectPermissions
 import { recordTableWidgetViewDraftComponentState } from '@/page-layout/states/recordTableWidgetViewDraftComponentState';
 import { TimelineColorDropdown } from '@/page-layout/widgets/task-timeline/components/TimelineColorDropdown';
 import { getTimelineFields } from '@/page-layout/widgets/task-timeline/utils/timelineSource';
-import { Select } from '@/ui/input/components/Select';
+import { DropdownContent } from '@/ui/layout/dropdown/components/DropdownContent';
+import { TimelineSettingsDropdown } from '@/side-panel/pages/page-layout/components/dashboard/TimelineSettingsDropdown';
+import { useViewById } from '@/views/hooks/useViewById';
+import { useInitializeRecordTableWidgetViewDraft } from '@/page-layout/widgets/record-table/hooks/useInitializeRecordTableWidgetViewDraft';
 import { SelectableListItem } from '@/ui/layout/selectable-list/components/SelectableListItem';
 import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
 import { DEFAULT_TASK_TIMELINE_BAR_COLOR } from 'twenty-shared/constants';
 import { type ViewTimelineConfiguration } from 'twenty-shared/types';
-import { IconColorSwatch } from 'twenty-ui/icon';
+import { IconCalendar, IconColorSwatch } from 'twenty-ui/icon';
 
 // Changes remain in this widget's draft until the existing dashboard Save/Cancel flow.
 export const RecordTableTimelineSettings = ({
@@ -27,6 +30,20 @@ export const RecordTableTimelineSettings = ({
   objectMetadataId: string;
 }) => {
   const store = useStore();
+  const { view: savedView } = useViewById(viewId);
+  // The panel can open before the canvas seeds its private-view draft.
+  useInitializeRecordTableWidgetViewDraft({
+    widgetId,
+    pageLayoutId,
+    allowEmptyFields: true,
+    view:
+      savedView?.id === viewId &&
+      savedView.objectMetadataId === objectMetadataId &&
+      savedView.isActive &&
+      savedView.type === 'TABLE_WIDGET'
+        ? savedView
+        : undefined,
+  });
   const drafts = useAtomComponentStateValue(
     recordTableWidgetViewDraftComponentState,
     pageLayoutId,
@@ -39,7 +56,12 @@ export const RecordTableTimelineSettings = ({
     objectPermissionsByObjectMetadataId,
     objectMetadataId,
   );
-  const snapshot = drafts[widgetId];
+  const candidate = drafts[widgetId];
+  const snapshot =
+    candidate?.view.id === viewId &&
+    candidate.view.objectMetadataId === objectMetadataId
+      ? candidate
+      : undefined;
   const canConfigure = Boolean(
     snapshot &&
     snapshot.view.id === viewId &&
@@ -83,6 +105,9 @@ export const RecordTableTimelineSettings = ({
   };
   return (
     <>
+      {!canConfigure && (
+        <div role="status">{t`Timeline settings are unavailable. Reopen the widget in dashboard edit mode and check access to its source.`}</div>
+      )}
       {(
         [
           [
@@ -98,18 +123,38 @@ export const RecordTableTimelineSettings = ({
         ] as const
       ).map(([key, label, itemId]) => (
         <SelectableListItem key={key} itemId={itemId}>
-          <Select
+          <CommandMenuItemDropdown
+            id={itemId}
             dropdownId={`${widgetId}-${key}`}
             label={label}
+            Icon={IconCalendar}
             disabled={!canConfigure}
-            value={configuration?.[key] ?? ''}
-            options={fields.map((field) => ({
-              value: field.universalIdentifier,
-              label: field.label,
-            }))}
-            emptyOption={{ value: '', label: t`Not configured` }}
-            withSearchInput
-            onChange={(value) => update({ [key]: value || null })}
+            description={
+              configuration?.[key]
+                ? (fields.find(
+                    (field) => field.universalIdentifier === configuration[key],
+                  )?.label ?? t`Unavailable field`)
+                : t`Not configured`
+            }
+            contextualTextPosition="right"
+            dropdownPlacement="bottom-end"
+            dropdownComponents={
+              <DropdownContent>
+                <TimelineSettingsDropdown
+                  options={fields.map((field) => ({
+                    id: field.universalIdentifier,
+                    label: field.label,
+                    searchTerms: [field.name],
+                    Icon: IconCalendar,
+                  }))}
+                  value={configuration?.[key]}
+                  searchPlaceholder={t`Search fields`}
+                  emptyLabel={t`No readable date fields available for this source.`}
+                  clearLabel={t`Not configured`}
+                  onChange={(value) => update({ [key]: value })}
+                />
+              </DropdownContent>
+            }
           />
         </SelectableListItem>
       ))}

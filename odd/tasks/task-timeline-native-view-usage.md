@@ -17,10 +17,12 @@ Timeline retains the existing calendar window, full-day inclusive dates, record 
 
 1. Add or edit the widget labeled **View** and choose its **Source**.
 2. Open **Layout** and choose **Table** or **Timeline**. This keeps the same widget and private view; fields, filters, sorts and record limit are retained when switching back.
-3. In Timeline mode, configure readable active **Start date**, **End date** and **Bar color**. Unavailable mappings remain unconfigured; no date values are invented or written to records.
+3. In Timeline mode, open the native **Start date** and **End date** rows to search and select readable active date fields. **Not configured** clears a mapping; selecting a value closes the dropdown. **Bar color** remains in the same panel. Unavailable mappings are labeled explicitly; no date values are invented or written to records. Saved private Timeline settings also initialize when the view has no table columns, without replacing matching unsaved changes.
 4. Use the dashboard **Save** action to persist the layout and private settings. **Cancel** discards draft changes. Configuration is not written immediately to a native saved view.
 
 The existing Limit caps total Timeline records; a limited widget does not offer Load more beyond the cap. The Overdue tasks preset retains its existing locked presentation and is not converted by this selector.
+
+Timeline bars keep long labels on one line with an ellipsis; the full record label remains available as a tooltip and accessible name. Error, conflict and drag-preview messages are not clipped with the label. Existing exclusion of ended records is unchanged by this refinement.
 
 Standalone **Task Timeline** is no longer offered when creating widgets. Already-saved legacy Timeline widgets continue to render and use their existing settings; no automatic conversion or deletion occurs.
 

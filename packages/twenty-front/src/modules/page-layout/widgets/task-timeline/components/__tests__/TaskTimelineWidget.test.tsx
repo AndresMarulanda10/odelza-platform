@@ -61,6 +61,40 @@ const getActualTaskTimelineToday = jest.requireActual<
 const widget = { id: 'timeline-widget' } as PageLayoutWidget;
 
 describe('controlled timeline compatibility', () => {
+  it('keeps a long one-day label in a dedicated compact bar with its full accessible name', () => {
+    const title =
+      'A long readable record label that must not expand a one-day timeline bar';
+    render(
+      <TaskTimeline
+        instanceId="compact"
+        data={{
+          status: 'ready',
+          items: [
+            {
+              id: 'long-label',
+              title,
+              startDate: '2026-09-19',
+              endDate: '2026-09-19',
+              progress: null,
+              isMilestone: false,
+              dependencies: [],
+              conflict: false,
+            },
+          ],
+          hasConfigurationGap: false,
+          retry: jest.fn(),
+        }}
+      />,
+    );
+    const chip = screen.getByTestId('timeline-task-chip-long-label');
+    expect(chip).toHaveAccessibleName(title);
+    expect(chip).toHaveAttribute('title', title);
+    expect(
+      chip.querySelector('[data-testid="timeline-bar-label"]'),
+    ).toHaveTextContent(title);
+    fireEvent.keyDown(chip, { key: 'Enter' });
+    expect(openRecordInSidePanel).toHaveBeenCalled();
+  });
   it('namespaces conflict and independent save-error descriptions for duplicate records', async () => {
     const data = {
       status: 'ready' as const,

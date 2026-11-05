@@ -178,16 +178,25 @@ const StyledCalendarCell = styled.div`
 const StyledTaskChip = styled.div`
   align-self: center;
   background: ${themeCssVariables.background.transparent.light};
-  border: 2px solid var(--task-timeline-bar-color);
+  border: 1px solid var(--task-timeline-bar-color);
   border-radius: ${themeCssVariables.border.radius.sm};
   font-weight: ${themeCssVariables.font.weight.medium};
   grid-row: 1;
   margin: ${themeCssVariables.spacing[1]};
-  overflow-wrap: anywhere;
+  min-width: 0;
   padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
   position: relative;
   touch-action: none;
   z-index: 1;
+`;
+
+const StyledBarLabel = styled.span`
+  display: block;
+  line-height: ${themeCssVariables.spacing[4]};
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const StyledPreviewNotice = styled.span<{ $invalid?: boolean }>`
@@ -588,6 +597,7 @@ const TimelineItems = ({
                     ))}
                     <StyledTaskChip
                       aria-label={item.title || objectLabelSingular}
+                      title={item.title || objectLabelSingular}
                       data-testid={`timeline-task-chip-${item.id}`}
                       role="button"
                       aria-describedby={
@@ -619,7 +629,9 @@ const TimelineItems = ({
                           type="button"
                         />
                       )}
-                      {item.title || objectLabelSingular}
+                      <StyledBarLabel data-testid="timeline-bar-label">
+                        {item.title || objectLabelSingular}
+                      </StyledBarLabel>
                       {item.conflict && (
                         <StyledConflict id={conflictId} role="alert">
                           {t`Dependency conflict; dates were not rescheduled.`}
