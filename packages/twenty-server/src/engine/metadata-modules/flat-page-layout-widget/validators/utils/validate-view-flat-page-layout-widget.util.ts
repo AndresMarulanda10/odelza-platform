@@ -81,11 +81,11 @@ export const validateViewFlatPageLayoutWidget = ({
     });
   }
 
-  if (view.type !== ViewType.KANBAN) {
+  if (view.type !== ViewType.KANBAN && view.type !== ViewType.TIMELINE) {
     errors.push({
       code: PageLayoutWidgetExceptionCode.INVALID_PAGE_LAYOUT_WIDGET_DATA,
-      message: t`View ${viewUniversalIdentifier} referenced by widget "${widgetTitle}" is not a Kanban view`,
-      userFriendlyMessage: msg`Referenced view is not a Kanban view`,
+      message: t`View ${viewUniversalIdentifier} referenced by widget "${widgetTitle}" is not a Kanban or Timeline view`,
+      userFriendlyMessage: msg`Referenced view is not a Kanban or Timeline view`,
       value: view.type,
     });
   }

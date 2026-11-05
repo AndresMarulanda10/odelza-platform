@@ -61,6 +61,63 @@ const getActualTaskTimelineToday = jest.requireActual<
 const widget = { id: 'timeline-widget' } as PageLayoutWidget;
 
 describe('controlled timeline compatibility', () => {
+  it('namespaces conflict and independent save-error descriptions for duplicate records', async () => {
+    const data = {
+      status: 'ready' as const,
+      items: [
+        {
+          id: 'same-record',
+          title: 'Shared task',
+          startDate: '2026-09-19',
+          endDate: '2026-09-21',
+          progress: null,
+          isMilestone: false,
+          dependencies: [],
+          conflict: true,
+        },
+      ],
+      hasConfigurationGap: false,
+      canEditDates: true,
+      updateTask: jest.fn().mockRejectedValue(new Error('First save failed')),
+      retry: jest.fn(),
+    };
+    const secondUpdate = jest
+      .fn()
+      .mockRejectedValue(new Error('Second save failed'));
+    render(
+      <>
+        <TaskTimeline instanceId="widget-a" data={data} />
+        <TaskTimeline
+          instanceId="widget-b"
+          data={{ ...data, updateTask: secondUpdate }}
+        />
+      </>,
+    );
+    const chips = screen.getAllByTestId('timeline-task-chip-same-record');
+    expect(chips[0].getAttribute('aria-describedby')).not.toBe(
+      chips[1].getAttribute('aria-describedby'),
+    );
+    for (const chip of chips) {
+      Object.defineProperty(chip.parentElement!, 'getBoundingClientRect', {
+        configurable: true,
+        value: () => ({ width: 300 }),
+      });
+      fireEvent.mouseDown(chip, { clientX: 10 });
+      fireEvent.mouseMove(window, { clientX: 85 });
+      fireEvent.mouseUp(window, { clientX: 85 });
+    }
+    await waitFor(() =>
+      expect(screen.getByText('Second save failed')).toBeInTheDocument(),
+    );
+    expect(chips[0]).toHaveAccessibleDescription(
+      'Dependency conflict; dates were not rescheduled. First save failed',
+    );
+    expect(chips[1]).toHaveAccessibleDescription(
+      'Dependency conflict; dates were not rescheduled. Second save failed',
+    );
+    expect(data.updateTask).toHaveBeenCalledTimes(1);
+    expect(secondUpdate).toHaveBeenCalledTimes(1);
+  });
   it('uses view-specific recovery copy only when requested and preserves legacy widget copy', () => {
     const data = {
       status: 'partial' as const,

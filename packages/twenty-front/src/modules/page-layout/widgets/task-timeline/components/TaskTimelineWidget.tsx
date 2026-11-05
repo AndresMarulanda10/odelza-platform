@@ -250,6 +250,7 @@ const getPreviewDates = (
 };
 
 const TimelineItems = ({
+  instanceId,
   items,
   barColor,
   canEditDates,
@@ -257,6 +258,7 @@ const TimelineItems = ({
   objectNameSingular,
   objectLabelSingular,
 }: {
+  instanceId: string;
   items: TaskTimelineItem[];
   barColor: string;
   canEditDates: boolean;
@@ -550,8 +552,8 @@ const TimelineItems = ({
                 timelineEndDate: visibleBounds!.endDate,
               });
               if (span === null) return null;
-              const conflictId = `timeline-task-conflict-${item.id}`;
-              const errorId = `timeline-task-error-${item.id}`;
+              const conflictId = `timeline-task-conflict-${instanceId}-${item.id}`;
+              const errorId = `timeline-task-error-${instanceId}-${item.id}`;
               const descriptionIds = [
                 item.conflict ? conflictId : null,
                 errors[item.id] ? errorId : null,
@@ -844,6 +846,7 @@ export const TaskTimeline = ({
       )}
       {items.length > 0 ? (
         <TimelineItems
+          instanceId={instanceId}
           items={items}
           barColor={barColor}
           canEditDates={canEditDates}

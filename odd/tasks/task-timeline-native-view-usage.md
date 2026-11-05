@@ -13,4 +13,10 @@ Create a Tasks view and choose **Timeline**, or change a non-default Tasks view 
 
 Timeline retains the existing calendar window, full-day inclusive dates, record titles, record opening, scrolling, drag/resize and dependency-conflict behavior. Configuration labels do not replace record titles. Switching layouts preserves saved Timeline mappings and color; creating from the current view retains its existing filter/sort copy flow.
 
-Legacy Timeline widget configuration and loading remain separate. The common `TimelineView` controller accepts a saved view, object metadata, instance ID and composed query without requiring native index context. It performs one strict Timeline data load and only renders native settings when explicitly supplied. View-widget embedding and the final browser/design audit are subsequent tasks, not acceptance established by this implementation.
+## Embed a saved view
+
+In the **View** widget settings, choose an active **Kanban** or **Timeline** view for the widget's object. **Search views** filters this list. Selecting a view updates the widget title. Table views remain available through the separate Table widget.
+
+Timeline widgets share the native Timeline renderer and strict configured-date loader. Each widget has its own saved filters, filter groups, sort order and search scope, even when two widgets select the same view. Empty view-field lists are supported. Saved-query or metadata changes refresh that scope before loading; changing mappings or color does not reset local search. Missing, inactive, unsupported or mismatched references display **This view is unavailable.** without mounting a data child or showing the private view name.
+
+Legacy Timeline widget configuration and loading remain separate. The common `TimelineView` controller accepts a saved view, object metadata, instance ID and composed query without requiring native index context. It performs one strict Timeline data load and only renders native settings when explicitly supplied. Final browser/design acceptance remains T6, not established by unit tests.
