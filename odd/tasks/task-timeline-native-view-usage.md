@@ -20,3 +20,6 @@ In the **View** widget settings, choose an active **Kanban** or **Timeline** vie
 Timeline widgets share the native Timeline renderer and strict configured-date loader. Each widget has its own saved filters, filter groups, sort order and search scope, even when two widgets select the same view. Empty view-field lists are supported. Saved-query or metadata changes refresh that scope before loading; changing mappings or color does not reset local search. Missing, inactive, unsupported or mismatched references display **This view is unavailable.** without mounting a data child or showing the private view name.
 
 Legacy Timeline widget configuration and loading remain separate. The common `TimelineView` controller accepts a saved view, object metadata, instance ID and composed query without requiring native index context. It performs one strict Timeline data load and only renders native settings when explicitly supplied. Final browser/design acceptance remains T6, not established by unit tests.
+## Reload compatibility
+
+Saved Timeline views participate in initial metadata hydration alongside Table, Kanban and Calendar. Metadata response cache keys include canonical GraphQL variables, so changing the requested view types cannot reuse an older response for another filter. Existing workspace, member, metadata-version and locale isolation remains unchanged.
