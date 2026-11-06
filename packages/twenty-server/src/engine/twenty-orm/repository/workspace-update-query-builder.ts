@@ -1,4 +1,5 @@
 import { msg } from '@lingui/core/macro';
+import { validateConditionalUpdatePayload } from 'src/engine/api/common/common-query-runners/utils/validate-conditional-update-payload.util';
 import { QUERY_MAX_RECORDS } from 'twenty-shared/constants';
 import { type ObjectsPermissions } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
@@ -59,6 +60,13 @@ export class WorkspaceUpdateQueryBuilder<
 
   private _relationNestedQueries?: RelationNestedQueries;
   private _filesFieldSync?: FilesFieldSync;
+  private conditionalUpdate = false;
+
+  // Internal runner capability, never populated from record arguments.
+  public withConditionalUpdate(): this {
+    this.conditionalUpdate = true;
+    return this;
+  }
 
   private get relationNestedQueries(): RelationNestedQueries {
     return (this._relationNestedQueries ??= new RelationNestedQueries(
@@ -97,6 +105,7 @@ export class WorkspaceUpdateQueryBuilder<
       this.authContext,
       this.featureFlagMap,
     ) as this;
+    workspaceUpdateQueryBuilder.conditionalUpdate = this.conditionalUpdate;
 
     return workspaceUpdateQueryBuilder;
   }
@@ -132,6 +141,22 @@ export class WorkspaceUpdateQueryBuilder<
       });
 
       const tableName = computeObjectTargetTable(objectMetadata);
+
+      if (this.conditionalUpdate && !this.shouldBypassPermissionChecks) {
+        // Internal full before-images are needed to validate proposed RLS
+        // changes, but invisible rows must not participate in that validation.
+        // Apply RLS without exposing these internal columns to events/results.
+        eventSelectQueryBuilder.expressionMap.wheres = [
+          ...eventSelectQueryBuilder.expressionMap.wheres,
+        ];
+        applyRowLevelPermissionPredicates({
+          queryBuilder: eventSelectQueryBuilder,
+          objectMetadata,
+          internalContext: this.internalContext,
+          authContext: this.authContext,
+          featureFlagMap: this.featureFlagMap,
+        });
+      }
 
       const before = await eventSelectQueryBuilder.getMany({
         noFormatting: true,
@@ -231,11 +256,40 @@ export class WorkspaceUpdateQueryBuilder<
 
       const result = await super.execute();
 
+      if (this.conditionalUpdate && result.raw.length === 0) {
+        return {
+          raw: result.raw,
+          generatedMaps: [],
+          affected: result.affected,
+        };
+      }
+
       if (isDefined(filesFieldFileIds)) {
         await this.filesFieldSync.updateFileEntityRecords(filesFieldFileIds);
       }
 
-      const after = await eventSelectQueryBuilder.getMany({
+      const successfulIds = this.conditionalUpdate
+        ? result.raw.map((record: { id: string }) => record.id)
+        : undefined;
+      const afterSelector =
+        successfulIds === undefined
+          ? eventSelectQueryBuilder
+          : computeEventSelectQueryBuilder<T>({
+              queryBuilder: this,
+              authContext: this.authContext,
+              internalContext: this.internalContext,
+              featureFlagMap: this.featureFlagMap,
+              expressionMap: this.expressionMap,
+              objectRecordsPermissions: this.objectRecordsPermissions,
+              conditionalRecordIds: successfulIds,
+            });
+      const successfulBeforeRecords =
+        successfulIds === undefined
+          ? formattedBefore
+          : formattedBefore.filter((record) =>
+              successfulIds.includes(record.id),
+            );
+      const after = await afterSelector.getMany({
         noFormatting: true,
       });
 
@@ -246,6 +300,19 @@ export class WorkspaceUpdateQueryBuilder<
         this.internalContext.flatFieldMetadataMaps,
       );
 
+      const successfulBefore = this.conditionalUpdate
+        ? successfulBeforeRecords.map((record) => {
+            const selectedAfter = formattedAfter.find(
+              (afterRecord) => afterRecord.id === record.id,
+            );
+            return Object.fromEntries(
+              Object.keys(selectedAfter ?? {})
+                .filter((key) => key in record)
+                .map((key) => [key, record[key]]),
+            ) as T;
+          })
+        : successfulBeforeRecords;
+
       this.internalContext.eventEmitterService.emitDatabaseBatchEvent(
         formatTwentyOrmEventToDatabaseBatchEvent({
           action: DatabaseEventAction.UPDATED,
@@ -253,7 +320,7 @@ export class WorkspaceUpdateQueryBuilder<
           flatFieldMetadataMaps: this.internalContext.flatFieldMetadataMaps,
           workspaceId: this.internalContext.workspaceId,
           recordsAfter: formattedAfter,
-          recordsBefore: formattedBefore,
+          recordsBefore: successfulBefore,
           authContext: this.authContext,
         }),
       );
@@ -265,7 +332,7 @@ export class WorkspaceUpdateQueryBuilder<
           flatFieldMetadataMaps: this.internalContext.flatFieldMetadataMaps,
           workspaceId: this.internalContext.workspaceId,
           recordsAfter: formattedAfter,
-          recordsBefore: formattedBefore,
+          recordsBefore: successfulBefore,
           authContext: this.authContext,
         }),
       );
@@ -537,6 +604,15 @@ export class WorkspaceUpdateQueryBuilder<
     const extendedValues = _values as
       | QueryDeepPartialEntityWithNestedRelationFields<T>
       | QueryDeepPartialEntityWithNestedRelationFields<T>[];
+
+    if (this.conditionalUpdate) {
+      if (Array.isArray(_values))
+        throw new Error('Conditional updates require one payload');
+      validateConditionalUpdatePayload(_values, {
+        flatObjectMetadata: objectMetadata,
+        flatFieldMetadataMaps: this.internalContext.flatFieldMetadataMaps,
+      });
+    }
 
     this.relationNestedConfig =
       this.relationNestedQueries.prepareNestedRelationQueries(

@@ -31,3 +31,9 @@ export type WorkflowUpsertRecordActionSettings = BaseWorkflowActionSettings & {
 export type WorkflowPickRecordActionSettings = BaseWorkflowActionSettings & {
   input: WorkflowPickRecordActionInput;
 };
+import { type WorkflowGroupByRecordsActionInput } from 'src/modules/workflow/workflow-executor/workflow-actions/record-crud/types/workflow-record-crud-action-input.type';
+
+export type WorkflowGroupByRecordsActionSettings =
+  BaseWorkflowActionSettings & {
+    input: WorkflowGroupByRecordsActionInput;
+  };

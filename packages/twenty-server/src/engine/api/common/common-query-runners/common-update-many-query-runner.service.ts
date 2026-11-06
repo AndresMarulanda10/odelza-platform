@@ -38,6 +38,7 @@ export class CommonUpdateManyQueryRunnerService extends CommonBaseQueryRunnerSer
   async run(
     args: CommonExtendedInput<UpdateManyQueryArgs>,
     queryRunnerContext: CommonExtendedQueryRunnerContext,
+    internalOptions?: { conditionalUpdate: true },
   ): Promise<ObjectRecord[]> {
     const {
       repository,
@@ -65,8 +66,11 @@ export class CommonUpdateManyQueryRunnerService extends CommonBaseQueryRunnerSer
       flatFieldMetadataMaps,
     });
 
-    const updatedObjectRecords = await queryBuilder
-      .update()
+    const updateQueryBuilder = queryBuilder.update();
+    if (internalOptions?.conditionalUpdate) {
+      updateQueryBuilder.withConditionalUpdate();
+    }
+    const updatedObjectRecords = await updateQueryBuilder
       .set(args.data)
       .returning(columnsToReturn)
       .execute();

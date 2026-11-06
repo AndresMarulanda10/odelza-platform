@@ -265,6 +265,11 @@ export class WorkflowRunWorkspaceService {
             ...workflowRunToUpdate.state?.stepInfos[stepId],
             result: stepInfo?.result,
             error: stepInfo?.error,
+            errorCode: [StepStatus.FAILED, StepStatus.FAILED_SAFELY].includes(
+              stepInfo.status,
+            )
+              ? stepInfo.errorCode
+              : undefined,
             status: stepInfo.status,
           },
         },
@@ -297,6 +302,11 @@ export class WorkflowRunWorkspaceService {
       mergedStepInfos[stepId] = {
         ...existingStepInfos[stepId],
         ...info,
+        errorCode: [StepStatus.FAILED, StepStatus.FAILED_SAFELY].includes(
+          info.status,
+        )
+          ? info.errorCode
+          : undefined,
       };
     }
 

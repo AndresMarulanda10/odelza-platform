@@ -2,6 +2,7 @@ import {
   type ObjectRecord,
   type OrderByWithGroupBy,
 } from 'twenty-shared/types';
+import { type RecordUpdatePrecondition } from 'twenty-shared/workflow';
 
 import {
   type ObjectRecordFilter,
@@ -92,6 +93,7 @@ export interface DeleteManyQueryArgs {
 export interface UpdateOneQueryArgs {
   id: string;
   data: Partial<ObjectRecord>;
+  precondition?: RecordUpdatePrecondition;
 }
 
 export interface UpdateManyQueryArgs {

@@ -398,6 +398,9 @@ export class WorkflowExecutorWorkspaceService {
       stepInfo = {
         status: StepStatus.FAILED_SAFELY,
         error: actionOutput?.error,
+        ...(actionOutput.errorCode
+          ? { errorCode: actionOutput.errorCode }
+          : {}),
       };
     } else if (isSuccess) {
       stepInfo = {
@@ -412,6 +415,9 @@ export class WorkflowExecutorWorkspaceService {
       stepInfo = {
         status: StepStatus.FAILED,
         error: actionOutput?.error,
+        ...(actionOutput.errorCode
+          ? { errorCode: actionOutput.errorCode }
+          : {}),
       };
     }
 

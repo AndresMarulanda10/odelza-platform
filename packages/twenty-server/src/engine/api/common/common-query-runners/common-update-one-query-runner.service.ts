@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { validateUpdatePrecondition } from './utils/validate-update-precondition.util';
+import { validateConditionalUpdatePayload } from './utils/validate-conditional-update-payload.util';
 
 import { msg } from '@lingui/core/macro';
 import { CoreObjectNameSingular, type ObjectRecord } from 'twenty-shared/types';
@@ -42,6 +44,34 @@ export class CommonUpdateOneQueryRunnerService extends CommonBaseQueryRunnerServ
     args: CommonExtendedInput<UpdateOneQueryArgs>,
     queryRunnerContext: CommonExtendedQueryRunnerContext,
   ): Promise<ObjectRecord> {
+    const conditional = args.precondition !== undefined;
+    let precondition;
+    if (conditional) {
+      validateConditionalUpdatePayload(args.data, queryRunnerContext);
+      const validated = validateUpdatePrecondition(
+        args.precondition,
+        queryRunnerContext,
+        queryRunnerContext.repository.objectRecordsPermissions ?? {},
+        'shouldBypassPermissionChecks' in
+          queryRunnerContext.rolePermissionConfig &&
+          queryRunnerContext.rolePermissionConfig.shouldBypassPermissionChecks,
+      );
+      precondition = this.filterArgProcessor.process({
+        filter: validated,
+        flatObjectMetadata: queryRunnerContext.flatObjectMetadata,
+        flatObjectMetadataMaps: queryRunnerContext.flatObjectMetadataMaps,
+        flatFieldMetadataMaps: queryRunnerContext.flatFieldMetadataMaps,
+      });
+      // Fail closed if native normalization ever removes an operator or field.
+      validateUpdatePrecondition(
+        precondition,
+        queryRunnerContext,
+        queryRunnerContext.repository.objectRecordsPermissions ?? {},
+        'shouldBypassPermissionChecks' in
+          queryRunnerContext.rolePermissionConfig &&
+          queryRunnerContext.rolePermissionConfig.shouldBypassPermissionChecks,
+      );
+    }
     if (
       queryRunnerContext.flatObjectMetadata.nameSingular ===
       CoreObjectNameSingular.Task
@@ -61,12 +91,22 @@ export class CommonUpdateOneQueryRunnerService extends CommonBaseQueryRunnerServ
     const result = await this.commonUpdateManyQueryRunnerService.run(
       {
         ...args,
-        filter: { id: { eq: args.id } },
+        filter: conditional
+          ? { and: [{ id: { eq: args.id } }, precondition!] }
+          : { id: { eq: args.id } },
       },
       queryRunnerContext,
+      conditional ? { conditionalUpdate: true } : undefined,
     );
 
     if (!result || result.length === 0) {
+      if (conditional) {
+        throw new CommonQueryRunnerException(
+          'Update precondition failed',
+          CommonQueryRunnerExceptionCode.PRECONDITION_FAILED,
+          { userFriendlyMessage: msg`Update precondition failed` },
+        );
+      }
       throw new CommonQueryRunnerException(
         'Record not found',
         CommonQueryRunnerExceptionCode.RECORD_NOT_FOUND,
@@ -83,6 +123,9 @@ export class CommonUpdateOneQueryRunnerService extends CommonBaseQueryRunnerServ
     args: CommonInput<UpdateOneQueryArgs>,
     queryRunnerContext: CommonBaseQueryRunnerContext,
   ): Promise<CommonInput<UpdateOneQueryArgs>> {
+    if (args.precondition !== undefined) {
+      validateConditionalUpdatePayload(args.data, queryRunnerContext);
+    }
     const {
       authContext,
       flatObjectMetadata,

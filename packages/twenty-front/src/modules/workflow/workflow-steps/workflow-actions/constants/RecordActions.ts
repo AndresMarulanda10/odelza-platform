@@ -1,4 +1,5 @@
 import { type WorkflowActionType } from '@/workflow/types/Workflow';
+import { GROUP_BY_RECORDS_ACTION } from './actions/GroupByRecordsAction';
 import { CREATE_RECORD_ACTION } from '@/workflow/workflow-steps/workflow-actions/constants/actions/CreateRecordAction';
 import { DELETE_RECORD_ACTION } from '@/workflow/workflow-steps/workflow-actions/constants/actions/DeleteRecordAction';
 import { FIND_RECORDS_ACTION } from '@/workflow/workflow-steps/workflow-actions/constants/actions/FindRecordsAction';
@@ -15,10 +16,12 @@ export const RECORD_ACTIONS: Array<{
     | 'DELETE_RECORD'
     | 'UPSERT_RECORD'
     | 'FIND_RECORDS'
+    | 'GROUP_BY_RECORDS'
     | 'PICK_RECORD'
   >;
   icon: string;
 }> = [
+  GROUP_BY_RECORDS_ACTION,
   CREATE_RECORD_ACTION,
   UPDATE_RECORD_ACTION,
   DELETE_RECORD_ACTION,

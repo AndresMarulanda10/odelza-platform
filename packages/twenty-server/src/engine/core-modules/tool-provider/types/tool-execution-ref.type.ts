@@ -5,6 +5,7 @@ export type ToolExecutionRef =
       kind: 'database_crud';
       objectNameSingular: string;
       operation: DatabaseCrudOperation;
+      updateMode?: 'conditional';
     }
   | { kind: 'static'; toolId: string }
   | { kind: 'logic_function'; logicFunctionId: string };

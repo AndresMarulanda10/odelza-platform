@@ -196,11 +196,15 @@ export class IteratorWorkflowAction implements WorkflowActionInterface {
           status: StepStatus.NOT_STARTED,
           result: undefined,
           error: undefined,
+          errorCode: undefined,
           history: [
             ...(stepInfos[stepId]?.history ?? []),
             {
               result: stepInfos[stepId]?.result,
               error: stepInfos[stepId]?.error,
+              ...(stepInfos[stepId]?.errorCode
+                ? { errorCode: stepInfos[stepId].errorCode }
+                : {}),
               status: stepInfos[stepId]?.status,
             },
           ],
@@ -224,11 +228,15 @@ export class IteratorWorkflowAction implements WorkflowActionInterface {
         ...iteratorStepInfo,
         result: undefined,
         error: undefined,
+        errorCode: undefined,
         history: [
           ...(iteratorStepInfo?.history ?? []),
           {
             result: iteratorStepInfo?.result,
             error: iteratorStepInfo?.error,
+            ...(iteratorStepInfo?.errorCode
+              ? { errorCode: iteratorStepInfo.errorCode }
+              : {}),
             status: iteratorStepInfo?.status,
           },
         ],

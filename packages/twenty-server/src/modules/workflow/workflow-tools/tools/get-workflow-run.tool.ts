@@ -68,6 +68,8 @@ export const createGetWorkflowRunTool = (
               type: step.type,
               status: stepInfo?.status,
               error: stepInfo?.error,
+              ...(stepInfo?.errorCode ? { errorCode: stepInfo.errorCode } : {}),
+              ...(stepInfo?.history ? { history: stepInfo.history } : {}),
             };
           });
 

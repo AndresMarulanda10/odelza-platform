@@ -21,6 +21,7 @@ import {
   TRIGGER_STEP_ID,
   validateWorkflowStructure,
   WorkflowActionType,
+  workflowGroupByRecordsInputSchema,
   type WorkflowValidationIssue,
   type WorkflowValidationResult,
 } from 'twenty-shared/workflow';
@@ -45,6 +46,7 @@ const RECORD_CRUD_ACTION_TYPES = new Set<WorkflowActionType>([
   WorkflowActionType.DELETE_RECORD,
   WorkflowActionType.UPSERT_RECORD,
   WorkflowActionType.FIND_RECORDS,
+  WorkflowActionType.GROUP_BY_RECORDS,
 ]);
 
 const VARIABLE_CONSUMING_ACTION_TYPES = new Set<WorkflowActionType>([
@@ -200,10 +202,15 @@ export class WorkflowValidationWorkspaceService {
         return step;
       }
 
+      // Only the common outputSchema property changes. Widen settings during
+      // the copy to avoid a combinatorial expansion of action-specific unions.
       return {
         ...step,
-        settings: { ...step.settings, outputSchema: computedSchema },
-      };
+        settings: {
+          ...(step.settings as Record<string, unknown>),
+          outputSchema: computedSchema,
+        },
+      } as TStep;
     } catch {
       // Output schema enrichment is best-effort: if it cannot be computed,
       // validation still runs against the step's existing settings rather
@@ -225,6 +232,29 @@ export class WorkflowValidationWorkspaceService {
 
     for (const step of steps) {
       switch (step.type) {
+        case WorkflowActionType.GROUP_BY_RECORDS: {
+          const parsed = workflowGroupByRecordsInputSchema.safeParse(
+            step.settings.input,
+          );
+          const operation = parsed.success
+            ? (parsed.data.aggregateOperation ?? 'COUNT')
+            : undefined;
+          const invalidAggregateField =
+            parsed.success &&
+            !operation?.startsWith('{{') &&
+            (operation === 'COUNT'
+              ? isDefined(parsed.data.aggregateFieldName)
+              : !isNonEmptyString(parsed.data.aggregateFieldName));
+          if (!parsed.success || invalidAggregateField)
+            issues.push({
+              severity: 'error',
+              code: 'INVALID_STEP_PARAMS',
+              stepId: step.id,
+              message:
+                'Group records requires one or two dimensions and valid aggregation settings.',
+            });
+          break;
+        }
         case WorkflowActionType.AI_AGENT:
           issues.push(...this.validateAiAgentStep(step));
           break;

@@ -5,8 +5,19 @@ export const workflowFindRecordsActionSettingsSchema =
   baseWorkflowActionSettingsSchema.extend({
     input: z.object({
       objectName: z.string(),
-      limit: z.number().optional(),
-      offset: z.number().int().nonnegative().optional(),
+      limit: z
+        .union([
+          z.number().int().positive().max(Number.MAX_SAFE_INTEGER),
+          z.string().regex(/^\{\{[^{}]+\}\}$/),
+        ])
+        .optional(),
+      offset: z
+        .union([
+          z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER),
+          z.string().regex(/^\{\{[^{}]+\}\}$/),
+        ])
+        .optional(),
+      after: z.string().min(1).optional(),
       filter: z
         .object({
           recordFilterGroups: z.array(z.any()).optional(),

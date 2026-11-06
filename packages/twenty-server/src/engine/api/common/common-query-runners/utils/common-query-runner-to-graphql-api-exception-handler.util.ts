@@ -6,6 +6,7 @@ import {
 } from 'src/engine/api/common/common-query-runners/errors/common-query-runner.exception';
 import {
   AuthenticationError,
+  ConflictError,
   InternalServerError,
   NotFoundError,
   UserInputError,
@@ -15,6 +16,8 @@ export const commonQueryRunnerToGraphqlApiExceptionHandler = (
   error: CommonQueryRunnerException,
 ) => {
   switch (error.code) {
+    case CommonQueryRunnerExceptionCode.PRECONDITION_FAILED:
+      throw new ConflictError(error);
     case CommonQueryRunnerExceptionCode.RECORD_NOT_FOUND:
       throw new NotFoundError(error);
     case CommonQueryRunnerExceptionCode.ARGS_CONFLICT:

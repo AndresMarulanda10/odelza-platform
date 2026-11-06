@@ -1,4 +1,10 @@
 import { WorkflowActionType } from 'twenty-shared/workflow';
+import { type WorkflowGroupByRecordsActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/record-crud/types/workflow-record-crud-action-settings.type';
+
+export type WorkflowGroupByRecordsAction = BaseWorkflowAction & {
+  type: WorkflowActionType.GROUP_BY_RECORDS;
+  settings: WorkflowGroupByRecordsActionSettings;
+};
 
 import { type WorkflowAiAgentActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/ai-agent/types/workflow-ai-agent-action-settings.type';
 import { type WorkflowCodeActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/code/types/workflow-code-action-settings.type';
@@ -129,6 +135,7 @@ export type WorkflowDelayAction = BaseWorkflowAction & {
 };
 
 export type WorkflowAction =
+  | WorkflowGroupByRecordsAction
   | WorkflowCodeAction
   | WorkflowLogicFunctionAction
   | WorkflowSendEmailAction

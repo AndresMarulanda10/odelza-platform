@@ -15,6 +15,7 @@ import { WorkflowEditActionUpsertRecord } from '@/workflow/workflow-steps/workfl
 import { WorkflowEditActionDelay } from '@/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay';
 import { WorkflowEditActionFilter } from '@/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowEditActionFilter';
 import { WorkflowEditActionFindRecords } from '@/workflow/workflow-steps/workflow-actions/find-records-action/components/WorkflowEditActionFindRecords';
+import { WorkflowEditActionGroupByRecords } from '@/workflow/workflow-steps/workflow-actions/group-by-records-action/components/WorkflowEditActionGroupByRecords';
 import { WorkflowEditActionFormBuilder } from '@/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowEditActionFormBuilder';
 import { WorkflowEditActionHttpRequest } from '@/workflow/workflow-steps/workflow-actions/http-request-action/components/WorkflowEditActionHttpRequest';
 import { WorkflowEditActionIfElse } from '@/workflow/workflow-steps/workflow-actions/if-else-action/components/WorkflowEditActionIfElse';
@@ -179,6 +180,15 @@ export const WorkflowStepDetail = ({
         case 'FIND_RECORDS': {
           return (
             <WorkflowEditActionFindRecords
+              key={stepId}
+              action={stepDefinition.definition}
+              actionOptions={props}
+            />
+          );
+        }
+        case 'GROUP_BY_RECORDS': {
+          return (
+            <WorkflowEditActionGroupByRecords
               key={stepId}
               action={stepDefinition.definition}
               actionOptions={props}

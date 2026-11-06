@@ -1,5 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { findToolPaginationSchema } from 'src/engine/core-modules/record-crud/zod-schemas/find-tool.zod-schema';
 
 import { type AggregateOperations } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
@@ -26,6 +27,7 @@ import { FindRecordsService } from 'src/engine/core-modules/record-crud/services
 import { GroupByRecordsService } from 'src/engine/core-modules/record-crud/services/group-by-records.service';
 import { UpdateManyRecordsService } from 'src/engine/core-modules/record-crud/services/update-many-records.service';
 import { UpdateRecordService } from 'src/engine/core-modules/record-crud/services/update-record.service';
+import { conditionalUpdateRecordInputSchema } from 'src/engine/core-modules/record-crud/zod-schemas/conditional-update-record-input.zod-schema';
 import { UpsertManyRecordsService } from 'src/engine/core-modules/record-crud/services/upsert-many-records.service';
 import { type FindRecordsParams } from 'src/engine/core-modules/record-crud/types/find-records-params.type';
 import { TOOL_PROVIDERS } from 'src/engine/core-modules/tool-provider/constants/tool-providers.token';
@@ -36,6 +38,7 @@ import { type ToolIndexEntry } from 'src/engine/core-modules/tool-provider/types
 import { type ToolOutput } from 'src/engine/core-modules/tool/types/tool-output.type';
 import { UserEntity } from 'src/engine/core-modules/user/user.entity';
 import { WorkspaceCacheService } from 'src/engine/workspace-cache/services/workspace-cache.service';
+import { groupByRecordsToolArgumentsSchema } from 'src/engine/core-modules/record-crud/zod-schemas/group-by-records-input.zod-schema';
 
 @Injectable()
 export class ToolExecutorService {
@@ -94,14 +97,25 @@ export class ToolExecutorService {
 
     switch (ref.operation) {
       case 'find_many': {
-        const { limit, offset, orderBy, select, ...filter } = args;
+        const { limit, offset, after, orderBy, select, ...filter } = args;
+        const pagination = findToolPaginationSchema.safeParse({
+          limit,
+          offset,
+          after,
+        });
+        if (!pagination.success) {
+          return {
+            success: false,
+            message: 'Invalid pagination',
+            error: pagination.error.message,
+          };
+        }
 
         return this.findRecordsService.execute({
           objectName: ref.objectNameSingular,
           filter,
           orderBy: orderBy as FindRecordsParams['orderBy'],
-          limit: limit as number | undefined,
-          offset: offset as number | undefined,
+          ...pagination.data,
           select: select as string[],
           shouldBuildEffectiveSelectFields: true,
           authContext,
@@ -144,6 +158,25 @@ export class ToolExecutorService {
         });
 
       case 'update_one': {
+        if (ref.updateMode === 'conditional') {
+          const parsed = conditionalUpdateRecordInputSchema.safeParse(args);
+          if (!parsed.success)
+            return {
+              success: false,
+              message: 'Invalid conditional update',
+              error:
+                'Expected strict {id,data,precondition} with a non-empty precondition and data',
+            };
+          return this.updateRecordService.execute({
+            objectName: ref.objectNameSingular,
+            objectRecordId: parsed.data.id,
+            objectRecord: parsed.data.data,
+            precondition: parsed.data.precondition,
+            authContext,
+            rolePermissionConfig: context.rolePermissionConfig,
+            slimResponse: true,
+          });
+        }
         const { id, ...fields } = args;
         const objectRecord = Object.fromEntries(
           Object.entries(fields).filter(([, value]) => value !== undefined),
@@ -197,6 +230,14 @@ export class ToolExecutorService {
         });
 
       case 'group_by': {
+        const parsed = groupByRecordsToolArgumentsSchema.safeParse(args);
+        if (!parsed.success) {
+          return {
+            success: false,
+            message: 'Invalid group_by arguments',
+            error: parsed.error.message,
+          };
+        }
         const {
           groupBy,
           aggregateOperation,
@@ -204,7 +245,7 @@ export class ToolExecutorService {
           limit: groupByLimit,
           orderBy: groupByOrderBy,
           ...groupByFilter
-        } = args;
+        } = parsed.data;
 
         return this.groupByRecordsService.execute({
           objectName: ref.objectNameSingular,

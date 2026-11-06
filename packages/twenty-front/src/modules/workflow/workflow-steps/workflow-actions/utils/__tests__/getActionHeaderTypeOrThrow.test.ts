@@ -11,6 +11,7 @@ describe('getActionHeaderTypeOrThrow', () => {
       'UPDATE_RECORD',
       'DELETE_RECORD',
       'FIND_RECORDS',
+      'GROUP_BY_RECORDS',
     ] as const;
 
     recordActionTypes.forEach((type) => {

@@ -110,6 +110,15 @@ export class WorkflowSchemaWorkspaceService {
           objectType: step.settings.input.objectName,
           workspaceId,
         });
+      case WorkflowActionType.GROUP_BY_RECORDS:
+        return getOutputSchemaFromValue({
+          groups: [{ dimensions: [null], value: null }],
+          dimensionLabels: ['field'],
+          aggregation: 'COUNT',
+          groupCount: 1,
+          hasMore: false,
+          isComplete: true,
+        });
       case WorkflowActionType.FORM:
         return this.computeFormActionOutputSchema({
           formFieldMetadataItems: step.settings.input,
@@ -360,7 +369,39 @@ export class WorkflowSchemaWorkspaceService {
       value: 'Count of matching records',
     };
 
-    return { first, all, totalCount } satisfies OutputSchema;
+    const pageInfo: Node = {
+      isLeaf: false,
+      label: 'Page Info',
+      icon: 'IconListDetails',
+      type: 'object',
+      value: {
+        hasNextPage: {
+          isLeaf: true,
+          label: 'Has Next Page',
+          type: 'boolean',
+          value: false,
+        },
+        hasPreviousPage: {
+          isLeaf: true,
+          label: 'Has Previous Page',
+          type: 'boolean',
+          value: false,
+        },
+        startCursor: {
+          isLeaf: true,
+          label: 'Start Cursor',
+          type: 'string',
+          value: '',
+        },
+        endCursor: {
+          isLeaf: true,
+          label: 'End Cursor',
+          type: 'string',
+          value: '',
+        },
+      },
+    };
+    return { first, all, totalCount, pageInfo } satisfies OutputSchema;
   }
 
   private async computeRecordOutputSchema({
@@ -673,6 +714,19 @@ export class WorkflowSchemaWorkspaceService {
             workspaceId,
           }),
         };
+      }
+      case WorkflowActionType.GROUP_BY_RECORDS: {
+        const schema = await this.computeStepOutputSchema({
+          step,
+          workspaceId,
+        });
+        const schemaNode = navigateOutputSchemaProperty({
+          schema: schema as BaseOutputSchemaV2,
+          propertyPath: extractPropertyPathFromVariable(items),
+        });
+        return isDefined(schemaNode)
+          ? inferArrayItemSchema({ schemaNode })
+          : DEFAULT_ITERATOR_CURRENT_ITEM;
       }
       case WorkflowActionType.CODE:
       case WorkflowActionType.HTTP_REQUEST:
