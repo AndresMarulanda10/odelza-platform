@@ -7,14 +7,14 @@ import { DragSelect } from '@/ui/utilities/drag-select/components/DragSelect';
 import { ScrollWrapper } from '@/ui/utilities/scroll/components/ScrollWrapper';
 import { isDefined } from 'twenty-shared/utils';
 import { ComponentDecorator } from 'twenty-ui/testing';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.md};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   height: 400px;
   overflow: hidden;
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
   position: relative;
   width: 600px;
 `;
@@ -22,31 +22,31 @@ const StyledContainer = styled.div`
 const StyledSelectableItem = styled.div<{ selected?: boolean }>`
   width: 100px;
   height: 80px;
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   background: ${({ selected }) =>
     selected
-      ? themeCssVariables.color.blue3
-      : themeCssVariables.background.secondary};
+      ? odelzaThemeCssVariables.color.primary3
+      : odelzaThemeCssVariables.background.secondary};
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: ${themeCssVariables.spacing[1]};
+  margin: ${odelzaThemeCssVariables.spacing[1]};
   user-select: none;
   cursor: pointer;
 
   &:hover {
     background: ${({ selected }) =>
       selected
-        ? themeCssVariables.color.blue5
-        : themeCssVariables.background.tertiary};
+        ? odelzaThemeCssVariables.color.primary5
+        : odelzaThemeCssVariables.background.tertiary};
   }
 `;
 
 const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
   height: 100%;
 `;
@@ -54,15 +54,15 @@ const StyledGrid = styled.div`
 const StyledLargeGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
   width: 900px;
   height: 600px;
 `;
 
 const StyledScrollableWrapperContainer = styled.div`
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.md};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   height: 300px;
   width: 600px;
   overflow: hidden;

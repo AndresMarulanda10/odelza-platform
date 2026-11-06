@@ -9,7 +9,10 @@ import { CurrencyPickerDropdownButton } from '@/ui/input/components/internal/cur
 import { type Currency } from '@/ui/input/components/internal/types/Currency';
 import { IMaskInput } from 'react-imask';
 import { type IconComponent } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { getSeparatorsForNumberFormat } from '~/utils/format/getSeparatorsForNumberFormat';
 
 export const StyledIMaskInput = styled.div`
@@ -18,19 +21,20 @@ export const StyledIMaskInput = styled.div`
   > input {
     background-color: transparent;
     border: none;
-    color: ${themeCssVariables.font.color.primary};
-    font-family: ${themeCssVariables.font.family};
+    color: ${odelzaThemeCssVariables.font.color.primary};
+    font-family: ${odelzaThemeCssVariables.font.family};
     font-size: inherit;
     font-weight: inherit;
     margin: 0;
     outline: none;
-    padding: ${themeCssVariables.spacing[0]} ${themeCssVariables.spacing[1.5]};
+    padding: ${odelzaThemeCssVariables.spacing[0]}
+      ${odelzaThemeCssVariables.spacing[1.5]};
 
     &::placeholder,
     &::-webkit-input-placeholder {
-      color: ${themeCssVariables.font.color.light};
-      font-family: ${themeCssVariables.font.family};
-      font-weight: ${themeCssVariables.font.weight.medium};
+      color: ${odelzaThemeCssVariables.font.color.light};
+      font-family: ${odelzaThemeCssVariables.font.family};
+      font-weight: ${odelzaThemeCssVariables.font.weight.medium};
     }
 
     width: 100%;
@@ -49,10 +53,10 @@ const StyledIcon = styled.div`
   display: flex;
 
   & > svg {
-    color: ${themeCssVariables.font.color.tertiary};
-    height: ${themeCssVariables.icon.size.md}px;
-    padding-left: ${themeCssVariables.spacing[1]};
-    width: ${themeCssVariables.icon.size.md}px;
+    color: ${odelzaThemeCssVariables.font.color.tertiary};
+    height: ${odelzaThemeCssVariables.icon.size.md}px;
+    padding-left: ${odelzaThemeCssVariables.spacing[1]};
+    width: ${odelzaThemeCssVariables.icon.size.md}px;
   }
 `;
 

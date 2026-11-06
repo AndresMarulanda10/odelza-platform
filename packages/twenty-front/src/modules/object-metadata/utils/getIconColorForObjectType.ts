@@ -1,11 +1,11 @@
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export const getIconColorForObjectType = (objectType: string): string => {
   switch (objectType) {
     case 'note':
-      return themeCssVariables.color.yellow;
+      return odelzaThemeCssVariables.color.yellow;
     case 'task':
-      return themeCssVariables.color.blue;
+      return odelzaThemeCssVariables.color.blue;
     default:
       return 'currentColor';
   }

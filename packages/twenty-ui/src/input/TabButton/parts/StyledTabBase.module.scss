@@ -1,13 +1,13 @@
 .tabButton {
   all: unset;
   align-items: center;
-  color: var(--t-font-color-secondary);
+  color: var(--odz-font-color-secondary);
   cursor: pointer;
   background-color: transparent;
   border: none;
   font-family: inherit;
   display: flex;
-  gap: var(--t-spacing-1);
+  gap: var(--odz-spacing-1);
   justify-content: center;
   text-decoration: none;
   position: relative;
@@ -24,28 +24,28 @@
   }
 
   &[data-disabled] {
-    color: var(--t-font-color-light);
+    color: var(--odz-font-color-light);
     pointer-events: none;
   }
 
   // active wins over disabled, matching the legacy Linaria ternary
   // (active ? primary : disabled ? light : secondary)
   &[data-active] {
-    color: var(--t-font-color-primary);
+    color: var(--odz-font-color-primary);
 
     &::after {
-      background-color: var(--t-border-color-inverted);
+      background-color: var(--odz-border-color-inverted);
     }
   }
 }
 
 .tabContainer {
   align-items: center;
-  color: var(--t-font-color-secondary);
+  color: var(--odz-font-color-secondary);
   cursor: pointer;
   background-color: transparent;
   display: flex;
-  gap: var(--t-spacing-1);
+  gap: var(--odz-spacing-1);
   justify-content: center;
   text-decoration: none;
   position: relative;
@@ -62,14 +62,14 @@
   }
 
   &[data-disabled] {
-    color: var(--t-font-color-light);
+    color: var(--odz-font-color-light);
   }
 
   &[data-active] {
-    color: var(--t-font-color-primary);
+    color: var(--odz-font-color-primary);
 
     &::after {
-      background-color: var(--t-border-color-inverted);
+      background-color: var(--odz-border-color-inverted);
     }
   }
 }
@@ -77,24 +77,24 @@
 .tabHover {
   box-sizing: border-box;
   display: flex;
-  gap: var(--t-spacing-1);
+  gap: var(--odz-spacing-1);
   // the legacy ternary fell through to the md padding when contentSize was
   // undefined, so md padding is the base and sm is the override
-  padding: var(--t-spacing-2) var(--t-spacing-2);
-  font-weight: var(--t-font-weight-medium);
+  padding: var(--odz-spacing-2) var(--odz-spacing-2);
+  font-weight: var(--odz-font-weight-medium);
   width: 100%;
   white-space: nowrap;
-  border-radius: var(--t-border-radius-md);
+  border-radius: var(--odz-border-radius-md);
 
   &[data-content-size='sm'] {
-    padding: var(--t-spacing-1) var(--t-spacing-2);
+    padding: var(--odz-spacing-1) var(--odz-spacing-2);
   }
 
   &:hover {
-    background: var(--t-background-tertiary);
+    background: var(--odz-background-tertiary);
   }
 
   &:active {
-    background: var(--t-background-quaternary);
+    background: var(--odz-background-quaternary);
   }
 }

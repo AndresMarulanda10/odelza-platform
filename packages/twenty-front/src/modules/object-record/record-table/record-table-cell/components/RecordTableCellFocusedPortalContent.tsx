@@ -11,24 +11,24 @@ import { useAtomComponentFamilyStateValue } from '@/ui/utilities/state/jotai/hoo
 import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
 import { styled } from '@linaria/react';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledRecordTableCellFocusPortalContent = styled.div<{
   isRecordTableRowActive: boolean;
 }>`
   align-items: center;
-  background: ${themeCssVariables.background.transparent.secondary};
+  background: ${odelzaThemeCssVariables.background.transparent.secondary};
   background-color: ${({ isRecordTableRowActive }) =>
     isRecordTableRowActive
-      ? themeCssVariables.accent.quaternary
-      : themeCssVariables.background.primary};
-  border-radius: ${themeCssVariables.border.radius.sm};
+      ? odelzaThemeCssVariables.background.selection
+      : odelzaThemeCssVariables.background.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
 
   height: ${RECORD_TABLE_ROW_HEIGHT}px;
 
-  outline: 1px solid ${themeCssVariables.color.blue8};
+  outline: 1px solid ${odelzaThemeCssVariables.color.primary8};
   outline-offset: -1px;
 
   user-select: none;

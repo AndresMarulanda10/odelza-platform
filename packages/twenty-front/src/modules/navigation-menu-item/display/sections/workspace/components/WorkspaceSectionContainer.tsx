@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 import React, { lazy, Suspense, useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type NavigationMenuItem } from '~/generated-metadata/graphql';
 
 import { isLayoutCustomizationModeEnabledState } from '@/layout-customization/states/isLayoutCustomizationModeEnabledState';
@@ -27,7 +27,7 @@ const LazyWorkspaceSectionListDndKit = lazy(() =>
 );
 
 const StyledWorkspaceSectionContentGapOffset = styled.div`
-  margin-top: calc(-1 * ${themeCssVariables.betweenSiblingsGap});
+  margin-top: calc(-1 * ${odelzaThemeCssVariables.betweenSiblingsGap});
 `;
 
 type WorkspaceSectionContainerProps = {

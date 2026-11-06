@@ -1,10 +1,10 @@
 import { css } from '@linaria/core';
 import React from 'react';
 import { MenuItem } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const hoveredStyle = css`
-  background: ${themeCssVariables.background.transparent.light};
+  background: ${odelzaThemeCssVariables.background.transparent.light};
 `;
 
 type CreateNewButtonProps = React.ComponentProps<typeof MenuItem> & {

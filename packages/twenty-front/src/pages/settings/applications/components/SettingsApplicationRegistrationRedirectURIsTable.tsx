@@ -4,7 +4,7 @@ import { TableHeader } from '@/ui/layout/table/components/TableHeader';
 import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { TableCell } from '@/ui/layout/table/components/TableCell';
 import { IconX } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
@@ -16,11 +16,11 @@ type SettingsApplicationRegistrationRedirectURIsTableProps = {
 };
 
 const StyledTableContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[4]};
+  margin-top: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledTableBodyContainer = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
 `;
 
 export const SettingsApplicationRegistrationRedirectURIsTable = ({
@@ -47,7 +47,9 @@ export const SettingsApplicationRegistrationRedirectURIsTable = ({
                     gridAutoColumns="1fr 20px"
                     mobileGridAutoColumns="1fr 20px"
                   >
-                    <TableCell color={themeCssVariables.font.color.primary}>
+                    <TableCell
+                      color={odelzaThemeCssVariables.font.color.primary}
+                    >
                       <OverflowingTextWithTooltip text={redirectUri} />
                     </TableCell>
 

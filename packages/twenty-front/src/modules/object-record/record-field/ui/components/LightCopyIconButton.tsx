@@ -2,11 +2,11 @@ import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { IconCopy } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
 const StyledButtonContainer = styled.div`
-  padding: 0 ${themeCssVariables.spacing[1]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export type LightCopyIconButtonProps = {

@@ -1,6 +1,6 @@
 .tabContainer {
   display: flex;
-  gap: var(--t-spacing-1);
+  gap: var(--odz-spacing-1);
   height: 40px;
   user-select: none;
   position: relative;
@@ -13,6 +13,6 @@
     left: 0;
     right: 0;
     height: 1px;
-    background-color: var(--t-border-color-light);
+    background-color: var(--odz-border-color-light);
   }
 }

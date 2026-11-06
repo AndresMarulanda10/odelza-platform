@@ -1,7 +1,7 @@
 import { type IconComponent } from '@ui/icon/types/IconComponent';
 import { OverflowingTextWithTooltip } from '@ui/surfaces/OverflowingTextWithTooltip/OverflowingTextWithTooltip';
 import { type ThemeColor } from '@ui/theme';
-import { themeCssVariables, useTheme } from '@ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from '@ui/theme-constants';
 import { clsx } from 'clsx';
 import { isDefined } from '@ui/utilities/utils/isDefined';
 
@@ -39,14 +39,14 @@ export const Tag = ({
   const tagBackground =
     color === 'transparent'
       ? 'transparent'
-      : (themeCssVariables.tag.background[color] ??
-        themeCssVariables.tag.background.gray);
+      : (odelzaThemeCssVariables.tag.background[color] ??
+        odelzaThemeCssVariables.tag.background.gray);
 
   const tagText =
     color === 'transparent'
-      ? themeCssVariables.font.color.secondary
-      : (themeCssVariables.tag.text[color] ??
-        themeCssVariables.font.color.secondary);
+      ? odelzaThemeCssVariables.font.color.secondary
+      : (odelzaThemeCssVariables.tag.text[color] ??
+        odelzaThemeCssVariables.font.color.secondary);
 
   const isInteractive = isDefined(onClick);
 

@@ -4,18 +4,18 @@ import { Trans } from '@lingui/react/macro';
 import { useWorkspaceBypass } from '@/auth/sign-in-up/hooks/useWorkspaceBypass';
 import { useIsCurrentLocationOnAWorkspace } from '@/domain-manager/hooks/useIsCurrentLocationOnAWorkspace';
 import { ONBOARDING_CONTENT_BLOCK_WIDTH } from '@/onboarding/constants/OnboardingContentBlockWidth';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledCopyContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   line-height: 1.4;
   max-width: ${ONBOARDING_CONTENT_BLOCK_WIDTH}px;
   text-align: center;
 
   & > a {
-    color: ${themeCssVariables.font.color.tertiary};
+    color: ${odelzaThemeCssVariables.font.color.tertiary};
     text-decoration: none;
 
     &:hover {
@@ -26,11 +26,11 @@ const StyledCopyContainer = styled.div`
 
 const StyledLinksContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex-wrap: nowrap;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: center;
   max-width: 100%;
   text-align: center;
@@ -40,7 +40,7 @@ const StyledLinksContainer = styled.div`
   & > button {
     background: none;
     border: none;
-    color: ${themeCssVariables.font.color.tertiary};
+    color: ${odelzaThemeCssVariables.font.color.tertiary};
     cursor: pointer;
     font: inherit;
     padding: 0;
@@ -53,7 +53,7 @@ const StyledLinksContainer = styled.div`
 `;
 
 const StyledSeparator = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 type FooterNoteProps = {

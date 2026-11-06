@@ -17,7 +17,7 @@ import {
   PageLayoutType,
   type StandaloneRichTextConfiguration,
 } from '~/generated-metadata/graphql';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div<{ isPageLayoutInEditMode?: boolean }>`
   box-sizing: border-box;
@@ -26,7 +26,7 @@ const StyledContainer = styled.div<{ isPageLayoutInEditMode?: boolean }>`
   height: 100%;
   overflow: hidden;
   padding-left: ${({ isPageLayoutInEditMode }) =>
-    isPageLayoutInEditMode ? themeCssVariables.spacing[5] : 0};
+    isPageLayoutInEditMode ? odelzaThemeCssVariables.spacing[5] : 0};
   width: 100%;
 `;
 

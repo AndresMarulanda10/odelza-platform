@@ -1,8 +1,8 @@
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
-type ThemeSpacingKey = keyof typeof themeCssVariables.spacing;
+type ThemeSpacingKey = keyof typeof odelzaThemeCssVariables.spacing;
 
 type SettingsEmptyPlaceholderProps = {
   children: ReactNode;
@@ -14,7 +14,7 @@ const StyledPlaceholder = styled.div<{
   placeholderPadding: string;
   placeholderTextAlign: string;
 }>`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   padding: ${({ placeholderPadding }) => placeholderPadding};
   text-align: ${({ placeholderTextAlign }) => placeholderTextAlign};
 `;
@@ -26,7 +26,7 @@ export const SettingsEmptyPlaceholder = ({
 }: SettingsEmptyPlaceholderProps) => {
   return (
     <StyledPlaceholder
-      placeholderPadding={themeCssVariables.spacing[padding]}
+      placeholderPadding={odelzaThemeCssVariables.spacing[padding]}
       placeholderTextAlign={textAlign}
     >
       {children}

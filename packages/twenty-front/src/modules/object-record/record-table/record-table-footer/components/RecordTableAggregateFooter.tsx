@@ -10,10 +10,10 @@ import { TABLE_Z_INDEX } from '@/object-record/record-table/constants/TableZInde
 import { useRecordTableContextOrThrow } from '@/object-record/record-table/contexts/RecordTableContext';
 import { RecordTableAggregateFooterCell } from '@/object-record/record-table/record-table-footer/components/RecordTableAggregateFooterCell';
 import { RecordTableColumnAggregateFooterCellContext } from '@/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterCellContext';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledPlaceholderDragAndDropFooterCell = styled.div`
-  background-color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
   bottom: 0;
   left: 0px;
   position: sticky;
@@ -26,7 +26,7 @@ const StyledPlaceholderDragAndDropFooterCell = styled.div`
 `;
 
 const StyledPlaceholderAddButtonPlaceholderFooterCell = styled.div`
-  background-color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
   bottom: 0;
   position: sticky;
   width: ${RECORD_TABLE_COLUMN_ADD_COLUMN_BUTTON_WIDTH}px;
@@ -34,7 +34,7 @@ const StyledPlaceholderAddButtonPlaceholderFooterCell = styled.div`
 `;
 
 const StyledPlaceholderLastColumnEmptyFooterCell = styled.div`
-  background-color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
   bottom: 0;
   position: sticky;
   z-index: ${TABLE_Z_INDEX.footer.default};

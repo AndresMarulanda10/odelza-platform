@@ -1,6 +1,6 @@
 import { type Decorator } from '@storybook/react-vite';
 
-import { themeCssVariables } from '@ui/theme-constants';
+import { odelzaThemeCssVariables } from '@ui/theme-constants';
 
 import { ComponentStorybookLayout } from '../ComponentStorybookLayout';
 
@@ -12,11 +12,11 @@ const getBackgroundColor = (
 
   switch (accent) {
     case 'default':
-      return themeCssVariables.grayScale.gray11;
+      return odelzaThemeCssVariables.grayScale.gray11;
     case 'danger':
-      return themeCssVariables.color.red;
+      return odelzaThemeCssVariables.color.red;
     case 'blue':
-      return themeCssVariables.color.blue;
+      return odelzaThemeCssVariables.color.primary;
     default:
       return undefined;
   }

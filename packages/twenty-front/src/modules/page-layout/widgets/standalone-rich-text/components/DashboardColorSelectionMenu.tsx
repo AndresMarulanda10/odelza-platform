@@ -10,36 +10,40 @@ import { DropdownContent } from '@/ui/layout/dropdown/components/DropdownContent
 import { DropdownMenuItemsContainer } from '@/ui/layout/dropdown/components/DropdownMenuItemsContainer';
 import { DropdownMenuSectionLabel } from '@/ui/layout/dropdown/components/DropdownMenuSectionLabel';
 import { DropdownMenuSeparator } from '@/ui/layout/dropdown/components/DropdownMenuSeparator';
-import { themeCssVariables, ThemeContext } from 'twenty-ui/theme-constants';
+import {
+  odelzaThemeCssVariables,
+  ThemeContext,
+} from 'twenty-ui/theme-constants';
 import { useContext } from 'react';
 
 const StyledColorMenuItem = styled.div`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   cursor: pointer;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  min-height: ${themeCssVariables.spacing[6]};
-  padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  min-height: ${odelzaThemeCssVariables.spacing[6]};
+  padding: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[2]};
 
   &:hover {
-    background: ${themeCssVariables.background.transparent.light};
+    background: ${odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 
 const StyledColorName = styled.span`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   flex: 1;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const StyledCheckIcon = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  height: ${themeCssVariables.spacing[4]};
+  height: ${odelzaThemeCssVariables.spacing[4]};
   justify-content: center;
-  width: ${themeCssVariables.spacing[4]};
+  width: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 type DashboardColorSelectionMenuProps = {

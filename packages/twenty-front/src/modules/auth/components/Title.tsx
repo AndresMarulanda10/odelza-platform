@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import React from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { AnimatedEaseIn } from 'twenty-ui/layout';
 
 type TitleProps = React.PropsWithChildren & {
@@ -9,12 +9,12 @@ type TitleProps = React.PropsWithChildren & {
 };
 
 const StyledTitle = styled.div<Pick<TitleProps, 'noMarginTop'>>`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.xl};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-bottom: ${themeCssVariables.spacing[4]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.xl};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
   margin-top: ${({ noMarginTop }) =>
-    !noMarginTop ? themeCssVariables.spacing[4] : '0'};
+    !noMarginTop ? odelzaThemeCssVariables.spacing[4] : '0'};
   text-align: center;
 `;
 

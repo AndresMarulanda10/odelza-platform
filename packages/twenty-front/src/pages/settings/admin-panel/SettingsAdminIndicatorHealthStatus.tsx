@@ -12,7 +12,7 @@ import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath } from 'twenty-shared/utils';
 import { H2Title, H3Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useQuery } from '@apollo/client/react';
 import {
   AdminPanelHealthServiceStatus,
@@ -23,8 +23,8 @@ import {
 const StyledTitleContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[4]};
-  margin-top: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const SettingsAdminIndicatorHealthStatus = () => {

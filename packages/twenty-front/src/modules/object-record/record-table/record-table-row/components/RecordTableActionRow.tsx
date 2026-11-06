@@ -17,7 +17,10 @@ import {
   sumByProperty,
 } from 'twenty-shared/utils';
 import { type IconComponent } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useIsMobile } from 'twenty-ui/utilities';
 
 const StyledFieldPlaceholderCell = styled.div<{ widthOfFields: number }>`
@@ -29,7 +32,7 @@ const StyledFieldPlaceholderCell = styled.div<{ widthOfFields: number }>`
 const StyledRecordTableDraggableTr = styled.div`
   align-items: center;
 
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   border: none;
 
   cursor: pointer;
@@ -38,12 +41,12 @@ const StyledRecordTableDraggableTr = styled.div`
 
   &:hover {
     div:not(:first-of-type) {
-      background-color: ${themeCssVariables.background.secondary};
+      background-color: ${odelzaThemeCssVariables.background.secondary};
     }
   }
 
   div:not(:first-of-type) {
-    border-bottom: 1px solid ${themeCssVariables.border.color.light};
+    border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   }
 
   width: 100%;
@@ -53,7 +56,7 @@ const StyledIconContainer = styled.div`
   align-items: center;
   background-color: transparent;
   border-right: none;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
   height: ${RECORD_TABLE_ROW_HEIGHT}px;
   justify-content: center;
@@ -78,9 +81,9 @@ const StyledActionTextContainer = styled.div<{ width: number }>`
 `;
 
 const StyledText = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
-  margin-left: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  margin-left: ${odelzaThemeCssVariables.spacing[2]};
   position: absolute;
   text-align: left;
   vertical-align: middle;

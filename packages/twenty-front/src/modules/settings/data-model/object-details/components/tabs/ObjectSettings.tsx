@@ -21,7 +21,7 @@ import { IconArchive, IconTrash } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
 
 type ObjectSettingsProps = {
@@ -33,7 +33,7 @@ type ObjectSettingsProps = {
 const StyledContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[8]};
+  gap: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 const StyledFormSectionContainer = styled.div`
@@ -44,7 +44,7 @@ const StyledFormSectionContainer = styled.div`
 
 const StyledDangerButtonsContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const DELETE_OBJECT_MODAL_ID = 'delete-object-confirmation-modal';

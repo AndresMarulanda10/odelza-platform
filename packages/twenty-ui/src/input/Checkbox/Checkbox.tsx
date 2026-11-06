@@ -23,9 +23,14 @@ export enum CheckboxSize {
 }
 
 export enum CheckboxAccent {
-  Blue = 'blue',
+  Primary = 'primary',
   Orange = 'orange',
 }
+
+const CHECKBOX_ACCENT_CLASS_NAMES: Record<CheckboxAccent, string> = {
+  [CheckboxAccent.Primary]: styles.accentPrimary,
+  [CheckboxAccent.Orange]: styles.orange,
+};
 
 type CheckboxProps = {
   checked: boolean;
@@ -55,7 +60,7 @@ export const Checkbox = ({
   hoverable = true,
   className,
   disabled = false,
-  accent = CheckboxAccent.Blue,
+  accent = CheckboxAccent.Primary,
   id,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledby,
@@ -89,7 +94,7 @@ export const Checkbox = ({
         styles[variant],
         styles[size],
         styles[shape],
-        styles[accent],
+        CHECKBOX_ACCENT_CLASS_NAMES[accent],
         hoverable && styles.hoverable,
         className,
       )}

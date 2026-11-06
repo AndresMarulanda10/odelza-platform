@@ -28,7 +28,7 @@ import {
   CoreObjectNameSingular,
   type TaskTimelineItem,
 } from 'twenty-shared/types';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { AppTooltip, TooltipDelay } from 'twenty-ui/surfaces';
 
 const TASK_TIMELINE_DATE_COLUMN_WIDTH = '7rem';
@@ -37,7 +37,7 @@ const StyledContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   height: 100%;
   min-height: 0;
   min-width: 0;
@@ -50,7 +50,7 @@ const StyledState = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 100%;
   justify-content: safe center;
   min-height: 0;
@@ -60,9 +60,9 @@ const StyledState = styled.div`
 `;
 
 const StyledNotice = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   flex-shrink: 0;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   overflow-wrap: anywhere;
 `;
 
@@ -73,10 +73,10 @@ const StyledHelpBar = styled.div`
 `;
 
 const StyledIdentifier = styled.div`
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   box-sizing: border-box;
   left: 0;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   position: sticky;
   z-index: 2;
 `;
@@ -89,7 +89,7 @@ const StyledTimeline = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-height: 0;
   min-width: 0;
 `;
@@ -112,8 +112,8 @@ const StyledCalendarViewport = styled.div`
 `;
 
 const StyledCalendar = styled.div`
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: grid;
   grid-template-columns: minmax(9rem, 14rem) max-content;
   min-width: 42rem;
@@ -121,7 +121,7 @@ const StyledCalendar = styled.div`
 `;
 
 const StyledCalendarHeader = styled.div`
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: minmax(9rem, 14rem) max-content;
@@ -145,14 +145,14 @@ const StyledCalendarHeaderTrack = styled.div<{ $columns: number }>`
 `;
 
 const StyledCalendarDate = styled.div`
-  border-left: 1px solid ${themeCssVariables.border.color.medium};
-  padding: ${themeCssVariables.spacing[2]};
+  border-left: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   text-align: center;
 `;
 
 const StyledCalendarRow = styled.div`
   align-items: center;
-  border-top: 1px solid ${themeCssVariables.border.color.medium};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: minmax(9rem, 14rem) max-content;
@@ -170,21 +170,22 @@ const StyledCalendarTrack = styled.div<{ $columns: number }>`
 `;
 
 const StyledCalendarCell = styled.div`
-  border-left: 1px solid ${themeCssVariables.border.color.medium};
+  border-left: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   grid-row: 1;
   min-height: 3rem;
 `;
 
 const StyledTaskChip = styled.div`
   align-self: center;
-  background: ${themeCssVariables.background.transparent.light};
+  background: ${odelzaThemeCssVariables.background.transparent.light};
   border: 2px solid var(--task-timeline-bar-color);
-  border-radius: ${themeCssVariables.border.radius.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   grid-row: 1;
-  margin: ${themeCssVariables.spacing[1]};
+  margin: ${odelzaThemeCssVariables.spacing[1]};
   overflow-wrap: anywhere;
-  padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[2]};
   position: relative;
   touch-action: none;
   z-index: 1;
@@ -193,13 +194,13 @@ const StyledTaskChip = styled.div`
 const StyledPreviewNotice = styled.span<{ $invalid?: boolean }>`
   background: ${({ $invalid }) =>
     $invalid
-      ? themeCssVariables.background.transparent.danger
-      : themeCssVariables.background.transparent.light};
-  border: 1px dashed ${themeCssVariables.border.color.medium};
+      ? odelzaThemeCssVariables.background.transparent.danger
+      : odelzaThemeCssVariables.background.transparent.light};
+  border: 1px dashed ${odelzaThemeCssVariables.border.color.medium};
   display: block;
-  font-size: ${themeCssVariables.font.size.xs};
-  margin-top: ${themeCssVariables.spacing[1]};
-  padding: 2px ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
+  padding: 2px ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledResizeHandle = styled.button`
@@ -228,8 +229,8 @@ const StyledTaskTitle = styled.strong`
 `;
 
 const StyledConflict = styled.span`
-  color: ${themeCssVariables.font.color.danger};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.danger};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const getPreviewDates = (

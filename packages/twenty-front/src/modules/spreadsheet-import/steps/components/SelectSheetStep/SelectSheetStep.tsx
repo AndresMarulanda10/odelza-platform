@@ -12,7 +12,7 @@ import { mapWorkbook } from '@/spreadsheet-import/utils/mapWorkbook';
 import { ModalContent } from 'twenty-ui/surfaces';
 import { useLingui } from '@lingui/react/macro';
 import { Radio } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type WorkBook } from 'xlsx-ugnis';
 
 const StyledRadioContainer = styled.div`
@@ -21,7 +21,7 @@ const StyledRadioContainer = styled.div`
 `;
 
 const StyledRadioItemContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[6]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 type SelectSheetStepProps = {

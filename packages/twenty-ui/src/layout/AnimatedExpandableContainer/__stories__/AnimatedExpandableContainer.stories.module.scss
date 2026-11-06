@@ -1,14 +1,14 @@
 .button {
-  padding: var(--t-spacing-2) var(--t-spacing-4);
-  background-color: var(--t-color-blue10);
-  color: var(--t-font-color-primary);
+  padding: var(--odz-spacing-2) var(--odz-spacing-4);
+  background-color: var(--odz-color-primary10);
+  color: var(--odz-font-color-primary);
   border: none;
-  border-radius: var(--t-spacing-1);
+  border-radius: var(--odz-spacing-1);
   cursor: pointer;
-  margin-bottom: var(--t-spacing-3);
+  margin-bottom: var(--odz-spacing-3);
 
   &:hover {
-    background-color: var(--t-color-blue8);
+    background-color: var(--odz-color-primary8);
   }
 }
 
@@ -28,20 +28,20 @@
 }
 
 .expandableWrapper {
-  background-color: var(--t-background-primary);
+  background-color: var(--odz-background-primary);
   height: 100%;
   width: 100%;
 }
 
 .content {
-  padding: var(--t-spacing-3);
+  padding: var(--odz-spacing-3);
   height: auto;
   width: auto;
 
   p {
-    color: var(--t-font-color-primary);
-    margin-bottom: var(--t-spacing-2);
-    font-size: var(--t-font-size-md);
+    color: var(--odz-font-color-primary);
+    margin-bottom: var(--odz-spacing-2);
+    font-size: var(--odz-font-size-md);
   }
 }
 

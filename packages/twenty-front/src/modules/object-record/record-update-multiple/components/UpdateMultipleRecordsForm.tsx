@@ -9,14 +9,15 @@ import { styled } from '@linaria/react';
 import { FieldMetadataType } from 'twenty-shared/types';
 import { computeRelationGqlFieldJoinColumnName } from 'twenty-shared/utils';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledSectionContainer = styled.div`
   > * {
     display: flex;
     flex-direction: column;
-    gap: ${themeCssVariables.spacing[6]};
-    padding: ${themeCssVariables.spacing[4]} ${themeCssVariables.spacing[3]};
+    gap: ${odelzaThemeCssVariables.spacing[6]};
+    padding: ${odelzaThemeCssVariables.spacing[4]}
+      ${odelzaThemeCssVariables.spacing[3]};
     width: auto;
   }
 `;

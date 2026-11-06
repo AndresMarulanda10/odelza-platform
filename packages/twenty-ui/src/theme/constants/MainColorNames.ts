@@ -1,5 +1,7 @@
-import { MAIN_COLORS_LIGHT } from './MainColorsLight';
+import { ODELZA_COLOR_FAMILIES } from '@ui/theme/constants/OdelzaColorFamilies';
 
-export const MAIN_COLOR_NAMES = Object.keys(MAIN_COLORS_LIGHT) as ThemeColor[];
+export type ThemeColor = keyof typeof ODELZA_COLOR_FAMILIES;
 
-export type ThemeColor = keyof typeof MAIN_COLORS_LIGHT;
+export const MAIN_COLOR_NAMES = Object.keys(
+  ODELZA_COLOR_FAMILIES,
+) as ThemeColor[];

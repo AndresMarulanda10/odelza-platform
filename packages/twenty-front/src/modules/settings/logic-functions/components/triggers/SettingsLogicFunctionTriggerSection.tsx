@@ -3,14 +3,17 @@ import { useContext, type ReactNode } from 'react';
 import { H2Title } from 'twenty-ui/typography';
 import { Toggle } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledHeader = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   justify-content: space-between;
-  margin-bottom: ${themeCssVariables.spacing[4]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 type SettingsLogicFunctionTriggerSectionProps = {
@@ -48,7 +51,7 @@ export const SettingsLogicFunctionTriggerSection = ({
             value={enabled}
             onChange={onEnabledChange}
             toggleSize="small"
-            color={theme.color.blue}
+            color={theme.color.primary}
           />
         )}
       </StyledHeader>

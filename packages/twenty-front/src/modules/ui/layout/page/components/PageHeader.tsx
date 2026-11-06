@@ -16,24 +16,26 @@ import { LightIconButton } from 'twenty-ui/input';
 import {
   MOBILE_VIEWPORT,
   ThemeContext,
-  themeCssVariables,
+  odelzaThemeCssVariables,
 } from 'twenty-ui/theme-constants';
 
 const StyledTopBarContainer = styled.div<{ isMobile: boolean }>`
   align-items: center;
-  background: ${themeCssVariables.background.noisy};
-  color: ${themeCssVariables.font.color.primary};
+  background: ${odelzaThemeCssVariables.background.noisy};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex-direction: row;
-  font-size: ${themeCssVariables.font.size.lg};
-  gap: ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.lg};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: space-between;
   min-height: ${PAGE_BAR_MIN_HEIGHT}px;
-  padding-bottom: ${themeCssVariables.spacing[3]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[3]};
   padding-left: ${({ isMobile }) =>
-    isMobile ? themeCssVariables.spacing[3] : themeCssVariables.spacing[4]};
-  padding-right: ${themeCssVariables.spacing[3]};
-  padding-top: ${themeCssVariables.spacing[3]};
+    isMobile
+      ? odelzaThemeCssVariables.spacing[3]
+      : odelzaThemeCssVariables.spacing[4]};
+  padding-right: ${odelzaThemeCssVariables.spacing[3]};
+  padding-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledLeftContainer = styled.div`
@@ -41,20 +43,20 @@ const StyledLeftContainer = styled.div`
   display: flex;
   flex: 0 1 auto;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
   overflow-x: hidden;
   @media (max-width: ${MOBILE_VIEWPORT}px) {
-    padding-left: ${themeCssVariables.spacing[1]};
+    padding-left: ${odelzaThemeCssVariables.spacing[1]};
   }
 `;
 
 const StyledTitleContainer = styled.div`
   align-items: center;
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  margin-right: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  margin-right: ${odelzaThemeCssVariables.spacing[1]};
   overflow: hidden;
   width: 100%;
 `;
@@ -63,7 +65,7 @@ const StyledTopBarIconStyledTitleContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   overflow: hidden;
   width: 100%;
 `;
@@ -72,7 +74,7 @@ const StyledPageActionContainer = styled.div`
   align-items: center;
   display: flex;
   flex: 1 1 0;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 
   justify-content: flex-end;
   min-width: 0;

@@ -10,27 +10,27 @@ import { IconSparkles } from 'twenty-ui/icon';
 import { SearchInput } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
 import { MenuItemToggle } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useMarketplaceApps } from '~/modules/marketplace/hooks/useMarketplaceApps';
 import { SettingsAvailableApplicationCard } from '~/pages/settings/applications/components/SettingsAvailableApplicationCard';
 
 const StyledSearchInputContainer = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledNotVettedContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[3]};
+  margin-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledCardsGrid = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   @media (max-width: 800px) {
@@ -41,7 +41,7 @@ const StyledCardsGrid = styled.div`
 const StyledHintLink = styled.button`
   background: none;
   border: none;
-  color: ${themeCssVariables.color.blue};
+  color: ${odelzaThemeCssVariables.color.primary};
   cursor: pointer;
   font-size: inherit;
   padding: 0;

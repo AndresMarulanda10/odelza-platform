@@ -4,12 +4,12 @@ import { useNavigationSection } from '@/ui/navigation/navigation-drawer/hooks/us
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledItems = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.betweenSiblingsGap};
+  gap: ${odelzaThemeCssVariables.betweenSiblingsGap};
 `;
 
 type CollapsibleNavigationDrawerSectionProps = {

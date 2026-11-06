@@ -12,7 +12,7 @@ import { H1Title, H1TitleFontColor } from 'twenty-ui/typography';
 import { Button, type ButtonAccent } from 'twenty-ui/input';
 import { Section, SectionAlignment, SectionFontColor } from 'twenty-ui/layout';
 import { type ModalOverlay } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export type ConfirmationModalProps = {
   modalInstanceId: string;
@@ -31,7 +31,7 @@ export type ConfirmationModalProps = {
 
 const StyledCenteredButtonContainer = styled.div`
   box-sizing: border-box;
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const StyledCenteredButton = (
@@ -48,20 +48,20 @@ const StyledCenteredTitle = styled.div`
 `;
 
 const StyledSectionContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[6]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledConfirmationButtonContainer = styled.div`
   box-sizing: border-box;
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
   > button {
-    border-color: ${themeCssVariables.border.color.danger};
+    border-color: ${odelzaThemeCssVariables.border.color.danger};
     box-shadow: none;
-    color: ${themeCssVariables.color.red};
-    font-size: ${themeCssVariables.font.size.md};
-    line-height: ${themeCssVariables.text.lineHeight.lg};
+    color: ${odelzaThemeCssVariables.color.red};
+    font-size: ${odelzaThemeCssVariables.font.size.md};
+    line-height: ${odelzaThemeCssVariables.text.lineHeight.lg};
     &:hover {
-      background-color: ${themeCssVariables.color.red3};
+      background-color: ${odelzaThemeCssVariables.color.red3};
     }
   }
 `;

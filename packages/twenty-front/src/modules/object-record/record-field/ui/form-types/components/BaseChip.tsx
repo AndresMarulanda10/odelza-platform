@@ -1,7 +1,10 @@
 import { styled } from '@linaria/react';
 import { type MouseEvent, type ReactNode, useContext } from 'react';
 import { IconX } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledChip = styled.div<{
   deletable: boolean;
@@ -12,30 +15,30 @@ const StyledChip = styled.div<{
   background-color: ${({ danger, selected }) =>
     selected
       ? danger
-        ? themeCssVariables.color.red
-        : themeCssVariables.color.blue
+        ? odelzaThemeCssVariables.color.red
+        : odelzaThemeCssVariables.color.primary
       : danger
-        ? themeCssVariables.color.red3
-        : themeCssVariables.color.blue3};
+        ? odelzaThemeCssVariables.color.red3
+        : odelzaThemeCssVariables.color.primary3};
   border-color: ${({ danger, selected }) =>
     selected
       ? danger
-        ? themeCssVariables.color.red
-        : themeCssVariables.color.blue
+        ? odelzaThemeCssVariables.color.red
+        : odelzaThemeCssVariables.color.primary
       : danger
-        ? themeCssVariables.color.red5
-        : themeCssVariables.color.blue5};
-  border-radius: ${themeCssVariables.border.radius.smRound};
+        ? odelzaThemeCssVariables.color.red5
+        : odelzaThemeCssVariables.color.primary5};
+  border-radius: ${odelzaThemeCssVariables.border.radius.smRound};
   border-style: solid;
   border-width: 1px;
   box-sizing: border-box;
   color: ${({ danger, selected }) =>
     selected
-      ? themeCssVariables.font.color.inverted
+      ? odelzaThemeCssVariables.font.color.inverted
       : danger
-        ? themeCssVariables.color.red
-        : themeCssVariables.color.blue};
-  column-gap: ${themeCssVariables.spacing[1]};
+        ? odelzaThemeCssVariables.color.red
+        : odelzaThemeCssVariables.color.primary};
+  column-gap: ${odelzaThemeCssVariables.spacing[1]};
   corner-shape: round;
   cursor: ${({ deletable }) => (deletable ? 'pointer' : 'default')};
   display: inline-flex;
@@ -43,9 +46,9 @@ const StyledChip = styled.div<{
   flex-shrink: 0;
   height: 20px;
   max-width: 100%;
-  padding-left: ${themeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
   padding-right: ${({ deletable }) =>
-    deletable ? '0' : themeCssVariables.spacing[1]};
+    deletable ? '0' : odelzaThemeCssVariables.spacing[1]};
 
   user-select: none;
   white-space: nowrap;
@@ -77,14 +80,14 @@ const StyledDelete = styled.button<{ danger: boolean }>`
   align-items: center;
   background: none;
   border: none;
-  border-bottom-right-radius: ${themeCssVariables.border.radius.smRound};
-  border-top-right-radius: ${themeCssVariables.border.radius.smRound};
+  border-bottom-right-radius: ${odelzaThemeCssVariables.border.radius.smRound};
+  border-top-right-radius: ${odelzaThemeCssVariables.border.radius.smRound};
   box-sizing: border-box;
   color: inherit;
   corner-shape: round;
   cursor: pointer;
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   height: 20px;
   justify-content: center;
   margin: 0;
@@ -94,7 +97,9 @@ const StyledDelete = styled.button<{ danger: boolean }>`
 
   &:hover {
     background-color: ${({ danger }) =>
-      danger ? themeCssVariables.color.red5 : themeCssVariables.color.blue5};
+      danger
+        ? odelzaThemeCssVariables.color.red5
+        : odelzaThemeCssVariables.color.primary5};
   }
 `;
 

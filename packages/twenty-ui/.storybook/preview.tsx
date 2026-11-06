@@ -1,6 +1,6 @@
 import { type Preview } from '@storybook/react-vite';
-import '@ui/theme-constants/theme-light.css';
-import '@ui/theme-constants/theme-dark.css';
+import '@ui/theme-constants/odelza-theme-light.css';
+import '@ui/theme-constants/odelza-theme-dark.css';
 import { ThemeProvider } from '@ui/theme-constants';
 
 const preview: Preview = {
@@ -10,10 +10,30 @@ const preview: Preview = {
       test: 'error',
     },
   },
+  globalTypes: {
+    colorScheme: {
+      description: 'Odelza color scheme',
+      toolbar: {
+        title: 'Theme',
+        icon: 'mirror',
+        items: [
+          { value: 'light', title: 'Light' },
+          { value: 'dark', title: 'Dark' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
+  initialGlobals: {
+    colorScheme: 'light',
+  },
   decorators: [
-    (Story) => {
+    (Story, context) => {
+      const colorScheme =
+        context.globals.colorScheme === 'dark' ? 'dark' : 'light';
+
       return (
-        <ThemeProvider colorScheme="light">
+        <ThemeProvider key={colorScheme} colorScheme={colorScheme}>
           <Story />
         </ThemeProvider>
       );

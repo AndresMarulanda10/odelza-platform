@@ -9,25 +9,25 @@ import { useLingui } from '@lingui/react/macro';
 import { useContext, useMemo } from 'react';
 import { StepLogicalOperator, type StepFilterGroup } from 'twenty-shared/types';
 import { capitalize, isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledText = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  height: ${themeCssVariables.spacing[8]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 const StyledNumber = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  margin-right: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  margin-right: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledContainer = styled.div`
   align-items: start;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  min-width: ${themeCssVariables.spacing[20]};
+  min-width: ${odelzaThemeCssVariables.spacing[20]};
 `;
 
 type WorkflowStepFilterLogicalOperatorCellProps = {

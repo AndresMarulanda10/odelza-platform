@@ -1,33 +1,37 @@
 import { styled } from '@linaria/react';
 import { type ComponentProps, type MouseEvent } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledHeader = styled.li`
   align-items: center;
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   border-top-left-radius: calc(
-    ${themeCssVariables.border.radius.md} - ${themeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.border.radius.md} -
+      ${odelzaThemeCssVariables.spacing[1]}
   );
   border-top-right-radius: calc(
-    ${themeCssVariables.border.radius.md} - ${themeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.border.radius.md} -
+      ${odelzaThemeCssVariables.spacing[1]}
   );
   box-sizing: content-box;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   cursor: ${({ onClick }) => (onClick ? 'pointer' : 'default')};
   display: flex;
   flex-shrink: 0;
   font-size: ${({ onClick }) =>
-    onClick ? themeCssVariables.font.size.sm : themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+    onClick
+      ? odelzaThemeCssVariables.font.size.sm
+      : odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
 
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
 
   &:hover {
     background: ${({ onClick }) =>
-      onClick ? themeCssVariables.background.transparent.light : 'none'};
+      onClick ? odelzaThemeCssVariables.background.transparent.light : 'none'};
   }
 
   user-select: none;
@@ -35,20 +39,20 @@ const StyledHeader = styled.li`
 
 const StyledChildrenWrapper = styled.span`
   overflow: hidden;
-  padding: 0 ${themeCssVariables.spacing[1]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const StyledEndComponent = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: inline-flex;
   margin-left: auto;
   margin-right: 0;
 
   & > svg {
-    height: ${themeCssVariables.icon.size.md}px;
-    width: ${themeCssVariables.icon.size.md}px;
+    height: ${odelzaThemeCssVariables.icon.size.md}px;
+    width: ${odelzaThemeCssVariables.icon.size.md}px;
   }
 `;
 

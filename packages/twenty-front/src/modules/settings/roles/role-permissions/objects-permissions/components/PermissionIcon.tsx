@@ -4,7 +4,10 @@ import {
 } from '@/settings/roles/role-permissions/objects-permissions/constants/SettingsRoleObjectPermissionIconConfig';
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type PermissionIconProps = {
   permission: SettingsRoleObjectPermissionKey;
@@ -15,24 +18,26 @@ const StyledIconWrapper = styled.div<{ isRevoked?: boolean }>`
   align-items: center;
   background: ${({ isRevoked }) =>
     isRevoked
-      ? themeCssVariables.color.orange3
-      : themeCssVariables.color.blue3};
+      ? odelzaThemeCssVariables.color.orange3
+      : odelzaThemeCssVariables.color.primary3};
   border: 1px solid
     ${({ isRevoked }) =>
       isRevoked
-        ? themeCssVariables.color.orange7
-        : themeCssVariables.color.blue7};
-  border-radius: ${themeCssVariables.border.radius.sm};
+        ? odelzaThemeCssVariables.color.orange7
+        : odelzaThemeCssVariables.color.primary7};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
-  height: ${themeCssVariables.spacing[4]};
+  height: ${odelzaThemeCssVariables.spacing[4]};
   justify-content: center;
-  width: ${themeCssVariables.spacing[4]};
+  width: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledIcon = styled.div<{ isRevoked?: boolean }>`
   align-items: center;
   color: ${({ isRevoked }) =>
-    isRevoked ? themeCssVariables.color.orange : themeCssVariables.color.blue};
+    isRevoked
+      ? odelzaThemeCssVariables.color.orange
+      : odelzaThemeCssVariables.color.primary};
   display: flex;
   justify-content: center;
 `;

@@ -3,18 +3,18 @@ import { SettingsAdminIndicatorHealthContext } from '@/settings/admin-panel/heal
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { useContext } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { AdminPanelHealthServiceStatus } from '~/generated-admin/graphql';
 
 const StyledErrorMessage = styled.div`
-  color: ${themeCssVariables.color.red};
-  margin-top: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.color.red};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[8]};
+  gap: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 export const SettingsAdminConnectedAccountHealthStatus = () => {

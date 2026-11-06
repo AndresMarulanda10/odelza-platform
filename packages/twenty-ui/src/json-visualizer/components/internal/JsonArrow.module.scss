@@ -1,13 +1,13 @@
 .button {
   align-items: center;
-  background-color: var(--t-background-transparent-lighter);
-  border-color: var(--t-border-color-medium);
-  border-radius: var(--t-border-radius-sm);
+  background-color: var(--odz-background-transparent-lighter);
+  border-color: var(--odz-border-color-medium);
+  border-radius: var(--odz-border-radius-sm);
   border-style: solid;
   border-width: 1px;
   display: flex;
   justify-content: center;
-  padding-inline: var(--t-spacing-1);
+  padding-inline: var(--odz-spacing-1);
   height: 24px;
   width: 24px;
   box-sizing: border-box;
@@ -15,8 +15,8 @@
 }
 
 .red {
-  background-color: var(--t-background-danger);
-  border-color: var(--t-border-color-danger);
+  background-color: var(--odz-background-danger);
+  border-color: var(--odz-border-color-danger);
 }
 
 .chevron {

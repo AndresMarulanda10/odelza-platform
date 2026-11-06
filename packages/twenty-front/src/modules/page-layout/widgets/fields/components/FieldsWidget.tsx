@@ -20,7 +20,7 @@ import {
   AnimatedPlaceholderEmptyTextContainer,
   AnimatedPlaceholderEmptyTitle,
 } from 'twenty-ui/feedback';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type FieldsConfiguration } from '~/generated-metadata/graphql';
 
 const StyledContainer = styled.div`
@@ -32,24 +32,24 @@ const StyledContainer = styled.div`
 
 const StyledPropertyBox = styled.div`
   align-self: stretch;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
-  padding-bottom: ${themeCssVariables.spacing[3]};
-  padding-top: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[3]};
+  padding-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledInlineFieldsPropertyBox = styled.div<{
   hasMoreGroup: boolean;
 }>`
   align-self: stretch;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   padding-bottom: ${({ hasMoreGroup }) =>
-    hasMoreGroup ? themeCssVariables.spacing[3] : '0'};
+    hasMoreGroup ? odelzaThemeCssVariables.spacing[3] : '0'};
   padding-top: 0;
 `;
 

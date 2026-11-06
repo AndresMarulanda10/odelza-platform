@@ -1,14 +1,14 @@
 import { styled } from '@linaria/react';
 import { IconButtonGroup, type IconButtonGroupProps } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledIconButtonGroupContainer = styled.div`
   pointer-events: all;
 `;
 
 const StyledSelectedIconButtonGroupContainer = styled.div`
-  background-color: ${themeCssVariables.color.blue2};
-  border-color: ${themeCssVariables.color.blue};
+  background-color: ${odelzaThemeCssVariables.color.primary2};
+  border-color: ${odelzaThemeCssVariables.color.primary};
   pointer-events: all;
 `;
 

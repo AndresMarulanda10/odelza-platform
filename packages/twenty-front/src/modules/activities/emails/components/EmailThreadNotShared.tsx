@@ -3,27 +3,31 @@ import { useLingui } from '@lingui/react/macro';
 import { useContext } from 'react';
 import { IconLock } from 'twenty-ui/icon';
 import { AppTooltip, TooltipDelay } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { MessageChannelVisibility } from '~/generated/graphql';
 
 const StyledContainer = styled.div<{ isCompact?: boolean }>`
   align-items: center;
-  background: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
-  color: ${themeCssVariables.font.color.tertiary};
+  background: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex: 1;
   flex: ${({ isCompact }) => (isCompact ? '0 0 auto' : '1 0 0')};
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 
-  font-weight: ${themeCssVariables.font.weight.regular};
-  gap: ${themeCssVariables.spacing[1]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 20px;
 
   margin-left: auto;
-  min-width: ${themeCssVariables.spacing[21]};
-  padding: ${themeCssVariables.spacing[0]} ${themeCssVariables.spacing[1]};
+  min-width: ${odelzaThemeCssVariables.spacing[21]};
+  padding: ${odelzaThemeCssVariables.spacing[0]}
+    ${odelzaThemeCssVariables.spacing[1]};
   width: ${({ isCompact }) => (isCompact ? 'auto' : '100%')};
 `;
 

@@ -5,7 +5,10 @@ import { isNonEmptyString } from '@sniptt/guards';
 import { type ReactNode, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { IconChevronLeft } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 export type MobileBreadcrumbProps = {
   className?: string;
@@ -14,12 +17,12 @@ export type MobileBreadcrumbProps = {
 
 const StyledWrapper = styled.nav`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: grid;
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   grid-auto-flow: column;
-  grid-column-gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[8]};
+  grid-column-gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   max-width: 100%;
   min-width: 0;
 `;

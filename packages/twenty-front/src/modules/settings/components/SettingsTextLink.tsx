@@ -1,7 +1,7 @@
 import { css, cx } from '@linaria/core';
 import { type MouseEventHandler, type ReactNode } from 'react';
 import { Link, type LinkProps } from 'react-router-dom';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsTextLinkVariant = 'primary' | 'secondary';
 
@@ -44,22 +44,22 @@ const settingsTextLinkBaseClassName = css`
 `;
 
 const settingsTextLinkPrimaryClassName = css`
-  color: ${themeCssVariables.font.color.primary};
-  text-decoration-color: ${themeCssVariables.border.color.strong};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  text-decoration-color: ${odelzaThemeCssVariables.border.color.strong};
 
   &:not(:disabled):hover {
-    color: ${themeCssVariables.color.blue};
-    text-decoration-color: ${themeCssVariables.color.blue};
+    color: ${odelzaThemeCssVariables.font.color.link};
+    text-decoration-color: ${odelzaThemeCssVariables.font.color.link};
   }
 `;
 
 const settingsTextLinkSecondaryClassName = css`
-  color: ${themeCssVariables.font.color.tertiary};
-  text-decoration-color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  text-decoration-color: ${odelzaThemeCssVariables.font.color.tertiary};
 
   &:not(:disabled):hover {
-    color: ${themeCssVariables.color.blue};
-    text-decoration-color: ${themeCssVariables.color.blue};
+    color: ${odelzaThemeCssVariables.font.color.link};
+    text-decoration-color: ${odelzaThemeCssVariables.font.color.link};
   }
 `;
 

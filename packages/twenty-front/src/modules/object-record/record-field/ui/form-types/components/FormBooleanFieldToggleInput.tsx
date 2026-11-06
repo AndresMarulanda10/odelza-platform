@@ -6,7 +6,7 @@ import { InputLabel } from '@/ui/input/components/InputLabel';
 import { styled } from '@linaria/react';
 import { useId } from 'react';
 import { Toggle } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type FormBooleanFieldToggleInputProps = {
   label?: string;
@@ -19,26 +19,26 @@ type FormBooleanFieldToggleInputProps = {
 
 const StyledDescription = styled.span`
   align-items: center;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   overflow: hidden;
-  padding-left: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const StyledToggleContainer = styled.div`
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border-bottom: 1px solid ${themeCssVariables.border.color.medium};
-  border-bottom-right-radius: ${themeCssVariables.border.radius.md};
-  border-right: 1px solid ${themeCssVariables.border.color.medium};
-  border-top: 1px solid ${themeCssVariables.border.color.medium};
-  border-top-right-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-bottom-right-radius: ${odelzaThemeCssVariables.border.radius.md};
+  border-right: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-top-right-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-right: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const FormBooleanFieldToggleInput = ({

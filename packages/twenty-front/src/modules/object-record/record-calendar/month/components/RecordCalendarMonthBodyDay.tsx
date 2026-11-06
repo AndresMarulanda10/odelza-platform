@@ -15,7 +15,7 @@ import {
   isSamePlainDate,
 } from 'twenty-shared/utils';
 import { RecordCalendarAddNew } from '@/object-record/record-calendar/components/RecordCalendarAddNew';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div<{
   isOtherMonth: boolean;
@@ -23,21 +23,21 @@ const StyledContainer = styled.div<{
 }>`
   background: ${({ isOtherMonth, isDayOfWeekend }) =>
     isOtherMonth || isDayOfWeekend
-      ? themeCssVariables.background.secondary
-      : themeCssVariables.background.primary};
+      ? odelzaThemeCssVariables.background.secondary
+      : odelzaThemeCssVariables.background.primary};
   color: ${({ isOtherMonth }) =>
     isOtherMonth
-      ? themeCssVariables.font.color.light
-      : themeCssVariables.font.color.primary};
+      ? odelzaThemeCssVariables.font.color.light
+      : odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex-direction: column;
   min-height: 122px;
   min-width: 0;
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
   width: calc(100% / 7);
 
   &:not(:last-child) {
-    border-right: 1px solid ${themeCssVariables.border.color.light};
+    border-right: 1px solid ${odelzaThemeCssVariables.border.color.light};
   }
 `;
 
@@ -54,23 +54,23 @@ const StyledDayHeader = styled.div`
 const StyledDayHeaderDayContainer = styled.div`
   display: flex;
   margin-left: auto;
-  padding: ${themeCssVariables.spacing['0.5']}
-    ${themeCssVariables.spacing['0.5']};
+  padding: ${odelzaThemeCssVariables.spacing['0.5']}
+    ${odelzaThemeCssVariables.spacing['0.5']};
 `;
 
 const StyledDayHeaderDay = styled.span<{ isToday: boolean }>`
   align-items: center;
   background: ${({ isToday }) =>
-    isToday ? themeCssVariables.color.blue : 'transparent'};
+    isToday ? odelzaThemeCssVariables.color.primary : 'transparent'};
   border-radius: ${({ isToday }) => (isToday ? '4px' : '0')};
   color: ${({ isToday }) =>
     isToday
-      ? themeCssVariables.font.color.inverted
-      : themeCssVariables.font.color.primary};
+      ? odelzaThemeCssVariables.font.color.inverted
+      : odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   font-weight: ${({ isToday }) =>
-    isToday ? themeCssVariables.font.weight.medium : 'normal'};
+    isToday ? odelzaThemeCssVariables.font.weight.medium : 'normal'};
   justify-content: center;
   line-height: 140%;
   width: 20px;
@@ -79,17 +79,17 @@ const StyledDayHeaderDay = styled.span<{ isToday: boolean }>`
 const StyledCardsContainer = styled.div<{ isDraggedOver?: boolean }>`
   background: ${({ isDraggedOver }) =>
     isDraggedOver
-      ? themeCssVariables.background.transparent.lighter
+      ? odelzaThemeCssVariables.background.transparent.lighter
       : 'transparent'};
   border: ${({ isDraggedOver }) =>
     isDraggedOver
-      ? `1px dashed ${themeCssVariables.border.color.medium}`
+      ? `1px dashed ${odelzaThemeCssVariables.border.color.medium}`
       : 'none'};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing['0.5']};
+  gap: ${odelzaThemeCssVariables.spacing['0.5']};
   min-height: 60px;
   transition: background-color 0.1s ease;
 `;

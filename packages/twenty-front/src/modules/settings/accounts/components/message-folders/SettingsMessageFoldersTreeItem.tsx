@@ -12,7 +12,7 @@ import { MessageFolderPendingSyncAction } from 'twenty-shared/types';
 import { Status } from 'twenty-ui/data-display';
 import { IconChevronDown, IconChevronUp } from 'twenty-ui/icon';
 import { Checkbox, CheckboxSize } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsMessageFoldersTreeItemProps = {
   depth?: number;
@@ -38,7 +38,7 @@ const StyledCollapsibleWrapper = styled.div<{ isExpanded: boolean }>`
   display: grid;
   grid-template-rows: ${({ isExpanded }) => (isExpanded ? '1fr' : '0fr')};
   transition: grid-template-rows
-    calc(${themeCssVariables.animation.duration.fast} * 1s) ease-out;
+    calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s) ease-out;
 `;
 
 const StyledCollapsibleContent = styled.div`
@@ -47,17 +47,17 @@ const StyledCollapsibleContent = styled.div`
 
 const StyledTreeItemContent = styled.div<{ depth: number }>`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   cursor: pointer;
   display: flex;
   height: 28px;
   padding-left: ${({ depth }) => depth * BREADCRUMB_WIDTH}px;
   transition: background-color
-    calc(${themeCssVariables.animation.duration.instant} * 1s);
+    calc(${odelzaThemeCssVariables.animation.duration.instant} * 1s);
   user-select: none;
 
   &:hover {
-    background-color: ${themeCssVariables.background.transparent.lighter};
+    background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
   }
 `;
 
@@ -65,23 +65,23 @@ const StyledFolderContent = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-width: 0;
-  padding-left: ${themeCssVariables.spacing[1]};
-  padding-right: ${themeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledFolderInfo = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-width: 0;
 `;
 
 const StyledFolderName = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -91,14 +91,14 @@ const StyledRightSection = styled.div`
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   margin-left: auto;
 `;
 
 const StyledChildCount = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
-  min-width: ${themeCssVariables.spacing[3]};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  min-width: ${odelzaThemeCssVariables.spacing[3]};
   text-align: right;
 `;
 
@@ -106,16 +106,16 @@ const StyledExpandButton = styled.button`
   align-items: center;
   background: none;
   border: none;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: pointer;
   display: flex;
-  height: ${themeCssVariables.spacing[4]};
+  height: ${odelzaThemeCssVariables.spacing[4]};
   justify-content: center;
   padding: 0;
-  width: ${themeCssVariables.spacing[4]};
+  width: ${odelzaThemeCssVariables.spacing[4]};
 
   &:hover {
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
   }
 `;
 

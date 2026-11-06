@@ -8,7 +8,7 @@ import { t } from '@lingui/core/macro';
 import { capitalize, isDefined } from 'twenty-shared/utils';
 import { Status } from 'twenty-ui/data-display';
 import { type ThemeColor } from 'twenty-ui/theme';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
 type DnsRecord = {
@@ -26,7 +26,7 @@ type SettingsDnsRecordsTableProps = {
 };
 
 const StyledRecordTableRow = styled(TableRow)`
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledCopyableCell = styled.div`
@@ -39,8 +39,8 @@ const StyledCopyableCell = styled.div`
   }
 
   &:hover input {
-    background-color: ${themeCssVariables.background.transparent.light};
-    border-color: ${themeCssVariables.border.color.strong};
+    background-color: ${odelzaThemeCssVariables.background.transparent.light};
+    border-color: ${odelzaThemeCssVariables.border.color.strong};
   }
 `;
 

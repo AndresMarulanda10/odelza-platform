@@ -9,7 +9,7 @@ import {
 
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 /*
  * Carrusel / librería de tarjetas con acabado de vidrio.
@@ -88,20 +88,20 @@ export type CardCarouselProps = {
 
 const RADII: Record<CardCarouselRadius, [string, string]> = {
   square: [
-    themeCssVariables.border.radius.xs,
-    themeCssVariables.border.radius.xs,
+    odelzaThemeCssVariables.border.radius.xs,
+    odelzaThemeCssVariables.border.radius.xs,
   ],
   soft: [
-    themeCssVariables.border.radius.sm,
-    themeCssVariables.border.radius.xs,
+    odelzaThemeCssVariables.border.radius.sm,
+    odelzaThemeCssVariables.border.radius.xs,
   ],
   rounded: [
-    themeCssVariables.border.radius.md,
-    themeCssVariables.border.radius.sm,
+    odelzaThemeCssVariables.border.radius.md,
+    odelzaThemeCssVariables.border.radius.sm,
   ],
   pill: [
-    themeCssVariables.border.radius.xl,
-    themeCssVariables.border.radius.lg,
+    odelzaThemeCssVariables.border.radius.xl,
+    odelzaThemeCssVariables.border.radius.lg,
   ],
 };
 
@@ -126,17 +126,17 @@ const StyledViewport = styled.div<{
   $snap: boolean;
 }>`
   display: flex;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   overflow-x: auto;
   overflow-y: hidden;
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
   scroll-behavior: smooth;
   scroll-snap-type: ${({ $snap }) => ($snap ? 'x mandatory' : 'none')};
   scrollbar-width: thin;
 
   &:focus-visible {
-    border-radius: ${themeCssVariables.border.radius.sm};
-    outline: 2px solid ${themeCssVariables.color.blue};
+    border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+    outline: 2px solid ${odelzaThemeCssVariables.color.primary};
     outline-offset: 2px;
   }
 `;
@@ -156,8 +156,8 @@ const StyledCard = styled.li<{
   $disabled: boolean;
 }>`
   backdrop-filter: blur(${({ $blur }) => $blur}) saturate(150%);
-  background: ${themeCssVariables.background.transparent.medium};
-  border: 1px solid ${themeCssVariables.border.color.transparentStrong};
+  background: ${odelzaThemeCssVariables.background.transparent.medium};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.transparentStrong};
   border-radius: ${({ $radius }) => $radius};
   box-shadow: ${({ $shadow }) => $shadow};
   box-sizing: border-box;
@@ -173,17 +173,17 @@ const StyledCard = styled.li<{
   scroll-snap-align: start;
   text-align: ${({ $textAlign }) => $textAlign};
   transition:
-    transform ${themeCssVariables.animation.duration.fast} ease,
-    box-shadow ${themeCssVariables.animation.duration.fast} ease,
-    border-color ${themeCssVariables.animation.duration.fast} ease;
+    transform ${odelzaThemeCssVariables.animation.duration.fast} ease,
+    box-shadow ${odelzaThemeCssVariables.animation.duration.fast} ease,
+    border-color ${odelzaThemeCssVariables.animation.duration.fast} ease;
   width: ${({ $width }) => $width};
 
   &:hover,
   &:focus-visible {
     border-color: ${({ $active }) =>
       $active
-        ? themeCssVariables.border.color.blue
-        : themeCssVariables.border.color.strong};
+        ? odelzaThemeCssVariables.border.color.accent
+        : odelzaThemeCssVariables.border.color.strong};
     box-shadow: ${({ $hoverShadow, $disabled }) =>
       $disabled ? 'none' : $hoverShadow};
     transform: ${({ $hoverLift, $hoverScale, $disabled }) =>
@@ -191,7 +191,7 @@ const StyledCard = styled.li<{
   }
 
   &:focus-visible {
-    outline: 2px solid ${themeCssVariables.color.blue};
+    outline: 2px solid ${odelzaThemeCssVariables.color.primary};
     outline-offset: 2px;
   }
 
@@ -217,7 +217,7 @@ const StyledMedia = styled.div<{
         : $aspect === 'wide'
           ? '16 / 9'
           : '1 / 1'};
-  background: ${themeCssVariables.background.transparent.light};
+  background: ${odelzaThemeCssVariables.background.transparent.light};
   border-radius: ${({ $radius }) => $radius};
   flex: 0 0 auto;
   overflow: hidden;
@@ -249,14 +249,14 @@ const StyledBody = styled.div<{
         : 'stretch'};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
 const StyledTitle = styled.span`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: -webkit-box;
   font-weight: 600;
   overflow: hidden;
@@ -264,39 +264,40 @@ const StyledTitle = styled.span`
 `;
 
 const StyledSubtitle = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.xs};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const StyledPrice = styled.span`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   font-variant-numeric: tabular-nums;
   font-weight: 600;
 `;
 
 const StyledBadge = styled.span`
-  background: ${themeCssVariables.background.transparent.strong};
-  border: 1px solid ${themeCssVariables.border.color.transparentStrong};
-  border-radius: ${themeCssVariables.border.radius.pill};
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.xs};
-  left: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
+  background: ${odelzaThemeCssVariables.background.transparent.strong};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.transparentStrong};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  left: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[2]};
   position: absolute;
-  top: ${themeCssVariables.spacing[2]};
+  top: ${odelzaThemeCssVariables.spacing[2]};
   z-index: 1;
 `;
 
 const StyledArrow = styled.button`
   align-items: center;
   backdrop-filter: blur(0.5rem);
-  background: ${themeCssVariables.background.transparent.medium};
-  border: 1px solid ${themeCssVariables.border.color.transparentStrong};
+  background: ${odelzaThemeCssVariables.background.transparent.medium};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.transparentStrong};
   border-radius: 50%;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   cursor: pointer;
   display: flex;
   height: 2rem;
@@ -324,28 +325,28 @@ const StyledArrowRight = styled(StyledArrow)`
 
 const StyledDots = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: center;
 `;
 
 const StyledDot = styled.button<{ $active: boolean }>`
   background: ${({ $active }) =>
     $active
-      ? themeCssVariables.font.color.primary
-      : themeCssVariables.background.transparent.strong};
+      ? odelzaThemeCssVariables.font.color.primary
+      : odelzaThemeCssVariables.background.transparent.strong};
   border: none;
-  border-radius: ${themeCssVariables.border.radius.pill};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   cursor: pointer;
   height: 0.4rem;
   padding: 0;
-  transition: width ${themeCssVariables.animation.duration.fast} ease;
+  transition: width ${odelzaThemeCssVariables.animation.duration.fast} ease;
   width: ${({ $active }) => ($active ? '1.25rem' : '0.4rem')};
 `;
 
 const StyledEmpty = styled.p`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   margin: 0;
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
   text-align: center;
 `;
 
@@ -380,8 +381,8 @@ export const CardCarousel = ({
     size = 'md',
     cardWidth,
     cardHeight,
-    gap = themeCssVariables.spacing[4],
-    padding = themeCssVariables.spacing[3],
+    gap = odelzaThemeCssVariables.spacing[4],
+    padding = odelzaThemeCssVariables.spacing[3],
     textAlign = 'left',
     hover = 'lift',
     blur = '1rem',
@@ -396,11 +397,11 @@ export const CardCarousel = ({
     shadow === 'none'
       ? 'none'
       : shadow === 'soft'
-        ? themeCssVariables.boxShadow.light
-        : themeCssVariables.boxShadow.strong;
+        ? odelzaThemeCssVariables.boxShadow.light
+        : odelzaThemeCssVariables.boxShadow.strong;
 
   const hoverShadow =
-    shadow === 'none' ? 'none' : themeCssVariables.boxShadow.strong;
+    shadow === 'none' ? 'none' : odelzaThemeCssVariables.boxShadow.strong;
 
   const rootStyle = useMemo(() => {
     if (!emphasisColor) {
@@ -569,7 +570,9 @@ export const CardCarousel = ({
             $width={cardWidth ?? SIZES[size]}
             $height={cardHeight ?? 'auto'}
             $padding={
-              layout === 'imageOverlay' ? themeCssVariables.spacing[0] : padding
+              layout === 'imageOverlay'
+                ? odelzaThemeCssVariables.spacing[0]
+                : padding
             }
             $radius={cardRadius}
             $blur={blur}

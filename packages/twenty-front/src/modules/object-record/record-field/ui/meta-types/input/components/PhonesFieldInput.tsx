@@ -23,7 +23,7 @@ import { PhoneCountryPickerDropdownButton } from '@/ui/input/components/internal
 import { useContext } from 'react';
 import { MULTI_ITEM_FIELD_DEFAULT_MAX_VALUES } from 'twenty-shared/constants';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
 import { stripSimpleQuotesFromString } from '~/utils/string/stripSimpleQuotesFromString';
 
@@ -32,12 +32,14 @@ const StyledCustomPhoneInputContainer = styled.div<{
   hasError?: boolean;
 }>`
   background-color: ${({ hasItem }) =>
-    hasItem ? themeCssVariables.background.transparent.lighter : 'transparent'};
+    hasItem
+      ? odelzaThemeCssVariables.background.transparent.lighter
+      : 'transparent'};
   border: ${({ hasItem, hasError }) =>
     hasItem
       ? hasError
-        ? `1px solid ${themeCssVariables.border.color.danger}`
-        : `1px solid ${themeCssVariables.border.color.medium}`
+        ? `1px solid ${odelzaThemeCssVariables.border.color.danger}`
+        : `1px solid ${odelzaThemeCssVariables.border.color.medium}`
       : 'none'};
   border-radius: ${({ hasItem }) => (hasItem ? '4px' : '0')};
   height: ${({ hasItem }) => (hasItem ? '30px' : 'auto')};
@@ -46,24 +48,24 @@ const StyledCustomPhoneInputContainer = styled.div<{
 const StyledCustomPhoneInputWrapper = styled.div`
   background-color: transparent;
   border: none;
-  color: ${themeCssVariables.font.color.primary};
-  font-family: ${themeCssVariables.font.family};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-family: ${odelzaThemeCssVariables.font.family};
   font-size: inherit;
   font-weight: inherit;
   height: 100%;
-  width: calc(100% - ${themeCssVariables.spacing[8]});
+  width: calc(100% - ${odelzaThemeCssVariables.spacing[8]});
 
   .PhoneInputInput {
     background: none;
     border: none;
-    color: ${themeCssVariables.font.color.primary};
-    margin-left: ${themeCssVariables.spacing[2]};
+    color: ${odelzaThemeCssVariables.font.color.primary};
+    margin-left: ${odelzaThemeCssVariables.spacing[2]};
 
     &::placeholder,
     &::-webkit-input-placeholder {
-      color: ${themeCssVariables.font.color.light};
-      font-family: ${themeCssVariables.font.family};
-      font-weight: ${themeCssVariables.font.weight.medium};
+      color: ${odelzaThemeCssVariables.font.color.light};
+      font-family: ${odelzaThemeCssVariables.font.family};
+      font-weight: ${odelzaThemeCssVariables.font.weight.medium};
     }
 
     :focus {
@@ -72,7 +74,7 @@ const StyledCustomPhoneInputWrapper = styled.div`
   }
 
   & svg {
-    border-radius: ${themeCssVariables.border.radius.xs};
+    border-radius: ${odelzaThemeCssVariables.border.radius.xs};
     height: 12px;
   }
 `;

@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type WidgetCardVariant } from '~/modules/page-layout/widgets/types/WidgetCardVariant';
 
 type WidgetCardStyledProps = {
@@ -21,10 +21,10 @@ const computeBorderColor = (
   >,
 ): string => {
   if (props.isEditable && (props.isEditing || props.isDragging)) {
-    return themeCssVariables.color.blue;
+    return odelzaThemeCssVariables.color.primary;
   }
   if (props.variant === 'dashboard' || props.variant === 'standalone') {
-    return themeCssVariables.border.color.light;
+    return odelzaThemeCssVariables.border.color.light;
   }
   return 'transparent';
 };
@@ -33,17 +33,17 @@ const computeBorderColor = (
 const StyledWidgetCard = styled.div<WidgetCardStyledProps>`
   background: ${(props) => {
     if (props.isEditable && props.isDragging) {
-      return `linear-gradient(0deg, ${themeCssVariables.background.transparent.lighter} 0%, ${themeCssVariables.background.transparent.lighter} 100%), ${themeCssVariables.background.secondary}`;
+      return `linear-gradient(0deg, ${odelzaThemeCssVariables.background.transparent.lighter} 0%, ${odelzaThemeCssVariables.background.transparent.lighter} 100%), ${odelzaThemeCssVariables.background.secondary}`;
     }
     if (
       props.variant === 'dashboard' ||
       props.variant === 'standalone' ||
       (props.variant === 'side-column' && props.isEditable)
     ) {
-      return themeCssVariables.background.secondary;
+      return odelzaThemeCssVariables.background.secondary;
     }
     if (props.variant === 'record-page') {
-      return themeCssVariables.background.primary;
+      return odelzaThemeCssVariables.background.primary;
     }
     return 'none';
   }};
@@ -61,7 +61,7 @@ const StyledWidgetCard = styled.div<WidgetCardStyledProps>`
 
     if (variant === 'side-column' && !isEditable) {
       return isLastWidget !== true
-        ? `1px solid ${themeCssVariables.border.color.light}`
+        ? `1px solid ${odelzaThemeCssVariables.border.color.light}`
         : 'none';
     }
 
@@ -72,7 +72,7 @@ const StyledWidgetCard = styled.div<WidgetCardStyledProps>`
     variant === 'standalone' ||
     variant === 'record-page' ||
     isEditable
-      ? themeCssVariables.border.radius.md
+      ? odelzaThemeCssVariables.border.radius.md
       : '0'};
 
   box-sizing: border-box;
@@ -101,11 +101,11 @@ const StyledWidgetCard = styled.div<WidgetCardStyledProps>`
     )
       return '0';
     if (variant === 'dashboard' || variant === 'standalone')
-      return themeCssVariables.spacing[2];
+      return odelzaThemeCssVariables.spacing[2];
     if (variant === 'side-column' && !isEditable)
-      return themeCssVariables.spacing[3];
+      return odelzaThemeCssVariables.spacing[3];
     if (variant === 'record-page' || isEditable)
-      return themeCssVariables.spacing[2];
+      return odelzaThemeCssVariables.spacing[2];
     return '0';
   }};
 
@@ -125,7 +125,7 @@ const StyledWidgetCard = styled.div<WidgetCardStyledProps>`
         !props.isEditing &&
         !props.isResizing
       ) {
-        return themeCssVariables.border.color.strong;
+        return odelzaThemeCssVariables.border.color.strong;
       }
       return computeBorderColor(props);
     }};
@@ -138,7 +138,7 @@ const StyledWidgetCard = styled.div<WidgetCardStyledProps>`
       const { variant, isEditable } = props;
 
       if (variant === 'side-column' && !isEditable) {
-        return themeCssVariables.border.color.light;
+        return odelzaThemeCssVariables.border.color.light;
       }
 
       if (
@@ -147,7 +147,7 @@ const StyledWidgetCard = styled.div<WidgetCardStyledProps>`
         !props.isEditing &&
         !props.isResizing
       ) {
-        return themeCssVariables.border.color.strong;
+        return odelzaThemeCssVariables.border.color.strong;
       }
 
       return computeBorderColor(props);

@@ -1,7 +1,7 @@
 import { clsx } from 'clsx';
 
 import { type ThemeColor } from '@ui/theme';
-import { themeCssVariables } from '@ui/theme-constants';
+import { odelzaThemeCssVariables } from '@ui/theme-constants';
 import { isDefined } from '@ui/utilities/utils/isDefined';
 
 import styles from './ColorSample.module.scss';
@@ -23,11 +23,11 @@ const getColor = (colorName: ThemeColor, color?: string) => {
     return color;
   }
 
-  return themeCssVariables.tag.background[colorName];
+  return odelzaThemeCssVariables.tag.background[colorName];
 };
 
 const getBorderColor = (colorName: ThemeColor) => {
-  return themeCssVariables.tag.text[colorName];
+  return odelzaThemeCssVariables.tag.text[colorName];
 };
 
 export const ColorSample = ({

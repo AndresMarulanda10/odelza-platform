@@ -13,7 +13,10 @@ import { type WidgetCardVariant } from '@/page-layout/widgets/types/WidgetCardVa
 import { WidgetGrip } from '@/page-layout/widgets/widget-card/components/WidgetGrip';
 import { AnimatePresence, motion } from 'framer-motion';
 import { isDefined, isNonEmptyArray } from 'twenty-shared/utils';
-import { themeCssVariables, ThemeContext } from 'twenty-ui/theme-constants';
+import {
+  odelzaThemeCssVariables,
+  ThemeContext,
+} from 'twenty-ui/theme-constants';
 export type WidgetCardHeaderProps = {
   variant: WidgetCardVariant;
   widgetId: string;
@@ -34,17 +37,17 @@ const StyledWidgetCardHeader = styled.div`
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledTitleContainer = styled.div<{ variant: WidgetCardVariant }>`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   flex: 1;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   overflow: hidden;
   padding-inline: ${({ variant }) =>
-    variant === 'side-column' ? '0' : themeCssVariables.spacing[1]};
+    variant === 'side-column' ? '0' : odelzaThemeCssVariables.spacing[1]};
 
   user-select: none;
 `;
@@ -52,13 +55,13 @@ const StyledTitleContainer = styled.div<{ variant: WidgetCardVariant }>`
 const StyledRightContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[0.5]};
+  gap: ${odelzaThemeCssVariables.spacing[0.5]};
 `;
 
 const StyledActionsContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledIconButtonContainerBase = styled.div`

@@ -2,7 +2,7 @@
   color: inherit;
   overflow: hidden;
   text-decoration: underline;
-  text-decoration-color: var(--t-border-color-strong);
+  text-decoration-color: var(--odz-border-color-strong);
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
@@ -10,6 +10,6 @@
   max-width: var(--contact-link-max-width);
 
   &:hover {
-    text-decoration-color: var(--t-font-color-primary);
+    text-decoration-color: var(--odz-font-color-primary);
   }
 }

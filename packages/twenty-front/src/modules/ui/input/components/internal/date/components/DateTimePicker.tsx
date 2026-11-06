@@ -37,7 +37,10 @@ export {
 } from '@/ui/input/components/internal/date/components/DatePicker';
 export { DATE_TIME_PICKER_MONTH_YEAR_PANEL_DROPDOWN_ID } from '@/ui/input/components/internal/date/components/DateTimePickerHeader';
 
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledOuterWrapper = styled.div`
   align-items: flex-start;
@@ -48,46 +51,47 @@ const StyledOuterWrapper = styled.div`
 `;
 
 const StyledSeparator = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   width: 100%;
 `;
 
 const StyledButtonContainer = styled.div`
   align-items: center;
   border-radius: calc(
-    ${themeCssVariables.border.radius.md} - ${themeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.border.radius.md} -
+      ${odelzaThemeCssVariables.spacing[1]}
   );
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
   height: 32px;
-  margin: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[1]};
+  margin: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
   width: auto;
 
   &:hover {
-    background: ${themeCssVariables.background.transparent.light};
+    background: ${odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 
 const StyledButtonContent = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: start;
 `;
 
 const StyledDatePickerFallback = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
-  border-radius: ${themeCssVariables.border.radius.md};
-  color: ${themeCssVariables.font.color.tertiary};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   height: 300px;
   justify-content: center;
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
   width: 280px;
 `;
 

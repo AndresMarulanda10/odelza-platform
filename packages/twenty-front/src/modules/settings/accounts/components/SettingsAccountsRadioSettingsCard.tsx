@@ -5,7 +5,7 @@ import { type ReactNode } from 'react';
 import { Radio } from 'twenty-ui/input';
 import { Card, CardContent } from 'twenty-ui/surfaces';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsAccountsRadioSettingsCardProps<Option extends { value: string }> =
   {
@@ -20,7 +20,7 @@ const StyledCardContentContainer = styled.div`
     cursor: pointer;
 
     &:hover {
-      background: ${themeCssVariables.background.transparent.lighter};
+      background: ${odelzaThemeCssVariables.background.transparent.lighter};
     }
   }
 `;
@@ -28,18 +28,18 @@ const StyledCardContentContainer = styled.div`
 const StyledOptionHeader = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledDescription = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const StyledRadioContainer = styled.span`
@@ -49,7 +49,7 @@ const StyledRadioContainer = styled.span`
 `;
 
 const StyledExpandedContent = styled.div`
-  margin-top: ${themeCssVariables.spacing[4]};
+  margin-top: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 export const SettingsAccountsRadioSettingsCard = <

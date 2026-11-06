@@ -7,15 +7,18 @@ import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { snackBarInternalComponentState } from '@/ui/feedback/snack-bar-manager/states/snackBarInternalComponentState';
 import { RootStackingContextZIndices } from '@/ui/layout/constants/RootStackingContextZIndices';
 import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { SnackBar } from './SnackBar';
 
 const StyledSnackBarContainer = styled.div`
-  bottom: ${themeCssVariables.spacing[3]};
+  bottom: ${odelzaThemeCssVariables.spacing[3]};
   display: flex;
   flex-direction: column;
   position: fixed;
-  right: ${themeCssVariables.spacing[3]};
+  right: ${odelzaThemeCssVariables.spacing[3]};
   z-index: ${RootStackingContextZIndices.SnackBar};
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {

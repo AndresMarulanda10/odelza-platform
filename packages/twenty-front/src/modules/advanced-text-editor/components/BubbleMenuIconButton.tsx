@@ -2,7 +2,7 @@ import { styled } from '@linaria/react';
 import React from 'react';
 import type { IconComponent } from 'twenty-ui/icon';
 import { FloatingIconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type BubbleMenuIconButtonProps = {
   className?: string;
@@ -15,9 +15,9 @@ type BubbleMenuIconButtonProps = {
 
 const StyledBubbleMenuIconButtonContainer = styled.div`
   border: none;
-  border-radius: ${themeCssVariables.spacing[1.5]};
-  height: ${themeCssVariables.spacing[6]};
-  width: ${themeCssVariables.spacing[6]};
+  border-radius: ${odelzaThemeCssVariables.spacing[1.5]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
+  width: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 export const BubbleMenuIconButton = ({

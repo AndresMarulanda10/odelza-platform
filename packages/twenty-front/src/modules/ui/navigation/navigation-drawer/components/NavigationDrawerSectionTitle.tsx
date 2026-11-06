@@ -8,25 +8,28 @@ import React, { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconChevronRight } from 'twenty-ui/icon';
 import { Label } from 'twenty-ui/typography';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledTitle = styled.div`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.md};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
-  height: ${themeCssVariables.spacing[7]};
+  height: ${odelzaThemeCssVariables.spacing[7]};
   justify-content: space-between;
-  padding-bottom: ${themeCssVariables.spacing[1]};
-  padding-left: ${themeCssVariables.spacing[1]};
-  padding-right: ${themeCssVariables.spacing['0.5']};
-  padding-top: ${themeCssVariables.spacing[1]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing['0.5']};
+  padding-top: ${odelzaThemeCssVariables.spacing[1]};
 
   &:hover {
-    background-color: ${themeCssVariables.background.transparent.light};
+    background-color: ${odelzaThemeCssVariables.background.transparent.light};
     cursor: pointer;
 
     .section-title-label {
-      color: ${themeCssVariables.font.color.tertiary};
+      color: ${odelzaThemeCssVariables.font.color.tertiary};
     }
   }
 `;
@@ -35,15 +38,15 @@ const StyledLabelContainer = styled.div`
   align-items: center;
   display: flex;
   flex-grow: 1;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledChevron = styled.div`
   align-items: center;
   display: flex;
   opacity: 0;
-  transition: opacity calc(${themeCssVariables.animation.duration.fast} * 1s)
-    ease;
+  transition: opacity
+    calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s) ease;
   .section-title-container:hover & {
     opacity: 1;
   }
@@ -106,7 +109,7 @@ export const NavigationDrawerSectionTitle = ({
               transition={{ duration: theme.animation.duration.normal }}
               size="12px"
               stroke={theme.icon.stroke.lg}
-              color={themeCssVariables.font.color.tertiary}
+              color={odelzaThemeCssVariables.font.color.tertiary}
             />
           </StyledChevron>
         )}

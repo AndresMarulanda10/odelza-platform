@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { Droppable } from '@hello-pangea/dnd';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { RECORD_BOARD_COLUMN_WIDTH } from '@/object-record/record-board/constants/RecordBoardColumnWidth';
 import { RECORD_BOARD_COLUMN_WIDTH_CSS_VARIABLE_NAME } from '@/object-record/record-board/constants/RecordBoardColumnWidthCssVariableName';
@@ -15,7 +15,7 @@ import { useAtomComponentFamilyStateValue } from '@/ui/utilities/state/jotai/hoo
 import { isDefined } from 'twenty-shared/utils';
 
 const StyledColumn = styled.div`
-  background-color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
   display: flex;
   flex-direction: column;
   max-width: var(
@@ -26,7 +26,7 @@ const StyledColumn = styled.div`
     ${RECORD_BOARD_COLUMN_WIDTH_CSS_VARIABLE_NAME},
     ${RECORD_BOARD_COLUMN_WIDTH}px
   );
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   padding-top: 0px;
   position: relative;
 `;

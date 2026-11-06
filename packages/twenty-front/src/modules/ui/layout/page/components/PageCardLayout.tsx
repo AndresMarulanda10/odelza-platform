@@ -1,7 +1,7 @@
 import { InformationBannerWrapper } from '@/information-banner/components/InformationBannerWrapper';
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type PageCardLayoutProps = {
   header: ReactNode;
@@ -44,11 +44,11 @@ const StyledMainCardWrapper = styled.div`
 
 // oxlint-disable-next-line twenty/no-hardcoded-colors
 const StyledCard = styled.div`
-  background: ${themeCssVariables.background.primary};
-  border-radius: ${themeCssVariables.border.radius.lg} 0 0 0;
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.lg} 0 0 0;
   box-shadow:
     -4px 0 4px 0 rgba(0, 0, 0, 0.006),
-    0 0 0 1px ${themeCssVariables.border.color.medium};
+    0 0 0 1px ${odelzaThemeCssVariables.border.color.medium};
   box-sizing: border-box;
   display: flex;
   flex: 1;
@@ -60,7 +60,7 @@ const StyledCard = styled.div`
   .dark & {
     box-shadow:
       -4px 0 4px 0 rgba(0, 0, 0, 0.03),
-      0 0 0 1px ${themeCssVariables.border.color.medium};
+      0 0 0 1px ${odelzaThemeCssVariables.border.color.medium};
   }
 
   @media print {

@@ -1,5 +1,5 @@
 import { type IconComponent } from '@ui/icon/types/IconComponent';
-import { themeCssVariables, useTheme } from '@ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from '@ui/theme-constants';
 
 import styles from './NavigationBarItem.module.scss';
 
@@ -28,7 +28,7 @@ export const NavigationBarItem = ({
       onClick={onClick}
     >
       <Icon
-        color={themeCssVariables.grayScale.gray10}
+        color={odelzaThemeCssVariables.grayScale.gray10}
         size={theme.icon.size.lg}
         aria-hidden
       />

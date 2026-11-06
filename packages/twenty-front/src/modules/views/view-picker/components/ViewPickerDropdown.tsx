@@ -21,7 +21,7 @@ import { useContext } from 'react';
 import {
   MOBILE_VIEWPORT,
   ThemeContext,
-  themeCssVariables,
+  odelzaThemeCssVariables,
 } from 'twenty-ui/theme-constants';
 
 const StyledIconContainer = styled.span`
@@ -31,15 +31,15 @@ const StyledIconContainer = styled.span`
 
 const StyledDropdownLabelAdornments = styled.span`
   align-items: center;
-  color: ${themeCssVariables.grayScale.gray8};
+  color: ${odelzaThemeCssVariables.grayScale.gray8};
   display: flex;
   flex-shrink: 0;
-  gap: ${themeCssVariables.spacing[1]};
-  margin-left: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  margin-left: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledViewName = styled.span`
-  margin-left: ${themeCssVariables.spacing[1]};
+  margin-left: ${odelzaThemeCssVariables.spacing[1]};
   max-width: 130px;
   min-width: 0;
   overflow: hidden;

@@ -11,10 +11,10 @@ import { useAtomComponentFamilyStateValue } from '@/ui/utilities/state/jotai/hoo
 import { useAtomComponentSelectorValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentSelectorValue';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledErrorWrapper = styled.div`
-  padding-top: ${themeCssVariables.spacing[3]};
+  padding-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 export const AiChatErrorUnderMessageList = () => {

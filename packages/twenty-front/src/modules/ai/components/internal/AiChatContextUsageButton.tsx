@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { HorizontalSeparator } from 'twenty-ui/layout';
 import { ProgressBar } from 'twenty-ui/feedback';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { ContextUsageProgressRing } from '@/ai/components/internal/ContextUsageProgressRing';
 import { agentChatHasMessageComponentSelector } from '@/ai/states/selectors/agentChatHasMessageComponentSelector';
@@ -28,40 +28,40 @@ const StyledContainer = styled.div`
 
 const StyledTrigger = styled.div<{ hasUsage: boolean }>`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.md};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   cursor: ${({ hasUsage }) => (hasUsage ? 'pointer' : 'default')};
   display: flex;
   height: 24px;
   justify-content: center;
   min-width: 24px;
-  transition: background calc(${themeCssVariables.animation.duration.fast} * 1s)
-    ease;
+  transition: background
+    calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s) ease;
 
   &:hover {
     background: ${({ hasUsage }) =>
       hasUsage
-        ? themeCssVariables.background.transparent.light
+        ? odelzaThemeCssVariables.background.transparent.light
         : 'transparent'};
   }
 `;
 
 const StyledHoverCard = styled.div`
-  background: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   bottom: calc(100% + 8px);
-  box-shadow: ${themeCssVariables.boxShadow.strong};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
   left: 0;
   min-width: 280px;
   position: absolute;
-  z-index: ${themeCssVariables.lastLayerZIndex};
+  z-index: ${odelzaThemeCssVariables.lastLayerZIndex};
 `;
 
 const StyledSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledRow = styled.div`
@@ -71,16 +71,16 @@ const StyledRow = styled.div`
 `;
 
 const StyledContextWindowValue = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledSectionTitle = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const getCachedLabel = (lastMessage: AgentChatLastMessageUsage): string => {
@@ -179,12 +179,12 @@ export const AiChatContextUsageButton = () => {
               value={percentage}
               barColor={
                 percentage > 80
-                  ? themeCssVariables.color.red
+                  ? odelzaThemeCssVariables.color.red
                   : percentage > 60
-                    ? themeCssVariables.color.orange
-                    : themeCssVariables.color.blue
+                    ? odelzaThemeCssVariables.color.orange
+                    : odelzaThemeCssVariables.color.primary
               }
-              backgroundColor={themeCssVariables.background.tertiary}
+              backgroundColor={odelzaThemeCssVariables.background.tertiary}
               withBorderRadius
             />
           </StyledSection>
@@ -193,7 +193,7 @@ export const AiChatContextUsageButton = () => {
             <>
               <HorizontalSeparator
                 noMargin
-                color={themeCssVariables.background.tertiary}
+                color={odelzaThemeCssVariables.background.tertiary}
               />
               <StyledSection>
                 <StyledSectionTitle>{t`Last message`}</StyledSectionTitle>
@@ -223,7 +223,7 @@ export const AiChatContextUsageButton = () => {
 
           <HorizontalSeparator
             noMargin
-            color={themeCssVariables.background.tertiary}
+            color={odelzaThemeCssVariables.background.tertiary}
           />
           <StyledSection>
             <StyledSectionTitle>{t`Conversation`}</StyledSectionTitle>

@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type TopBarProps = {
   className?: string;
@@ -11,24 +11,24 @@ type TopBarProps = {
 };
 
 const StyledContainer = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
   flex-direction: column;
 
-  margin-left: ${themeCssVariables.spacing[3]};
+  margin-left: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledTopBar = styled.div`
   align-items: center;
 
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
   flex-direction: row;
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   height: 39px;
   justify-content: space-between;
-  padding-right: ${themeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
 
   z-index: 7;
 `;
@@ -39,8 +39,8 @@ const StyledLeftSection = styled.div`
 
 const StyledRightSection = styled.div`
   display: flex;
-  font-weight: ${themeCssVariables.font.weight.regular};
-  gap: ${themeCssVariables.betweenSiblingsGap};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  gap: ${odelzaThemeCssVariables.betweenSiblingsGap};
 `;
 
 export const TopBar = ({

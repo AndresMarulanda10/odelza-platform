@@ -13,13 +13,13 @@ import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath, isDefined } from 'twenty-shared/utils';
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export type DetailRow = { key: string; label: string; value: ReactNode };
 
 const StyledDescription = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.md};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   line-height: 1.5;
   white-space: pre-wrap;
 `;
@@ -96,7 +96,9 @@ export const SettingsLayoutDetailScaffold = ({
                 <TableBody>
                   {detailRows.map((row) => (
                     <TableRow key={row.key} gridTemplateColumns={GRID_TEMPLATE}>
-                      <TableCell color={themeCssVariables.font.color.secondary}>
+                      <TableCell
+                        color={odelzaThemeCssVariables.font.color.secondary}
+                      >
                         {row.label}
                       </TableCell>
                       <TableCell minWidth="0" overflow="hidden">

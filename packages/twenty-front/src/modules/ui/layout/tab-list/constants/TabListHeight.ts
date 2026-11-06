@@ -1,3 +1,3 @@
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
-export const TAB_LIST_HEIGHT = themeCssVariables.spacing[10];
+export const TAB_LIST_HEIGHT = odelzaThemeCssVariables.spacing[10];

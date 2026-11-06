@@ -7,22 +7,26 @@ import { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 
 import { type AiChatError } from '@/ai/types/AiChatError';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { getErrorMessageFromApolloError } from '~/utils/get-error-message-from-apollo-error.util';
 
 const StyledErrorContainer = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.danger};
-  border: 1px solid ${themeCssVariables.border.color.danger};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background: ${odelzaThemeCssVariables.background.danger};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.danger};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledErrorIcon = styled.div`
   align-items: center;
-  color: ${themeCssVariables.color.red};
+  color: ${odelzaThemeCssVariables.color.red};
   display: flex;
 `;
 
@@ -30,18 +34,18 @@ const StyledErrorContent = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing['0.5']};
+  gap: ${odelzaThemeCssVariables.spacing['0.5']};
 `;
 
 const StyledErrorTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledErrorMessage = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.xs};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
   word-break: break-word;
 `;
 

@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { read, type WorkBook } from 'xlsx-ugnis';
@@ -18,35 +18,35 @@ const StyledContainer = styled.div`
   background:
     repeating-linear-gradient(
       0deg,
-      ${themeCssVariables.font.color.primary},
-      ${themeCssVariables.font.color.primary} 10px,
+      ${odelzaThemeCssVariables.font.color.primary},
+      ${odelzaThemeCssVariables.font.color.primary} 10px,
       transparent 10px,
       transparent 20px,
-      ${themeCssVariables.font.color.primary} 20px
+      ${odelzaThemeCssVariables.font.color.primary} 20px
     ),
     repeating-linear-gradient(
       90deg,
-      ${themeCssVariables.font.color.primary},
-      ${themeCssVariables.font.color.primary} 10px,
+      ${odelzaThemeCssVariables.font.color.primary},
+      ${odelzaThemeCssVariables.font.color.primary} 10px,
       transparent 10px,
       transparent 20px,
-      ${themeCssVariables.font.color.primary} 20px
+      ${odelzaThemeCssVariables.font.color.primary} 20px
     ),
     repeating-linear-gradient(
       180deg,
-      ${themeCssVariables.font.color.primary},
-      ${themeCssVariables.font.color.primary} 10px,
+      ${odelzaThemeCssVariables.font.color.primary},
+      ${odelzaThemeCssVariables.font.color.primary} 10px,
       transparent 10px,
       transparent 20px,
-      ${themeCssVariables.font.color.primary} 20px
+      ${odelzaThemeCssVariables.font.color.primary} 20px
     ),
     repeating-linear-gradient(
       270deg,
-      ${themeCssVariables.font.color.primary},
-      ${themeCssVariables.font.color.primary} 10px,
+      ${odelzaThemeCssVariables.font.color.primary},
+      ${odelzaThemeCssVariables.font.color.primary} 10px,
       transparent 10px,
       transparent 20px,
-      ${themeCssVariables.font.color.primary} 20px
+      ${odelzaThemeCssVariables.font.color.primary} 20px
     );
   background-position:
     0 0,
@@ -59,7 +59,7 @@ const StyledContainer = styled.div`
     100% 2px,
     2px 100%,
     100% 2px;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -68,8 +68,8 @@ const StyledContainer = styled.div`
 `;
 
 const StyledOverlay = styled.div`
-  background: ${themeCssVariables.background.transparent.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background: ${odelzaThemeCssVariables.background.transparent.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   bottom: 0px;
   left: 0px;
   position: absolute;
@@ -78,18 +78,18 @@ const StyledOverlay = styled.div`
 `;
 
 const StyledText = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   padding: 16px;
   text-align: center;
 `;
 
 const StyledFooterText = styled.span`
-  bottom: ${themeCssVariables.spacing[4]};
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  bottom: ${odelzaThemeCssVariables.spacing[4]};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   left: 50%;
   position: absolute;
   text-align: center;
@@ -101,7 +101,7 @@ const StyledButtonsContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   max-width: 200px;
   width: 100%;
 `;

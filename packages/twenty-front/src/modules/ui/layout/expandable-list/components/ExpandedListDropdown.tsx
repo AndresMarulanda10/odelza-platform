@@ -5,7 +5,7 @@ import { useListenClickOutside } from '@/ui/utilities/pointer-event/hooks/useLis
 import { styled } from '@linaria/react';
 import { FloatingPortal, offset, shift, useFloating } from '@floating-ui/react';
 import { type ReactNode } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type ExpandedListDropdownProps = {
   anchorElement?: HTMLElement;
@@ -16,8 +16,8 @@ type ExpandedListDropdownProps = {
 const StyledExpandedListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 // TODO: unify this and use Dropdown component instead

@@ -3,20 +3,24 @@ import { type CSSWidth } from '@/ui/types/CSSWidth';
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 const StyledDropdownMenuSkeletonContainer = styled.div`
-  --horizontal-padding: ${themeCssVariables.spacing[1]};
-  --vertical-padding: ${themeCssVariables.spacing[2]};
+  --horizontal-padding: ${odelzaThemeCssVariables.spacing[1]};
+  --vertical-padding: ${odelzaThemeCssVariables.spacing[2]};
 
   border-radius: calc(
-    ${themeCssVariables.border.radius.md} - ${themeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.border.radius.md} -
+      ${odelzaThemeCssVariables.spacing[1]}
   );
   box-sizing: border-box;
   flex-shrink: 0;
 
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 
-  height: ${themeCssVariables.spacing[8]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   padding-left: var(--horizontal-padding);
 
   padding-right: var(--horizontal-padding);

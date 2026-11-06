@@ -6,7 +6,7 @@ import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { type ReactNode } from 'react';
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type Column = {
   key: string;
@@ -55,7 +55,7 @@ export const SettingsLayoutItemTable = ({
                 <TableCell
                   key={columns[index]?.key ?? index}
                   align={columns[index]?.align ?? 'left'}
-                  color={themeCssVariables.font.color.primary}
+                  color={odelzaThemeCssVariables.font.color.primary}
                   minWidth="0"
                   overflow="hidden"
                 >

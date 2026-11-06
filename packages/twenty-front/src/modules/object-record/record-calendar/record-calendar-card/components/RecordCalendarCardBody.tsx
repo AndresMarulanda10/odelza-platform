@@ -18,7 +18,7 @@ import { RecordInlineCell } from '@/object-record/record-inline-cell/components/
 import { getRecordFieldInputInstanceId } from '@/object-record/utils/getRecordFieldInputId';
 import { useAtomComponentSelectorValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentSelectorValue';
 import { useSetAtomComponentState } from '@/ui/utilities/state/jotai/hooks/useSetAtomComponentState';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type RecordCalendarCardBodyProps = {
   recordId: string;
@@ -73,7 +73,7 @@ export const RecordCalendarCardBody = ({
 
   return (
     <RecordCardBodyContainer
-      padding={`0 ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[1]}`}
+      padding={`0 ${odelzaThemeCssVariables.spacing[1]} ${odelzaThemeCssVariables.spacing[1]}`}
     >
       {visibleRecordFieldsExceptLabelIdentifier.map((recordField, index) => {
         const correspondingFieldDefinition =

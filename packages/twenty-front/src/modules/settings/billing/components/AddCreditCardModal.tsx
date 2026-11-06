@@ -6,7 +6,7 @@ import { useLingui } from '@lingui/react/macro';
 import { Button } from 'twenty-ui/input';
 import { Section, SectionAlignment, SectionFontColor } from 'twenty-ui/layout';
 import { H1Title, H1TitleFontColor } from 'twenty-ui/typography';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type AddCreditCardModalProps = {
   modalInstanceId: string;
@@ -19,11 +19,11 @@ const StyledCenteredTitle = styled.div`
 `;
 
 const StyledSectionContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[6]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledCancelButtonContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[4]};
+  margin-top: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 export const AddCreditCardModal = ({

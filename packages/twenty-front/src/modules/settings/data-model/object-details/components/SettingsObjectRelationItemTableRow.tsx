@@ -25,7 +25,10 @@ import {
   useIcons,
 } from 'twenty-ui/icon';
 import { UndecoratedLink } from 'twenty-ui/navigation';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
 
 type SettingsObjectRelationItemTableRowProps = {
@@ -40,7 +43,7 @@ const StyledNameContainer = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
@@ -52,15 +55,15 @@ const StyledNameLabel = styled.div`
 
 const StyledIconChevronRightContainer = styled.span`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
 `;
 
 const StyledRelationType = styled.div`
   align-items: center;
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const SettingsObjectRelationItemTableRow = ({
@@ -156,8 +159,8 @@ export const SettingsObjectRelationItemTableRow = ({
       cursor="pointer"
     >
       <TableCell
-        color={themeCssVariables.font.color.primary}
-        gap={themeCssVariables.spacing[2]}
+        color={odelzaThemeCssVariables.font.color.primary}
+        gap={odelzaThemeCssVariables.spacing[2]}
       >
         {isDefined(NameIcon) && (
           <NameIcon
@@ -222,7 +225,7 @@ export const SettingsObjectRelationItemTableRow = ({
 
       <TableCell
         align="center"
-        padding={`0 ${themeCssVariables.spacing[1]} 0 ${themeCssVariables.spacing[2]}`}
+        padding={`0 ${odelzaThemeCssVariables.spacing[1]} 0 ${odelzaThemeCssVariables.spacing[2]}`}
       >
         {fieldMetadataItem.isActive ? (
           // The row navigates via onClick (it can't be a Link because it

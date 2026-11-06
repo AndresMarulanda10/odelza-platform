@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { MainButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type AuthorizeActionButtonsProps = {
   onAuthorize: () => void;
@@ -11,12 +11,12 @@ type AuthorizeActionButtonsProps = {
 
 const StyledButtonContainer = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   grid-template-columns: repeat(
     2,
-    minmax(${themeCssVariables.spacing[0]}, 1fr)
+    minmax(${odelzaThemeCssVariables.spacing[0]}, 1fr)
   );
-  margin-top: ${themeCssVariables.spacing[8]};
+  margin-top: ${odelzaThemeCssVariables.spacing[8]};
   width: 100%;
 `;
 

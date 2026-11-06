@@ -8,7 +8,7 @@ import {
   IconLink,
   IconTable,
 } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { CommandMenuItem } from '@/command-menu/components/CommandMenuItem';
 import { pendingInsertionNavigationMenuItemState } from '@/navigation-menu-item/common/states/pendingInsertionNavigationMenuItemState';
@@ -101,7 +101,7 @@ export const SidePanelNewSidebarItemMainMenu = ({
                     <Avatar
                       placeholder="L"
                       type="rounded"
-                      backgroundColor={themeCssVariables.color.green4}
+                      backgroundColor={odelzaThemeCssVariables.color.green4}
                     />
                   )}
                   label={t`Record`}

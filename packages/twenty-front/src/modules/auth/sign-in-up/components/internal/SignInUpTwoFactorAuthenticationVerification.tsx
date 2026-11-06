@@ -20,14 +20,14 @@ import { Controller } from 'react-hook-form';
 import { AppPath } from 'twenty-shared/types';
 import { MainButton } from 'twenty-ui/input';
 import { ClickToActionLink } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useNavigateApp } from '~/hooks/useNavigateApp';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 import { useSetAtomState } from '@/ui/utilities/state/jotai/hooks/useSetAtomState';
 
 const StyledMainContentContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[8]};
-  margin-top: ${themeCssVariables.spacing[4]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[8]};
+  margin-top: ${odelzaThemeCssVariables.spacing[4]};
   text-align: center;
 `;
 
@@ -40,23 +40,23 @@ const StyledForm = styled.form`
 
 const StyledSlot = styled.div<{ isActive: boolean }>`
   align-items: center;
-  border-bottom: 1px solid ${themeCssVariables.border.color.medium};
-  border-right: 1px solid ${themeCssVariables.border.color.medium};
-  border-top: 1px solid ${themeCssVariables.border.color.medium};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-right: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   display: flex;
   font-size: 2rem;
   height: 3.5rem;
   justify-content: center;
   outline-color: ${({ isActive }) =>
     isActive
-      ? themeCssVariables.border.color.strong
-      : themeCssVariables.border.color.medium};
+      ? odelzaThemeCssVariables.border.color.strong
+      : odelzaThemeCssVariables.border.color.medium};
   outline-style: ${({ isActive }) => (isActive ? 'solid' : 'none')};
   outline-width: ${({ isActive }) => (isActive ? '1px' : '0')};
 
   &:first-of-type {
     border-bottom-left-radius: 0.375rem;
-    border-left: 1px solid ${themeCssVariables.border.color.medium};
+    border-left: 1px solid ${odelzaThemeCssVariables.border.color.medium};
     border-top-left-radius: 0.375rem;
   }
 
@@ -67,7 +67,7 @@ const StyledSlot = styled.div<{ isActive: boolean }>`
 
   .group:hover &,
   .group:focus-within & {
-    border-color: ${themeCssVariables.border.color.medium};
+    border-color: ${odelzaThemeCssVariables.border.color.medium};
   }
 
   position: relative;
@@ -113,7 +113,7 @@ const StyledCaretContainer = styled.div`
 `;
 
 const StyledCaret = styled.div`
-  background-color: ${themeCssVariables.font.color.light};
+  background-color: ${odelzaThemeCssVariables.font.color.light};
   height: 2rem;
   width: 1px;
 `;
@@ -134,8 +134,8 @@ const StyledDashContainer = styled.div`
 `;
 
 const StyledDash = styled.div`
-  background-color: ${themeCssVariables.font.color.primary};
-  border-radius: ${themeCssVariables.border.radius.pill};
+  background-color: ${odelzaThemeCssVariables.font.color.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   corner-shape: round;
   height: 0.25rem;
   width: 0.75rem;
@@ -163,16 +163,16 @@ const StyledSlotGroup = styled.div`
 `;
 const StyledTextContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 
-  margin-bottom: ${themeCssVariables.spacing[4]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
   max-width: 280px;
   text-align: center;
 `;
 
 const StyledActionBackLinkContainer = styled.div`
-  margin: ${themeCssVariables.spacing[3]} 0 0;
+  margin: ${odelzaThemeCssVariables.spacing[3]} 0 0;
 `;
 
 export const SignInUpTOTPVerification = () => {

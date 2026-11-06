@@ -7,7 +7,7 @@ import { useRemoveFocusItemFromFocusStackById } from '@/ui/utilities/focus/hooks
 import { FocusComponentType } from '@/ui/utilities/focus/types/FocusComponentType';
 import { isDefined } from 'twenty-shared/utils';
 import { turnIntoEmptyStringIfWhitespacesOnly } from '~/utils/string/turnIntoEmptyStringIfWhitespacesOnly';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type TextAreaVariant = 'default' | 'transparent';
 
@@ -35,11 +35,11 @@ const StyledContainer = styled.div`
 `;
 
 const StyledLabel = styled.label`
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: block;
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledTextAreaContainer = styled.div<{ variant: TextAreaVariant }>`
@@ -47,25 +47,27 @@ const StyledTextAreaContainer = styled.div<{ variant: TextAreaVariant }>`
     background-color: ${({ variant }) =>
       variant === 'transparent'
         ? 'transparent'
-        : themeCssVariables.background.transparent.lighter};
+        : odelzaThemeCssVariables.background.transparent.lighter};
     border: ${({ variant }) =>
       variant === 'transparent'
         ? 'none'
-        : `1px solid ${themeCssVariables.border.color.medium}`};
+        : `1px solid ${odelzaThemeCssVariables.border.color.medium}`};
     border-radius: ${({ variant }) =>
-      variant === 'transparent' ? '0' : themeCssVariables.border.radius.md};
+      variant === 'transparent'
+        ? '0'
+        : odelzaThemeCssVariables.border.radius.md};
     box-sizing: border-box;
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
     display: block;
     font-family: inherit;
-    font-size: ${themeCssVariables.font.size.md};
-    font-weight: ${themeCssVariables.font.weight.regular};
+    font-size: ${odelzaThemeCssVariables.font.size.md};
+    font-weight: ${odelzaThemeCssVariables.font.weight.regular};
     line-height: ${({ variant }) =>
       variant === 'transparent' ? 'inherit' : '16px'};
     overflow: ${({ variant }) =>
       variant === 'transparent' ? 'hidden' : 'auto'};
     padding: ${({ variant }) =>
-      variant === 'transparent' ? '0' : themeCssVariables.spacing[2]};
+      variant === 'transparent' ? '0' : odelzaThemeCssVariables.spacing[2]};
     resize: none;
     width: 100%;
 
@@ -74,20 +76,20 @@ const StyledTextAreaContainer = styled.div<{ variant: TextAreaVariant }>`
       box-shadow: ${({ variant }) =>
         variant === 'transparent'
           ? 'none'
-          : `0px 0px 0px 3px ${themeCssVariables.color.transparent.blue2}`};
+          : `0px 0px 0px 3px ${odelzaThemeCssVariables.color.transparent.primary2}`};
       border-color: ${({ variant }) =>
         variant === 'transparent'
           ? 'transparent'
-          : themeCssVariables.color.blue};
+          : odelzaThemeCssVariables.color.primary};
     }
 
     &::placeholder {
-      color: ${themeCssVariables.font.color.light};
-      font-weight: ${themeCssVariables.font.weight.regular};
+      color: ${odelzaThemeCssVariables.font.color.light};
+      font-weight: ${odelzaThemeCssVariables.font.weight.regular};
     }
 
     &:disabled {
-      color: ${themeCssVariables.font.color.tertiary};
+      color: ${odelzaThemeCssVariables.font.color.tertiary};
     }
   }
 `;

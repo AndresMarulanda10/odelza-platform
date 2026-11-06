@@ -1,18 +1,18 @@
 .labelContainer {
-  background-color: var(--t-background-transparent-lighter);
-  border-color: var(--t-border-color-medium);
-  color: var(--t-font-color-primary);
-  border-radius: var(--t-border-radius-sm);
+  background-color: var(--odz-background-transparent-lighter);
+  border-color: var(--odz-border-color-medium);
+  color: var(--odz-font-color-primary);
+  border-radius: var(--odz-border-radius-sm);
   border-style: solid;
   border-width: 1px;
-  column-gap: var(--t-spacing-2);
+  column-gap: var(--odz-spacing-2);
   display: inline-flex;
   align-items: center;
   height: 24px;
   box-sizing: border-box;
-  font-size: var(--t-font-size-md);
+  font-size: var(--odz-font-size-md);
   white-space: nowrap;
-  padding-inline: var(--t-spacing-2);
+  padding-inline: var(--odz-spacing-2);
 
   > span {
     align-items: center;
@@ -22,13 +22,13 @@
 }
 
 .blue {
-  background-color: var(--t-color-blue3);
-  border-color: var(--t-color-blue5);
-  color: var(--t-color-blue);
+  background-color: var(--odz-color-blue3);
+  border-color: var(--odz-color-blue5);
+  color: var(--odz-color-blue);
 }
 
 .red {
-  background-color: var(--t-background-danger);
-  border-color: var(--t-border-color-danger);
-  color: var(--t-font-color-danger);
+  background-color: var(--odz-background-danger);
+  border-color: var(--odz-border-color-danger);
+  color: var(--odz-font-color-danger);
 }

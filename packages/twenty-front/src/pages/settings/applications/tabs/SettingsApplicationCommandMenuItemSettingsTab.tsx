@@ -8,7 +8,7 @@ import { t } from '@lingui/core/macro';
 import { type ReactNode } from 'react';
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsApplicationCommandMenuItemSettingsTabProps = {
   label: string;
@@ -24,9 +24,9 @@ type SettingsApplicationCommandMenuItemSettingsTabProps = {
 };
 
 const StyledMonoText = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-family: ${themeCssVariables.code.font.family}, monospace;
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-family: ${odelzaThemeCssVariables.code.font.family}, monospace;
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -131,7 +131,7 @@ export const SettingsApplicationCommandMenuItemSettingsTab = ({
         <TableSection title={t`Command menu item`}>
           {detailRows.map((row) => (
             <TableRow key={row.key} gridTemplateColumns={GRID_TEMPLATE}>
-              <TableCell color={themeCssVariables.font.color.secondary}>
+              <TableCell color={odelzaThemeCssVariables.font.color.secondary}>
                 {row.label}
               </TableCell>
               <TableCell minWidth="0" overflow="hidden">

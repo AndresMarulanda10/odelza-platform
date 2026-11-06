@@ -11,42 +11,42 @@ import { activeTabIdComponentState } from '@/ui/layout/tab-list/states/activeTab
 import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
 import { styled } from '@linaria/react';
 import { useMemo } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledGridOverlay = styled.div<{
   isDragSelecting?: boolean;
   breakpoint: PageLayoutBreakpoint;
 }>`
-  bottom: ${themeCssVariables.spacing[2]};
+  bottom: ${odelzaThemeCssVariables.spacing[2]};
   display: grid;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   grid-auto-rows: 55px;
   grid-template-columns: ${({ breakpoint }) =>
     breakpoint === 'mobile' ? '1fr' : 'repeat(12, 1fr)'};
-  left: ${themeCssVariables.spacing[2]};
+  left: ${odelzaThemeCssVariables.spacing[2]};
   pointer-events: ${({ isDragSelecting }) =>
     isDragSelecting ? 'auto' : 'none'};
   position: absolute;
-  right: ${themeCssVariables.spacing[2]};
-  top: ${themeCssVariables.spacing[2]};
+  right: ${odelzaThemeCssVariables.spacing[2]};
+  top: ${odelzaThemeCssVariables.spacing[2]};
   z-index: ${PAGE_LAYOUT_GRID_OVERLAY_Z_INDEX};
 `;
 
 const StyledGridCell = styled.div<{ isSelected?: boolean }>`
   background: ${({ isSelected }) =>
-    isSelected ? themeCssVariables.color.blue3 : 'transparent'};
+    isSelected ? odelzaThemeCssVariables.color.primary3 : 'transparent'};
   border: 1px solid
     ${({ isSelected }) =>
       isSelected
-        ? themeCssVariables.color.blue7
-        : themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.md};
+        ? odelzaThemeCssVariables.color.primary7
+        : odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background: ${themeCssVariables.background.transparent.lighter};
-    border-color: ${themeCssVariables.border.color.medium};
+    background: ${odelzaThemeCssVariables.background.transparent.lighter};
+    border-color: ${odelzaThemeCssVariables.border.color.medium};
   }
 `;
 

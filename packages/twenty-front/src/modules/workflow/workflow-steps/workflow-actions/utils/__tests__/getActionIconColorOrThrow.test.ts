@@ -1,6 +1,6 @@
 import { type WorkflowActionType } from '@/workflow/types/Workflow';
 import { getActionIconColorOrThrow } from '@/workflow/workflow-steps/workflow-actions/utils/getActionIconColorOrThrow';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 describe('getActionIconColorOrThrow', () => {
   it('returns red for CODE, HTTP_REQUEST, SEND_EMAIL, DRAFT_EMAIL, LOGIC_FUNCTION', () => {
@@ -13,7 +13,7 @@ describe('getActionIconColorOrThrow', () => {
     ];
     redActions.forEach((actionType) => {
       expect(getActionIconColorOrThrow(actionType)).toBe(
-        themeCssVariables.color.red,
+        odelzaThemeCssVariables.color.red,
       );
     });
   });
@@ -28,14 +28,14 @@ describe('getActionIconColorOrThrow', () => {
     ];
     recordActions.forEach((actionType) => {
       expect(getActionIconColorOrThrow(actionType)).toBe(
-        themeCssVariables.font.color.tertiary,
+        odelzaThemeCssVariables.font.color.tertiary,
       );
     });
   });
 
   it('returns orange for FORM', () => {
     expect(getActionIconColorOrThrow('FORM')).toBe(
-      themeCssVariables.color.orange,
+      odelzaThemeCssVariables.color.orange,
     );
   });
 
@@ -49,14 +49,14 @@ describe('getActionIconColorOrThrow', () => {
     ];
     greenActions.forEach((actionType) => {
       expect(getActionIconColorOrThrow(actionType)).toBe(
-        themeCssVariables.color.green12,
+        odelzaThemeCssVariables.color.green12,
       );
     });
   });
 
   it('returns pink for AI_AGENT', () => {
     expect(getActionIconColorOrThrow('AI_AGENT')).toBe(
-      themeCssVariables.color.pink,
+      odelzaThemeCssVariables.color.pink,
     );
   });
 

@@ -7,18 +7,18 @@ import { isDefined } from 'twenty-shared/utils';
 import { IconArrowsSort, IconTrash } from 'twenty-ui/icon';
 import { Button, type SelectOption } from 'twenty-ui/input';
 import { Select } from '@/ui/input/components/Select';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { v4 as uuidv4 } from 'uuid';
 import { ViewSortDirection } from '~/generated-metadata/graphql';
 
 const StyledSortItemContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledAddButtonContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[1]};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type RecordTableSettingsSortsContentProps = {

@@ -9,7 +9,7 @@
 
 export { MOBILE_VIEWPORT } from './constants';
 export { getNextThemeColor } from './getNextThemeColor';
-export { themeCssVariables } from './themeCssVariables';
+export { odelzaThemeCssVariables } from './odelzaThemeCssVariables';
 export type {
   ThemeType,
   ThemeContextType,

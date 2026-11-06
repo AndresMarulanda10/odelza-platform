@@ -9,20 +9,20 @@ import { useLingui } from '@lingui/react/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { Callout } from 'twenty-ui/feedback';
 import { IconInfoCircle } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledEmptyState = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  border: 1px dashed ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.md};
-  padding: ${themeCssVariables.spacing[4]};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px dashed ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
   text-align: center;
 `;
 
 const StyledCalloutWrapper = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[6]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 export const SettingsLogicFunctionTriggersTab = ({

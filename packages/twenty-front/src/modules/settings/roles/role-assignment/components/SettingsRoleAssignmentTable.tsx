@@ -17,25 +17,25 @@ import { H2Title } from 'twenty-ui/typography';
 import { type Agent, type ApiKeyForRole } from '~/generated-metadata/graphql';
 import { normalizeSearchText } from '~/utils/normalizeSearchText';
 import { type PartialWorkspaceMember } from '@/settings/roles/types/RoleWithPartialMembers';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledTable = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
 `;
 
 const StyledTableRows = styled.div`
-  gap: ${themeCssVariables.spacing['0.5']};
-  padding-block: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing['0.5']};
+  padding-block: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSearchContainer = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSearchInputContainer = styled.div`
   > * input {
-    background: ${themeCssVariables.background.transparent.lighter};
-    border: 1px solid ${themeCssVariables.border.color.medium};
+    background: ${odelzaThemeCssVariables.background.transparent.lighter};
+    border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   }
 `;
 
@@ -172,7 +172,7 @@ export const SettingsRoleAssignmentTable = <T extends RoleTargetType>({
           ))}
 
           {filteredRoleTargets.length === 0 && (
-            <TableCell color={themeCssVariables.font.color.tertiary}>
+            <TableCell color={odelzaThemeCssVariables.font.color.tertiary}>
               {tableConfig[roleTargetType].emptyStateText}
             </TableCell>
           )}

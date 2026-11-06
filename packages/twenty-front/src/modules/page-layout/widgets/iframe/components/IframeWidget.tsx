@@ -5,11 +5,11 @@ import { WidgetSkeletonLoader } from '@/page-layout/widgets/components/WidgetSke
 import { styled } from '@linaria/react';
 import { useState } from 'react';
 import { getSafeUrl, isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div<{ $isEditMode: boolean }>`
-  background: ${themeCssVariables.background.primary};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -29,11 +29,11 @@ const StyledIframe = styled.iframe<{ $isEditMode: boolean }>`
 `;
 
 const StyledLoadingContainer = styled.div`
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   bottom: 0;
   left: 0;
-  padding-left: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
   pointer-events: none;
   position: absolute;
   right: 0;
@@ -47,7 +47,7 @@ const StyledErrorContainer = styled.div`
   flex-direction: column;
   height: 100%;
   justify-content: center;
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
   text-align: center;
 `;
 

@@ -20,7 +20,10 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { Temporal } from 'temporal-polyfill';
 import { type Nullable } from 'twenty-shared/types';
 import { isDefined, turnJSDateToPlainDate } from 'twenty-shared/utils';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 export const MONTH_AND_YEAR_DROPDOWN_MONTH_SELECT_ID =
   'date-picker-month-and-year-dropdown-month-select';
@@ -30,21 +33,21 @@ export const MONTH_AND_YEAR_DROPDOWN_YEAR_SELECT_ID =
 const DATE_PICKER_SKELETON_PADDING = 16;
 
 const StyledSpacer = styled.div`
-  height: ${themeCssVariables.spacing[2]};
+  height: ${odelzaThemeCssVariables.spacing[2]};
   width: auto;
 `;
 
 const StyledDatePickerFallback = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
-  border-radius: ${themeCssVariables.border.radius.md};
-  color: ${themeCssVariables.font.color.tertiary};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   height: 300px;
   justify-content: center;
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
   width: 280px;
 `;
 

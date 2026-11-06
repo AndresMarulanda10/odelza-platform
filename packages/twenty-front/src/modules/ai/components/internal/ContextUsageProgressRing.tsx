@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type ContextUsageProgressRingProps = {
   percentage: number;
@@ -15,8 +15,8 @@ const StyledBackgroundCircle = styled.circle`
   fill: none;
   stroke: color-mix(
     in srgb,
-    ${themeCssVariables.border.color.strong} 50%,
-    ${themeCssVariables.background.quaternary} 50%
+    ${odelzaThemeCssVariables.border.color.strong} 50%,
+    ${odelzaThemeCssVariables.background.quaternary} 50%
   );
 `;
 
@@ -38,10 +38,10 @@ export const ContextUsageProgressRing = ({
 
   const progressColor =
     normalizedPercentage > 80
-      ? themeCssVariables.color.red
+      ? odelzaThemeCssVariables.color.red
       : normalizedPercentage > 60
-        ? themeCssVariables.color.orange
-        : themeCssVariables.color.blue;
+        ? odelzaThemeCssVariables.color.orange
+        : odelzaThemeCssVariables.color.primary;
 
   return (
     <StyledSvg width={size} height={size}>

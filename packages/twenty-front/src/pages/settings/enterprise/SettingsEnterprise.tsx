@@ -42,7 +42,7 @@ import {
 } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { H2Title } from 'twenty-ui/typography';
 import { isGraphqlErrorOfType } from '~/utils/is-graphql-error-of-type.util';
 
@@ -64,7 +64,9 @@ type SubscriptionStatus = {
 
 const StyledStatusDot = styled.div<{ isActive: boolean }>`
   background-color: ${({ isActive }) =>
-    isActive ? themeCssVariables.color.green : themeCssVariables.color.red};
+    isActive
+      ? odelzaThemeCssVariables.color.green
+      : odelzaThemeCssVariables.color.red};
   border-radius: 50%;
   corner-shape: round;
   height: 8px;
@@ -74,18 +76,18 @@ const StyledStatusDot = styled.div<{ isActive: boolean }>`
 const StyledStatusContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledCancellationNotice = styled.div`
-  color: ${themeCssVariables.font.color.danger};
-  font-size: ${themeCssVariables.font.size.sm};
-  margin-top: ${themeCssVariables.spacing[3]};
+  color: ${odelzaThemeCssVariables.font.color.danger};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  margin-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledInputContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
@@ -99,7 +101,7 @@ const StyledActivateButtonWrapper = styled.div`
 `;
 
 const StyledSpacer = styled.div`
-  height: ${themeCssVariables.spacing[4]};
+  height: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 export const SettingsEnterprise = ({
@@ -527,7 +529,7 @@ export const SettingsEnterprise = ({
           <Button
             Icon={IconKey}
             title={isActivating ? t`Activating...` : t`Activate`}
-            accent="blue"
+            accent="primary"
             onClick={handleActivate}
             disabled={isActivating || !enterpriseKey.trim()}
           />
@@ -550,7 +552,7 @@ export const SettingsEnterprise = ({
             : t`Release & transfer to this server`
         }
         variant="secondary"
-        accent="blue"
+        accent="primary"
         onClick={() =>
           openModal(RELEASE_ENTERPRISE_BINDING_CONFIRMATION_MODAL_ID)
         }
@@ -667,7 +669,7 @@ export const SettingsEnterprise = ({
                 isRefreshingToken ? t`Reloading...` : t`Reload validity token`
               }
               variant="secondary"
-              accent="blue"
+              accent="primary"
               onClick={handleRefreshValidityToken}
               disabled={isRefreshingToken}
             />
@@ -881,7 +883,7 @@ export const SettingsEnterprise = ({
               Icon={IconCreditCard}
               title={t`Go to billing portal`}
               variant="secondary"
-              accent="blue"
+              accent="primary"
               onClick={openBillingPortal}
             />
           </Section>
@@ -959,7 +961,7 @@ export const SettingsEnterprise = ({
         title={t`Release & transfer enterprise key`}
         subtitle={t`This enterprise key is currently bound to a different server instance. Transferring it here will release it from the previous server and stop counting seats on it. Are you sure you want to continue?`}
         confirmButtonText={t`Release & transfer`}
-        confirmButtonAccent="blue"
+        confirmButtonAccent="primary"
         loading={isReleasing}
         onConfirmClick={handleReleaseBinding}
       />

@@ -1,7 +1,7 @@
 import { FORM_FIELD_PLACEHOLDER_STYLES } from '@/object-record/record-field/ui/form-types/constants/FormFieldPlaceholderStyles';
 import { styled } from '@linaria/react';
 import { EditorContent, type Editor } from '@tiptap/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledEditor = styled.div<{
   multiline?: boolean;
@@ -11,7 +11,7 @@ const StyledEditor = styled.div<{
   display: flex;
   height: 100%;
   padding-right: ${({ multiline }) =>
-    multiline ? themeCssVariables.spacing[8] : '0'};
+    multiline ? odelzaThemeCssVariables.spacing[8] : '0'};
   width: 100%;
   .editor-content {
     width: 100%;
@@ -23,18 +23,19 @@ const StyledEditor = styled.div<{
     box-sizing: border-box;
     color: ${({ readonly }) =>
       readonly
-        ? themeCssVariables.font.color.light
-        : themeCssVariables.font.color.primary};
+        ? odelzaThemeCssVariables.font.color.light
+        : odelzaThemeCssVariables.font.color.primary};
     display: flex;
-    font-family: ${themeCssVariables.font.family};
-    font-weight: ${themeCssVariables.font.weight.regular};
+    font-family: ${odelzaThemeCssVariables.font.family};
+    font-weight: ${odelzaThemeCssVariables.font.weight.regular};
     &::-webkit-scrollbar {
       display: none;
     }
     height: ${({ multiline }) => (multiline ? 'auto' : '100%')};
     overflow-x: auto;
     overflow-y: hidden;
-    padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
+    padding: ${odelzaThemeCssVariables.spacing[1]}
+      ${odelzaThemeCssVariables.spacing[2]};
     scrollbar-width: none;
     white-space: ${({ multiline }) => (multiline ? 'pre' : 'nowrap')};
 
@@ -51,17 +52,17 @@ const StyledEditor = styled.div<{
     }
 
     .variable-tag {
-      background-color: ${themeCssVariables.color.blue3};
-      border-radius: ${themeCssVariables.border.radius.md};
-      color: ${themeCssVariables.color.blue};
-      padding: ${themeCssVariables.spacing[1]};
+      background-color: ${odelzaThemeCssVariables.color.primary3};
+      border-radius: ${odelzaThemeCssVariables.border.radius.md};
+      color: ${odelzaThemeCssVariables.color.primary};
+      padding: ${odelzaThemeCssVariables.spacing[1]};
     }
 
     .text-tag {
-      background-color: ${themeCssVariables.color.blue3};
-      border-radius: ${themeCssVariables.border.radius.md};
-      color: ${themeCssVariables.color.blue};
-      padding: ${themeCssVariables.spacing[1]};
+      background-color: ${odelzaThemeCssVariables.color.primary3};
+      border-radius: ${odelzaThemeCssVariables.border.radius.md};
+      color: ${odelzaThemeCssVariables.color.primary};
+      padding: ${odelzaThemeCssVariables.spacing[1]};
     }
   }
 

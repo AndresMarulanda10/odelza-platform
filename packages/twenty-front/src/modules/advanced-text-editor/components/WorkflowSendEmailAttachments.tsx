@@ -12,7 +12,10 @@ import { useContext, useId } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { type WorkflowEmailFiles } from 'twenty-shared/workflow';
 import { IconUpload } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type WorkflowSendEmailAttachmentsProps = {
   files: WorkflowEmailFiles;
@@ -33,29 +36,31 @@ const StyledRow = styled.div`
 `;
 
 const StyledUploadArea = styled.div<{ hasFiles: boolean; hasPicker: boolean }>`
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-bottom-left-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-bottom-left-radius: ${odelzaThemeCssVariables.border.radius.sm};
   border-bottom-right-radius: ${({ hasPicker }) =>
-    hasPicker ? '0' : themeCssVariables.border.radius.sm};
+    hasPicker ? '0' : odelzaThemeCssVariables.border.radius.sm};
   border-right: ${({ hasPicker }) =>
-    hasPicker ? 'none' : `1px solid ${themeCssVariables.border.color.medium}`};
-  border-top-left-radius: ${themeCssVariables.border.radius.sm};
+    hasPicker
+      ? 'none'
+      : `1px solid ${odelzaThemeCssVariables.border.color.medium}`};
+  border-top-left-radius: ${odelzaThemeCssVariables.border.radius.sm};
   border-top-right-radius: ${({ hasPicker }) =>
-    hasPicker ? '0' : themeCssVariables.border.radius.sm};
+    hasPicker ? '0' : odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: center;
   min-height: ${({ hasFiles }) => (hasFiles ? 'auto' : '24px')};
-  padding-bottom: ${themeCssVariables.spacing[1]};
-  padding-left: ${themeCssVariables.spacing[2]};
-  padding-right: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[1]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[1]};
 
   &:hover {
-    background-color: ${themeCssVariables.background.transparent.light};
-    border-color: ${themeCssVariables.border.color.strong};
+    background-color: ${odelzaThemeCssVariables.background.transparent.light};
+    border-color: ${odelzaThemeCssVariables.border.color.strong};
   }
 `;
 
@@ -63,7 +68,7 @@ const StyledChipsContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledVariableChipWrapper = styled.span`
@@ -71,11 +76,11 @@ const StyledVariableChipWrapper = styled.span`
 `;
 
 const StyledUploadAreaLabel = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: center;
 `;
 

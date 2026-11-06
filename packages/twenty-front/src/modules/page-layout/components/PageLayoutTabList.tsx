@@ -48,20 +48,20 @@ import { useAvailableComponentInstanceIdOrThrow } from '@/ui/utilities/state/com
 import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
 import { SidePanelPages } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type PageLayoutType } from '~/generated-metadata/graphql';
 
 const StyledContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   height: ${TAB_LIST_HEIGHT};
-  padding-left: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
   position: relative;
   user-select: none;
   width: 100%;
 
   &::after {
-    background-color: ${themeCssVariables.border.color.light};
+    background-color: ${odelzaThemeCssVariables.border.color.light};
     bottom: 0;
     content: '';
     height: 1px;

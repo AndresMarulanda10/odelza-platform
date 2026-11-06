@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { useInView } from 'react-intersection-observer';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type CustomResolverFetchMoreLoaderProps = {
   loading: boolean;
@@ -15,11 +15,11 @@ const StyledContainer = styled.div`
 const StyledText = styled.div`
   align-items: center;
   box-shadow: none;
-  color: ${themeCssVariables.grayScale.gray9};
+  color: ${odelzaThemeCssVariables.grayScale.gray9};
   display: flex;
   height: 32px;
-  margin-left: ${themeCssVariables.spacing[8]};
-  padding-left: ${themeCssVariables.spacing[2]};
+  margin-left: ${odelzaThemeCssVariables.spacing[8]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const CustomResolverFetchMoreLoader = ({

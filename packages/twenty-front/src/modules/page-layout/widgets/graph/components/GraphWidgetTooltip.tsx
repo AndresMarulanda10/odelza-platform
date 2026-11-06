@@ -8,13 +8,16 @@ import { isNonEmptyString } from '@sniptt/guards';
 import { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconArrowUpRight } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledTooltip = styled.div`
-  background: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.md};
-  box-shadow: ${themeCssVariables.boxShadow.strong};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -26,47 +29,47 @@ const StyledTooltip = styled.div`
 const StyledTooltipContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
-  padding: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTooltipRow = styled.div`
   align-items: center;
   display: flex;
 
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTooltipRowContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   max-height: ${GRAPH_TOOLTIP_SCROLL_MAX_HEIGHT_PX}px;
   overflow-y: auto;
 `;
 
 const StyledTooltipLink = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   cursor: pointer;
   display: flex;
-  font-weight: ${themeCssVariables.font.weight.regular};
-  height: ${themeCssVariables.spacing[6]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   justify-content: space-between;
   line-height: 140%;
-  padding-inline: ${themeCssVariables.spacing[2]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTooltipSeparator = styled.div`
-  background-color: ${themeCssVariables.border.color.light};
+  background-color: ${odelzaThemeCssVariables.border.color.light};
   min-height: 1px;
   width: 100%;
 `;
 
 const StyledTooltipHeader = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   line-height: 140%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -75,11 +78,11 @@ const StyledTooltipHeader = styled.div`
 
 const StyledTooltipRowRightContent = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.extraLight};
+  color: ${odelzaThemeCssVariables.font.color.extraLight};
   display: flex;
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  gap: ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: space-between;
   min-width: 0;
   width: 100%;
@@ -88,13 +91,13 @@ const StyledTooltipRowRightContent = styled.div`
 const StyledTooltipLabel = styled.span<{ isHighlighted?: boolean }>`
   color: ${({ isHighlighted }) =>
     isHighlighted
-      ? themeCssVariables.font.color.secondary
-      : themeCssVariables.font.color.tertiary};
+      ? odelzaThemeCssVariables.font.color.secondary
+      : odelzaThemeCssVariables.font.color.tertiary};
   flex: 1;
   font-weight: ${({ isHighlighted }) =>
     isHighlighted
-      ? themeCssVariables.font.weight.medium
-      : themeCssVariables.font.weight.regular};
+      ? odelzaThemeCssVariables.font.weight.medium
+      : odelzaThemeCssVariables.font.weight.regular};
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -102,20 +105,20 @@ const StyledTooltipLabel = styled.span<{ isHighlighted?: boolean }>`
 `;
 
 const StyledNoDataMessage = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.xs};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
 `;
 
 const StyledTooltipValue = styled.span<{ isHighlighted?: boolean }>`
   color: ${({ isHighlighted }) =>
     isHighlighted
-      ? themeCssVariables.font.color.tertiary
-      : themeCssVariables.font.color.extraLight};
+      ? odelzaThemeCssVariables.font.color.tertiary
+      : odelzaThemeCssVariables.font.color.extraLight};
   flex-shrink: 0;
   font-weight: ${({ isHighlighted }) =>
     isHighlighted
-      ? themeCssVariables.font.weight.semiBold
-      : themeCssVariables.font.weight.medium};
+      ? odelzaThemeCssVariables.font.weight.semiBold
+      : odelzaThemeCssVariables.font.weight.medium};
   white-space: nowrap;
 `;
 
@@ -124,9 +127,10 @@ const StyledHorizontalSectionPadding = styled.div<{
   addBottom?: boolean;
 }>`
   margin-bottom: ${({ addBottom }) =>
-    addBottom ? themeCssVariables.spacing[1] : 0};
-  margin-top: ${({ addTop }) => (addTop ? themeCssVariables.spacing[1] : 0)};
-  padding-inline: ${themeCssVariables.spacing[1]};
+    addBottom ? odelzaThemeCssVariables.spacing[1] : 0};
+  margin-top: ${({ addTop }) =>
+    addTop ? odelzaThemeCssVariables.spacing[1] : 0};
+  padding-inline: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export type GraphWidgetTooltipItem = {

@@ -13,13 +13,13 @@
   }
 
   &:has(.input:focus-visible) {
-    box-shadow: 0 0 0 3px var(--t-color-blue3);
+    box-shadow: 0 0 0 3px var(--odz-color-primary3);
   }
 }
 
 .track {
-  background: var(--t-background-tertiary);
-  border-radius: var(--t-border-radius-pill);
+  background: var(--odz-background-tertiary);
+  border-radius: var(--odz-border-radius-pill);
   corner-shape: round;
   height: var(--slider-track-size);
   inset: 0;
@@ -29,7 +29,7 @@
 
 .fill {
   background: var(--slider-main-color);
-  border-radius: var(--t-border-radius-pill);
+  border-radius: var(--odz-border-radius-pill);
   corner-shape: round;
   height: 100%;
   left: 0;
@@ -39,8 +39,8 @@
   width: var(--slider-fill);
 
   &::after {
-    background: var(--t-background-primary);
-    border-radius: var(--t-border-radius-rounded);
+    background: var(--odz-background-primary);
+    border-radius: var(--odz-border-radius-rounded);
     corner-shape: round;
     content: '';
     height: var(--slider-thumb-size);
@@ -72,7 +72,7 @@
     appearance: none;
     background: transparent;
     border: 0;
-    border-radius: var(--t-border-radius-rounded);
+    border-radius: var(--odz-border-radius-rounded);
     corner-shape: round;
     height: var(--slider-thumb-size);
     margin-top: 2px;
@@ -88,7 +88,7 @@
   &::-moz-range-thumb {
     background: transparent;
     border: 0;
-    border-radius: var(--t-border-radius-rounded);
+    border-radius: var(--odz-border-radius-rounded);
     corner-shape: round;
     height: var(--slider-thumb-size);
     width: var(--slider-thumb-size);

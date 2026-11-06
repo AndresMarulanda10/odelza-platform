@@ -1,17 +1,17 @@
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { styled } from '@linaria/react';
 
 const StyledDropdownMenuSectionLabel = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.xxs};
+  font-size: ${odelzaThemeCssVariables.font.size.xxs};
   justify-content: flex-start;
   min-height: 20px;
-  padding-left: ${themeCssVariables.spacing[2]};
-  padding-right: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
   user-select: none;
   width: 100%;
 `;

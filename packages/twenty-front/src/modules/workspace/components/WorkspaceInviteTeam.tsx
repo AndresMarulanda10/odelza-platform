@@ -22,14 +22,17 @@ import {
   type IconComponent,
 } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[2]};
-  padding-bottom: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[3]};
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
     flex-wrap: wrap;
@@ -220,7 +223,7 @@ export const WorkspaceInviteTeam = ({ roles }: WorkspaceInviteTeamProps) => {
         <Button
           Icon={IconSend}
           variant="primary"
-          accent="blue"
+          accent="primary"
           title={t`Invite`}
           type="submit"
           disabled={isEmailsEmpty || !!errors.emails}

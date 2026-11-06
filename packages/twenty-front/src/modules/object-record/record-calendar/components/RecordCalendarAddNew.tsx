@@ -13,12 +13,15 @@ import { useContext } from 'react';
 import { type Temporal } from 'temporal-polyfill';
 import { IconPlus } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledButtonContainer = styled.div`
   height: auto;
   min-width: unset;
-  padding: ${themeCssVariables.spacing['0.5']};
+  padding: ${odelzaThemeCssVariables.spacing['0.5']};
 `;
 
 type RecordCalendarAddNewProps = {

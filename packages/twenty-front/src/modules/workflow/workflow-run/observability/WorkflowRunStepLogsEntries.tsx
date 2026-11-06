@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { type WorkflowRunStepLog } from 'twenty-shared/workflow';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { MONOSPACE_FONT_FAMILY } from '@/ui/theme/constants/MonospaceFontFamily';
 import {
@@ -10,50 +10,51 @@ import {
 } from '@/workflow/workflow-run/observability/workflowRunStepLogsStyles';
 
 const StyledEntriesList = styled.div`
-  background: ${themeCssVariables.background.tertiary};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background: ${odelzaThemeCssVariables.background.tertiary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   flex-direction: column;
   font-family: ${MONOSPACE_FONT_FAMILY};
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   max-height: 300px;
   overflow-y: auto;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledEntryRow = styled.div`
   align-items: baseline;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: grid;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   grid-template-columns: max-content max-content 1fr;
-  padding: ${themeCssVariables.spacing['0.5']} 0;
+  padding: ${odelzaThemeCssVariables.spacing['0.5']} 0;
 `;
 
 const StyledTimestamp = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
 `;
 
 const StyledLevelBadge = styled.span<{ level: string }>`
   background: ${({ level }) => {
     if (level === 'error')
-      return themeCssVariables.background.transparent.danger;
+      return odelzaThemeCssVariables.background.transparent.danger;
     if (level === 'warn')
-      return themeCssVariables.background.transparent.orange;
-    if (level === 'info') return themeCssVariables.background.transparent.blue;
-    return themeCssVariables.background.transparent.light;
+      return odelzaThemeCssVariables.background.transparent.orange;
+    if (level === 'info')
+      return odelzaThemeCssVariables.color.transparent.blue3;
+    return odelzaThemeCssVariables.background.transparent.light;
   }};
-  border-radius: ${themeCssVariables.border.radius.xs};
+  border-radius: ${odelzaThemeCssVariables.border.radius.xs};
   color: ${({ level }) => {
-    if (level === 'error') return themeCssVariables.color.red;
-    if (level === 'warn') return themeCssVariables.color.orange;
-    if (level === 'info') return themeCssVariables.color.blue;
-    return themeCssVariables.font.color.tertiary;
+    if (level === 'error') return odelzaThemeCssVariables.color.red;
+    if (level === 'warn') return odelzaThemeCssVariables.color.orange;
+    if (level === 'info') return odelzaThemeCssVariables.color.blue;
+    return odelzaThemeCssVariables.font.color.tertiary;
   }};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  padding: 0 ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
   text-transform: uppercase;
 `;
 

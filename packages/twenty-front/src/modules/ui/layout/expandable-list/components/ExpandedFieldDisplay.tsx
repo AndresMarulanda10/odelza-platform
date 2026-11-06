@@ -4,7 +4,7 @@ import { useListenClickOutside } from '@/ui/utilities/pointer-event/hooks/useLis
 import { styled } from '@linaria/react';
 import { flip, FloatingPortal, offset, useFloating } from '@floating-ui/react';
 import { type ReactNode } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type ExpandedFieldDisplayProps = {
   anchorElement?: HTMLElement;
@@ -16,11 +16,11 @@ const StyledExpandedFieldContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 300px;
   overflow: auto;
   overflow-y: auto;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   position: relative;
   width: 400px;
 `;

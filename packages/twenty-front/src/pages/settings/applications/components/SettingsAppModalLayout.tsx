@@ -9,7 +9,7 @@ import {
   type ModalPadding,
   type ModalSize,
 } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type StyledAppModalBaseProps = React.PropsWithChildren<{
   modalId: string;
@@ -84,7 +84,7 @@ const StyledAppModalButtonContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const StyledAppModalButton = (
@@ -101,7 +101,7 @@ export const StyledAppModalTitle = styled.div`
 `;
 
 const StyledAppModalSectionContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[6]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 export const StyledAppModalSection = ({

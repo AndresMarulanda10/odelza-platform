@@ -66,7 +66,7 @@ export const Default: Story = {
       </ModalContent>
       <ModalFooter>
         <Button title="Cancel" variant="secondary" />
-        <Button title="Save" variant="primary" accent="blue" />
+        <Button title="Save" variant="primary" accent="primary" />
       </ModalFooter>
     </Modal>
   ),
@@ -148,7 +148,7 @@ export const Small: Story = {
       </ModalContent>
       <ModalFooter>
         <Button title="No" variant="secondary" />
-        <Button title="Yes, archive" variant="primary" accent="blue" />
+        <Button title="Yes, archive" variant="primary" accent="primary" />
       </ModalFooter>
     </Modal>
   ),
@@ -184,7 +184,7 @@ export const ExtraLarge: Story = {
       </ModalContent>
       <ModalFooter>
         <Button title="Cancel" variant="secondary" />
-        <Button title="Upload & import" variant="primary" accent="blue" />
+        <Button title="Upload & import" variant="primary" accent="primary" />
       </ModalFooter>
     </Modal>
   ),
@@ -212,7 +212,7 @@ const InteractiveModal = () => {
       <Button
         title="Open Modal"
         variant="primary"
-        accent="blue"
+        accent="primary"
         onClick={() => setIsOpen(true)}
       />
       <Modal
@@ -246,7 +246,7 @@ const InteractiveModal = () => {
           <Button
             title="Create"
             variant="primary"
-            accent="blue"
+            accent="primary"
             onClick={() => setIsOpen(false)}
           />
         </ModalFooter>

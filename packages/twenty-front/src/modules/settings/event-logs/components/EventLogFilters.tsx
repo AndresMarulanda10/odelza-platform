@@ -9,7 +9,7 @@ import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { IconBox, IconUser, useIcons } from 'twenty-ui/icon';
 import { type SelectOption } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { EventLogTable } from '~/generated-metadata/graphql';
 
@@ -23,7 +23,8 @@ type EventLogFiltersProps = {
 
 const StyledFiltersGrid = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[3]} ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[3]}
+    ${odelzaThemeCssVariables.spacing[4]};
   grid-template-columns: 1fr 1fr;
 `;
 
@@ -33,7 +34,7 @@ const StyledFullWidthField = styled.div`
 
 const StyledPeriodRow = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   grid-template-columns: 1fr 1fr;
 `;
 

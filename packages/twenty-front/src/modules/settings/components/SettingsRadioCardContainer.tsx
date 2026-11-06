@@ -1,12 +1,12 @@
 import { styled } from '@linaria/react';
 import { SettingsRadioCard } from '@/settings/components/SettingsRadioCard';
 import { type IconComponent } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledRadioCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 type SettingsRadioCardContainerProps = {

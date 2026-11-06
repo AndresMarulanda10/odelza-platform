@@ -16,7 +16,7 @@ import { Tag, type TagColor } from 'twenty-ui/data-display';
 import { IconCopy } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   GetSigningKeysDocument,
   type SigningKeyDto,
@@ -112,7 +112,10 @@ export const SettingsAdminSigningKeysTable = () => {
                 key={signingKey.id}
                 gridTemplateColumns={SIGNING_KEYS_GRID_TEMPLATE_COLUMNS}
               >
-                <TableCell overflow="hidden" gap={themeCssVariables.spacing[1]}>
+                <TableCell
+                  overflow="hidden"
+                  gap={odelzaThemeCssVariables.spacing[1]}
+                >
                   <OverflowingTextWithTooltip
                     text={signingKey.id}
                     tooltipContent={t`Created on ${beautifyExactDateTime(signingKey.createdAt)}`}

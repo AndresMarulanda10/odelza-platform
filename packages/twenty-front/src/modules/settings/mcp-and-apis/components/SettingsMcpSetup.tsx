@@ -13,32 +13,35 @@ import {
 } from '@/settings/mcp-and-apis/utils/mcpSetup';
 import { CodeEditor, CoreEditorHeader } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { H2Title } from 'twenty-ui/typography';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
 
 const StyledMcpEditorHeaderTitle = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledMcpIcon = styled(ModelContextProtocolLogo)`
   color: inherit;
   flex-shrink: 0;
-  height: calc(${themeCssVariables.icon.size.md} * 1px);
-  width: calc(${themeCssVariables.icon.size.md} * 1px);
+  height: calc(${odelzaThemeCssVariables.icon.size.md} * 1px);
+  width: calc(${odelzaThemeCssVariables.icon.size.md} * 1px);
 `;
 
 const StyledMcpSetupContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[10]};
+  gap: ${odelzaThemeCssVariables.spacing[10]};
 `;
 
 const StyledCardsGrid = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {

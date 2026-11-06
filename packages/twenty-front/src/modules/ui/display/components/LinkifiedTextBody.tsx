@@ -1,23 +1,23 @@
 import { styled } from '@linaria/react';
 import { motion } from 'framer-motion';
 import Linkify from 'linkify-react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { AnimatedEaseInOut } from 'twenty-ui/layout';
 
 const StyledTextBody = styled(motion.div)`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex-direction: column;
-  margin-top: ${themeCssVariables.spacing[4]};
+  margin-top: ${odelzaThemeCssVariables.spacing[4]};
   overflow-wrap: break-word;
   white-space: pre-line;
 
   a {
-    color: ${themeCssVariables.color.blue};
+    color: ${odelzaThemeCssVariables.font.color.link};
     text-decoration: underline;
 
     &:hover {
-      text-decoration-color: ${themeCssVariables.color.blue};
+      text-decoration-color: ${odelzaThemeCssVariables.font.color.link};
     }
   }
 `;

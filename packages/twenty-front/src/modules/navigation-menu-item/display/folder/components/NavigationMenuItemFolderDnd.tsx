@@ -12,7 +12,10 @@ import {
   useIcons,
 } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useIsMobile } from 'twenty-ui/utilities';
 import { type NavigationMenuItem } from '~/generated-metadata/graphql';
 
@@ -57,17 +60,17 @@ const StyledFolderContainer = styled.div<{
 }>`
   border: ${({ $isSelectedInEditMode }) =>
     $isSelectedInEditMode
-      ? `1px solid ${themeCssVariables.color.blue}`
+      ? `1px solid ${odelzaThemeCssVariables.color.primary}`
       : 'none'};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   transition: background-color 150ms ease-in-out;
 
   &[data-drag-over-header='true'] {
-    background-color: ${themeCssVariables.background.transparent.blue};
+    background-color: ${odelzaThemeCssVariables.background.transparent.accent};
   }
 
   &[data-forbidden-drop-target='true'] {
-    background-color: ${themeCssVariables.background.transparent.danger};
+    background-color: ${odelzaThemeCssVariables.background.transparent.danger};
   }
 `;
 

@@ -12,21 +12,21 @@ import { AdvancedFilterContext } from '@/object-record/advanced-filter/states/co
 import { type RecordFilterGroup } from '@/object-record/record-filter-group/types/RecordFilterGroup';
 import { Select } from '@/ui/input/components/Select';
 import { GenericDropdownContentWidth } from '@/ui/layout/dropdown/constants/GenericDropdownContentWidth';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledText = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  height: ${themeCssVariables.spacing[8]};
-  padding-left: ${themeCssVariables.spacing[2]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledContainer = styled.div`
   align-items: start;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  min-width: ${themeCssVariables.spacing[16]};
+  min-width: ${odelzaThemeCssVariables.spacing[16]};
 `;
 
 type SettingsRolePermissionsObjectLevelRecordLevelPermissionLogicalOperatorCellProps =

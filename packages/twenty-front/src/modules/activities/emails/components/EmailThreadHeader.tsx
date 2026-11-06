@@ -2,7 +2,7 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
 import { beautifyPastDateRelativeToNow } from '~/utils/date-utils';
 
@@ -13,12 +13,12 @@ type EmailThreadHeaderProps = {
 
 const StyledContainer = styled.div`
   align-items: flex-start;
-  background: ${themeCssVariables.background.secondary};
-  border-bottom: 1px solid ${themeCssVariables.border.color.medium};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[6]};
-  padding: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[6]};
+  padding: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledHead = styled.div`
@@ -26,9 +26,9 @@ const StyledHead = styled.div`
 `;
 
 const StyledHeading = styled.h2`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   margin: 0;
-  margin-bottom: ${themeCssVariables.spacing[3]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[3]};
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -36,7 +36,7 @@ const StyledHeading = styled.h2`
 `;
 
 const StyledContent = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   width: 100%;
 `;
 

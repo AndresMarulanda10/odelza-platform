@@ -1,4 +1,7 @@
-import { type ThemeType, type themeCssVariables } from '@ui/theme-constants';
+import {
+  type ThemeType,
+  type odelzaThemeCssVariables,
+} from '@ui/theme-constants';
 import { type ThemeColor, MAIN_COLOR_NAMES } from '@ui/theme';
 
 export const stringToThemeColor = (string: string): ThemeColor => {
@@ -26,7 +29,7 @@ export const stringToThemeColorP3String = ({
 
   const colorName = stringToThemeColor(string);
   const colorNameWithVariant =
-    `${colorName}${variant}` as keyof typeof themeCssVariables.color;
+    `${colorName}${variant}` as keyof typeof odelzaThemeCssVariables.color;
 
   return theme.color[
     colorNameWithVariant as keyof typeof theme.color

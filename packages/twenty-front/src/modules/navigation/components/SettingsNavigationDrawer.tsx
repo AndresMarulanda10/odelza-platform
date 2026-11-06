@@ -17,16 +17,16 @@ import { useLingui } from '@lingui/react/macro';
 import { useIsMobile } from 'twenty-ui/utilities';
 import { AdvancedSettingsToggle } from 'twenty-ui/input';
 import { IconSettings } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { PermissionFlagType } from '~/generated-metadata/graphql';
 
 const StyledAdvancedToggleFixedContent = styled.div<{ isMobile: boolean }>`
   flex-shrink: 0;
   margin-top: auto;
   padding-left: ${({ isMobile }) =>
-    isMobile ? themeCssVariables.spacing[5] : '0'};
+    isMobile ? odelzaThemeCssVariables.spacing[5] : '0'};
   padding-right: ${({ isMobile }) =>
-    isMobile ? themeCssVariables.spacing[5] : '0'};
+    isMobile ? odelzaThemeCssVariables.spacing[5] : '0'};
 `;
 
 const advancedSettingsToggleClassName = css`

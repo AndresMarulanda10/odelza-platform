@@ -6,7 +6,7 @@ import {
 } from 'react';
 
 import { type ThemeColor } from '@ui/theme';
-import { themeCssVariables } from '@ui/theme-constants';
+import { odelzaThemeCssVariables } from '@ui/theme-constants';
 
 import styles from './Slider.module.scss';
 
@@ -66,7 +66,7 @@ export const Slider = ({
   value,
   ...props
 }: SliderProps) => {
-  const sliderColor = `${color}9` as keyof typeof themeCssVariables.color;
+  const sliderColor = `${color}9` as keyof typeof odelzaThemeCssVariables.color;
 
   return (
     <div
@@ -76,7 +76,7 @@ export const Slider = ({
         {
           ...style,
           '--slider-fill': getSliderFill({ max, min, value }),
-          '--slider-main-color': themeCssVariables.color[sliderColor],
+          '--slider-main-color': odelzaThemeCssVariables.color[sliderColor],
         } as CSSProperties
       }
     >

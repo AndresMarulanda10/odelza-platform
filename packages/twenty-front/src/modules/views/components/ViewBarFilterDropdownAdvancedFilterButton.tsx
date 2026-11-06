@@ -26,13 +26,13 @@ import { isDefined } from 'twenty-shared/utils';
 import { Pill } from 'twenty-ui/data-display';
 import { IconFilter } from 'twenty-ui/icon';
 import { MenuItem } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { v4 } from 'uuid';
 
 const StyledPillContainer = styled.span`
   & > * {
-    background: ${themeCssVariables.color.blue3};
-    color: ${themeCssVariables.color.blue};
+    background: ${odelzaThemeCssVariables.color.primary3};
+    color: ${odelzaThemeCssVariables.color.primary};
   }
 `;
 

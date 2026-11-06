@@ -8,7 +8,7 @@ import { settingsDraftRoleFamilyState } from '@/settings/roles/states/settingsDr
 import { useAtomFamilyStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomFamilyStateValue';
 import { useSetAtomFamilyState } from '@/ui/utilities/state/jotai/hooks/useSetAtomFamilyState';
 import { v4 } from 'uuid';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsRolePermissionsSettingsTableHeaderProps = {
   roleId: string;
@@ -49,7 +49,7 @@ export const SettingsRolePermissionsSettingsTableHeader = ({
       <TableHeader>{t`Description`}</TableHeader>
       <TableHeader
         align="right"
-        padding={`0 ${themeCssVariables.spacing[1]} 0 ${themeCssVariables.spacing[2]}`}
+        padding={`0 ${odelzaThemeCssVariables.spacing[1]} 0 ${odelzaThemeCssVariables.spacing[2]}`}
         aria-label={t`Actions`}
       >
         <Checkbox

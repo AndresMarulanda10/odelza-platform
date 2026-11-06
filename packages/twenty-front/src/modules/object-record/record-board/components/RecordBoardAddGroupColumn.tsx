@@ -3,14 +3,14 @@ import { AddRecordGroupButton } from '@/object-record/record-group/components/Ad
 import { canAddRecordGroupForFieldMetadataItem } from '@/object-record/record-group/utils/canAddRecordGroupForFieldMetadataItem';
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const RECORD_BOARD_ADD_GROUP_DROPDOWN_ID = 'record-board-add-group-dropdown';
 
 const StyledColumn = styled.div`
   align-items: center;
   display: flex;
-  padding-inline: ${themeCssVariables.spacing[2]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const RecordBoardAddGroupColumn = () => {

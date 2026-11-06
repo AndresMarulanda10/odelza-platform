@@ -12,12 +12,12 @@ import {
 } from 'twenty-ui/data-display';
 import { IconBuildingSkyscraper, IconPlus } from 'twenty-ui/icon';
 import { Checkbox } from 'twenty-ui/input';
-import { themeCssVariables, useTheme } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from 'twenty-ui/theme-constants';
 
 const PREVIEW_ROW_HEIGHT = 32;
 
 const StyledColumn = styled.div`
-  background-color: ${themeCssVariables.border.color.light};
+  background-color: ${odelzaThemeCssVariables.border.color.light};
   box-sizing: border-box;
   display: flex;
   flex: 1 1 0;
@@ -30,23 +30,23 @@ const StyledColumn = styled.div`
 
 const StyledRow = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
   box-sizing: border-box;
   display: flex;
   flex-shrink: 0;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: ${PREVIEW_ROW_HEIGHT}px;
-  padding: 0 ${themeCssVariables.spacing[1]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledHeaderTitle = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex: 1 1 0;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
@@ -61,13 +61,13 @@ export const OnboardingImportPreviewCompanies = () => {
         <StyledHeaderTitle>
           <IconBuildingSkyscraper
             size={theme.icon.size.md}
-            color={themeCssVariables.font.color.tertiary}
+            color={odelzaThemeCssVariables.font.color.tertiary}
           />
           {t`Companies`}
         </StyledHeaderTitle>
         <IconPlus
           size={theme.icon.size.md}
-          color={themeCssVariables.font.color.tertiary}
+          color={odelzaThemeCssVariables.font.color.tertiary}
         />
       </StyledRow>
       {IMPORT_CONTACTS_PREVIEW_COMPANIES.map((company) => (

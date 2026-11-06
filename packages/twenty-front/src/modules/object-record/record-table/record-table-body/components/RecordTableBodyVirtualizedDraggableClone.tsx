@@ -34,7 +34,10 @@ import {
 import { styled } from '@linaria/react';
 import { useMemo } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const MAX_COLUMNS = 100;
 
@@ -171,10 +174,10 @@ export const RecordTableBodyVirtualizedDraggableClone = ({
         style={{
           ...draggableProvided.draggableProps.style,
           background: draggableSnapshot.isDragging
-            ? themeCssVariables.background.transparent.light
+            ? odelzaThemeCssVariables.background.transparent.light
             : undefined,
           borderColor: draggableSnapshot.isDragging
-            ? themeCssVariables.border.color.medium
+            ? odelzaThemeCssVariables.border.color.medium
             : 'transparent',
           opacity: isSecondaryDragged ? 0.3 : undefined,
         }}

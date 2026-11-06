@@ -11,19 +11,19 @@ import { plural } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { IconChevronLeft, IconChevronRight } from 'twenty-ui/icon';
 import { IconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding-block: ${themeCssVariables.spacing[2]};
-  padding-inline: ${themeCssVariables.spacing[3]};
+  padding-block: ${odelzaThemeCssVariables.spacing[2]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledCounter = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 export const WorkflowIteratorSubStepSwitcher = ({

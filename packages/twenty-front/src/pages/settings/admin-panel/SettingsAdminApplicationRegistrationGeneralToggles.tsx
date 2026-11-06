@@ -15,7 +15,7 @@ import {
   UpdateAdminApplicationRegistrationDocument,
 } from '~/generated-admin/graphql';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useMutation } from '@apollo/client/react';
 import { useLingui } from '@lingui/react/macro';
 import { useState } from 'react';
@@ -27,14 +27,14 @@ import { useModal } from '@/ui/layout/modal/hooks/useModal';
 const StyledToggleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledBackfillContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-top: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledButtonWrapper = styled.span`
@@ -173,7 +173,7 @@ export const SettingsAdminApplicationRegistrationGeneralToggles = ({
         subtitle={t`This will install the latest version of "${registration.name}" on all existing active and suspended workspaces, upgrading any workspace that already has an older version. It runs as a background job and may take a while. Continue?`}
         onConfirmClick={handleBackfill}
         confirmButtonText={t`Backfill`}
-        confirmButtonAccent="blue"
+        confirmButtonAccent="primary"
         loading={isBackfilling}
       />
     </Section>

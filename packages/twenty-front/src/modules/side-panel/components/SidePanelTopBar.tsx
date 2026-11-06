@@ -26,20 +26,23 @@ import { Key } from 'ts-key-enum';
 import { IconX } from 'twenty-ui/icon';
 import { IconButton } from 'twenty-ui/input';
 import { useIsMobile } from 'twenty-ui/utilities';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledInputContainer = styled.div<{ isMobile: boolean }>`
   align-items: center;
-  background-color: ${themeCssVariables.background.secondary};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
   border: none;
-  border-bottom: 1px solid ${themeCssVariables.border.color.medium};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   border-radius: 0;
   box-sizing: border-box;
 
   display: flex;
   flex-shrink: 0;
-  font-size: ${themeCssVariables.font.size.lg};
-  gap: ${themeCssVariables.spacing[4]};
+  font-size: ${odelzaThemeCssVariables.font.size.lg};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   height: ${({ isMobile }) =>
     isMobile ? SIDE_PANEL_TOP_BAR_HEIGHT_MOBILE : SIDE_PANEL_TOP_BAR_HEIGHT}px;
   justify-content: space-between;
@@ -47,7 +50,7 @@ const StyledInputContainer = styled.div<{ isMobile: boolean }>`
 
   outline: none;
   overflow: hidden;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   position: relative;
 `;
 
@@ -55,17 +58,17 @@ const StyledInput = styled.input`
   background-color: transparent;
   border: none;
   border-radius: 0;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   flex: 1;
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   height: 24px;
   margin: 0;
   outline: none;
   padding: 0;
 
   &::placeholder {
-    color: ${themeCssVariables.font.color.light};
-    font-weight: ${themeCssVariables.font.weight.medium};
+    color: ${odelzaThemeCssVariables.font.color.light};
+    font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   }
 `;
 
@@ -73,7 +76,7 @@ const StyledContentContainer = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
   overflow: hidden;
 `;
@@ -82,7 +85,7 @@ const StyledRightControlsContainer = styled.div`
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const SidePanelTopBar = () => {

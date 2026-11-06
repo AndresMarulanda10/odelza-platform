@@ -21,18 +21,18 @@ import { filterBySearchQuery } from '~/utils/filterBySearchQuery';
 import { isNonTextWritingKey } from '@/ui/utilities/hotkey/utils/isNonTextWritingKey';
 import { WorkflowAiAgentPermissionList } from '@/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowAiAgentPermissionList';
 import { CRUD_PERMISSIONS } from '@/workflow/workflow-steps/workflow-actions/ai-agent-action/constants/WorkflowAiAgentCrudPermissions';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { WorkflowAiAgentPermissionsCrudList } from './WorkflowAiAgentPermissionsCrudList';
 import { WorkflowAiAgentPermissionsFlagList } from './WorkflowAiAgentPermissionsFlagList';
 import { WorkflowAiAgentPermissionsObjectsList } from './WorkflowAiAgentPermissionsObjectsList';
 import { getFilteredPermissions } from './workflowAiAgentPermissions.utils';
 
 const StyledSearchInputContainer = styled.div`
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border-block: 1px solid ${themeCssVariables.border.color.medium};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border-block: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   box-sizing: border-box;
   height: 40px;
-  padding-inline: ${themeCssVariables.spacing[2]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 
   & input {
@@ -56,7 +56,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledGroupsContainer = styled.div`
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type WorkflowAiAgentPermissionsTabProps = {

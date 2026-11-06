@@ -6,44 +6,48 @@ import {
 import { useLingui } from '@lingui/react/macro';
 import { styled } from '@linaria/react';
 import { IconCheck, IconX } from 'twenty-ui/icon';
-import { themeCssVariables, useTheme } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from 'twenty-ui/theme-constants';
 
 const StyledFeatureCell = styled.div<{
   hasTopBorder?: boolean;
   isLabel?: boolean;
 }>`
   align-items: center;
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   border-top: ${({ hasTopBorder }) =>
-    hasTopBorder ? `1px solid ${themeCssVariables.border.color.medium}` : '0'};
+    hasTopBorder
+      ? `1px solid ${odelzaThemeCssVariables.border.color.medium}`
+      : '0'};
   box-sizing: border-box;
   color: ${({ isLabel }) =>
     isLabel
-      ? themeCssVariables.font.color.secondary
-      : themeCssVariables.font.color.primary};
+      ? odelzaThemeCssVariables.font.color.secondary
+      : odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   line-height: 1.4;
   min-height: 40px;
   min-width: 0;
-  padding: 0 ${themeCssVariables.spacing[4]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledCategoryCell = styled.div<{ hasTopBorder?: boolean }>`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
+  background: ${odelzaThemeCssVariables.background.secondary};
   border-top: ${({ hasTopBorder }) =>
-    hasTopBorder ? `1px solid ${themeCssVariables.border.color.medium}` : '0'};
+    hasTopBorder
+      ? `1px solid ${odelzaThemeCssVariables.border.color.medium}`
+      : '0'};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   grid-column: 1 / -1;
   line-height: 1.4;
   min-height: 40px;
-  padding: 0 ${themeCssVariables.spacing[4]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledCellText = styled.span`
@@ -56,8 +60,8 @@ const StyledCellText = styled.span`
 const StyledComparisonCellIcon = styled.div<{ isIncluded: boolean }>`
   color: ${({ isIncluded }) =>
     isIncluded
-      ? themeCssVariables.accent.accent9
-      : themeCssVariables.font.color.tertiary};
+      ? odelzaThemeCssVariables.accent.accent9
+      : odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
 `;
 

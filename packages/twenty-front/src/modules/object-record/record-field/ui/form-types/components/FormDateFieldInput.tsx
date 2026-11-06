@@ -30,7 +30,7 @@ import { useId, useRef, useState } from 'react';
 import { Temporal } from 'temporal-polyfill';
 import { Key } from 'ts-key-enum';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type Nullable } from 'twenty-ui/utilities';
 
 const FORM_DATE_FIELD_PICKER_CLICK_OUTSIDE_ID =
@@ -48,8 +48,8 @@ const StyledDateInputTextContainer = styled.div<{ isReadonly?: boolean }>`
   & input {
     color: ${({ isReadonly }) =>
       isReadonly
-        ? themeCssVariables.font.color.light
-        : themeCssVariables.font.color.primary};
+        ? odelzaThemeCssVariables.font.color.light
+        : odelzaThemeCssVariables.font.color.primary};
   }
 `;
 

@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 import { MessageFolderImportPolicy } from 'twenty-shared/types';
 
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsAccountsMessageFolderIconProps = {
   className?: string;
@@ -10,8 +10,8 @@ type SettingsAccountsMessageFolderIconProps = {
 
 const StyledCardMedia = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   height: 40px;
@@ -22,8 +22,8 @@ const StyledCardMedia = styled.div`
 
 const StyledCardMediaContent = styled.div`
   align-items: stretch;
-  background-color: ${themeCssVariables.background.secondary};
-  border-radius: ${themeCssVariables.border.radius.xs};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.xs};
   box-sizing: border-box;
   display: flex;
   flex: 1;
@@ -46,8 +46,8 @@ const StyledFolderRow = styled.div`
 const StyledFolderIcon = styled.div<{ isDisabled?: boolean }>`
   background-color: ${({ isDisabled }) =>
     isDisabled
-      ? themeCssVariables.border.color.medium
-      : themeCssVariables.accent.accent7};
+      ? odelzaThemeCssVariables.border.color.medium
+      : odelzaThemeCssVariables.accent.accent7};
   border-radius: 1px;
   height: 100%;
   width: 4.8px;
@@ -56,8 +56,8 @@ const StyledFolderIcon = styled.div<{ isDisabled?: boolean }>`
 const StyledFolderLabel = styled.div<{ isDisabled?: boolean }>`
   background-color: ${({ isDisabled }) =>
     isDisabled
-      ? themeCssVariables.border.color.medium
-      : themeCssVariables.accent.accent7};
+      ? odelzaThemeCssVariables.border.color.medium
+      : odelzaThemeCssVariables.accent.accent7};
   border-radius: 1px;
   flex: 1;
   height: 100%;

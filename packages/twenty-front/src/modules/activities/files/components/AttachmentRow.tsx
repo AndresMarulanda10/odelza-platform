@@ -19,7 +19,10 @@ import { useHasPermissionFlag } from '@/settings/roles/hooks/useHasPermissionFla
 import { CoreObjectNameSingular } from 'twenty-shared/types';
 import { IconCalendar } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { isNavigationModifierPressed } from 'twenty-ui/utilities';
 import { PermissionFlagType } from '~/generated-metadata/graphql';
 import { formatToHumanReadableDate } from '~/utils/date-utils';
@@ -30,7 +33,7 @@ const StyledLeftContent = styled.div`
   display: flex;
   flex: 1;
 
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   overflow: auto;
   width: 100%;
 `;
@@ -38,12 +41,12 @@ const StyledLeftContent = styled.div`
 const StyledRightContent = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing['0.5']};
+  gap: ${odelzaThemeCssVariables.spacing['0.5']};
 `;
 
 const StyledCalendarIconContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: flex;
 `;
 
@@ -52,7 +55,7 @@ const StyledLink = styled.a`
   appearance: none;
   background: none;
   border: none;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   cursor: pointer;
   display: flex;
   font-family: inherit;
@@ -63,7 +66,7 @@ const StyledLink = styled.a`
   width: 100%;
 
   :hover {
-    color: ${themeCssVariables.font.color.secondary};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
   }
 `;
 

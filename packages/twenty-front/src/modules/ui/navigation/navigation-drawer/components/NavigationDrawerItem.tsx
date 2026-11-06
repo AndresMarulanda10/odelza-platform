@@ -25,7 +25,7 @@ import { Label } from 'twenty-ui/typography';
 import {
   MOBILE_VIEWPORT,
   ThemeContext,
-  themeCssVariables,
+  odelzaThemeCssVariables,
 } from 'twenty-ui/theme-constants';
 import {
   type TriggerEventType,
@@ -83,55 +83,55 @@ type StyledItemProps = Pick<
 const StyledItem = styled.button<StyledItemProps>`
   align-items: center;
   background: ${({ active }) =>
-    active ? themeCssVariables.background.transparent.light : 'transparent'};
+    active ? odelzaThemeCssVariables.navigation.itemActive : 'transparent'};
   border: ${({ isSelectedInEditMode }) =>
     isSelectedInEditMode
-      ? `1px solid ${themeCssVariables.color.blue}`
+      ? `1px solid ${odelzaThemeCssVariables.color.primary}`
       : '1px solid transparent'};
-  border-radius: ${themeCssVariables.border.radius.md};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
   color: ${({ active, isSoon, variant }) => {
     if (variant === 'tertiary') {
-      return themeCssVariables.font.color.tertiary;
+      return odelzaThemeCssVariables.font.color.tertiary;
     }
     if (active === true) {
-      return themeCssVariables.font.color.primary;
+      return odelzaThemeCssVariables.font.color.primary;
     }
     if (isSoon) {
-      return themeCssVariables.font.color.light;
+      return odelzaThemeCssVariables.font.color.light;
     }
-    return themeCssVariables.font.color.secondary;
+    return odelzaThemeCssVariables.font.color.secondary;
   }};
   cursor: ${({ isSoon, isDragging }) =>
     isDragging ? 'grabbing' : isSoon ? 'default' : 'pointer'};
   display: flex;
-  font-family: ${themeCssVariables.font.family};
-  font-size: ${themeCssVariables.font.size.md};
-  height: ${themeCssVariables.spacing[7]};
+  font-family: ${odelzaThemeCssVariables.font.family};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  height: ${odelzaThemeCssVariables.spacing[7]};
   margin-top: ${({ indentationLevel }) =>
     indentationLevel === 2 ? '2px' : '0'};
   min-width: 0;
-  padding-bottom: ${themeCssVariables.spacing[1]};
-  padding-left: ${themeCssVariables.spacing[1]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
   padding-right: ${({ hasRightOptions }) =>
     hasRightOptions
-      ? themeCssVariables.spacing['0.5']
-      : themeCssVariables.spacing[1]};
-  padding-top: ${themeCssVariables.spacing[1]};
+      ? odelzaThemeCssVariables.spacing['0.5']
+      : odelzaThemeCssVariables.spacing[1]};
+  padding-top: ${odelzaThemeCssVariables.spacing[1]};
   pointer-events: ${({ isSoon }) => (isSoon ? 'none' : 'auto')};
   text-decoration: none;
   user-select: none;
   width: ${({ isNavigationDrawerExpanded, hasRightOptions }) =>
     !isNavigationDrawerExpanded
-      ? `calc(${NAVIGATION_DRAWER_COLLAPSED_WIDTH}px - ${themeCssVariables.spacing[6]} + ${themeCssVariables.spacing[1]} + ${hasRightOptions ? themeCssVariables.spacing['0.5'] : themeCssVariables.spacing[1]})`
-      : `calc(100% - ${themeCssVariables.spacing['1.5']} + ${themeCssVariables.spacing[1]} + ${hasRightOptions ? themeCssVariables.spacing['0.5'] : themeCssVariables.spacing[1]})`};
+      ? `calc(${NAVIGATION_DRAWER_COLLAPSED_WIDTH}px - ${odelzaThemeCssVariables.spacing[6]} + ${odelzaThemeCssVariables.spacing[1]} + ${hasRightOptions ? odelzaThemeCssVariables.spacing['0.5'] : odelzaThemeCssVariables.spacing[1]})`
+      : `calc(100% - ${odelzaThemeCssVariables.spacing['1.5']} + ${odelzaThemeCssVariables.spacing[1]} + ${hasRightOptions ? odelzaThemeCssVariables.spacing['0.5'] : odelzaThemeCssVariables.spacing[1]})`};
 
   &:hover {
-    background: ${themeCssVariables.background.transparent.light};
+    background: ${odelzaThemeCssVariables.background.transparent.light};
     color: ${({ variant }) =>
       variant === 'tertiary'
-        ? themeCssVariables.font.color.tertiary
-        : themeCssVariables.font.color.primary};
+        ? odelzaThemeCssVariables.font.color.tertiary
+        : odelzaThemeCssVariables.font.color.primary};
   }
 
   &:hover .keyboard-shortcuts {
@@ -139,7 +139,7 @@ const StyledItem = styled.button<StyledItemProps>`
   }
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
-    height: ${themeCssVariables.spacing[8]};
+    height: ${odelzaThemeCssVariables.spacing[8]};
   }
 `;
 
@@ -160,27 +160,27 @@ const StyledLabelParent = styled.div`
 `;
 
 const StyledItemLabel = styled.span`
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledItemSecondaryLabel = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
 `;
 
 const StyledKeyBoardShortcut = styled.span`
   align-items: center;
-  background: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.strong};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.strong};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 
-  height: ${themeCssVariables.spacing[4]};
+  height: ${odelzaThemeCssVariables.spacing[4]};
   justify-content: center;
-  width: ${themeCssVariables.spacing[4]};
+  width: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledNavigationDrawerItemContainer = styled.div`
@@ -198,27 +198,27 @@ const StyledIcon = styled.div`
   flex-grow: 0;
   flex-shrink: 0;
   justify-content: center;
-  margin-right: ${themeCssVariables.spacing[2]};
+  margin-right: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledIconBackgroundTile = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.grayScale.gray3};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.grayScale.gray3};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex-shrink: 0;
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   justify-content: center;
-  width: ${themeCssVariables.spacing[6]};
+  width: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledRightOptionsContainer = styled.div`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.md};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex-grow: 0;
   flex-shrink: 0;
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   justify-content: center;
 `;
 
@@ -228,7 +228,7 @@ const StyledRightOptionsVisbility = styled.div`
   height: 1px;
   opacity: 0;
   overflow: hidden;
-  padding-left: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
   position: absolute;
   transition: opacity 150ms;
   white-space: nowrap;

@@ -12,7 +12,10 @@ import { DashboardEditorSideMenu } from '@/page-layout/widgets/standalone-rich-t
 import { DashboardFormattingToolbar } from '@/page-layout/widgets/standalone-rich-text/components/DashboardFormattingToolbar';
 import { type DASHBOARD_BLOCK_SCHEMA } from '@/page-layout/widgets/standalone-rich-text/constants/DashboardBlockSchema';
 import { getDashboardSlashMenu } from '@/page-layout/widgets/standalone-rich-text/utils/getDashboardSlashMenu';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 type DashboardsBlockEditorProps = {
   editor: typeof DASHBOARD_BLOCK_SCHEMA.BlockNoteEditor;
   onFocus?: () => void;
@@ -32,12 +35,12 @@ const StyledEditor = styled.div`
 
   & .editor {
     background: transparent;
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
     font-size: 13px;
     user-select: text;
   }
   & .editor [class^='_inlineContent']:before {
-    color: ${themeCssVariables.font.color.tertiary};
+    color: ${odelzaThemeCssVariables.font.color.tertiary};
     font-style: normal !important;
   }
   & .editor .bn-inline-content:has(> .ProseMirror-trailingBreak):before {
@@ -60,10 +63,10 @@ const StyledEditor = styled.div`
     display: flex;
   }
   & .bn-drag-handle-menu {
-    backdrop-filter: ${themeCssVariables.blur.medium};
-    background: ${themeCssVariables.background.transparent.secondary};
-    border: 1px solid ${themeCssVariables.border.color.medium};
-    border-radius: ${themeCssVariables.border.radius.md};
+    backdrop-filter: ${odelzaThemeCssVariables.blur.medium};
+    background: ${odelzaThemeCssVariables.background.transparent.secondary};
+    border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+    border-radius: ${odelzaThemeCssVariables.border.radius.md};
     box-shadow:
       0px 2px 4px rgba(0, 0, 0, 0.04),
       2px 4px 16px rgba(0, 0, 0, 0.12);
@@ -95,27 +98,27 @@ const StyledEditor = styled.div`
   }
 
   & .bn-suggestion-menu {
-    backdrop-filter: ${themeCssVariables.blur.medium};
-    background: ${themeCssVariables.background.transparent.secondary};
-    border: 1px solid ${themeCssVariables.border.color.medium};
-    border-radius: ${themeCssVariables.border.radius.md};
+    backdrop-filter: ${odelzaThemeCssVariables.blur.medium};
+    background: ${odelzaThemeCssVariables.background.transparent.secondary};
+    border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+    border-radius: ${odelzaThemeCssVariables.border.radius.md};
     padding: 4px;
   }
 
   & .mantine-Menu-item {
     background-color: transparent;
-    color: ${themeCssVariables.font.color.secondary};
-    font-family: ${themeCssVariables.font.family};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
+    font-family: ${odelzaThemeCssVariables.font.family};
 
     font-style: normal;
-    font-weight: ${themeCssVariables.font.weight.regular};
+    font-weight: ${odelzaThemeCssVariables.font.weight.regular};
     min-height: 32px;
     min-width: 152px;
   }
   & .mantine-ActionIcon-root:hover {
     backdrop-filter: blur(20px);
-    background: ${themeCssVariables.background.transparent.primary};
-    border: 1px solid ${themeCssVariables.border.color.light};
+    background: ${odelzaThemeCssVariables.background.transparent.primary};
+    border: 1px solid ${odelzaThemeCssVariables.border.color.light};
     box-shadow:
       0px 0px 4px rgba(0, 0, 0, 0.08),
       0px 2px 4px rgba(0, 0, 0, 0.04);
@@ -133,14 +136,14 @@ const StyledEditor = styled.div`
   }
 
   & .bn-inline-content a {
-    color: ${themeCssVariables.color.blue};
+    color: ${odelzaThemeCssVariables.color.primary};
   }
 
   & .bn-inline-content code {
-    background-color: ${themeCssVariables.background.transparent.light};
-    border: 1px solid ${themeCssVariables.font.color.extraLight};
-    border-radius: ${themeCssVariables.border.radius.sm};
-    color: ${themeCssVariables.font.color.danger};
+    background-color: ${odelzaThemeCssVariables.background.transparent.light};
+    border: 1px solid ${odelzaThemeCssVariables.font.color.extraLight};
+    border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+    color: ${odelzaThemeCssVariables.font.color.danger};
     font-family: monospace;
     font-size: 0.9rem;
     padding: 2px 4px;

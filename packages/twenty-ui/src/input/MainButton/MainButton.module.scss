@@ -9,19 +9,19 @@
   background: var(--main-button-bg);
   border: 1px solid;
   border-color: var(--main-button-border-color);
-  border-radius: var(--t-border-radius-md);
-  box-shadow: var(--main-button-box-shadow, var(--t-box-shadow-light));
+  border-radius: var(--odz-border-radius-md);
+  box-shadow: var(--main-button-box-shadow, var(--odz-box-shadow-light));
   color: var(--main-button-color);
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  font-family: var(--t-font-family);
-  font-weight: var(--t-font-weight-semi-bold);
-  gap: var(--t-spacing-2);
+  font-family: var(--odz-font-family);
+  font-weight: var(--odz-font-weight-semi-bold);
+  gap: var(--odz-spacing-2);
   justify-content: center;
   outline: none;
-  padding: var(--t-spacing-2) var(--t-spacing-3);
-  max-height: var(--t-spacing-8);
+  padding: var(--odz-spacing-2) var(--odz-spacing-3);
+  max-height: var(--odz-spacing-8);
   width: var(--main-button-width, auto);
 
   &:hover {
@@ -36,29 +36,29 @@
 }
 
 .button[data-variant='primary'] {
-  --main-button-bg: var(--t-background-primary-inverted);
-  --main-button-border-color: var(--t-background-transparent-strong);
-  --main-button-color: var(--t-font-color-inverted);
-  --main-button-hover-bg: var(--t-background-primary-inverted-hover);
+  --main-button-bg: var(--odz-background-primary-inverted);
+  --main-button-border-color: var(--odz-background-transparent-strong);
+  --main-button-color: var(--odz-font-color-inverted);
+  --main-button-hover-bg: var(--odz-background-primary-inverted-hover);
 }
 
 .button[data-variant='secondary'] {
-  --main-button-bg: var(--t-background-primary);
-  --main-button-border-color: var(--t-border-color-medium);
-  --main-button-color: var(--t-font-color-primary);
-  --main-button-hover-bg: var(--t-background-tertiary);
+  --main-button-bg: var(--odz-background-primary);
+  --main-button-border-color: var(--odz-border-color-medium);
+  --main-button-color: var(--odz-font-color-primary);
+  --main-button-hover-bg: var(--odz-background-tertiary);
 }
 
 .button[data-disabled] {
-  --main-button-bg: var(--t-background-secondary);
-  --main-button-border-color: var(--t-background-transparent-lighter);
+  --main-button-bg: var(--odz-background-secondary);
+  --main-button-border-color: var(--odz-background-transparent-lighter);
   --main-button-box-shadow: none;
-  --main-button-color: var(--t-font-color-light);
+  --main-button-color: var(--odz-font-color-light);
 }
 
 // hover when disabled: the legacy hover switch ignores disabled for
 // secondary (keeps tertiary), while primary falls back to the disabled
 // background.
 .button[data-variant='primary'][data-disabled] {
-  --main-button-hover-bg: var(--t-background-secondary);
+  --main-button-hover-bg: var(--odz-background-secondary);
 }

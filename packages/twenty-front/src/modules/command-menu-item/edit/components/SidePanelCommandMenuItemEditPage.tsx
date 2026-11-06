@@ -29,7 +29,7 @@ import {
   useIcons,
 } from 'twenty-ui/icon';
 import { MenuItem, MenuItemDraggable } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type CommandMenuItemFieldsFragment } from '~/generated-metadata/graphql';
 import { normalizeSearchText } from '~/utils/normalizeSearchText';
 
@@ -42,11 +42,12 @@ const StyledContainer = styled.div`
 const StyledViewbar = styled.div`
   align-items: center;
   backdrop-filter: blur(5px);
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
   flex-shrink: 0;
   height: 40px;
-  padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledContent = styled.div`

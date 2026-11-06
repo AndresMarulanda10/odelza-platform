@@ -4,7 +4,7 @@ import { differenceInSeconds, endOfDay, format } from 'date-fns';
 import { CalendarEventRow } from '@/activities/calendar/components/CalendarEventRow';
 import { getCalendarEventStartDate } from '@/activities/calendar/utils/getCalendarEventStartDate';
 import { CardContent } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type TimelineCalendarEvent } from '~/generated/graphql';
 
 type CalendarDayCardContentProps = {
@@ -17,35 +17,36 @@ const StyledCardContentContainer = styled.div`
     align-items: flex-start;
     display: flex;
     flex-direction: row;
-    gap: ${themeCssVariables.spacing[3]};
-    padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[3]};
+    gap: ${odelzaThemeCssVariables.spacing[3]};
+    padding: ${odelzaThemeCssVariables.spacing[2]}
+      ${odelzaThemeCssVariables.spacing[3]};
   }
 `;
 
 const StyledDayCardContent = styled(CardContent)`
   @keyframes calendarDayEnded {
     to {
-      background-color: ${themeCssVariables.background.primary};
+      background-color: ${odelzaThemeCssVariables.background.primary};
     }
   }
 
-  animation: calendarDayEnded calc(var(--t-animation-duration-fast) * 1s) ease
+  animation: calendarDayEnded calc(var(--odz-animation-duration-fast) * 1s) ease
     forwards;
 `;
 
 const StyledDayContainer = styled.div`
   text-align: center;
-  width: ${themeCssVariables.spacing[6]};
+  width: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledWeekDay = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.xxs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.xxs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
 `;
 
 const StyledMonthDay = styled.div`
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledEvents = styled.div`
@@ -53,7 +54,7 @@ const StyledEvents = styled.div`
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledEventRowContainer = styled.div`

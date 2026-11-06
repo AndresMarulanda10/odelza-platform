@@ -9,7 +9,7 @@ import 'react-phone-number-input/style.css';
 
 import { useRegisterInputEvents } from '@/object-record/record-field/ui/meta-types/input/hooks/useRegisterInputEvents';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useCombinedRefs } from '~/hooks/useCombinedRefs';
 
 const StyledInput = styled.input<{
@@ -19,23 +19,24 @@ const StyledInput = styled.input<{
   background-color: transparent;
   border: none;
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.primary};
-  font-family: ${themeCssVariables.font.family};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-family: ${odelzaThemeCssVariables.font.family};
   font-size: inherit;
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   font-weight: inherit;
 
   &::placeholder,
   &::-webkit-input-placeholder {
-    color: ${themeCssVariables.font.color.light};
-    font-family: ${themeCssVariables.font.family};
-    font-weight: ${themeCssVariables.font.weight.medium};
+    color: ${odelzaThemeCssVariables.font.color.light};
+    font-family: ${odelzaThemeCssVariables.font.family};
+    font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   }
 
   height: 32px;
   outline: none;
-  padding: ${themeCssVariables.spacing[0]} ${themeCssVariables.spacing[2]};
-  padding-left: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[0]}
+    ${odelzaThemeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
   padding-right: ${({ withRightComponent }) =>
     withRightComponent ? '32px' : '0'};
   position: relative;
@@ -50,20 +51,20 @@ const StyledInputContainer = styled.div`
   width: 100%;
 
   &:not(:first-of-type) {
-    padding: ${themeCssVariables.spacing[1]};
+    padding: ${odelzaThemeCssVariables.spacing[1]};
   }
 `;
 
 const StyledRightContainer = styled.div`
   position: absolute;
-  right: ${themeCssVariables.spacing[2]};
+  right: ${odelzaThemeCssVariables.spacing[2]};
   top: 50%;
   transform: translateY(-50%);
 `;
 
 const StyledErrorDiv = styled.div`
-  color: ${themeCssVariables.color.red};
-  padding: 0 ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.color.red};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type HTMLInputProps = InputHTMLAttributes<HTMLInputElement>;

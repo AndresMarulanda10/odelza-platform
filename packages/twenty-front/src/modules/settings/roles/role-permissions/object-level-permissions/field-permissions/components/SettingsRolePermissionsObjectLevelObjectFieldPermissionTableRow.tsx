@@ -13,7 +13,10 @@ import { styled } from '@linaria/react';
 import { useContext, useMemo } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { useIcons } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { v4 } from 'uuid';
 import {
   type FieldPermission,
@@ -154,8 +157,8 @@ export const SettingsRolePermissionsObjectLevelObjectFieldPermissionTableRow =
         gridTemplateColumns={FIELD_PERMISSION_TABLE_ROW_GRID_TEMPLATE_COLUMNS}
       >
         <TableCell
-          color={themeCssVariables.font.color.primary}
-          gap={themeCssVariables.spacing[2]}
+          color={odelzaThemeCssVariables.font.color.primary}
+          gap={odelzaThemeCssVariables.spacing[2]}
         >
           {isDefined(Icon) && (
             <Icon

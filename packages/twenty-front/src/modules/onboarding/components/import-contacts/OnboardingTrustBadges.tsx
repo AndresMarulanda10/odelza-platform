@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const BADGE_ASSET_PATH = '/images/onboarding/trust-badges';
 
@@ -16,30 +16,30 @@ const StyledRow = styled.div`
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: center;
   max-width: 100%;
 `;
 
 const StyledBadge = styled.div<{ hasClusterLeading: boolean }>`
   align-items: center;
-  background-color: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.pill};
+  background-color: ${odelzaThemeCssVariables.background.primary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   corner-shape: round;
   display: flex;
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[7]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[7]};
   overflow: hidden;
   padding: 0 10px 0
     ${({ hasClusterLeading }) =>
       hasClusterLeading
-        ? themeCssVariables.spacing['0.5']
-        : themeCssVariables.spacing[1]};
+        ? odelzaThemeCssVariables.spacing['0.5']
+        : odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledSeal = styled.img`
@@ -51,13 +51,13 @@ const StyledSeal = styled.img`
 const StyledLogoCluster = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledClusterLogo = styled.img`
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   object-fit: contain;
-  width: ${themeCssVariables.spacing[6]};
+  width: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledBadgeLabel = styled.span`

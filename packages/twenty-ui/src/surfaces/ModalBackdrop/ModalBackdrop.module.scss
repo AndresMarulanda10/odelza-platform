@@ -1,6 +1,6 @@
 .backdrop {
   align-items: center;
-  background: var(--t-background-overlay-primary);
+  background: var(--odz-background-overlay-primary);
   display: flex;
   height: 100%;
   justify-content: center;
@@ -14,10 +14,10 @@
 }
 
 .overlayLight {
-  background: var(--t-background-overlay-tertiary);
+  background: var(--odz-background-overlay-tertiary);
 }
 
 .inContainer {
-  background: var(--t-background-overlay-tertiary);
+  background: var(--odz-background-overlay-tertiary);
   position: absolute;
 }

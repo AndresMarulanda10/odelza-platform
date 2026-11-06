@@ -8,7 +8,10 @@ import { lazy, Suspense, useContext } from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { useAtomFamilySelectorValue } from '@/ui/utilities/state/jotai/hooks/useAtomFamilySelectorValue';
 import { isDefined } from 'twenty-shared/utils';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const ActivityRichTextEditor = lazy(() =>
   import('@/activities/components/ActivityRichTextEditor').then((module) => ({
@@ -18,9 +21,9 @@ const ActivityRichTextEditor = lazy(() =>
 
 const StyledShowPageActivityContainer = styled.div`
   box-sizing: border-box;
-  margin-top: ${themeCssVariables.spacing[2]};
-  padding-left: ${themeCssVariables.spacing[6]};
-  padding-right: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[6]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
@@ -28,7 +31,7 @@ const StyledSkeletonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 ${themeCssVariables.spacing[4]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const LoadingSkeleton = () => {
@@ -38,7 +41,7 @@ const LoadingSkeleton = () => {
       <SkeletonTheme
         baseColor={theme.background.tertiary}
         highlightColor={theme.background.transparent.lighter}
-        borderRadius={themeCssVariables.border.radius.md}
+        borderRadius={odelzaThemeCssVariables.border.radius.md}
       >
         <Skeleton height={SKELETON_LOADER_HEIGHT_SIZES.standard.s} />
       </SkeletonTheme>

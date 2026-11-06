@@ -1,11 +1,12 @@
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 import { Label } from 'twenty-ui/typography';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledDropdownMenuSubheaderContainer = styled.div`
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  padding: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 

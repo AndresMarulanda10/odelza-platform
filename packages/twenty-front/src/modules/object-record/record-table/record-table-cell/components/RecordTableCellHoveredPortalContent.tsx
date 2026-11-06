@@ -15,7 +15,7 @@ import { useAtomComponentFamilyStateValue } from '@/ui/utilities/state/jotai/hoo
 import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useIsMobile } from 'twenty-ui/utilities';
 
 const StyledRecordTableCellHoveredPortalContent = styled.div<{
@@ -23,13 +23,13 @@ const StyledRecordTableCellHoveredPortalContent = styled.div<{
   isRecordTableRowActive: boolean;
 }>`
   align-items: center;
-  background: ${themeCssVariables.background.transparent.secondary};
+  background: ${odelzaThemeCssVariables.background.transparent.secondary};
   background-color: ${({ isRecordTableRowActive }) =>
     isRecordTableRowActive
-      ? themeCssVariables.accent.quaternary
-      : themeCssVariables.background.primary};
+      ? odelzaThemeCssVariables.background.selection
+      : odelzaThemeCssVariables.background.primary};
   border-radius: ${({ showInteractiveStyle }) =>
-    showInteractiveStyle ? themeCssVariables.border.radius.sm : 'none'};
+    showInteractiveStyle ? odelzaThemeCssVariables.border.radius.sm : 'none'};
   box-sizing: border-box;
   cursor: ${({ showInteractiveStyle }) =>
     showInteractiveStyle ? 'pointer' : 'default'};
@@ -41,8 +41,8 @@ const StyledRecordTableCellHoveredPortalContent = styled.div<{
     isRecordTableRowActive
       ? 'none'
       : showInteractiveStyle
-        ? `1px solid ${themeCssVariables.font.color.extraLight}`
-        : `1px solid ${themeCssVariables.border.color.medium}`};
+        ? `1px solid ${odelzaThemeCssVariables.font.color.extraLight}`
+        : `1px solid ${odelzaThemeCssVariables.border.color.medium}`};
   outline-offset: -1px;
 
   user-select: none;

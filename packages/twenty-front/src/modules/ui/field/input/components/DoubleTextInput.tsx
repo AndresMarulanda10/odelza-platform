@@ -17,15 +17,15 @@ import { isDefined } from 'twenty-shared/utils';
 import { splitFullName } from '~/utils/format/spiltFullName';
 import { turnIntoEmptyStringIfWhitespacesOnly } from '~/utils/string/turnIntoEmptyStringIfWhitespacesOnly';
 import { StyledTextInput } from './TextInput';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
   & > input:last-child {
-    border-left: 1px solid ${themeCssVariables.border.color.strong};
-    padding-left: ${themeCssVariables.spacing[2]};
+    border-left: 1px solid ${odelzaThemeCssVariables.border.color.strong};
+    padding-left: ${odelzaThemeCssVariables.spacing[2]};
   }
 `;
 

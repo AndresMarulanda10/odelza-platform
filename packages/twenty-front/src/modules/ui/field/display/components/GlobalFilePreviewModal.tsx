@@ -11,7 +11,7 @@ import { createPortal } from 'react-dom';
 import { isDefined } from 'twenty-shared/utils';
 import { IconDownload, IconX } from 'twenty-ui/icon';
 import { IconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const DocumentViewer = lazy(() =>
   import('@/activities/files/components/DocumentViewer').then((module) => ({
@@ -23,15 +23,16 @@ const GLOBAL_FILE_PREVIEW_MODAL_ID = 'global-file-preview-modal';
 
 const StyledModalHeader = styled.div`
   align-items: center;
-  border-bottom: 1px solid ${themeCssVariables.border.color.medium};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   height: 60px;
   justify-content: space-between;
   overflow: hidden;
-  padding: ${themeCssVariables.spacing[0]} ${themeCssVariables.spacing[4]}
-    ${themeCssVariables.spacing[0]} ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[0]}
+    ${odelzaThemeCssVariables.spacing[4]} ${odelzaThemeCssVariables.spacing[0]}
+    ${odelzaThemeCssVariables.spacing[4]};
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
@@ -39,26 +40,26 @@ const StyledModalHeader = styled.div`
 const StyledHeader = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: space-between;
   width: 100%;
 `;
 
 const StyledModalTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.xl};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.xl};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
 `;
 
 const StyledButtonContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledModalContent = styled.div`
   height: 100%;
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledLoadingContainer = styled.div`
@@ -69,7 +70,7 @@ const StyledLoadingContainer = styled.div`
 `;
 
 const StyledLoadingText = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 export const GlobalFilePreviewModal = (): JSX.Element | null => {

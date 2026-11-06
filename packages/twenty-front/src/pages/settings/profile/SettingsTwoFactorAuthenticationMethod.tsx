@@ -19,7 +19,7 @@ import { H2Title } from 'twenty-ui/typography';
 import { Loader } from 'twenty-ui/feedback';
 import { Section } from 'twenty-ui/layout';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { resolveCjsModuleDefaultExport } from '~/utils/resolveCjsModuleDefaultExport';
 import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
@@ -29,18 +29,18 @@ const StyledQRCodeContainer = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
-  margin: ${themeCssVariables.spacing[4]} 0;
+  gap: ${odelzaThemeCssVariables.spacing[3]};
+  margin: ${odelzaThemeCssVariables.spacing[4]} 0;
 `;
 
 const StyledQRCodeWrapper = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   justify-content: center;
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledOTPContainer = styled.div`
@@ -58,8 +58,8 @@ const StyledQRCodeSizer = styled.div`
 `;
 
 const StyledCopySetupKeyText = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   line-height: 1.5;
   text-align: left;
 `;
@@ -67,21 +67,21 @@ const StyledCopySetupKeyText = styled.div`
 const StyledCopySetupKeyLink = styled.button`
   background: none;
   border: none;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: pointer;
   display: inline;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   margin-left: 0;
   padding: 0;
   text-decoration: underline;
 
   &:hover {
-    color: ${themeCssVariables.font.color.secondary};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
   }
 `;
 
 const StyledDivider = styled.div`
-  margin: ${themeCssVariables.spacing[6]} 0;
+  margin: ${odelzaThemeCssVariables.spacing[6]} 0;
   width: 100%;
 `;
 

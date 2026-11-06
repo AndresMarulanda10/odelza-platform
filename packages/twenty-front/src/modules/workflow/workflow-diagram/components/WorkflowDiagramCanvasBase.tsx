@@ -63,7 +63,10 @@ import React, {
 } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { Tag, type TagColor } from 'twenty-ui/data-display';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 const StyledResetReactflowStyles = styled.div`
   --xy-node-background-color: none;
   --xy-node-border: none;
@@ -89,7 +92,7 @@ const StyledResetReactflowStyles = styled.div`
 
 const StyledStatusTagContainer = styled.div`
   left: 0;
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
   position: absolute;
   top: 0;
 `;

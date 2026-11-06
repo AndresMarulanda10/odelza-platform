@@ -1,30 +1,30 @@
 .info {
   align-items: center;
-  border-radius: var(--t-border-radius-md);
+  border-radius: var(--odz-border-radius-md);
   display: flex;
-  font-weight: var(--t-font-weight-medium);
+  font-weight: var(--odz-font-weight-medium);
   justify-content: space-between;
   max-width: 512px;
-  gap: var(--t-spacing-2);
-  padding: var(--t-spacing-2);
+  gap: var(--odz-spacing-2);
+  padding: var(--odz-spacing-2);
   background: transparent;
   color: inherit;
 }
 
-.accentBlue {
-  background: var(--t-color-blue5);
-  color: var(--t-color-blue10);
+.accentPrimary {
+  background: var(--odz-color-primary5);
+  color: var(--odz-color-primary10);
 }
 
 .accentDanger {
-  background: var(--t-color-red3);
-  color: var(--t-color-red);
+  background: var(--odz-color-red3);
+  color: var(--odz-color-red);
 }
 
 .textContainer {
   align-items: center;
   display: flex;
-  gap: var(--t-spacing-2);
+  gap: var(--odz-spacing-2);
 
   & > svg {
     flex-shrink: 0;

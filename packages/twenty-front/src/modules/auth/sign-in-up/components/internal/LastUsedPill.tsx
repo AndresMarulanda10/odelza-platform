@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { Pill } from 'twenty-ui/data-display';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledPillContainer = styled.span`
   position: absolute;
@@ -9,13 +9,13 @@ const StyledPillContainer = styled.span`
   top: -10px;
 
   > span {
-    background: ${themeCssVariables.accent.accent3};
-    border: 1px solid ${themeCssVariables.accent.accent5};
-    border-radius: ${themeCssVariables.border.radius.pill};
-    color: ${themeCssVariables.accent.accent9};
+    background: ${odelzaThemeCssVariables.accent.accent3};
+    border: 1px solid ${odelzaThemeCssVariables.accent.accent5};
+    border-radius: ${odelzaThemeCssVariables.border.radius.pill};
+    color: ${odelzaThemeCssVariables.accent.accent9};
     corner-shape: round;
-    font-weight: ${themeCssVariables.font.weight.semiBold};
-    height: ${themeCssVariables.spacing[5]};
+    font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+    height: ${odelzaThemeCssVariables.spacing[5]};
   }
 `;
 

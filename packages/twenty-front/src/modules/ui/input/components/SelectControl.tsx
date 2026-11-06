@@ -6,7 +6,10 @@ import { TintedIconTile } from 'twenty-ui/data-display';
 import { IconChevronDown } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { type SelectOption } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 export type SelectControlTextAccent = 'default' | 'placeholder';
 
@@ -19,38 +22,38 @@ export const StyledControlContainer = styled.div<{
   hasRightElement?: boolean;
 }>`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-bottom-left-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-bottom-left-radius: ${odelzaThemeCssVariables.border.radius.md};
   border-bottom-right-radius: ${({ hasRightElement }) =>
-    hasRightElement ? '0' : themeCssVariables.border.radius.md};
+    hasRightElement ? '0' : odelzaThemeCssVariables.border.radius.md};
   border-right: ${({ hasRightElement }) =>
     hasRightElement
       ? 'none'
-      : `1px solid ${themeCssVariables.border.color.medium}`};
-  border-top-left-radius: ${themeCssVariables.border.radius.md};
+      : `1px solid ${odelzaThemeCssVariables.border.color.medium}`};
+  border-top-left-radius: ${odelzaThemeCssVariables.border.radius.md};
   border-top-right-radius: ${({ hasRightElement }) =>
-    hasRightElement ? '0' : themeCssVariables.border.radius.md};
+    hasRightElement ? '0' : odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
   color: ${({ disabled, textAccent }) =>
     disabled
-      ? themeCssVariables.font.color.tertiary
+      ? odelzaThemeCssVariables.font.color.tertiary
       : textAccent === 'default'
-        ? themeCssVariables.font.color.primary
-        : themeCssVariables.font.color.tertiary};
+        ? odelzaThemeCssVariables.font.color.primary
+        : odelzaThemeCssVariables.font.color.tertiary};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   display: grid;
 
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   grid-template-columns: ${({ hasIcon }) =>
     hasIcon ? 'auto 1fr auto' : '1fr auto'};
   height: ${({ selectSizeVariant }) =>
     selectSizeVariant === 'small'
-      ? themeCssVariables.spacing[6]
-      : themeCssVariables.spacing[8]};
+      ? odelzaThemeCssVariables.spacing[6]
+      : odelzaThemeCssVariables.spacing[8]};
 
   max-width: 100%;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   text-align: left;
 `;
 
@@ -59,8 +62,8 @@ const StyledIconChevronDownWrapper = styled.div<{
 }>`
   color: ${({ disabled }) =>
     disabled
-      ? themeCssVariables.font.color.extraLight
-      : themeCssVariables.font.color.tertiary};
+      ? odelzaThemeCssVariables.font.color.extraLight
+      : odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
 `;
 

@@ -25,7 +25,10 @@ import { IconChevronRight } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import {
   AdminPanelRecentUsersDocument,
   AdminPanelTopWorkspacesDocument,
@@ -33,12 +36,12 @@ import {
 import { getAbsoluteImageUrl } from '~/utils/image/getAbsoluteImageUrl';
 
 const StyledEmptyState = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  padding: ${themeCssVariables.spacing[4]} 0;
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  padding: ${odelzaThemeCssVariables.spacing[4]} 0;
 `;
 
 const StyledSearchInputContainer = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const RECENT_USERS_GRID_TEMPLATE_COLUMNS = '1fr 2fr 1fr 36px';
@@ -140,8 +143,8 @@ export const SettingsAdminGeneral = () => {
                     })}
                   >
                     <TableCell
-                      color={themeCssVariables.font.color.primary}
-                      gap={themeCssVariables.spacing[2]}
+                      color={odelzaThemeCssVariables.font.color.primary}
+                      gap={odelzaThemeCssVariables.spacing[2]}
                       overflow="hidden"
                     >
                       <Avatar
@@ -163,7 +166,7 @@ export const SettingsAdminGeneral = () => {
                     </TableCell>
                     <TableCell>{user.email}</TableCell>
                     <TableCell
-                      gap={themeCssVariables.spacing[2]}
+                      gap={odelzaThemeCssVariables.spacing[2]}
                       overflow="hidden"
                     >
                       {user.workspaceId ? (
@@ -238,8 +241,8 @@ export const SettingsAdminGeneral = () => {
                     )}
                   >
                     <TableCell
-                      color={themeCssVariables.font.color.primary}
-                      gap={themeCssVariables.spacing[2]}
+                      color={odelzaThemeCssVariables.font.color.primary}
+                      gap={odelzaThemeCssVariables.spacing[2]}
                       overflow="hidden"
                     >
                       <Avatar

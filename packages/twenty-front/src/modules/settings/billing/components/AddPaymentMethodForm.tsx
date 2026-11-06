@@ -19,7 +19,7 @@ import { useLocation } from 'react-router-dom';
 import { isDefined } from 'twenty-shared/utils';
 import { Info } from 'twenty-ui/feedback';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { CreateBillingPaymentMethodSetupIntentDocument } from '~/generated-metadata/graphql';
 
 type AddPaymentMethodFormContentProps = {
@@ -32,7 +32,7 @@ type AddPaymentMethodFormProps = AddPaymentMethodFormContentProps;
 const StyledFormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   width: 100%;
 `;
 
@@ -143,7 +143,7 @@ const AddPaymentMethodFormContent = ({
         title={t`Add credit card`}
         onClick={handleSubmit}
         variant="secondary"
-        accent="blue"
+        accent="primary"
         fullWidth
         justify="center"
         isLoading={isSubmitting}

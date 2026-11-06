@@ -1,6 +1,6 @@
 import { t } from '@lingui/core/macro';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type Column, useRowSelection } from 'react-data-grid';
 import { createPortal } from 'react-dom';
 
@@ -19,7 +19,7 @@ import { type ImportedStructuredRowMetadata } from '@/spreadsheet-import/steps/c
 const StyledHeaderContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   position: relative;
 `;
 
@@ -52,7 +52,7 @@ const StyledInputContainer = styled.div`
   display: flex;
   min-height: 100%;
   min-width: 100%;
-  padding-right: ${themeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledDefaultContainer = styled.div`
@@ -65,7 +65,7 @@ const StyledDefaultContainer = styled.div`
 `;
 
 const StyledSelectReadonlyValueContianer = styled.div`
-  padding-left: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const SELECT_COLUMN_KEY = 'select-row';

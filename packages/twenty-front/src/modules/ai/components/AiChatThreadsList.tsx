@@ -19,12 +19,12 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { t } from '@lingui/core/macro';
 import { Key } from 'ts-key-enum';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { getOsControlSymbol } from 'twenty-ui/utilities';
 
 const StyledContainer = styled.div`
-  background: ${themeCssVariables.background.secondary};
-  border-right: 1px solid ${themeCssVariables.border.color.light};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border-right: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -33,20 +33,21 @@ const StyledContainer = styled.div`
 const StyledThreadsContainer = styled.div`
   flex: 1;
   overflow-y: auto;
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledFlatThreadList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledButtonsContainer = styled.div`
-  border-top: 1px solid ${themeCssVariables.border.color.medium};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   display: flex;
   justify-content: flex-end;
-  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const AiChatThreadsList = () => {
@@ -112,7 +113,7 @@ export const AiChatThreadsList = () => {
         <StyledButtonsContainer>
           <Button
             variant="primary"
-            accent="blue"
+            accent="primary"
             size="medium"
             title={t`New chat`}
             onClick={() => switchToNewChat()}

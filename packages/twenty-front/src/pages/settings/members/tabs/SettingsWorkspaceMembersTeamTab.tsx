@@ -35,7 +35,10 @@ import { MenuItem } from 'twenty-ui/navigation';
 
 import { TableCell } from '@/ui/layout/table/components/TableCell';
 import { TableRow } from '@/ui/layout/table/components/TableRow';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useNavigateApp } from '~/hooks/useNavigateApp';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
 import { getAbsoluteImageUrl } from '~/utils/image/getAbsoluteImageUrl';
@@ -46,14 +49,14 @@ const StyledTableContainer = styled.div<{ hasMoreRows?: boolean }>`
     border-bottom: ${({ hasMoreRows }) =>
       hasMoreRows
         ? 'none'
-        : `1px solid ${themeCssVariables.border.color.light}`};
+        : `1px solid ${odelzaThemeCssVariables.border.color.light}`};
   }
 `;
 
 const StyledIconWrapper = styled.div`
   align-items: center;
   display: flex;
-  margin-right: ${themeCssVariables.spacing[2]};
+  margin-right: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTextContainerWithEllipsis = styled.div`
@@ -65,18 +68,18 @@ const StyledTextContainerWithEllipsis = styled.div`
 const StyledSearchContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTableRows = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledChevronWrapper = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
   justify-content: flex-end;
   width: 100%;
@@ -289,7 +292,7 @@ export const SettingsWorkspaceMembersTeamTab = () => {
                 </TableRow>
               ))
             ) : (
-              <TableCell color={themeCssVariables.font.color.tertiary}>
+              <TableCell color={odelzaThemeCssVariables.font.color.tertiary}>
                 {!searchFilter
                   ? t`No members`
                   : t`No members match your search`}

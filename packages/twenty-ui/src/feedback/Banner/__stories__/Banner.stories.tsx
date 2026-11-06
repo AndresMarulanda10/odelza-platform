@@ -18,7 +18,7 @@ import {
 import styles from './Banner.stories.module.scss';
 
 const getButtonAccent = (color?: BannerColor) =>
-  color === 'danger' ? 'danger' : 'blue';
+  color === 'danger' ? 'danger' : 'primary';
 
 const BannerCloseButton = ({
   color,
@@ -51,7 +51,7 @@ const meta: Meta<typeof Banner> = {
   argTypes: {
     color: {
       control: 'select',
-      options: ['blue', 'danger'] satisfies BannerColor[],
+      options: ['primary', 'danger'] satisfies BannerColor[],
     },
     variant: {
       control: 'select',
@@ -65,7 +65,7 @@ type Story = StoryObj<typeof Banner>;
 
 export const Default: Story = {
   args: {
-    color: 'blue',
+    color: 'primary',
     variant: 'primary',
   },
   render: (args) => (
@@ -122,7 +122,7 @@ export const Catalog: CatalogStory<Story, typeof Banner> = {
         },
         {
           name: 'color',
-          values: ['blue', 'danger'] satisfies BannerColor[],
+          values: ['primary', 'danger'] satisfies BannerColor[],
           props: (color: BannerColor) => ({ color }),
         },
       ],

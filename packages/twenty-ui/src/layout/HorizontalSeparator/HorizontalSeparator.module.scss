@@ -1,12 +1,12 @@
 .separator {
   background-color: var(
     --horizontal-separator-color,
-    var(--t-border-color-medium)
+    var(--odz-border-color-medium)
   );
   height: 0;
   flex-shrink: 0;
-  margin-bottom: var(--t-spacing-3);
-  margin-top: var(--t-spacing-3);
+  margin-bottom: var(--odz-spacing-3);
+  margin-top: var(--odz-spacing-3);
   width: 100%;
 
   &[data-visible] {
@@ -22,8 +22,8 @@
 .separatorContainer {
   align-items: center;
   display: flex;
-  margin-bottom: var(--t-spacing-3);
-  margin-top: var(--t-spacing-3);
+  margin-bottom: var(--odz-spacing-3);
+  margin-top: var(--odz-spacing-3);
   width: 100%;
 
   &[data-no-margin] {
@@ -35,7 +35,7 @@
 .line {
   background-color: var(
     --horizontal-separator-color,
-    var(--t-border-color-medium)
+    var(--odz-border-color-medium)
   );
   height: 0;
   flex-grow: 1;
@@ -46,5 +46,5 @@
 }
 
 .text {
-  margin: 0 var(--t-spacing-2);
+  margin: 0 var(--odz-spacing-2);
 }

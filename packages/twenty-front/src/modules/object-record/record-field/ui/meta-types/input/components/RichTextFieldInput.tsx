@@ -14,7 +14,10 @@ import { Suspense, lazy, useContext, useRef } from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { IconLayoutSidebarLeftCollapse } from 'twenty-ui/icon';
 import { FloatingIconButton } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const ActivityRichTextEditor = lazy(() =>
   import('@/activities/components/ActivityRichTextEditor').then((module) => ({
@@ -32,14 +35,15 @@ const RichTextFieldEditor = lazy(() =>
 
 const StyledContainer = styled.div`
   align-items: flex-start;
-  background-color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
   box-sizing: border-box;
   display: flex;
-  margin: 0 0 0 calc(-1 * ${themeCssVariables.spacing[5]});
+  margin: 0 0 0 calc(-1 * ${odelzaThemeCssVariables.spacing[5]});
   max-height: min(60vh, 500px);
   overflow: hidden;
-  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[2]}
-    ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[12]};
+  padding: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[2]} ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[12]};
   position: relative;
   width: 480px;
 `;
@@ -52,8 +56,8 @@ const StyledEditorScroll = styled.div`
 `;
 
 const StyledCollapseButton = styled.div`
-  border-radius: ${themeCssVariables.border.radius.md};
-  color: ${themeCssVariables.font.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  color: ${odelzaThemeCssVariables.font.color.light};
   cursor: pointer;
   display: flex;
 `;
@@ -64,7 +68,7 @@ const LoadingSkeleton = () => {
     <SkeletonTheme
       baseColor={theme.background.tertiary}
       highlightColor={theme.background.transparent.lighter}
-      borderRadius={themeCssVariables.border.radius.md}
+      borderRadius={odelzaThemeCssVariables.border.radius.md}
     >
       <Skeleton height={SKELETON_LOADER_HEIGHT_SIZES.standard.s} />
     </SkeletonTheme>

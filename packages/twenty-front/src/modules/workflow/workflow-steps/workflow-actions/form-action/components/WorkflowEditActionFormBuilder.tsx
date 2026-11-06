@@ -30,7 +30,10 @@ import {
   IconTrash,
 } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useDebouncedCallback } from 'use-debounce';
 import { v4 } from 'uuid';
 
@@ -51,7 +54,7 @@ type FormData = WorkflowFormActionField[];
 
 const StyledFormFieldContainer = styled.div`
   align-items: flex-end;
-  column-gap: ${themeCssVariables.spacing[1]};
+  column-gap: ${odelzaThemeCssVariables.spacing[1]};
   display: grid;
   grid-template-areas:
     'grip input delete'
@@ -61,7 +64,7 @@ const StyledFormFieldContainer = styled.div`
 `;
 
 const StyledDraggingIndicator = styled.div`
-  background-color: ${themeCssVariables.background.transparent.light};
+  background-color: ${odelzaThemeCssVariables.background.transparent.light};
   inset: -8px;
   position: absolute;
   top: -4px;
@@ -71,14 +74,14 @@ const StyledGripButtonContainer = styled.div`
   align-items: flex-end;
   display: flex;
   grid-area: grip;
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledTrashButtonContainer = styled.div`
   align-items: flex-end;
   display: flex;
   grid-area: delete;
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledFormFieldInputContainerWrapper = styled.div`
@@ -99,9 +102,9 @@ const StyledFieldContainer = styled.div<{
   display: flex;
   font-family: inherit;
   height: 100%;
-  padding-left: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
 
-  padding-right: ${themeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 
   &:hover,
@@ -109,7 +112,7 @@ const StyledFieldContainer = styled.div<{
     background-color: ${({ readonly }) =>
       readonly
         ? 'transparent'
-        : themeCssVariables.background.transparent.lighter};
+        : odelzaThemeCssVariables.background.transparent.lighter};
   }
 `;
 
@@ -118,33 +121,33 @@ const StyledPlaceholderContainer = styled.div`
 `;
 
 const StyledAddFieldButtonContainer = styled.div`
-  padding-left: ${themeCssVariables.spacing[7]};
-  padding-right: ${themeCssVariables.spacing[7]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[7]};
+  padding-right: ${odelzaThemeCssVariables.spacing[7]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledAddFieldButtonContentContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[0.5]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[0.5]};
   justify-content: center;
   width: 100%;
 `;
 
 const StyledCalloutContainer = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-left: ${themeCssVariables.spacing[7]};
-  padding-right: ${themeCssVariables.spacing[7]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[7]};
+  padding-right: ${odelzaThemeCssVariables.spacing[7]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledNotClosableCalloutContainer = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[4]};
-  padding-left: ${themeCssVariables.spacing[7]};
-  padding-right: ${themeCssVariables.spacing[7]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[4]};
+  padding-left: ${odelzaThemeCssVariables.spacing[7]};
+  padding-right: ${odelzaThemeCssVariables.spacing[7]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const WorkflowEditActionFormBuilder = ({
@@ -236,7 +239,7 @@ export const WorkflowEditActionFormBuilder = ({
     <>
       <WorkflowStepBody
         display="block"
-        paddingInline={themeCssVariables.spacing[2]}
+        paddingInline={odelzaThemeCssVariables.spacing[2]}
       >
         {triggerType && triggerType !== 'MANUAL' && isCalloutVisible && (
           <StyledCalloutContainer>
@@ -282,7 +285,7 @@ export const WorkflowEditActionFormBuilder = ({
                   isInsideScrollableContainer
                   disableDraggingBackground
                   draggableComponentStyles={{
-                    marginBottom: themeCssVariables.spacing[4],
+                    marginBottom: odelzaThemeCssVariables.spacing[4],
                   }}
                   itemComponent={({ isDragging }) => {
                     const showButtons =
@@ -337,7 +340,8 @@ export const WorkflowEditActionFormBuilder = ({
                                   <IconChevronDown
                                     size={theme.icon.size.md}
                                     color={
-                                      themeCssVariables.font.color.tertiary
+                                      odelzaThemeCssVariables.font.color
+                                        .tertiary
                                     }
                                   />
                                 )}

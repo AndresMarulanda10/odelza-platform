@@ -3,7 +3,7 @@ import { useRemoveFocusItemFromFocusStackById } from '@/ui/utilities/focus/hooks
 import { FocusComponentType } from '@/ui/utilities/focus/types/FocusComponentType';
 import { styled } from '@linaria/react';
 import { forwardRef, type HTMLAttributes, type Ref } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type FormFieldInputInnerContainerProps = {
   hasRightElement: boolean;
@@ -18,18 +18,22 @@ const StyledFormFieldInputInnerContainer = styled.div<
   Omit<FormFieldInputInnerContainerProps, 'formFieldInputInstanceId'>
 >`
   align-items: ${({ multiline }) => (multiline ? 'flex-start' : 'center')};
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-bottom-left-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-bottom-left-radius: ${odelzaThemeCssVariables.border.radius.md};
   border-bottom-right-radius: ${({ multiline, hasRightElement }) =>
-    multiline || !hasRightElement ? themeCssVariables.border.radius.md : '0'};
+    multiline || !hasRightElement
+      ? odelzaThemeCssVariables.border.radius.md
+      : '0'};
   border-right: ${({ multiline, hasRightElement }) =>
     multiline || !hasRightElement
-      ? `1px solid ${themeCssVariables.border.color.medium}`
+      ? `1px solid ${odelzaThemeCssVariables.border.color.medium}`
       : 'none'};
-  border-top-left-radius: ${themeCssVariables.border.radius.md};
+  border-top-left-radius: ${odelzaThemeCssVariables.border.radius.md};
   border-top-right-radius: ${({ multiline, hasRightElement }) =>
-    multiline || !hasRightElement ? themeCssVariables.border.radius.md : '0'};
+    multiline || !hasRightElement
+      ? odelzaThemeCssVariables.border.radius.md
+      : '0'};
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -46,8 +50,8 @@ const StyledFormFieldInputInnerContainer = styled.div<
   &[data-open='true'] {
     background-color: ${({ hoverable }) =>
       hoverable
-        ? themeCssVariables.background.transparent.light
-        : themeCssVariables.background.transparent.lighter};
+        ? odelzaThemeCssVariables.background.transparent.light
+        : odelzaThemeCssVariables.background.transparent.lighter};
   }
 `;
 

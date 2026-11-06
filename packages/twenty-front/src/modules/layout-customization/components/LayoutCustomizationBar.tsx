@@ -5,8 +5,10 @@ import { useAtomValue } from 'jotai';
 import { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconCheck, IconPaint } from 'twenty-ui/icon';
-import { GRAY_SCALE_LIGHT } from 'twenty-ui/theme';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { LayoutCustomizationBarMenuDropdown } from '@/layout-customization/components/LayoutCustomizationBarMenuDropdown';
 import { LayoutCustomizationBarResetConfirmationModal } from '@/layout-customization/components/LayoutCustomizationBarResetConfirmationModal';
@@ -23,21 +25,22 @@ import { PageLayoutType } from '~/generated-metadata/graphql';
 
 const StyledContainer = styled.div`
   align-items: center;
-  background: ${themeCssVariables.color.blue};
+  background: ${odelzaThemeCssVariables.color.primary};
   box-sizing: border-box;
-  color: ${GRAY_SCALE_LIGHT.gray1};
+  color: ${odelzaThemeCssVariables.buttons.onPrimary};
   display: flex;
   justify-content: space-between;
-  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[3]};
   width: 100%;
 
   button,
   button * {
-    color: ${GRAY_SCALE_LIGHT.gray1};
+    color: ${odelzaThemeCssVariables.buttons.onPrimary};
   }
 
   button {
-    --tw-button-color: ${GRAY_SCALE_LIGHT.gray1} !important;
+    --tw-button-color: ${odelzaThemeCssVariables.buttons.onPrimary} !important;
   }
 
   button[type='submit']:not(:disabled):not(:focus) {
@@ -49,14 +52,14 @@ const StyledLeftSection = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTitle = styled.span`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: center;
   text-align: center;
 `;

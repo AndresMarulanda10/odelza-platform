@@ -11,7 +11,7 @@ import {
 import { isDefined } from 'twenty-shared/utils';
 import { IconUserCircle, IconX, useIcons } from 'twenty-ui/icon';
 import { MenuItem } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
 import { fieldMetadataItemUsedInDropdownComponentSelector } from '@/object-record/object-filter-dropdown/states/fieldMetadataItemUsedInDropdownComponentSelector';
@@ -36,22 +36,22 @@ import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/use
 const StyledSearchInput = styled.input`
   background: transparent;
   border: none;
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   border-radius: 0;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   font-family: inherit;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   font-weight: inherit;
   margin: 0;
   max-width: 100%;
   min-height: 19px;
   outline: none;
   overflow: hidden;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   text-decoration: none;
 
   &::placeholder {
-    color: ${themeCssVariables.font.color.light};
+    color: ${odelzaThemeCssVariables.font.color.light};
   }
 `;
 

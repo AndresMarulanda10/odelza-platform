@@ -11,25 +11,28 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath } from 'twenty-shared/utils';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   height: 100%;
   overflow-y: scroll;
   width: 100%;
 
   .scalar-api-reference {
-    --scalar-background-1: ${themeCssVariables.background.primary};
-    --scalar-background-2: ${themeCssVariables.background.secondary};
-    --scalar-background-3: ${themeCssVariables.background.tertiary};
-    --scalar-background-accent: ${themeCssVariables.background.transparent
+    --scalar-background-1: ${odelzaThemeCssVariables.background.primary};
+    --scalar-background-2: ${odelzaThemeCssVariables.background.secondary};
+    --scalar-background-3: ${odelzaThemeCssVariables.background.tertiary};
+    --scalar-background-accent: ${odelzaThemeCssVariables.background.transparent
       .lighter};
-    --scalar-border-color: ${themeCssVariables.border.color.medium};
-    --scalar-color-1: ${themeCssVariables.font.color.primary};
-    --scalar-color-2: ${themeCssVariables.font.color.secondary};
-    --scalar-color-3: ${themeCssVariables.font.color.tertiary};
+    --scalar-border-color: ${odelzaThemeCssVariables.border.color.medium};
+    --scalar-color-1: ${odelzaThemeCssVariables.font.color.primary};
+    --scalar-color-2: ${odelzaThemeCssVariables.font.color.secondary};
+    --scalar-color-3: ${odelzaThemeCssVariables.font.color.tertiary};
   }
 
   .scalar-app .text-pretty {

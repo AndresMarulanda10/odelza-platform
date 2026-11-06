@@ -10,7 +10,7 @@ import {
 } from 'twenty-ui/feedback';
 import { type IconComponent, IconX } from 'twenty-ui/icon';
 import { Button, IconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledText = styled.div`
   overflow: hidden;
@@ -18,21 +18,21 @@ const StyledText = styled.div`
 `;
 
 const StyledInvertedIconButton = styled(IconButton)`
-  color: ${themeCssVariables.font.color.inverted} !important;
+  color: ${odelzaThemeCssVariables.font.color.inverted} !important;
 `;
 
 const StyledContent = styled.div<{ hasCloseButton: boolean }>`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   justify-content: center;
   margin-left: ${({ hasCloseButton }) => (hasCloseButton ? '24px' : '0')};
 `;
 
 export const InformationBanner = ({
   message,
-  color = 'blue',
+  color = 'primary',
   variant = 'primary',
   buttonTitle,
   buttonIcon,
@@ -57,7 +57,7 @@ export const InformationBanner = ({
   );
 
   const isPrimary = variant === 'primary';
-  const buttonAccent = color === 'danger' ? 'danger' : 'blue';
+  const buttonAccent = color === 'danger' ? 'danger' : 'primary';
 
   return (
     <InformationBannerComponentInstanceContext.Provider

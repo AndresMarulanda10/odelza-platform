@@ -39,14 +39,15 @@ import { viewPickerTypeComponentState } from '@/views/view-picker/states/viewPic
 import { Trans, useLingui } from '@lingui/react/macro';
 import { useMemo, useState } from 'react';
 import { IconX } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledFieldAvailableContainer = styled.div`
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: flex;
-  margin: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
+  margin: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[2]};
   user-select: none;
-  width: calc(100% - ${themeCssVariables.spacing[4]});
+  width: calc(100% - ${odelzaThemeCssVariables.spacing[4]});
 `;
 
 export const ViewPickerContentCreateMode = () => {

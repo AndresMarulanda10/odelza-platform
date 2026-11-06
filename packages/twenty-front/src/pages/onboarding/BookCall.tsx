@@ -11,7 +11,10 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { AppPath } from 'twenty-shared/types';
 import { IconChevronLeft } from 'twenty-ui/icon';
 import { LightButton } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useIsMobile } from 'twenty-ui/utilities';
 
 const StyledPage = styled.div`
@@ -36,7 +39,7 @@ const StyledFooter = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 

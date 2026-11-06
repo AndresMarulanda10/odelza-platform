@@ -7,7 +7,10 @@ import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/Enriche
 import { SettingsItemTypeTag } from '@/settings/components/SettingsItemTypeTag';
 import { IconBox } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 export type SettingsDataModelObjectPreviewProps = {
   className?: string;
@@ -33,17 +36,17 @@ const StyledObjectPreview = styled.div`
 
 const StyledObjectName = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   max-width: 60%;
 `;
 
 const StyledOverflowingTextWithTooltip = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 const StyledNumber = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  padding-right: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledIconContainer = styled.div`
@@ -52,10 +55,10 @@ const StyledIconContainer = styled.div`
 
 const StyledSeparator = styled.div`
   align-self: stretch;
-  background: ${themeCssVariables.background.quaternary};
+  background: ${odelzaThemeCssVariables.background.quaternary};
   height: 1px;
-  margin-bottom: ${themeCssVariables.spacing[2]};
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type SettingsDataModelObjectPreviewItemProps = {

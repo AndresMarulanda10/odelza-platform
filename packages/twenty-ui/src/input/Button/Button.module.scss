@@ -1,8 +1,8 @@
 @use 'sass:map';
 
-// GRAY_SCALE_LIGHT.gray1 from theme/constants/GrayScaleLight.ts — the legacy
-// Linaria styles read it from JS because it is theme-invariant.
-$gray-scale-light-gray1: color(display-p3 1 1 1);
+// Inverted buttons sit on colored surfaces, so their border stays white in
+// both color schemes.
+$inverted-border-color: #ffffff;
 
 // The variant × accent × inverted × disabled × focus matrix below is ported
 // token-for-token from computeButtonDynamicStyles in the deprecated
@@ -21,30 +21,30 @@ $gray-scale-light-gray1: color(display-p3 1 1 1);
 }
 
 .wrapperLoading {
-  max-width: calc(100% - var(--t-spacing-8));
+  max-width: calc(100% - var(--odz-spacing-8));
 }
 
 .button {
-  --tw-button-color: var(--btn-color, var(--t-font-color-secondary));
+  --tw-button-color: var(--btn-color, var(--odz-font-color-secondary));
 
   align-items: center;
   background: var(--btn-bg, transparent);
   border-color: var(--btn-border-color, transparent);
-  border-radius: var(--btn-radius, var(--t-border-radius-md));
+  border-radius: var(--btn-radius, var(--odz-border-radius-md));
   border-style: solid;
   border-width: var(--btn-border-width, 1px 1px 1px 1px);
   box-shadow: var(--btn-box-shadow, none);
   box-sizing: border-box;
-  color: var(--btn-color, var(--t-font-color-secondary));
+  color: var(--btn-color, var(--odz-font-color-secondary));
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  font-family: var(--t-font-family);
-  font-size: var(--t-font-size-md);
+  font-family: var(--odz-font-family);
+  font-size: var(--odz-font-size-md);
   font-weight: 500;
-  gap: var(--t-spacing-1);
+  gap: var(--odz-spacing-1);
   justify-content: var(--btn-justify, flex-start);
-  padding: 0 var(--t-spacing-2) 0 var(--t-spacing-2);
+  padding: 0 var(--odz-spacing-2) 0 var(--odz-spacing-2);
   text-decoration: none;
   transition: background 0.1s ease;
   white-space: nowrap;
@@ -87,7 +87,7 @@ $gray-scale-light-gray1: color(display-p3 1 1 1);
 // '1px 1px' override for primary/danger is omitted: it computes to the same
 // 1px on every side as the default.
 .button[data-position='left'] {
-  --btn-radius: var(--t-border-radius-md) 0px 0px var(--t-border-radius-md);
+  --btn-radius: var(--odz-border-radius-md) 0px 0px var(--odz-border-radius-md);
   --btn-border-width: 1px 0px 1px 1px;
 }
 
@@ -97,62 +97,63 @@ $gray-scale-light-gray1: color(display-p3 1 1 1);
 }
 
 .button[data-position='right'] {
-  --btn-radius: 0px var(--t-border-radius-md) var(--t-border-radius-md) 0px;
+  --btn-radius: 0px var(--odz-border-radius-md) var(--odz-border-radius-md) 0px;
   --btn-border-width: 1px 1px 1px 0px;
 }
 
 // variant=primary, not inverted, keyed by accent.
 // focus-needs-enabled mirrors the one asymmetry of the legacy switch: the
-// default accent only shows its focus border when enabled, while blue and
+// default accent only shows its focus border when enabled, while primary and
 // danger keep the focus border even when disabled.
 $primary-accents: (
+  // Odelza secondary button: Butter in light mode, Coffee in dark mode
   'default': (
-    bg: var(--t-background-transparent-lighter),
-    bg-disabled: var(--t-background-transparent-lighter),
-    border: var(--t-background-transparent-light),
-    border-focus: var(--t-color-blue),
+    bg: var(--odz-buttons-secondary-background),
+    bg-disabled: var(--odz-background-transparent-lighter),
+    border: var(--odz-background-transparent-light),
+    border-focus: var(--odz-border-color-focus),
     focus-needs-enabled: true,
-    shadow-focus: var(--t-accent-tertiary),
-    color: var(--t-font-color-secondary),
-    color-disabled: var(--t-font-color-extra-light),
-    hover: var(--t-background-tertiary),
-    active: var(--t-background-quaternary),
+    shadow-focus: var(--odz-accent-tertiary),
+    color: var(--odz-buttons-on-secondary),
+    color-disabled: var(--odz-font-color-extra-light),
+    hover: var(--odz-buttons-secondary-background-hover),
+    active: var(--odz-buttons-secondary-background-pressed),
   ),
-  'blue': (
-    bg: var(--t-color-blue),
-    bg-disabled: var(--t-accent-accent4060),
-    border: var(--t-background-transparent-light),
-    border-focus: var(--t-color-blue),
+  'primary': (
+    bg: var(--odz-color-primary),
+    bg-disabled: var(--odz-accent-accent4060),
+    border: var(--odz-background-transparent-light),
+    border-focus: var(--odz-border-color-focus),
     focus-needs-enabled: false,
-    shadow-focus: var(--t-accent-tertiary),
-    color: $gray-scale-light-gray1,
-    color-disabled: $gray-scale-light-gray1,
-    hover: var(--t-color-blue10),
-    active: var(--t-color-blue12),
+    shadow-focus: var(--odz-accent-tertiary),
+    color: var(--odz-buttons-on-primary),
+    color-disabled: var(--odz-buttons-on-primary),
+    hover: var(--odz-color-primary10),
+    active: var(--odz-color-primary12),
   ),
   'danger': (
-    bg: var(--t-color-red),
-    bg-disabled: var(--t-color-red),
-    border: var(--t-background-transparent-light),
-    border-focus: var(--t-color-red),
+    bg: var(--odz-color-red),
+    bg-disabled: var(--odz-color-red),
+    border: var(--odz-background-transparent-light),
+    border-focus: var(--odz-color-red),
     focus-needs-enabled: false,
-    shadow-focus: var(--t-color-red3),
-    color: var(--t-background-primary),
-    color-disabled: var(--t-background-primary),
-    hover: var(--t-color-red8),
-    active: var(--t-color-red10),
+    shadow-focus: var(--odz-color-red3),
+    color: var(--odz-background-primary),
+    color-disabled: var(--odz-background-primary),
+    hover: var(--odz-color-red8),
+    active: var(--odz-color-red10),
   ),
   'green': (
-    bg: var(--t-color-green9),
-    bg-disabled: var(--t-color-green3),
-    border: var(--t-background-transparent-light),
-    border-focus: var(--t-color-green9),
+    bg: var(--odz-color-green9),
+    bg-disabled: var(--odz-color-green3),
+    border: var(--odz-background-transparent-light),
+    border-focus: var(--odz-color-green9),
     focus-needs-enabled: false,
-    shadow-focus: var(--t-color-green3),
-    color: $gray-scale-light-gray1,
-    color-disabled: var(--t-color-green9),
-    hover: var(--t-color-green10),
-    active: var(--t-color-green12),
+    shadow-focus: var(--odz-color-green3),
+    color: var(--odz-buttons-on-primary),
+    color-disabled: var(--odz-color-green9),
+    hover: var(--odz-color-green10),
+    active: var(--odz-color-green12),
   ),
 );
 
@@ -192,17 +193,17 @@ $primary-accents: (
 // variant=primary, inverted: identical across accents except for the text
 // color.
 $primary-inverted-colors: (
-  'default': var(--t-font-color-secondary),
-  'blue': var(--t-color-blue),
-  'danger': var(--t-color-red),
-  'green': var(--t-color-green9),
+  'default': var(--odz-font-color-secondary),
+  'primary': var(--odz-font-color-link),
+  'danger': var(--odz-color-red),
+  'green': var(--odz-color-green9),
 );
 
 .button[data-variant='primary'][data-inverted] {
-  --btn-bg: var(--t-background-primary);
-  --btn-border-color: var(--t-background-transparent-light);
-  --btn-hover-bg: var(--t-background-secondary);
-  --btn-active-bg: var(--t-background-tertiary);
+  --btn-bg: var(--odz-background-primary);
+  --btn-border-color: var(--odz-background-transparent-light);
+  --btn-hover-bg: var(--odz-background-secondary);
+  --btn-active-bg: var(--odz-background-tertiary);
 }
 
 @each $accent, $color in $primary-inverted-colors {
@@ -212,13 +213,13 @@ $primary-inverted-colors: (
 }
 
 .button[data-variant='primary'][data-inverted][data-focus] {
-  --btn-box-shadow: 0 0 0 3px var(--t-background-transparent-medium);
+  --btn-box-shadow: 0 0 0 3px var(--odz-background-transparent-medium);
 }
 
 .button[data-variant='primary'][data-inverted][data-disabled] {
   --btn-box-shadow: none;
-  --btn-hover-bg: var(--t-background-primary);
-  --btn-active-bg: var(--t-background-primary);
+  --btn-hover-bg: var(--odz-background-primary);
+  --btn-active-bg: var(--odz-background-primary);
 }
 
 // variant=secondary|tertiary, not inverted, keyed by accent. Background stays
@@ -228,44 +229,44 @@ $primary-inverted-colors: (
 // secondary/default hides its focus border when disabled.
 $secondary-accents: (
   'default': (
-    border-secondary: var(--t-background-transparent-medium),
-    border-focus: var(--t-color-blue),
+    border-secondary: var(--odz-background-transparent-medium),
+    border-focus: var(--odz-border-color-focus),
     focus-needs-enabled-secondary: true,
-    shadow-focus: var(--t-accent-tertiary),
-    color: var(--t-font-color-secondary),
-    color-disabled: var(--t-font-color-extra-light),
-    hover: var(--t-background-transparent-light),
-    active: var(--t-background-transparent-light),
+    shadow-focus: var(--odz-accent-tertiary),
+    color: var(--odz-font-color-secondary),
+    color-disabled: var(--odz-font-color-extra-light),
+    hover: var(--odz-background-transparent-light),
+    active: var(--odz-background-transparent-light),
   ),
-  'blue': (
-    border-secondary: var(--t-accent-primary),
-    border-focus: var(--t-color-blue),
+  'primary': (
+    border-secondary: var(--odz-accent-primary),
+    border-focus: var(--odz-border-color-focus),
     focus-needs-enabled-secondary: false,
-    shadow-focus: var(--t-accent-tertiary),
-    color: var(--t-color-blue),
-    color-disabled: var(--t-accent-accent4060),
-    hover: var(--t-accent-tertiary),
-    active: var(--t-accent-secondary),
+    shadow-focus: var(--odz-accent-tertiary),
+    color: var(--odz-color-primary),
+    color-disabled: var(--odz-accent-accent4060),
+    hover: var(--odz-accent-tertiary),
+    active: var(--odz-accent-secondary),
   ),
   'danger': (
-    border-secondary: var(--t-border-color-danger),
-    border-focus: var(--t-color-red),
+    border-secondary: var(--odz-border-color-danger),
+    border-focus: var(--odz-color-red),
     focus-needs-enabled-secondary: false,
-    shadow-focus: var(--t-color-red3),
-    color: var(--t-font-color-danger),
-    color-disabled: var(--t-color-red5),
-    hover: var(--t-background-danger),
-    active: var(--t-background-danger),
+    shadow-focus: var(--odz-color-red3),
+    color: var(--odz-font-color-danger),
+    color-disabled: var(--odz-color-red5),
+    hover: var(--odz-background-danger),
+    active: var(--odz-background-danger),
   ),
   'green': (
-    border-secondary: var(--t-color-green9),
-    border-focus: var(--t-color-green9),
+    border-secondary: var(--odz-color-green9),
+    border-focus: var(--odz-color-green9),
     focus-needs-enabled-secondary: false,
-    shadow-focus: var(--t-color-green3),
-    color: var(--t-color-green9),
-    color-disabled: var(--t-color-green3),
-    hover: var(--t-color-green3),
-    active: var(--t-color-green4),
+    shadow-focus: var(--odz-color-green3),
+    color: var(--odz-color-green9),
+    color-disabled: var(--odz-color-green3),
+    hover: var(--odz-color-green3),
+    active: var(--odz-color-green4),
   ),
 );
 
@@ -318,21 +319,21 @@ $secondary-accents: (
     [data-variant='secondary'],
     [data-variant='tertiary']
   )[data-inverted] {
-  --btn-color: var(--t-font-color-inverted);
-  --btn-hover-bg: var(--t-background-transparent-light);
-  --btn-active-bg: var(--t-background-transparent-medium);
+  --btn-color: var(--odz-font-color-inverted);
+  --btn-hover-bg: var(--odz-background-transparent-light);
+  --btn-active-bg: var(--odz-background-transparent-medium);
 }
 
 .button[data-variant='secondary'][data-inverted] {
-  --btn-border-color: var(--t-background-transparent-primary);
+  --btn-border-color: var(--odz-background-transparent-primary);
 }
 
 .button:is(
     [data-variant='secondary'],
     [data-variant='tertiary']
   )[data-inverted][data-focus] {
-  --btn-border-color: #{$gray-scale-light-gray1};
-  --btn-box-shadow: 0 0 0 3px var(--t-background-transparent-medium);
+  --btn-border-color: #{$inverted-border-color};
+  --btn-box-shadow: 0 0 0 3px var(--odz-background-transparent-medium);
 }
 
 .button:is(
@@ -343,5 +344,5 @@ $secondary-accents: (
 }
 
 .button[data-variant='secondary'][data-inverted][data-disabled] {
-  --btn-border-color: #{$gray-scale-light-gray1};
+  --btn-border-color: #{$inverted-border-color};
 }

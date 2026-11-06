@@ -12,13 +12,14 @@ import { GET_MY_CONNECTED_ACCOUNTS } from '@/settings/accounts/graphql/queries/g
 import { Select } from '@/ui/input/components/Select';
 import { t } from '@lingui/core/macro';
 import { type SelectOption } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledFieldsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[3]} ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[3]}
+    ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledToRow = styled.div`
@@ -29,21 +30,21 @@ const StyledToRow = styled.div`
 
 const StyledCcBccToggle = styled.button`
   all: unset;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: pointer;
-  font-size: ${themeCssVariables.font.size.xs};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
   position: absolute;
   right: 0;
   top: 0;
 
   &:hover {
-    color: ${themeCssVariables.font.color.secondary};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
   }
 `;
 
 const StyledRecipientLimitWarning = styled.div`
-  color: ${themeCssVariables.color.red};
-  font-size: ${themeCssVariables.font.size.xs};
+  color: ${odelzaThemeCssVariables.color.red};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
 `;
 
 type EmailComposerFieldsProps = {

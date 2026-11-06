@@ -3,7 +3,10 @@ import { useContext, useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { getIconTileColorShades } from 'twenty-ui/data-display';
 import { type IconComponent } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { DEFAULT_NAVIGATION_MENU_ITEM_COLOR_LINK } from '@/navigation-menu-item/common/constants/NavigationMenuItemDefaultColorLink';
 import { getLinkFaviconUrl } from '@/navigation-menu-item/display/link/utils/getLinkFaviconUrl';
@@ -12,7 +15,7 @@ const failedFaviconUrls = new Set<string>();
 
 const StyledCompositeContainer = styled.div`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   flex-shrink: 0;
@@ -34,7 +37,7 @@ const StyledMainIconWrapper = styled.div<{
     $noBackgroundOrBorder || !$borderColor
       ? 'none'
       : `1px solid ${$borderColor}`};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   inset: 0;
@@ -52,7 +55,7 @@ const StyledFaviconImage = styled.img`
 const StyledLinkOverlay = styled.div<{ $backgroundColor: string }>`
   align-items: center;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
-  border-radius: ${themeCssVariables.border.radius.xs};
+  border-radius: ${odelzaThemeCssVariables.border.radius.xs};
   bottom: -5px;
   display: flex;
   height: 14px;
@@ -111,11 +114,13 @@ export const LinkIconWithLinkOverlay = ({
           />
         )}
       </StyledMainIconWrapper>
-      <StyledLinkOverlay $backgroundColor={themeCssVariables.grayScale.gray4}>
+      <StyledLinkOverlay
+        $backgroundColor={odelzaThemeCssVariables.grayScale.gray4}
+      >
         <LinkIcon
           size="14px"
           stroke={theme.icon.stroke.md}
-          color={themeCssVariables.grayScale.gray10}
+          color={odelzaThemeCssVariables.grayScale.gray10}
         />
       </StyledLinkOverlay>
     </StyledCompositeContainer>

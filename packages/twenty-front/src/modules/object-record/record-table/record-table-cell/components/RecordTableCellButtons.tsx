@@ -1,7 +1,10 @@
 import { styled } from '@linaria/react';
 import { type IconComponent } from 'twenty-ui/icon';
 import { LightIconButtonGroup } from 'twenty-ui/input';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { AnimatedContainer } from 'twenty-ui/layout';
 
 const StyledButtonContainer = styled.div`
@@ -10,15 +13,17 @@ const StyledButtonContainer = styled.div`
      the box and clamp to a full squircle, and a scaled full squircle is not a
      uniform offset — the child corners would pull away from the frame. sm
      stays well below the clamp point so radius - inset holds in both modes. */
-  --light-icon-button-radius: calc(${themeCssVariables.border.radius.sm} - 1px);
+  --light-icon-button-radius: calc(
+    ${odelzaThemeCssVariables.border.radius.sm} - 1px
+  );
 
-  border: 1px solid ${themeCssVariables.border.color.strong};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.strong};
   @media (max-width: ${MOBILE_VIEWPORT}px) {
     position: relative;
     right: 7px;
   }
-  border-radius: ${themeCssVariables.border.radius.sm};
-  margin: ${themeCssVariables.spacing[1]};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  margin: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type RecordTableCellButtonsProps = {

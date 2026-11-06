@@ -9,13 +9,13 @@ import { useOpenRecordInSidePanel } from '@/side-panel/hooks/useOpenRecordInSide
 import { CoreObjectNameSingular } from 'twenty-shared/types';
 import { RecordFieldsScopeContextProvider } from '@/object-record/record-field-list/contexts/RecordFieldsScopeContext';
 import { FieldContextProvider } from '@/object-record/record-field/ui/components/FieldContextProvider';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledCard = styled.div<{ isSingleNote: boolean }>`
   align-items: flex-start;
-  background: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex-direction: column;
   height: 300px;
@@ -30,21 +30,21 @@ const StyledCardDetailsContainer = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   height: calc(100% - 45px);
   justify-content: start;
-  padding: ${themeCssVariables.spacing[4]};
-  width: calc(100% - ${themeCssVariables.spacing[8]});
+  padding: ${odelzaThemeCssVariables.spacing[4]};
+  width: calc(100% - ${odelzaThemeCssVariables.spacing[8]});
 `;
 
 const StyledNoteTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledCardContent = styled.div`
   align-self: stretch;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   line-break: anywhere;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -55,14 +55,14 @@ const StyledCardContent = styled.div`
 const StyledFooter = styled.div`
   align-items: center;
   align-self: stretch;
-  border-top: 1px solid ${themeCssVariables.border.color.light};
-  color: ${themeCssVariables.font.color.primary};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: center;
-  padding: ${themeCssVariables.spacing[2]};
-  width: calc(100% - ${themeCssVariables.spacing[4]});
+  padding: ${odelzaThemeCssVariables.spacing[2]};
+  width: calc(100% - ${odelzaThemeCssVariables.spacing[4]});
 `;
 
 export const NoteTile = ({

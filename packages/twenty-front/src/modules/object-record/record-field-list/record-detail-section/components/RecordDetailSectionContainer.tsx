@@ -2,12 +2,12 @@ import { styled } from '@linaria/react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledRecordDetailSectionWrapper = styled.div`
-  border-top: 1px solid ${themeCssVariables.border.color.light};
-  padding-bottom: ${themeCssVariables.spacing[3]};
-  padding-top: ${themeCssVariables.spacing[3]};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[3]};
+  padding-top: ${odelzaThemeCssVariables.spacing[3]};
   width: auto;
 `;
 
@@ -21,29 +21,29 @@ const StyledHeader = styled.header<{
   height: 24px;
   justify-content: space-between;
   margin-bottom: ${({ areRecordsAvailable }) =>
-    areRecordsAvailable ? themeCssVariables.spacing[2] : '0'};
-  padding-left: ${themeCssVariables.spacing[3]};
-  padding-right: ${themeCssVariables.spacing[2]};
+    areRecordsAvailable ? odelzaThemeCssVariables.spacing[2] : '0'};
+  padding-left: ${odelzaThemeCssVariables.spacing[3]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTitle = styled.div`
   align-items: flex-end;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledTitleLabel = styled.div`
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledLinkContainer = styled.span`
   & > a {
-    color: ${themeCssVariables.font.color.light};
-    font-size: ${themeCssVariables.font.size.sm};
+    color: ${odelzaThemeCssVariables.font.color.light};
+    font-size: ${odelzaThemeCssVariables.font.size.sm};
     text-decoration: none;
 
     &:hover {
-      color: ${themeCssVariables.font.color.secondary};
+      color: ${odelzaThemeCssVariables.font.color.secondary};
     }
   }
 `;

@@ -19,7 +19,13 @@ import {
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { useAtomState } from '@/ui/utilities/state/jotai/hooks/useAtomState';
 import { useSetAtomState } from '@/ui/utilities/state/jotai/hooks/useSetAtomState';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import { getNavigationDrawerThemeOverrides } from '@/ui/navigation/navigation-drawer/utils/getNavigationDrawerThemeOverrides';
+import {
+  MOBILE_VIEWPORT,
+  ThemeProvider,
+  odelzaThemeCssVariables,
+  useThemeColorScheme,
+} from 'twenty-ui/theme-constants';
 import { NavigationDrawerBackButton } from './NavigationDrawerBackButton';
 import { NavigationDrawerHeader } from './NavigationDrawerHeader';
 
@@ -33,6 +39,7 @@ const StyledAnimatedContainer = styled.div<{
   isExpanded: boolean;
   isResizing: boolean;
 }>`
+  background: ${odelzaThemeCssVariables.navigation.background};
   height: 100%;
   max-height: 100%;
   overflow: hidden;
@@ -40,7 +47,7 @@ const StyledAnimatedContainer = styled.div<{
   transition: ${({ isResizing }) =>
     isResizing
       ? 'none'
-      : `width calc(${themeCssVariables.animation.duration.normal} * 1s)`};
+      : `width calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s)`};
   width: ${({ isExpanded }) =>
     isExpanded
       ? `var(${NAVIGATION_DRAWER_WIDTH_VAR})`
@@ -57,17 +64,17 @@ const StyledContainer = styled.div<{
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   height: 100%;
-  padding: ${themeCssVariables.spacing[2]} 0 ${themeCssVariables.spacing[4]}
-    ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]} 0
+    ${odelzaThemeCssVariables.spacing[4]} ${odelzaThemeCssVariables.spacing[2]};
   width: ${({ isExpanded }) =>
     isExpanded ? `var(${NAVIGATION_DRAWER_WIDTH_VAR})` : '100%'};
   @media (max-width: ${MOBILE_VIEWPORT}px) {
-    gap: ${themeCssVariables.spacing[4]};
+    gap: ${odelzaThemeCssVariables.spacing[4]};
     width: 100%;
-    padding-left: ${themeCssVariables.spacing[2]};
-    padding-right: ${themeCssVariables.spacing[2]};
+    padding-left: ${odelzaThemeCssVariables.spacing[2]};
+    padding-right: ${odelzaThemeCssVariables.spacing[2]};
   }
 `;
 
@@ -80,6 +87,7 @@ export const NavigationDrawer = ({
   const isMobile = useIsMobile();
   const isSettingsDrawer = useIsSettingsDrawer();
   const isExpanded = useNavigationDrawerExpanded();
+  const colorScheme = useThemeColorScheme();
 
   const [isNavigationDrawerExpanded, setIsNavigationDrawerExpanded] =
     useAtomState(isNavigationDrawerExpandedState);
@@ -120,14 +128,20 @@ export const NavigationDrawer = ({
         isExpanded={isExpanded}
         isResizing={isResizing}
       >
-        <StyledContainer isExpanded={isExpanded}>
-          {!isMobile && isSettingsDrawer && title ? (
-            <NavigationDrawerBackButton title={title} />
-          ) : (
-            <NavigationDrawerHeader showCollapseButton />
-          )}
-          {children}
-        </StyledContainer>
+        <ThemeProvider
+          colorScheme="dark"
+          applyToRoot={false}
+          overrides={getNavigationDrawerThemeOverrides(colorScheme)}
+        >
+          <StyledContainer isExpanded={isExpanded}>
+            {!isMobile && isSettingsDrawer && title ? (
+              <NavigationDrawerBackButton title={title} />
+            ) : (
+              <NavigationDrawerHeader showCollapseButton />
+            )}
+            {children}
+          </StyledContainer>
+        </ThemeProvider>
 
         {isNavigationDrawerExpanded && !isMobile && !isSettingsDrawer && (
           <ResizablePanelEdge

@@ -3,16 +3,16 @@ import { scrollAiChatToBottom } from '@/ai/utils/scrollAiChatToBottom';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 import { styled } from '@linaria/react';
 import { IconArrowDown } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledScrollToBottomButton = styled.button<{ isVisible: boolean }>`
   align-items: center;
-  background: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.rounded};
-  bottom: ${themeCssVariables.spacing[3]};
-  box-shadow: ${themeCssVariables.boxShadow.light};
-  color: ${themeCssVariables.font.color.secondary};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.rounded};
+  bottom: ${odelzaThemeCssVariables.spacing[3]};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.light};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   corner-shape: round;
   cursor: pointer;
   display: flex;
@@ -24,13 +24,14 @@ const StyledScrollToBottomButton = styled.button<{ isVisible: boolean }>`
   position: absolute;
   transform: translateX(-50%);
   transition:
-    opacity calc(${themeCssVariables.animation.duration.normal} * 1s) ease,
-    background calc(${themeCssVariables.animation.duration.fast} * 1s) ease;
+    opacity calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s) ease,
+    background calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s)
+      ease;
   width: 32px;
   z-index: 1;
 
   &:hover {
-    background: ${themeCssVariables.background.tertiary};
+    background: ${odelzaThemeCssVariables.background.tertiary};
   }
 `;
 

@@ -26,7 +26,10 @@ import {
 } from 'twenty-ui/surfaces';
 import { Button } from 'twenty-ui/input';
 import { UndecoratedLink } from 'twenty-ui/navigation';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type SchemaProperty = {
   type?: string;
@@ -55,18 +58,18 @@ const TYPE_ICON_MAP: Record<string, ComponentType<{ size?: number }>> = {
 };
 
 const StyledTableHeaderRow = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledFieldsContainer = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledFooter = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding: ${themeCssVariables.spacing[2]} 0;
+  padding: ${odelzaThemeCssVariables.spacing[2]} 0;
 `;
 
 const StyledInfoIconContainer = styled.div`
@@ -136,13 +139,15 @@ export const SettingsToolParameterTable = ({
                   >
                     <OverflowingTextWithTooltip text={paramName} />
                   </TableCell>
-                  <TableCell gap={themeCssVariables.spacing[1]}>
+                  <TableCell gap={odelzaThemeCssVariables.spacing[1]}>
                     {isDefined(TypeIcon) && (
                       <TypeIcon size={theme.icon.size.md} />
                     )}
                     {displayType}
                   </TableCell>
-                  <TableCell color={themeCssVariables.font.color.tertiary}>
+                  <TableCell
+                    color={odelzaThemeCssVariables.font.color.tertiary}
+                  >
                     {requiredFields?.includes(paramName) ? t`Yes` : ''}
                   </TableCell>
                   <TableCell>

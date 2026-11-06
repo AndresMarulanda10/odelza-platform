@@ -13,15 +13,15 @@ import { getDateMask } from '@/ui/input/components/internal/date/utils/getDateMa
 import { useParseDateInputStringToPlainDate } from '@/ui/input/components/internal/date/hooks/useParseDateInputStringToPlainDate';
 import { useParseJSDateToIMaskDateInputString } from '@/ui/input/components/internal/date/hooks/useParseJSDateToIMaskDateInputString';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledInputContainer = styled.div`
   align-items: center;
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
-  border-top-left-radius: ${themeCssVariables.border.radius.md};
-  border-top-right-radius: ${themeCssVariables.border.radius.md};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-top-left-radius: ${odelzaThemeCssVariables.border.radius.md};
+  border-top-right-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
-  height: ${themeCssVariables.spacing[8]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   width: 100%;
 `;
 
@@ -30,9 +30,9 @@ const StyledInput = styled.input<{ hasError?: boolean }>`
   border: none;
   color: ${({ hasError }) =>
     hasError
-      ? themeCssVariables.color.red
-      : themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
+      ? odelzaThemeCssVariables.color.red
+      : odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   font-weight: 500;
   outline: none;
   padding: 4px 8px 4px 8px;

@@ -31,13 +31,13 @@ import { isDefined } from 'twenty-shared/utils';
 import { StepStatus } from 'twenty-shared/workflow';
 import { IconCheck, IconX, useIcons } from 'twenty-ui/icon';
 import { Loader } from 'twenty-ui/feedback';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledNodeLabelWithCounterPart = styled.div`
   align-items: center;
   align-self: stretch;
   box-sizing: border-box;
-  column-gap: ${themeCssVariables.spacing[2]};
+  column-gap: ${odelzaThemeCssVariables.spacing[2]};
   display: flex;
   height: 14px;
   justify-content: space-between;
@@ -47,7 +47,7 @@ const StyledStatusIconsContainer = styled.div`
   align-items: center;
   box-sizing: border-box;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: flex-end;
 `;
 
@@ -56,7 +56,7 @@ const StyledColorIcon = styled.div<{
 }>`
   align-items: center;
   background: ${({ color }) => color};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   height: 14px;
@@ -69,13 +69,13 @@ const StyledIterationCounter = styled.div<{
 }>`
   color: ${({ runStatus }) =>
     getWorkflowDiagramColors({ runStatus }).unselected.color};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledRightPartContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const WorkflowRunDiagramStepNode = ({
@@ -170,10 +170,10 @@ export const WorkflowRunDiagramStepNode = ({
                 data.runStatus === StepStatus.STOPPED) && (
                 <StyledStatusIconsContainer>
                   <StyledColorIcon
-                    color={themeCssVariables.tag.background.turquoise}
+                    color={odelzaThemeCssVariables.tag.background.turquoise}
                   >
                     <IconCheck
-                      color={themeCssVariables.tag.text.turquoise}
+                      color={odelzaThemeCssVariables.tag.text.turquoise}
                       size={14}
                     />
                   </StyledColorIcon>
@@ -183,8 +183,13 @@ export const WorkflowRunDiagramStepNode = ({
               {(data.runStatus === StepStatus.FAILED ||
                 data.runStatus === StepStatus.FAILED_SAFELY) && (
                 <StyledStatusIconsContainer>
-                  <StyledColorIcon color={themeCssVariables.tag.background.red}>
-                    <IconX color={themeCssVariables.tag.text.red} size={14} />
+                  <StyledColorIcon
+                    color={odelzaThemeCssVariables.tag.background.red}
+                  >
+                    <IconX
+                      color={odelzaThemeCssVariables.tag.text.red}
+                      size={14}
+                    />
                   </StyledColorIcon>
                 </StyledStatusIconsContainer>
               )}

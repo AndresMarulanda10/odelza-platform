@@ -10,7 +10,7 @@ import { IconList } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   type AdminPanelWorkerQueueHealth,
   QueueMetricsTimeRange,
@@ -35,13 +35,13 @@ const StyledControlsContainer = styled.div`
 const StyledRightControls = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: ${themeCssVariables.spacing[8]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 export const SettingsAdminWorkerQueueMetricsSection = ({

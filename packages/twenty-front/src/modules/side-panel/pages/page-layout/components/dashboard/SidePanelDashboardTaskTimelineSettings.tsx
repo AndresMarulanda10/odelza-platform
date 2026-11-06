@@ -35,8 +35,11 @@ import {
   IconTypography,
 } from 'twenty-ui/icon';
 import { MenuItemSelectColor } from 'twenty-ui/navigation';
-import { MAIN_COLOR_NAMES } from 'twenty-ui/theme';
-import * as RadixColors from '@radix-ui/colors';
+import {
+  MAIN_COLOR_NAMES,
+  ODELZA_THEME_DARK,
+  ODELZA_THEME_LIGHT,
+} from 'twenty-ui/theme';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -60,16 +63,12 @@ const TimelineColorDropdown = ({
 }) => {
   const { colorScheme } = useContext(ThemeContext);
   const [hex, setHex] = useState(value);
-  // Native swatches use display-P3 CSS. Persist their corresponding sRGB
-  // palette value, because the existing Timeline contract stores six-digit hex.
-  const paletteHex = (color: (typeof MAIN_COLOR_NAMES)[number]) => {
-    const paletteName =
-      color === 'blue' ? 'indigo' : color === 'turquoise' ? 'teal' : color;
-    const palette = (RadixColors as Record<string, Record<string, string>>)[
-      `${paletteName}${colorScheme === 'dark' ? 'Dark' : ''}`
+  // The Timeline contract stores six-digit hex, which is how the Odelza
+  // palette values are written.
+  const paletteHex = (color: (typeof MAIN_COLOR_NAMES)[number]) =>
+    (colorScheme === 'dark' ? ODELZA_THEME_DARK : ODELZA_THEME_LIGHT).color[
+      color
     ];
-    return palette[`${paletteName}9`];
-  };
   return (
     <DropdownContent>
       <DropdownMenuSearchInput

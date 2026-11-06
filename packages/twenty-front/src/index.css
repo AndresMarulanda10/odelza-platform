@@ -3,8 +3,8 @@ body {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--t-background-tertiary);
-  color: var(--t-font-color-primary);
+  background: var(--odz-background-tertiary);
+  color: var(--odz-font-color-primary);
 }
 
 html {

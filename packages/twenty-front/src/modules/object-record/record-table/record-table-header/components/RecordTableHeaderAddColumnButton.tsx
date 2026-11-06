@@ -19,18 +19,21 @@ import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/use
 import { cx } from '@linaria/core';
 import { useContext } from 'react';
 import { IconPlus } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledPlusIconHeaderCell = styled.div<{
   shouldDisplayBorderBottom: boolean;
 }>`
-  background-color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
   border-bottom: ${({ shouldDisplayBorderBottom }) =>
     shouldDisplayBorderBottom
-      ? `1px solid ${themeCssVariables.border.color.light}`
+      ? `1px solid ${odelzaThemeCssVariables.border.color.light}`
       : 'none'};
 
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 
   cursor: pointer;
 
@@ -42,7 +45,7 @@ const StyledPlusIconHeaderCell = styled.div<{
   z-index: 1;
 
   &:hover {
-    background: ${themeCssVariables.background.secondary};
+    background: ${odelzaThemeCssVariables.background.secondary};
   }
 `;
 

@@ -6,15 +6,15 @@
 .labelContainer {
   display: flex;
   align-items: center;
-  gap: var(--t-spacing-2);
+  gap: var(--odz-spacing-2);
 }
 
 .elementsCount {
-  color: var(--t-font-color-tertiary);
+  color: var(--odz-font-color-tertiary);
 }
 
 .elementsCountRed {
-  color: var(--t-font-color-danger);
+  color: var(--odz-font-color-danger);
 }
 
 // Base UI sets --collapsible-panel-height to a pixel value during
@@ -38,13 +38,13 @@
   margin: 0;
   padding: 0;
   display: grid;
-  row-gap: var(--t-spacing-2);
+  row-gap: var(--odz-spacing-2);
 }
 
 .nested {
-  padding-left: var(--t-spacing-8);
+  padding-left: var(--odz-spacing-8);
 
   > :first-of-type {
-    margin-top: var(--t-spacing-2);
+    margin-top: var(--odz-spacing-2);
   }
 }

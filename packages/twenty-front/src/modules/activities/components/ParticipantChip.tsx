@@ -6,19 +6,19 @@ import { CoreObjectNameSingular } from 'twenty-shared/types';
 import { RecordChip } from '@/object-record/components/RecordChip';
 import { getAbsoluteImageUrl } from '~/utils/image/getAbsoluteImageUrl';
 import { Avatar } from 'twenty-ui/data-display';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledAvatarContainer = styled.span`
-  margin-right: ${themeCssVariables.spacing[1]};
+  margin-right: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledSenderName = styled.span<{ variant?: 'default' | 'bold' }>`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   font-weight: ${({ variant }) =>
     variant === 'bold'
-      ? themeCssVariables.font.weight.medium
-      : themeCssVariables.font.weight.regular};
+      ? odelzaThemeCssVariables.font.weight.medium
+      : odelzaThemeCssVariables.font.weight.regular};
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -32,9 +32,9 @@ const StyledChip = styled.div`
   align-items: center;
   box-sizing: border-box;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 20px;
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
   white-space: nowrap;
 `;
 

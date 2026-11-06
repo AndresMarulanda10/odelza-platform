@@ -12,7 +12,10 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { useContext, useMemo } from 'react';
 import { SidePanelPages } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 export const useSidePanelContextChips = () => {
   const { theme } = useContext(ThemeContext);
@@ -118,7 +121,7 @@ export const useSidePanelContextChips = () => {
                       isDefined(page.pageIconColor) &&
                       page.pageIconColor !== 'currentColor'
                         ? page.pageIconColor
-                        : themeCssVariables.font.color.tertiary
+                        : odelzaThemeCssVariables.font.color.tertiary
                     }
                   />
                 </SidePanelContextChipIconWrapper>,

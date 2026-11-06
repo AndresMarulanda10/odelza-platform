@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { SettingsTableCard } from '@/settings/components/SettingsTableCard';
 import { SettingsAdminVersionDisplay } from '@/settings/admin-panel/components/SettingsAdminVersionDisplay';
 import { useUpgradeApplication } from '@/marketplace/hooks/useUpgradeApplication';
@@ -16,7 +16,7 @@ import { isNewerSemver } from '~/pages/settings/applications/utils/isNewerSemver
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 export const SettingsApplicationVersionContainer = ({
@@ -107,7 +107,7 @@ export const SettingsApplicationVersionContainer = ({
               : t`Upgrade to ${latestAvailableVersion}`
           }
           variant="secondary"
-          accent="blue"
+          accent="primary"
           onClick={handleUpgrade}
           disabled={isUpgrading}
         />

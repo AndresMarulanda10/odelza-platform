@@ -46,7 +46,7 @@ import { Card, OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { H2Title } from 'twenty-ui/typography';
 import { Button, Toggle } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { getAbsoluteImageUrl } from '~/utils/image/getAbsoluteImageUrl';
 import {
   type FeatureFlagKey,
@@ -277,8 +277,8 @@ export const SettingsAdminWorkspaceDetail = () => {
                       })}
                     >
                       <TableCell
-                        color={themeCssVariables.font.color.primary}
-                        gap={themeCssVariables.spacing[2]}
+                        color={odelzaThemeCssVariables.font.color.primary}
+                        gap={odelzaThemeCssVariables.spacing[2]}
                         overflow="hidden"
                       >
                         <Avatar
@@ -386,7 +386,7 @@ export const SettingsAdminWorkspaceDetail = () => {
               <Card rounded>
                 <TableRow gridTemplateColumns="1fr">
                   <TableCell
-                    color={themeCssVariables.font.color.tertiary}
+                    color={odelzaThemeCssVariables.font.color.tertiary}
                     align="center"
                   >
                     {t`No chat threads found.`}
@@ -412,7 +412,9 @@ export const SettingsAdminWorkspaceDetail = () => {
                       },
                     )}
                   >
-                    <TableCell color={themeCssVariables.font.color.primary}>
+                    <TableCell
+                      color={odelzaThemeCssVariables.font.color.primary}
+                    >
                       {thread.title || t`Untitled`}
                     </TableCell>
                     <TableCell align="right">

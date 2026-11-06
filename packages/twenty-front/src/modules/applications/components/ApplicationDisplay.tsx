@@ -1,6 +1,6 @@
 import { type ApplicationDisplayData } from '@/applications/types/applicationDisplayData.type';
 import { AppChip } from '@/applications/components/AppChip';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { styled } from '@linaria/react';
 
 type ApplicationDisplayProps = {
@@ -8,9 +8,9 @@ type ApplicationDisplayProps = {
 };
 
 const StyledAppChip = styled(AppChip)`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  gap: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const ApplicationDisplay = ({

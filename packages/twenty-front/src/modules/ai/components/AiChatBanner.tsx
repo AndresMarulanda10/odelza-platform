@@ -7,7 +7,7 @@ import {
 } from 'twenty-ui/icon';
 import { AppTooltip } from 'twenty-ui/surfaces';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type AiChatBannerVariant = 'default' | 'warning';
 
@@ -15,13 +15,13 @@ const StyledBanner = styled.div<{ variant: AiChatBannerVariant }>`
   align-items: center;
   background-color: ${({ variant }) =>
     variant === 'warning'
-      ? themeCssVariables.background.transparent.orange
-      : themeCssVariables.accent.secondary};
-  border-radius: ${themeCssVariables.border.radius.md};
+      ? odelzaThemeCssVariables.background.transparent.orange
+      : odelzaThemeCssVariables.accent.secondary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
@@ -29,8 +29,8 @@ const StyledIconContainer = styled.div<{ variant: AiChatBannerVariant }>`
   align-items: center;
   color: ${({ variant }) =>
     variant === 'warning'
-      ? themeCssVariables.color.orange
-      : themeCssVariables.color.blue};
+      ? odelzaThemeCssVariables.color.orange
+      : odelzaThemeCssVariables.color.primary};
   display: flex;
   flex-shrink: 0;
   height: 16px;
@@ -41,13 +41,13 @@ const StyledIconContainer = styled.div<{ variant: AiChatBannerVariant }>`
 const StyledMessage = styled.p<{ variant: AiChatBannerVariant }>`
   color: ${({ variant }) =>
     variant === 'warning'
-      ? themeCssVariables.color.orange
-      : themeCssVariables.color.blue};
+      ? odelzaThemeCssVariables.color.orange
+      : odelzaThemeCssVariables.color.primary};
   flex-grow: 1;
-  font-family: ${themeCssVariables.font.family};
-  font-size: ${themeCssVariables.font.size.sm};
+  font-family: ${odelzaThemeCssVariables.font.family};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   font-style: normal;
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   line-height: 1.4;
   margin: 0;
   min-width: 0;

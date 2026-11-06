@@ -14,7 +14,10 @@ import {
   AnimatedPlaceholderEmptyTextContainer,
   AnimatedPlaceholderEmptyTitle,
 } from 'twenty-ui/feedback';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledMainContainer = styled.div`
   align-items: flex-start;
@@ -22,25 +25,25 @@ const StyledMainContainer = styled.div`
   border-top: none;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 
   justify-content: center;
   overflow: auto;
-  padding-left: ${themeCssVariables.spacing[6]};
-  padding-right: ${themeCssVariables.spacing[6]};
-  padding-top: ${themeCssVariables.spacing[6]};
+  padding-left: ${odelzaThemeCssVariables.spacing[6]};
+  padding-right: ${odelzaThemeCssVariables.spacing[6]};
+  padding-top: ${odelzaThemeCssVariables.spacing[6]};
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
-    border-top: 1px solid ${themeCssVariables.border.color.medium};
-    padding-right: ${themeCssVariables.spacing[1]};
-    padding-left: ${themeCssVariables.spacing[1]};
+    border-top: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+    padding-right: ${odelzaThemeCssVariables.spacing[1]};
+    padding-left: ${odelzaThemeCssVariables.spacing[1]};
   }
 `;
 
 const StyledSidePanelPlaceholderWrapper = styled.div`
   > * {
     height: auto;
-    padding-top: ${themeCssVariables.spacing[8]};
+    padding-top: ${odelzaThemeCssVariables.spacing[8]};
   }
 `;
 

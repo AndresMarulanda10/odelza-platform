@@ -9,12 +9,12 @@ import {
   IconLayoutSidebarRightCollapse,
 } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledCollapseButton = styled.div`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.md};
-  color: ${themeCssVariables.font.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  color: ${odelzaThemeCssVariables.font.color.light};
   cursor: pointer;
   display: flex;
   justify-content: center;

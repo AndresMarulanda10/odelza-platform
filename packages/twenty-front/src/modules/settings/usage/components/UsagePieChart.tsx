@@ -4,7 +4,10 @@ import { useUsageValueFormatter } from '@/settings/usage/hooks/useUsageValueForm
 import { styled } from '@linaria/react';
 import { ResponsivePie } from '@nivo/pie';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type UsagePieChartDatum = {
   id: string;
@@ -22,31 +25,31 @@ const StyledContainer = styled.div`
 `;
 
 const StyledTooltip = styled.div`
-  background: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.md};
-  box-shadow: ${themeCssVariables.boxShadow.strong};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTooltipRow = styled.div`
   align-items: center;
   display: flex;
-  font-size: ${themeCssVariables.font.size.xs};
-  gap: ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTooltipLabel = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledTooltipValue = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
   white-space: nowrap;
 `;
 

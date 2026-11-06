@@ -123,7 +123,7 @@ export const getBaseCodeEditorTheme = (
         theme.background.tertiary,
       ),
       'editor.selectionBackground': convertColorToHex(
-        theme.background.transparent.blue,
+        theme.background.transparent.accent,
       ),
       'editor.inactiveSelectionBackground': convertColorToHex(
         theme.background.transparent.light,

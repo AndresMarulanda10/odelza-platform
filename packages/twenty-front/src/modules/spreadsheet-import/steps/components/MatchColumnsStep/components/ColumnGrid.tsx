@@ -1,7 +1,7 @@
 import { type SpreadsheetColumns } from '@/spreadsheet-import/types/SpreadsheetColumns';
 import { t } from '@lingui/core/macro';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import React from 'react';
 
 const StyledGridContainer = styled.div`
@@ -27,7 +27,9 @@ type HeightProps = {
 
 const StyledGridRow = styled.div<HeightProps>`
   border-bottom: ${({ withBorder }) =>
-    withBorder ? `1px solid ${themeCssVariables.border.color.medium}` : 'none'};
+    withBorder
+      ? `1px solid ${odelzaThemeCssVariables.border.color.medium}`
+      : 'none'};
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -44,34 +46,34 @@ const StyledGridCell = styled.div<PositionProps>`
   display: flex;
   flex: 1;
   overflow-x: auto;
-  padding-bottom: ${themeCssVariables.spacing[4]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[4]};
   padding-left: ${({ position }) =>
     position === 'left'
-      ? themeCssVariables.spacing[4]
-      : themeCssVariables.spacing[2]};
+      ? odelzaThemeCssVariables.spacing[4]
+      : odelzaThemeCssVariables.spacing[2]};
   padding-right: ${({ position }) =>
     position === 'left'
-      ? themeCssVariables.spacing[2]
-      : themeCssVariables.spacing[4]};
+      ? odelzaThemeCssVariables.spacing[2]
+      : odelzaThemeCssVariables.spacing[4]};
   padding-top: ${({ position }) =>
     position === 'full-line'
-      ? themeCssVariables.spacing[0]
-      : themeCssVariables.spacing[4]};
+      ? odelzaThemeCssVariables.spacing[0]
+      : odelzaThemeCssVariables.spacing[4]};
   width: ${({ position }) => (position === 'full-line' ? '100%' : 'auto')};
 `;
 
 const StyledGridHeader = styled.div<PositionProps>`
   align-items: center;
-  background-color: ${themeCssVariables.background.secondary};
-  border-bottom: 1px solid ${themeCssVariables.border.color.medium};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: flex;
   flex: 1;
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  padding-left: ${themeCssVariables.spacing[4]};
-  padding-right: ${themeCssVariables.spacing[4]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  padding-left: ${odelzaThemeCssVariables.spacing[4]};
+  padding-right: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 type ColumnGridProps = {

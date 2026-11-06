@@ -1,5 +1,5 @@
 import { type ThemeColor } from '@ui/theme';
-import { themeCssVariables } from '@ui/theme-constants';
+import { odelzaThemeCssVariables } from '@ui/theme-constants';
 
 import styles from './Loader.module.scss';
 
@@ -14,7 +14,7 @@ export const Loader = ({ color }: LoaderProps) => {
       style={
         color
           ? ({
-              '--loader-color': themeCssVariables.tag.text[color],
+              '--loader-color': odelzaThemeCssVariables.tag.text[color],
             } as React.CSSProperties)
           : undefined
       }

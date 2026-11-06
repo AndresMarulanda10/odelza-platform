@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type TableCellProps = {
   align?: 'left' | 'center' | 'right';
@@ -17,11 +17,12 @@ type TableCellProps = {
 
 const StyledTableCell = styled.div<TableCellProps>`
   align-items: center;
-  color: ${({ color }) => color || themeCssVariables.font.color.secondary};
+  color: ${({ color }) =>
+    color || odelzaThemeCssVariables.font.color.secondary};
   cursor: ${({ clickable }) => (clickable === true ? 'pointer' : 'inherit')};
   display: flex;
   gap: ${({ gap }) => gap ?? 'normal'};
-  height: ${({ height }) => height ?? themeCssVariables.spacing[8]};
+  height: ${({ height }) => height ?? odelzaThemeCssVariables.spacing[8]};
   justify-content: ${({ align }) =>
     align === 'right'
       ? 'flex-end'
@@ -31,7 +32,8 @@ const StyledTableCell = styled.div<TableCellProps>`
   max-width: ${({ maxWidth }) => maxWidth ?? 'none'};
   min-width: ${({ minWidth }) => minWidth ?? 'auto'};
   overflow: ${({ overflow }) => overflow ?? 'visible'};
-  padding: ${({ padding }) => padding ?? `0 ${themeCssVariables.spacing[2]}`};
+  padding: ${({ padding }) =>
+    padding ?? `0 ${odelzaThemeCssVariables.spacing[2]}`};
   text-align: ${({ align }) => align ?? 'left'};
   text-overflow: ${({ textOverflow }) => textOverflow ?? 'clip'};
   white-space: ${({ whiteSpace }) => whiteSpace ?? 'normal'};

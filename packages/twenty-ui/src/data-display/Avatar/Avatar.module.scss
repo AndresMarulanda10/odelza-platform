@@ -4,7 +4,7 @@
   flex-shrink: 0;
   overflow: hidden;
   user-select: none;
-  border-radius: var(--t-border-radius-xs);
+  border-radius: var(--odz-border-radius-xs);
   border: var(--avatar-border, none);
   box-sizing: border-box;
   display: flex;
@@ -13,7 +13,7 @@
   background: var(--avatar-background);
 
   &[data-type='icon'] {
-    border-radius: var(--t-border-radius-sm);
+    border-radius: var(--odz-border-radius-sm);
   }
 
   &[data-type='rounded'] {
@@ -26,7 +26,7 @@
   }
 
   &[data-clickable]:hover {
-    box-shadow: 0 0 0 4px var(--t-background-transparent-light);
+    box-shadow: 0 0 0 4px var(--odz-background-transparent-light);
   }
 }
 

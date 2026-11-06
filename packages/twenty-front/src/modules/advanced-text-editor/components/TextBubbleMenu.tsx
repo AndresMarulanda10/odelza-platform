@@ -14,15 +14,15 @@ import {
   IconStrikethrough,
   IconUnderline,
 } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export const StyledBubbleMenuContainer = styled.div`
   backdrop-filter: blur(20px);
-  background-color: ${themeCssVariables.background.primary};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-shadow:
-    0px 2px 4px 0px ${themeCssVariables.background.transparent.light},
-    0px 0px 4px 0px ${themeCssVariables.background.transparent.medium};
+    0px 2px 4px 0px ${odelzaThemeCssVariables.background.transparent.light},
+    0px 0px 4px 0px ${odelzaThemeCssVariables.background.transparent.medium};
   display: inline-flex;
   gap: 2px;
   padding: 2px;

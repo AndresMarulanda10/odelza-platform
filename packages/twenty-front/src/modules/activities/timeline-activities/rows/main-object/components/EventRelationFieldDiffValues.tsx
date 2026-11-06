@@ -9,7 +9,7 @@ import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import { Trans, useLingui } from '@lingui/react/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { AppTooltip, TooltipDelay, TooltipPosition } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type EventRelationFieldDiffValuesProps = {
   fieldDiff: { before: unknown; after: unknown };
@@ -17,14 +17,14 @@ type EventRelationFieldDiffValuesProps = {
 };
 
 const StyledRelationValue = styled.div`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const StyledEmptyValue = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 const getRelationRecordId = (value: unknown): string | null => {

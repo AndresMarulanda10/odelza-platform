@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { useContext, useState } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { useObjectPermissionsForObject } from '@/object-record/hooks/useObjectPermissionsForObject';
 import { RecordBoardContext } from '@/object-record/record-board/contexts/RecordBoardContext';
@@ -43,7 +43,7 @@ const StyledHeaderActions = styled.div`
 `;
 
 const StyledHeaderContainer = styled.div`
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -51,7 +51,7 @@ const StyledHeaderContainer = styled.div`
 const StyledLeftContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   overflow: hidden;
 `;
 
@@ -61,7 +61,7 @@ const StyledRightContainer = styled.div`
 `;
 
 const StyledColumn = styled.div`
-  background-color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
   display: flex;
   flex-direction: column;
   max-width: var(
@@ -73,12 +73,12 @@ const StyledColumn = styled.div`
     ${RECORD_BOARD_COLUMN_WIDTH}px
   );
 
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 
   position: relative;
 
   &[data-has-left-border='true'] {
-    border-left: 1px solid ${themeCssVariables.border.color.light};
+    border-left: 1px solid ${odelzaThemeCssVariables.border.color.light};
   }
 `;
 

@@ -3,21 +3,24 @@ import { EventRowItem } from '@/activities/timeline-activities/rows/components/E
 import { EventRowMainObjectUpdated } from '@/activities/timeline-activities/rows/main-object/components/EventRowMainObjectUpdated';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type EventRowMainObjectProps = EventRowDynamicComponentProps;
 
 const StyledMainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   width: 100%;
 `;
 
 const StyledRowContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: space-between;
 `;
 
@@ -25,14 +28,14 @@ const StyledItemTitleDate = styled.div`
   @media (max-width: ${MOBILE_VIEWPORT}px) {
     display: none;
   }
-  color: ${themeCssVariables.font.color.tertiary};
-  padding: 0 ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   overflow: hidden;
 `;
 

@@ -1,12 +1,12 @@
 import { styled } from '@linaria/react';
 import { Card } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledCardContainer = styled.div`
   height: 40px;
 
   > * {
-    background-color: ${themeCssVariables.background.secondary};
+    background-color: ${odelzaThemeCssVariables.background.secondary};
     height: 100%;
   }
 `;

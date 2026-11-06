@@ -8,7 +8,10 @@ import {
 } from 'twenty-ui/icon';
 import { CodeEditor, CoreEditorHeader } from 'twenty-ui/input';
 import { AnimatedCircleLoading } from 'twenty-ui/layout';
-import { themeCssVariables, ThemeContext } from 'twenty-ui/theme-constants';
+import {
+  odelzaThemeCssVariables,
+  ThemeContext,
+} from 'twenty-ui/theme-constants';
 import { useContext } from 'react';
 const StyledContainer = styled.div`
   display: flex;
@@ -26,26 +29,26 @@ type OutputAccent = 'default' | 'success' | 'error';
 
 const StyledInfoContainer = styled.div`
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
 `;
 
 const StyledOutput = styled.div<{ accent?: OutputAccent }>`
   align-items: center;
   color: ${({ accent }) =>
     accent === 'success'
-      ? themeCssVariables.color.turquoise
+      ? odelzaThemeCssVariables.color.turquoise
       : accent === 'error'
-        ? themeCssVariables.color.red
-        : themeCssVariables.font.color.secondary};
+        ? odelzaThemeCssVariables.color.red
+        : odelzaThemeCssVariables.font.color.secondary};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledStatusInfo = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export type ExecutionStatus = {

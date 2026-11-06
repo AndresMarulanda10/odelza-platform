@@ -6,14 +6,14 @@ import { useGetLogicFunctionHttpUrl } from '@/settings/logic-functions/hooks/use
 import { SettingsTextInput } from '@/ui/input/components/SettingsTextInput';
 import { IconCopy } from 'twenty-ui/icon';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { H2Title } from 'twenty-ui/typography';
 import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
 const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 export const SettingsApplicationFunctionDomainSection = ({

@@ -19,7 +19,7 @@ export const WorkflowDiagramStepNodeIcon = ({
     case 'trigger': {
       switch (data.triggerType) {
         case 'DATABASE_EVENT': {
-          return <Icon size={theme.icon.size.md} color={theme.color.blue} />;
+          return <Icon size={theme.icon.size.md} color={theme.color.primary} />;
         }
         case 'MANUAL':
         case 'CRON':

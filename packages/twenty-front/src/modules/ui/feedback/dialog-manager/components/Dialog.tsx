@@ -11,11 +11,11 @@ import { useListenClickOutside } from '@/ui/utilities/pointer-event/hooks/useLis
 import { useRef } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledDialogOverlayBase = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.overlayPrimary};
+  background: ${odelzaThemeCssVariables.background.overlayPrimary};
   display: flex;
   height: 100dvh;
   justify-content: center;
@@ -28,8 +28,8 @@ const StyledDialogOverlayBase = styled.div`
 const StyledDialogOverlay = motion.create(StyledDialogOverlayBase);
 
 const StyledDialogContainerBase = styled.div`
-  background: ${themeCssVariables.background.primary};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex-direction: column;
   max-width: 320px;
@@ -40,25 +40,25 @@ const StyledDialogContainerBase = styled.div`
 const StyledDialogContainer = motion.create(StyledDialogContainerBase);
 
 const StyledDialogTitle = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-bottom: ${themeCssVariables.spacing[6]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
   text-align: center;
 `;
 
 const StyledDialogMessage = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  margin-bottom: ${themeCssVariables.spacing[6]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
   text-align: center;
 `;
 
 const StyledDialogButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export type DialogButtonOptions = Omit<

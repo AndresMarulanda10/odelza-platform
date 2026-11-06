@@ -6,24 +6,24 @@ import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { styled } from '@linaria/react';
 import { plural } from '@lingui/core/macro';
 import { Checkbox, CheckboxAccent } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledPermissionContent = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   white-space: nowrap;
 `;
 
 const StyledPermissionLabel = styled.span`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
 `;
 
 const StyledOverrideInfo = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   white-space: nowrap;
 `;
 
@@ -54,7 +54,7 @@ export const SettingsRolePermissionsObjectsTableRow = ({
       onClick={handleRowClick}
       cursor={isDisabled ? 'default' : 'pointer'}
     >
-      <TableCell gap={themeCssVariables.spacing[1]}>
+      <TableCell gap={odelzaThemeCssVariables.spacing[1]}>
         <StyledPermissionContent>
           <PermissionIcon
             permission={permission.key as SettingsRoleObjectPermissionKey}
@@ -84,14 +84,14 @@ export const SettingsRolePermissionsObjectsTableRow = ({
       </TableCell>
       <TableCell
         align="right"
-        padding={`0 ${themeCssVariables.spacing[1]} 0 ${themeCssVariables.spacing[2]}`}
+        padding={`0 ${odelzaThemeCssVariables.spacing[1]} 0 ${odelzaThemeCssVariables.spacing[2]}`}
         onClick={(e) => e.stopPropagation()}
       >
         <Checkbox
           checked={permission.value ?? false}
           onChange={() => permission.setValue(!permission.value)}
           disabled={isDisabled}
-          accent={isRevoked ? CheckboxAccent.Orange : CheckboxAccent.Blue}
+          accent={isRevoked ? CheckboxAccent.Orange : CheckboxAccent.Primary}
         />
       </TableCell>
     </TableRow>

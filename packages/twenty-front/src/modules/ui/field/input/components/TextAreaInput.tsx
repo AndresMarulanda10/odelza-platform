@@ -6,7 +6,7 @@ import { LightCopyIconButton } from '@/object-record/record-field/ui/components/
 import { useRegisterInputEvents } from '@/object-record/record-field/ui/meta-types/input/hooks/useRegisterInputEvents';
 import { isDefined } from 'twenty-shared/utils';
 import { turnIntoEmptyStringIfWhitespacesOnly } from '~/utils/string/turnIntoEmptyStringIfWhitespacesOnly';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export type TextAreaInputProps = {
   instanceId: string;
@@ -30,27 +30,28 @@ const StyledTextAreaContainer = styled.div`
     align-items: center;
     background-color: transparent;
     border: none;
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
     display: flex;
-    font-family: ${themeCssVariables.font.family};
+    font-family: ${odelzaThemeCssVariables.font.family};
     font-size: inherit;
     font-weight: inherit;
 
     &::placeholder,
     &::-webkit-input-placeholder {
-      color: ${themeCssVariables.font.color.light};
-      font-family: ${themeCssVariables.font.family};
-      font-weight: ${themeCssVariables.font.weight.medium};
+      color: ${odelzaThemeCssVariables.font.color.light};
+      font-family: ${odelzaThemeCssVariables.font.family};
+      font-weight: ${odelzaThemeCssVariables.font.weight.medium};
     }
 
     justify-content: center;
     line-height: 18px;
     max-height: 400px;
     outline: none;
-    padding: ${themeCssVariables.spacing[0]} ${themeCssVariables.spacing[2]};
+    padding: ${odelzaThemeCssVariables.spacing[0]}
+      ${odelzaThemeCssVariables.spacing[2]};
     resize: none;
 
-    width: calc(100% - ${themeCssVariables.spacing[7]});
+    width: calc(100% - ${odelzaThemeCssVariables.spacing[7]});
   }
 `;
 

@@ -3,22 +3,22 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  gap: var(--t-spacing-2);
-  width: var(--t-spacing-6);
-  height: var(--t-spacing-3);
-  border-radius: var(--t-border-radius-pill);
+  gap: var(--odz-spacing-2);
+  width: var(--odz-spacing-6);
+  height: var(--odz-spacing-3);
+  border-radius: var(--odz-border-radius-pill);
   corner-shape: round;
   border: 1px solid
-    var(--loader-color, var(--tw-button-color, var(--t-font-color-tertiary)));
+    var(--loader-color, var(--tw-button-color, var(--odz-font-color-tertiary)));
   overflow: hidden;
 }
 
 .dot {
   background-color: var(
     --loader-color,
-    var(--tw-button-color, var(--t-font-color-tertiary))
+    var(--tw-button-color, var(--odz-font-color-tertiary))
   );
-  border-radius: var(--t-border-radius-pill);
+  border-radius: var(--odz-border-radius-pill);
   corner-shape: round;
   height: 8px;
   width: 8px;

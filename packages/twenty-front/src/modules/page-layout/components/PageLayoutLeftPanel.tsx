@@ -9,12 +9,12 @@ import { useTargetRecord } from '@/ui/layout/contexts/useTargetRecord';
 import { ScrollWrapper } from '@/ui/utilities/scroll/components/ScrollWrapper';
 import { styled } from '@linaria/react';
 import { PageLayoutType } from '~/generated-metadata/graphql';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
-  background: ${themeCssVariables.background.secondary};
+  background: ${odelzaThemeCssVariables.background.secondary};
   border-bottom-left-radius: 8px;
-  border-right: 1px solid ${themeCssVariables.border.color.medium};
+  border-right: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   border-top-left-radius: 8px;
   box-sizing: border-box;
   display: grid;

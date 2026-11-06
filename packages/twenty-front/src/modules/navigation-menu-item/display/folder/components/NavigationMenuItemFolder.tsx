@@ -1,7 +1,10 @@
 import { Suspense, lazy, useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconChevronDown, IconChevronRight, useIcons } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useIsMobile } from 'twenty-ui/utilities';
 import { type NavigationMenuItem } from '~/generated-metadata/graphql';
 
@@ -144,13 +147,13 @@ const NavigationMenuItemFolderReadOnlyContent = ({
               <IconChevronDown
                 size={theme.icon.size.sm}
                 stroke={theme.icon.stroke.sm}
-                color={themeCssVariables.font.color.tertiary}
+                color={odelzaThemeCssVariables.font.color.tertiary}
               />
             ) : (
               <IconChevronRight
                 size={theme.icon.size.sm}
                 stroke={theme.icon.stroke.sm}
-                color={themeCssVariables.font.color.tertiary}
+                color={odelzaThemeCssVariables.font.color.tertiary}
               />
             )
           }

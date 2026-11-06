@@ -24,7 +24,10 @@ import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
 import { MenuItem } from 'twenty-ui/navigation';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useFindApplicationConnectionProviders } from '~/pages/settings/applications/hooks/useFindApplicationConnectionProviders';
 import { useMyAppConnectedAccounts } from '~/pages/settings/applications/hooks/useMyAppConnectedAccounts';
 import { useTriggerAppOAuth } from '~/pages/settings/applications/hooks/useTriggerAppOAuth';
@@ -36,12 +39,12 @@ const CONNECTION_TABLE_ROW_GRID_TEMPLATE_COLUMNS =
 const StyledFooter = styled.div`
   display: flex;
   justify-content: flex-start;
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTableRowsContainer = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
-  padding: ${themeCssVariables.spacing[2]} 0;
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  padding: ${odelzaThemeCssVariables.spacing[2]} 0;
 `;
 
 const AddConnectionDropdown = ({
@@ -191,8 +194,8 @@ export const SettingsApplicationConnectionsSection = ({
                       </TableCell>
                       <TableCell
                         align="right"
-                        color={themeCssVariables.font.color.tertiary}
-                        padding={`0 ${themeCssVariables.spacing[2]} 0 0`}
+                        color={odelzaThemeCssVariables.font.color.tertiary}
+                        padding={`0 ${odelzaThemeCssVariables.spacing[2]} 0 0`}
                       >
                         <IconChevronRight
                           size={theme.icon.size.md}

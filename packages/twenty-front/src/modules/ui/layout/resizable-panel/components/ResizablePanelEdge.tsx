@@ -4,7 +4,7 @@ import { RESIZE_EDGE_WIDTH_PX } from '@/ui/layout/resizable-panel/constants/Resi
 import { useResizablePanel } from '@/ui/layout/resizable-panel/hooks/useResizablePanel';
 import { type ResizablePanelConstraints } from '@/ui/layout/resizable-panel/types/ResizablePanelConstraints';
 import { type ResizablePanelSide } from '@/ui/layout/resizable-panel/types/ResizablePanelSide';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type StyledEdgeProps = {
   isActive: boolean;
@@ -31,18 +31,18 @@ const StyledEdge = styled.div<StyledEdgeProps>`
 const StyledHandle = styled.div<{ isActive: boolean; isHovered: boolean }>`
   background-color: ${({ isActive, isHovered }) =>
     isActive
-      ? themeCssVariables.color.blue
+      ? odelzaThemeCssVariables.color.primary
       : isHovered
-        ? themeCssVariables.font.color.tertiary
-        : themeCssVariables.background.quaternary};
-  border-radius: ${themeCssVariables.border.radius.pill};
+        ? odelzaThemeCssVariables.font.color.tertiary
+        : odelzaThemeCssVariables.background.quaternary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   corner-shape: round;
   height: 48px;
   transform: ${({ isHovered, isActive }) =>
     isHovered || isActive ? 'scaleY(1.2)' : 'scaleY(1)'};
   transition:
-    background-color ${themeCssVariables.animation.duration.fast}s,
-    transform ${themeCssVariables.animation.duration.fast}s;
+    background-color ${odelzaThemeCssVariables.animation.duration.fast}s,
+    transform ${odelzaThemeCssVariables.animation.duration.fast}s;
   width: 4px;
 `;
 

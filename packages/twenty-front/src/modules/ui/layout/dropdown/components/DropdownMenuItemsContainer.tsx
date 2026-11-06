@@ -1,11 +1,11 @@
 import { DROPDOWN_MENU_ITEMS_CONTAINER_MAX_HEIGHT } from '@/ui/layout/dropdown/constants/DropdownMenuItemsContainerMaxHeight';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledExternalContainer = styled.div<{
   maxHeight?: number;
 }>`
-  --dropdown-menu-items-padding: ${themeCssVariables.spacing[1]};
+  --dropdown-menu-items-padding: ${odelzaThemeCssVariables.spacing[1]};
   --dropdown-menu-items-row-gap: 2px;
 
   align-items: flex-start;
@@ -29,12 +29,12 @@ const StyledScrollableContainer = styled.div<{ maxHeight?: number }>`
   max-height: ${({ maxHeight }) => (maxHeight ? `${maxHeight}px` : 'none')};
   overflow-y: auto;
 
-  scrollbar-color: ${themeCssVariables.border.color.medium} transparent;
+  scrollbar-color: ${odelzaThemeCssVariables.border.color.medium} transparent;
   scrollbar-width: 4px;
   width: 100%;
 
   *::-webkit-scrollbar-thumb {
-    border-radius: ${themeCssVariables.border.radius.pill};
+    border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   }
 `;
 

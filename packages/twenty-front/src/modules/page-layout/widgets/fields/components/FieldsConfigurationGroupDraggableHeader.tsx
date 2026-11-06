@@ -3,7 +3,10 @@ import { useContext } from 'react';
 
 import { IconGripVertical } from 'twenty-ui/icon';
 import { Label } from 'twenty-ui/typography';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: center;
@@ -11,16 +14,17 @@ const StyledContainer = styled.div`
   box-sizing: content-box;
   cursor: grab;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  height: calc(32px - 2 * ${themeCssVariables.spacing[2]});
-  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  height: calc(32px - 2 * ${odelzaThemeCssVariables.spacing[2]});
+  padding: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledIconContainer = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type FieldsConfigurationGroupDraggableHeaderProps = {
@@ -38,7 +42,7 @@ export const FieldsConfigurationGroupDraggableHeader = ({
         <IconGripVertical
           size={theme.icon.size.md}
           stroke={theme.icon.stroke.sm}
-          color={themeCssVariables.font.color.tertiary}
+          color={odelzaThemeCssVariables.font.color.tertiary}
         />
       </StyledIconContainer>
       <Label>{text}</Label>

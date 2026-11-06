@@ -11,24 +11,24 @@
   border: var(--light-icon-button-border, none);
   // Containers that frame the button (e.g. RecordTableCellButtons) publish
   // this variable to keep the hover shape concentric with their own radius.
-  border-radius: var(--light-icon-button-radius, var(--t-border-radius-md));
+  border-radius: var(--light-icon-button-radius, var(--odz-border-radius-md));
   box-shadow: var(--light-icon-button-box-shadow, none);
   color: var(--light-icon-button-color);
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  font-family: var(--t-font-family);
-  font-weight: var(--t-font-weight-regular);
-  gap: var(--t-spacing-1);
+  font-family: var(--odz-font-family);
+  font-weight: var(--odz-font-weight-regular);
+  gap: var(--odz-spacing-1);
   justify-content: center;
-  padding: var(--t-spacing-1);
+  padding: var(--odz-spacing-1);
   transition: background 0.1s ease;
   white-space: nowrap;
 
   &:hover {
     background: var(
       --light-icon-button-hover-bg,
-      var(--t-background-transparent-light)
+      var(--odz-background-transparent-light)
     );
   }
 
@@ -41,7 +41,7 @@
   &:active {
     background: var(
       --light-icon-button-active-bg,
-      var(--t-background-transparent-medium)
+      var(--odz-background-transparent-medium)
     );
   }
 
@@ -51,27 +51,27 @@
 }
 
 .small {
-  height: var(--t-spacing-6);
-  min-width: var(--t-spacing-6);
-  width: var(--t-spacing-6);
+  height: var(--odz-spacing-6);
+  min-width: var(--odz-spacing-6);
+  width: var(--odz-spacing-6);
 }
 
 .medium {
-  height: var(--t-spacing-8);
-  min-width: var(--t-spacing-8);
-  width: var(--t-spacing-8);
+  height: var(--odz-spacing-8);
+  min-width: var(--odz-spacing-8);
+  width: var(--odz-spacing-8);
 }
 
 .button[data-accent='secondary'] {
-  --light-icon-button-color: var(--t-font-color-secondary);
+  --light-icon-button-color: var(--odz-font-color-secondary);
 }
 
 .button[data-accent='tertiary'] {
-  --light-icon-button-color: var(--t-font-color-tertiary);
+  --light-icon-button-color: var(--odz-font-color-tertiary);
 }
 
 .button[data-disabled] {
-  --light-icon-button-color: var(--t-font-color-extra-light);
+  --light-icon-button-color: var(--odz-font-color-extra-light);
   --light-icon-button-hover-bg: transparent;
   --light-icon-button-active-bg: transparent;
 }
@@ -80,11 +80,11 @@
 // switch where the (active || focus) branch came first.
 .button[data-active],
 .button[data-focus] {
-  --light-icon-button-color: var(--t-color-blue);
+  --light-icon-button-color: var(--odz-color-primary);
 }
 
 // focus is gated by !disabled in the component, like the legacy call-site.
 .button[data-focus] {
-  --light-icon-button-border: 1px solid var(--t-color-blue);
-  --light-icon-button-box-shadow: 0 0 0 3px var(--t-color-blue3);
+  --light-icon-button-border: 1px solid var(--odz-color-primary);
+  --light-icon-button-box-shadow: 0 0 0 3px var(--odz-color-primary3);
 }

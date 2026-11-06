@@ -116,7 +116,9 @@ export const Modal = ({
                     '--modal-z-index': modalZIndex,
                     width: isMobile ? undefined : width,
                     gap:
-                      gap !== undefined ? `var(--t-spacing-${gap})` : undefined,
+                      gap !== undefined
+                        ? `var(--odz-spacing-${gap})`
+                        : undefined,
                   } as React.CSSProperties
                 }
                 data-globally-prevent-click-outside={preventClickOutside}

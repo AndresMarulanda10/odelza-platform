@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import type { NavigationMenuItem } from '~/generated-metadata/graphql';
 import { NavigationMenuItemType } from 'twenty-shared/types';
@@ -9,8 +9,8 @@ import { NavigationMenuItemDisplay } from '@/navigation-menu-item/display/compon
 const StyledList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.betweenSiblingsGap};
-  padding-top: ${themeCssVariables.betweenSiblingsGap};
+  gap: ${odelzaThemeCssVariables.betweenSiblingsGap};
+  padding-top: ${odelzaThemeCssVariables.betweenSiblingsGap};
 `;
 
 type WorkspaceSectionListReadOnlyProps = Pick<

@@ -3,8 +3,8 @@
   "name": "Twenty",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
+  "theme_color": "#2D120D",
+  "background_color": "#FFFBF0",
   "icons": [
     {
       "src": "images/icons/windows11/SmallTile.scale-100.png",

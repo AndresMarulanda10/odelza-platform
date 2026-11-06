@@ -6,22 +6,22 @@ import { Key } from 'ts-key-enum';
 import { t } from '@lingui/core/macro';
 import { IconArrowMerge } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledFooterContainer = styled.div`
   align-items: flex-end;
-  background: ${themeCssVariables.background.primary};
-  border-top: 1px solid ${themeCssVariables.border.color.light};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: flex-end;
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledFooterActions = styled.div`
   align-items: flex-end;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type MergeRecordsFooterProps = {
@@ -52,7 +52,7 @@ export const MergeRecordsFooter = ({
         <Button
           title={isMerging ? t`Merging...` : t`Merge`}
           variant="primary"
-          accent="blue"
+          accent="primary"
           size="medium"
           Icon={IconArrowMerge}
           hotkeys={isMerging ? undefined : ['⌘', '⏎']}

@@ -3,7 +3,7 @@ import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { styled } from '@linaria/react';
 import { Fragment, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export type BreadcrumbProps = {
   className?: string;
@@ -12,11 +12,11 @@ export type BreadcrumbProps = {
 
 const StyledWrapper = styled.nav`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[8]};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   max-width: 100%;
   min-width: 0;
   overflow: hidden;
@@ -38,7 +38,7 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledText = styled.span`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -46,7 +46,7 @@ const StyledText = styled.span`
 `;
 
 const StyledDivider = styled.span`
-  flex: 0 0 ${themeCssVariables.spacing[2]};
+  flex: 0 0 ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const Breadcrumb = ({ className, links }: BreadcrumbProps) => {

@@ -19,7 +19,7 @@ import { plural, t } from '@lingui/core/macro';
 import { useState } from 'react';
 import { IconRefresh, IconTrash } from 'twenty-ui/icon';
 import { Button, Checkbox } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useQuery } from '@apollo/client/react';
 import {
   JobState,
@@ -41,13 +41,13 @@ type SettingsAdminQueueJobsTableProps = {
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledControlsContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: space-between;
 `;
 
@@ -55,7 +55,7 @@ const StyledPaginationContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledJobRowWrapper = styled.div`
@@ -64,7 +64,7 @@ const StyledJobRowWrapper = styled.div`
 
 const StyledButtonGroup = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const RETRY_MODAL_ID = 'retry-jobs-modal';
@@ -268,7 +268,7 @@ export const SettingsAdminQueueJobsTable = ({
             <TableRow gridAutoColumns="32px 2fr 1fr 2fr 32px">
               <TableHeader
                 align="center"
-                padding={`0 ${themeCssVariables.spacing[1]} 0 ${themeCssVariables.spacing[2]}`}
+                padding={`0 ${odelzaThemeCssVariables.spacing[1]} 0 ${odelzaThemeCssVariables.spacing[2]}`}
               >
                 {jobs.length > 0 && (
                   <Checkbox
@@ -296,12 +296,12 @@ export const SettingsAdminQueueJobsTable = ({
                       isExpanded={isExpanded}
                       cursor="pointer"
                       hoverBackgroundColor={
-                        themeCssVariables.background.transparent.light
+                        odelzaThemeCssVariables.background.transparent.light
                       }
                     >
                       <TableCell
                         align="center"
-                        padding={`0 0 0 ${themeCssVariables.spacing[1]}`}
+                        padding={`0 0 0 ${odelzaThemeCssVariables.spacing[1]}`}
                         onClick={(e) => {
                           e.stopPropagation();
                           handleToggleJob(e, job.id);

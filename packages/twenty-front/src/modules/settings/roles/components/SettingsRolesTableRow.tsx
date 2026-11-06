@@ -9,13 +9,16 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath } from 'twenty-shared/utils';
 import { IconChevronRight, IconLock, useIcons } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { WorkspaceMemberAvatarStack } from '@/workspace-member/components/WorkspaceMemberAvatarStack';
 
 const StyledNameCell = styled.div`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledAssignedToCell = styled.div`
@@ -32,7 +35,7 @@ const StyledIconLockContainer = styled.div`
 const StyledTableRowContainer = styled.div`
   > * {
     &:hover {
-      background: ${themeCssVariables.background.transparent.light};
+      background: ${odelzaThemeCssVariables.background.transparent.light};
       cursor: pointer;
     }
   }

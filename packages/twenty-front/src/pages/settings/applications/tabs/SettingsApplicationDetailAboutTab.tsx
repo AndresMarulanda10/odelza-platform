@@ -8,7 +8,7 @@ import { isDefined } from 'twenty-shared/utils';
 import { IconCheck, IconDownload, IconTrash, IconUpload } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   type ContentEntry,
   type DeveloperLinks,
@@ -43,7 +43,7 @@ type SettingsApplicationDetailAboutTabProps = {
 
 const StyledContentContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledMainContent = styled.div`
@@ -58,38 +58,40 @@ const StyledMarkdownContent = styled.div`
   }
 
   .markdown-section h4 {
-    font-size: ${themeCssVariables.font.size.lg};
-    font-weight: ${themeCssVariables.font.weight.semiBold};
+    font-size: ${odelzaThemeCssVariables.font.size.lg};
+    font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
     line-height: 1.35;
-    margin-bottom: ${themeCssVariables.spacing[2]};
-    margin-top: ${themeCssVariables.spacing[5]};
+    margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
+    margin-top: ${odelzaThemeCssVariables.spacing[5]};
   }
 
   .markdown-section ul {
-    margin-bottom: ${themeCssVariables.spacing[3]};
-    margin-top: ${themeCssVariables.spacing[2]};
-    padding-left: ${themeCssVariables.spacing[4]};
+    margin-bottom: ${odelzaThemeCssVariables.spacing[3]};
+    margin-top: ${odelzaThemeCssVariables.spacing[2]};
+    padding-left: ${odelzaThemeCssVariables.spacing[4]};
   }
 
   .markdown-section li {
-    margin-bottom: ${themeCssVariables.spacing[1]} !important;
+    margin-bottom: ${odelzaThemeCssVariables.spacing[1]} !important;
     padding-bottom: 0 !important;
     padding-top: 0 !important;
   }
 
   .markdown-section .markdown-code-outer-container {
-    margin: ${themeCssVariables.spacing[3]} 0 ${themeCssVariables.spacing[4]};
+    margin: ${odelzaThemeCssVariables.spacing[3]} 0
+      ${odelzaThemeCssVariables.spacing[4]};
   }
 
   .markdown-section .markdown-block-code {
-    padding: ${themeCssVariables.spacing[3]} ${themeCssVariables.spacing[4]};
+    padding: ${odelzaThemeCssVariables.spacing[3]}
+      ${odelzaThemeCssVariables.spacing[4]};
   }
 
   .markdown-section .markdown-block-code code {
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
     display: block;
-    font-family: ${themeCssVariables.code.font.family}, monospace;
-    font-size: ${themeCssVariables.font.size.sm};
+    font-family: ${odelzaThemeCssVariables.code.font.family}, monospace;
+    font-size: ${odelzaThemeCssVariables.font.size.sm};
     line-height: 1.6;
   }
 `;
@@ -136,7 +138,7 @@ export const SettingsApplicationDetailAboutTab = ({
           Icon={IconDownload}
           title={isInstalling ? t`Installing...` : t`Install`}
           variant={'primary'}
-          accent={'blue'}
+          accent={'primary'}
           onClick={onInstall}
           disabled={isInstalling}
         />
@@ -153,7 +155,7 @@ export const SettingsApplicationDetailAboutTab = ({
               : t`Upgrade to ${latestAvailableVersion ?? ''}`
           }
           variant={'secondary'}
-          accent={'blue'}
+          accent={'primary'}
           onClick={onUpgrade}
           disabled={isUpgrading}
         />

@@ -7,7 +7,7 @@ import { AnimatedCheckmark } from 'twenty-ui/data-display';
 import {
   MOBILE_VIEWPORT,
   ThemeContext,
-  themeCssVariables,
+  odelzaThemeCssVariables,
 } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div<{ isLast: boolean }>`
@@ -23,8 +23,8 @@ const StyledStepCircleBase = styled.div<{ isInNextSteps: boolean }>`
   align-items: center;
   border-color: ${({ isInNextSteps }) =>
     isInNextSteps
-      ? themeCssVariables.border.color.medium
-      : themeCssVariables.border.color.inverted} !important;
+      ? odelzaThemeCssVariables.border.color.medium
+      : odelzaThemeCssVariables.border.color.inverted} !important;
   border-radius: 50%;
   border-style: solid;
   border-width: 1px;
@@ -44,27 +44,27 @@ const StyledStepCircle = motion.create(StyledStepCircleBase);
 const StyledStepIndex = styled.span<{ isCurrentStep: boolean }>`
   color: ${({ isCurrentStep }) =>
     isCurrentStep
-      ? themeCssVariables.font.color.inverted
-      : themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+      ? odelzaThemeCssVariables.font.color.inverted
+      : odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledStepLabel = styled.span<{ isInNextSteps: boolean }>`
   color: ${({ isInNextSteps }) =>
     isInNextSteps
-      ? themeCssVariables.font.color.tertiary
-      : themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-left: ${themeCssVariables.spacing[2]};
+      ? odelzaThemeCssVariables.font.color.tertiary
+      : odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-left: ${odelzaThemeCssVariables.spacing[2]};
   white-space: nowrap;
 `;
 
 const StyledStepLineBase = styled.div`
   height: 2px;
-  margin-left: ${themeCssVariables.spacing[2]};
-  margin-right: ${themeCssVariables.spacing[2]};
+  margin-left: ${odelzaThemeCssVariables.spacing[2]};
+  margin-right: ${odelzaThemeCssVariables.spacing[2]};
   overflow: hidden;
   width: 100%;
 `;

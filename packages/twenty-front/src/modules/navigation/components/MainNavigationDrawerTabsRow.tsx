@@ -7,7 +7,10 @@ import {
   IconMessageCirclePlus,
 } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useIsMobile } from 'twenty-ui/utilities';
 
 import { useContext } from 'react';
@@ -29,37 +32,41 @@ import { PermissionFlagType } from '~/generated-metadata/graphql';
 const StyledRow = styled.div<{ isExpanded: boolean }>`
   align-items: center;
   display: flex;
-  gap: ${({ isExpanded }) => (isExpanded ? themeCssVariables.spacing[2] : 0)};
+  gap: ${({ isExpanded }) =>
+    isExpanded ? odelzaThemeCssVariables.spacing[2] : 0};
   justify-content: ${({ isExpanded }) =>
     isExpanded ? 'space-between' : 'center'};
-  transition: gap calc(${themeCssVariables.animation.duration.normal} * 1s) ease;
+  transition: gap
+    calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s) ease;
   width: ${({ isExpanded }) => (isExpanded ? '100%' : 'max-content')};
 `;
 
 const StyledTabsPill = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.pill};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   box-sizing: border-box;
   corner-shape: round;
   display: flex;
   flex-shrink: 0;
-  gap: ${themeCssVariables.spacing[0.5]};
-  height: ${themeCssVariables.spacing[7]};
+  gap: ${odelzaThemeCssVariables.spacing[0.5]};
+  height: ${odelzaThemeCssVariables.spacing[7]};
   padding: 3px;
-  width: ${themeCssVariables.spacing[18]};
+  width: ${odelzaThemeCssVariables.spacing[18]};
 `;
 
 const StyledTabWrapper = styled.div<{ isActive: boolean }>`
   align-items: center;
   background: ${({ isActive }) =>
-    isActive ? themeCssVariables.background.transparent.light : 'transparent'};
-  border-radius: ${themeCssVariables.border.radius.pill};
+    isActive
+      ? odelzaThemeCssVariables.background.transparent.light
+      : 'transparent'};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   color: ${({ isActive }) =>
     isActive
-      ? themeCssVariables.font.color.primary
-      : themeCssVariables.font.color.tertiary};
+      ? odelzaThemeCssVariables.font.color.primary
+      : odelzaThemeCssVariables.font.color.tertiary};
   corner-shape: round;
   cursor: pointer;
   display: flex;
@@ -70,17 +77,17 @@ const StyledTabWrapper = styled.div<{ isActive: boolean }>`
   &:hover {
     background: ${({ isActive }) =>
       isActive
-        ? themeCssVariables.background.transparent.light
-        : themeCssVariables.background.transparent.lighter};
+        ? odelzaThemeCssVariables.background.transparent.light
+        : odelzaThemeCssVariables.background.transparent.lighter};
   }
 `;
 
 const StyledTabIcon = styled.div`
   align-items: center;
   display: flex;
-  height: ${themeCssVariables.spacing[5]};
+  height: ${odelzaThemeCssVariables.spacing[5]};
   justify-content: center;
-  width: ${themeCssVariables.spacing[5]};
+  width: ${odelzaThemeCssVariables.spacing[5]};
 `;
 
 const StyledNewChatIcon = styled.div`
@@ -93,46 +100,49 @@ const StyledNewChatIcon = styled.div`
 
 const StyledNewChatButtonWrapper = styled.div<{ isExpanded: boolean }>`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.pill};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   box-sizing: border-box;
   corner-shape: round;
   display: flex;
   height: ${({ isExpanded }) =>
-    isExpanded ? themeCssVariables.spacing[7] : themeCssVariables.spacing[6]};
+    isExpanded
+      ? odelzaThemeCssVariables.spacing[7]
+      : odelzaThemeCssVariables.spacing[6]};
   justify-content: center;
   padding: ${({ isExpanded }) =>
-    isExpanded ? '3px' : themeCssVariables.spacing[0.5]};
+    isExpanded ? '3px' : odelzaThemeCssVariables.spacing[0.5]};
   transition:
-    height calc(${themeCssVariables.animation.duration.normal} * 1s) ease,
-    padding calc(${themeCssVariables.animation.duration.normal} * 1s) ease;
+    height calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s) ease,
+    padding calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s) ease;
   width: ${({ isExpanded }) =>
-    isExpanded ? '103px' : themeCssVariables.spacing[6]};
+    isExpanded ? '103px' : odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledNewChatButton = styled.div`
   align-items: center;
   border-radius: inherit;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   cursor: pointer;
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 100%;
   justify-content: center;
   min-width: 0;
   overflow: hidden;
-  padding-inline: ${themeCssVariables.spacing[2]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[2]};
   transition:
-    background calc(${themeCssVariables.animation.duration.fast} * 1s) ease,
-    color calc(${themeCssVariables.animation.duration.fast} * 1s) ease;
+    background calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s)
+      ease,
+    color calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s) ease;
   width: 100%;
 
   &:hover {
-    background: ${themeCssVariables.background.transparent.light};
-    color: ${themeCssVariables.font.color.primary};
+    background: ${odelzaThemeCssVariables.background.transparent.light};
+    color: ${odelzaThemeCssVariables.font.color.primary};
   }
 `;
 

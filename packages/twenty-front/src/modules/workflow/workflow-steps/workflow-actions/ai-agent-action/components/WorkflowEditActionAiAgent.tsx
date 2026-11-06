@@ -20,7 +20,7 @@ import { useEffect, useState } from 'react';
 import { SettingsPath } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { IconLock, IconSparkles } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useDebouncedCallback } from 'use-debounce';
 import {
   FindOneAgentDocument,
@@ -44,8 +44,8 @@ type WorkflowEditActionAiAgentProps = {
 };
 
 const StyledTabListContainer = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  padding-left: ${themeCssVariables.spacing[2]};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const WorkflowEditActionAiAgent = ({

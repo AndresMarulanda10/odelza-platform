@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { type ReactNode, useContext } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { DragDropColumnDndContext } from '@/ui/utilities/drag-and-drop/context/DragDropColumnDndContext';
 
@@ -10,15 +10,15 @@ const StyledDropTarget = styled.div<{
 }>`
   height: 100%;
   min-height: ${({ $compact }) =>
-    $compact ? '100%' : themeCssVariables.spacing[2]};
+    $compact ? '100%' : odelzaThemeCssVariables.spacing[2]};
   position: ${({ $overlay }) => ($overlay ? 'absolute' : 'relative')};
   transition: background-color 120ms ease-out;
   width: 100%;
 
   &::before {
-    background-color: ${themeCssVariables.color.blue};
-    border-radius: 0 ${themeCssVariables.border.radius.sm}
-      ${themeCssVariables.border.radius.sm} 0;
+    background-color: ${odelzaThemeCssVariables.color.primary};
+    border-radius: 0 ${odelzaThemeCssVariables.border.radius.sm}
+      ${odelzaThemeCssVariables.border.radius.sm} 0;
     content: '';
     height: 100%;
     left: 0;
@@ -34,7 +34,7 @@ const StyledDropTarget = styled.div<{
   }
 
   &[data-drag-over='true'] {
-    background-color: ${themeCssVariables.background.transparent.blue};
+    background-color: ${odelzaThemeCssVariables.background.transparent.accent};
   }
 
   &[data-drag-over='true']::before {

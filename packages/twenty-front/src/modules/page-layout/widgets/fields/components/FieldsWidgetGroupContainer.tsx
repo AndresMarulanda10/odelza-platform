@@ -2,7 +2,10 @@ import { styled } from '@linaria/react';
 import { useContext, useState } from 'react';
 import { IconChevronDown } from 'twenty-ui/icon';
 import { AnimatedExpandableContainer, Section } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledHeader = styled.header`
   align-items: center;
@@ -13,17 +16,17 @@ const StyledHeader = styled.header`
 `;
 
 const StyledTitleLabel = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledChevronWrapper = styled.div<{ isExpanded: boolean }>`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   transform: ${({ isExpanded }) =>
     isExpanded ? 'rotate(180deg)' : 'rotate(0deg)'};
   transition: transform
-    calc(${themeCssVariables.animation.duration.normal} * 1s) ease;
+    calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s) ease;
 `;
 
 type FieldsWidgetGroupContainerProps = {

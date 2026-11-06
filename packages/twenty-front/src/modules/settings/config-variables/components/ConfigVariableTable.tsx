@@ -2,7 +2,10 @@ import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { TableBody } from '@/ui/layout/table/components/TableBody';
 import { Table } from '@/ui/layout/table/components/Table';
 import { styled } from '@linaria/react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { TableHeader } from '@/ui/layout/table/components/TableHeader';
 import { t } from '@lingui/core/macro';
 import { TableCell } from '@/ui/layout/table/components/TableCell';
@@ -11,7 +14,7 @@ import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { useContext } from 'react';
 
 const StyledTableBodyContainer = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
 `;
 
 const GRID_AUTO_COLUMNS = '5fr 3fr 3fr 1fr';

@@ -6,7 +6,7 @@ import {
   getIconTileColorShades,
 } from 'twenty-ui/data-display';
 import { IconLink, IconWorld, useIcons } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type NavigationMenuItem } from '~/generated-metadata/graphql';
 
 import { getNavigationMenuItemColor } from '@/navigation-menu-item/common/utils/getNavigationMenuItemColor';
@@ -132,7 +132,7 @@ export const NavigationMenuItemIcon = ({
     ? iconStyle.iconColor
     : StandardIcon
       ? IconColor
-      : themeCssVariables.font.color.secondary;
+      : odelzaThemeCssVariables.font.color.secondary;
 
   const labelIdentifier = getNavigationMenuItemLabel(
     navigationMenuItem,

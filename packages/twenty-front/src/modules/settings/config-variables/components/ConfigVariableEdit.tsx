@@ -2,7 +2,7 @@ import { styled } from '@linaria/react';
 import { IconCheck, IconPencil, IconX } from 'twenty-ui/icon';
 import { H3Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { ConfirmationModal } from '@/ui/layout/modal/components/ConfirmationModal';
 import { useLingui } from '@lingui/react/macro';
 import { Section } from 'twenty-ui/layout';
@@ -17,7 +17,7 @@ const RESET_VARIABLE_MODAL_ID =
 const StyledRow = styled.div`
   align-items: flex-end;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledButtonContainer = styled.div`

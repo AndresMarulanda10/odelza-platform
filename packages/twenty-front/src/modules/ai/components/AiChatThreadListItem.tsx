@@ -3,7 +3,10 @@ import { useLingui } from '@lingui/react/macro';
 import { useContext } from 'react';
 import { Key } from 'ts-key-enum';
 import { IconArchive, IconSparkles } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { AiChatThreadItemMenu } from '@/ai/components/AiChatThreadItemMenu';
 import { AI_CHAT_THREAD_ACTIONS_SURFACE } from '@/ai/constants/AiChatThreadActionsSurface';
@@ -18,19 +21,19 @@ import { type AgentChatThread } from '~/generated-metadata/graphql';
 const StyledThreadItem = styled.div`
   align-items: center;
   border-left: 3px solid transparent;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   cursor: pointer;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-bottom: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[1]} 1px;
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]} 1px;
   position: relative;
   right: 3px;
   transition: all 0.2s ease;
   width: calc(100% + 1px);
 
   &:hover {
-    background: ${themeCssVariables.background.transparent.light};
+    background: ${odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 
@@ -38,16 +41,16 @@ const StyledThreadIcon = styled.div<{ $isArchived: boolean }>`
   align-items: center;
   background: ${({ $isArchived }) =>
     $isArchived
-      ? themeCssVariables.background.transparent.lighter
-      : themeCssVariables.background.transparent.blue};
-  border-radius: ${themeCssVariables.border.radius.sm};
+      ? odelzaThemeCssVariables.background.transparent.lighter
+      : odelzaThemeCssVariables.background.transparent.accent};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   color: ${({ $isArchived }) =>
     $isArchived
-      ? themeCssVariables.font.color.tertiary
-      : themeCssVariables.color.blue};
+      ? odelzaThemeCssVariables.font.color.tertiary
+      : odelzaThemeCssVariables.color.primary};
   display: flex;
   justify-content: center;
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledThreadContent = styled.div`
@@ -56,8 +59,8 @@ const StyledThreadContent = styled.div`
 `;
 
 const StyledThreadTitle = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.md};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -69,7 +72,7 @@ const StyledMenuTrigger = styled.div<{ $isDropdownOpen: boolean }>`
   pointer-events: ${({ $isDropdownOpen }) =>
     $isDropdownOpen ? 'auto' : 'none'};
   position: absolute;
-  right: ${themeCssVariables.spacing[1]};
+  right: ${odelzaThemeCssVariables.spacing[1]};
   top: 50%;
   transform: translateY(-50%);
   transition: opacity 150ms;

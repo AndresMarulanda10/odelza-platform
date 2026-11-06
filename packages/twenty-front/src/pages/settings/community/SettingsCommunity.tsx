@@ -20,7 +20,7 @@ import { getSettingsPath } from 'twenty-shared/utils';
 import {
   MOBILE_VIEWPORT,
   ThemeContext,
-  themeCssVariables,
+  odelzaThemeCssVariables,
 } from 'twenty-ui/theme-constants';
 import coverDark from '~/pages/settings/community/assets/cover-dark.png';
 import coverLight from '~/pages/settings/community/assets/cover-light.png';
@@ -35,7 +35,7 @@ const StyledCardLink = styled.a`
 
 const StyledCardsGrid = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
@@ -45,7 +45,7 @@ const StyledCardsGrid = styled.div`
 
 const StyledFeaturesContent = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 type SettingsCommunityLink = {
@@ -64,13 +64,13 @@ export const SettingsCommunity = () => {
     {
       href: 'https://discord.com/invite/cx5n4Jzs57',
       Icon: IconBrandDiscord,
-      iconColor: themeCssVariables.color.blue9,
+      iconColor: odelzaThemeCssVariables.color.primary9,
       cardTitle: t`Join our Discord`,
     },
     {
       href: 'https://x.com/twentycrm',
       Icon: IconBrandX,
-      iconColor: themeCssVariables.font.color.primary,
+      iconColor: odelzaThemeCssVariables.font.color.primary,
       cardTitle: t`Follow us on X`,
     },
   ];

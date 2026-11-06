@@ -25,7 +25,10 @@ import {
   RoundedIconButton,
   type SelectOption,
 } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { AgentChatFileUploadButton } from '@/ai/components/internal/AgentChatFileUploadButton';
 import { AiChatContextUsageButton } from '@/ai/components/internal/AiChatContextUsageButton';
@@ -51,9 +54,9 @@ const NUMBER_ICONS: IconComponent[] = [
 ];
 
 const StyledCard = styled.div`
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -63,24 +66,24 @@ const StyledCard = styled.div`
 const StyledQuestionSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
-  padding: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledQuestionHeaderRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: space-between;
   min-height: 24px;
-  padding-left: ${themeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledQuestionText = styled.p`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   flex: 1 0 0;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   line-height: 1.4;
   margin: 0;
   min-width: 0;
@@ -91,38 +94,38 @@ const StyledPager = styled.div`
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledPagerLabel = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const StyledOptionsList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing['0.5']};
+  gap: ${odelzaThemeCssVariables.spacing['0.5']};
 `;
 
 const StyledOptionRow = styled.div<{ isHighlighted: boolean }>`
   align-items: center;
   background: ${({ isHighlighted }) =>
     isHighlighted
-      ? themeCssVariables.background.transparent.light
+      ? odelzaThemeCssVariables.background.transparent.light
       : 'transparent'};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   height: 32px;
   justify-content: space-between;
   overflow: hidden;
-  padding: 0 ${themeCssVariables.spacing[1]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
 
   &:hover {
-    background: ${themeCssVariables.background.transparent.light};
+    background: ${odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 
@@ -130,15 +133,15 @@ const StyledOptionLeft = styled.div`
   align-items: center;
   display: flex;
   flex: 1 0 0;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-width: 0;
   overflow: hidden;
 `;
 
 const StyledOptionLabel = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   flex-shrink: 0;
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   line-height: 1.4;
   max-width: 100%;
   overflow: hidden;
@@ -147,14 +150,14 @@ const StyledOptionLabel = styled.span`
 `;
 
 const StyledRecommended = styled.span`
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   flex-shrink: 0;
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   line-height: 1.4;
 `;
 
 const StyledDivider = styled.div`
-  background: ${themeCssVariables.border.color.light};
+  background: ${odelzaThemeCssVariables.border.color.light};
   height: 1px;
   width: 100%;
 `;
@@ -163,26 +166,26 @@ const StyledComposerSection = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-height: 80px;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledFreeTextArea = styled.textarea`
   background: transparent;
   border: none;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   flex: 1 0 0;
   font-family: inherit;
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   line-height: 1.4;
   min-height: 24px;
   outline: none;
   resize: none;
 
   &::placeholder {
-    color: ${themeCssVariables.font.color.light};
-    font-weight: ${themeCssVariables.font.weight.medium};
+    color: ${odelzaThemeCssVariables.font.color.light};
+    font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   }
 `;
 
@@ -196,13 +199,13 @@ const StyledActionsRow = styled.div`
 const StyledLeftActions = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing['0.5']};
+  gap: ${odelzaThemeCssVariables.spacing['0.5']};
 `;
 
 const StyledRightActions = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const areAllQuestionsAnswered = (
@@ -401,7 +404,7 @@ export const AiChatQuestionCard = ({
                 <StyledOptionLeft>
                   <NumberIcon
                     size={theme.icon.size.sm}
-                    color={themeCssVariables.font.color.tertiary}
+                    color={odelzaThemeCssVariables.font.color.tertiary}
                   />
                   <StyledOptionLabel>{option.label}</StyledOptionLabel>
                   {option.isRecommended === true && (

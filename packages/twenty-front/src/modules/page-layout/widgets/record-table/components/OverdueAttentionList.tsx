@@ -8,10 +8,10 @@ import { DateTimeDisplay } from '@/ui/field/display/components/DateTimeDisplay';
 import { styled } from '@linaria/react';
 import { useRef, useState } from 'react';
 import { type RecordGqlOperationGqlRecordFields } from 'twenty-shared/types';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContent = styled.div`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   container: overdue-attention / inline-size;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ const StyledContent = styled.div`
   overflow: hidden;
 `;
 const StyledHeader = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   flex: 0 0 auto;
   padding: 4px 12px 8px;
 `;
@@ -44,20 +44,20 @@ const StyledList = styled.ul`
   }
 `;
 const StyledRow = styled.li`
-  --overdue-accent: ${themeCssVariables.color.orange};
-  --overdue-background: ${themeCssVariables.tag.background.orange};
-  --overdue-text: ${themeCssVariables.tag.text.orange};
+  --overdue-accent: ${odelzaThemeCssVariables.color.orange};
+  --overdue-background: ${odelzaThemeCssVariables.tag.background.orange};
+  --overdue-text: ${odelzaThemeCssVariables.tag.text.orange};
   align-items: center;
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
   gap: 12px;
   min-width: 0;
   padding: 10px 0;
   position: relative;
   &[data-severity='urgent'] {
-    --overdue-accent: ${themeCssVariables.color.red};
-    --overdue-background: ${themeCssVariables.tag.background.red};
-    --overdue-text: ${themeCssVariables.tag.text.red};
+    --overdue-accent: ${odelzaThemeCssVariables.color.red};
+    --overdue-background: ${odelzaThemeCssVariables.tag.background.red};
+    --overdue-text: ${odelzaThemeCssVariables.tag.text.red};
   }
 `;
 const StyledDetails = styled.div`
@@ -101,7 +101,7 @@ const StyledTitle = styled.span`
 `;
 const StyledMetadata = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
   flex-wrap: wrap;
   font-size: 12px;
@@ -126,7 +126,7 @@ const StyledBadge = styled.span`
 `;
 const StyledFooter = styled.div`
   align-items: center;
-  border-top: 1px solid ${themeCssVariables.border.color.light};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
   flex: 0 0 auto;
   flex-wrap: wrap;
@@ -136,7 +136,7 @@ const StyledFooter = styled.div`
   button {
     background: none;
     border: 0;
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
     cursor: pointer;
     font: inherit;
     padding: 2px;

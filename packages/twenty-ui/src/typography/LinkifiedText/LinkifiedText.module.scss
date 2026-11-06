@@ -1,8 +1,8 @@
 .link {
-  color: var(--t-color-blue);
+  color: var(--odz-font-color-link);
   text-decoration: underline;
 
   &:hover {
-    text-decoration-color: var(--t-color-blue);
+    text-decoration-color: var(--odz-font-color-link);
   }
 }

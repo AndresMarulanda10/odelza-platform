@@ -4,7 +4,10 @@ import { NavigationMenuItemType } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { TintedIconTile } from 'twenty-ui/data-display';
 import { IconGripVertical, type IconComponent } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import type { AddToNavigationDragPayload } from '@/navigation-menu-item/common/types/add-to-navigation-drag-payload';
 import { getNavigationMenuItemColor } from '@/navigation-menu-item/common/utils/getNavigationMenuItemColor';
@@ -20,11 +23,11 @@ const StyledIconSlot = styled.div<{
   display: flex;
   flex-shrink: 0;
   height: ${({ $hasFixedSize }) =>
-    $hasFixedSize ? themeCssVariables.spacing[4] : 'auto'};
+    $hasFixedSize ? odelzaThemeCssVariables.spacing[4] : 'auto'};
   justify-content: center;
   opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
   width: ${({ $hasFixedSize }) =>
-    $hasFixedSize ? themeCssVariables.spacing[4] : 'auto'};
+    $hasFixedSize ? odelzaThemeCssVariables.spacing[4] : 'auto'};
 
   &:active {
     cursor: ${({ $disabled, $disableDrag }) =>

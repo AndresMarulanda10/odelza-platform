@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { type ReactNode, useContext } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { DragDropColumnSortableHandleRefContext } from '@/ui/utilities/drag-and-drop/context/DragDropColumnSortableHandleRefContext';
 
@@ -12,7 +12,7 @@ const StyledSortableHandle = styled.div<{ $fill?: boolean }>`
   width: ${({ $fill }) => ($fill ? '100%' : 'auto')};
 
   &:focus-visible {
-    outline: 2px solid ${themeCssVariables.color.blue};
+    outline: 2px solid ${odelzaThemeCssVariables.color.primary};
     outline-offset: -2px;
   }
 `;

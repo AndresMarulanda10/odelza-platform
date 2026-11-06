@@ -3,7 +3,7 @@ import { ScrollWrapper } from '@/ui/utilities/scroll/components/ScrollWrapper';
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 import { useIsMobile } from 'twenty-ui/utilities';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledItemsContainer = styled.div`
   display: flex;
@@ -21,8 +21,8 @@ const StyledNavigationDrawerScrollWrapper = styled(ScrollWrapper)`
 const StyledScrollableMobileInnerContainer = styled.div`
   height: 100%;
   min-height: 0;
-  padding-left: ${themeCssVariables.spacing[5]};
-  padding-right: ${themeCssVariables.spacing[5]};
+  padding-left: ${odelzaThemeCssVariables.spacing[5]};
+  padding-right: ${odelzaThemeCssVariables.spacing[5]};
 `;
 
 export const NavigationDrawerScrollableContent = ({

@@ -9,7 +9,10 @@ import { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconChevronRight, useIcons } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { AppChip } from '@/applications/components/AppChip';
 
 export type ApplicationContentRow = {
@@ -69,7 +72,7 @@ export const SettingsApplicationContentSubtable = ({
             </StyledNameTableCell>
             <TableCell
               align="right"
-              color={themeCssVariables.font.color.secondary}
+              color={odelzaThemeCssVariables.font.color.secondary}
               minWidth="0"
               overflow="hidden"
               whiteSpace="nowrap"

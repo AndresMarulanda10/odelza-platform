@@ -18,7 +18,7 @@ import { t } from '@lingui/core/macro';
 import { isString } from '@sniptt/guards';
 import { useId } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type JsonValue } from 'type-fest';
 
 const StyledReadonlyContainer = styled.div`
@@ -30,7 +30,7 @@ const StyledReadonlyContainer = styled.div`
 
 const StyledForbiddenFieldDisplayContainer = styled.div`
   display: flex;
-  margin: ${themeCssVariables.spacing[2]};
+  margin: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export type FormMorphRelationToOneValue =

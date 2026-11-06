@@ -3,7 +3,7 @@ import { WorkflowStepBody } from '@/workflow/workflow-steps/components/WorkflowS
 import { WorkflowStepFooter } from '@/workflow/workflow-steps/components/WorkflowStepFooter';
 import { WorkflowStepFilterBuilder } from '@/workflow/workflow-steps/filters/components/WorkflowStepFilterBuilder';
 import { type FilterSettings } from '@/workflow/workflow-steps/filters/types/FilterSettings';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type WorkflowEditActionFilterProps = {
   action: WorkflowFilterAction;
@@ -40,7 +40,7 @@ export const WorkflowEditActionFilter = ({
 
   return (
     <>
-      <WorkflowStepBody rowGap={themeCssVariables.spacing[0]}>
+      <WorkflowStepBody rowGap={odelzaThemeCssVariables.spacing[0]}>
         <WorkflowStepFilterBuilder
           instanceId={action.id}
           defaultValue={action.settings.input}

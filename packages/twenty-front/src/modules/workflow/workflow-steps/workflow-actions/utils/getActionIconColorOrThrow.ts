@@ -1,6 +1,6 @@
 import { type WorkflowActionType } from '@/workflow/types/Workflow';
 import { assertUnreachable } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export const getActionIconColorOrThrow = (
   actionType: WorkflowActionType,
@@ -12,24 +12,24 @@ export const getActionIconColorOrThrow = (
     case 'SEND_EMAIL':
     case 'DRAFT_EMAIL':
     case 'CREATE_CALENDAR_EVENT':
-      return themeCssVariables.color.red;
+      return odelzaThemeCssVariables.color.red;
     case 'CREATE_RECORD':
     case 'UPDATE_RECORD':
     case 'DELETE_RECORD':
     case 'UPSERT_RECORD':
     case 'FIND_RECORDS':
     case 'PICK_RECORD':
-      return themeCssVariables.font.color.tertiary;
+      return odelzaThemeCssVariables.font.color.tertiary;
     case 'FORM':
-      return themeCssVariables.color.orange;
+      return odelzaThemeCssVariables.color.orange;
     case 'ITERATOR':
     case 'EMPTY':
     case 'FILTER':
     case 'IF_ELSE':
     case 'DELAY':
-      return themeCssVariables.color.green12;
+      return odelzaThemeCssVariables.color.green12;
     case 'AI_AGENT':
-      return themeCssVariables.color.pink;
+      return odelzaThemeCssVariables.color.pink;
     default:
       assertUnreachable(actionType, `Unsupported action type: ${actionType}`);
   }

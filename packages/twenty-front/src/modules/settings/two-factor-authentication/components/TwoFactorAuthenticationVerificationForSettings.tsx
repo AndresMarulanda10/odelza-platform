@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 import { OTPInput } from 'input-otp';
 import { Controller, useFormContext } from 'react-hook-form';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { TwoFactorAuthenticationVerificationCodeDash } from '@/settings/two-factor-authentication/components/TwoFactorAuthenticationVerificationCodeDash';
 import { TwoFactorAuthenticationVerificationCodeSlot } from '@/settings/two-factor-authentication/components/TwoFactorAuthenticationVerificationCodeSlot';
@@ -13,8 +13,8 @@ type OTPFormValues = {
 
 const StyledOTPContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  margin-bottom: ${themeCssVariables.spacing[8]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[8]};
 
   &:has(:disabled) {
     opacity: 0.3;

@@ -12,7 +12,7 @@ import { Key } from 'ts-key-enum';
 import { IconPencil } from 'twenty-ui/icon';
 import { CodeEditor, FloatingIconButton } from 'twenty-ui/input';
 import { JsonTree, isTwoFirstDepths } from 'twenty-ui/json-visualizer';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 import { useJsonField } from '@/object-record/record-field/ui/meta-types/hooks/useJsonField';
 
@@ -28,16 +28,16 @@ const StyledContainer = styled.div`
 
 const StyledSwitchModeButtonContainer = styled.div`
   position: fixed;
-  right: ${themeCssVariables.spacing[1]};
-  top: ${themeCssVariables.spacing[1]};
+  right: ${odelzaThemeCssVariables.spacing[1]};
+  top: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledCodeEditorContainer = styled.div`
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledJsonTreeContainer = styled.div`
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   width: min-content;
 `;
 

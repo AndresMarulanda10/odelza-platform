@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { IconChevronDown } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export const StyledContainer = styled.div<{
   isNavigationDrawerExpanded: boolean;
@@ -8,18 +8,18 @@ export const StyledContainer = styled.div<{
 }>`
   align-items: center;
   border: 1px solid transparent;
-  border-radius: ${themeCssVariables.border.radius.md};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   display: flex;
   gap: ${({ isNavigationDrawerExpanded }) =>
-    isNavigationDrawerExpanded ? themeCssVariables.spacing[2] : '0'};
-  height: ${themeCssVariables.spacing[7]};
+    isNavigationDrawerExpanded ? odelzaThemeCssVariables.spacing[2] : '0'};
+  height: ${odelzaThemeCssVariables.spacing[7]};
   max-width: 100%;
   min-width: 0;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
-  padding: calc(${themeCssVariables.spacing[1]} - 1px);
+  padding: calc(${odelzaThemeCssVariables.spacing[1]} - 1px);
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
   width: fit-content;
 
@@ -27,10 +27,10 @@ export const StyledContainer = styled.div<{
     background-color: ${({ disabled }) =>
       disabled
         ? 'transparent'
-        : themeCssVariables.background.transparent.lighter};
+        : odelzaThemeCssVariables.background.transparent.lighter};
     border: 1px solid
       ${({ disabled }) =>
-        disabled ? 'transparent' : themeCssVariables.border.color.medium};
+        disabled ? 'transparent' : odelzaThemeCssVariables.border.color.medium};
   }
 `;
 
@@ -41,7 +41,7 @@ export const StyledLabelWrapper = styled.div`
 `;
 
 export const StyledLabel = styled.div`
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -51,8 +51,8 @@ const StyledIconChevronDownContainer = styled.div<{ disabled?: boolean }>`
   align-items: center;
   color: ${({ disabled }) =>
     disabled
-      ? themeCssVariables.font.color.extraLight
-      : themeCssVariables.font.color.tertiary};
+      ? odelzaThemeCssVariables.font.color.extraLight
+      : odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
 `;
 

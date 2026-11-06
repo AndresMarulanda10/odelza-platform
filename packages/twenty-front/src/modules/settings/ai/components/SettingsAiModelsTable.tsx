@@ -7,7 +7,10 @@ import { isDefined } from 'twenty-shared/utils';
 import { IconTrash } from 'twenty-ui/icon';
 import { AppTooltip, TooltipDelay } from 'twenty-ui/surfaces';
 import { Checkbox, IconButton } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { SettingsAiModelHoverCard } from '@/settings/ai/components/SettingsAiModelHoverCard';
 import { type AiModelSummary } from '@/settings/ai/types/AiModelSummary';
@@ -26,7 +29,7 @@ const GRID_COLUMNS_WITH_REMOVE_WITHOUT_PROVIDER = '1fr 40px 32px';
 const StyledModelNameCell = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   overflow: hidden;
 `;
 
@@ -37,11 +40,11 @@ const StyledModelLabel = styled.span`
 `;
 
 const StyledDeprecatedSuffix = styled.span`
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
 `;
 
 const hoverCardTooltipClass = css`
-  border-radius: ${themeCssVariables.border.radius.rounded} !important;
+  border-radius: ${odelzaThemeCssVariables.border.radius.rounded} !important;
   corner-shape: round;
 
   padding: 0 !important;
@@ -150,8 +153,8 @@ export const SettingsAiModelsTable = <TModel extends AiModelSummary>({
                 <TableCell
                   color={
                     disabled
-                      ? themeCssVariables.font.color.light
-                      : themeCssVariables.font.color.primary
+                      ? odelzaThemeCssVariables.font.color.light
+                      : odelzaThemeCssVariables.font.color.primary
                   }
                 >
                   <StyledModelNameCell>
@@ -175,7 +178,7 @@ export const SettingsAiModelsTable = <TModel extends AiModelSummary>({
                 {showProviderColumn && (
                   <TableCell
                     align="right"
-                    color={themeCssVariables.font.color.tertiary}
+                    color={odelzaThemeCssVariables.font.color.tertiary}
                   >
                     {getProviderDisplayLabel(model)}
                   </TableCell>

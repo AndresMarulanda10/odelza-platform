@@ -1,5 +1,5 @@
-// duration(fast) => calc(var(--t-animation-duration-fast) * 1s)
+// duration(fast) => calc(var(--odz-animation-duration-fast) * 1s)
 // Theme animation durations are stored unitless; this scales them to seconds.
 @function duration($name) {
-  @return calc(var(--t-animation-duration-#{$name}) * 1s);
+  @return calc(var(--odz-animation-duration-#{$name}) * 1s);
 }

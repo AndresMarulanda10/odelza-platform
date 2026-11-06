@@ -14,7 +14,7 @@ import { IconDotsVertical } from 'twenty-ui/icon';
 import { IconButton } from 'twenty-ui/input';
 import { AppTooltip, TooltipDelay, TooltipPosition } from 'twenty-ui/surfaces';
 import { getOsControlSymbol, useIsMobile } from 'twenty-ui/utilities';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledButtonWrapper = styled.div<{ alignToTop: boolean }>`
   align-items: ${({ alignToTop }) => (alignToTop ? 'center' : 'initial')};
@@ -23,13 +23,13 @@ const StyledButtonWrapper = styled.div<{ alignToTop: boolean }>`
     alignToTop ? `${SIDE_PANEL_TOP_BAR_HEIGHT_MOBILE}px` : 'auto'};
   position: ${({ alignToTop }) => (alignToTop ? 'fixed' : 'static')};
   right: ${({ alignToTop }) =>
-    alignToTop ? themeCssVariables.spacing[3] : 'auto'};
+    alignToTop ? odelzaThemeCssVariables.spacing[3] : 'auto'};
   top: ${({ alignToTop }) => (alignToTop ? '0' : 'auto')};
   z-index: ${RootStackingContextZIndices.SidePanelButton};
 `;
 
 const StyledTooltipWrapper = styled.div`
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
 `;
 
 export const SidePanelToggleButton = () => {

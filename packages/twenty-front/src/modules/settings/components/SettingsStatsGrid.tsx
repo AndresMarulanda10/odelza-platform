@@ -1,7 +1,10 @@
 import { styled } from '@linaria/react';
 import { Fragment, useContext } from 'react';
 import { type IconComponent } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 export type SettingsStatRow = {
   Icon: IconComponent;
@@ -14,47 +17,47 @@ type SettingsStatsGridProps = {
 };
 
 const StyledContainer = styled.div`
-  background: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
-  gap: ${themeCssVariables.spacing[3]};
-  padding: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledColumn = styled.div`
   display: flex;
   flex: 1 1 0;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
 const StyledDivider = styled.div`
   align-self: stretch;
-  background: ${themeCssVariables.border.color.light};
+  background: ${odelzaThemeCssVariables.border.color.light};
   width: 1px;
 `;
 
 const StyledRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  height: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledLabel = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   flex: 1 1 0;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const StyledValue = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  padding: 0 ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type StatRowProps = SettingsStatRow;

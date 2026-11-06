@@ -13,7 +13,7 @@ export const useSourceContent = (source: ConfigSource) => {
     case ConfigSource.DATABASE:
       return {
         text: t`Stored in database`,
-        color: theme.color.blue10,
+        color: theme.color.primary10,
       };
     case ConfigSource.ENVIRONMENT:
       return {

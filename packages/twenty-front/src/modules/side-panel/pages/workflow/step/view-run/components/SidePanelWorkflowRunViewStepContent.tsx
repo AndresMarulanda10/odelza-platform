@@ -33,7 +33,7 @@ import {
   IconStepInto,
   IconTerminal,
 } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -42,8 +42,8 @@ const StyledContainer = styled.div`
 `;
 
 const StyledTabListContainer = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  padding-left: ${themeCssVariables.spacing[2]};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type TabId = WorkflowRunTabIdType;

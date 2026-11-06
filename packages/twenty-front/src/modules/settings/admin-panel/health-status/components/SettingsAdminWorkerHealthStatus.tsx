@@ -4,11 +4,11 @@ import { t } from '@lingui/core/macro';
 import { useContext } from 'react';
 import { AdminPanelHealthServiceStatus } from '~/generated-admin/graphql';
 import { SettingsAdminIndicatorHealthContext } from '@/settings/admin-panel/health-status/contexts/SettingsAdminIndicatorHealthContext';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledErrorMessage = styled.div`
-  color: ${themeCssVariables.color.red};
-  margin-top: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.color.red};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const SettingsAdminWorkerHealthStatus = () => {

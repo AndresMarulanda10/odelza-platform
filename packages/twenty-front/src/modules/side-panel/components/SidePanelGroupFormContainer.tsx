@@ -1,8 +1,8 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledFormContainer = styled.div`
-  padding-inline: ${themeCssVariables.spacing[1]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const SidePanelGroupFormContainer = ({

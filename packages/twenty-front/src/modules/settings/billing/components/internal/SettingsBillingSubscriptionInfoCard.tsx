@@ -21,7 +21,7 @@ import {
   IconUserCircle,
   IconUsers,
 } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type BillingStatusTone = 'blue' | 'gray' | 'orange' | 'red' | 'sky';
 
@@ -30,32 +30,33 @@ const STATUS_PILL_COLORS: Record<
   { background: string; color: string }
 > = {
   blue: {
-    background: themeCssVariables.color.blue4,
-    color: themeCssVariables.accent.accent11,
+    background: odelzaThemeCssVariables.color.primary4,
+    color: odelzaThemeCssVariables.accent.accent11,
   },
   gray: {
-    background: themeCssVariables.color.gray4,
-    color: themeCssVariables.color.gray11,
+    background: odelzaThemeCssVariables.color.gray4,
+    color: odelzaThemeCssVariables.color.gray11,
   },
   orange: {
-    background: themeCssVariables.color.orange4,
-    color: themeCssVariables.color.orange11,
+    background: odelzaThemeCssVariables.color.orange4,
+    color: odelzaThemeCssVariables.color.orange11,
   },
   red: {
-    background: themeCssVariables.color.red4,
-    color: themeCssVariables.color.red11,
+    background: odelzaThemeCssVariables.color.red4,
+    color: odelzaThemeCssVariables.color.red11,
   },
   sky: {
-    background: themeCssVariables.color.sky4,
-    color: themeCssVariables.color.sky11,
+    background: odelzaThemeCssVariables.color.sky4,
+    color: odelzaThemeCssVariables.color.sky11,
   },
 };
 
 const StyledSettingsBillingCardGridBody = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[6]};
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  padding: ${themeCssVariables.spacing[4]} ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[4]}
+    ${odelzaThemeCssVariables.spacing[3]};
 
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
@@ -65,29 +66,29 @@ const StyledSettingsBillingCardGridBody = styled.div`
 const StyledPlanHeader = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-width: 0;
 `;
 
 const StyledPlanLabel = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   white-space: nowrap;
 `;
 
 const StyledStatusPill = styled.span<{ tone: BillingStatusTone }>`
   align-items: center;
   background-color: ${({ tone }) => STATUS_PILL_COLORS[tone].background};
-  border-radius: ${themeCssVariables.border.radius.pill};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   color: ${({ tone }) => STATUS_PILL_COLORS[tone].color};
   corner-shape: round;
   display: inline-flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 22px;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   white-space: nowrap;
 `;
 
@@ -103,72 +104,74 @@ const StyledHeaderActions = styled.div`
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: flex-end;
 `;
 
 const StyledBillingFieldList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
 const StyledBillingFieldListWithDivider = styled(StyledBillingFieldList)`
-  border-left: 1px solid ${themeCssVariables.background.transparent.light};
-  padding-left: ${themeCssVariables.spacing[6]};
+  border-left: 1px solid ${odelzaThemeCssVariables.background.transparent.light};
+  padding-left: ${odelzaThemeCssVariables.spacing[6]};
 
   @media (max-width: 640px) {
     border-left: 0;
-    border-top: 1px solid ${themeCssVariables.background.transparent.light};
+    border-top: 1px solid
+      ${odelzaThemeCssVariables.background.transparent.light};
     padding-left: 0;
-    padding-top: ${themeCssVariables.spacing[4]};
+    padding-top: ${odelzaThemeCssVariables.spacing[4]};
   }
 `;
 
 const StyledBillingIntervalValue = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
 const StyledBillingIntervalSeparator = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 const StyledSecondaryText = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  margin-left: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  margin-left: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledScheduledChangeHeader = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border-bottom: 1px solid ${themeCssVariables.background.transparent.light};
-  border-top: 1px solid ${themeCssVariables.background.transparent.light};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border-bottom: 1px solid
+    ${odelzaThemeCssVariables.background.transparent.light};
+  border-top: 1px solid ${odelzaThemeCssVariables.background.transparent.light};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-height: 32px;
-  padding: 0 ${themeCssVariables.spacing[3]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledScheduledChangeTitle = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledScheduledChangeDate = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 const StyledScheduledChangeGrid = styled.div<{ columns: number }>`
   display: grid;
-  gap: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[6]};
   grid-template-columns: ${({ columns }) =>
     `repeat(${columns}, minmax(0, 1fr))`};
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 
   @media (max-width: 640px) {
     gap: 0;

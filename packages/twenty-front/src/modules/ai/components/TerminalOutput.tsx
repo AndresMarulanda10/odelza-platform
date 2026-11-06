@@ -4,11 +4,11 @@ import { useLingui } from '@lingui/react/macro';
 import { useState } from 'react';
 import { IconCopy, IconTerminal } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
 const StyledContainer = styled.div`
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -16,80 +16,82 @@ const StyledContainer = styled.div`
 
 const StyledHeader = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.tertiary};
-  border-bottom: 1px solid ${themeCssVariables.border.color.medium};
+  background: ${odelzaThemeCssVariables.background.tertiary};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: space-between;
-  padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledHeaderLeft = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledTabContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledTab = styled.button<{ isActive: boolean; hasError?: boolean }>`
   background: ${({ isActive }) =>
-    isActive ? themeCssVariables.background.secondary : 'transparent'};
+    isActive ? odelzaThemeCssVariables.background.secondary : 'transparent'};
   border: none;
-  border-radius: ${themeCssVariables.border.radius.xs};
+  border-radius: ${odelzaThemeCssVariables.border.radius.xs};
   color: ${({ isActive, hasError }) =>
     hasError
-      ? themeCssVariables.color.red
+      ? odelzaThemeCssVariables.color.red
       : isActive
-        ? themeCssVariables.font.color.primary
-        : themeCssVariables.font.color.tertiary};
+        ? odelzaThemeCssVariables.font.color.primary
+        : odelzaThemeCssVariables.font.color.tertiary};
   cursor: pointer;
-  font-size: ${themeCssVariables.font.size.xs};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
   font-weight: ${({ isActive }) =>
     isActive
-      ? themeCssVariables.font.weight.medium
-      : themeCssVariables.font.weight.regular};
-  padding: ${themeCssVariables.spacing['0.5']} ${themeCssVariables.spacing[1]};
+      ? odelzaThemeCssVariables.font.weight.medium
+      : odelzaThemeCssVariables.font.weight.regular};
+  padding: ${odelzaThemeCssVariables.spacing['0.5']}
+    ${odelzaThemeCssVariables.spacing[1]};
 
   &:hover {
-    background: ${themeCssVariables.background.secondary};
+    background: ${odelzaThemeCssVariables.background.secondary};
     color: ${({ hasError }) =>
       hasError
-        ? themeCssVariables.color.red
-        : themeCssVariables.font.color.primary};
+        ? odelzaThemeCssVariables.color.red
+        : odelzaThemeCssVariables.font.color.primary};
   }
 `;
 
 const StyledOutputArea = styled.div<{ isError?: boolean }>`
-  background: ${themeCssVariables.background.tertiary};
+  background: ${odelzaThemeCssVariables.background.tertiary};
   color: ${({ isError }) =>
     isError
-      ? themeCssVariables.color.red
-      : themeCssVariables.font.color.primary};
+      ? odelzaThemeCssVariables.color.red
+      : odelzaThemeCssVariables.font.color.primary};
   font-family: ${MONOSPACE_FONT_FAMILY};
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   line-height: 1.5;
   max-height: 300px;
   min-height: 100px;
   overflow-y: auto;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   white-space: pre-wrap;
   word-break: break-word;
 `;
 
 const StyledEmptyMessage = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   font-style: italic;
 `;
 
 const StyledCursor = styled.span`
   animation: blink 1s step-end infinite;
-  background: ${themeCssVariables.font.color.primary};
+  background: ${odelzaThemeCssVariables.font.color.primary};
   display: inline-block;
   height: 1em;
   margin-left: 2px;

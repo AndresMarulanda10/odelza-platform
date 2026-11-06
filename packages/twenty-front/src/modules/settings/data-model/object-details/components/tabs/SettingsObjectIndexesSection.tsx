@@ -12,7 +12,7 @@ import { type ReactNode, useMemo, useState } from 'react';
 import { IconEyeOff, IconPlus } from 'twenty-ui/icon';
 import { Button, SearchInput } from 'twenty-ui/input';
 import { MenuItemToggle, UndecoratedLink } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { SettingsPath } from 'twenty-shared/types';
 import { isNonEmptyString } from '@sniptt/guards';
 import { getSettingsPath, isDefined } from 'twenty-shared/utils';
@@ -32,13 +32,13 @@ type SettingsObjectIndexesSectionProps = {
 const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const DELETE_INDEX_MODAL_ID = 'delete-index-modal';

@@ -11,7 +11,7 @@ $base-transition-timing: 300ms;
   align-items: center;
   color: var(--tw-button-color);
   display: flex;
-  height: calc(100% - var(--t-spacing-4));
+  height: calc(100% - var(--odz-spacing-4));
   opacity: 1;
   transition: opacity ($base-transition-timing * 0.5) ease;
   transition-delay: $base-transition-timing * 0.5;
@@ -23,10 +23,10 @@ $base-transition-timing: 300ms;
 }
 
 .loader {
-  left: var(--t-spacing-2);
+  left: var(--odz-spacing-2);
   opacity: 1;
   position: absolute;
   transition: opacity ($base-transition-timing * 0.5) ease;
   transition-delay: $base-transition-timing * 0.5;
-  width: var(--t-spacing-6);
+  width: var(--odz-spacing-6);
 }

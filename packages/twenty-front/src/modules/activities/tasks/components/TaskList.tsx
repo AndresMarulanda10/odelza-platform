@@ -3,7 +3,7 @@ import { type ReactElement } from 'react';
 
 import { ActivityList } from '@/activities/components/ActivityList';
 import { type Task } from '@/activities/types/Task';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { TaskRow } from './TaskRow';
 
 type TaskListProps = {
@@ -19,27 +19,27 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 8px ${themeCssVariables.spacing[6]};
-  width: calc(100% - ${themeCssVariables.spacing[12]});
+  padding: 8px ${odelzaThemeCssVariables.spacing[6]};
+  width: calc(100% - ${odelzaThemeCssVariables.spacing[12]});
 `;
 
 const StyledTitleBar = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: ${themeCssVariables.spacing[4]};
-  margin-top: ${themeCssVariables.spacing[4]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
+  margin-top: ${odelzaThemeCssVariables.spacing[4]};
   place-items: center;
   width: 100%;
 `;
 
 const StyledTitle = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
 `;
 
 const StyledCount = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  margin-left: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  margin-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const TaskList = ({ title, tasks, button }: TaskListProps) => (

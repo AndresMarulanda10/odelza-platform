@@ -15,7 +15,10 @@ import {
   useIcons,
   type IconComponent,
 } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type SettingsToolIconProps = {
   icon?: string | null;
@@ -45,7 +48,7 @@ const getOperationIcon = (toolName: string): IconComponent | null => {
 
 const StyledCompositeContainer = styled.div`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   flex-shrink: 0;
@@ -63,7 +66,7 @@ const StyledMainIconWrapper = styled.div<{
   background-color: ${({ $backgroundColor }) => $backgroundColor};
   border: ${({ $borderColor }) =>
     $borderColor ? `1px solid ${$borderColor}` : 'none'};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   inset: 0;
@@ -73,8 +76,8 @@ const StyledMainIconWrapper = styled.div<{
 
 const StyledOperationOverlay = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.grayScale.gray4};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.grayScale.gray4};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   bottom: -5px;
   display: flex;
   height: 14px;

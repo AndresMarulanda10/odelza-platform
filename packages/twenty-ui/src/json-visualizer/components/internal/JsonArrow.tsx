@@ -1,7 +1,7 @@
 import { VisibilityHidden } from '@ui/accessibility';
 import { IconChevronDown } from '@ui/icon';
 import { useJsonTreeContextOrThrow } from '@ui/json-visualizer/hooks/useJsonTreeContextOrThrow';
-import { themeCssVariables, useTheme } from '@ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from '@ui/theme-constants';
 import { clsx } from 'clsx';
 
 import styles from './JsonArrow.module.scss';
@@ -21,10 +21,10 @@ export const JsonArrow = ({
 
   const iconColor =
     variant === 'blue'
-      ? themeCssVariables.color.blue
+      ? odelzaThemeCssVariables.color.blue
       : variant === 'red'
-        ? themeCssVariables.font.color.danger
-        : themeCssVariables.font.color.secondary;
+        ? odelzaThemeCssVariables.font.color.danger
+        : odelzaThemeCssVariables.font.color.secondary;
 
   return (
     <button

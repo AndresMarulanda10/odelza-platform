@@ -20,7 +20,7 @@ import {
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
 import { type ThemeColor } from 'twenty-ui/theme';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { useApolloAdminClient } from '@/settings/admin-panel/apollo/hooks/useApolloAdminClient';
 import { GET_WORKSPACE_BILLING_ADMIN_PANEL } from '@/settings/admin-panel/graphql/queries/getWorkspaceBillingAdminPanel';
@@ -48,30 +48,30 @@ type SettingsAdminWorkspaceBillingContentProps = {
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
-  margin-top: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
+  margin-top: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledExternalLink = styled.a`
   align-items: center;
   color: inherit;
   display: inline-flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   text-decoration: none;
 
   &:hover {
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
   }
 `;
 
 const StyledMono = styled.span`
-  font-family: ${themeCssVariables.code.font.family};
+  font-family: ${odelzaThemeCssVariables.code.font.family};
 `;
 
 const StyledItemValue = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const STATUS_COLORS: Record<SubscriptionStatus, ThemeColor> = {

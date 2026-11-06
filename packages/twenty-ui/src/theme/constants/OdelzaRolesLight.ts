@@ -1,0 +1,58 @@
+/* oxlint-disable twenty/no-hardcoded-colors -- This file defines the Odelza roles. */
+import { ODELZA_PALETTE_LIGHT } from '@ui/theme/constants/OdelzaPaletteLight';
+import { type OdelzaRoles } from '@ui/theme/types/OdelzaRoles';
+
+// Roles from docs/brand/odelza-paleta-web.png (light mode). Values the palette
+// does not define are derived from it: surfaceActive, borderLight,
+// borderMedium, navItemHover, secondaryPressed, invertedBackgroundHover and
+// the neutral steps 4, 6 and 10.
+export const ODELZA_ROLES_LIGHT: OdelzaRoles = {
+  backgroundPage: '#FFFBF0',
+  surface: '#FFFFFF',
+  surfaceAlt: '#FEF6D8',
+  surfaceElevated: '#FFFFFF',
+  surfaceActive: '#F1EAE0',
+  selection: '#FEF5D4',
+  textPrimary: ODELZA_PALETTE_LIGHT.coffeeBean,
+  textSecondary: '#5C463F',
+  textTertiary: '#7C6A62',
+  textPlaceholder: '#7C6A62',
+  textDisabled: '#B8ACA5',
+  borderSubtle: '#E4DDD2',
+  borderLight: '#F1EAE0',
+  borderMedium: '#C9BDB4',
+  borderStrong: '#928481',
+  navBackground: ODELZA_PALETTE_LIGHT.coffeeBean,
+  navText: '#E5D4A3',
+  navTextMuted: '#A69270',
+  navItemHover: '#3A1B15',
+  navItemActive: '#4A3125',
+  primary: ODELZA_PALETTE_LIGHT.bloodRed,
+  primaryHover: ODELZA_PALETTE_LIGHT.bloodRedHover,
+  primaryPressed: ODELZA_PALETTE_LIGHT.bloodRedPressed,
+  onPrimary: ODELZA_PALETTE_LIGHT.butter,
+  secondary: ODELZA_PALETTE_LIGHT.butter,
+  secondaryHover: ODELZA_PALETTE_LIGHT.butterHover,
+  secondaryPressed: '#F5D67E',
+  onSecondary: ODELZA_PALETTE_LIGHT.coffeeBean,
+  focus: ODELZA_PALETTE_LIGHT.bloodRed,
+  invertedBackground: ODELZA_PALETTE_LIGHT.coffeeBean,
+  invertedBackgroundHover: '#4A3125',
+  invertedText: ODELZA_PALETTE_LIGHT.butter,
+  overlay: ODELZA_PALETTE_LIGHT.coffeeBean,
+  shadow: ODELZA_PALETTE_LIGHT.coffeeBean,
+  neutralScale: [
+    '#FFFFFF',
+    '#FFFBF0',
+    '#FEF6D8',
+    '#F1EAE0',
+    '#E4DDD2',
+    '#C9BDB4',
+    '#928481',
+    '#7C6A62',
+    '#5C463F',
+    '#4A3125',
+    '#3A1B15',
+    '#2D120D',
+  ],
+};

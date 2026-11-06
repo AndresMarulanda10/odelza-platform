@@ -2,31 +2,31 @@ import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 import { type TablerIconsProps } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { themeCssVariables, useTheme } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from 'twenty-ui/theme-constants';
 
 const StyledBillingFieldRow = styled.div`
   align-items: center;
   display: grid;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   grid-template-columns: 92px minmax(0, 1fr);
   min-height: 24px;
 `;
 
 const StyledBillingFieldLabel = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-width: 0;
 `;
 
 const StyledBillingFieldValue = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   min-width: 0;
 `;
 
@@ -34,26 +34,28 @@ const StyledScheduledChangeItem = styled.div`
   align-items: center;
   box-sizing: border-box;
   display: grid;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   grid-template-columns: 92px minmax(0, 1fr);
   min-height: 24px;
   min-width: 0;
 
   & + & {
-    border-left: 1px solid ${themeCssVariables.background.transparent.light};
-    padding-left: ${themeCssVariables.spacing[6]};
+    border-left: 1px solid
+      ${odelzaThemeCssVariables.background.transparent.light};
+    padding-left: ${odelzaThemeCssVariables.spacing[6]};
   }
 
   @media (max-width: 640px) {
     & + & {
       border-left: 0;
-      border-top: 1px solid ${themeCssVariables.background.transparent.light};
+      border-top: 1px solid
+        ${odelzaThemeCssVariables.background.transparent.light};
       padding-left: 0;
-      padding-top: ${themeCssVariables.spacing[3]};
+      padding-top: ${odelzaThemeCssVariables.spacing[3]};
     }
 
     &:not(:last-child) {
-      padding-bottom: ${themeCssVariables.spacing[3]};
+      padding-bottom: ${odelzaThemeCssVariables.spacing[3]};
     }
   }
 `;

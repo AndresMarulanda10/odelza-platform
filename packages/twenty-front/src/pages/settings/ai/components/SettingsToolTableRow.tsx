@@ -4,7 +4,7 @@ import { type ReactNode } from 'react';
 import { TableCell } from '@/ui/layout/table/components/TableCell';
 import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { StyledNameTableCell } from '@/settings/data-model/object-details/components/SettingsObjectItemTableRowStyledComponents';
 import { AppChip } from '@/applications/components/AppChip';
 
@@ -37,8 +37,8 @@ export const SettingsToolTableRow = ({
       to={link}
     >
       <TableCell
-        color={themeCssVariables.font.color.primary}
-        gap={themeCssVariables.spacing[2]}
+        color={odelzaThemeCssVariables.font.color.primary}
+        gap={odelzaThemeCssVariables.spacing[2]}
         minWidth="0"
         overflow="hidden"
       >
@@ -50,7 +50,7 @@ export const SettingsToolTableRow = ({
       </StyledNameTableCell>
       <TableCell
         align="right"
-        padding={`0 ${themeCssVariables.spacing[2]} 0 0`}
+        padding={`0 ${odelzaThemeCssVariables.spacing[2]} 0 0`}
       >
         {action}
       </TableCell>

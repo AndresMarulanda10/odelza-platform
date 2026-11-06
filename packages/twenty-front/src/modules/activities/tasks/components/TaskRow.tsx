@@ -17,13 +17,16 @@ import { useContext } from 'react';
 import { IconCalendar } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { Checkbox, CheckboxShape } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useCompleteTask } from '@/activities/tasks/hooks/useCompleteTask';
 
 const StyledTaskBody = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  max-width: calc(80% - ${themeCssVariables.spacing[2]});
+  max-width: calc(80% - ${odelzaThemeCssVariables.spacing[2]});
   overflow: hidden;
   padding-bottom: 1px;
   text-overflow: ellipsis;
@@ -33,10 +36,10 @@ const StyledTaskTitle = styled.div<{
   completed: boolean;
 }>`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   overflow: hidden;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   padding-bottom: 1px;
   text-decoration: ${({ completed }) => (completed ? 'line-through' : 'none')};
   text-overflow: ellipsis;
@@ -50,11 +53,11 @@ const StyledDueDate = styled.div<{
   align-items: center;
   color: ${({ isPast }) =>
     isPast
-      ? themeCssVariables.font.color.danger
-      : themeCssVariables.font.color.secondary};
+      ? odelzaThemeCssVariables.font.color.danger
+      : odelzaThemeCssVariables.font.color.secondary};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  padding-left: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
   white-space: nowrap;
 `;
 
@@ -70,7 +73,7 @@ const StyledActivityTargetsContainer = styled.div`
 `;
 
 const StyledPlaceholder = styled.div`
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
 `;
 
 const StyledLeftSideContainer = styled.div`

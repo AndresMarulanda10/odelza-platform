@@ -2,7 +2,7 @@ import { pointerIntersection } from '@dnd-kit/collision';
 import { useDroppable } from '@dnd-kit/react';
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import type { DroppableData } from '@/navigation-menu-item/common/types/navigationMenuItemDndKitDroppableData';
 import { getDndKitDropTargetId } from '@/navigation-menu-item/common/utils/getDndKitDropTargetId';
@@ -10,7 +10,7 @@ import { getDndKitDropTargetId } from '@/navigation-menu-item/common/utils/getDn
 const StyledSlotWrapper = styled.div<{ $empty: boolean }>`
   min-height: 0;
   ${({ $empty }) =>
-    $empty ? `min-height: ${themeCssVariables.spacing[2]};` : ''}
+    $empty ? `min-height: ${odelzaThemeCssVariables.spacing[2]};` : ''}
 `;
 
 const SLOT_COLLISION_PRIORITY = 1;

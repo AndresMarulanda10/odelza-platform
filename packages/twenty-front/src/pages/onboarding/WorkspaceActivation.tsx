@@ -21,12 +21,12 @@ import { Trans, useLingui } from '@lingui/react/macro';
 import { isNonEmptyString } from '@sniptt/guards';
 import { isDefined } from 'twenty-shared/utils';
 import { MainButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { ActivateWorkspaceDocument } from '~/generated-metadata/graphql';
 
 const StyledContainer = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
+  background: ${odelzaThemeCssVariables.background.secondary};
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -35,7 +35,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledButtonContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[8]};
+  margin-top: ${odelzaThemeCssVariables.spacing[8]};
   width: 200px;
 `;
 

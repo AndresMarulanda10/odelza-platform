@@ -11,26 +11,26 @@ import { useRef } from 'react';
 import { FileFolder } from 'twenty-shared/types';
 import { getImageAbsoluteURI, isDefined } from 'twenty-shared/utils';
 import { IconUserCircle } from 'twenty-ui/icon';
-import { themeCssVariables, useTheme } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from 'twenty-ui/theme-constants';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
 import { UploadWorkspaceMemberProfilePictureDocument } from '~/generated-metadata/graphql';
 
 const StyledUploader = styled.button`
   align-items: center;
-  background: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.rounded};
+  background: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.rounded};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   corner-shape: round;
   cursor: pointer;
   display: flex;
   flex-shrink: 0;
-  height: ${themeCssVariables.spacing[8]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   justify-content: center;
   overflow: hidden;
   padding: 0;
-  width: ${themeCssVariables.spacing[8]};
+  width: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 const StyledImage = styled.img`
@@ -112,7 +112,7 @@ export const OnboardingProfilePictureUploader = ({
         ) : (
           <IconUserCircle
             size={theme.icon.size.md}
-            color={themeCssVariables.font.color.light}
+            color={odelzaThemeCssVariables.font.color.light}
           />
         )}
       </StyledUploader>

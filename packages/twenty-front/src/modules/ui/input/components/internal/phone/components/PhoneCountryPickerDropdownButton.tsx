@@ -13,7 +13,10 @@ import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/use
 import 'react-phone-number-input/style.css';
 import { isDefined } from 'twenty-shared/utils';
 import { IconChevronDown, IconWorld } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type StyledDropdownButtonProps = {
   isUnfolded: boolean;
@@ -22,30 +25,30 @@ type StyledDropdownButtonProps = {
 const StyledDropdownButtonContainer = styled.div<StyledDropdownButtonProps>`
   align-items: center;
   background: none;
-  border-radius: ${themeCssVariables.border.radius.xs} 0 0
-    ${themeCssVariables.border.radius.xs};
-  border-right: 1px solid ${themeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.xs} 0 0
+    ${odelzaThemeCssVariables.border.radius.xs};
+  border-right: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   color: ${({ color }) => color ?? 'none'};
   cursor: pointer;
 
   display: flex;
 
   height: 32px;
-  padding-left: ${themeCssVariables.spacing[2]};
-  padding-right: ${themeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
 
   user-select: none;
 
   &:hover {
-    background-color: ${themeCssVariables.background.transparent.light};
+    background-color: ${odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 
 const StyledIconContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  gap: ${themeCssVariables.spacing[0.5]};
+  gap: ${odelzaThemeCssVariables.spacing[0.5]};
   justify-content: center;
 
   svg {

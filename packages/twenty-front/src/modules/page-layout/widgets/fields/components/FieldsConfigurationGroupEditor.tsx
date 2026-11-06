@@ -18,7 +18,7 @@ import { useCloseDropdown } from '@/ui/layout/dropdown/hooks/useCloseDropdown';
 import { useOpenDropdown } from '@/ui/layout/dropdown/hooks/useOpenDropdown';
 
 import { FieldsConfigurationGroupDraggableHeader } from '@/page-layout/widgets/fields/components/FieldsConfigurationGroupDraggableHeader';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledFieldsDroppable = styled.div`
   display: flex;
@@ -27,23 +27,24 @@ const StyledFieldsDroppable = styled.div`
 
 const StyledEmptyGroupDropZone = styled.div`
   align-items: center;
-  border: 1px dashed ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
-  color: ${themeCssVariables.font.color.light};
+  border: 1px dashed ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   justify-content: center;
-  margin: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
-  min-height: ${themeCssVariables.spacing[10]};
+  margin: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[2]};
+  min-height: ${odelzaThemeCssVariables.spacing[10]};
 `;
 
 const StyledGroupContainer = styled.div<{ isDragging: boolean }>`
   background: ${({ isDragging }) =>
-    isDragging ? themeCssVariables.background.primary : 'transparent'};
+    isDragging ? odelzaThemeCssVariables.background.primary : 'transparent'};
   border: 1px solid
     ${({ isDragging }) =>
-      isDragging ? themeCssVariables.color.blue : 'transparent'};
-  border-radius: ${themeCssVariables.border.radius.md};
+      isDragging ? odelzaThemeCssVariables.color.primary : 'transparent'};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -63,7 +64,7 @@ const StyledMenuItemDraggableWrapper = styled.div`
 
 const StyledDropdownContainer = styled.div`
   position: absolute;
-  right: ${themeCssVariables.spacing[1]};
+  right: ${odelzaThemeCssVariables.spacing[1]};
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;

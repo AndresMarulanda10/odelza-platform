@@ -22,7 +22,7 @@ import {
   useState,
 } from 'react';
 import { ModalContent } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type RowsChangeData } from 'react-data-grid';
 import { isDefined } from 'twenty-shared/utils';
 import { IconTrash } from 'twenty-ui/icon';
@@ -39,16 +39,16 @@ const StyledContentWrapper = styled.div`
 
 const StyledToolbar = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
-  bottom: ${themeCssVariables.spacing[3]};
-  box-shadow: ${themeCssVariables.boxShadow.strong};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  bottom: ${odelzaThemeCssVariables.spacing[3]};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   left: 50%;
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
   position: absolute;
   transform: translateX(-50%);
   width: 400px;
@@ -68,10 +68,10 @@ const StyledErrorToggle = styled.div`
 `;
 
 const StyledErrorToggleDescription = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  margin-left: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  margin-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledScrollContainer = styled.div`
@@ -87,11 +87,11 @@ const StyledNoRowsContainer = styled.div`
   display: flex;
   grid-column: 1/-1;
   justify-content: center;
-  margin-top: ${themeCssVariables.spacing[8]};
+  margin-top: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 const StyledNoRowsWithErrorsContainer = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   justify-content: center;
   margin: auto 0;

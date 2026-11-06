@@ -28,7 +28,10 @@ import {
 import { getAppPath, isDefined } from 'twenty-shared/utils';
 import { Avatar } from 'twenty-ui/data-display';
 import { IconLock, useIcons } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { type NavigationMenuItem } from '~/generated-metadata/graphql';
 import { getAbsoluteImageUrl } from '~/utils/image/getAbsoluteImageUrl';
 
@@ -201,7 +204,7 @@ export const NavigationDrawerItemForObjectMetadataItem = ({
             <IconLock
               size={theme.icon.size.sm}
               stroke={theme.icon.stroke.sm}
-              color={themeCssVariables.font.color.tertiary}
+              color={odelzaThemeCssVariables.font.color.tertiary}
             />
           </Fragment>
         ) : (

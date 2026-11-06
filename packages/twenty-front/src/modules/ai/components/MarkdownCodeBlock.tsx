@@ -4,7 +4,7 @@ import { isNumber, isString } from '@sniptt/guards';
 import { Children, isValidElement } from 'react';
 import { IconCopy } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
 const StyledContainer = styled.div`
@@ -17,21 +17,21 @@ const StyledContainer = styled.div`
 
 const StyledCopyButtonContainer = styled.div`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   opacity: 0;
   position: absolute;
-  right: ${themeCssVariables.spacing[2]};
-  top: ${themeCssVariables.spacing[2]};
-  transition: opacity calc(${themeCssVariables.animation.duration.fast} * 1s)
-    ease;
+  right: ${odelzaThemeCssVariables.spacing[2]};
+  top: ${odelzaThemeCssVariables.spacing[2]};
+  transition: opacity
+    calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s) ease;
 
   ${StyledContainer}:hover & {
     opacity: 1;
   }
 
   &:hover {
-    background: ${themeCssVariables.background.primary};
+    background: ${odelzaThemeCssVariables.background.primary};
   }
 `;
 

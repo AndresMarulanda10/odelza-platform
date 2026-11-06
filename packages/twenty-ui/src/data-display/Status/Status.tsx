@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 import { handleClickableElementKeyDown } from '@ui/accessibility/utils/handleClickableElementKeyDown';
 import { Loader } from '@ui/feedback/Loader/Loader';
 import { type ThemeColor } from '@ui/theme';
-import { themeCssVariables } from '@ui/theme-constants';
+import { odelzaThemeCssVariables } from '@ui/theme-constants';
 import { parseThemeColor } from '@ui/utilities';
 import { isDefined } from '@ui/utilities/utils/isDefined';
 
@@ -37,8 +37,9 @@ export const Status = ({
       data-loader-visible={isLoaderVisible || undefined}
       style={
         {
-          '--status-background': themeCssVariables.tag.background[parsedColor],
-          '--status-text-color': themeCssVariables.tag.text[parsedColor],
+          '--status-background':
+            odelzaThemeCssVariables.tag.background[parsedColor],
+          '--status-text-color': odelzaThemeCssVariables.tag.text[parsedColor],
         } as React.CSSProperties
       }
     >

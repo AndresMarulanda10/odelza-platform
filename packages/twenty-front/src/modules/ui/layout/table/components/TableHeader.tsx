@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { type ComponentPropsWithoutRef, type Ref, forwardRef } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type TableHeaderProps = Omit<ComponentPropsWithoutRef<'div'>, 'onClick'> & {
   align?: 'left' | 'center' | 'right';
@@ -10,20 +10,21 @@ type TableHeaderProps = Omit<ComponentPropsWithoutRef<'div'>, 'onClick'> & {
 
 const StyledTableHeader = styled.div<TableHeaderProps>`
   align-items: center;
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
-  color: ${themeCssVariables.font.color.tertiary};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: ${({ onClick }) => (onClick ? 'pointer' : 'default')};
   display: flex;
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[8]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   justify-content: ${({ align }) =>
     align === 'right'
       ? 'flex-end'
       : align === 'center'
         ? 'center'
         : 'flex-start'};
-  padding: ${({ padding }) => padding ?? `0 ${themeCssVariables.spacing[2]}`};
+  padding: ${({ padding }) =>
+    padding ?? `0 ${odelzaThemeCssVariables.spacing[2]}`};
   text-align: ${({ align }) => align ?? 'left'};
 `;
 

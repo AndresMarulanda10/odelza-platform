@@ -1,0 +1,58 @@
+/* oxlint-disable twenty/no-hardcoded-colors -- This file defines the Odelza roles. */
+import { ODELZA_PALETTE_DARK } from '@ui/theme/constants/OdelzaPaletteDark';
+import { type OdelzaRoles } from '@ui/theme/types/OdelzaRoles';
+
+// Roles from docs/brand/odelza-paleta-web.png (dark mode). Values the palette
+// does not define are derived from it: surfaceActive, selection, borderLight,
+// borderMedium, navItemHover, secondaryPressed, textDisabled, the inverted
+// roles and the neutral step 9. No pure black: the darkest tone is #140806.
+export const ODELZA_ROLES_DARK: OdelzaRoles = {
+  backgroundPage: '#1A0C09',
+  surface: ODELZA_PALETTE_DARK.coffeeBean,
+  surfaceAlt: '#3A1B15',
+  surfaceElevated: '#47241C',
+  surfaceActive: '#4A2D25',
+  selection: '#4A3125',
+  textPrimary: '#F6E9BF',
+  textSecondary: '#CDB98F',
+  textTertiary: '#A39279',
+  textPlaceholder: '#A39279',
+  textDisabled: '#6E5249',
+  borderSubtle: '#4A2D25',
+  borderLight: '#3A1B15',
+  borderMedium: '#5B4333',
+  borderStrong: '#8F6F63',
+  navBackground: '#140806',
+  navText: '#DCCB9E',
+  navTextMuted: '#A8977A',
+  navItemHover: '#241310',
+  navItemActive: ODELZA_PALETTE_DARK.coffeeBean,
+  primary: ODELZA_PALETTE_DARK.bloodRed,
+  primaryHover: ODELZA_PALETTE_DARK.bloodRedHover,
+  primaryPressed: ODELZA_PALETTE_DARK.bloodRedPressed,
+  onPrimary: ODELZA_PALETTE_DARK.coffeeBean,
+  secondary: '#4A3125',
+  secondaryHover: '#5B4333',
+  secondaryPressed: '#6A5040',
+  onSecondary: '#F6E9BF',
+  focus: '#F0A29B',
+  invertedBackground: '#F6E9BF',
+  invertedBackgroundHover: '#DCCB9E',
+  invertedText: ODELZA_PALETTE_DARK.coffeeBean,
+  overlay: '#140806',
+  shadow: '#140806',
+  neutralScale: [
+    '#1A0C09',
+    '#2D120D',
+    '#3A1B15',
+    '#47241C',
+    '#4A2D25',
+    '#5B4333',
+    '#8F6F63',
+    '#A39279',
+    '#B8A584',
+    '#CDB98F',
+    '#DCCB9E',
+    '#F6E9BF',
+  ],
+};

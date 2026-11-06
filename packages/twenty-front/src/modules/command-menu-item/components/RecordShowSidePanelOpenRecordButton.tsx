@@ -141,7 +141,7 @@ export const RecordShowSidePanelOpenRecordButton = ({
     <Button
       title={t`Open`}
       variant="primary"
-      accent="blue"
+      accent="primary"
       size="small"
       Icon={IconBrowserMaximize}
       hotkeys={[getOsControlSymbol(), '⏎']}

@@ -7,7 +7,10 @@ import { NAVIGATION_DRAWER_CONSTRAINTS } from '@/ui/layout/resizable-panel/const
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { MainNavigationDrawerItemsSkeletonLoader } from '~/loading/components/MainNavigationDrawerItemsSkeletonLoader';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledAnimatedContainer = styled(motion.div)`
   box-sizing: border-box;
@@ -16,8 +19,8 @@ const StyledAnimatedContainer = styled(motion.div)`
   flex-shrink: 0;
   height: 100%;
   overflow: hidden;
-  padding: ${themeCssVariables.spacing[2]} 0 ${themeCssVariables.spacing[4]}
-    ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]} 0
+    ${odelzaThemeCssVariables.spacing[4]} ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledItemsContainer = styled.div`

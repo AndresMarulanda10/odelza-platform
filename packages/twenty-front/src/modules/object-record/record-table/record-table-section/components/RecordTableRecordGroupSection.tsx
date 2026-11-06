@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { useCallback } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { RecordBoardColumnHeaderAggregateDropdown } from '@/object-record/record-board/record-board-column/components/RecordBoardColumnHeaderAggregateDropdown';
 import { visibleRecordFieldsComponentSelector } from '@/object-record/record-field/states/visibleRecordFieldsComponentSelector';
@@ -45,13 +45,13 @@ const StyledTrContainer = styled.div`
   flex-direction: row;
 
   > div:not(:first-of-type) {
-    border-bottom: 1px solid ${themeCssVariables.border.color.light};
+    border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   }
 `;
 
 const StyledChevronContainer = styled.div`
   border-right: none;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
   left: ${RECORD_TABLE_COLUMN_DRAG_AND_DROP_WIDTH}px;
   min-width: ${RECORD_TABLE_COLUMN_CHECKBOX_WIDTH}px;
@@ -76,7 +76,7 @@ const StyledRecordGroupSection = styled.div<{ width: number }>`
   border-right: none;
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: ${RECORD_TABLE_ROW_HEIGHT}px;
   left: ${`${RECORD_TABLE_COLUMN_DRAG_AND_DROP_WIDTH + RECORD_TABLE_COLUMN_CHECKBOX_WIDTH}px`};
   min-width: ${({ width }) => width}px;
@@ -100,8 +100,8 @@ const StyledFieldPlaceholderCell = styled.div<{ widthOfFields: number }>`
 `;
 
 const StyledRecordTableDragAndDropPlaceholderCell = styled.div`
-  background-color: ${themeCssVariables.background.primary};
-  border-bottom: 1px solid ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.background.primary};
   height: ${RECORD_TABLE_ROW_HEIGHT}px;
 
   left: 0;

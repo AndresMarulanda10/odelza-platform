@@ -76,7 +76,7 @@ export type OpenSidePanelPageFunction = (
 
 export type CommandConfirmationModalResult = 'confirm' | 'cancel';
 
-export type CommandConfirmationModalAccent = 'default' | 'blue' | 'danger';
+export type CommandConfirmationModalAccent = 'default' | 'primary' | 'danger';
 
 export type OpenCommandConfirmationModalFunction = (params: {
   title: string;

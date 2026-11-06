@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { Trans } from '@lingui/react/macro';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   AnimatedPlaceholder,
   AnimatedPlaceholderEmptyContainer,
@@ -10,12 +10,12 @@ import {
 } from 'twenty-ui/feedback';
 
 const StyledPlaceholderContainer = styled.div`
-  background: ${themeCssVariables.background.secondary};
+  background: ${odelzaThemeCssVariables.background.secondary};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   position: relative;
   width: 100%;
 `;

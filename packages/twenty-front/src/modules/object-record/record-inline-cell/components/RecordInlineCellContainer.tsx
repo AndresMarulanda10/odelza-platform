@@ -1,6 +1,9 @@
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { FieldContext } from '@/object-record/record-field/ui/contexts/FieldContext';
 import { useFieldFocus } from '@/object-record/record-field/ui/hooks/useFieldFocus';
@@ -19,7 +22,7 @@ import { useRecordInlineCellContext } from './RecordInlineCellContext';
 
 const StyledIconContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   width: 16px;
 
@@ -35,9 +38,9 @@ const StyledIconContainer = styled.div`
 const StyledLabelAndIconContainer = styled.div`
   align-items: center;
   align-self: flex-start;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 24px;
 `;
 
@@ -50,8 +53,8 @@ const StyledValueContainer = styled.div<{ readonly: boolean }>`
 `;
 
 const StyledLabelContainer = styled.div<{ width?: number }>`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   width: ${({ width }) => (width !== undefined ? `${width}px` : 'auto')};
 `;
 
@@ -60,7 +63,7 @@ const StyledInlineCellBaseContainer = styled.div<{ readonly: boolean }>`
   box-sizing: border-box;
   cursor: ${({ readonly }) => (readonly ? 'default' : 'pointer')};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: fit-content;
   user-select: none;
   width: 100%;

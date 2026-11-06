@@ -3,12 +3,12 @@ import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledSettingsTableCardContainer = styled.div`
   > * {
-    padding-left: ${themeCssVariables.spacing[2]};
-    padding-right: ${themeCssVariables.spacing[2]};
+    padding-left: ${odelzaThemeCssVariables.spacing[2]};
+    padding-right: ${odelzaThemeCssVariables.spacing[2]};
   }
 `;
 

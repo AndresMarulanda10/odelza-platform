@@ -4,7 +4,10 @@ import { useLingui } from '@lingui/react/macro';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useContext } from 'react';
 import { type PieChartConfiguration } from '~/generated-metadata/graphql';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type PieChartCenterMetricProps = {
   objectMetadataItemId: string;
@@ -29,19 +32,19 @@ const StyledCenterMetricContainer = motion.create(
 );
 
 const StyledValue = styled.span`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   font-size: clamp(12px, 10cqmin, 48px);
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
 `;
 
 const StyledLabel = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   font-size: clamp(10px, 5cqmin, 24px);
 `;
 
 const StyledNoDataText = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
 `;
 
 export const PieChartCenterMetric = ({

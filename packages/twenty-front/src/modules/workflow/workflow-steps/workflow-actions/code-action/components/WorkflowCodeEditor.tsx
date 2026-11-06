@@ -5,7 +5,7 @@ import { type Monaco } from '@monaco-editor/react';
 import { type editor } from 'monaco-editor';
 import { IconMaximize } from 'twenty-ui/icon';
 import { CodeEditor, LightIconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const CODE_EDITOR_MIN_HEIGHT = 343;
 
@@ -20,8 +20,8 @@ const StyledCodeEditorContainer = styled.div`
 
 const StyledFullScreenButtonContainer = styled.div`
   position: absolute;
-  right: ${themeCssVariables.spacing[2]};
-  top: ${themeCssVariables.spacing[2]};
+  right: ${odelzaThemeCssVariables.spacing[2]};
+  top: ${odelzaThemeCssVariables.spacing[2]};
   z-index: 1;
 `;
 

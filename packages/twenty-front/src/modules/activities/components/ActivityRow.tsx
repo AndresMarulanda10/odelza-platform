@@ -1,16 +1,17 @@
 import { styled } from '@linaria/react';
 import React from 'react';
 import { CardContent } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledRowContentContainer = styled.div`
   > div {
     align-items: center;
     box-sizing: border-box;
     display: flex;
-    gap: ${themeCssVariables.spacing[2]};
-    height: ${themeCssVariables.spacing[12]};
-    padding: ${themeCssVariables.spacing[0]} ${themeCssVariables.spacing[4]};
+    gap: ${odelzaThemeCssVariables.spacing[2]};
+    height: ${odelzaThemeCssVariables.spacing[12]};
+    padding: ${odelzaThemeCssVariables.spacing[0]}
+      ${odelzaThemeCssVariables.spacing[4]};
   }
 
   > div[data-clickable='false'] {

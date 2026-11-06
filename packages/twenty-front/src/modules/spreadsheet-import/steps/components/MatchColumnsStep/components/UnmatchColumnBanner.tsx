@@ -3,24 +3,27 @@ import { isDefined } from 'twenty-shared/utils';
 import { Banner } from 'twenty-ui/feedback';
 import { IconChevronDown, IconInfoCircle } from 'twenty-ui/icon';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledBannerContainer = styled.div<{ allMatched: boolean }>`
   > div {
     background: ${({ allMatched }) =>
       allMatched
-        ? themeCssVariables.accent.secondary
-        : themeCssVariables.background.transparent.light};
-    border-radius: ${themeCssVariables.spacing[2]};
-    padding: ${themeCssVariables.spacing[2]} 10px;
+        ? odelzaThemeCssVariables.accent.secondary
+        : odelzaThemeCssVariables.background.transparent.light};
+    border-radius: ${odelzaThemeCssVariables.spacing[2]};
+    padding: ${odelzaThemeCssVariables.spacing[2]} 10px;
   }
 `;
 
 const StyledText = styled.div<{ allMatched: boolean }>`
   color: ${({ allMatched }) =>
     allMatched
-      ? themeCssVariables.color.blue
-      : themeCssVariables.font.color.secondary};
+      ? odelzaThemeCssVariables.color.primary
+      : odelzaThemeCssVariables.font.color.secondary};
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -34,14 +37,14 @@ const StyledIconChevronDownWrapper = styled.div<{
   align-items: center;
   color: ${({ allMatched }) =>
     allMatched
-      ? themeCssVariables.color.blue
-      : themeCssVariables.font.color.secondary};
+      ? odelzaThemeCssVariables.color.primary
+      : odelzaThemeCssVariables.font.color.secondary};
   cursor: pointer;
   display: flex;
   transform: ${({ isExpanded }) =>
     isExpanded ? 'rotate(180deg)' : 'rotate(0deg)'};
   transition: transform
-    calc(${themeCssVariables.animation.duration.normal} * 1s) ease;
+    calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s) ease;
 `;
 
 const StyledClickableContainer = styled.div`
@@ -71,7 +74,7 @@ export const UnmatchColumnBanner = ({
     <StyledBannerContainer allMatched={allMatched}>
       <Banner>
         <IconInfoCircle
-          color={allMatched ? theme.color.blue : theme.font.color.secondary}
+          color={allMatched ? theme.color.primary : theme.font.color.secondary}
           size={theme.icon.size.md}
         />
         {isDefined(buttonOnClick) ? (

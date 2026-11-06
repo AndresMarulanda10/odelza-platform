@@ -11,17 +11,17 @@ import { isDefined } from 'twenty-shared/utils';
 import { IconPlus, IconReorder } from 'twenty-ui/icon';
 import { MenuItem } from 'twenty-ui/navigation';
 import { WorkflowDiagramRightClickCommandMenuClickOutsideEffect } from './WorkflowDiagramRightClickCommandMenuClickOutsideEffect';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div<{ x: number; y: number }>`
-  background: ${themeCssVariables.background.primary};
-  border-radius: ${themeCssVariables.spacing[2]};
-  box-shadow: ${themeCssVariables.boxShadow.strong};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-radius: ${odelzaThemeCssVariables.spacing[2]};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[0.5]};
+  gap: ${odelzaThemeCssVariables.spacing[0.5]};
   left: ${({ x }) => `${x}px`};
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
   position: absolute;
   top: ${({ y }) => `${y}px`};
   width: 200px;

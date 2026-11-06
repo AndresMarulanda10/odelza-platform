@@ -13,12 +13,12 @@ import { capitalize } from 'twenty-shared/utils';
 import { IconColorSwatch } from 'twenty-ui/icon';
 import { DEFAULT_COLOR_LABELS } from 'twenty-ui/navigation';
 import { type ThemeColor } from 'twenty-ui/theme';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const NAVIGATION_MENU_ITEM_COLOR_DROPDOWN_ID = 'navigation-menu-item-color';
 
 const StyledMenuStyleText = styled.span`
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   font-size: 13px;
 `;
 

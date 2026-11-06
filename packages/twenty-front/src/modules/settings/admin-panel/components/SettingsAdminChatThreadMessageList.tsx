@@ -5,7 +5,7 @@ import { LazyMarkdownRenderer } from '@/ai/components/LazyMarkdownRenderer';
 import { TableCell } from '@/ui/layout/table/components/TableCell';
 import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { Card } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   AgentMessageRole,
   type GetAdminChatThreadMessagesQuery,
@@ -22,7 +22,7 @@ type SettingsAdminChatThreadMessageListProps = {
 const StyledMessagesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledMessageBubble = styled.div<{ isUser?: boolean }>`
@@ -34,34 +34,34 @@ const StyledMessageBubble = styled.div<{ isUser?: boolean }>`
 
 const StyledMessageContent = styled.div<{ isUser?: boolean }>`
   background: ${({ isUser }) =>
-    isUser ? themeCssVariables.background.tertiary : 'transparent'};
-  border-radius: ${themeCssVariables.border.radius.sm};
+    isUser ? odelzaThemeCssVariables.background.tertiary : 'transparent'};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   color: ${({ isUser }) =>
     isUser
-      ? themeCssVariables.font.color.secondary
-      : themeCssVariables.font.color.primary};
+      ? odelzaThemeCssVariables.font.color.secondary
+      : odelzaThemeCssVariables.font.color.primary};
   font-weight: ${({ isUser }) => (isUser ? 500 : 400)};
   line-height: 1.4em;
   max-width: 100%;
   overflow-wrap: break-word;
   padding: ${({ isUser }) =>
-    isUser ? `0 ${themeCssVariables.spacing[2]}` : '0'};
+    isUser ? `0 ${odelzaThemeCssVariables.spacing[2]}` : '0'};
   white-space: ${({ isUser }) => (isUser ? 'pre-wrap' : 'normal')};
   width: ${({ isUser }) => (isUser ? 'fit-content' : '100%')};
 `;
 
 const StyledRoleLabel = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
   text-transform: capitalize;
 `;
 
 const StyledTimestamp = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  margin-top: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const SettingsAdminChatThreadMessageList = ({
@@ -76,7 +76,7 @@ export const SettingsAdminChatThreadMessageList = ({
       <Card rounded>
         <TableRow gridTemplateColumns="1fr">
           <TableCell
-            color={themeCssVariables.font.color.tertiary}
+            color={odelzaThemeCssVariables.font.color.tertiary}
             align="center"
           >
             {t`No messages found.`}

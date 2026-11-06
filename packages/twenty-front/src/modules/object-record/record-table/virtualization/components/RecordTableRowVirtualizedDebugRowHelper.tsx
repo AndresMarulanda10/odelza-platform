@@ -12,17 +12,17 @@ import { useAtomComponentFamilySelectorValue } from '@/ui/utilities/state/jotai/
 import { useAtomComponentFamilyStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentFamilyStateValue';
 import { styled } from '@linaria/react';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledDebugRow = styled.div`
-  background-color: ${themeCssVariables.color.gray3};
-  border: 1px solid ${themeCssVariables.color.blue8};
-  color: ${themeCssVariables.font.color.primary};
+  background-color: ${odelzaThemeCssVariables.color.gray3};
+  border: 1px solid ${odelzaThemeCssVariables.color.primary8};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   left: 250px;
-  max-height: ${themeCssVariables.spacing[4]};
+  max-height: ${odelzaThemeCssVariables.spacing[4]};
   overflow: hidden;
-  padding: ${themeCssVariables.spacing['0.5']};
+  padding: ${odelzaThemeCssVariables.spacing['0.5']};
   position: absolute;
   top: 5px;
 
@@ -35,8 +35,8 @@ const StyledDebugColumn = styled.div<{ width: number }>`
   min-width: ${({ width }) => width}px;
 
   overflow: hidden;
-  padding-left: ${themeCssVariables.spacing['0.5']};
-  padding-right: ${themeCssVariables.spacing['0.5']};
+  padding-left: ${odelzaThemeCssVariables.spacing['0.5']};
+  padding-right: ${odelzaThemeCssVariables.spacing['0.5']};
   text-wrap-mode: nowrap;
 `;
 

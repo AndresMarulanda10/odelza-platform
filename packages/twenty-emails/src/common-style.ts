@@ -1,39 +1,25 @@
 /* oxlint-disable twenty/no-hardcoded-colors */
 
-const grayScale = {
-  gray100: '#000000',
-  gray90: '#141414',
-  gray85: '#171717',
-  gray80: '#1b1b1b',
-  gray75: '#1d1d1d',
-  gray70: '#222222',
-  gray65: '#292929',
-  gray60: '#333333',
-  gray55: '#4c4c4c',
-  gray50: '#666666',
-  gray45: '#818181',
-  gray40: '#999999',
-  gray35: '#b3b3b3',
-  gray30: '#cccccc',
-  gray25: '#d6d6d6',
-  gray20: '#ebebeb',
-  gray15: '#f1f1f1',
-  gray10: '#fcfcfc',
-  gray0: '#ffffff',
-};
-
-const colors = {
-  blue40: '#5e90f2',
+// Odelza light palette (docs/brand/odelza-paleta-web.png). Email clients do
+// not support CSS variables, so the values are written out here.
+const odelzaPalette = {
+  coffeeBean: '#2D120D',
+  bloodRed: '#6B0B0C',
+  butter: '#FEEFB8',
+  textSecondary: '#5C463F',
+  textTertiary: '#7C6A62',
+  borderSubtle: '#E4DDD2',
+  surfaceAlt: '#FEF6D8',
 };
 
 export const emailTheme = {
   font: {
     colors: {
-      highlighted: grayScale.gray60,
-      primary: grayScale.gray50,
-      tertiary: grayScale.gray35,
-      inverted: grayScale.gray0,
-      blue: colors.blue40,
+      highlighted: odelzaPalette.coffeeBean,
+      primary: odelzaPalette.textSecondary,
+      tertiary: odelzaPalette.textTertiary,
+      inverted: odelzaPalette.butter,
+      link: odelzaPalette.bloodRed,
     },
     family: 'Trebuchet MS', // Google Inter not working, we need to use a web safe font, see https://templates.mailchimp.com/design/typography/
     weight: {
@@ -50,14 +36,14 @@ export const emailTheme = {
   },
   border: {
     radius: { sm: '4px', md: '8px' },
-    color: { highlighted: grayScale.gray20 },
+    color: { highlighted: odelzaPalette.borderSubtle },
   },
   background: {
-    colors: { highlight: grayScale.gray15 },
-    button: grayScale.gray60,
+    colors: { highlight: odelzaPalette.surfaceAlt },
+    button: odelzaPalette.bloodRed,
     transparent: {
-      medium: 'rgba(0, 0, 0, 0.08)',
-      light: 'rgba(0, 0, 0, 0.04)',
+      medium: 'rgba(45, 18, 13, 0.08)',
+      light: 'rgba(45, 18, 13, 0.04)',
     },
   },
 };

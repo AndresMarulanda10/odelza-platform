@@ -11,14 +11,14 @@ import { getRecordIndexIdFromObjectNamePluralAndViewId } from '@/object-record/u
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledSidePanelContainer = styled.div<{ isMobile: boolean }>`
   display: flex;
   flex: 1;
   flex-direction: column;
   max-height: ${({ isMobile }) => {
-    const mobileOffset = isMobile ? themeCssVariables.spacing[16] : '0px';
+    const mobileOffset = isMobile ? odelzaThemeCssVariables.spacing[16] : '0px';
 
     return `calc(100% - ${mobileOffset})`;
   }};

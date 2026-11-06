@@ -8,7 +8,7 @@ import { IconBolt, IconRobot } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
 import { Card } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
 import { billingState } from '@/client-config/states/billingState';
@@ -328,7 +328,7 @@ export const SettingsAdminAI = () => {
                     workspaceId: item.key,
                   })}
                 >
-                  <TableCell color={themeCssVariables.font.color.primary}>
+                  <TableCell color={odelzaThemeCssVariables.font.color.primary}>
                     {item.label ?? item.key}
                   </TableCell>
                   <TableCell align="right">
@@ -341,7 +341,7 @@ export const SettingsAdminAI = () => {
             <Card rounded>
               <TableRow gridTemplateColumns="1fr">
                 <TableCell
-                  color={themeCssVariables.font.color.tertiary}
+                  color={odelzaThemeCssVariables.font.color.tertiary}
                   align="center"
                 >
                   {t`No AI usage data recorded yet.`}

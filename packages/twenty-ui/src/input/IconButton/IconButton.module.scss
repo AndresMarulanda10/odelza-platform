@@ -14,18 +14,18 @@
   align-items: center;
   background: var(--icon-button-bg, transparent);
   border-color: var(--icon-button-border-color, transparent);
-  border-radius: var(--icon-button-radius, var(--t-border-radius-md));
+  border-radius: var(--icon-button-radius, var(--odz-border-radius-md));
   border-style: solid;
   border-width: var(--icon-button-border-width, 1px);
   box-shadow: var(--icon-button-box-shadow, none);
   box-sizing: border-box;
-  color: var(--icon-button-color, var(--t-font-color-secondary));
+  color: var(--icon-button-color, var(--odz-font-color-secondary));
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  font-family: var(--t-font-family);
+  font-family: var(--odz-font-family);
   font-weight: 500;
-  gap: var(--t-spacing-1);
+  gap: var(--odz-spacing-1);
   justify-content: center;
   opacity: var(--icon-button-opacity, 1);
   padding: 0;
@@ -65,8 +65,8 @@
 // fallback radius. Grouped IconButtons abut flush (no framing container), so
 // their outer corners share the standalone md radius.
 .button[data-position='left'] {
-  --icon-button-radius: var(--t-border-radius-md) 0px 0px
-    var(--t-border-radius-md);
+  --icon-button-radius: var(--odz-border-radius-md) 0px 0px
+    var(--odz-border-radius-md);
 }
 
 .button[data-position='middle'] {
@@ -74,7 +74,7 @@
 }
 
 .button[data-position='right'] {
-  --icon-button-radius: 0px var(--t-border-radius-md) var(--t-border-radius-md)
+  --icon-button-radius: 0px var(--odz-border-radius-md) var(--odz-border-radius-md)
     0px;
 }
 
@@ -103,46 +103,46 @@
 // keeps the base/focus value, mirroring the legacy switch.
 $primary-accents: (
   'default': (
-    bg: var(--t-background-transparent-lighter),
-    border: var(--t-background-transparent-light),
-    border-focus: var(--t-color-blue),
+    bg: var(--odz-background-transparent-lighter),
+    border: var(--odz-background-transparent-light),
+    border-focus: var(--odz-border-color-focus),
     border-disabled: null,
-    shadow-focus: var(--t-accent-tertiary),
-    color: var(--t-font-color-secondary),
-    color-disabled: var(--t-font-color-extra-light),
+    shadow-focus: var(--odz-accent-tertiary),
+    color: var(--odz-font-color-secondary),
+    color-disabled: var(--odz-font-color-extra-light),
     opacity-disabled: null,
-    hover: var(--t-background-tertiary),
-    active: var(--t-background-quaternary),
-    hover-disabled: var(--t-background-transparent-lighter),
-    active-disabled: var(--t-background-transparent-lighter),
+    hover: var(--odz-background-tertiary),
+    active: var(--odz-background-quaternary),
+    hover-disabled: var(--odz-background-transparent-lighter),
+    active-disabled: var(--odz-background-transparent-lighter),
   ),
-  'blue': (
-    bg: var(--t-color-blue),
-    border: var(--t-background-transparent-light),
-    border-focus: var(--t-color-blue),
+  'primary': (
+    bg: var(--odz-color-primary),
+    border: var(--odz-background-transparent-light),
+    border-focus: var(--odz-border-color-focus),
     border-disabled: transparent,
-    shadow-focus: var(--t-accent-tertiary),
-    color: var(--t-gray-scale-gray1),
+    shadow-focus: var(--odz-accent-tertiary),
+    color: var(--odz-buttons-on-primary),
     color-disabled: null,
     opacity-disabled: 0.24,
-    hover: var(--t-color-blue10),
-    active: var(--t-color-blue12),
-    hover-disabled: var(--t-color-blue),
-    active-disabled: var(--t-color-blue),
+    hover: var(--odz-color-primary10),
+    active: var(--odz-color-primary12),
+    hover-disabled: var(--odz-color-primary),
+    active-disabled: var(--odz-color-primary),
   ),
   'danger': (
-    bg: var(--t-color-red),
-    border: var(--t-background-transparent-light),
-    border-focus: var(--t-color-red),
+    bg: var(--odz-color-red),
+    border: var(--odz-background-transparent-light),
+    border-focus: var(--odz-color-red),
     border-disabled: transparent,
-    shadow-focus: var(--t-color-red3),
-    color: var(--t-gray-scale-gray1),
+    shadow-focus: var(--odz-color-red3),
+    color: var(--odz-gray-scale-gray1),
     color-disabled: null,
     opacity-disabled: 0.24,
-    hover: var(--t-color-red10),
-    active: var(--t-color-red10),
-    hover-disabled: var(--t-color-red),
-    active-disabled: var(--t-color-red),
+    hover: var(--odz-color-red10),
+    active: var(--odz-color-red10),
+    hover-disabled: var(--odz-color-red),
+    active-disabled: var(--odz-color-red),
   ),
 );
 
@@ -191,17 +191,17 @@ $primary-accents: (
     [data-variant='secondary'],
     [data-variant='tertiary']
   )[data-accent='default'] {
-  --icon-button-hover-bg: var(--t-background-transparent-light);
-  --icon-button-active-bg: var(--t-background-transparent-light);
+  --icon-button-hover-bg: var(--odz-background-transparent-light);
+  --icon-button-active-bg: var(--odz-background-transparent-light);
 }
 
 .button[data-variant='secondary'][data-accent='default'] {
-  --icon-button-border-color: var(--t-background-transparent-medium);
-  --icon-button-color: var(--t-font-color-secondary);
+  --icon-button-border-color: var(--odz-background-transparent-medium);
+  --icon-button-color: var(--odz-font-color-secondary);
 }
 
 .button[data-variant='tertiary'][data-accent='default'] {
-  --icon-button-color: var(--t-font-color-tertiary);
+  --icon-button-color: var(--odz-font-color-tertiary);
 }
 
 // background follows the raw focus flag (it stays on for disabled+focus).
@@ -209,9 +209,9 @@ $primary-accents: (
     [data-variant='secondary'],
     [data-variant='tertiary']
   )[data-accent='default'][data-focus] {
-  --icon-button-bg: var(--t-background-transparent-primary);
-  --icon-button-border-color: var(--t-color-blue);
-  --icon-button-box-shadow: 0 0 0 3px var(--t-accent-tertiary);
+  --icon-button-bg: var(--odz-background-transparent-primary);
+  --icon-button-border-color: var(--odz-color-primary);
+  --icon-button-box-shadow: 0 0 0 3px var(--odz-accent-tertiary);
 }
 
 .button:is(
@@ -219,57 +219,57 @@ $primary-accents: (
     [data-variant='tertiary']
   )[data-accent='default'][data-disabled] {
   --icon-button-box-shadow: none;
-  --icon-button-color: var(--t-font-color-extra-light);
+  --icon-button-color: var(--odz-font-color-extra-light);
   --icon-button-hover-bg: transparent;
   --icon-button-active-bg: transparent;
 }
 
-// The secondary border only turns blue on enabled focus; tertiary keeps the
-// blue border even for disabled+focus (raw focus in the legacy source).
+// The secondary border only takes the focus color on enabled focus; tertiary keeps
+// it even for disabled+focus (raw focus in the legacy source).
 .button[data-variant='secondary'][data-accent='default'][data-disabled] {
-  --icon-button-border-color: var(--t-background-transparent-medium);
+  --icon-button-border-color: var(--odz-background-transparent-medium);
 }
 
-// accent=blue
+// accent=primary
 .button:is(
     [data-variant='secondary'],
     [data-variant='tertiary']
-  )[data-accent='blue'] {
-  --icon-button-color: var(--t-color-blue);
-  --icon-button-hover-bg: var(--t-accent-tertiary);
-  --icon-button-active-bg: var(--t-accent-secondary);
+  )[data-accent='primary'] {
+  --icon-button-color: var(--odz-color-primary);
+  --icon-button-hover-bg: var(--odz-accent-tertiary);
+  --icon-button-active-bg: var(--odz-accent-secondary);
 }
 
-.button[data-variant='secondary'][data-accent='blue'] {
-  --icon-button-border-color: var(--t-color-blue);
+.button[data-variant='secondary'][data-accent='primary'] {
+  --icon-button-border-color: var(--odz-color-primary);
 }
 
 .button:is(
     [data-variant='secondary'],
     [data-variant='tertiary']
-  )[data-accent='blue'][data-focus] {
-  --icon-button-bg: var(--t-background-transparent-primary);
-  --icon-button-box-shadow: 0 0 0 3px var(--t-accent-tertiary);
+  )[data-accent='primary'][data-focus] {
+  --icon-button-bg: var(--odz-background-transparent-primary);
+  --icon-button-box-shadow: 0 0 0 3px var(--odz-accent-tertiary);
 }
 
-// Only the tertiary border reacts to focus for the blue accent; the
+// Only the tertiary border reacts to focus for the primary accent; the
 // secondary border is keyed on disabled alone.
-.button[data-variant='tertiary'][data-accent='blue'][data-focus] {
-  --icon-button-border-color: var(--t-color-blue);
+.button[data-variant='tertiary'][data-accent='primary'][data-focus] {
+  --icon-button-border-color: var(--odz-color-primary);
 }
 
 .button:is(
     [data-variant='secondary'],
     [data-variant='tertiary']
-  )[data-accent='blue'][data-disabled] {
+  )[data-accent='primary'][data-disabled] {
   --icon-button-box-shadow: none;
-  --icon-button-color: var(--t-accent-accent4060);
+  --icon-button-color: var(--odz-accent-accent4060);
   --icon-button-hover-bg: transparent;
   --icon-button-active-bg: transparent;
 }
 
-.button[data-variant='secondary'][data-accent='blue'][data-disabled] {
-  --icon-button-border-color: var(--t-color-blue5);
+.button[data-variant='secondary'][data-accent='primary'][data-disabled] {
+  --icon-button-border-color: var(--odz-color-primary5);
 }
 
 // accent=danger
@@ -277,13 +277,13 @@ $primary-accents: (
     [data-variant='secondary'],
     [data-variant='tertiary']
   )[data-accent='danger'] {
-  --icon-button-color: var(--t-font-color-danger);
-  --icon-button-hover-bg: var(--t-background-danger);
-  --icon-button-active-bg: var(--t-background-danger);
+  --icon-button-color: var(--odz-font-color-danger);
+  --icon-button-hover-bg: var(--odz-background-danger);
+  --icon-button-active-bg: var(--odz-background-danger);
 }
 
 .button[data-variant='secondary'][data-accent='danger'] {
-  --icon-button-border-color: var(--t-border-color-danger);
+  --icon-button-border-color: var(--odz-border-color-danger);
 }
 
 // danger keeps a transparent background even on focus; only the shadow and
@@ -292,11 +292,11 @@ $primary-accents: (
     [data-variant='secondary'],
     [data-variant='tertiary']
   )[data-accent='danger'][data-focus] {
-  --icon-button-box-shadow: 0 0 0 3px var(--t-color-red3);
+  --icon-button-box-shadow: 0 0 0 3px var(--odz-color-red3);
 }
 
 .button[data-variant='tertiary'][data-accent='danger'][data-focus] {
-  --icon-button-border-color: var(--t-color-red);
+  --icon-button-border-color: var(--odz-color-red);
 }
 
 .button:is(
@@ -304,7 +304,7 @@ $primary-accents: (
     [data-variant='tertiary']
   )[data-accent='danger'][data-disabled] {
   --icon-button-box-shadow: none;
-  --icon-button-color: var(--t-color-red5);
+  --icon-button-color: var(--odz-color-red5);
   --icon-button-hover-bg: transparent;
   --icon-button-active-bg: transparent;
 }

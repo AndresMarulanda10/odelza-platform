@@ -43,7 +43,10 @@ import {
 import { LightButton, LightIconButton } from 'twenty-ui/input';
 import { CardContent, CardFooter } from 'twenty-ui/surfaces';
 import { MenuItem } from 'twenty-ui/navigation';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { SettingsDataModelFieldSelectFormOptionRow } from './SettingsDataModelFieldSelectFormOptionRow';
 
 export const settingsDataModelFieldSelectFormSchema = z.object({
@@ -77,30 +80,30 @@ const StyledOptionsLabel = styled.div<{
   isAdvancedModeEnabled: boolean;
   isBulkInputMode: boolean;
 }>`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-bottom: ${themeCssVariables.spacing['1.5']};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-bottom: ${odelzaThemeCssVariables.spacing['1.5']};
   margin-left: ${({ isAdvancedModeEnabled, isBulkInputMode }) =>
     isAdvancedModeEnabled && !isBulkInputMode
-      ? themeCssVariables.spacing[10]
-      : themeCssVariables.spacing[0]};
-  margin-top: ${themeCssVariables.spacing[1]};
+      ? odelzaThemeCssVariables.spacing[10]
+      : odelzaThemeCssVariables.spacing[0]};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
   width: 100%;
 `;
 
 const StyledApiKeyContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
 const StyledApiKey = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-bottom: ${themeCssVariables.spacing['1.5']};
-  margin-top: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-bottom: ${odelzaThemeCssVariables.spacing['1.5']};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
   white-space: nowrap;
 
   width: 100%;
@@ -114,23 +117,23 @@ const StyledLabelContainer = styled.div`
 
 const StyledIconContainer = styled.div`
   align-items: center;
-  border-right: 1px solid ${themeCssVariables.color.yellow};
+  border-right: 1px solid ${odelzaThemeCssVariables.color.yellow};
   display: flex;
 
-  margin-bottom: ${themeCssVariables.spacing['1.5']};
-  margin-top: ${themeCssVariables.spacing[1]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing['1.5']};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledIconPointContainer = styled.span`
   align-items: center;
   display: flex;
-  margin-right: ${themeCssVariables.spacing['0.5']};
+  margin-right: ${odelzaThemeCssVariables.spacing['0.5']};
 `;
 
 const StyledFooterContainer = styled.div`
   > * {
-    background-color: ${themeCssVariables.background.secondary};
-    padding: ${themeCssVariables.spacing[1]};
+    background-color: ${odelzaThemeCssVariables.background.secondary};
+    padding: ${odelzaThemeCssVariables.spacing[1]};
   }
 `;
 
@@ -145,20 +148,20 @@ const StyledOptionsHeaderContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-bottom: ${themeCssVariables.spacing['1.5']};
-  margin-top: ${themeCssVariables.spacing[1]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing['1.5']};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
   width: 100%;
 `;
 
 const StyledTextAreaContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledHelpText = styled.div`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  margin-bottom: ${themeCssVariables.spacing[2]};
-  margin-top: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const SettingsDataModelFieldSelectForm = ({

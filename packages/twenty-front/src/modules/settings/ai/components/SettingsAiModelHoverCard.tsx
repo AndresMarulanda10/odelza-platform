@@ -16,7 +16,10 @@ import {
   IconWindow,
   type IconComponent,
 } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { type AiModelSummary } from '@/settings/ai/types/AiModelSummary';
 import { getDataResidencyDisplay } from '@/settings/ai/utils/getDataResidencyDisplay';
@@ -26,8 +29,8 @@ import { isDefined } from 'twenty-shared/utils';
 import { formatNumber } from '~/utils/format/formatNumber';
 
 const StyledHoverCardWrapper = styled.div`
-  border-radius: ${themeCssVariables.border.radius.md};
-  box-shadow: ${themeCssVariables.boxShadow.strong};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
   overflow: hidden;
   width: 320px;
 `;
@@ -180,7 +183,7 @@ export const SettingsAiModelHoverCard = ({
       <SettingsTableCard
         rounded
         items={items}
-        gridAutoColumns={`${themeCssVariables.spacing[30]} 1fr`}
+        gridAutoColumns={`${odelzaThemeCssVariables.spacing[30]} 1fr`}
       />
     </StyledHoverCardWrapper>
   );

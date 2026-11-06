@@ -4,7 +4,7 @@ import { type ObjectRecordQueryProgress } from '@/object-record/types/ObjectReco
 import { useHotkeysOnFocusedElement } from '@/ui/utilities/hotkey/hooks/useHotkeysOnFocusedElement';
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { Key } from 'ts-key-enum';
 import { IconBoxMultiple } from 'twenty-ui/icon';
@@ -12,18 +12,18 @@ import { Button } from 'twenty-ui/input';
 
 const StyledFooterContainer = styled.div`
   align-items: flex-end;
-  background: ${themeCssVariables.background.primary};
-  border-top: 1px solid ${themeCssVariables.border.color.light};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: flex-end;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledFooterActions = styled.div`
   align-items: flex-end;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type UpdateMultipleRecordsFooterProps = {
@@ -67,7 +67,7 @@ export const UpdateMultipleRecordsFooter = ({
         <Button
           title={isUpdating ? t`Apply${progressText}` : t`Apply`}
           variant="primary"
-          accent="blue"
+          accent="primary"
           size="small"
           Icon={IconBoxMultiple}
           isLoading={isUpdating && !progressText}

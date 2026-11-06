@@ -6,7 +6,7 @@ import { useSetAtomFamilyState } from '@/ui/utilities/state/jotai/hooks/useSetAt
 import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { t } from '@lingui/core/macro';
 import { Checkbox } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsRolePermissionsObjectsTableHeaderProps = {
   roleId: string;
@@ -41,7 +41,7 @@ export const SettingsRolePermissionsObjectsTableHeader = ({
       <TableHeader>{t`All Objects`}</TableHeader>
       <TableHeader
         align="right"
-        padding={`0 ${themeCssVariables.spacing[1]} 0 ${themeCssVariables.spacing[2]}`}
+        padding={`0 ${odelzaThemeCssVariables.spacing[1]} 0 ${odelzaThemeCssVariables.spacing[2]}`}
         aria-label={t`Actions`}
       >
         <Checkbox

@@ -23,11 +23,11 @@ type Position = {
   y: number;
 };
 
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledDragSelection = styled.div<SelectionBox>`
-  background: ${themeCssVariables.color.blue7};
-  border: 1px solid ${themeCssVariables.color.blue3};
+  background: ${odelzaThemeCssVariables.color.primary7};
+  border: 1px solid ${odelzaThemeCssVariables.color.primary3};
   height: ${({ height }) => height}px;
   left: ${({ left }) => left}px;
   opacity: 0.2;

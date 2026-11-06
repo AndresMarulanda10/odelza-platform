@@ -7,7 +7,7 @@ import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { t } from '@lingui/core/macro';
 import { Tag } from 'twenty-ui/data-display';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { getApplicationDescriptionSummary } from '~/pages/settings/applications/utils/getApplicationDescriptionSummary';
 import { type ApplicationDisplayData } from '@/applications/types/applicationDisplayData.type';
 import { StyledNameTableCell } from '@/settings/data-model/object-details/components/SettingsObjectItemTableRowStyledComponents';
@@ -53,10 +53,10 @@ export const SettingsApplicationTableRow = ({
       <StyledNameTableCell minWidth="0" overflow="hidden">
         <ApplicationDisplay application={application} />
       </StyledNameTableCell>
-      <TableCell color={themeCssVariables.font.color.tertiary}>
+      <TableCell color={odelzaThemeCssVariables.font.color.tertiary}>
         {sourceType ? SOURCE_TYPE_LABELS[sourceType] : t`Seeded`}
       </TableCell>
-      <TableCell gap={themeCssVariables.spacing[2]} minWidth="0">
+      <TableCell gap={odelzaThemeCssVariables.spacing[2]} minWidth="0">
         <OverflowingTextWithTooltip text={descriptionSummary} />
         {hasUpdate === true && (
           <Tag color="blue" text={t`Update`} weight="medium" />
@@ -64,8 +64,8 @@ export const SettingsApplicationTableRow = ({
       </TableCell>
       <TableCell
         align="right"
-        padding={`0 ${themeCssVariables.spacing[2]} 0 0`}
-        color={themeCssVariables.font.color.tertiary}
+        padding={`0 ${odelzaThemeCssVariables.spacing[2]} 0 0`}
+        color={odelzaThemeCssVariables.font.color.tertiary}
       >
         {action}
       </TableCell>

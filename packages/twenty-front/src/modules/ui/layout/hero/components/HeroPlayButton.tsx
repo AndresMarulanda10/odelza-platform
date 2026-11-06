@@ -1,7 +1,10 @@
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { IconPlayerPlay } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type HeroPlayButtonProps = {
   onClick?: () => void;
@@ -11,11 +14,11 @@ type HeroPlayButtonProps = {
 
 const StyledButton = styled.button`
   align-items: center;
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   border: none;
   border-radius: 50%;
-  box-shadow: ${themeCssVariables.boxShadow.strong};
-  color: ${themeCssVariables.font.color.tertiary};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   corner-shape: round;
   cursor: pointer;
   display: inline-flex;
@@ -28,7 +31,7 @@ const StyledButton = styled.button`
   width: 44px;
 
   &:hover {
-    background: ${themeCssVariables.background.secondary};
+    background: ${odelzaThemeCssVariables.background.secondary};
     transform: scale(1.04);
   }
 
@@ -37,7 +40,7 @@ const StyledButton = styled.button`
   }
 
   &:focus-visible {
-    outline: 2px solid ${themeCssVariables.border.color.blue};
+    outline: 2px solid ${odelzaThemeCssVariables.border.color.accent};
     outline-offset: 2px;
   }
 `;

@@ -22,15 +22,18 @@ import { styled } from '@linaria/react';
 import { motion } from 'framer-motion';
 import { useCallback, useContext, useRef } from 'react';
 import { LINK_CHIP_CLICK_OUTSIDE_ID } from 'twenty-ui/data-display';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useIsMobile } from 'twenty-ui/utilities';
 const StyledCommandMenuBase = styled.div`
-  background: ${themeCssVariables.background.primary};
-  border-left: 1px solid ${themeCssVariables.border.color.medium};
-  box-shadow: ${themeCssVariables.boxShadow.strong};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-left: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
   display: flex;
   flex-direction: column;
-  font-family: ${themeCssVariables.font.family};
+  font-family: ${odelzaThemeCssVariables.font.family};
   height: 100%;
   overflow: hidden;
   padding: 0;

@@ -3,10 +3,10 @@ import { useLingui } from '@lingui/react/macro';
 import { useInputFocusWithoutScrollOnMount } from '@/ui/input/hooks/useInputFocusWithoutScrollOnMount';
 import { styled } from '@linaria/react';
 import { forwardRef, type InputHTMLAttributes } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledDropdownMenuSearchInputContainer = styled.div`
-  --vertical-padding: ${themeCssVariables.spacing[2]};
+  --vertical-padding: ${odelzaThemeCssVariables.spacing[2]};
   align-items: center;
   /* min-height below is sized against the content box. */
   box-sizing: content-box;
@@ -22,21 +22,22 @@ const StyledInput = styled.input`
   background-color: transparent;
   background-color: transparent;
   border: none;
-  color: ${themeCssVariables.font.color.primary};
-  font-family: ${themeCssVariables.font.family};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-family: ${odelzaThemeCssVariables.font.family};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   font-size: inherit;
   font-weight: inherit;
 
   &::placeholder,
   &::-webkit-input-placeholder {
-    color: ${themeCssVariables.font.color.light};
-    font-family: ${themeCssVariables.font.family};
-    font-weight: ${themeCssVariables.font.weight.medium};
+    color: ${odelzaThemeCssVariables.font.color.light};
+    font-family: ${odelzaThemeCssVariables.font.family};
+    font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   }
 
   outline: none;
-  padding: ${themeCssVariables.spacing[0]} ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[0]}
+    ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 
   &[type='number']::-webkit-outer-spin-button,

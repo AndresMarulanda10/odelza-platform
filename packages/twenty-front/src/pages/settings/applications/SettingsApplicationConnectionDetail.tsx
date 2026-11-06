@@ -10,7 +10,7 @@ import { IconRefresh, IconTrash, IconUser, IconUsers } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { GET_MY_CONNECTED_ACCOUNTS } from '@/settings/accounts/graphql/queries/getMyConnectedAccounts';
 import { SettingsPageContainer } from '@/settings/components/SettingsPageContainer';
@@ -40,14 +40,14 @@ const DETAIL_GRID_TEMPLATE = '220px 1fr';
 
 const StyledActions = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-top: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledMonoText = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-family: ${themeCssVariables.code.font.family}, monospace;
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-family: ${odelzaThemeCssVariables.code.font.family}, monospace;
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -56,7 +56,7 @@ const StyledMonoText = styled.span`
 const StyledScopeList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
@@ -318,7 +318,7 @@ export const SettingsApplicationConnectionDetail = () => {
                     title={t`Reconnect`}
                     Icon={IconRefresh}
                     variant="secondary"
-                    accent="blue"
+                    accent="primary"
                     onClick={handleReconnect}
                   />
                 )}
@@ -360,7 +360,9 @@ export const SettingsApplicationConnectionDetail = () => {
                       key={row.key}
                       gridTemplateColumns={DETAIL_GRID_TEMPLATE}
                     >
-                      <TableCell color={themeCssVariables.font.color.secondary}>
+                      <TableCell
+                        color={odelzaThemeCssVariables.font.color.secondary}
+                      >
                         {row.label}
                       </TableCell>
                       <TableCell minWidth="0" overflow="hidden">
@@ -394,7 +396,7 @@ export const SettingsApplicationConnectionDetail = () => {
               }
               onConfirmClick={handleChangeVisibility}
               confirmButtonText={t`Reconnect and change visibility`}
-              confirmButtonAccent="blue"
+              confirmButtonAccent="primary"
             />
           </>
         )}

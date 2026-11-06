@@ -7,7 +7,10 @@ import { useContext, useState } from 'react';
 import { FILE_CATEGORIES, type FileCategory } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { AvatarOrIcon } from 'twenty-ui/data-display';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type FileIconSize = 'small' | 'medium';
 
@@ -21,8 +24,8 @@ const StyledIconContainer = styled.div<{
 }>`
   align-items: center;
   background: ${({ background }) => background};
-  border-radius: ${themeCssVariables.border.radius.sm};
-  color: ${themeCssVariables.grayScale.gray1};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  color: ${odelzaThemeCssVariables.grayScale.gray1};
   display: flex;
   flex-shrink: 0;
   justify-content: center;
@@ -30,7 +33,7 @@ const StyledIconContainer = styled.div<{
 `;
 
 const StyledThumbnail = styled.img<{ sizePx: number }>`
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   flex-shrink: 0;
   height: ${({ sizePx }) => sizePx}px;
   object-fit: cover;

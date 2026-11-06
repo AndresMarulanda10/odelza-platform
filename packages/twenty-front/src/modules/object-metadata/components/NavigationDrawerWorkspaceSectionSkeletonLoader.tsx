@@ -3,22 +3,22 @@ import { NavigationDrawerSection } from '@/ui/navigation/navigation-drawer/compo
 import { css } from '@linaria/core';
 import { styled } from '@linaria/react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledTitleSkeleton = styled.div`
   align-items: center;
   display: flex;
-  height: ${themeCssVariables.spacing[5]};
-  padding-left: ${themeCssVariables.spacing[1]};
-  padding-right: ${themeCssVariables.spacing['0.5']};
+  height: ${odelzaThemeCssVariables.spacing[5]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing['0.5']};
 `;
 
 const StyledRowsContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
-  padding-left: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
   width: 100%;
 `;
 
@@ -31,8 +31,8 @@ export const NavigationDrawerWorkspaceSectionSkeletonLoader = () => {
   return (
     <NavigationDrawerSection>
       <SkeletonTheme
-        baseColor={themeCssVariables.background.tertiary}
-        highlightColor={themeCssVariables.background.transparent.light}
+        baseColor={odelzaThemeCssVariables.background.tertiary}
+        highlightColor={odelzaThemeCssVariables.background.transparent.light}
         borderRadius={4}
       >
         <StyledTitleSkeleton>

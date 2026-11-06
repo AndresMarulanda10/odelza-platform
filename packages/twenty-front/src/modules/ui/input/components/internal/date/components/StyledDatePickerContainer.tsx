@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export const DATE_PICKER_CONTAINER_WIDTH = 280;
 
@@ -10,13 +10,13 @@ export const StyledDatePickerContainer = styled.div<{
   width: ${DATE_PICKER_CONTAINER_WIDTH}px;
 
   & .react-datepicker {
-    border-color: ${themeCssVariables.border.color.light};
+    border-color: ${odelzaThemeCssVariables.border.color.light};
     background: transparent;
     font-family: 'Inter';
-    font-size: ${themeCssVariables.font.size.md};
+    font-size: ${odelzaThemeCssVariables.font.size.md};
     border: none;
     display: block;
-    font-weight: ${themeCssVariables.font.weight.regular};
+    font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   }
 
   & .react-datepicker-popper {
@@ -59,22 +59,23 @@ export const StyledDatePickerContainer = styled.div<{
 
   & .react-datepicker__header__dropdown {
     display: flex;
-    color: ${themeCssVariables.font.color.primary};
-    margin-left: ${themeCssVariables.spacing[1]};
-    margin-bottom: ${themeCssVariables.spacing[10]};
+    color: ${odelzaThemeCssVariables.font.color.primary};
+    margin-left: ${odelzaThemeCssVariables.spacing[1]};
+    margin-bottom: ${odelzaThemeCssVariables.spacing[10]};
   }
 
   & .react-datepicker__month-dropdown-container,
   & .react-datepicker__year-dropdown-container {
     text-align: left;
     border-radius: calc(
-      ${themeCssVariables.border.radius.md} - ${themeCssVariables.spacing[1]}
+      ${odelzaThemeCssVariables.border.radius.md} -
+        ${odelzaThemeCssVariables.spacing[1]}
     );
-    margin-left: ${themeCssVariables.spacing[1]};
+    margin-left: ${odelzaThemeCssVariables.spacing[1]};
     margin-right: 0;
-    padding: ${themeCssVariables.spacing[2]};
-    padding-right: ${themeCssVariables.spacing[4]};
-    background-color: ${themeCssVariables.background.tertiary};
+    padding: ${odelzaThemeCssVariables.spacing[2]};
+    padding-right: ${odelzaThemeCssVariables.spacing[4]};
+    background-color: ${odelzaThemeCssVariables.background.tertiary};
   }
 
   & .react-datepicker__month-read-view--down-arrow,
@@ -82,14 +83,14 @@ export const StyledDatePickerContainer = styled.div<{
     height: 5px;
     width: 5px;
     border-width: 1px 1px 0 0;
-    border-color: ${themeCssVariables.border.color.light};
+    border-color: ${odelzaThemeCssVariables.border.color.light};
     top: 3px;
     right: -6px;
   }
 
   & .react-datepicker__year-read-view,
   & .react-datepicker__month-read-view {
-    padding-right: ${themeCssVariables.spacing[2]};
+    padding-right: ${odelzaThemeCssVariables.spacing[2]};
   }
 
   & .react-datepicker__month-dropdown-container {
@@ -103,15 +104,15 @@ export const StyledDatePickerContainer = styled.div<{
   & .react-datepicker__month-dropdown,
   & .react-datepicker__year-dropdown {
     overflow-y: scroll;
-    top: ${themeCssVariables.spacing[2]};
+    top: ${odelzaThemeCssVariables.spacing[2]};
   }
   & .react-datepicker__month-dropdown {
-    left: ${themeCssVariables.spacing[2]};
+    left: ${odelzaThemeCssVariables.spacing[2]};
     height: 260px;
   }
 
   & .react-datepicker__year-dropdown {
-    left: calc(${themeCssVariables.spacing[9]} + 80px);
+    left: calc(${odelzaThemeCssVariables.spacing[9]} + 80px);
     width: 100px;
     height: 260px;
   }
@@ -128,16 +129,16 @@ export const StyledDatePickerContainer = styled.div<{
   & .react-datepicker__year-option,
   & .react-datepicker__month-option {
     text-align: left;
-    padding: ${themeCssVariables.spacing[2]}
-      calc(${themeCssVariables.spacing[2]} - 2px);
-    width: calc(100% - ${themeCssVariables.spacing[4]});
-    border-radius: ${themeCssVariables.border.radius.xs};
-    color: ${themeCssVariables.font.color.secondary};
+    padding: ${odelzaThemeCssVariables.spacing[2]}
+      calc(${odelzaThemeCssVariables.spacing[2]} - 2px);
+    width: calc(100% - ${odelzaThemeCssVariables.spacing[4]});
+    border-radius: ${odelzaThemeCssVariables.border.radius.xs};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
     cursor: pointer;
     margin: 2px;
 
     &:hover {
-      background: ${themeCssVariables.background.transparent.light};
+      background: ${odelzaThemeCssVariables.background.transparent.light};
     }
   }
 
@@ -153,7 +154,7 @@ export const StyledDatePickerContainer = styled.div<{
   }
 
   & .react-datepicker__day-name {
-    color: ${themeCssVariables.font.color.secondary};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
     width: 34px;
     height: 40px;
     line-height: 40px;
@@ -196,11 +197,12 @@ export const StyledDatePickerContainer = styled.div<{
   & .react-datepicker__navigation--next {
     height: 34px;
     border-radius: calc(
-      ${themeCssVariables.border.radius.md} - ${themeCssVariables.spacing[1]}
+      ${odelzaThemeCssVariables.border.radius.md} -
+        ${odelzaThemeCssVariables.spacing[1]}
     );
     padding-top: 6px;
     &:hover {
-      background: ${themeCssVariables.background.transparent.light};
+      background: ${odelzaThemeCssVariables.background.transparent.light};
     }
   }
   & .react-datepicker__navigation--previous {
@@ -226,7 +228,7 @@ export const StyledDatePickerContainer = styled.div<{
     height: 7px;
     width: 7px;
     border-width: 1px 1px 0 0;
-    border-color: ${themeCssVariables.font.color.tertiary};
+    border-color: ${odelzaThemeCssVariables.font.color.tertiary};
   }
 
   & .react-datepicker__day--keyboard-selected {
@@ -235,30 +237,30 @@ export const StyledDatePickerContainer = styled.div<{
 
   & .react-datepicker__day,
   .react-datepicker__time-name {
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
   }
 
   & .react-datepicker__day--selected,
   & .react-datepicker__day--in-range,
   & .react-datepicker__day--range-start,
   & .react-datepicker__day--range-end {
-    background-color: ${themeCssVariables.color.blue};
-    color: ${themeCssVariables.background.primary};
+    background-color: ${odelzaThemeCssVariables.color.primary};
+    color: ${odelzaThemeCssVariables.background.primary};
 
     &.react-datepicker__day:hover {
-      color: ${themeCssVariables.background.primary};
+      color: ${odelzaThemeCssVariables.background.primary};
     }
   }
 
   & .react-datepicker__day--outside-month {
-    color: ${themeCssVariables.font.color.tertiary};
+    color: ${odelzaThemeCssVariables.font.color.tertiary};
   }
 
   & .react-datepicker__day:hover {
-    color: ${themeCssVariables.font.color.tertiary};
+    color: ${odelzaThemeCssVariables.font.color.tertiary};
   }
 
   & .clearable {
-    border-bottom: 1px solid ${themeCssVariables.border.color.light};
+    border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   }
 `;

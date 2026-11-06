@@ -13,7 +13,7 @@ import { DropdownContent } from '@/ui/layout/dropdown/components/DropdownContent
 import { useCloseDropdown } from '@/ui/layout/dropdown/hooks/useCloseDropdown';
 import { useToggleScrollWrapper } from '@/ui/utilities/scroll/hooks/useToggleScrollWrapper';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useLingui } from '@lingui/react/macro';
 import { useAtomFamilySelectorValue } from '@/ui/utilities/state/jotai/hooks/useAtomFamilySelectorValue';
 import {
@@ -31,7 +31,7 @@ export type RecordTableColumnHeadDropdownMenuProps = {
 };
 
 const StyledDropdownMenuItemsContainerWrapper = styled.div`
-  z-index: ${themeCssVariables.lastLayerZIndex};
+  z-index: ${odelzaThemeCssVariables.lastLayerZIndex};
 `;
 
 export const RecordTableColumnHeadDropdownMenu = ({

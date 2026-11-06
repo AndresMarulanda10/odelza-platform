@@ -4,7 +4,7 @@ import { AppPath } from 'twenty-shared/types';
 import { getImageAbsoluteURI, isDefined } from 'twenty-shared/utils';
 import { Avatar } from 'twenty-ui/data-display';
 import { UndecoratedLink } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
 import { useRedirectToDefaultDomain } from '~/modules/domain-manager/hooks/useRedirectToDefaultDomain';
 
@@ -17,32 +17,32 @@ type LogoProps = {
 };
 
 const StyledContainer = styled.div`
-  height: ${themeCssVariables.spacing[12]};
-  margin-bottom: ${themeCssVariables.spacing[4]};
-  margin-top: ${themeCssVariables.spacing[4]};
+  height: ${odelzaThemeCssVariables.spacing[12]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
+  margin-top: ${odelzaThemeCssVariables.spacing[4]};
 
   position: relative;
-  width: ${themeCssVariables.spacing[12]};
+  width: ${odelzaThemeCssVariables.spacing[12]};
 `;
 
 const StyledSecondaryLogo = styled.img`
-  border-radius: ${themeCssVariables.border.radius.xs};
-  height: ${themeCssVariables.spacing[6]};
-  width: ${themeCssVariables.spacing[6]};
+  border-radius: ${odelzaThemeCssVariables.border.radius.xs};
+  height: ${odelzaThemeCssVariables.spacing[6]};
+  width: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledSecondaryLogoContainer = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.primary};
-  border-radius: ${themeCssVariables.border.radius.sm};
-  bottom: calc(-1 * ${themeCssVariables.spacing[3]});
+  background-color: ${odelzaThemeCssVariables.background.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  bottom: calc(-1 * ${odelzaThemeCssVariables.spacing[3]});
   display: flex;
-  height: ${themeCssVariables.spacing[7]};
+  height: ${odelzaThemeCssVariables.spacing[7]};
   justify-content: center;
 
   position: absolute;
-  right: calc(-1 * ${themeCssVariables.spacing[3]});
-  width: ${themeCssVariables.spacing[7]};
+  right: calc(-1 * ${odelzaThemeCssVariables.spacing[3]});
+  width: ${odelzaThemeCssVariables.spacing[7]};
 `;
 
 const StyledPrimaryLogo = styled.div`

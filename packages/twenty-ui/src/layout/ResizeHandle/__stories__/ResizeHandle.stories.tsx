@@ -1,7 +1,7 @@
 import { type Meta, type StoryObj } from '@storybook/react-vite';
 import { useResizeHandle } from '@ui/layout/ResizeHandle/hooks/useResizeHandle';
 import { ComponentDecorator } from '@ui/testing';
-import { themeCssVariables } from '@ui/theme-constants';
+import { odelzaThemeCssVariables } from '@ui/theme-constants';
 import { expect, userEvent, within } from 'storybook/test';
 
 import { ResizeHandle } from '@ui/layout/ResizeHandle/ResizeHandle';
@@ -17,7 +17,7 @@ const ResizableDemo = () => {
       <div
         data-testid="resizable-area"
         style={{
-          background: themeCssVariables.background.secondary,
+          background: odelzaThemeCssVariables.background.secondary,
           height: size,
           width: 300,
         }}

@@ -11,7 +11,7 @@ import {
 import { OverflowingTextWithTooltip, TooltipDelay } from 'twenty-ui/surfaces';
 import { JsonTree } from 'twenty-ui/json-visualizer';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type JsonValue } from 'type-fest';
 
 import { useToolDisplayContext } from '@/ai/hooks/useToolDisplayContext';
@@ -30,191 +30,192 @@ import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: ${themeCssVariables.font.family};
-  gap: ${themeCssVariables.spacing[1]};
+  font-family: ${odelzaThemeCssVariables.font.family};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledStepsContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledSummaryText = styled.span`
   color: inherit;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  line-height: ${themeCssVariables.text.lineHeight.md};
-  transition: color calc(${themeCssVariables.animation.duration.fast} * 1s)
-    ease-in-out;
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.md};
+  transition: color
+    calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s) ease-in-out;
 `;
 
 const StyledSummaryButton = styled.button`
   align-items: center;
   background: none;
   border: none;
-  border-radius: ${themeCssVariables.border.radius.sm};
-  color: ${themeCssVariables.font.color.tertiary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: pointer;
   display: flex;
   font-family: inherit;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-height: 24px;
   padding: 0;
   width: fit-content;
 
   &:hover {
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
   }
 
   &:focus-visible {
-    outline: 2px solid ${themeCssVariables.color.blue};
+    outline: 2px solid ${odelzaThemeCssVariables.color.primary};
     outline-offset: 2px;
   }
 `;
 
 const StyledSummaryChevronContainer = styled.div<{ isExpanded: boolean }>`
   align-items: center;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: flex;
   justify-content: center;
   transform: rotate(${({ isExpanded }) => (isExpanded ? '90deg' : '0deg')});
-  transition: transform calc(${themeCssVariables.animation.duration.fast} * 1s)
-    ease-in-out;
+  transition: transform
+    calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s) ease-in-out;
 `;
 
 const StyledRowsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledRow = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-height: 24px;
 `;
 
 const StyledRowLabel = styled.span`
   color: inherit;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  line-height: ${themeCssVariables.text.lineHeight.md};
-  transition: color calc(${themeCssVariables.animation.duration.fast} * 1s)
-    ease-in-out;
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.md};
+  transition: color
+    calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s) ease-in-out;
 `;
 
 const StyledToolRowLabel = styled.div`
   color: inherit;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  line-height: ${themeCssVariables.text.lineHeight.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.md};
   max-width: 100%;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: color calc(${themeCssVariables.animation.duration.fast} * 1s)
-    ease-in-out;
+  transition: color
+    calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s) ease-in-out;
   white-space: nowrap;
 `;
 
 const StyledReasoningContainer = styled.div`
   padding-left: calc(
-    ${themeCssVariables.icon.size.sm} * 1px + ${themeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.icon.size.sm} * 1px +
+      ${odelzaThemeCssVariables.spacing[2]}
   );
 `;
 
 const StyledReasoningText = styled.p`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  line-height: ${themeCssVariables.text.lineHeight.lg};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.lg};
   margin: 0;
   white-space: pre-wrap;
 `;
 
 const StyledOrbitLoaderIconContainer = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
 `;
 
 const StyledIconContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: flex;
   justify-content: center;
-  min-width: calc(${themeCssVariables.icon.size.sm} * 1px);
+  min-width: calc(${odelzaThemeCssVariables.icon.size.sm} * 1px);
 `;
 
 const StyledRowLabelContainer = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
 const StyledChevronContainer = styled.div<{ isExpanded: boolean }>`
   align-items: center;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: flex;
   justify-content: center;
   transform: rotate(${({ isExpanded }) => (isExpanded ? '90deg' : '0deg')});
-  transition: transform calc(${themeCssVariables.animation.duration.fast} * 1s)
-    ease-in-out;
+  transition: transform
+    calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s) ease-in-out;
 `;
 
 const StyledToolRowContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledToolRowButton = styled.button<{ isExpandable: boolean }>`
   align-items: center;
   background: none;
   border: none;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: ${({ isExpandable }) => (isExpandable ? 'pointer' : 'default')};
   display: flex;
   font-family: inherit;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-height: 24px;
   padding: 0;
   text-align: left;
-  transition: color calc(${themeCssVariables.animation.duration.fast} * 1s)
-    ease-in-out;
+  transition: color
+    calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s) ease-in-out;
   width: 100%;
 
   &:hover {
     color: ${({ isExpandable }) =>
       isExpandable
-        ? themeCssVariables.font.color.primary
-        : themeCssVariables.font.color.tertiary};
+        ? odelzaThemeCssVariables.font.color.primary
+        : odelzaThemeCssVariables.font.color.tertiary};
   }
 
   &:focus-visible {
-    outline: 2px solid ${themeCssVariables.color.blue};
+    outline: 2px solid ${odelzaThemeCssVariables.color.primary};
     outline-offset: 2px;
   }
 `;
 
 const StyledToolDetailsContainer = styled.div`
-  background: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
-  margin-left: ${themeCssVariables.spacing[3]};
+  background: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  margin-left: ${odelzaThemeCssVariables.spacing[3]};
   min-width: 0;
   overflow: hidden;
 `;
 
 const StyledToolTabListContainer = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  padding-left: ${themeCssVariables.spacing[1]};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledToolDetailsContent = styled.div`
@@ -222,11 +223,11 @@ const StyledToolDetailsContent = styled.div`
 `;
 
 const StyledToolJsonContent = styled.div`
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledJsonTreeContainer = styled.div`
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   overflow-x: auto;
 
   li,
@@ -240,10 +241,10 @@ const StyledJsonTreeContainer = styled.div`
 `;
 
 const StyledToolErrorText = styled.p`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  line-height: ${themeCssVariables.text.lineHeight.lg};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.lg};
   margin: 0;
   white-space: pre-wrap;
 `;

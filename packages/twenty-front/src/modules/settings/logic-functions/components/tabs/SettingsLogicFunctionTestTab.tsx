@@ -22,7 +22,7 @@ import {
 import { H2Title } from 'twenty-ui/typography';
 import { Button, CodeEditor, CoreEditorHeader } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type TriggerButton = {
   kind: TriggerKind;
@@ -33,7 +33,7 @@ type TriggerButton = {
 const StyledInputsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledCodeEditorContainer = styled.div`
@@ -44,13 +44,13 @@ const StyledCodeEditorContainer = styled.div`
 const StyledTriggerButtonRow = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTriggerLabel = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
 `;
 
 export const SettingsLogicFunctionTestTab = ({
@@ -155,7 +155,7 @@ export const SettingsLogicFunctionTestTab = ({
               <Button
                 title={t`Run Function`}
                 variant="primary"
-                accent="blue"
+                accent="primary"
                 size="small"
                 Icon={IconPlayerPlay}
                 onClick={handleExecute}

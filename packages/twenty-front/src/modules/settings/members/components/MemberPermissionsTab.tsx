@@ -14,7 +14,7 @@ import { IconArrowUpRight, IconUser, useIcons } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useMutation } from '@apollo/client/react';
 import { UpdateWorkspaceMemberRoleDocument } from '~/generated-metadata/graphql';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
@@ -23,17 +23,17 @@ const CONFIRM_ROLE_CHANGE_MODAL_ID = 'confirm-role-change-modal';
 
 const StyledNoRoleContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   justify-content: center;
-  padding: ${themeCssVariables.spacing[8]};
+  padding: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 const StyledRoleContainer = styled.div`
   align-items: flex-end;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-bottom: ${themeCssVariables.spacing[8]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 const StyledRoleSelector = styled.div`
@@ -153,7 +153,7 @@ export const MemberPermissionsTab = ({
           subtitle={t`Are you sure you want to update the role of this user from "${oldRoleLabel}" to "${newRoleLabel}"?`}
           onConfirmClick={handleConfirmRoleChange}
           confirmButtonText={t`Update role`}
-          confirmButtonAccent="blue"
+          confirmButtonAccent="primary"
         />
       )}
     </>

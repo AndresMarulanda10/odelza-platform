@@ -15,7 +15,7 @@ import {
 import { Button, Slider } from 'twenty-ui/input';
 import { Section, SectionAlignment, SectionFontColor } from 'twenty-ui/layout';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { themeCssVariables, useTheme } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from 'twenty-ui/theme-constants';
 import { H1Title, H1TitleFontColor } from 'twenty-ui/typography';
 
 const PACKAGE_SUMMARY_ROW_HEIGHT = 24;
@@ -25,60 +25,60 @@ const StyledCenteredTitle = styled.div`
   text-align: center;
 
   h2 {
-    margin-bottom: ${themeCssVariables.spacing[6]};
+    margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
   }
 `;
 
 const StyledSectionContainer = styled.div`
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   line-height: 1.4;
-  margin-bottom: ${themeCssVariables.spacing[6]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
   text-box-edge: cap alphabetic;
   text-box-trim: trim-both;
 `;
 
 const StyledPackageCard = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   padding: 11px;
 `;
 
 const StyledPackageHeader = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledPackageHeaderRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledPackageHeaderTitle = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
 const StyledPackageCreditAmount = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   white-space: nowrap;
 `;
 
 const StyledPackagePrice = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   flex: 1 1 auto;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   text-align: right;
   white-space: nowrap;
 `;
@@ -86,11 +86,11 @@ const StyledPackagePrice = styled.span`
 const StyledPackageDetails = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledPackageDivider = styled.div`
-  background-color: ${themeCssVariables.border.color.medium};
+  background-color: ${odelzaThemeCssVariables.border.color.medium};
   height: 1px;
   width: 100%;
 `;
@@ -103,9 +103,9 @@ const StyledPackageSummaryRows = styled.div`
 const StyledPackageSummaryRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[6]};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 
   &:last-child {
@@ -117,12 +117,12 @@ const StyledAnimatedPackageSummaryRow = motion.create(StyledPackageSummaryRow);
 
 const StyledPackageSummaryLabel = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex: 0 0 116px;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[1]};
-  min-height: ${themeCssVariables.spacing[6]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  min-height: ${odelzaThemeCssVariables.spacing[6]};
   min-width: 0;
 `;
 
@@ -136,26 +136,26 @@ const StyledPackageSummaryLabelText = styled.div`
 
 const StyledPackageSummaryValue = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex: 1 1 auto;
-  font-size: ${themeCssVariables.font.size.md};
-  min-height: ${themeCssVariables.spacing[6]};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  min-height: ${odelzaThemeCssVariables.spacing[6]};
   min-width: 0;
   overflow: hidden;
-  padding: 0 ${themeCssVariables.spacing[1]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
   white-space: nowrap;
 `;
 
 const StyledMutedText = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  margin-left: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  margin-left: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledAmountWithUnit = styled.span`
   align-items: center;
   display: inline-flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledCurrentValueText = styled.span`
@@ -168,8 +168,8 @@ const StyledCurrentValueText = styled.span`
 
 const StyledModalActions = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-top: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[6]};
 
   > div {
     flex: 1;
@@ -241,7 +241,7 @@ export const ResourceCreditPackagePickerModal = ({
         <Icon
           size={theme.icon.size.md}
           stroke={theme.icon.stroke.sm}
-          color={themeCssVariables.font.color.tertiary}
+          color={odelzaThemeCssVariables.font.color.tertiary}
         />
         <PackageSummaryLabelText label={label} />
       </StyledPackageSummaryLabel>
@@ -282,7 +282,7 @@ export const ResourceCreditPackagePickerModal = ({
             <StyledPackageHeaderTitle>
               <IconCoins
                 size={theme.icon.size.md}
-                color={themeCssVariables.color.green9}
+                color={odelzaThemeCssVariables.color.green9}
               />
               <StyledPackageCreditAmount>
                 <AnimatedFormattedNumber
@@ -366,7 +366,7 @@ export const ResourceCreditPackagePickerModal = ({
                     <IconSparkles
                       size={theme.icon.size.md}
                       stroke={theme.icon.stroke.sm}
-                      color={themeCssVariables.font.color.tertiary}
+                      color={odelzaThemeCssVariables.font.color.tertiary}
                     />
                     <PackageSummaryLabelText label={t`New credit pack`} />
                   </StyledPackageSummaryLabel>
@@ -411,7 +411,7 @@ export const ResourceCreditPackagePickerModal = ({
         <Button
           onClick={onConfirm}
           variant="primary"
-          accent="blue"
+          accent="primary"
           title={t`Confirm`}
           fullWidth
           justify="center"

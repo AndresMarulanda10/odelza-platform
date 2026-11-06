@@ -10,22 +10,22 @@ import { useState } from 'react';
 import { IconTrash } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
 import { v4 } from 'uuid';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledKeyValueContainer = styled.div<{ readonly: boolean | undefined }>`
   display: grid;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 
   grid-template-columns: ${({ readonly }) =>
     readonly
       ? 'repeat(2, minmax(0, 1fr))'
-      : `repeat(2, minmax(0, 1fr)) ${themeCssVariables.spacing[8]}`};
+      : `repeat(2, minmax(0, 1fr)) ${odelzaThemeCssVariables.spacing[8]}`};
 `;
 export type KeyValuePair = {
   id: string;

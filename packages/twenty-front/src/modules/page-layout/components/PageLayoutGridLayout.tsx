@@ -40,7 +40,7 @@ import {
   WidthProvider,
 } from 'react-grid-layout';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const disabledTransitionsClass = css`
   .react-grid-layout {
@@ -60,15 +60,15 @@ const StyledGridContainer = styled.div`
   box-sizing: border-box;
   flex: 1;
   min-height: 100%;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   position: relative;
   user-select: none;
   width: 100%;
 
   .react-grid-placeholder {
-    background: ${themeCssVariables.color.blue7} !important;
+    background: ${odelzaThemeCssVariables.color.primary7} !important;
 
-    border-radius: ${themeCssVariables.border.radius.md};
+    border-radius: ${odelzaThemeCssVariables.border.radius.md};
   }
 
   .react-grid-item:not(.react-draggable-dragging) {
@@ -102,7 +102,7 @@ const StyledGridContainer = styled.div`
     // their box would re-measure mid-print and render them blank.
     .react-grid-item {
       break-inside: avoid;
-      margin-bottom: ${themeCssVariables.spacing[4]};
+      margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
       page-break-inside: avoid;
       position: static !important;
       transform: none !important;

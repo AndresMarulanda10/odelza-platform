@@ -12,7 +12,10 @@ import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/use
 import { styled } from '@linaria/react';
 import { cx } from '@linaria/core';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledDragDropHeaderCell = styled.div<{
   shouldDisplayBorderBottom: boolean;
@@ -21,7 +24,7 @@ const StyledDragDropHeaderCell = styled.div<{
   background-color: ${({ backgroundColor }) => backgroundColor};
   border-bottom: ${({ shouldDisplayBorderBottom }) =>
     shouldDisplayBorderBottom
-      ? `1px solid ${themeCssVariables.background.primary}`
+      ? `1px solid ${odelzaThemeCssVariables.background.primary}`
       : 'none'};
   cursor: pointer;
   max-height: ${RECORD_TABLE_ROW_HEIGHT}px;

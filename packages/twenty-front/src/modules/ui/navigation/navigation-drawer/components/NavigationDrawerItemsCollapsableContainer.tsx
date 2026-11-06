@@ -8,7 +8,10 @@ import {
   motion,
   type TargetAndTransition,
 } from 'framer-motion';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 const StyledAnimationGroupContainerBase = styled.div``;
 
 const StyledAnimationGroupContainer = motion.create(
@@ -42,7 +45,7 @@ export const NavigationDrawerItemsCollapsableContainer = ({
         width: 24,
         backgroundColor: theme.background.transparent.lighter,
         border: `1px solid ${theme.background.transparent.lighter}`,
-        borderRadius: themeCssVariables.border.radius.md,
+        borderRadius: odelzaThemeCssVariables.border.radius.md,
       };
     }
   }

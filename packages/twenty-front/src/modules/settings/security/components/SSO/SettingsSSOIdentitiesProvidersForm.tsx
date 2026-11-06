@@ -13,12 +13,13 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { type IconComponent, IconKey } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { IdentityProviderType } from '~/generated-metadata/graphql';
 
 const StyledInputsContainer = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[4]};
   grid-template-areas: 'input-1 input-1';
   grid-template-columns: 1fr 1fr;
 

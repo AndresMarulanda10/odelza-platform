@@ -3,12 +3,15 @@ import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { useContext } from 'react';
 import { IconReload } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type AppRootErrorFallbackProps = AppErrorDisplayProps;
 
 const StyledContainer = styled.div`
-  background: ${themeCssVariables.background.noisy};
+  background: ${odelzaThemeCssVariables.background.noisy};
   box-sizing: border-box;
   display: flex;
   height: 100vh;
@@ -17,9 +20,9 @@ const StyledContainer = styled.div`
 `;
 
 const StyledPanel = styled.div`
-  background: ${themeCssVariables.grayScale.gray1};
-  border: 1px solid ${themeCssVariables.grayScale.gray5};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background: ${odelzaThemeCssVariables.grayScale.gray1};
+  border: 1px solid ${odelzaThemeCssVariables.grayScale.gray5};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   height: 100%;
   overflow-x: auto;
   overflow-y: hidden;
@@ -66,13 +69,13 @@ const StyledEmptyTextContainer = styled.div`
 `;
 
 const StyledEmptyTitle = styled.div`
-  color: ${themeCssVariables.grayScale.gray12};
+  color: ${odelzaThemeCssVariables.grayScale.gray12};
   font-size: 1.23rem;
   font-weight: 600;
 `;
 
 const StyledEmptySubTitle = styled.div`
-  color: ${themeCssVariables.grayScale.gray11};
+  color: ${odelzaThemeCssVariables.grayScale.gray11};
   font-size: 0.92rem;
   font-weight: 400;
   line-height: 1.5;
@@ -83,10 +86,10 @@ const StyledEmptySubTitle = styled.div`
 
 const StyledButton = styled.button`
   align-items: center;
-  background: ${themeCssVariables.grayScale.gray1};
-  border: 1px solid ${themeCssVariables.grayScale.gray5};
-  border-radius: ${themeCssVariables.border.radius.md};
-  color: ${themeCssVariables.grayScale.gray12};
+  background: ${odelzaThemeCssVariables.grayScale.gray1};
+  border: 1px solid ${odelzaThemeCssVariables.grayScale.gray5};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  color: ${odelzaThemeCssVariables.grayScale.gray12};
   cursor: pointer;
   display: flex;
   padding: 8px;
@@ -94,7 +97,7 @@ const StyledButton = styled.button`
 `;
 
 const StyledIconContainer = styled.span`
-  color: ${themeCssVariables.grayScale.gray12};
+  color: ${odelzaThemeCssVariables.grayScale.gray12};
   display: inline-flex;
   margin-right: 8px;
 `;

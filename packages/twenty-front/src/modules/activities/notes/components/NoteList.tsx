@@ -3,7 +3,7 @@ import { type ReactElement } from 'react';
 
 import { type Note } from '@/activities/types/Note';
 import { useNumberFormat } from '@/localization/hooks/useNumberFormat';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { NoteTile } from './NoteTile';
 
@@ -26,25 +26,25 @@ const StyledContainer = styled.div`
 const StyledTitleBar = styled.h3`
   display: flex;
   justify-content: space-between;
-  margin-bottom: ${themeCssVariables.spacing[4]};
-  margin-top: ${themeCssVariables.spacing[4]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
+  margin-top: ${odelzaThemeCssVariables.spacing[4]};
   place-items: center;
   width: 100%;
 `;
 
 const StyledTitle = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
 `;
 
 const StyledCount = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  margin-left: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  margin-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledNoteContainer = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   grid-auto-rows: 1fr;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   width: 100%;

@@ -23,29 +23,29 @@ import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
 import { MenuItemToggle } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
 import { sortByAscString } from '~/utils/array/sortByAscString';
 
 const StyledCreateRoleSectionContainer = styled.div`
   > * {
-    border-top: 1px solid ${themeCssVariables.border.color.light};
+    border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
     display: flex;
     justify-content: flex-end;
-    padding-bottom: ${themeCssVariables.spacing[2]};
-    padding-top: ${themeCssVariables.spacing[2]};
+    padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+    padding-top: ${odelzaThemeCssVariables.spacing[2]};
   }
 `;
 
 const StyledTableRows = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSearchAndFilterContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
@@ -135,7 +135,7 @@ export const SettingsRolesList = () => {
         <SettingsRolesTableHeader />
         <StyledTableRows>
           {filteredRoles.length === 0 ? (
-            <TableCell color={themeCssVariables.font.color.tertiary}>
+            <TableCell color={odelzaThemeCssVariables.font.color.tertiary}>
               {t`No roles found`}
             </TableCell>
           ) : (
