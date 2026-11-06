@@ -23,7 +23,7 @@ data while retiring the old second-brain stack without losing recoverable data.
 | Product name | `Odelza` is provisional pending formal trademark clearance. No domains have been purchased. |
 | Repository | Private GitHub repository `AndresMarulanda10/odelza-platform`. |
 | Remotes | `origin` is the private Odelza repository; `upstream` is Twenty. |
-| Fork strategy | Keep the core fork minimal and easy to update from upstream. |
+| Fork strategy | Since 2026-11-05 Odelza no longer merges from upstream. Development continues independently from the Twenty version currently on `main`; any part of the code can be changed. Twenty fixes are ported by hand only when needed. The `upstream` remote stays as a read-only reference. |
 | Future modules | Plan a separate `odelza-apps` monorepo for reusable core, personal, finance, projects, CRM, client portal, and workspace-bridge modules. Do not create it yet. |
 | Licensing | Core is mostly AGPL. Files marked Enterprise require commercial-license compliance. Publicly served modified AGPL code requires a corresponding source offer. |
 
@@ -78,7 +78,8 @@ No deletion has been performed.
 
 ## Session Guardrails
 
-- Keep core modifications minimal and upstream-compatible.
+- Odelza is no longer synced with upstream (see Fork strategy). Do not run
+  `git merge upstream/main`; port specific Twenty fixes by hand when needed.
 - Preserve workspace isolation; synchronize only explicit assignment data.
 - Never expose secrets, environment values, or personal identifiers in commits.
 - Do not create `odelza-apps`, purchase domains, approve the restore script, or

@@ -1,19 +1,35 @@
 # Odelza Platform
 
-This repository is a private, upstream-tracking derivative of
+This repository is a private product derived from
 [Twenty](https://github.com/twentyhq/twenty). It is an independent GitHub
-repository, not a member of Twenty's GitHub fork network. Twenty's history is
-preserved so upstream changes can be merged normally.
+repository, not a member of Twenty's GitHub fork network.
+
+Since 2026-11-05 Odelza is developed independently of Twenty. It started from
+the Twenty version on `main` at that date and no longer merges upstream
+changes. See [Relationship with Twenty](#relationship-with-twenty).
 
 ## Local runtime
 
-The local runtime uses Twenty's official self-hosting Compose file and an
-ignored `packages/twenty-docker/.env`. Docker resources use the `odelza`
-Compose project name to avoid collisions with other Twenty installations.
-These procedures are for local development, not production operations.
+The local runtime uses the self-hosting Compose file inherited from Twenty
+(`packages/twenty-docker/docker-compose.yml`) and an ignored
+`packages/twenty-docker/.env`. Docker resources use the `odelza` Compose
+project name to avoid collisions with other Twenty installations. These
+procedures are for local development, not production operations.
 
-Run commands from the repository root. Port `3000` is fixed by the upstream
-Compose file; stop the conflicting process before starting Odelza.
+The local Compose stack runs the image set in `TAG`. Today that is
+`odelza-local`, an image built locally from this repository:
+
+```bash
+docker buildx build --platform linux/amd64 --target twenty   --tag twentycrm/twenty:odelza-local   --file packages/twenty-docker/twenty/Dockerfile --load .
+```
+
+The image contains the working tree at build time, including uncommitted
+changes. The frontend build step needs about 8 GB of memory inside the Docker
+VM; if it runs out, raise the WSL memory limit or pre-build the frontend on the
+host with `npx nx build twenty-front`.
+
+Run commands from the repository root. Port `3000` is fixed by the Compose
+file; stop the conflicting process before starting Odelza.
 
 ```bash
 # Preflight: no output means port 3000 is available
@@ -44,7 +60,7 @@ docker compose --project-name odelza \
 curl --fail --silent --show-error --output /dev/null \
   --write-out 'healthz=%{http_code}\n' http://localhost:3000/healthz
 
-# The upstream worker has no healthcheck; verify it is running and scan recent logs.
+# The worker has no healthcheck; verify it is running and scan recent logs.
 test -n "$(docker compose --project-name odelza \
   --env-file packages/twenty-docker/.env \
   --file packages/twenty-docker/docker-compose.yml ps --quiet --status running worker)"
@@ -193,17 +209,16 @@ docker image inspect --format '{{json .RepoDigests}}' \
   "$(docker inspect --format '{{.Config.Image}}' odelza-server-1)"
 ```
 
-Choose a published Twenty release tag, read its release notes for migration
-requirements, pull it explicitly, and record its matching digest. Then manually
-set only `TAG` in the local `.env` to `<release-tag>@sha256:<digest>`; do not
-rewrite or regenerate the file because it contains local secrets.
+Do not move `TAG` to a newer Twenty release. Odelza no longer follows Twenty,
+so a newer Twenty image would carry code and database migrations that are not
+part of Odelza and would run them against Odelza data. The local `TAG` stays
+pinned to an image built from this repository.
+
+When `TAG` does change (for example, to a locally built Odelza image), set only
+`TAG` in the local `.env`; do not rewrite or regenerate the file because it
+contains local secrets. Then back up and recreate the application containers:
 
 ```bash
-RELEASE_TAG='<published-release-tag>'
-docker pull "twentycrm/twenty:$RELEASE_TAG"
-docker image inspect --format '{{index .RepoDigests 0}}' \
-  "twentycrm/twenty:$RELEASE_TAG"
-
 ./scripts/odelza-backup.sh
 docker compose --project-name odelza \
   --env-file packages/twenty-docker/.env \
@@ -235,20 +250,26 @@ touch data. Restore the pre-update backup only when the release migrated or
 otherwise changed data incompatibly; data restore is destructive and discards
 changes made after that backup.
 
-## Update from Twenty
+## Relationship with Twenty
 
-Application image updates and source-history updates are separate operations.
-Review upstream source changes before merging them into Odelza:
+Odelza is independent of Twenty's upstream since 2026-11-05.
 
-```bash
-git fetch upstream
-git switch main
-git pull --ff-only origin main
-git merge upstream/main
-git push origin main
-```
+- Development continues from the Twenty version that was on `main` at that
+  date. Upstream changes are no longer merged.
+- Any part of the code can be changed to fit Odelza, including Twenty
+  packages, UI, theme, and naming. Compatibility with future Twenty versions is
+  not a goal.
+- Do not run `git merge upstream/main`, `git pull upstream`, or rebase onto
+  Twenty branches.
+- Twenty bug or security fixes are not received automatically. When one is
+  needed, review it and port it by hand (cherry-pick or rewrite) in its own
+  branch and pull request, including any database migration it depends on.
+- The AGPL license still applies to the code inherited from Twenty, including
+  the obligation to offer the corresponding source when the modified app is
+  served publicly. Files marked Enterprise keep their commercial-license terms.
 
-The remotes must remain:
+The `upstream` remote is kept only as a read-only reference for reviewing
+Twenty's code:
 
 ```text
 origin   git@github.com:AndresMarulanda10/odelza-platform.git
