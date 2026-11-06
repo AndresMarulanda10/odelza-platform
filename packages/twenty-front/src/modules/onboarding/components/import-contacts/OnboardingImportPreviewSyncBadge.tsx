@@ -46,7 +46,7 @@ export const OnboardingImportPreviewSyncBadge = () => {
         size={theme.icon.size.md}
         color={odelzaThemeCssVariables.font.color.tertiary}
       />
-      <StyledTwentyLogo src="/images/integrations/twenty-logo.svg" alt="" />
+      <StyledTwentyLogo src="/images/odelza/icon.svg" alt="" />
     </StyledBadge>
   );
 };

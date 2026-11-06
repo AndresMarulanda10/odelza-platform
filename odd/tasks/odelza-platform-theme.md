@@ -50,6 +50,7 @@ La tarea empezó como un cambio de paleta (Gruvbox → Odelza). El 2026-11-05 se
 - **Fase 1, revisión:** el 2026-11-05 el usuario aprobó los colores en la app real ("por ahora"). Si hacen falta ajustes de color, se agregan como tarea previa a la fase que los necesite. Falta el commit y el PR de la fase.
 - **Fase 2 (logos y assets):** siguiente, desbloqueada por la aprobación de la fase 1.
 - **Fases 3 a 5:** planeadas, sin empezar.
+- **Fase 6 (ilustraciones):** tarea final, después de todo el branding. Decidida el 2026-11-05: no es prioritaria y el usuario aún no tiene todas las ilustraciones.
 - **Bloqueos:** ninguno para la fase 1 (la paleta ya está transcrita). La fase 2 necesita los assets del logo Odelza. Ver "Insumos pendientes".
 
 ### Registro 2026-11-05 (implementación fase 1)
@@ -171,8 +172,8 @@ Alcance: con el tema aprobado, revisar cómo están organizados los assets y ree
 20. Inventario de assets: `twenty-front/public/images/{icons,ai,onboarding,placeholders,integrations}`, assets de `twenty-ui`, `twenty-emails` y los que se cargan desde dominios de Twenty. Separar lo que es marca Twenty, lo que es ilustración con su estilo y lo que es de terceros (logos de integraciones, que se quedan).
 21. Proponer la organización de los assets Odelza (carpeta propia, nombres, formatos, fuente SVG maestra) y acordarla con el usuario.
 22. Generar el set de íconos desde el SVG maestro (favicon, Android, iOS, Windows 11) y reemplazar logo del login, logo de carga y `DEFAULT_WORKSPACE_LOGO` (front y emails).
-23. Logo de correos (`twenty-emails/src/components/Logo.tsx`) servido por nuestro server.
-24. Ilustraciones con el estilo de Twenty (`ai/*-cover-*.png`, `onboarding/welcome-halftone.svg`, `onboarding/trust-badges`, `placeholders/*`): reemplazar o adaptar a la paleta.
+23. ~~Logo de correos~~: movido el 2026-11-05 a la tarea `odd/tasks/email-logo-server-url.md`, que se hace después de fusionar este branding a `main`.
+24. ~~Ilustraciones~~: movido a la fase 6 el 2026-11-05 (no prioritario, faltan las ilustraciones propias). Los sellos de confianza (`onboarding/trust-badges`) se ocultan en la fase 4 junto con el resto del contenido de Twenty Cloud.
 25. Imagen social de los metadatos (og/twitter).
 26. Verificación visual propia y **revisión visual del usuario**, que cierra la fase.
 
@@ -196,10 +197,57 @@ Alcance: con el tema aprobado, revisar cómo están organizados los assets y ree
 36. Verificación visual de la app completa con la imagen construida desde el fork.
 37. Registrar aquí lo hecho, cómo se verificó y el estado. Commit y PR solo con autorización explícita.
 
+### Fase 6: ilustraciones
+
+Tarea final, después de cerrar el branding. Empieza cuando el usuario tenga las ilustraciones propias.
+
+38. Ilustraciones con el estilo de Twenty, según el inventario de assets: estados vacíos y de error (`placeholders/*`, 60 PNG), portadas de Settings (`cover-*.png` y `ai/*-cover-*.png`), ilustraciones de aplicaciones (`.webp`), `onboarding/welcome-halftone.svg` e `illustration-*.svg` de twenty-ui si usan colores fijos. Reemplazar por las de Odelza, adaptar a la paleta o quitar.
+39. Revisión visual del usuario, que cierra la fase.
+
+## Inventario de assets (fase 2, paso 20, 2026-11-05)
+
+Rutas relativas a `packages/`. Clasificación: **M** marca Twenty (se reemplaza), **E** ilustración o captura con el estilo de Twenty (se reemplaza o se adapta), **T** terceros (se queda).
+
+| Clase | Asset | Dónde se usa |
+| --- | --- | --- |
+| M | `twenty-front/public/images/icons/{android,ios,windows11}` (112 PNG) | Favicon y apple-touch-icon en `index.html`, íconos PWA en `manifest.json`, logo por defecto del login (`auth/components/Logo.tsx` usa `android-launchericon-192-192.png`) |
+| M | `twenty-front/public/images/integrations/twenty-logo.svg` | `OnboardingHeader.tsx`, `OnboardingPulsingLogo.tsx`, `OnboardingImportPreviewSyncBadge.tsx`, `AppConnectionHeader.tsx` |
+| M | `DEFAULT_WORKSPACE_LOGO` remoto (`twentyhq.github.io/.../twenty-logo.png`) | `twenty-front/.../navigation-drawer/constants/DefaultWorkspaceLogo.ts` y `twenty-emails/src/constants/DefaultWorkspaceLogo.ts` |
+| M | Logo de correos remoto (`app.twenty.com/images/icons/windows11/Square150x150Logo.scale-100.png`) | `twenty-emails/src/components/Logo.tsx` |
+| M | Imagen social remota (`raw.githubusercontent.com/twentyhq/.../social-card.png`) | og:image y twitter:image en `twenty-front/index.html` |
+| M | `twenty-ui/src/assets/icons/twenty-star{,-filled}.svg` | `IconTwentyStar` en 2 archivos del front |
+| M | `twenty-ui/logo.png` | README del paquete, no se ve en la app |
+| E | `twenty-front/public/images/placeholders/{background,dark-background,moving-image,dark-moving-image}` (60 PNG) | Estados vacíos y de error (notas, tareas, inbox, 404, 500...). Formas con trazo negro y relleno pastel de la paleta Radix |
+| E | `twenty-front/public/images/ai/ai-{skills,tools}-cover-{light,dark}.png` | `pages/settings/ai/SettingsAI.tsx` |
+| E | `cover-{light,dark}.png` en `settings/{billing,data-model,mcp-and-apis}` y `pages/settings/{applications,members,...}` (18 PNG) | Portadas de Settings: capturas de la UI de Twenty con sus colores |
+| E | `pages/settings/applications/assets/{custom,standard}-illustrations/*.webp` (8) | Descripción de aplicaciones |
+| E | `twenty-front/public/images/onboarding/welcome-halftone.svg` | Onboarding |
+| E | `twenty-ui/src/assets/icons/illustration-*.svg` (23) | Ilustraciones de tipos de campo en el modelo de datos. Revisar si usan colores fijos |
+| T | `twenty-front/public/images/onboarding/trust-badges/*` (GDPR, SOC2, PwC, República Francesa) | `OnboardingTrustBadges.tsx`. Son certificaciones de Twenty Cloud: no aplican a Odelza, se ocultan en vez de reemplazarse |
+| T | `twenty-front/public/images/integrations/*` (salvo `twenty-logo.svg`), `twenty-ui` (Google, Microsoft, OpenAI, Claude...), `mcp-and-apis/assets/mcp-clients/*` | Logos de integraciones, se quedan |
+| T | `twenty-ui/src/assets/themes/{light,dark}-noise`, `misc/list-view-grip.svg`, `data-model/assets/{ArrowRight,OneToMany,OneToOne}.svg` | Texturas y glifos neutros, se quedan |
+
+Fuera de la fase: los avatares y logos de `twentyhq.github.io` en el dev-seeder del server son datos de demo, no se ven en el workspace real.
+
+`IconTwentyStar` (twenty-ui) es la estrella del campo rating y el ícono por defecto de tipo de campo, no un logo: se queda.
+
+### Registro 2026-11-05 (fase 2, pasos 21, 22 y 25)
+
+- **Decisiones del usuario:** organización aprobada (maestros en `docs/brand/`, generados en `twenty-front/public/images/odelza/`). Favicon sin los tres puntos diagonales en 16 y 32 px, porque a ese tamaño son ruido; el resto lleva el isotipo completo.
+- **Maestros:** los 6 SVG (isotipo, logotipo e imagotipo, claro y oscuro) copiados a `docs/brand/` sin modificar. "Claro" es para fondo claro y "oscuro" para fondo oscuro.
+- **Generador:** `node scripts/odelza-brand-assets.mjs` (usa `sharp` de `node_modules`). Quita los metadatos C2PA de las copias y genera: SVG limpios, `icon.svg` (gato butter sobre coffee bean, esquinas redondeadas), `favicon.{svg,ico}` y `favicon-{16,32}.png` sin puntos, `icon-{192,512}.png`, `icon-maskable-512.png` (dentro de la zona segura), `apple-touch-icon.png`, `workspace-logo.png` y `social-card.png` (1200x630, imagotipo sobre butter).
+- **Referencias cambiadas:** `index.html` (favicon, apple-touch-icon, og/twitter image), `manifest.json` (de 112 íconos de Windows/iOS/Android a 4: SVG, 192, 512 y maskable), logo por defecto del login, logo del onboarding y de la conexión de apps (4 componentes), `DEFAULT_WORKSPACE_LOGO` del front (URL absoluta al front, porque `getImageAbsoluteURI` manda las rutas relativas a `/files` del server) y favicon por defecto de `PageFavicon` (antes usaba el logo de workspace).
+- **Borrado:** `public/images/icons/` y `public/images/integrations/twenty-logo.svg`. `git grep` ya no encuentra referencias en el front.
+- **Verificación:** `tsgo -p tsconfig.json` en el front con solo los 15 errores previos de `front-components`; `oxlint --type-aware` 0/0 y `oxfmt --check` correcto en los 7 archivos y el script. No hay tests sobre estas piezas. Revisión de los PNG generados con una hoja de contacto.
+- **Docker:** respaldo previo con `pg_dump` (solo db arriba) en `backups/<fecha>-pre-phase2/`, porque `odelza-backup.sh` exige el server arriba y habría arrancado la imagen vieja. Imagen `odelza-local` reconstruida (`6382abbf`) y stack recreado con `up --detach --wait`: app y jobs sanos, sin reinicios, `/healthz` ok. El server sirve `images/odelza/*` con su tipo correcto, `index.html` y `manifest.json` apuntan a Odelza y la ruta vieja de íconos de Twenty ya no existe.
+- **Revisión del usuario (2026-11-05):** aprobó los logos e íconos visibles en la app ("están perfectos"). Igual que con los colores, los ajustes futuros van en una tarea de corrección aparte.
+- **Pendiente:** og:image es relativa; los crawlers necesitan URL absoluta, se completa en la fase 4 con el dominio. Logo de correos y `DEFAULT_WORKSPACE_LOGO` de emails (paso 23), ilustraciones (paso 24), verificación en la app real y revisión del usuario (paso 26).
+
 ## Insumos pendientes
 
 - **Fase 1:** ninguno. Los nombres provisionales (`*`) se revisan en la revisión visual.
-- **Fase 2:** logo Odelza: SVG maestro, isotipo cuadrado y variantes para fondo claro y oscuro. Ilustraciones propias, si se quieren reemplazar las de Twenty.
+- **Fase 2:** logo Odelza: SVG maestro, isotipo cuadrado y variantes para fondo claro y oscuro. Logo recibido el 2026-11-05.
+- **Fase 6:** ilustraciones propias de Odelza.
 - Confirmar que se avanza con el nombre "Odelza" aunque el registro de marca esté pendiente.
 - URLs propias de términos, privacidad y documentación, o la decisión de ocultar esos enlaces.
 - Nombre y dirección del remitente de correos, y el dominio cuando exista.
