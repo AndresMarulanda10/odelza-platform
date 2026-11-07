@@ -1,5 +1,11 @@
 # Integrate and deploy generic workflow data capabilities
 
+## Publication authorization checkpoint
+- Matching issue https://github.com/AndresMarulanda10/odelza-platform/issues/57 was created once and read back OPEN with existing type:feature and status:approved labels after explicit user authorization to create and approve it. Its matching Markdown feature template was used; duplicate and privacy checks passed.
+- All GitHub operations must explicitly target AndresMarulanda10/odelza-platform: unqualified gh repository discovery can select the upstream twentyhq/twenty repository. Upstream publication is not authorized.
+- The issue prerequisite is satisfied; publication remains pending the bounded slicing decision. Preserve the chosen independent main-targeted strategy: permission foundation (225 source/test changed lines), pagination (approximately 1,275), aggregation excluding the foundation (approximately 1,805), and conditional updates (approximately 2,638), plus small verified integration corrections. These are planning boundaries, not final PR diff counts. One honest slicing pass keeps behavior with tests; the three feature units remain above the installed 400-line review budget.
+- Actual inspected Danger code does not implement a 400-line gate, and no size-exception label currently exists. The installed chained-pr workflow nevertheless requires explicit maintainer size-exception acceptance for unavoidable oversized slices. Issue approval is not that acceptance; ask before publishing those PRs. Do not create exception labels or claim CI approval on the human's behalf.
+
 ## Outcome and authorization
 Combine the accepted pagination, aggregation and conditional-update capabilities against current main, verify their combined behavior, publish through repository policy, deploy production, then configure and verify Second Brain workflows without losing financial history.
 
