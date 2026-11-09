@@ -138,10 +138,10 @@ msgstr "A function with this name already exists."
 msgid "A hand-picked audience of people"
 msgstr "A hand-picked audience of people"
 
-#. js-lingui-id: TF/ZV2
+#. js-lingui-id: /baemW
 #: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "A heads up before your Twenty trial ends"
-msgstr "A heads up before your Twenty trial ends"
+msgid "A heads up before your Odelza trial ends"
+msgstr "A heads up before your Odelza trial ends"
 
 #. js-lingui-id: 6yZjO1
 #: src/engine/core-modules/application/application.exception.ts
@@ -4222,10 +4222,10 @@ msgstr "Join column name is required."
 msgid "Join table linking message channel message associations to message folders"
 msgstr "Join table linking message channel message associations to message folders"
 
-#. js-lingui-id: PviVyk
+#. js-lingui-id: vUa5JX
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
-msgid "Join your team on Twenty"
-msgstr "Join your team on Twenty"
+msgid "Join your team on Odelza"
+msgstr "Join your team on Odelza"
 
 #. js-lingui-id: ffWso3
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-call-recording-standard-flat-field-metadata.util.ts
@@ -7151,10 +7151,10 @@ msgstr "System fields cannot be deleted"
 msgid "System fields cannot be updated"
 msgstr "System fields cannot be updated"
 
-#. js-lingui-id: aK2k19
+#. js-lingui-id: nkalOB
 #: src/engine/metadata-modules/index-metadata/services/index-metadata.service.ts
-msgid "System indexes are required for Twenty to work and cannot be deleted."
-msgstr "System indexes are required for Twenty to work and cannot be deleted."
+msgid "System indexes are required for Odelza to work and cannot be deleted."
+msgstr "System indexes are required for Odelza to work and cannot be deleted."
 
 #. js-lingui-id: /ojawH
 #: src/engine/workspace-manager/workspace-migration/workspace-migration-builder/validators/services/flat-object-metadata-validator.service.ts
@@ -7800,11 +7800,11 @@ msgstr "This API Key has expired. Please create a new one."
 msgid "This API key has no role assigned."
 msgstr "This API key has no role assigned."
 
-#. js-lingui-id: zISk4k
+#. js-lingui-id: /3C8Hb
 #: src/engine/core-modules/application/application-registration/application-registration.exception.ts
 #: src/engine/core-modules/application/application.exception.ts
-msgid "This app requires a newer version of the Twenty server. Please upgrade your server or use a compatible app version."
-msgstr "This app requires a newer version of the Twenty server. Please upgrade your server or use a compatible app version."
+msgid "This app requires a newer version of the Odelza server. Please upgrade your server or use a compatible app version."
+msgstr "This app requires a newer version of the Odelza server. Please upgrade your server or use a compatible app version."
 
 #. js-lingui-id: y2nks/
 #: src/engine/core-modules/application/application.exception.ts
@@ -9020,10 +9020,10 @@ msgstr "Webhook not found."
 msgid "Wednesday"
 msgstr "Wednesday"
 
-#. js-lingui-id: TVkCrJ
+#. js-lingui-id: ZnbxL+
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
-msgid "Welcome to Twenty: Please Confirm Your Email"
-msgstr "Welcome to Twenty: Please Confirm Your Email"
+msgid "Welcome to Odelza: Please Confirm Your Email"
+msgstr "Welcome to Odelza: Please Confirm Your Email"
 
 #. js-lingui-id: nCHI/F
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-message-campaign-standard-flat-field-metadata.util.ts
@@ -9692,6 +9692,16 @@ msgstr "Your app version is out of date. Please refresh the page to continue."
 msgid "Your billing subscription is corrupted. Please contact support."
 msgstr "Your billing subscription is corrupted. Please contact support."
 
+#. js-lingui-id: +R4Ipy
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza plan renews soon"
+msgstr "Your Odelza plan renews soon"
+
+#. js-lingui-id: IvAgJP
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza trial is ending soon"
+msgstr "Your Odelza trial is ending soon"
+
 #. js-lingui-id: bTyBrW
 #: src/engine/core-modules/auth/services/auth.service.ts
 msgid "Your Password Has Been Successfully Changed"
@@ -9708,16 +9718,6 @@ msgstr "Your role in this workspace could not be found. Please contact your work
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-company-standard-flat-field-metadata.util.ts
 msgid "Your team member responsible for managing the company account"
 msgstr "Your team member responsible for managing the company account"
-
-#. js-lingui-id: sOfbGC
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty plan renews soon"
-msgstr "Your Twenty plan renews soon"
-
-#. js-lingui-id: qW+K5e
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty trial is ending soon"
-msgstr "Your Twenty trial is ending soon"
 
 #. js-lingui-id: ej/tZF
 #: src/engine/core-modules/graphql/hooks/use-graphql-error-handler.hook.ts

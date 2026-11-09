@@ -143,10 +143,10 @@ msgstr "Một hàm có tên này đã tồn tại."
 msgid "A hand-picked audience of people"
 msgstr "Một tập khách hàng được chọn thủ công"
 
-#. js-lingui-id: TF/ZV2
+#. js-lingui-id: /baemW
 #: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "A heads up before your Twenty trial ends"
-msgstr "Thông báo trước khi bản dùng thử Twenty của bạn kết thúc"
+msgid "A heads up before your Odelza trial ends"
+msgstr "Thông báo trước khi bản dùng thử Odelza của bạn kết thúc"
 
 #. js-lingui-id: 6yZjO1
 #: src/engine/core-modules/application/application.exception.ts
@@ -4227,10 +4227,10 @@ msgstr "Tên cột join là bắt buộc."
 msgid "Join table linking message channel message associations to message folders"
 msgstr "Bảng nối liên kết các liên kết tin nhắn của kênh với các thư mục tin nhắn"
 
-#. js-lingui-id: PviVyk
+#. js-lingui-id: vUa5JX
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
-msgid "Join your team on Twenty"
-msgstr "Tham gia vào đội ngũ của bạn trên Twenty"
+msgid "Join your team on Odelza"
+msgstr "Tham gia vào đội ngũ của bạn trên Odelza"
 
 #. js-lingui-id: ffWso3
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-call-recording-standard-flat-field-metadata.util.ts
@@ -7156,10 +7156,10 @@ msgstr "Các trường hệ thống không thể bị xóa"
 msgid "System fields cannot be updated"
 msgstr "Các trường hệ thống không thể được cập nhật"
 
-#. js-lingui-id: aK2k19
+#. js-lingui-id: nkalOB
 #: src/engine/metadata-modules/index-metadata/services/index-metadata.service.ts
-msgid "System indexes are required for Twenty to work and cannot be deleted."
-msgstr "Các chỉ mục hệ thống là bắt buộc để Twenty hoạt động và không thể bị xóa."
+msgid "System indexes are required for Odelza to work and cannot be deleted."
+msgstr "Các chỉ mục hệ thống là bắt buộc để Odelza hoạt động và không thể bị xóa."
 
 #. js-lingui-id: /ojawH
 #: src/engine/workspace-manager/workspace-migration/workspace-migration-builder/validators/services/flat-object-metadata-validator.service.ts
@@ -7805,11 +7805,11 @@ msgstr "Khóa API này đã hết thời gian sử dụng. Vui lòng tạo một
 msgid "This API key has no role assigned."
 msgstr "Khóa API này chưa được gán vai trò."
 
-#. js-lingui-id: zISk4k
+#. js-lingui-id: /3C8Hb
 #: src/engine/core-modules/application/application-registration/application-registration.exception.ts
 #: src/engine/core-modules/application/application.exception.ts
-msgid "This app requires a newer version of the Twenty server. Please upgrade your server or use a compatible app version."
-msgstr "Ứng dụng này yêu cầu phiên bản máy chủ Twenty mới hơn. Vui lòng nâng cấp máy chủ của bạn hoặc dùng phiên bản ứng dụng tương thích."
+msgid "This app requires a newer version of the Odelza server. Please upgrade your server or use a compatible app version."
+msgstr "Ứng dụng này yêu cầu phiên bản máy chủ Odelza mới hơn. Vui lòng nâng cấp máy chủ của bạn hoặc dùng phiên bản ứng dụng tương thích."
 
 #. js-lingui-id: y2nks/
 #: src/engine/core-modules/application/application.exception.ts
@@ -9025,10 +9025,10 @@ msgstr "Không tìm thấy webhook."
 msgid "Wednesday"
 msgstr "Thứ Tư"
 
-#. js-lingui-id: TVkCrJ
+#. js-lingui-id: ZnbxL+
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
-msgid "Welcome to Twenty: Please Confirm Your Email"
-msgstr "Chào mừng đến với Twenty: Vui lòng xác nhận email của bạn"
+msgid "Welcome to Odelza: Please Confirm Your Email"
+msgstr "Chào mừng đến với Odelza: Vui lòng xác nhận email của bạn"
 
 #. js-lingui-id: nCHI/F
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-message-campaign-standard-flat-field-metadata.util.ts
@@ -9697,6 +9697,16 @@ msgstr "Phiên bản ứng dụng của bạn đã lỗi thời. Vui lòng tải
 msgid "Your billing subscription is corrupted. Please contact support."
 msgstr "Gói đăng ký thanh toán của bạn bị lỗi. Vui lòng liên hệ hỗ trợ."
 
+#. js-lingui-id: +R4Ipy
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza plan renews soon"
+msgstr "Gói Odelza của bạn sẽ gia hạn sớm"
+
+#. js-lingui-id: IvAgJP
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza trial is ending soon"
+msgstr "Bản dùng thử Odelza của bạn sắp kết thúc"
+
 #. js-lingui-id: bTyBrW
 #: src/engine/core-modules/auth/services/auth.service.ts
 msgid "Your Password Has Been Successfully Changed"
@@ -9713,16 +9723,6 @@ msgstr "Không thể tìm thấy vai trò của bạn trong không gian làm vi�
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-company-standard-flat-field-metadata.util.ts
 msgid "Your team member responsible for managing the company account"
 msgstr "Thành viên trong nhóm của bạn phụ trách quản lý tài khoản công ty"
-
-#. js-lingui-id: sOfbGC
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty plan renews soon"
-msgstr "Gói Twenty của bạn sẽ gia hạn sớm"
-
-#. js-lingui-id: qW+K5e
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty trial is ending soon"
-msgstr "Bản dùng thử Twenty của bạn sắp kết thúc"
 
 #. js-lingui-id: ej/tZF
 #: src/engine/core-modules/graphql/hooks/use-graphql-error-handler.hook.ts

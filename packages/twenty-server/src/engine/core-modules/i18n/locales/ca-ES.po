@@ -143,10 +143,10 @@ msgstr "Ja existeix una funció amb aquest nom."
 msgid "A hand-picked audience of people"
 msgstr "Un públic de persones seleccionades manualment"
 
-#. js-lingui-id: TF/ZV2
+#. js-lingui-id: /baemW
 #: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "A heads up before your Twenty trial ends"
-msgstr "Un avís abans que finalitzi la teva prova de Twenty"
+msgid "A heads up before your Odelza trial ends"
+msgstr "Un avís abans que finalitzi la teva prova d'Odelza"
 
 #. js-lingui-id: 6yZjO1
 #: src/engine/core-modules/application/application.exception.ts
@@ -4227,10 +4227,10 @@ msgstr "Cal el nom de la columna d'unió."
 msgid "Join table linking message channel message associations to message folders"
 msgstr "Taula d'unió que enllaça les associacions de missatges del canal de missatges amb les carpetes de missatges"
 
-#. js-lingui-id: PviVyk
+#. js-lingui-id: vUa5JX
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
-msgid "Join your team on Twenty"
-msgstr "Uneix-te al teu equip a Twenty"
+msgid "Join your team on Odelza"
+msgstr "Uneix-te al teu equip a Odelza"
 
 #. js-lingui-id: ffWso3
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-call-recording-standard-flat-field-metadata.util.ts
@@ -7156,10 +7156,10 @@ msgstr "Els camps del sistema no es poden suprimir"
 msgid "System fields cannot be updated"
 msgstr "Els camps del sistema no es poden actualitzar"
 
-#. js-lingui-id: aK2k19
+#. js-lingui-id: nkalOB
 #: src/engine/metadata-modules/index-metadata/services/index-metadata.service.ts
-msgid "System indexes are required for Twenty to work and cannot be deleted."
-msgstr "Els índexs del sistema són necessaris perquè Twenty funcioni i no es poden suprimir."
+msgid "System indexes are required for Odelza to work and cannot be deleted."
+msgstr "Els índexs del sistema són necessaris perquè Odelza funcioni i no es poden suprimir."
 
 #. js-lingui-id: /ojawH
 #: src/engine/workspace-manager/workspace-migration/workspace-migration-builder/validators/services/flat-object-metadata-validator.service.ts
@@ -7805,11 +7805,11 @@ msgstr "Aquesta clau API ha expirat. Si us plau, crea una nova."
 msgid "This API key has no role assigned."
 msgstr "A aquesta clau d'API no se li ha assignat cap rol."
 
-#. js-lingui-id: zISk4k
+#. js-lingui-id: /3C8Hb
 #: src/engine/core-modules/application/application-registration/application-registration.exception.ts
 #: src/engine/core-modules/application/application.exception.ts
-msgid "This app requires a newer version of the Twenty server. Please upgrade your server or use a compatible app version."
-msgstr "Aquesta aplicació requereix una versió més recent del servidor Twenty. Actualitzeu el vostre servidor o utilitzeu una versió de l'aplicació compatible."
+msgid "This app requires a newer version of the Odelza server. Please upgrade your server or use a compatible app version."
+msgstr "Aquesta aplicació requereix una versió més recent del servidor Odelza. Actualitzeu el vostre servidor o utilitzeu una versió de l'aplicació compatible."
 
 #. js-lingui-id: y2nks/
 #: src/engine/core-modules/application/application.exception.ts
@@ -9025,10 +9025,10 @@ msgstr "Webhook no trobat."
 msgid "Wednesday"
 msgstr "Dimecres"
 
-#. js-lingui-id: TVkCrJ
+#. js-lingui-id: ZnbxL+
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
-msgid "Welcome to Twenty: Please Confirm Your Email"
-msgstr "Benvingut a Twenty: si us plau, confirma el teu correu electrònic"
+msgid "Welcome to Odelza: Please Confirm Your Email"
+msgstr "Benvingut a Odelza: si us plau, confirma el teu correu electrònic"
 
 #. js-lingui-id: nCHI/F
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-message-campaign-standard-flat-field-metadata.util.ts
@@ -9697,6 +9697,16 @@ msgstr "La versió de la teva aplicació està obsoleta. Si us plau, actualitza 
 msgid "Your billing subscription is corrupted. Please contact support."
 msgstr "La teva subscripció de facturació està corrupta. Si us plau, contacta amb el suport."
 
+#. js-lingui-id: +R4Ipy
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza plan renews soon"
+msgstr "El teu pla d'Odelza es renovarà aviat"
+
+#. js-lingui-id: IvAgJP
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza trial is ending soon"
+msgstr "La teva prova d'Odelza finalitzarà aviat"
+
 #. js-lingui-id: bTyBrW
 #: src/engine/core-modules/auth/services/auth.service.ts
 msgid "Your Password Has Been Successfully Changed"
@@ -9713,16 +9723,6 @@ msgstr "No es pot trobar el teu rol en aquest espai de treball. Si us plau, cont
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-company-standard-flat-field-metadata.util.ts
 msgid "Your team member responsible for managing the company account"
 msgstr "El teu membre de l'equip responsable de la gestió del compte de l'empresa"
-
-#. js-lingui-id: sOfbGC
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty plan renews soon"
-msgstr "El teu pla de Twenty es renovarà aviat"
-
-#. js-lingui-id: qW+K5e
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty trial is ending soon"
-msgstr "La teva prova de Twenty finalitzarà aviat"
 
 #. js-lingui-id: ej/tZF
 #: src/engine/core-modules/graphql/hooks/use-graphql-error-handler.hook.ts

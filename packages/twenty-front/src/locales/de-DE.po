@@ -1393,6 +1393,11 @@ msgstr "Objekt hinzufügen"
 msgid "Add object permission"
 msgstr "Objektberechtigung hinzufügen"
 
+#. js-lingui-id: yT8omL
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Add Odelza as a Streamable HTTP extension in Goose."
+msgstr "Fügen Sie Odelza in Goose als „Streamable HTTP“-Erweiterung hinzu."
+
 #. js-lingui-id: Dl5lVI
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx
 msgid "Add option"
@@ -1467,35 +1472,35 @@ msgstr "Aufgabe hinzufügen"
 msgid "Add test input for evaluation (e.g., \"Find all customers in NY\")"
 msgstr "Testeingabe zur Bewertung hinzufügen (z. B. \"alle Kunden in NY finden\")"
 
-#. js-lingui-id: FKGcEL
+#. js-lingui-id: PZ9W2V
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server as a remote context server in Zed."
-msgstr "Fügen Sie den Twenty-MCP-Server als Remote-Context-Server in Zed hinzu."
+msgid "Add the Odelza MCP server as a remote context server in Zed."
+msgstr "Fügen Sie den Odelza-MCP-Server als Remote-Context-Server in Zed hinzu."
 
-#. js-lingui-id: iA2nHX
+#. js-lingui-id: cE6ZAA
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server from Augment Code settings."
-msgstr "Fügen Sie den Twenty-MCP-Server in den Augment-Code-Einstellungen hinzu."
+msgid "Add the Odelza MCP server from Augment Code settings."
+msgstr "Fügen Sie den Odelza-MCP-Server in den Augment-Code-Einstellungen hinzu."
 
-#. js-lingui-id: l+NzAk
+#. js-lingui-id: V9totg
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server from Raycast's MCP commands or settings."
-msgstr "Fügen Sie den Twenty-MCP-Server über die MCP-Befehle oder Einstellungen von Raycast hinzu."
+msgid "Add the Odelza MCP server from Raycast's MCP commands or settings."
+msgstr "Fügen Sie den Odelza-MCP-Server über die MCP-Befehle oder Einstellungen von Raycast hinzu."
 
-#. js-lingui-id: j6G/yI
+#. js-lingui-id: 00MgD2
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server in Gemini CLI settings."
-msgstr "Fügen Sie den Twenty-MCP-Server in den Gemini-CLI-Einstellungen hinzu."
+msgid "Add the Odelza MCP server in Gemini CLI settings."
+msgstr "Fügen Sie den Odelza-MCP-Server in den Gemini-CLI-Einstellungen hinzu."
 
-#. js-lingui-id: /OyhlM
+#. js-lingui-id: E9G1EO
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server to your LibreChat configuration file."
-msgstr "Fügen Sie den Twenty-MCP-Server zu Ihrer LibreChat-Konfigurationsdatei hinzu."
+msgid "Add the Odelza MCP server to your LibreChat configuration file."
+msgstr "Fügen Sie den Odelza-MCP-Server zu Ihrer LibreChat-Konfigurationsdatei hinzu."
 
-#. js-lingui-id: K0DXoj
+#. js-lingui-id: lUn4sy
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty remote server with LM Studio's install link."
-msgstr "Fügen Sie den Twenty-Remote-Server mit dem Installationslink von LM Studio hinzu."
+msgid "Add the Odelza remote server with LM Studio's install link."
+msgstr "Fügen Sie den Odelza-Remote-Server mit dem Installationslink von LM Studio hinzu."
 
 #. js-lingui-id: 5+ttxv
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistInput.tsx
@@ -1511,11 +1516,6 @@ msgstr "Zu Favoriten hinzufügen"
 #: src/modules/settings/unsubscribe-topics/components/SettingsWorkspaceUnsubscribeTopicSection.tsx
 msgid "Add topic"
 msgstr "Thema hinzufügen"
-
-#. js-lingui-id: 4D/zWv
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add Twenty as a Streamable HTTP extension in Goose."
-msgstr "Fügen Sie Twenty in Goose als „Streamable HTTP“-Erweiterung hinzu."
 
 #. js-lingui-id: XnwceV
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationRedirectURIsInput.tsx
@@ -3162,10 +3162,10 @@ msgstr "Abrechnungsintervall"
 msgid "Billing period"
 msgstr "Abrechnungszeitraum"
 
-#. js-lingui-id: xF/NXI
+#. js-lingui-id: hvQPEr
 #: src/modules/settings/billing/hooks/useBillingPortalSession.ts
-msgid "Billing portal session error. Please retry or contact Twenty team"
-msgstr "Fehler bei der Abrechnungsportal-Sitzung. Bitte versuchen Sie es erneut oder kontaktieren Sie das Twenty-Team"
+msgid "Billing portal session error. Please retry or contact the Odelza team"
+msgstr "Fehler bei der Abrechnungsportal-Sitzung. Bitte versuchen Sie es erneut oder kontaktieren Sie das Odelza-Team"
 
 #. js-lingui-id: K1172m
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistSection.tsx
@@ -3304,10 +3304,10 @@ msgstr "Gebündelt mit {applicationName}"
 msgid "by {author}"
 msgstr "von {author}"
 
-#. js-lingui-id: 8Pfllj
+#. js-lingui-id: OiG8Zu
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "By using Twenty, you agree to the"
-msgstr "Durch die Nutzung von Twenty stimmen Sie den"
+msgid "By using Odelza, you agree to the"
+msgstr "Durch die Nutzung von Odelza stimmen Sie den"
 
 #. js-lingui-id: Yx41df
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
@@ -3796,11 +3796,11 @@ msgstr "Überprüfen Sie Ihre E-Mails"
 msgid "Check your inbox to verify your new email address."
 msgstr "Überprüfen Sie Ihren Posteingang, um Ihre neue E-Mail-Adresse zu bestätigen."
 
-#. js-lingui-id: SxwQE8
+#. js-lingui-id: jqbYQu
 #: src/modules/settings/billing/hooks/useHandleCheckoutSession.ts
 #: src/modules/settings/billing/hooks/useHandleCheckoutSession.ts
-msgid "Checkout session error. Please retry or contact Twenty team"
-msgstr "Fehler bei der Checkout-Sitzung. Bitte versuchen Sie es erneut oder kontaktieren Sie das Twenty-Team"
+msgid "Checkout session error. Please retry or contact the Odelza team"
+msgstr "Fehler bei der Checkout-Sitzung. Bitte versuchen Sie es erneut oder kontaktieren Sie das Odelza-Team"
 
 #. js-lingui-id: SviKkE
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -4385,6 +4385,16 @@ msgstr "Konfigurieren Sie SMTP-Einstellungen, um E-Mails von Ihrem Konto zu send
 msgid "Configure the default AI models for all workspaces"
 msgstr "Standard-KI-Modelle für alle Arbeitsbereiche konfigurieren"
 
+#. js-lingui-id: /iOabO
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Configure the Odelza MCP server manually in Cascade."
+msgstr "Konfigurieren Sie den Odelza-MCP-Server manuell in Cascade."
+
+#. js-lingui-id: OPG1Ma
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Configure the Odelza MCP server manually in Cline."
+msgstr "Konfigurieren Sie den Odelza-MCP-Server manuell in Cline."
+
 #. js-lingui-id: CcCy4C
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Configure the remote MCP server through Warp's agent settings."
@@ -4394,16 +4404,6 @@ msgstr "Konfigurieren Sie den Remote-MCP-Server über die Agenteneinstellungen v
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Configure the remote server in Amazon Q Developer's MCP settings."
 msgstr "Konfigurieren Sie den Remote-Server in den MCP-Einstellungen von Amazon Q Developer."
-
-#. js-lingui-id: g1/8jH
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Configure the Twenty MCP server manually in Cascade."
-msgstr "Konfigurieren Sie den Twenty-MCP-Server manuell in Cascade."
-
-#. js-lingui-id: XiyvRh
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Configure the Twenty MCP server manually in Cline."
-msgstr "Konfigurieren Sie den Twenty-MCP-Server manuell in Cline."
 
 #. js-lingui-id: qA9AGQ
 #: src/modules/settings/domains/components/SettingsDomainRecords.tsx
@@ -7664,10 +7664,10 @@ msgstr "Fehler beim Abbrechen des Intervallswechsels."
 msgid "Error while cancelling plan switching."
 msgstr "Fehler beim Abbrechen des Tarifwechsels."
 
-#. js-lingui-id: QmR+2U
+#. js-lingui-id: 3EWWOB
 #: src/modules/settings/billing/hooks/useEndSubscriptionTrialPeriod.ts
-msgid "Error while ending trial period. Please contact Twenty team."
-msgstr "Fehler beim Beenden der Testphase. Bitte kontaktieren Sie das Twenty-Team."
+msgid "Error while ending trial period. Please contact the Odelza team."
+msgstr "Fehler beim Beenden der Testphase. Bitte kontaktieren Sie das Odelza-Team."
 
 #. js-lingui-id: 5g78zo
 #: src/pages/settings/members/SettingsWorkspaceMember.tsx
@@ -13365,6 +13365,11 @@ msgstr "Von dieser App verwaltete Objekte und Felder"
 msgid "Objects and fields permissions settings"
 msgstr "Objekt- und Feldberechtigungseinstellungen"
 
+#. js-lingui-id: HWoL49
+#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/ColumnGrid.tsx
+msgid "Odelza fields"
+msgstr "Odelza-Felder"
+
 #. js-lingui-id: BwJKBw
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "of"
@@ -13564,15 +13569,15 @@ msgstr "Öffnen Sie eine gewartete Integration oder füllen Sie Clients vor, die
 msgid "Open as link"
 msgstr "Als Link öffnen"
 
-#. js-lingui-id: n0vVgf
+#. js-lingui-id: IalAdn
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Claude with the Twenty connector name and MCP URL prefilled."
-msgstr "Öffnen Sie Claude mit vorausgefülltem Twenty-Connector-Namen und MCP-URL."
+msgid "Open Claude with the Odelza connector name and MCP URL prefilled."
+msgstr "Öffnen Sie Claude mit vorausgefülltem Odelza-Connector-Namen und MCP-URL."
 
-#. js-lingui-id: +n2jpB
+#. js-lingui-id: N2Bs2F
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Cursor's MCP installer with the Twenty remote server config."
-msgstr "Öffnen Sie den MCP-Installer von Cursor mit der Twenty-Remote-Server-Konfiguration."
+msgid "Open Cursor's MCP installer with the Odelza remote server config."
+msgstr "Öffnen Sie den MCP-Installer von Cursor mit der Odelza-Remote-Server-Konfiguration."
 
 #. js-lingui-id: pZZH4Q
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
@@ -13595,6 +13600,11 @@ msgstr "In der App öffnen"
 msgid "Open in Roles"
 msgstr "In Rollen öffnen"
 
+#. js-lingui-id: OiLDj5
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Open Odelza's official ChatGPT integration for your workspace."
+msgstr "Öffnen Sie die offizielle ChatGPT-Integration von Odelza für Ihren Arbeitsbereich."
+
 #. js-lingui-id: xGd6Ih
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "Open Outlook"
@@ -13605,15 +13615,10 @@ msgstr "Outlook öffnen"
 msgid "Open records in"
 msgstr "Datensätze öffnen in"
 
-#. js-lingui-id: q170S2
+#. js-lingui-id: LjQHbP
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Replit with the Twenty remote server config."
-msgstr "Öffnen Sie Replit mit der Twenty-Remote-Server-Konfiguration."
-
-#. js-lingui-id: sBd/cl
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Twenty's official ChatGPT integration for your workspace."
-msgstr "Öffnen Sie die offizielle ChatGPT-Integration von Twenty für Ihren Arbeitsbereich."
+msgid "Open Replit with the Odelza remote server config."
+msgstr "Öffnen Sie Replit mit der Odelza-Remote-Server-Konfiguration."
 
 #. js-lingui-id: OV5wZZ
 #: src/modules/navigation-menu-item/display/sections/components/NavigationDrawerOpenedSection.tsx
@@ -13885,10 +13890,10 @@ msgstr "Seitenlayouts"
 msgid "Page name"
 msgstr "Seitenname"
 
-#. js-lingui-id: NRvxzv
+#. js-lingui-id: AfMbxS
 #: src/pages/not-found/NotFound.tsx
-msgid "Page Not Found | Twenty"
-msgstr "Seite nicht gefunden | Twenty"
+msgid "Page Not Found | Odelza"
+msgstr "Seite nicht gefunden | Odelza"
 
 #. js-lingui-id: sF+Xp9
 #: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
@@ -17535,13 +17540,13 @@ msgstr "Abonnement"
 msgid "Subscription activated."
 msgstr "Abonnement aktiviert."
 
-#. js-lingui-id: 0okvpx
+#. js-lingui-id: vqC8xM
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts
 #: src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts
-msgid "Subscription error. Please retry or contact Twenty team"
-msgstr "Abonnementfehler. Bitte versuchen Sie es erneut oder kontaktieren Sie das Twenty-Team"
+msgid "Subscription error. Please retry or contact the Odelza team"
+msgstr "Abonnementfehler. Bitte versuchen Sie es erneut oder kontaktieren Sie das Odelza-Team"
 
 #. js-lingui-id: FooJUj
 #. placeholder {0}: getTargetPlanLabel(targetPlanKey)
@@ -17945,14 +17950,14 @@ msgstr "Der API-Endpunkt für Ihren OpenAI-kompatiblen Anbieter"
 msgid "The AWS region for Bedrock"
 msgstr "Die AWS-Region für Bedrock"
 
-#. js-lingui-id: HP7per
+#. js-lingui-id: KinWL/
 #: src/pages/settings/applications/utils/getStandardApplicationDescription.ts
 msgid ""
-"The base data model every Twenty workspace runs on.\n"
+"The base data model every Odelza workspace runs on.\n"
 "\n"
 "#### What \"foundation\" means\n"
 "\n"
-"Every Twenty workspace starts with this set of objects. They define the shape of your CRM, including relationships, activity, and reporting. Everything else, including marketplace apps, AI agents, and custom objects, plugs into them.\n"
+"Every Odelza workspace starts with this set of objects. They define the shape of your CRM, including relationships, activity, and reporting. Everything else, including marketplace apps, AI agents, and custom objects, plugs into them.\n"
 "\n"
 "#### Included objects\n"
 "- **People & Companies**: contact and account records\n"
@@ -17960,11 +17965,11 @@ msgid ""
 "- **Notes & Tasks**: activity and follow-ups\n"
 "- **Workflows & Dashboards**: automation and reporting\n"
 "\n"
-"Remove this app and the rest of Twenty has nothing to hang off.\n"
+"Remove this app and the rest of Odelza has nothing to hang off.\n"
 "\n"
 "#### Build your own app\n"
 "\n"
-"Extend Twenty with your own objects, fields, logic functions, or AI skills. Scaffold a new app in one command:\n"
+"Extend Odelza with your own objects, fields, logic functions, or AI skills. Scaffold a new app in one command:\n"
 "\n"
 "```bash\n"
 "npx create-twenty-app@latest my-twenty-app\n"
@@ -17979,11 +17984,11 @@ msgid ""
 "\n"
 "See the [Getting Started guide](https://twenty.com/developers/extend/apps/getting-started) for the full walkthrough, and [Building Apps](https://twenty.com/developers/extend/apps/building) for the `defineApplication` / `defineEntity` APIs."
 msgstr ""
-"Das grundlegende Datenmodell, auf dem jeder Twenty-Arbeitsbereich läuft.\n"
+"Das grundlegende Datenmodell, auf dem jeder Odelza-Arbeitsbereich läuft.\n"
 "\n"
 "#### Was \"Grundlage\" bedeutet\n"
 "\n"
-"Jeder Twenty-Arbeitsbereich startet mit diesem Satz von Objekten. Sie definieren die Struktur Ihres CRM, einschließlich Beziehungen, Aktivitäten und Berichterstattung. Alles andere, einschließlich Marketplace-Apps, KI-Agenten und benutzerdefinierter Objekte, dockt daran an.\n"
+"Jeder Odelza-Arbeitsbereich startet mit diesem Satz von Objekten. Sie definieren die Struktur Ihres CRM, einschließlich Beziehungen, Aktivitäten und Berichterstattung. Alles andere, einschließlich Marketplace-Apps, KI-Agenten und benutzerdefinierter Objekte, dockt daran an.\n"
 "\n"
 "#### Enthaltene Objekte\n"
 "- **Personen & Unternehmen**: Kontakt- und Account-Datensätze\n"
@@ -17991,11 +17996,11 @@ msgstr ""
 "- **Notizen & Aufgaben**: Aktivitäten und Nachverfolgungen\n"
 "- **Workflows & Dashboards**: Automatisierung und Berichterstattung\n"
 "\n"
-"Entfernen Sie diese App, hat der Rest von Twenty nichts mehr, worauf er aufbauen kann.\n"
+"Entfernen Sie diese App, hat der Rest von Odelza nichts mehr, worauf er aufbauen kann.\n"
 "\n"
 "#### Erstellen Sie Ihre eigene App\n"
 "\n"
-"Erweitern Sie Twenty um eigene Objekte, Felder, Logikfunktionen oder KI-Fähigkeiten. Erstellen Sie das Gerüst für eine neue App mit nur einem Befehl:\n"
+"Erweitern Sie Odelza um eigene Objekte, Felder, Logikfunktionen oder KI-Fähigkeiten. Erstellen Sie das Gerüst für eine neue App mit nur einem Befehl:\n"
 "\n"
 "```bash\n"
 "npx create-twenty-app@latest my-twenty-app\n"
@@ -19003,11 +19008,6 @@ msgstr ""
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
 msgid "Turquoise"
 msgstr "Türkis"
-
-#. js-lingui-id: JnaRPe
-#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/ColumnGrid.tsx
-msgid "Twenty fields"
-msgstr "Twenty-Felder"
 
 #. js-lingui-id: YIjS4q
 #: src/modules/ai/components/SettingsAgentModelCapabilities.tsx
@@ -20513,10 +20513,10 @@ msgstr ""
 msgid "Weight"
 msgstr "Gewichtung"
 
-#. js-lingui-id: nTuObL
+#. js-lingui-id: OeCsyd
 #: src/pages/auth/SignInUp.tsx
-msgid "Welcome to Twenty"
-msgstr "Willkommen bei Twenty"
+msgid "Welcome to Odelza"
+msgstr "Willkommen bei Odelza"
 
 #. js-lingui-id: t8ZvkC
 #: src/pages/auth/SignInUp.tsx

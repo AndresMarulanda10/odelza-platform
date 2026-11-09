@@ -1393,6 +1393,11 @@ msgstr "Thêm đối tượng"
 msgid "Add object permission"
 msgstr "Thêm quyền đối tượng"
 
+#. js-lingui-id: yT8omL
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Add Odelza as a Streamable HTTP extension in Goose."
+msgstr "Thêm Odelza làm tiện ích mở rộng Streamable HTTP trong Goose."
+
 #. js-lingui-id: Dl5lVI
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx
 msgid "Add option"
@@ -1467,35 +1472,35 @@ msgstr "Thêm nhiệm vụ"
 msgid "Add test input for evaluation (e.g., \"Find all customers in NY\")"
 msgstr ""
 
-#. js-lingui-id: FKGcEL
+#. js-lingui-id: PZ9W2V
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server as a remote context server in Zed."
-msgstr "Thêm máy chủ Twenty MCP làm máy chủ ngữ cảnh từ xa trong Zed."
+msgid "Add the Odelza MCP server as a remote context server in Zed."
+msgstr "Thêm máy chủ Odelza MCP làm máy chủ ngữ cảnh từ xa trong Zed."
 
-#. js-lingui-id: iA2nHX
+#. js-lingui-id: cE6ZAA
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server from Augment Code settings."
-msgstr "Thêm máy chủ Twenty MCP trong phần cài đặt Augment Code."
+msgid "Add the Odelza MCP server from Augment Code settings."
+msgstr "Thêm máy chủ Odelza MCP trong phần cài đặt Augment Code."
 
-#. js-lingui-id: l+NzAk
+#. js-lingui-id: V9totg
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server from Raycast's MCP commands or settings."
-msgstr "Thêm máy chủ Twenty MCP từ lệnh hoặc cài đặt MCP của Raycast."
+msgid "Add the Odelza MCP server from Raycast's MCP commands or settings."
+msgstr "Thêm máy chủ Odelza MCP từ lệnh hoặc cài đặt MCP của Raycast."
 
-#. js-lingui-id: j6G/yI
+#. js-lingui-id: 00MgD2
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server in Gemini CLI settings."
-msgstr "Thêm máy chủ Twenty MCP trong phần cài đặt Gemini CLI."
+msgid "Add the Odelza MCP server in Gemini CLI settings."
+msgstr "Thêm máy chủ Odelza MCP trong phần cài đặt Gemini CLI."
 
-#. js-lingui-id: /OyhlM
+#. js-lingui-id: E9G1EO
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server to your LibreChat configuration file."
-msgstr "Thêm máy chủ Twenty MCP vào tệp cấu hình LibreChat của bạn."
+msgid "Add the Odelza MCP server to your LibreChat configuration file."
+msgstr "Thêm máy chủ Odelza MCP vào tệp cấu hình LibreChat của bạn."
 
-#. js-lingui-id: K0DXoj
+#. js-lingui-id: lUn4sy
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty remote server with LM Studio's install link."
-msgstr "Thêm máy chủ từ xa Twenty bằng đường dẫn cài đặt của LM Studio."
+msgid "Add the Odelza remote server with LM Studio's install link."
+msgstr "Thêm máy chủ từ xa Odelza bằng đường dẫn cài đặt của LM Studio."
 
 #. js-lingui-id: 5+ttxv
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistInput.tsx
@@ -1511,11 +1516,6 @@ msgstr "Thêm vào mục yêu thích"
 #: src/modules/settings/unsubscribe-topics/components/SettingsWorkspaceUnsubscribeTopicSection.tsx
 msgid "Add topic"
 msgstr "Thêm chủ đề"
-
-#. js-lingui-id: 4D/zWv
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add Twenty as a Streamable HTTP extension in Goose."
-msgstr "Thêm Twenty làm tiện ích mở rộng Streamable HTTP trong Goose."
 
 #. js-lingui-id: XnwceV
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationRedirectURIsInput.tsx
@@ -3162,10 +3162,10 @@ msgstr "Khoảng thời gian thanh toán"
 msgid "Billing period"
 msgstr "Chu kỳ thanh toán"
 
-#. js-lingui-id: xF/NXI
+#. js-lingui-id: hvQPEr
 #: src/modules/settings/billing/hooks/useBillingPortalSession.ts
-msgid "Billing portal session error. Please retry or contact Twenty team"
-msgstr "Lỗi phiên cổng thanh toán. Vui lòng thử lại hoặc liên hệ nhóm Twenty"
+msgid "Billing portal session error. Please retry or contact the Odelza team"
+msgstr "Lỗi phiên cổng thanh toán. Vui lòng thử lại hoặc liên hệ nhóm Odelza"
 
 #. js-lingui-id: K1172m
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistSection.tsx
@@ -3304,10 +3304,10 @@ msgstr "Đóng gói kèm {applicationName}"
 msgid "by {author}"
 msgstr "bởi {author}"
 
-#. js-lingui-id: 8Pfllj
+#. js-lingui-id: OiG8Zu
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "By using Twenty, you agree to the"
-msgstr "Bằng việc sử dụng Twenty, bạn đồng ý với"
+msgid "By using Odelza, you agree to the"
+msgstr "Bằng việc sử dụng Odelza, bạn đồng ý với"
 
 #. js-lingui-id: Yx41df
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
@@ -3796,11 +3796,11 @@ msgstr "Kiểm tra Email của bạn"
 msgid "Check your inbox to verify your new email address."
 msgstr "Kiểm tra hộp thư đến để xác minh địa chỉ email mới của bạn."
 
-#. js-lingui-id: SxwQE8
+#. js-lingui-id: jqbYQu
 #: src/modules/settings/billing/hooks/useHandleCheckoutSession.ts
 #: src/modules/settings/billing/hooks/useHandleCheckoutSession.ts
-msgid "Checkout session error. Please retry or contact Twenty team"
-msgstr "Lỗi phiên thanh toán. Vui lòng thử lại hoặc liên hệ nhóm Twenty"
+msgid "Checkout session error. Please retry or contact the Odelza team"
+msgstr "Lỗi phiên thanh toán. Vui lòng thử lại hoặc liên hệ nhóm Odelza"
 
 #. js-lingui-id: SviKkE
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -4385,6 +4385,16 @@ msgstr "Cấu hình cài đặt SMTP để gửi email từ tài khoản của b
 msgid "Configure the default AI models for all workspaces"
 msgstr "Cấu hình các mô hình AI mặc định cho tất cả không gian làm việc"
 
+#. js-lingui-id: /iOabO
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Configure the Odelza MCP server manually in Cascade."
+msgstr "Cấu hình thủ công máy chủ MCP của Odelza trong Cascade."
+
+#. js-lingui-id: OPG1Ma
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Configure the Odelza MCP server manually in Cline."
+msgstr "Cấu hình thủ công máy chủ MCP của Odelza trong Cline."
+
 #. js-lingui-id: CcCy4C
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Configure the remote MCP server through Warp's agent settings."
@@ -4394,16 +4404,6 @@ msgstr "Cấu hình máy chủ MCP từ xa thông qua cài đặt agent của Wa
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Configure the remote server in Amazon Q Developer's MCP settings."
 msgstr "Cấu hình máy chủ từ xa trong phần cài đặt MCP của Amazon Q Developer."
-
-#. js-lingui-id: g1/8jH
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Configure the Twenty MCP server manually in Cascade."
-msgstr "Cấu hình thủ công máy chủ MCP của Twenty trong Cascade."
-
-#. js-lingui-id: XiyvRh
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Configure the Twenty MCP server manually in Cline."
-msgstr "Cấu hình thủ công máy chủ MCP của Twenty trong Cline."
 
 #. js-lingui-id: qA9AGQ
 #: src/modules/settings/domains/components/SettingsDomainRecords.tsx
@@ -7664,10 +7664,10 @@ msgstr "Lỗi khi hủy chuyển đổi khoảng thời gian."
 msgid "Error while cancelling plan switching."
 msgstr "Lỗi khi hủy chuyển đổi kế hoạch."
 
-#. js-lingui-id: QmR+2U
+#. js-lingui-id: 3EWWOB
 #: src/modules/settings/billing/hooks/useEndSubscriptionTrialPeriod.ts
-msgid "Error while ending trial period. Please contact Twenty team."
-msgstr "Lỗi khi kết thúc giai đoạn dùng thử. Vui lòng liên hệ nhóm Twenty."
+msgid "Error while ending trial period. Please contact the Odelza team."
+msgstr "Lỗi khi kết thúc giai đoạn dùng thử. Vui lòng liên hệ nhóm Odelza."
 
 #. js-lingui-id: 5g78zo
 #: src/pages/settings/members/SettingsWorkspaceMember.tsx
@@ -13365,6 +13365,11 @@ msgstr "Các đối tượng và trường do ứng dụng này quản lý"
 msgid "Objects and fields permissions settings"
 msgstr "Cài đặt quyền đối tượng và trường"
 
+#. js-lingui-id: HWoL49
+#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/ColumnGrid.tsx
+msgid "Odelza fields"
+msgstr "Các trường của Odelza"
+
 #. js-lingui-id: BwJKBw
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "of"
@@ -13564,15 +13569,15 @@ msgstr "Mở một tích hợp được duy trì hoặc điền sẵn các ứng
 msgid "Open as link"
 msgstr "Mở dưới dạng liên kết"
 
-#. js-lingui-id: n0vVgf
+#. js-lingui-id: IalAdn
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Claude with the Twenty connector name and MCP URL prefilled."
-msgstr "Mở Claude với tên connector Twenty và MCP URL được điền sẵn."
+msgid "Open Claude with the Odelza connector name and MCP URL prefilled."
+msgstr "Mở Claude với tên connector Odelza và MCP URL được điền sẵn."
 
-#. js-lingui-id: +n2jpB
+#. js-lingui-id: N2Bs2F
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Cursor's MCP installer with the Twenty remote server config."
-msgstr "Mở trình cài đặt MCP của Cursor với cấu hình máy chủ từ xa Twenty."
+msgid "Open Cursor's MCP installer with the Odelza remote server config."
+msgstr "Mở trình cài đặt MCP của Cursor với cấu hình máy chủ từ xa Odelza."
 
 #. js-lingui-id: pZZH4Q
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
@@ -13595,6 +13600,11 @@ msgstr "Mở trong ứng dụng"
 msgid "Open in Roles"
 msgstr "Mở trong mục Vai trò"
 
+#. js-lingui-id: OiLDj5
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Open Odelza's official ChatGPT integration for your workspace."
+msgstr "Mở tích hợp ChatGPT chính thức của Odelza cho không gian làm việc của bạn."
+
 #. js-lingui-id: xGd6Ih
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "Open Outlook"
@@ -13605,15 +13615,10 @@ msgstr "Mở Outlook"
 msgid "Open records in"
 msgstr "Mở bản ghi trong"
 
-#. js-lingui-id: q170S2
+#. js-lingui-id: LjQHbP
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Replit with the Twenty remote server config."
-msgstr "Mở Replit với cấu hình máy chủ từ xa Twenty."
-
-#. js-lingui-id: sBd/cl
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Twenty's official ChatGPT integration for your workspace."
-msgstr "Mở tích hợp ChatGPT chính thức của Twenty cho không gian làm việc của bạn."
+msgid "Open Replit with the Odelza remote server config."
+msgstr "Mở Replit với cấu hình máy chủ từ xa Odelza."
 
 #. js-lingui-id: OV5wZZ
 #: src/modules/navigation-menu-item/display/sections/components/NavigationDrawerOpenedSection.tsx
@@ -13885,10 +13890,10 @@ msgstr "Bố cục Trang"
 msgid "Page name"
 msgstr "Tên trang"
 
-#. js-lingui-id: NRvxzv
+#. js-lingui-id: AfMbxS
 #: src/pages/not-found/NotFound.tsx
-msgid "Page Not Found | Twenty"
-msgstr "Không tìm thấy trang | Twenty"
+msgid "Page Not Found | Odelza"
+msgstr "Không tìm thấy trang | Odelza"
 
 #. js-lingui-id: sF+Xp9
 #: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
@@ -17535,13 +17540,13 @@ msgstr "Đăng ký"
 msgid "Subscription activated."
 msgstr "Đã kích hoạt đăng ký."
 
-#. js-lingui-id: 0okvpx
+#. js-lingui-id: vqC8xM
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts
 #: src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts
-msgid "Subscription error. Please retry or contact Twenty team"
-msgstr "Lỗi đăng ký. Vui lòng thử lại hoặc liên hệ nhóm Twenty"
+msgid "Subscription error. Please retry or contact the Odelza team"
+msgstr "Lỗi đăng ký. Vui lòng thử lại hoặc liên hệ nhóm Odelza"
 
 #. js-lingui-id: FooJUj
 #. placeholder {0}: getTargetPlanLabel(targetPlanKey)
@@ -17945,14 +17950,14 @@ msgstr "API endpoint cho nhà cung cấp tương thích OpenAI của bạn"
 msgid "The AWS region for Bedrock"
 msgstr "Khu vực AWS cho Bedrock"
 
-#. js-lingui-id: HP7per
+#. js-lingui-id: KinWL/
 #: src/pages/settings/applications/utils/getStandardApplicationDescription.ts
 msgid ""
-"The base data model every Twenty workspace runs on.\n"
+"The base data model every Odelza workspace runs on.\n"
 "\n"
 "#### What \"foundation\" means\n"
 "\n"
-"Every Twenty workspace starts with this set of objects. They define the shape of your CRM, including relationships, activity, and reporting. Everything else, including marketplace apps, AI agents, and custom objects, plugs into them.\n"
+"Every Odelza workspace starts with this set of objects. They define the shape of your CRM, including relationships, activity, and reporting. Everything else, including marketplace apps, AI agents, and custom objects, plugs into them.\n"
 "\n"
 "#### Included objects\n"
 "- **People & Companies**: contact and account records\n"
@@ -17960,11 +17965,11 @@ msgid ""
 "- **Notes & Tasks**: activity and follow-ups\n"
 "- **Workflows & Dashboards**: automation and reporting\n"
 "\n"
-"Remove this app and the rest of Twenty has nothing to hang off.\n"
+"Remove this app and the rest of Odelza has nothing to hang off.\n"
 "\n"
 "#### Build your own app\n"
 "\n"
-"Extend Twenty with your own objects, fields, logic functions, or AI skills. Scaffold a new app in one command:\n"
+"Extend Odelza with your own objects, fields, logic functions, or AI skills. Scaffold a new app in one command:\n"
 "\n"
 "```bash\n"
 "npx create-twenty-app@latest my-twenty-app\n"
@@ -17979,11 +17984,11 @@ msgid ""
 "\n"
 "See the [Getting Started guide](https://twenty.com/developers/extend/apps/getting-started) for the full walkthrough, and [Building Apps](https://twenty.com/developers/extend/apps/building) for the `defineApplication` / `defineEntity` APIs."
 msgstr ""
-"Mô hình dữ liệu cơ sở làm nền cho mọi không gian làm việc Twenty.\n"
+"Mô hình dữ liệu cơ sở làm nền cho mọi không gian làm việc Odelza.\n"
 "\n"
 "#### \\\"Nền tảng\\\" nghĩa là gì\n"
 "\n"
-"Mỗi không gian làm việc Twenty bắt đầu với tập hợp đối tượng này. Chúng xác định hình hài CRM của bạn, bao gồm mối quan hệ, hoạt động và báo cáo. Mọi thứ khác, bao gồm các ứng dụng marketplace, tác tử AI và đối tượng tùy chỉnh, đều tích hợp vào chúng.\n"
+"Mỗi không gian làm việc Odelza bắt đầu với tập hợp đối tượng này. Chúng xác định hình hài CRM của bạn, bao gồm mối quan hệ, hoạt động và báo cáo. Mọi thứ khác, bao gồm các ứng dụng marketplace, tác tử AI và đối tượng tùy chỉnh, đều tích hợp vào chúng.\n"
 "\n"
 "#### Các đối tượng đi kèm\n"
 "- **Người & Công ty**: bản ghi liên hệ và tài khoản\n"
@@ -17991,11 +17996,11 @@ msgstr ""
 "- **Ghi chú & Nhiệm vụ**: hoạt động và các bước theo dõi\n"
 "- **Quy trình công việc & Bảng điều khiển**: tự động hóa và báo cáo\n"
 "\n"
-"Gỡ ứng dụng này đi thì phần còn lại của Twenty sẽ không còn gì để dựa vào.\n"
+"Gỡ ứng dụng này đi thì phần còn lại của Odelza sẽ không còn gì để dựa vào.\n"
 "\n"
 "#### Tự xây dựng ứng dụng của bạn\n"
 "\n"
-"Mở rộng Twenty với các đối tượng, trường, hàm logic hoặc kỹ năng AI của riêng bạn. Tạo khung một ứng dụng mới chỉ với một lệnh:\n"
+"Mở rộng Odelza với các đối tượng, trường, hàm logic hoặc kỹ năng AI của riêng bạn. Tạo khung một ứng dụng mới chỉ với một lệnh:\n"
 "\n"
 "```bash\n"
 "npx create-twenty-app@latest my-twenty-app\n"
@@ -19003,11 +19008,6 @@ msgstr ""
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
 msgid "Turquoise"
 msgstr "Ngọc lam"
-
-#. js-lingui-id: JnaRPe
-#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/ColumnGrid.tsx
-msgid "Twenty fields"
-msgstr "Các trường của Twenty"
 
 #. js-lingui-id: YIjS4q
 #: src/modules/ai/components/SettingsAgentModelCapabilities.tsx
@@ -20513,10 +20513,10 @@ msgstr ""
 msgid "Weight"
 msgstr "Trọng số"
 
-#. js-lingui-id: nTuObL
+#. js-lingui-id: OeCsyd
 #: src/pages/auth/SignInUp.tsx
-msgid "Welcome to Twenty"
-msgstr "Chào mừng đến với Twenty"
+msgid "Welcome to Odelza"
+msgstr "Chào mừng đến với Odelza"
 
 #. js-lingui-id: t8ZvkC
 #: src/pages/auth/SignInUp.tsx

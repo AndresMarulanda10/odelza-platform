@@ -1393,6 +1393,11 @@ msgstr "Προσθήκη αντικειμένου"
 msgid "Add object permission"
 msgstr "Προσθέστε δικαίωμα αντικειμένου"
 
+#. js-lingui-id: yT8omL
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Add Odelza as a Streamable HTTP extension in Goose."
+msgstr "Προσθέστε το Odelza ως επέκταση Streamable HTTP στο Goose."
+
 #. js-lingui-id: Dl5lVI
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx
 msgid "Add option"
@@ -1467,35 +1472,35 @@ msgstr "Προσθήκη εργασίας"
 msgid "Add test input for evaluation (e.g., \"Find all customers in NY\")"
 msgstr ""
 
-#. js-lingui-id: FKGcEL
+#. js-lingui-id: PZ9W2V
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server as a remote context server in Zed."
-msgstr "Προσθέστε τον διακομιστή Twenty MCP ως απομακρυσμένο διακομιστή περιβάλλοντος στο Zed."
+msgid "Add the Odelza MCP server as a remote context server in Zed."
+msgstr "Προσθέστε τον διακομιστή Odelza MCP ως απομακρυσμένο διακομιστή περιβάλλοντος στο Zed."
 
-#. js-lingui-id: iA2nHX
+#. js-lingui-id: cE6ZAA
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server from Augment Code settings."
-msgstr "Προσθέστε τον διακομιστή Twenty MCP από τις ρυθμίσεις του Augment Code."
+msgid "Add the Odelza MCP server from Augment Code settings."
+msgstr "Προσθέστε τον διακομιστή Odelza MCP από τις ρυθμίσεις του Augment Code."
 
-#. js-lingui-id: l+NzAk
+#. js-lingui-id: V9totg
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server from Raycast's MCP commands or settings."
-msgstr "Προσθέστε τον διακομιστή Twenty MCP από τις εντολές ή τις ρυθμίσεις MCP του Raycast."
+msgid "Add the Odelza MCP server from Raycast's MCP commands or settings."
+msgstr "Προσθέστε τον διακομιστή Odelza MCP από τις εντολές ή τις ρυθμίσεις MCP του Raycast."
 
-#. js-lingui-id: j6G/yI
+#. js-lingui-id: 00MgD2
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server in Gemini CLI settings."
-msgstr "Προσθέστε τον διακομιστή Twenty MCP στις ρυθμίσεις του Gemini CLI."
+msgid "Add the Odelza MCP server in Gemini CLI settings."
+msgstr "Προσθέστε τον διακομιστή Odelza MCP στις ρυθμίσεις του Gemini CLI."
 
-#. js-lingui-id: /OyhlM
+#. js-lingui-id: E9G1EO
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server to your LibreChat configuration file."
-msgstr "Προσθέστε τον διακομιστή Twenty MCP στο αρχείο ρυθμίσεων του LibreChat."
+msgid "Add the Odelza MCP server to your LibreChat configuration file."
+msgstr "Προσθέστε τον διακομιστή Odelza MCP στο αρχείο ρυθμίσεων του LibreChat."
 
-#. js-lingui-id: K0DXoj
+#. js-lingui-id: lUn4sy
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty remote server with LM Studio's install link."
-msgstr "Προσθέστε τον απομακρυσμένο διακομιστή Twenty με τον σύνδεσμο εγκατάστασης του LM Studio."
+msgid "Add the Odelza remote server with LM Studio's install link."
+msgstr "Προσθέστε τον απομακρυσμένο διακομιστή Odelza με τον σύνδεσμο εγκατάστασης του LM Studio."
 
 #. js-lingui-id: 5+ttxv
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistInput.tsx
@@ -1511,11 +1516,6 @@ msgstr "Προσθήκη στα Αγαπημένα"
 #: src/modules/settings/unsubscribe-topics/components/SettingsWorkspaceUnsubscribeTopicSection.tsx
 msgid "Add topic"
 msgstr "Προσθήκη θέματος"
-
-#. js-lingui-id: 4D/zWv
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add Twenty as a Streamable HTTP extension in Goose."
-msgstr "Προσθέστε το Twenty ως επέκταση Streamable HTTP στο Goose."
 
 #. js-lingui-id: XnwceV
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationRedirectURIsInput.tsx
@@ -3162,10 +3162,10 @@ msgstr "Διάστημα χρέωσης"
 msgid "Billing period"
 msgstr "Περίοδος χρέωσης"
 
-#. js-lingui-id: xF/NXI
+#. js-lingui-id: hvQPEr
 #: src/modules/settings/billing/hooks/useBillingPortalSession.ts
-msgid "Billing portal session error. Please retry or contact Twenty team"
-msgstr "Σφάλμα συνεδρίας πύλης χρέωσης. Δοκιμάστε ξανά ή επικοινωνήστε με την ομάδα Twenty"
+msgid "Billing portal session error. Please retry or contact the Odelza team"
+msgstr "Σφάλμα συνεδρίας πύλης χρέωσης. Δοκιμάστε ξανά ή επικοινωνήστε με την ομάδα Odelza"
 
 #. js-lingui-id: K1172m
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistSection.tsx
@@ -3304,10 +3304,10 @@ msgstr "Συμπεριλαμβάνεται με το {applicationName}"
 msgid "by {author}"
 msgstr "από {author}"
 
-#. js-lingui-id: 8Pfllj
+#. js-lingui-id: OiG8Zu
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "By using Twenty, you agree to the"
-msgstr "Χρησιμοποιώντας το Twenty, συμφωνείτε με τους"
+msgid "By using Odelza, you agree to the"
+msgstr "Χρησιμοποιώντας το Odelza, συμφωνείτε με τους"
 
 #. js-lingui-id: Yx41df
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
@@ -3796,11 +3796,11 @@ msgstr "Έλεγξε τα emails σου"
 msgid "Check your inbox to verify your new email address."
 msgstr "Ελέγξτε τα εισερχόμενά σας για να επαληθεύσετε τη νέα σας διεύθυνση email."
 
-#. js-lingui-id: SxwQE8
+#. js-lingui-id: jqbYQu
 #: src/modules/settings/billing/hooks/useHandleCheckoutSession.ts
 #: src/modules/settings/billing/hooks/useHandleCheckoutSession.ts
-msgid "Checkout session error. Please retry or contact Twenty team"
-msgstr "Σφάλμα συνεδρίας Checkout. Δοκιμάστε ξανά ή επικοινωνήστε με την ομάδα Twenty"
+msgid "Checkout session error. Please retry or contact the Odelza team"
+msgstr "Σφάλμα συνεδρίας Checkout. Δοκιμάστε ξανά ή επικοινωνήστε με την ομάδα Odelza"
 
 #. js-lingui-id: SviKkE
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -4385,6 +4385,16 @@ msgstr "Ρυθμίστε τις παραμέτρους SMTP για να στέλ
 msgid "Configure the default AI models for all workspaces"
 msgstr "Διαμορφώστε τα προεπιλεγμένα μοντέλα AI για όλους τους χώρους εργασίας"
 
+#. js-lingui-id: /iOabO
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Configure the Odelza MCP server manually in Cascade."
+msgstr "Ρυθμίστε χειροκίνητα τον διακομιστή Odelza MCP στο Cascade."
+
+#. js-lingui-id: OPG1Ma
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Configure the Odelza MCP server manually in Cline."
+msgstr "Ρυθμίστε χειροκίνητα τον διακομιστή Odelza MCP στο Cline."
+
 #. js-lingui-id: CcCy4C
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Configure the remote MCP server through Warp's agent settings."
@@ -4394,16 +4404,6 @@ msgstr "Ρυθμίστε τον απομακρυσμένο διακομιστή 
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Configure the remote server in Amazon Q Developer's MCP settings."
 msgstr "Ρυθμίστε τον απομακρυσμένο διακομιστή στις ρυθμίσεις MCP του Amazon Q Developer."
-
-#. js-lingui-id: g1/8jH
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Configure the Twenty MCP server manually in Cascade."
-msgstr "Ρυθμίστε χειροκίνητα τον διακομιστή Twenty MCP στο Cascade."
-
-#. js-lingui-id: XiyvRh
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Configure the Twenty MCP server manually in Cline."
-msgstr "Ρυθμίστε χειροκίνητα τον διακομιστή Twenty MCP στο Cline."
 
 #. js-lingui-id: qA9AGQ
 #: src/modules/settings/domains/components/SettingsDomainRecords.tsx
@@ -7664,10 +7664,10 @@ msgstr "Σφάλμα κατά την ακύρωση αλλαγής περιόδ�
 msgid "Error while cancelling plan switching."
 msgstr "Σφάλμα κατά την ακύρωση αλλαγής προγράμματος."
 
-#. js-lingui-id: QmR+2U
+#. js-lingui-id: 3EWWOB
 #: src/modules/settings/billing/hooks/useEndSubscriptionTrialPeriod.ts
-msgid "Error while ending trial period. Please contact Twenty team."
-msgstr "Σφάλμα κατά τη λήξη της δοκιμαστικής περιόδου. Επικοινωνήστε με την ομάδα Twenty."
+msgid "Error while ending trial period. Please contact the Odelza team."
+msgstr "Σφάλμα κατά τη λήξη της δοκιμαστικής περιόδου. Επικοινωνήστε με την ομάδα Odelza."
 
 #. js-lingui-id: 5g78zo
 #: src/pages/settings/members/SettingsWorkspaceMember.tsx
@@ -13365,6 +13365,11 @@ msgstr "Αντικείμενα και πεδία που διαχειρίζετα
 msgid "Objects and fields permissions settings"
 msgstr "Ρυθμίσεις δικαιωμάτων αντικειμένων και πεδίων"
 
+#. js-lingui-id: HWoL49
+#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/ColumnGrid.tsx
+msgid "Odelza fields"
+msgstr "Πεδία Odelza"
+
 #. js-lingui-id: BwJKBw
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "of"
@@ -13564,15 +13569,15 @@ msgstr "Ανοίξτε μια συντηρούμενη ενσωμάτωση ή �
 msgid "Open as link"
 msgstr "Άνοιγμα ως σύνδεσμος"
 
-#. js-lingui-id: n0vVgf
+#. js-lingui-id: IalAdn
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Claude with the Twenty connector name and MCP URL prefilled."
-msgstr "Ανοίξτε το Claude με προ-συμπληρωμένο το όνομα connector Twenty και την MCP URL."
+msgid "Open Claude with the Odelza connector name and MCP URL prefilled."
+msgstr "Ανοίξτε το Claude με προ-συμπληρωμένο το όνομα connector Odelza και την MCP URL."
 
-#. js-lingui-id: +n2jpB
+#. js-lingui-id: N2Bs2F
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Cursor's MCP installer with the Twenty remote server config."
-msgstr "Ανοίξτε το πρόγραμμα εγκατάστασης MCP του Cursor με τη ρύθμιση απομακρυσμένου διακομιστή Twenty."
+msgid "Open Cursor's MCP installer with the Odelza remote server config."
+msgstr "Ανοίξτε το πρόγραμμα εγκατάστασης MCP του Cursor με τη ρύθμιση απομακρυσμένου διακομιστή Odelza."
 
 #. js-lingui-id: pZZH4Q
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
@@ -13595,6 +13600,11 @@ msgstr "Άνοιγμα στην εφαρμογή"
 msgid "Open in Roles"
 msgstr "Άνοιγμα στους ρόλους"
 
+#. js-lingui-id: OiLDj5
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Open Odelza's official ChatGPT integration for your workspace."
+msgstr "Ανοίξτε την επίσημη ενσωμάτωση ChatGPT του Odelza για τον χώρο εργασίας σας."
+
 #. js-lingui-id: xGd6Ih
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "Open Outlook"
@@ -13605,15 +13615,10 @@ msgstr "Άνοιγμα με Outlook"
 msgid "Open records in"
 msgstr "Άνοιγμα εγγραφών σε"
 
-#. js-lingui-id: q170S2
+#. js-lingui-id: LjQHbP
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Replit with the Twenty remote server config."
-msgstr "Ανοίξτε το Replit με τη ρύθμιση απομακρυσμένου διακομιστή Twenty."
-
-#. js-lingui-id: sBd/cl
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Twenty's official ChatGPT integration for your workspace."
-msgstr "Ανοίξτε την επίσημη ενσωμάτωση ChatGPT του Twenty για τον χώρο εργασίας σας."
+msgid "Open Replit with the Odelza remote server config."
+msgstr "Ανοίξτε το Replit με τη ρύθμιση απομακρυσμένου διακομιστή Odelza."
 
 #. js-lingui-id: OV5wZZ
 #: src/modules/navigation-menu-item/display/sections/components/NavigationDrawerOpenedSection.tsx
@@ -13885,10 +13890,10 @@ msgstr "Διατάξεις σελίδας"
 msgid "Page name"
 msgstr "Όνομα σελίδας"
 
-#. js-lingui-id: NRvxzv
+#. js-lingui-id: AfMbxS
 #: src/pages/not-found/NotFound.tsx
-msgid "Page Not Found | Twenty"
-msgstr "Η Σελίδα Δεν Βρέθηκε | Twenty"
+msgid "Page Not Found | Odelza"
+msgstr "Η Σελίδα Δεν Βρέθηκε | Odelza"
 
 #. js-lingui-id: sF+Xp9
 #: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
@@ -17537,13 +17542,13 @@ msgstr "Συνδρομή"
 msgid "Subscription activated."
 msgstr "Η συνδρομή ενεργοποιήθηκε."
 
-#. js-lingui-id: 0okvpx
+#. js-lingui-id: vqC8xM
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts
 #: src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts
-msgid "Subscription error. Please retry or contact Twenty team"
-msgstr "Σφάλμα συνδρομής. Δοκιμάστε ξανά ή επικοινωνήστε με την ομάδα Twenty"
+msgid "Subscription error. Please retry or contact the Odelza team"
+msgstr "Σφάλμα συνδρομής. Δοκιμάστε ξανά ή επικοινωνήστε με την ομάδα Odelza"
 
 #. js-lingui-id: FooJUj
 #. placeholder {0}: getTargetPlanLabel(targetPlanKey)
@@ -17947,14 +17952,14 @@ msgstr "Το API endpoint για τον πάροχό σας που είναι σ
 msgid "The AWS region for Bedrock"
 msgstr "Η περιοχή AWS για το Bedrock"
 
-#. js-lingui-id: HP7per
+#. js-lingui-id: KinWL/
 #: src/pages/settings/applications/utils/getStandardApplicationDescription.ts
 msgid ""
-"The base data model every Twenty workspace runs on.\n"
+"The base data model every Odelza workspace runs on.\n"
 "\n"
 "#### What \"foundation\" means\n"
 "\n"
-"Every Twenty workspace starts with this set of objects. They define the shape of your CRM, including relationships, activity, and reporting. Everything else, including marketplace apps, AI agents, and custom objects, plugs into them.\n"
+"Every Odelza workspace starts with this set of objects. They define the shape of your CRM, including relationships, activity, and reporting. Everything else, including marketplace apps, AI agents, and custom objects, plugs into them.\n"
 "\n"
 "#### Included objects\n"
 "- **People & Companies**: contact and account records\n"
@@ -17962,11 +17967,11 @@ msgid ""
 "- **Notes & Tasks**: activity and follow-ups\n"
 "- **Workflows & Dashboards**: automation and reporting\n"
 "\n"
-"Remove this app and the rest of Twenty has nothing to hang off.\n"
+"Remove this app and the rest of Odelza has nothing to hang off.\n"
 "\n"
 "#### Build your own app\n"
 "\n"
-"Extend Twenty with your own objects, fields, logic functions, or AI skills. Scaffold a new app in one command:\n"
+"Extend Odelza with your own objects, fields, logic functions, or AI skills. Scaffold a new app in one command:\n"
 "\n"
 "```bash\n"
 "npx create-twenty-app@latest my-twenty-app\n"
@@ -17981,11 +17986,11 @@ msgid ""
 "\n"
 "See the [Getting Started guide](https://twenty.com/developers/extend/apps/getting-started) for the full walkthrough, and [Building Apps](https://twenty.com/developers/extend/apps/building) for the `defineApplication` / `defineEntity` APIs."
 msgstr ""
-"Το βασικό μοντέλο δεδομένων πάνω στο οποίο λειτουργεί κάθε χώρος εργασίας του Twenty.\n"
+"Το βασικό μοντέλο δεδομένων πάνω στο οποίο λειτουργεί κάθε χώρος εργασίας του Odelza.\n"
 "\n"
 "#### Τι σημαίνει \"θεμέλιο\"\n"
 "\n"
-"Κάθε χώρος εργασίας του Twenty ξεκινά με αυτό το σύνολο αντικειμένων. Αυτά ορίζουν τη μορφή του CRM σας, συμπεριλαμβανομένων των σχέσεων, της δραστηριότητας και της δημιουργίας αναφορών. Οτιδήποτε άλλο, συμπεριλαμβανομένων των εφαρμογών του marketplace, των πρακτόρων AI και των προσαρμοσμένων αντικειμένων, συνδέεται πάνω σε αυτά.\n"
+"Κάθε χώρος εργασίας του Odelza ξεκινά με αυτό το σύνολο αντικειμένων. Αυτά ορίζουν τη μορφή του CRM σας, συμπεριλαμβανομένων των σχέσεων, της δραστηριότητας και της δημιουργίας αναφορών. Οτιδήποτε άλλο, συμπεριλαμβανομένων των εφαρμογών του marketplace, των πρακτόρων AI και των προσαρμοσμένων αντικειμένων, συνδέεται πάνω σε αυτά.\n"
 "\n"
 "#### Περιλαμβανόμενα αντικείμενα\n"
 "- **Άνθρωποι & Εταιρείες**: εγγραφές επαφών και λογαριασμών\n"
@@ -17993,11 +17998,11 @@ msgstr ""
 "- **Σημειώσεις & Εργασίες**: δραστηριότητα και ενέργειες παρακολούθησης\n"
 "- **Ροές εργασίας & Πίνακες ελέγχου**: αυτοματοποίηση και αναφορές\n"
 "\n"
-"Αφαιρέστε αυτήν την εφαρμογή και το υπόλοιπο Twenty δεν έχει τίποτα για να στηριχθεί.\n"
+"Αφαιρέστε αυτήν την εφαρμογή και το υπόλοιπο Odelza δεν έχει τίποτα για να στηριχθεί.\n"
 "\n"
 "#### Δημιουργήστε τη δική σας εφαρμογή\n"
 "\n"
-"Επεκτείνετε το Twenty με δικά σας αντικείμενα, πεδία, συναρτήσεις λογικής ή δεξιότητες AI. Δημιουργήστε το αρχικό σκελετό μιας νέας εφαρμογής με μία εντολή:\n"
+"Επεκτείνετε το Odelza με δικά σας αντικείμενα, πεδία, συναρτήσεις λογικής ή δεξιότητες AI. Δημιουργήστε το αρχικό σκελετό μιας νέας εφαρμογής με μία εντολή:\n"
 "\n"
 "```bash\n"
 "npx create-twenty-app@latest my-twenty-app\n"
@@ -19007,11 +19012,6 @@ msgstr ""
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
 msgid "Turquoise"
 msgstr "Τιρκουάζ"
-
-#. js-lingui-id: JnaRPe
-#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/ColumnGrid.tsx
-msgid "Twenty fields"
-msgstr "Πεδία Twenty"
 
 #. js-lingui-id: YIjS4q
 #: src/modules/ai/components/SettingsAgentModelCapabilities.tsx
@@ -20519,10 +20519,10 @@ msgstr ""
 msgid "Weight"
 msgstr "Στάθμιση"
 
-#. js-lingui-id: nTuObL
+#. js-lingui-id: OeCsyd
 #: src/pages/auth/SignInUp.tsx
-msgid "Welcome to Twenty"
-msgstr "Καλώς ήρθατε στο Twenty"
+msgid "Welcome to Odelza"
+msgstr "Καλώς ήρθατε στο Odelza"
 
 #. js-lingui-id: t8ZvkC
 #: src/pages/auth/SignInUp.tsx

@@ -143,10 +143,10 @@ msgstr "Функція з такою назвою вже існує."
 msgid "A hand-picked audience of people"
 msgstr "Ретельно відібрана аудиторія людей"
 
-#. js-lingui-id: TF/ZV2
+#. js-lingui-id: /baemW
 #: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "A heads up before your Twenty trial ends"
-msgstr "Попередження перед завершенням пробного періоду Twenty"
+msgid "A heads up before your Odelza trial ends"
+msgstr "Попередження перед завершенням пробного періоду Odelza"
 
 #. js-lingui-id: 6yZjO1
 #: src/engine/core-modules/application/application.exception.ts
@@ -4227,10 +4227,10 @@ msgstr "Потрібна назва стовпця приєднання."
 msgid "Join table linking message channel message associations to message folders"
 msgstr "З'єднувальна таблиця, що пов'язує асоціації повідомлень каналу з папками повідомлень"
 
-#. js-lingui-id: PviVyk
+#. js-lingui-id: vUa5JX
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
-msgid "Join your team on Twenty"
-msgstr "Приєднуйтесь до своєї команди на Twenty"
+msgid "Join your team on Odelza"
+msgstr "Приєднуйтесь до своєї команди на Odelza"
 
 #. js-lingui-id: ffWso3
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-call-recording-standard-flat-field-metadata.util.ts
@@ -7156,10 +7156,10 @@ msgstr "Системні поля не можуть бути видалені"
 msgid "System fields cannot be updated"
 msgstr "Системні поля не можуть бути оновлені"
 
-#. js-lingui-id: aK2k19
+#. js-lingui-id: nkalOB
 #: src/engine/metadata-modules/index-metadata/services/index-metadata.service.ts
-msgid "System indexes are required for Twenty to work and cannot be deleted."
-msgstr "Системні індекси потрібні для роботи Twenty і не можуть бути видалені."
+msgid "System indexes are required for Odelza to work and cannot be deleted."
+msgstr "Системні індекси потрібні для роботи Odelza і не можуть бути видалені."
 
 #. js-lingui-id: /ojawH
 #: src/engine/workspace-manager/workspace-migration/workspace-migration-builder/validators/services/flat-object-metadata-validator.service.ts
@@ -7805,11 +7805,11 @@ msgstr "Термін дії цього ключа API закінчився. Бу
 msgid "This API key has no role assigned."
 msgstr "Цьому ключу API не призначено ролі."
 
-#. js-lingui-id: zISk4k
+#. js-lingui-id: /3C8Hb
 #: src/engine/core-modules/application/application-registration/application-registration.exception.ts
 #: src/engine/core-modules/application/application.exception.ts
-msgid "This app requires a newer version of the Twenty server. Please upgrade your server or use a compatible app version."
-msgstr "Цей застосунок потребує новішої версії сервера Twenty. Оновіть свій сервер або скористайтеся сумісною версією застосунку."
+msgid "This app requires a newer version of the Odelza server. Please upgrade your server or use a compatible app version."
+msgstr "Цей застосунок потребує новішої версії сервера Odelza. Оновіть свій сервер або скористайтеся сумісною версією застосунку."
 
 #. js-lingui-id: y2nks/
 #: src/engine/core-modules/application/application.exception.ts
@@ -9025,10 +9025,10 @@ msgstr "Вебхук не знайдено."
 msgid "Wednesday"
 msgstr "Середа"
 
-#. js-lingui-id: TVkCrJ
+#. js-lingui-id: ZnbxL+
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
-msgid "Welcome to Twenty: Please Confirm Your Email"
-msgstr "Ласкаво просимо до Twenty: Будь ласка, підтвердіть свою електронну пошту"
+msgid "Welcome to Odelza: Please Confirm Your Email"
+msgstr "Ласкаво просимо до Odelza: Будь ласка, підтвердіть свою електронну пошту"
 
 #. js-lingui-id: nCHI/F
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-message-campaign-standard-flat-field-metadata.util.ts
@@ -9697,6 +9697,16 @@ msgstr "Ваша версія додатка застаріла. Будь лас
 msgid "Your billing subscription is corrupted. Please contact support."
 msgstr "Ваше підписання на платні послуги пошкоджено. Будь ласка, зв'яжіться з підтримкою."
 
+#. js-lingui-id: +R4Ipy
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza plan renews soon"
+msgstr "Ваш тарифний план Odelza незабаром буде поновлено"
+
+#. js-lingui-id: IvAgJP
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza trial is ending soon"
+msgstr "Ваш пробний період Odelza незабаром завершиться"
+
 #. js-lingui-id: bTyBrW
 #: src/engine/core-modules/auth/services/auth.service.ts
 msgid "Your Password Has Been Successfully Changed"
@@ -9713,16 +9723,6 @@ msgstr "Вашу роль у цьому робочому просторі не �
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-company-standard-flat-field-metadata.util.ts
 msgid "Your team member responsible for managing the company account"
 msgstr "Ваш колега з команди, відповідальний за управління обліковим записом компанії"
-
-#. js-lingui-id: sOfbGC
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty plan renews soon"
-msgstr "Ваш тарифний план Twenty незабаром буде поновлено"
-
-#. js-lingui-id: qW+K5e
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty trial is ending soon"
-msgstr "Ваш пробний період Twenty незабаром завершиться"
 
 #. js-lingui-id: ej/tZF
 #: src/engine/core-modules/graphql/hooks/use-graphql-error-handler.hook.ts

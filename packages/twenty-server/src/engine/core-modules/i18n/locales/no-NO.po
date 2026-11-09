@@ -143,10 +143,10 @@ msgstr "En funksjon med dette navnet finnes allerede."
 msgid "A hand-picked audience of people"
 msgstr "Et håndplukket publikum av personer"
 
-#. js-lingui-id: TF/ZV2
+#. js-lingui-id: /baemW
 #: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "A heads up before your Twenty trial ends"
-msgstr "Et varsel før din Twenty-prøveperiode avsluttes"
+msgid "A heads up before your Odelza trial ends"
+msgstr "Et varsel før din Odelza-prøveperiode avsluttes"
 
 #. js-lingui-id: 6yZjO1
 #: src/engine/core-modules/application/application.exception.ts
@@ -4227,10 +4227,10 @@ msgstr "Navn på join-kolonne er påkrevd."
 msgid "Join table linking message channel message associations to message folders"
 msgstr "Koblingstabell som knytter meldingskanalens meldingstilknytninger til meldingsmapper"
 
-#. js-lingui-id: PviVyk
+#. js-lingui-id: vUa5JX
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
-msgid "Join your team on Twenty"
-msgstr "Bli med teamet ditt på Twenty"
+msgid "Join your team on Odelza"
+msgstr "Bli med teamet ditt på Odelza"
 
 #. js-lingui-id: ffWso3
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-call-recording-standard-flat-field-metadata.util.ts
@@ -7156,10 +7156,10 @@ msgstr "Systemfelt kan ikke slettes"
 msgid "System fields cannot be updated"
 msgstr "Systemfelt kan ikke oppdateres"
 
-#. js-lingui-id: aK2k19
+#. js-lingui-id: nkalOB
 #: src/engine/metadata-modules/index-metadata/services/index-metadata.service.ts
-msgid "System indexes are required for Twenty to work and cannot be deleted."
-msgstr "Systemindekser er påkrevd for at Twenty skal fungere og kan ikke slettes."
+msgid "System indexes are required for Odelza to work and cannot be deleted."
+msgstr "Systemindekser er påkrevd for at Odelza skal fungere og kan ikke slettes."
 
 #. js-lingui-id: /ojawH
 #: src/engine/workspace-manager/workspace-migration/workspace-migration-builder/validators/services/flat-object-metadata-validator.service.ts
@@ -7805,11 +7805,11 @@ msgstr "Denne API-nøkkelen er utløpt. Vennligst opprett en ny."
 msgid "This API key has no role assigned."
 msgstr "Denne API-nøkkelen har ingen tildelt rolle."
 
-#. js-lingui-id: zISk4k
+#. js-lingui-id: /3C8Hb
 #: src/engine/core-modules/application/application-registration/application-registration.exception.ts
 #: src/engine/core-modules/application/application.exception.ts
-msgid "This app requires a newer version of the Twenty server. Please upgrade your server or use a compatible app version."
-msgstr "Denne appen krever en nyere versjon av Twenty-serveren. Oppgrader serveren din eller bruk en kompatibel appversjon."
+msgid "This app requires a newer version of the Odelza server. Please upgrade your server or use a compatible app version."
+msgstr "Denne appen krever en nyere versjon av Odelza-serveren. Oppgrader serveren din eller bruk en kompatibel appversjon."
 
 #. js-lingui-id: y2nks/
 #: src/engine/core-modules/application/application.exception.ts
@@ -9025,10 +9025,10 @@ msgstr "Webhook ikke funnet."
 msgid "Wednesday"
 msgstr "Onsdag"
 
-#. js-lingui-id: TVkCrJ
+#. js-lingui-id: ZnbxL+
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
-msgid "Welcome to Twenty: Please Confirm Your Email"
-msgstr "Velkommen til Twenty: Vennligst bekreft din e-post"
+msgid "Welcome to Odelza: Please Confirm Your Email"
+msgstr "Velkommen til Odelza: Vennligst bekreft din e-post"
 
 #. js-lingui-id: nCHI/F
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-message-campaign-standard-flat-field-metadata.util.ts
@@ -9697,6 +9697,16 @@ msgstr "Din appversjon er utdatert. Vennligst oppdater siden for å fortsette."
 msgid "Your billing subscription is corrupted. Please contact support."
 msgstr "Abonnementet ditt for fakturering er skadet. Vennligst kontakt support."
 
+#. js-lingui-id: +R4Ipy
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza plan renews soon"
+msgstr "Odelza-abonnementet ditt fornyes snart"
+
+#. js-lingui-id: IvAgJP
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza trial is ending soon"
+msgstr "Din Odelza-prøveperiode avsluttes snart"
+
 #. js-lingui-id: bTyBrW
 #: src/engine/core-modules/auth/services/auth.service.ts
 msgid "Your Password Has Been Successfully Changed"
@@ -9713,16 +9723,6 @@ msgstr "Din rolle i denne arbeidsplassen kunne ikke bli funnet. Vennligst kontak
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-company-standard-flat-field-metadata.util.ts
 msgid "Your team member responsible for managing the company account"
 msgstr "Ditt teammedlem ansvarlig for å administrere bedriftskontoen"
-
-#. js-lingui-id: sOfbGC
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty plan renews soon"
-msgstr "Twenty-abonnementet ditt fornyes snart"
-
-#. js-lingui-id: qW+K5e
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty trial is ending soon"
-msgstr "Din Twenty-prøveperiode avsluttes snart"
 
 #. js-lingui-id: ej/tZF
 #: src/engine/core-modules/graphql/hooks/use-graphql-error-handler.hook.ts

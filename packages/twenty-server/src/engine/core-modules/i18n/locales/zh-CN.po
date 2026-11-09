@@ -143,10 +143,10 @@ msgstr "已存在同名函数。"
 msgid "A hand-picked audience of people"
 msgstr "精心挑选的人群受众"
 
-#. js-lingui-id: TF/ZV2
+#. js-lingui-id: /baemW
 #: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "A heads up before your Twenty trial ends"
-msgstr "在您的 Twenty 试用结束前的提醒通知"
+msgid "A heads up before your Odelza trial ends"
+msgstr "在您的 Odelza 试用结束前的提醒通知"
 
 #. js-lingui-id: 6yZjO1
 #: src/engine/core-modules/application/application.exception.ts
@@ -4227,10 +4227,10 @@ msgstr "必须提供连接列名称。"
 msgid "Join table linking message channel message associations to message folders"
 msgstr "用于将消息通道消息关联与消息文件夹关联起来的连接表"
 
-#. js-lingui-id: PviVyk
+#. js-lingui-id: vUa5JX
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
-msgid "Join your team on Twenty"
-msgstr "加入您的团队，使用 Twenty"
+msgid "Join your team on Odelza"
+msgstr "加入您的团队，使用 Odelza"
 
 #. js-lingui-id: ffWso3
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-call-recording-standard-flat-field-metadata.util.ts
@@ -7156,10 +7156,10 @@ msgstr "系统字段无法删除"
 msgid "System fields cannot be updated"
 msgstr "系统字段无法更新"
 
-#. js-lingui-id: aK2k19
+#. js-lingui-id: nkalOB
 #: src/engine/metadata-modules/index-metadata/services/index-metadata.service.ts
-msgid "System indexes are required for Twenty to work and cannot be deleted."
-msgstr "系统索引是 Twenty 正常运行所必需的，且不能被删除。"
+msgid "System indexes are required for Odelza to work and cannot be deleted."
+msgstr "系统索引是 Odelza 正常运行所必需的，且不能被删除。"
 
 #. js-lingui-id: /ojawH
 #: src/engine/workspace-manager/workspace-migration/workspace-migration-builder/validators/services/flat-object-metadata-validator.service.ts
@@ -7805,11 +7805,11 @@ msgstr "此 API 密钥已过期。请创建新密钥。"
 msgid "This API key has no role assigned."
 msgstr "此 API 密钥未分配角色。"
 
-#. js-lingui-id: zISk4k
+#. js-lingui-id: /3C8Hb
 #: src/engine/core-modules/application/application-registration/application-registration.exception.ts
 #: src/engine/core-modules/application/application.exception.ts
-msgid "This app requires a newer version of the Twenty server. Please upgrade your server or use a compatible app version."
-msgstr "此应用需要更高版本的 Twenty 服务器。请升级您的服务器或使用兼容的应用版本。"
+msgid "This app requires a newer version of the Odelza server. Please upgrade your server or use a compatible app version."
+msgstr "此应用需要更高版本的 Odelza 服务器。请升级您的服务器或使用兼容的应用版本。"
 
 #. js-lingui-id: y2nks/
 #: src/engine/core-modules/application/application.exception.ts
@@ -9025,10 +9025,10 @@ msgstr "未找到 Webhook。"
 msgid "Wednesday"
 msgstr "星期三"
 
-#. js-lingui-id: TVkCrJ
+#. js-lingui-id: ZnbxL+
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
-msgid "Welcome to Twenty: Please Confirm Your Email"
-msgstr "欢迎来到Twenty: 请确认您的邮箱"
+msgid "Welcome to Odelza: Please Confirm Your Email"
+msgstr "欢迎来到Odelza: 请确认您的邮箱"
 
 #. js-lingui-id: nCHI/F
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-message-campaign-standard-flat-field-metadata.util.ts
@@ -9697,6 +9697,16 @@ msgstr "您的应用程序版本已过期。请刷新页面以继续。"
 msgid "Your billing subscription is corrupted. Please contact support."
 msgstr "您的账单订阅已损坏。请联系支持。"
 
+#. js-lingui-id: +R4Ipy
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza plan renews soon"
+msgstr "您的 Odelza 方案即将续订"
+
+#. js-lingui-id: IvAgJP
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza trial is ending soon"
+msgstr "您的 Odelza 试用即将结束"
+
 #. js-lingui-id: bTyBrW
 #: src/engine/core-modules/auth/services/auth.service.ts
 msgid "Your Password Has Been Successfully Changed"
@@ -9713,16 +9723,6 @@ msgstr "无法找到您在此工作区中的角色。请联系您的工作区管
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-company-standard-flat-field-metadata.util.ts
 msgid "Your team member responsible for managing the company account"
 msgstr "负责管理公司账户的团队成员"
-
-#. js-lingui-id: sOfbGC
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty plan renews soon"
-msgstr "您的 Twenty 方案即将续订"
-
-#. js-lingui-id: qW+K5e
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty trial is ending soon"
-msgstr "您的 Twenty 试用即将结束"
 
 #. js-lingui-id: ej/tZF
 #: src/engine/core-modules/graphql/hooks/use-graphql-error-handler.hook.ts

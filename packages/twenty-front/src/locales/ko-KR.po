@@ -1393,6 +1393,11 @@ msgstr "개체 추가"
 msgid "Add object permission"
 msgstr "객체 권한 추가"
 
+#. js-lingui-id: yT8omL
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Add Odelza as a Streamable HTTP extension in Goose."
+msgstr "Goose에서 Odelza를 Streamable HTTP 확장으로 추가하세요."
+
 #. js-lingui-id: Dl5lVI
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx
 msgid "Add option"
@@ -1467,35 +1472,35 @@ msgstr "작업 추가"
 msgid "Add test input for evaluation (e.g., \"Find all customers in NY\")"
 msgstr ""
 
-#. js-lingui-id: FKGcEL
+#. js-lingui-id: PZ9W2V
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server as a remote context server in Zed."
-msgstr "Zed에서 Twenty MCP 서버를 원격 컨텍스트 서버로 추가하세요."
+msgid "Add the Odelza MCP server as a remote context server in Zed."
+msgstr "Zed에서 Odelza MCP 서버를 원격 컨텍스트 서버로 추가하세요."
 
-#. js-lingui-id: iA2nHX
+#. js-lingui-id: cE6ZAA
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server from Augment Code settings."
-msgstr "Augment Code 설정에서 Twenty MCP 서버를 추가하세요."
+msgid "Add the Odelza MCP server from Augment Code settings."
+msgstr "Augment Code 설정에서 Odelza MCP 서버를 추가하세요."
 
-#. js-lingui-id: l+NzAk
+#. js-lingui-id: V9totg
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server from Raycast's MCP commands or settings."
-msgstr "Raycast의 MCP 명령 또는 설정에서 Twenty MCP 서버를 추가하세요."
+msgid "Add the Odelza MCP server from Raycast's MCP commands or settings."
+msgstr "Raycast의 MCP 명령 또는 설정에서 Odelza MCP 서버를 추가하세요."
 
-#. js-lingui-id: j6G/yI
+#. js-lingui-id: 00MgD2
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server in Gemini CLI settings."
-msgstr "Gemini CLI 설정에서 Twenty MCP 서버를 추가하세요."
+msgid "Add the Odelza MCP server in Gemini CLI settings."
+msgstr "Gemini CLI 설정에서 Odelza MCP 서버를 추가하세요."
 
-#. js-lingui-id: /OyhlM
+#. js-lingui-id: E9G1EO
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server to your LibreChat configuration file."
-msgstr "LibreChat 구성 파일에 Twenty MCP 서버를 추가하세요."
+msgid "Add the Odelza MCP server to your LibreChat configuration file."
+msgstr "LibreChat 구성 파일에 Odelza MCP 서버를 추가하세요."
 
-#. js-lingui-id: K0DXoj
+#. js-lingui-id: lUn4sy
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty remote server with LM Studio's install link."
-msgstr "LM Studio의 설치 링크로 Twenty 원격 서버를 추가하세요."
+msgid "Add the Odelza remote server with LM Studio's install link."
+msgstr "LM Studio의 설치 링크로 Odelza 원격 서버를 추가하세요."
 
 #. js-lingui-id: 5+ttxv
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistInput.tsx
@@ -1511,11 +1516,6 @@ msgstr "즐겨찾기에 추가"
 #: src/modules/settings/unsubscribe-topics/components/SettingsWorkspaceUnsubscribeTopicSection.tsx
 msgid "Add topic"
 msgstr "주제 추가"
-
-#. js-lingui-id: 4D/zWv
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add Twenty as a Streamable HTTP extension in Goose."
-msgstr "Goose에서 Twenty를 Streamable HTTP 확장으로 추가하세요."
 
 #. js-lingui-id: XnwceV
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationRedirectURIsInput.tsx
@@ -3162,10 +3162,10 @@ msgstr "청구 주기"
 msgid "Billing period"
 msgstr "청구 기간"
 
-#. js-lingui-id: xF/NXI
+#. js-lingui-id: hvQPEr
 #: src/modules/settings/billing/hooks/useBillingPortalSession.ts
-msgid "Billing portal session error. Please retry or contact Twenty team"
-msgstr "결제 포털 세션 오류입니다. 다시 시도하거나 Twenty 팀에 문의하세요"
+msgid "Billing portal session error. Please retry or contact the Odelza team"
+msgstr "결제 포털 세션 오류입니다. 다시 시도하거나 Odelza 팀에 문의하세요"
 
 #. js-lingui-id: K1172m
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistSection.tsx
@@ -3304,10 +3304,10 @@ msgstr "{applicationName}와(과) 함께 번들됨"
 msgid "by {author}"
 msgstr "제작: {author}"
 
-#. js-lingui-id: 8Pfllj
+#. js-lingui-id: OiG8Zu
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "By using Twenty, you agree to the"
-msgstr "Twenty를 사용함으로써 귀하는 다음에 동의합니다"
+msgid "By using Odelza, you agree to the"
+msgstr "Odelza를 사용함으로써 귀하는 다음에 동의합니다"
 
 #. js-lingui-id: Yx41df
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
@@ -3796,11 +3796,11 @@ msgstr "이메일을 확인하세요"
 msgid "Check your inbox to verify your new email address."
 msgstr "새 이메일 주소를 확인하려면 받은 편지함을 확인하세요."
 
-#. js-lingui-id: SxwQE8
+#. js-lingui-id: jqbYQu
 #: src/modules/settings/billing/hooks/useHandleCheckoutSession.ts
 #: src/modules/settings/billing/hooks/useHandleCheckoutSession.ts
-msgid "Checkout session error. Please retry or contact Twenty team"
-msgstr "결제 세션 오류입니다. 다시 시도하거나 Twenty 팀에 문의하십시오"
+msgid "Checkout session error. Please retry or contact the Odelza team"
+msgstr "결제 세션 오류입니다. 다시 시도하거나 Odelza 팀에 문의하십시오"
 
 #. js-lingui-id: SviKkE
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -4385,6 +4385,16 @@ msgstr "이메일을 보내기 위해 SMTP 설정을 구성하십시오."
 msgid "Configure the default AI models for all workspaces"
 msgstr "모든 워크스페이스의 기본 AI 모델을 설정합니다"
 
+#. js-lingui-id: /iOabO
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Configure the Odelza MCP server manually in Cascade."
+msgstr "Cascade에서 Odelza MCP 서버를 수동으로 구성하세요."
+
+#. js-lingui-id: OPG1Ma
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Configure the Odelza MCP server manually in Cline."
+msgstr "Cline에서 Odelza MCP 서버를 수동으로 구성하세요."
+
 #. js-lingui-id: CcCy4C
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Configure the remote MCP server through Warp's agent settings."
@@ -4394,16 +4404,6 @@ msgstr "Warp의 에이전트 설정에서 원격 MCP 서버를 구성하세요."
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Configure the remote server in Amazon Q Developer's MCP settings."
 msgstr "Amazon Q Developer의 MCP 설정에서 원격 서버를 구성하세요."
-
-#. js-lingui-id: g1/8jH
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Configure the Twenty MCP server manually in Cascade."
-msgstr "Cascade에서 Twenty MCP 서버를 수동으로 구성하세요."
-
-#. js-lingui-id: XiyvRh
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Configure the Twenty MCP server manually in Cline."
-msgstr "Cline에서 Twenty MCP 서버를 수동으로 구성하세요."
 
 #. js-lingui-id: qA9AGQ
 #: src/modules/settings/domains/components/SettingsDomainRecords.tsx
@@ -7664,10 +7664,10 @@ msgstr "간격 전환 취소 중 오류 발생."
 msgid "Error while cancelling plan switching."
 msgstr "플랜 전환 취소 중 오류 발생."
 
-#. js-lingui-id: QmR+2U
+#. js-lingui-id: 3EWWOB
 #: src/modules/settings/billing/hooks/useEndSubscriptionTrialPeriod.ts
-msgid "Error while ending trial period. Please contact Twenty team."
-msgstr "시험 기간 종료 중 오류가 발생했습니다. Twenty 팀에 문의하세요."
+msgid "Error while ending trial period. Please contact the Odelza team."
+msgstr "시험 기간 종료 중 오류가 발생했습니다. Odelza 팀에 문의하세요."
 
 #. js-lingui-id: 5g78zo
 #: src/pages/settings/members/SettingsWorkspaceMember.tsx
@@ -13365,6 +13365,11 @@ msgstr "이 앱에서 관리하는 객체와 필드"
 msgid "Objects and fields permissions settings"
 msgstr "객체 및 필드 권한 설정"
 
+#. js-lingui-id: HWoL49
+#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/ColumnGrid.tsx
+msgid "Odelza fields"
+msgstr "Odelza 필드"
+
 #. js-lingui-id: BwJKBw
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "of"
@@ -13564,15 +13569,15 @@ msgstr "유지 관리되는 통합을 열거나 MCP 설치 링크를 허용하�
 msgid "Open as link"
 msgstr "링크로 열기"
 
-#. js-lingui-id: n0vVgf
+#. js-lingui-id: IalAdn
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Claude with the Twenty connector name and MCP URL prefilled."
-msgstr "Twenty 커넥터 이름과 MCP URL이 미리 채워진 상태로 Claude를 여세요."
+msgid "Open Claude with the Odelza connector name and MCP URL prefilled."
+msgstr "Odelza 커넥터 이름과 MCP URL이 미리 채워진 상태로 Claude를 여세요."
 
-#. js-lingui-id: +n2jpB
+#. js-lingui-id: N2Bs2F
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Cursor's MCP installer with the Twenty remote server config."
-msgstr "Twenty 원격 서버 구성이 미리 채워진 상태로 Cursor의 MCP 설치 프로그램을 여세요."
+msgid "Open Cursor's MCP installer with the Odelza remote server config."
+msgstr "Odelza 원격 서버 구성이 미리 채워진 상태로 Cursor의 MCP 설치 프로그램을 여세요."
 
 #. js-lingui-id: pZZH4Q
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
@@ -13595,6 +13600,11 @@ msgstr "앱에서 열기"
 msgid "Open in Roles"
 msgstr "역할에서 열기"
 
+#. js-lingui-id: OiLDj5
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Open Odelza's official ChatGPT integration for your workspace."
+msgstr "워크스페이스용 Odelza 공식 ChatGPT 통합을 여세요."
+
 #. js-lingui-id: xGd6Ih
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "Open Outlook"
@@ -13605,15 +13615,10 @@ msgstr "Outlook 열기"
 msgid "Open records in"
 msgstr "레코드를 다음에서 열기"
 
-#. js-lingui-id: q170S2
+#. js-lingui-id: LjQHbP
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Replit with the Twenty remote server config."
-msgstr "Twenty 원격 서버 구성이 미리 채워진 상태로 Replit을 여세요."
-
-#. js-lingui-id: sBd/cl
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Twenty's official ChatGPT integration for your workspace."
-msgstr "워크스페이스용 Twenty 공식 ChatGPT 통합을 여세요."
+msgid "Open Replit with the Odelza remote server config."
+msgstr "Odelza 원격 서버 구성이 미리 채워진 상태로 Replit을 여세요."
 
 #. js-lingui-id: OV5wZZ
 #: src/modules/navigation-menu-item/display/sections/components/NavigationDrawerOpenedSection.tsx
@@ -13885,10 +13890,10 @@ msgstr "페이지 레이아웃"
 msgid "Page name"
 msgstr "페이지 이름"
 
-#. js-lingui-id: NRvxzv
+#. js-lingui-id: AfMbxS
 #: src/pages/not-found/NotFound.tsx
-msgid "Page Not Found | Twenty"
-msgstr "페이지를 찾을 수 없음 | Twenty"
+msgid "Page Not Found | Odelza"
+msgstr "페이지를 찾을 수 없음 | Odelza"
 
 #. js-lingui-id: sF+Xp9
 #: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
@@ -17535,13 +17540,13 @@ msgstr "구독"
 msgid "Subscription activated."
 msgstr "구독이 활성화되었습니다."
 
-#. js-lingui-id: 0okvpx
+#. js-lingui-id: vqC8xM
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts
 #: src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts
-msgid "Subscription error. Please retry or contact Twenty team"
-msgstr "구독 오류입니다. 다시 시도하거나 Twenty 팀에 문의하세요"
+msgid "Subscription error. Please retry or contact the Odelza team"
+msgstr "구독 오류입니다. 다시 시도하거나 Odelza 팀에 문의하세요"
 
 #. js-lingui-id: FooJUj
 #. placeholder {0}: getTargetPlanLabel(targetPlanKey)
@@ -17945,14 +17950,14 @@ msgstr "OpenAI 호환 공급자용 API 엔드포인트"
 msgid "The AWS region for Bedrock"
 msgstr "Bedrock용 AWS 리전"
 
-#. js-lingui-id: HP7per
+#. js-lingui-id: KinWL/
 #: src/pages/settings/applications/utils/getStandardApplicationDescription.ts
 msgid ""
-"The base data model every Twenty workspace runs on.\n"
+"The base data model every Odelza workspace runs on.\n"
 "\n"
 "#### What \"foundation\" means\n"
 "\n"
-"Every Twenty workspace starts with this set of objects. They define the shape of your CRM, including relationships, activity, and reporting. Everything else, including marketplace apps, AI agents, and custom objects, plugs into them.\n"
+"Every Odelza workspace starts with this set of objects. They define the shape of your CRM, including relationships, activity, and reporting. Everything else, including marketplace apps, AI agents, and custom objects, plugs into them.\n"
 "\n"
 "#### Included objects\n"
 "- **People & Companies**: contact and account records\n"
@@ -17960,11 +17965,11 @@ msgid ""
 "- **Notes & Tasks**: activity and follow-ups\n"
 "- **Workflows & Dashboards**: automation and reporting\n"
 "\n"
-"Remove this app and the rest of Twenty has nothing to hang off.\n"
+"Remove this app and the rest of Odelza has nothing to hang off.\n"
 "\n"
 "#### Build your own app\n"
 "\n"
-"Extend Twenty with your own objects, fields, logic functions, or AI skills. Scaffold a new app in one command:\n"
+"Extend Odelza with your own objects, fields, logic functions, or AI skills. Scaffold a new app in one command:\n"
 "\n"
 "```bash\n"
 "npx create-twenty-app@latest my-twenty-app\n"
@@ -17979,11 +17984,11 @@ msgid ""
 "\n"
 "See the [Getting Started guide](https://twenty.com/developers/extend/apps/getting-started) for the full walkthrough, and [Building Apps](https://twenty.com/developers/extend/apps/building) for the `defineApplication` / `defineEntity` APIs."
 msgstr ""
-"모든 Twenty 워크스페이스가 기반으로 하는 기본 데이터 모델입니다.\n"
+"모든 Odelza 워크스페이스가 기반으로 하는 기본 데이터 모델입니다.\n"
 "\n"
 "#### \"foundation\"의 의미\n"
 "\n"
-"모든 Twenty 워크스페이스는 이 객체 집합으로 시작합니다. 여기에는 관계, 활동, 보고를 포함해 CRM의 형태가 정의됩니다. 마켓플레이스 앱, AI 에이전트, 사용자 지정 객체를 비롯한 다른 모든 것은 여기에 연결됩니다.\n"
+"모든 Odelza 워크스페이스는 이 객체 집합으로 시작합니다. 여기에는 관계, 활동, 보고를 포함해 CRM의 형태가 정의됩니다. 마켓플레이스 앱, AI 에이전트, 사용자 지정 객체를 비롯한 다른 모든 것은 여기에 연결됩니다.\n"
 "\n"
 "#### 포함된 객체\n"
 "- **People & Companies**: 연락처 및 계정 레코드\n"
@@ -17991,11 +17996,11 @@ msgstr ""
 "- **Notes & Tasks**: 활동 및 후속 조치\n"
 "- **Workflows & Dashboards**: 자동화 및 보고\n"
 "\n"
-"이 앱을 제거하면 나머지 Twenty는 의존할 토대가 없어집니다.\n"
+"이 앱을 제거하면 나머지 Odelza는 의존할 토대가 없어집니다.\n"
 "\n"
 "#### 나만의 앱 만들기\n"
 "\n"
-"사용자 지정 객체, 필드, 로직 함수, AI 기술로 Twenty를 확장하세요. 명령 한 번으로 새 앱을 스캐폴드합니다:\n"
+"사용자 지정 객체, 필드, 로직 함수, AI 기술로 Odelza를 확장하세요. 명령 한 번으로 새 앱을 스캐폴드합니다:\n"
 "\n"
 "```bash\n"
 "npx create-twenty-app@latest my-twenty-app\n"
@@ -19003,11 +19008,6 @@ msgstr ""
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
 msgid "Turquoise"
 msgstr "터콰이즈"
-
-#. js-lingui-id: JnaRPe
-#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/ColumnGrid.tsx
-msgid "Twenty fields"
-msgstr "Twenty 필드"
 
 #. js-lingui-id: YIjS4q
 #: src/modules/ai/components/SettingsAgentModelCapabilities.tsx
@@ -20513,10 +20513,10 @@ msgstr ""
 msgid "Weight"
 msgstr "가중치"
 
-#. js-lingui-id: nTuObL
+#. js-lingui-id: OeCsyd
 #: src/pages/auth/SignInUp.tsx
-msgid "Welcome to Twenty"
-msgstr "Twenty에 오신 것을 환영합니다"
+msgid "Welcome to Odelza"
+msgstr "Odelza에 오신 것을 환영합니다"
 
 #. js-lingui-id: t8ZvkC
 #: src/pages/auth/SignInUp.tsx
