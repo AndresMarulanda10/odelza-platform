@@ -10,8 +10,8 @@ export const MCP_SETUP = {
     value: 'Bearer <YOUR_API_KEY>',
   },
   server: {
-    name: 'twenty',
-    displayName: 'Twenty',
+    name: 'odelza',
+    displayName: 'Odelza',
   },
   clientDocsUrls: {
     augment: 'https://docs.augmentcode.com/setup-augment/mcp',
