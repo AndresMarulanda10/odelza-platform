@@ -54,12 +54,18 @@ La tarea empezó como un cambio de paleta (Gruvbox → Odelza). El 2026-11-05 se
 - **Correos:** pasan a una revisión completa en su propia fase (fase 6). En la fase 3 no se tocan.
 - **Remoto `upstream`:** se deja como está.
 
+### 2026-11-09: prioridad a lo que ve el usuario
+
+- **Qué se decidió:** la fase 3 queda solo con los metadatos (3.1) y el borrado de `twenty-zapier` (3.2, ya hecho). El renombre de paquetes, carpetas, archivos y símbolos (pasos 32 a 38) se pospone a una fase posterior, después de las fases que cambian lo que ve el usuario. Las decisiones del paso 33 siguen vigentes para cuando se retome.
+- **Por qué:** los nombres de archivos y paquetes solo los ve el equipo de desarrollo. La prioridad es que quien usa la plataforma vea Odelza en todas partes.
+- **Tagline:** "Tu espacio de trabajo para clientes, proyectos y operaciones", elegida por el usuario. Es un texto fijo en español; no cambia con el idioma de la interfaz.
+
 ## Estado
 
 - **Fase 1 (tema Odelza):** replanteada el 2026-11-05. El commit `025bfb65d6` (traductor sobre la paleta de Twenty) queda como antecedente: se reemplaza su mecanismo y sus valores por la paleta oficial (ver "Paleta Odelza"). La paleta oficial se agregó al repo en `docs/brand/odelza-paleta-web.png` y se transcribió en este archivo.
-- **Fase 1, revisión:** el 2026-11-05 el usuario aprobó los colores en la app real ("por ahora"). Si hacen falta ajustes de color, se agregan como tarea previa a la fase que los necesite. Falta el commit y el PR de la fase.
+- **Fase 1, revisión:** el 2026-11-05 el usuario aprobó los colores en la app real ("por ahora"). Si hacen falta ajustes de color, se agregan como tarea previa a la fase que los necesite. Commit `a4188ebe82`.
 - **Fase 2 (logos y assets):** hecha y aprobada el 2026-11-05, commit `7e8c7ca8e8`.
-- **Fase 3 (metadatos, paquetes y nombres de archivos):** agregada el 2026-11-09, en curso. Paso 31 hecho (borrado de `twenty-zapier`). Paso 33 decidido. Siguiente: inventario y codemod del renombre de paquetes (pasos 32, 34 a 36).
+- **Fase 3 (metadatos):** agregada el 2026-11-09, en curso. Paso 31 hecho (borrado de `twenty-zapier`). Pasos 27 a 30 implementados, pendientes de la imagen reconstruida y de la revisión del usuario. El renombre de paquetes y archivos (pasos 32 a 38) quedó pospuesto (ver "Decisiones").
 - **Fases 4 a 7 (textos, enlaces y términos, correos, cierre):** planeadas, sin empezar.
 - **Fase 8 (ilustraciones):** tarea final, después de todo el branding. Decidida el 2026-11-05: no es prioritaria y el usuario aún no tiene todas las ilustraciones.
 - **Bloqueos:** ninguno para la fase 1 (la paleta ya está transcrita). La fase 2 necesita los assets del logo Odelza. Ver "Insumos pendientes".
@@ -332,11 +338,29 @@ Fuera de la fase: los avatares y logos de `twentyhq.github.io` en el dev-seeder 
 - **Sin cambios:** las menciones a Zapier como dato de demo (seeds, mocks, `IconBrandZapier`) y las de `twenty-docs`/`twenty-website`.
 - **Estado:** hecho, en su propio commit.
 
+### Registro 2026-11-09 (fase 3, pasos 27 a 30)
+
+- **Hecho:**
+  - `APP_NAME = 'Odelza'` en `twenty-shared/src/constants/AppName.ts`, con el barrel regenerado (`npx tsx packages/twenty-shared/scripts/generateBarrels.ts` desde la raíz). La tagline no lleva constante: solo la usan `index.html` y `manifest.json`, que son estáticos.
+  - `index.html`: `<title>`, `description`, og/twitter `title` y `description` con Odelza y la tagline. Se agregaron `application-name`, `apple-mobile-web-app-title`, `og:type`, `og:site_name` y el tamaño y el alt de `og:image`. `lang` sigue en `en` porque la interfaz arranca en inglés.
+  - `manifest.json`: `name`, `short_name` y `description`.
+  - `title-utils.ts`: el título por defecto usa `APP_NAME`.
+  - `generate-front-config.ts`: al arrancar, el server reescribe `og:image` y `twitter:image` con `${SERVER_URL}/images/odelza/social-card.png`. Sin `SERVER_URL`, o con `FRONT_AUTO_BASE_URL=true`, quedan relativas. El reemplazo sirve en cada arranque, aunque cambie `SERVER_URL`.
+  - Bloque de config: `Twenty Config` → `Odelza Config` y `twenty-env-config` → `odelza-env-config` en `index.html`, `generate-front-config.ts`, su spec e `inject-runtime-env.sh`.
+- **Verificación:**
+  - jest `generate-front-config.spec.ts` 6/6, con 2 casos nuevos para la imagen social.
+  - jest `title-utils.test.ts` 1/1, después de `nx build twenty-shared`.
+  - `oxlint --type-aware` 0/0 en los archivos TS tocados. `oxfmt` aplicado a `index.html`: ya fallaba en HEAD, y además pasó a minúsculas dos hex del estilo inline, que ningún test compara.
+  - `tsgo` del front con solo los 15 errores previos de `front-components`. `tsgo` del server con 12 errores, todos por paquetes sin compilar (`twenty-emails`, `twenty-sdk`), ninguno en lo tocado.
+  - Simulación de dos arranques sobre el `index.html` real: el bloque de config y las URLs de imagen se reemplazan bien las dos veces.
+- **Fuera de esta fase:** el título de la página 404 ("Page Not Found | Twenty") es un mensaje traducido y se resuelve en la fase 4 con `applyBrandToCatalog`.
+- **Pendiente:** reconstruir `odelza-local`, recrear el stack y la revisión del usuario en la app real (paso 41). Commit de los metadatos.
+
 ## Insumos pendientes
 
 - **Fase 1:** ninguno. Los nombres provisionales (`*`) se revisan en la revisión visual.
 - **Fase 2:** logo Odelza: SVG maestro, isotipo cuadrado y variantes para fondo claro y oscuro. Logo recibido el 2026-11-05.
-- **Fase 3:** tagline para los metadatos (paso 27). Las decisiones del paso 33 ya están tomadas.
+- **Fase 3:** ninguno. Tagline recibida el 2026-11-09.
 - **Fase 8:** ilustraciones propias de Odelza.
 - Confirmar que se avanza con el nombre "Odelza" aunque el registro de marca esté pendiente.
 - URLs propias de términos, privacidad y documentación, o la decisión de ocultar esos enlaces.

@@ -1,6 +1,7 @@
 {
-  "short_name": "Twenty",
-  "name": "Twenty",
+  "short_name": "Odelza",
+  "name": "Odelza",
+  "description": "Tu espacio de trabajo para clientes, proyectos y operaciones",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#2D120D",
