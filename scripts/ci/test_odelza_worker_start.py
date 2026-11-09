@@ -58,14 +58,15 @@ if s.get('started'):
         row[int(i)] = v
 print('PRIVATE_STDERR', file=sys.stderr)
 output = '|'.join(row) + '\n'
-sys.stdout.write(s.get(key + '_raw', s.get('raw', output)))
+sys.stdout.write(s.get(key + '_post_raw', s.get(key + '_raw', s.get('raw', output)))
+                 if s.get('started') else s.get(key + '_raw', s.get('raw', output)))
 sys.exit(s.get('post_inspect_code', 0) if s.get('started') else s.get('inspect_code', 0))
 '''
 
 
 class Protocol(unittest.TestCase):
     def run_case(self, changes=None, source=None, args=(), missing_tool=None,
-                 workflow_boundary=False):
+                 workflow_boundary=False, inherited_condition=None, probe_code=0):
         with tempfile.TemporaryDirectory(prefix="odelza-start-test-") as directory:
             home = Path(directory)
             state = home / "state.json"
@@ -75,7 +76,9 @@ class Protocol(unittest.TestCase):
                 "sleep": "#!/bin/sh\nexit 0\n",
                 "timeout": '''#!/bin/sh
 case "$*" in
-    '-k 1s 1s python3 -c pass'|'-k 1s 8s python3 - '*|'-k 2s 15s docker start '*|'-k 5s 480s ssh '*) ;;
+    '-k 1s 1s python3 -c pass')
+        [ "${FAKE_PROBE_CODE:-0}" -eq 0 ] || exit "$FAKE_PROBE_CODE" ;;
+    '-k 1s 8s python3 - '*|'-k 2s 15s docker start '*|'-k 5s 480s ssh '*) ;;
     *) exit 96 ;;
 esac
 shift 3
@@ -96,7 +99,9 @@ exec "$@"
             copy = home / "subject.sh"
             copy.write_text(text)
             command = ["/bin/sh", str(copy), *args]
-            env = {"FAKE_STATE": str(state)}
+            env = {"FAKE_STATE": str(state), "FAKE_PROBE_CODE": str(probe_code)}
+            if inherited_condition is not None:
+                env["condition"] = inherited_condition
             if workflow_boundary:
                 # Execute the actual runner body, including SSH 2>/dev/null.
                 # Only script input and PATH are redirected to owned fakes.
@@ -125,6 +130,7 @@ os.execv('/bin/sh', ['/bin/sh', '-s'])
                                     capture_output=True, text=True, timeout=8)
             calls = json.loads(state.read_text())["calls"]
             self.assertNotIn("PRIVATE", result.stdout + result.stderr)
+            self.assertNotIn("::", result.stdout + result.stderr)
             self.assertNotIn("FORBIDDEN_ARGV", result.stdout + result.stderr)
             allowed = {
                 "worker_start=" + value for value in [
@@ -132,6 +138,9 @@ os.execv('/bin/sh', ['/bin/sh', '-s'])
                     "outcome_unknown", "reconciliation_validation_failed",
                     "unstable_or_observation_unavailable", "started",
                     "already_running_not_started_by_this_run"]
+            } | {"preflight=" + value for value in [
+                "runtime_guard", "app_inspection", "app_contract", "worker_inspection", "worker_contract",
+                "pre_start_app_inspection", "pre_start_worker_inspection", "pre_start_contract"]
             } | {"worker_state=" + value for value in [
                 "created", "running", "exited", "restarting", "paused", "dead", "removing"]} | {
                 "reconciliation=unavailable", "readiness=process_running_only",
@@ -149,6 +158,9 @@ os.execv('/bin/sh', ['/bin/sh', '-s'])
                     self.assertIn(argv[4], ["odelza-app", "odelza-jobs", APP, WORKER])
                     for forbidden in ["{{json", ".Mounts", ".Args", ".Health.Log", ".Health.Output"]:
                         self.assertNotIn(forbidden, argv[3])
+                    # JSON is used only internally for optional Health null detection.
+                    self.assertEqual(argv[3].count('(json '), 1)
+                    self.assertIn('(json (index .State "Health")) "null"', argv[3])
             self.assertLessEqual(len(starts), 1)
             self.assertTrue(all(a == ["start", WORKER] for a in starts))
             return result, calls, starts
@@ -190,6 +202,82 @@ os.execv('/bin/sh', ['/bin/sh', '-s'])
             {"worker": {"6": "TT"}})
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(starts, [])
+
+    def test_preflight_failure_phases(self):
+        for changes, phase in [
+            ({"app_raw": "PRIVATE"}, "app_inspection"),
+            ({"app": {"14": "none"}}, "app_contract"),
+            ({"worker_raw": "PRIVATE"}, "worker_inspection"),
+            ({"worker": {"6": "TT"}}, "worker_contract"),
+            ({"drift_at": 2, "app_drift": {"14": "::error::PRIVATE"}},
+             "pre_start_app_inspection"),
+            ({"drift_at": 2, "worker_drift": {"14": "::error::PRIVATE"}},
+             "pre_start_worker_inspection"),
+            ({"drift_at": 2, "worker_drift": {"6": "TT"}}, "pre_start_contract"),
+        ]:
+            with self.subTest(phase=phase):
+                result, _, starts = self.run_case(changes, workflow_boundary=True)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("preflight=" + phase, result.stdout)
+                self.assertEqual(starts, [])
+
+    def test_inherited_condition_never_reaches_output(self):
+        canary = "::error::PRIVATE_CANARY\n::workflow::PRIVATE_CANARY"
+        # Exact source, original PATH and early argument refusal: no tools or
+        # Docker can be reached. Preserve the independently reported repro.
+        for inherited in ("::error::PRIVATE_CANARY", canary):
+            result = subprocess.run(["/bin/sh", str(SCRIPT), "unexpected"],
+                                    env={"condition": inherited}, capture_output=True,
+                                    text=True, timeout=8)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertNotIn("PRIVATE_CANARY", result.stdout + result.stderr)
+            self.assertNotIn("::", result.stdout + result.stderr)
+            self.assertEqual(result.stdout, "worker_start=precondition_or_observation_failed\n"
+                             "preflight=runtime_guard\n")
+            self.assertEqual(result.stderr, "")
+
+        cases = [
+            ({"args": ("unexpected",)}, "precondition_or_observation_failed", "runtime_guard", 0),
+            *[({"missing_tool": tool}, "required_tool_unavailable", None, 0)
+              for tool in ("timeout", "docker", "python3", "sleep")],
+            ({"probe_code": 124}, "precondition_or_observation_failed", "runtime_guard", 0),
+            ({"changes": {"app": {"14": "none"}}},
+             "precondition_or_observation_failed", "app_contract", 0),
+            ({"changes": {"worker": {"6": "TT"}}, "workflow_boundary": True},
+             "precondition_or_observation_failed", "worker_contract", 0),
+            ({"changes": {"start_code": 124}, "workflow_boundary": True},
+             "outcome_unknown", None, 1),
+            ({"changes": {"worker_post": {"9": "exited"}}, "workflow_boundary": True},
+             "unstable_or_observation_unavailable", None, 1),
+            ({"changes": {"worker": {"9": "running"}}},
+             "already_running_not_started_by_this_run", None, 0),
+            ({}, "started", None, 1),
+        ]
+        for kwargs, status, phase, attempts in cases:
+            with self.subTest(kwargs=kwargs):
+                result, calls, starts = self.run_case(inherited_condition=canary, **kwargs)
+                self.assertIn("worker_start=" + status, result.stdout.splitlines())
+                self.assertEqual(result.returncode == 0, status in (
+                    "started", "already_running_not_started_by_this_run"))
+                self.assertNotIn("PRIVATE_CANARY", result.stdout + result.stderr)
+                self.assertNotIn("::", result.stdout + result.stderr)
+                self.assertEqual(len(starts), attempts)
+                if phase is not None:
+                    self.assertIn("preflight=" + phase, result.stdout.splitlines())
+                else:
+                    self.assertNotIn("preflight=", result.stdout)
+                if "args" in kwargs or "missing_tool" in kwargs or "probe_code" in kwargs:
+                    self.assertEqual(calls, [])
+
+    def test_phase_assignments_are_source_literals(self):
+        source = SCRIPT.read_text()
+        assignments = re.findall(r"^condition=(.*)$", source, re.MULTILINE)
+        self.assertEqual(assignments, [
+            "runtime_guard", "app_inspection", "app_contract", "worker_inspection",
+            "worker_contract", "pre_start_app_inspection", "pre_start_worker_inspection",
+            "pre_start_contract", "",
+        ])
+        self.assertLess(source.index("condition=runtime_guard\n"), source.index("fail()"))
 
     def test_created_starts_pinned_id(self):
         result, calls, starts = self.run_case()
@@ -339,10 +427,11 @@ class Workflow(unittest.TestCase):
 class NativeTemplates(unittest.TestCase):
     @unittest.skipUnless(shutil.which("go"), "Go unavailable: native template modeling not run")
     def test_real_go_template_guards(self):
-        # Real text/template semantics plus Docker's documented strings.Split
-        # binding. This is not a Docker daemon/version compatibility proof.
+        # Strict raw-map fallback, with Docker's split/json bindings and both
+        # JSON number modes. Not a target Docker daemon/version proof.
         _, calls, _ = Protocol().run_case()
         template = next(a[3][9:] for a in calls if a[-1] == "odelza-jobs")
+        app_template = next(a[3][9:] for a in calls if a[-1] == "odelza-app")
         data = {"Id": WORKER, "Image": IMAGE, "Name": "/odelza-jobs",
                 "Config": {"Image": "twentycrm/twenty:odelza-2c449260b87aef0dc90e4eb8cd6ceca0fa02149f",
                            "Entrypoint": ["/app/entrypoint.sh"], "Cmd": ["yarn", "worker:prod"],
@@ -367,18 +456,43 @@ class NativeTemplates(unittest.TestCase):
                 env.extend(key if value is None else key + "=" + value for value in values)
                 candidate["Config"]["Env"] = env
                 cases.append((candidate, False))
+        self.assertEqual(len(cases), 28)  # Retain every original configuration case.
+        requests = [(template, candidate, expected, False) for candidate, expected in cases]
+        for app in (False, True):
+            for status in ("created", "running"):
+                for health in ["OMITTED", None, {"Status": "healthy"},
+                               {"Status": "unhealthy"}, {"Status": "starting"},
+                               {}, [], 0, False, "", "healthy", {"Status": "invalid"}]:
+                    candidate = json.loads(json.dumps(data))
+                    candidate["State"]["Status"] = status
+                    if health != "OMITTED":
+                        candidate["State"]["Health"] = health
+                    if app:
+                        candidate.update(Id=APP, Name="/odelza-app")
+                        candidate["Config"]["Cmd"] = ["node", "dist/main"]
+                    expected = (status == "running" and health == {"Status": "healthy"}
+                                if app else health in ("OMITTED", None) or
+                                (status == "running" and health == {"Status": "healthy"}))
+                    requests.append((app_template if app else template, candidate, expected, app))
         program = r'''package main
 import ("bytes"; "encoding/json"; "os"; "strings"; "text/template")
-type Request struct { Template string; Data []map[string]interface{} }
+type Case struct { Template string; Data map[string]interface{} }
+type Request struct { Cases []Case }
 func main() {
     var request Request
-    if err := json.NewDecoder(os.Stdin).Decode(&request); err != nil { panic(err) }
-    t := template.Must(template.New("inspect").Funcs(template.FuncMap{"split": strings.Split}).Parse(request.Template))
+    decoder := json.NewDecoder(os.Stdin)
+    // Select decoding before consuming stdin, matching Docker's raw fallback.
+    if os.Args[1] == "use-number" { decoder.UseNumber() }
+    if err := decoder.Decode(&request); err != nil { panic(err) }
     outputs := []string{}
-    for _, data := range request.Data {
+    for _, item := range request.Cases {
+        funcs := template.FuncMap{"split": strings.Split, "json": func(v interface{}) (string, error) {
+            b, err := json.Marshal(v); return string(b), err
+        }}
+        t := template.Must(template.New("inspect").Option("missingkey=error").Funcs(funcs).Parse(item.Template))
         var output bytes.Buffer
-        if err := t.Execute(&output, data); err != nil {
-            outputs = append(outputs, "TEMPLATE_ERROR")
+        if err := t.Execute(&output, item.Data); err != nil {
+            outputs = append(outputs, "TEMPLATE_ERROR: " + err.Error())
         } else { outputs = append(outputs, output.String()) }
     }
     json.NewEncoder(os.Stdout).Encode(outputs)
@@ -390,16 +504,37 @@ func main() {
             source.write_text(program)
             env = dict(os.environ, GOPROXY="off", GOTOOLCHAIN="local", GOTELEMETRY="off",
                        GOCACHE=str(home / "cache"), GOPATH=str(home / "go"))
-            result = subprocess.run([shutil.which("go"), "run", str(source)],
-                                    input=json.dumps({"Template": template, "Data": [c[0] for c in cases]}),
-                                    text=True, capture_output=True, env=env, timeout=120)
-            self.assertEqual(result.returncode, 0, result.stderr)
-            outputs = json.loads(result.stdout)
-            self.assertEqual(len(outputs), len(cases))
-            for output, (_, expected) in zip(outputs, cases):
-                fields = output.split("|")
-                accepted = len(fields) == 15 and fields[2:9] == ["true"] * 4 + ["T", "T", "true"]
-                self.assertEqual(accepted, expected, output)
+            for mode in ("use-number", "ordinary-json"):
+                result = subprocess.run([shutil.which("go"), "run", str(source), mode],
+                                        input=json.dumps({"Cases": [
+                                            {"Template": t, "Data": d} for t, d, _, _ in requests]}),
+                                        text=True, capture_output=True, env=env, timeout=120)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                outputs = json.loads(result.stdout)
+                self.assertEqual(len(outputs), 76)
+                for index, (output, (_, candidate, expected, app)) in enumerate(zip(outputs, requests)):
+                    fields = output.split("|")
+                    accepted = (len(fields) == 15 and
+                                fields[2:9] == ["true"] * 4 + ["T", "T", "true"] and
+                                fields[10:14] == ["false", "false", "0", "0"] and
+                                (fields[9:10] == ["running"] and fields[14] == "healthy"
+                                 if app else (fields[9] == "created" and fields[14] == "none") or
+                                 (fields[9] == "running" and fields[14] in ("none", "healthy"))))
+                    self.assertEqual(accepted, expected, (mode, output))
+                    if index >= 28:
+                        # Feed actual native output into the full denying shell
+                        # protocol; only the synthetic created->running transition
+                        # changes after a successful fake start.
+                        key = "app" if app else "worker"
+                        changes = {key + "_raw": output + "\n"}
+                        if not app:
+                            changes["worker_post_raw"] = output.replace(
+                                "|created|", "|running|") + "\n"
+                        protocol, _, starts = Protocol().run_case(changes)
+                        self.assertEqual(protocol.returncode == 0, expected, (mode, output))
+                        expected_starts = int(expected and
+                                              (app or candidate["State"]["Status"] == "created"))
+                        self.assertEqual(len(starts), expected_starts)
 
 
 if __name__ == "__main__":
