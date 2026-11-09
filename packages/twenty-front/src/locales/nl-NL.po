@@ -41,6 +41,11 @@ msgstr " per {intervalLabel}"
 msgid "—"
 msgstr "—"
 
+#. js-lingui-id: X9nCq4
+#: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
+msgid ": Before today{timeZoneAbbreviationSuffix}"
+msgstr ""
+
 #. js-lingui-id: ypz2+E
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
 msgid ": Empty"
@@ -1936,9 +1941,9 @@ msgstr "Alle app-registraties"
 msgid "All application registrations across the platform, including orphaned marketplace apps"
 msgstr "Alle applicatieregistraties op het hele platform, inclusief verweesde Marketplace-apps"
 
-#. js-lingui-id: zHxUsQ
+#. js-lingui-id: QgR+Od
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "All dated tasks have already ended."
+msgid "All dated records have already ended."
 msgstr ""
 
 #. js-lingui-id: 1kLn6M
@@ -2173,9 +2178,9 @@ msgstr "Er is een fout opgetreden bij het controleren van het gebruikersbestand"
 msgid "An error occurred while loading financial data."
 msgstr ""
 
-#. js-lingui-id: PAwBtR
+#. js-lingui-id: oHNBPZ
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "An error occurred while loading tasks."
+msgid "An error occurred while loading records."
 msgstr ""
 
 #. js-lingui-id: LfKkm6
@@ -2913,8 +2918,8 @@ msgid "Auto-generated role for {agentDisplayName}"
 msgstr ""
 
 #. js-lingui-id: Dnn2XG
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Automatic"
 msgstr ""
 
@@ -3032,6 +3037,11 @@ msgstr "Achtergrondkleuren"
 #: src/modules/workflow/workflow-steps/workflow-actions/pick-record-action/components/WorkflowEditActionPickRecord.tsx
 msgid "Balance by"
 msgstr "Balanceringscriterium"
+
+#. js-lingui-id: sKyCPZ
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Bar color"
+msgstr ""
 
 #. js-lingui-id: b2ghLW
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
@@ -3626,12 +3636,6 @@ msgstr "Catalaans"
 msgid "Catalog"
 msgstr ""
 
-#. js-lingui-id: r8+cl4
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
-msgid "Catalog fields"
-msgstr ""
-
 #. js-lingui-id: K7tIrx
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 msgid "Category"
@@ -3813,10 +3817,20 @@ msgstr "Chinees — Traditioneel"
 msgid "Choose {intervalAdjective} credits"
 msgstr "Kies {intervalAdjective} credits"
 
+#. js-lingui-id: KvPBuR
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Choose a readable active source to configure its fields."
+msgstr ""
+
 #. js-lingui-id: NFfUic
 #: src/pages/auth/SignInUp.tsx
 msgid "Choose a Workspace"
 msgstr "Kies een Werkruimte"
+
+#. js-lingui-id: ri0An0
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Choose an active source and configure readable date fields; unavailable dates are not inferred."
+msgstr ""
 
 #. js-lingui-id: Qz73jD
 #: src/modules/settings/security/components/SSO/SettingsSSOIdentitiesProvidersForm.tsx
@@ -4411,6 +4425,16 @@ msgstr "Configureer uw e-mail- en kalenderinstellingen."
 #: src/modules/settings/admin-panel/apps/components/SettingsAdminApps.tsx
 msgid "Configured"
 msgstr "Geconfigureerd"
+
+#. js-lingui-id: /YVSa4
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Configured date fields are invalid or no longer available. Update the widget field mappings."
+msgstr ""
+
+#. js-lingui-id: RiShNf
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Configured task date fields are invalid or no longer available. Update the widget field mappings."
+msgstr ""
 
 #. js-lingui-id: 7VpPHA
 #: src/modules/settings/admin-panel/components/SettingsAdminServerAdminAccess.tsx
@@ -5729,7 +5753,14 @@ msgstr "Datum Granulariteit X"
 msgid "Date Granularity Y"
 msgstr "Datum Granulariteit Y"
 
+#. js-lingui-id: 61fDxz
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Dates are full-day and inclusive. Dependencies and status are not interpreted for this source."
+msgstr ""
+
 #. js-lingui-id: Lgnlah
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling."
 msgstr ""
@@ -7953,11 +7984,6 @@ msgstr "Uitdrukking"
 msgid "Extended"
 msgstr "Verlengd"
 
-#. js-lingui-id: qlMg0V
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
-msgid "Extra field"
-msgstr ""
-
 #. js-lingui-id: 7Bj3x9
 #: src/modules/ai/components/CodeExecutionDisplay.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceContent.tsx
@@ -8390,6 +8416,7 @@ msgstr "velden"
 #: src/modules/settings/data-model/object-details/components/tabs/ObjectFields.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/record-level-permissions/components/SettingsRolePermissionsObjectLevelRecordLevelPermissionFieldSelectFieldMenu.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/record-page/SidePanelRecordPageFieldSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutRecordPageWidgetTypeSelect.tsx
 #: src/modules/side-panel/utils/getSidePanelSubPageTitle.ts
@@ -9219,10 +9246,20 @@ msgstr "Gezondheidsstatus"
 msgid "Hebrew"
 msgstr "Hebreeuws"
 
+#. js-lingui-id: c3XJ18
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Help"
+msgstr ""
+
 #. js-lingui-id: CRzGla
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
 msgid "Help center"
 msgstr "Helpcentrum"
+
+#. js-lingui-id: VpExZs
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Hex color"
+msgstr ""
 
 #. js-lingui-id: D+zLDD
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownHiddenRecordGroupsContent.tsx
@@ -9555,7 +9592,6 @@ msgid "iFrame Widget"
 msgstr "iFrame-widget"
 
 #. js-lingui-id: hG89Ed
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
 msgid "Image"
 msgstr "Afbeelding"
@@ -10193,6 +10229,11 @@ msgstr "Is na of gelijk aan"
 msgid "Is before"
 msgstr "Komt voor"
 
+#. js-lingui-id: bMjg2C
+#: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
+msgid "Is before today{timeZoneAbbreviationSuffix}"
+msgstr ""
+
 #. js-lingui-id: Hte7bc
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
 msgid "Is empty"
@@ -10397,6 +10438,16 @@ msgstr "Alleen voor mij"
 #: src/modules/views/types/ViewType.ts
 msgid "Kanban"
 msgstr "Kanban"
+
+#. js-lingui-id: DDTZaR
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Kanban View"
+msgstr ""
+
+#. js-lingui-id: twIexG
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
+msgid "Kanban view selected"
+msgstr ""
 
 #. js-lingui-id: 7sMeHQ
 #: src/modules/workflow/workflow-steps/workflow-actions/http-request-action/components/KeyValuePairInput.tsx
@@ -10955,6 +11006,7 @@ msgid "Load balanced"
 msgstr "Geloadbalanced"
 
 #. js-lingui-id: yQ2kGp
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
 #: src/modules/object-record/record-table/record-table-section/components/RecordTableRecordGroupSectionLoadMore.tsx
 msgid "Load more"
 msgstr "Meer laden"
@@ -10968,6 +11020,12 @@ msgstr "Heeft {formattedNames} geladen"
 #: src/modules/ai/utils/tool-display/get-tool-display-message.ts
 msgid "Loaded skills"
 msgstr "Vaardigheden geladen"
+
+#. js-lingui-id: yQE2r9
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "Loading"
+msgstr ""
 
 #. js-lingui-id: znv7zA
 #: src/modules/ai/utils/tool-display/get-tool-display-message.ts
@@ -12271,6 +12329,11 @@ msgstr "Geen {objectLabelSingular} gevonden"
 msgid "No access"
 msgstr "Geen toegang"
 
+#. js-lingui-id: jU1iLu
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No active records to display"
+msgstr ""
+
 #. js-lingui-id: glQp+P
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
 msgid "No active subscription."
@@ -12478,6 +12541,11 @@ msgstr "Geen gegevens gevonden"
 msgid "No Date field"
 msgstr "Geen datumveld"
 
+#. js-lingui-id: BTfesL
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No dated records to display"
+msgstr ""
+
 #. js-lingui-id: zqwWN2
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "No dated tasks to display"
@@ -12582,11 +12650,6 @@ msgstr "Geen mappen gevonden voor dit account"
 #. js-lingui-id: cYD+0r
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
 msgid "No hay elementos para mostrar"
-msgstr ""
-
-#. js-lingui-id: IKz5W+
-#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
-msgid "No hay registros para mostrar"
 msgstr ""
 
 #. js-lingui-id: 9kCSLK
@@ -12734,6 +12797,16 @@ msgstr "Geen machtigingen geconfigureerd voor deze app."
 msgid "No permissions have been set for individual objects."
 msgstr "Er zijn geen machtigingen ingesteld voor afzonderlijke objecten."
 
+#. js-lingui-id: wxGzJE
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "No readable active objects available."
+msgstr ""
+
+#. js-lingui-id: VFFC5+
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "No readable compatible fields. Choose another source or update its fields."
+msgstr ""
+
 #. js-lingui-id: 5sv+ia
 #: src/modules/activities/emails/hooks/useSendMessageCampaign.ts
 msgid "No recipients to send to ({skippedCount} skipped)"
@@ -12767,6 +12840,12 @@ msgstr "Geen gegevens gevonden"
 #: src/modules/object-record/record-table/empty-state/components/RecordTableEmptyStateNoRecordFoundForFilter.tsx
 msgid "No records matching the filter criteria were found."
 msgstr "Er zijn geen records gevonden die aan de filtercriteria voldoen."
+
+#. js-lingui-id: TdaAeM
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No records to display"
+msgstr ""
 
 #. js-lingui-id: gvIkAA
 #: src/modules/workflow/workflow-steps/workflow-actions/pick-record-action/components/WorkflowEditActionPickRecord.tsx
@@ -13025,6 +13104,9 @@ msgstr "Niet beschikbaar in standaardweergave"
 #. js-lingui-id: SDND4q
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Not configured"
 msgstr ""
 
@@ -13224,6 +13306,11 @@ msgstr "Objectmachtiging"
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelTableRowOptionsDropdown.tsx
 msgid "Object permission options"
 msgstr "Opties voor objectmachtigingen"
+
+#. js-lingui-id: cStG/n
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
+msgid "Object selected"
+msgstr ""
 
 #. js-lingui-id: gaqIMK
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
@@ -13715,6 +13802,12 @@ msgstr "Uitvoer"
 msgid "Output tokens"
 msgstr "Uitvoertokens"
 
+#. js-lingui-id: K+b1b+
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Overdue tasks"
+msgstr ""
+
 #. js-lingui-id: in6CUw
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
 msgid "Override Draft"
@@ -14002,11 +14095,6 @@ msgstr "Machtigingen · {objectLabelSingular}"
 #: src/modules/activities/emails/recipients/components/EmailRecipientChipMenuContent.tsx
 msgid "Person created"
 msgstr "Persoon aangemaakt"
-
-#. js-lingui-id: KOtX3r
-#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
-msgid "Personal Finance"
-msgstr ""
 
 #. js-lingui-id: pCopzO
 #: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
@@ -14776,6 +14864,8 @@ msgstr "Afbeelding vastleggen"
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Record label"
 msgstr "Label vastleggen"
 
@@ -14824,6 +14914,16 @@ msgstr "{count, plural, one {Record geselecteerd} other {Records geselecteerd}}"
 #: src/pages/settings/data-model/constants/SettingsObjectTableMetadata.ts
 msgid "Records"
 msgstr "Records"
+
+#. js-lingui-id: bCyMeu
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Records with both a valid start and end date will appear in the calendar."
+msgstr ""
+
+#. js-lingui-id: iVCsdg
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Records with configured start and end dates will appear here."
+msgstr ""
 
 #. js-lingui-id: wRTiSD
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
@@ -15259,6 +15359,16 @@ msgstr "Variabele resetten"
 msgid "Resize"
 msgstr ""
 
+#. js-lingui-id: ua09SU
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize record end date"
+msgstr ""
+
+#. js-lingui-id: 9lOmol
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize record start date"
+msgstr ""
+
 #. js-lingui-id: k2DjdV
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Resize task due date"
@@ -15353,6 +15463,7 @@ msgstr "Hervatten"
 
 #. js-lingui-id: 6gRgw8
 #: src/modules/ai/components/AiChatErrorMessage.tsx
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
 #: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobRowDropdownMenu.tsx
@@ -15682,9 +15793,9 @@ msgstr "Scopes"
 msgid "Score"
 msgstr ""
 
-#. js-lingui-id: 2YCiey
+#. js-lingui-id: 63PgVc
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Scroll horizontally and vertically, or drag empty space to pan. Task bars and controls remain interactive."
+msgid "Scroll horizontally and vertically, or drag empty space to pan. Record bars and controls remain interactive."
 msgstr ""
 
 #. js-lingui-id: hJjXGo
@@ -15880,11 +15991,11 @@ msgstr "veldmetadata zoeken"
 #. js-lingui-id: 7taA9j
 #: src/modules/object-record/advanced-filter/components/AdvancedFilterFieldSelectSearchInput.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarFieldsContent.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownFieldsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupFieldsContent.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableHeaderPlusButtonContent.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartFieldSelectionForAggregateOperationDropdownContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartGroupByFieldSelectionDropdownContentBase.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartGroupByFieldSelectionTargetObjectFieldsView.tsx
@@ -15914,9 +16025,16 @@ msgstr "Zoek naar een object..."
 msgid "Search icon"
 msgstr "Zoekpictogram"
 
+#. js-lingui-id: aLoGD1
+#: src/modules/side-panel/pages/page-layout/components/view-settings/ViewWidgetViewDropdownContent.tsx
+msgid "Search Kanban views"
+msgstr ""
+
 #. js-lingui-id: two5rl
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartDataSourceDropdownContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/record-table-settings/RecordTableDataSourceDropdownContent.tsx
+#: src/modules/side-panel/pages/page-layout/components/view-settings/ViewWidgetDataSourceDropdownContent.tsx
 msgid "Search objects"
 msgstr "Zoek objecten"
 
@@ -16182,6 +16300,11 @@ msgstr "Selecteer een veld uit een vorige stap"
 msgid "Select a field to display in this widget"
 msgstr "Selecteer een veld om in deze widget weer te geven"
 
+#. js-lingui-id: xWICn6
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
+msgid "Select a Kanban view"
+msgstr ""
+
 #. js-lingui-id: rHNnAT
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
 msgid "Select a known model or add a custom one"
@@ -16202,6 +16325,11 @@ msgstr "Selecteer een navigatie-item om te bewerken"
 msgid "Select a sender"
 msgstr "Selecteer een afzender"
 
+#. js-lingui-id: gIz6Pc
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Select a source and configure timeline date fields."
+msgstr ""
+
 #. js-lingui-id: jL3gox
 #: src/modules/object-record/record-field/ui/form-types/components/FormBooleanFieldInput.tsx
 msgid "Select a value"
@@ -16218,6 +16346,11 @@ msgstr "Selecteer Actie"
 #: src/modules/side-panel/pages/workflow/hooks/useSidePanelWorkflowNavigation.ts
 msgid "Select Action"
 msgstr "Selecteer Actie"
+
+#. js-lingui-id: q+QH+O
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
+msgid "Select an object"
+msgstr ""
 
 #. js-lingui-id: hVPa4O
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/UnmatchColumn.tsx
@@ -16353,11 +16486,6 @@ msgstr "Selecteer welke modellen als aanbevolen verschijnen in de modelkiezer va
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
 msgid "Select your preferred language"
 msgstr "Selecteer je voorkeurstaal"
-
-#. js-lingui-id: YMYE4/
-#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
-msgid "Selected color"
-msgstr ""
 
 #. js-lingui-id: JlFcis
 #: src/modules/page-layout/widgets/email-thread/components/EmailThreadComposer.tsx
@@ -16563,6 +16691,8 @@ msgstr "Uw <0>database</0> opzetten..."
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/RegularTabSettingsContent.tsx
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownDefaultComponents.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
@@ -16971,14 +17101,14 @@ msgstr "Sommige indelingswijzigingen konden niet worden opgeslagen"
 msgid "Some log data was dropped to fit the size limit ({0} entries, {1} bytes)."
 msgstr "Een deel van de loggegevens is weggelaten om binnen de limiet te blijven ({0} items, {1} bytes)."
 
-#. js-lingui-id: cSrzsO
+#. js-lingui-id: 0/sbpy
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Some task data could not be loaded."
+msgid "Some record data could not be loaded."
 msgstr ""
 
-#. js-lingui-id: 4aNyrb
+#. js-lingui-id: sByq3S
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Some tasks have unavailable dates or progress."
+msgid "Some records have unavailable dates or progress."
 msgstr ""
 
 #. js-lingui-id: ZVl+JT
@@ -17057,6 +17187,8 @@ msgstr "Sorteringen"
 #: src/modules/settings/admin-panel/apps/components/SettingsAdminApps.tsx
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableOptionsDropdownContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
 #: src/modules/side-panel/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
@@ -17224,6 +17356,11 @@ msgstr "Status"
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Status"
 msgstr "Status"
+
+#. js-lingui-id: 0kMX/f
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Status and dependencies are Task-only. Numeric progress and boolean milestones are retained only when compatible; they are not inferred."
+msgstr ""
 
 #. js-lingui-id: oCQwvS
 #: src/pages/settings/community/SettingsCommunity.tsx
@@ -17438,11 +17575,6 @@ msgstr "Abonnement wordt gewijzigd naar maandelijks op {0}."
 #. js-lingui-id: pEToQK
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "subtitle"
-msgstr ""
-
-#. js-lingui-id: a0w0iQ
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
-msgid "Subtitle"
 msgstr ""
 
 #. js-lingui-id: 8QCMSh
@@ -17682,19 +17814,7 @@ msgstr "Subdomein van doelwerkruimte"
 
 #. js-lingui-id: Q3P/4s
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Task"
-msgstr ""
-
-#. js-lingui-id: iKS7vc
-#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
-#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
-msgid "Task bar color"
-msgstr ""
-
-#. js-lingui-id: I/ObQ6
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Task date fields are not configured; unavailable dates are not inferred."
 msgstr ""
 
 #. js-lingui-id: hVUUhm
@@ -17737,16 +17857,6 @@ msgstr "Taaktitel"
 #: src/modules/activities/notes/components/NoteTile.tsx
 msgid "Task Title"
 msgstr "Taaktitel"
-
-#. js-lingui-id: YDv82r
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Tasks with approved start and end dates will appear here."
-msgstr ""
-
-#. js-lingui-id: l9tCD6
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Tasks with both a valid start and end date will appear in the calendar."
-msgstr ""
 
 #. js-lingui-id: KM6m8p
 #: src/pages/settings/members/SettingsWorkspaceMembers.tsx
@@ -18361,6 +18471,11 @@ msgstr "Deze weergave gebruikt {usageLabel} voor het object \"{0}\", dat niet to
 msgid "This week"
 msgstr "Deze week"
 
+#. js-lingui-id: pAhR87
+#: src/modules/page-layout/widgets/components/RetiredWidgetPlaceholder.tsx
+msgid "This widget is no longer available. Remove it from the dashboard."
+msgstr ""
+
 #. js-lingui-id: gjpwN3
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
 msgid "This widget needs an object to read from."
@@ -18467,12 +18582,33 @@ msgstr "Tijdzone"
 
 #. js-lingui-id: cklVjM
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Timeline"
 msgstr "Tijdlijn"
+
+#. js-lingui-id: fD2IVX
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline calendar"
+msgstr ""
+
+#. js-lingui-id: fyTdZC
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline calendar viewport"
+msgstr ""
 
 #. js-lingui-id: ewpwRb
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Timeline data is incomplete"
+msgstr ""
+
+#. js-lingui-id: eDwzWt
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline help"
+msgstr ""
+
+#. js-lingui-id: 2KSmRm
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline unavailable"
 msgstr ""
 
 #. js-lingui-id: xY9s5E
@@ -18512,8 +18648,14 @@ msgstr "titel"
 msgid "Title"
 msgstr "Titel"
 
+#. js-lingui-id: 5Tf3iy
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Title and dates"
+msgstr ""
+
 #. js-lingui-id: 6P1iPM
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Title field"
 msgstr ""
 
@@ -18978,9 +19120,19 @@ msgstr "Kan de applicatiedetails niet laden. Probeer het later opnieuw."
 msgid "Unable to load personal-finance data"
 msgstr ""
 
+#. js-lingui-id: OgyxlX
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "Unable to load records"
+msgstr ""
+
 #. js-lingui-id: aU7aM1
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Unable to load task timeline"
+msgstr ""
+
+#. js-lingui-id: tBWlrP
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unable to load timeline"
 msgstr ""
 
 #. js-lingui-id: l+ALBd
@@ -18988,9 +19140,9 @@ msgstr ""
 msgid "Unable to Reach Back-end"
 msgstr "Kan de back-end niet bereiken"
 
-#. js-lingui-id: 3y+qu/
+#. js-lingui-id: id5px8
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Unable to save task timeline changes."
+msgid "Unable to save timeline changes."
 msgstr ""
 
 #. js-lingui-id: 5JOLV9
@@ -19005,9 +19157,14 @@ msgstr "Uit archief halen"
 msgid "Unavailable"
 msgstr "Niet beschikbaar"
 
-#. js-lingui-id: PcSvms
+#. js-lingui-id: 89aRTf
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Unavailable field"
+msgstr ""
+
+#. js-lingui-id: 6C4NZS
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Unavailable task data is not shown as zero or an invented date."
+msgid "Unavailable record data is not shown as zero or an invented date."
 msgstr ""
 
 #. js-lingui-id: NYFASA
@@ -19269,14 +19426,6 @@ msgstr "Naamloze lijst"
 #: src/modules/settings/roles/role/components/SettingsRoleCreateEffect.tsx
 msgid "Untitled role"
 msgstr "Naamloze rol"
-
-#. js-lingui-id: CowgFX
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Untitled task"
-msgstr ""
 
 #. js-lingui-id: jxRjAG
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
@@ -19874,11 +20023,6 @@ msgstr "Variabele niet gevonden"
 msgid "Variance"
 msgstr ""
 
-#. js-lingui-id: dEDwEM
-#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
-msgid "Ver más"
-msgstr ""
-
 #. js-lingui-id: QDEWii
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
 msgid "Verified"
@@ -19963,6 +20107,7 @@ msgstr "weergave"
 #: src/modules/settings/developers/components/WebhookEntitySelect.tsx
 #: src/modules/side-panel/components/hooks/usePageLayoutHeaderInfo.ts
 #: src/modules/side-panel/components/SidePanelObjectViewRecordInfo.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
 #: src/pages/settings/layout/SettingsLayoutViewDetail.tsx
 msgid "View"
@@ -20864,6 +21009,11 @@ msgstr "Je kunt je niet voordoen als je eigen account"
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay.tsx
 msgid "You do not have permission to access the {objectName} object"
 msgstr "Je hebt geen toestemming om toegang te krijgen tot het {objectName} object"
+
+#. js-lingui-id: aMQVbw
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "You do not have permission to view source data."
+msgstr ""
 
 #. js-lingui-id: hFuTsh
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
