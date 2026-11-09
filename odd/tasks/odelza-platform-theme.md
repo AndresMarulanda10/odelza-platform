@@ -354,7 +354,9 @@ Fuera de la fase: los avatares y logos de `twentyhq.github.io` en el dev-seeder 
   - `tsgo` del front con solo los 15 errores previos de `front-components`. `tsgo` del server con 12 errores, todos por paquetes sin compilar (`twenty-emails`, `twenty-sdk`), ninguno en lo tocado.
   - Simulación de dos arranques sobre el `index.html` real: el bloque de config y las URLs de imagen se reemplazan bien las dos veces.
 - **Fuera de esta fase:** el título de la página 404 ("Page Not Found | Twenty") es un mensaje traducido y se resuelve en la fase 4 con `applyBrandToCatalog`.
-- **Pendiente:** reconstruir `odelza-local`, recrear el stack y la revisión del usuario en la app real (paso 41). Commit de los metadatos.
+- **Commit:** `69cf4d9070`, con push a `origin/feat/odelza-platform-theme`.
+- **Docker (2026-11-09):** respaldo en `backups/20261109T204445Z-pre-phase3`. `odelza-backup.sh` falla en Git Bash: convierte `/data` del `docker run ... tar` en una ruta de Windows y deja el tar vacío. Se hicieron sus mismos pasos a mano con `MSYS_NO_PATHCONV=1` solo en el `tar`. Imagen `odelza-local` reconstruida (`cf7967cd`) y stack recreado: el primer `up --wait` venció antes de que el server terminara de arrancar; el segundo dio app healthy y jobs arriba, sin reinicios. `/healthz` 200, `<title>Odelza</title>`, `og:image` y `twitter:image` en `http://localhost:3000/images/odelza/social-card.png` (200, `image/png`), bloque `odelza-env-config` y `manifest.json` con nombre y tagline.
+- **Pendiente:** revisión del usuario en la app real (paso 41).
 
 ## Insumos pendientes
 
