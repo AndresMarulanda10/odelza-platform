@@ -19,8 +19,10 @@ CANARY = "PRIVATE_SQL_customer_email_token_::error::LEAK"
 FORMAT = (
     "{{.Id}}|{{.Image}}|{{.Config.Image}}|{{.State.Status}}|"
     "{{.State.ExitCode}}|{{.RestartCount}}|"
-    "{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}"
+    '{{if index .State "Health"}}{{.State.Health.Status}}{{else}}none{{end}}'
 )
+TIMES = "{{.Created}}|{{.State.StartedAt}}"
+START = "2026-11-09T14:00:00.123456789Z"
 
 # Executable fake: every Docker invocation is checked before supplying any data.
 FAKE = r'''#!/usr/bin/env python3
@@ -36,26 +38,60 @@ def deny():
     sys.exit(97)
 if name == "timeout":
     if a[:3] != ["-k", "2s", "8s"]: deny()
-    if a[3] not in ("docker", "stat", "head"): deny()
+    if a[3] not in ("docker", "stat", "head", "date"): deny()
     if cfg.get("timeout"): sys.exit(124)
     if cfg.get("real_timeout"):
         os.execv(cfg["real_timeout"], ["timeout"] + a)
     os.execv(str(pathlib.Path(sys.argv[0]).parent / a[3]), a[3:])
 elif name == "docker":
     if len(a) == 6 and a[:4] == ["inspect", "--type", "container", "--format"]:
-        if a[4] != cfg["format"] or a[5] not in ("odelza-app", "odelza-jobs"): deny()
+        # Keep the exact previous template for reproducible regression RED runs.
+        legacy = cfg["format"].replace('index .State "Health"', '.State.Health')
+        if a[4] not in (cfg["format"], legacy, "{{.Created}}|{{.State.StartedAt}}") or a[5] not in ("odelza-app", "odelza-jobs"): deny()
+        if a[4] == "{{.Created}}|{{.State.StartedAt}}":
+            print(cfg.get("times", "2026-11-09T13:59:00Z|2026-11-09T14:00:00.123456789Z"))
+            sys.exit(cfg.get("times_exit", cfg.get("docker_exit", 0)))
+        if cfg.get("inspect_exit"): sys.exit(cfg["inspect_exit"])
         if cfg.get("hang_inspect"):
             import time
             time.sleep(30)
-        print(cfg.get("inspect", "a"*64 + "|sha256:" + "b"*64 + "|" + cfg["image"] + "|running|0|2|healthy"))
+        if cfg.get("no_health") and '.State "Health"' not in a[4]: sys.exit(1)
+        print(cfg.get("inspect", "a"*64 + "|sha256:" + "b"*64 + "|" + cfg["image"] + "|running|0|2|" + ("none" if cfg.get("no_health") and a[5] == "odelza-jobs" else "healthy")))
+    elif a == ["ps", "--all", "--filter", "name=^/odelza-app$", "--format", "{{.Names}}"] or a == ["ps", "--all", "--filter", "name=^/odelza-jobs$", "--format", "{{.Names}}"]:
+        sys.stdout.write(cfg.get("probe", a[3][7:-1] + "\n"))
+        print(cfg["canary"], file=sys.stderr)
+        sys.exit(cfg.get("probe_exit", cfg.get("docker_exit", 0)))
     elif len(a) == 8 and a[:3] == ["logs", "--tail", "200"]:
-        if a[3:7] != ["--since", "2026-11-09T13:06:00Z", "--until", "2026-11-09T13:21:00Z"]: deny()
+        windows = [["--since", "2026-11-09T13:06:00Z", "--until", "2026-11-09T13:21:00Z"]]
+        for fraction in ("", ".1", ".123456789"):
+            windows.append(["--since", "2026-11-09T14:00:00" + fraction + "Z", "--until", "2026-11-09T14:10:00" + fraction + "Z"])
+        if a[3:7] not in windows: deny()
         if a[7] not in ("odelza-app", "odelza-jobs"): deny()
         print(cfg.get("logs", "fatal: " + cfg["canary"]))
     else: deny()
     message = cfg.get("log_stderr", cfg["canary"]) if a[0] == "logs" else cfg["canary"]
     if message: print(message, file=sys.stderr)
     sys.exit(cfg.get("docker_exit", 0))
+elif name == "date":
+    if a == ["-u", "+%s"]: print(cfg.get("date_now", "1794236400"))
+    elif a in (["-u", "-d", "2026-11-09T13:59:00Z", "+%s"], ["-u", "-d", "2026-11-09T14:00:00Z", "+%s"], ["-u", "-d", "2026-11-09T14:00:00.1Z", "+%s"], ["-u", "-d", "2026-11-09T14:00:00.123456789Z", "+%s"]):
+        print("1794232740" if a[2].endswith("13:59:00Z") else "1794232800")
+    elif a == ["-u", "-d", "@1794233400", "+%Y-%m-%dT%H:%M:%S"]: print(cfg.get("date_end", "2026-11-09T14:10:00"))
+    else:
+        ends = {
+            "2026-11-09T14:10:00": "1794233400",
+            "2026-11-10T14:10:00": "1794319800",
+            "2026-11-09T14:00:00": "1794232800",
+            "2026-11-09T13:59:59": "1794232799",
+            "2026-11-09T14:09:59": "1794233399",
+            "2026-11-09T14:10:01": "1794233401",
+        }
+        allowed = {tuple(["-u", "-d", base + fraction + "Z", "+%s"]): epoch
+                   for base, epoch in ends.items() for fraction in ("", ".1", ".123456789")}
+        if tuple(a) not in allowed: deny()
+        print(cfg.get("end_epoch", allowed[tuple(a)]))
+        sys.exit(cfg.get("end_epoch_exit", cfg.get("date_exit", 0)))
+    sys.exit(cfg.get("date_exit", 0))
 elif name == "od":
     if a != ["-An", "-v", "-tu1"]: deny()
     os.execv("/usr/bin/od", ["od"] + a)
@@ -71,7 +107,10 @@ elif name in ("head", "stat"):
     if len(a) != 4 or a[:3] != ["-c", "%u:%a:%s", "--"]: deny()
     p = pathlib.Path(a[3])
     if not (p == pathlib.Path("/opt") or p == root or p.is_relative_to(root) or p in root.parents): deny()
-    if cfg.get("owner_bad"): print("1000:700:1")
+    if cfg.get("stat_target") == str(p):
+        print(cfg.get("stat_value", cfg["canary"]))
+        sys.exit(cfg.get("stat_exit", 0))
+    elif cfg.get("owner_bad"): print("1000:700:1")
     else: print("0:" + cfg.get("mode", "700") + ":" + str(p.stat().st_size))
 else:
     deny()
@@ -88,7 +127,7 @@ class Diagnostics(unittest.TestCase):
         self.root = self.base / "production"
         self.root.mkdir()
         self.cfg = {"format": FORMAT, "image": IMAGE, "canary": CANARY}
-        for name in ("timeout", "docker", "head", "stat", "od", "ssh", "sudo", "rm", "mkdir", "cat", "find", "sha256sum"):
+        for name in ("timeout", "docker", "head", "stat", "od", "date", "ssh", "sudo", "rm", "mkdir", "cat", "find", "sha256sum"):
             p = self.bin / name
             p.write_text(FAKE)
             p.chmod(0o700)
@@ -97,7 +136,7 @@ class Diagnostics(unittest.TestCase):
         # Fake interpreter resolution is explicit, not ambient Docker/SSH access.
         (self.bin / "python3").symlink_to(os.sys.executable)
 
-    def run_script(self, source=None):
+    def run_script(self, source=None, trace_check=None):
         if source is None:
             source = SCRIPT.read_text()
         source = source.replace("PRODUCTION_ROOT=/opt/odelza", f"PRODUCTION_ROOT={self.root}")
@@ -108,6 +147,8 @@ class Diagnostics(unittest.TestCase):
                    DENIED=str(self.base / "denied"), SYNTHETIC_ROOT=str(self.root))
         result = subprocess.run(["/bin/sh"], input=source, text=True, capture_output=True,
                                 env=env, timeout=40)
+        if trace_check is not None:
+            trace_check([json.loads(line) for line in (self.base / "trace").read_text().splitlines()])
         denied = self.base / "denied"
         self.assertFalse(denied.exists(), "command outside exact allowlist: " + (denied.read_text() if denied.exists() else ""))
         self.assertNotIn(CANARY, result.stdout + result.stderr)
@@ -158,7 +199,10 @@ class Diagnostics(unittest.TestCase):
         self.assertIn("health_conclusion=not_inferred", result.stdout)
         self.assertIn("root_cause=unknown", result.stdout)
         trace = [json.loads(line) for line in (self.base / "trace").read_text().splitlines()]
-        self.assertEqual(sum(row[0] == "docker" for row in trace), 4)
+        original_observations = [row for row in trace if row[0] == "docker" and (
+            row[1] == "logs" and row[5] == "2026-11-09T13:06:00Z" or
+            row[1] == "inspect" and row[5] == FORMAT)]
+        self.assertEqual(len(original_observations), 4)
         for row in trace:
             if row[0] == "head" and len(row) == 5:
                 self.assertIn(Path(row[-1]).name, ("DEPLOYMENT.txt", "SHA256SUMS"))
@@ -381,11 +425,185 @@ class Diagnostics(unittest.TestCase):
 
     def test_script_has_no_mutation_or_dynamic_runtime_inputs(self):
         source = SCRIPT.read_text()
+        # Preserve the inventory prohibition except for this exact authorized probe.
+        without_probe = source.replace('read_bounded docker ps --all --filter "name=^/$1$" --format \'{{.Names}}\'', '')
         for forbidden in ("sudo ", "docker exec", "docker compose", "docker ps", "docker restart", "curl ", "wget ", "mktemp ", "rm ", "mkdir ", "sha256sum ", "eval ", "source "):
-            self.assertNotIn(forbidden, source)
+            self.assertNotIn(forbidden, without_probe)
         self.assertEqual(source.count("timeout -k 2s 8s"), 2)
         self.assertIn("head -c 32768", source)
         self.assertNotIn("$ODELZA", source)
+
+    def test_second_pass_exact_existence_and_optional_health(self):
+        self.cfg["no_health"] = True
+        result = self.run_script()
+        self.assertIn("|running|0|2|none", result.stdout)
+        self.assertIn("|running|0|2|healthy", result.stdout)
+        self.cfg["inspect_exit"] = 1
+        for payload, code, expected in (
+            ("odelza-jobs\n", 0, "present_at_probe"),
+            ("", 0, "absent_at_probe"), ("", 1, "unknown"),
+            ("odelza-jobs\nodelza-jobs\n", 0, "unknown"),
+            (CANARY, 0, "unknown"), ("odelza-worker\n", 0, "unknown"),
+            ("odelza-jobs\x00\n", 0, "unknown"),
+        ):
+            with self.subTest(payload=payload, code=code):
+                self.cfg.update(probe=payload, probe_exit=code)
+                self.assertIn("odelza-jobs.existence=" + expected, self.run_script().stdout)
+
+    def test_second_pass_metadata_fixed_failure_reasons(self):
+        self.metadata()
+        targets = (
+            ("/", "root"), ("/opt", "opt"), (str(self.root), "odelza"),
+            (str(self.root / "backups"), "backups"),
+            (str(self.root / "backups/cd-metadata"), "cd_metadata"),
+        )
+        for target, stage in targets:
+            for value, code, reason in (("1000:700:1", 0, "not_root_owned"), ("0:777:1", 0, "insecure_mode"), (CANARY, 0, "invalid_stat"), ("0:700:1", 1, "stat_failed")):
+                with self.subTest(stage=stage, reason=reason):
+                    (self.base / "trace").unlink(missing_ok=True)
+                    self.cfg.update(stat_target=target, stat_value=value, stat_exit=code)
+                    result = self.run_script()
+                    self.assertIn("metadata.path_stage=" + stage, result.stdout)
+                    self.assertIn("metadata.path_reason=" + reason, result.stdout)
+                    self.assertNotIn('"head", "-c", "4097"', (self.base / "trace").read_text())
+
+    def test_second_pass_startup_window_and_untrusted_times(self):
+        result = self.run_script()
+        self.assertIn("odelza-jobs.started_at=" + START, result.stdout)
+        self.assertIn("odelza-jobs.startup.logs=bounded_current_startup_first_ten_minutes", result.stdout)
+        trace = [json.loads(x) for x in (self.base / "trace").read_text().splitlines()]
+        self.assertIn(["docker", "logs", "--tail", "200", "--since", START, "--until", "2026-11-09T14:10:00.123456789Z", "odelza-jobs"], trace)
+        for stamp in (CANARY, "--date=" + CANARY, "2026-11-09T14:00:00Z\nfatal", "2026-11-09T14:00:00.1234567890Z", "2026-19-09T14:00:00Z"):
+            self.cfg["times"] = "2026-11-09T13:59:00Z|" + stamp
+            self.assertIn("startup=invalid_timestamp", self.run_script().stdout)
+        self.cfg["times"] = "2026-11-09T13:59:00Z|0001-01-01T00:00:00Z"
+        self.assertIn("startup=not_started", self.run_script().stdout)
+        self.cfg.pop("times")
+        self.cfg["date_exit"] = 1
+        self.assertIn("startup=date_unavailable", self.run_script().stdout)
+        self.cfg.pop("date_exit")
+        (self.bin / "date").unlink()
+        self.assertIn("startup=date_unavailable", self.run_script().stdout)
+
+    def test_second_pass_probe_capture_and_command_boundaries(self):
+        self.cfg["inspect_exit"] = 1
+        for payload, code in (("x" * 32765 + "\n0\n", 0), ("odelza-jobs\n", 124), ("odelza-jobs\n\n", 0), ("odelza-jobs\n" + CANARY, 0)):
+            with self.subTest(code=code, size=len(payload)):
+                self.cfg.update(probe=payload, probe_exit=code)
+                self.assertIn("odelza-jobs.existence=unknown", self.run_script().stdout)
+        for command in (
+            "docker ps --all --format '{{.Names}}'",
+            "docker ps --all --filter 'name=odelza' --format '{{.Names}}'",
+            "docker inspect --type container --format '{{.Config.Env}}' odelza-jobs",
+            "date -s 2026-11-09", "date -u -d '$(bad)' +%s",
+        ):
+            with self.subTest(command=command):
+                (self.base / "denied").unlink(missing_ok=True)
+                with self.assertRaisesRegex(AssertionError, "command outside exact allowlist"):
+                    self.run_script("PATH=" + str(self.bin) + "\n" + command + "\n")
+
+    def test_second_pass_metadata_path_types_stop_content_reads(self):
+        self.metadata()
+        p = self.root / "backups/cd-metadata"
+        held = self.root / "held"
+        p.rename(held)
+        for kind, reason in (("missing", "not_found"), ("file", "not_directory"), ("symlink", "symlink")):
+            with self.subTest(kind=kind):
+                if kind == "file": p.write_text(CANARY)
+                if kind == "symlink": p.symlink_to(held)
+                (self.base / "trace").unlink(missing_ok=True)
+                result = self.run_script()
+                self.assertIn("metadata.path_stage=cd_metadata", result.stdout)
+                self.assertIn("metadata.path_reason=" + reason, result.stdout)
+                self.assertNotIn('"head", "-c", "4097"', (self.base / "trace").read_text())
+                if kind != "missing": p.unlink()
+
+    def test_second_pass_startup_precision_future_and_capture(self):
+        for fraction in ("", ".1", ".123456789"):
+            self.cfg["times"] = "2026-11-09T13:59:00Z|2026-11-09T14:00:00" + fraction + "Z"
+            self.assertIn("startup.logs=bounded_current_startup_first_ten_minutes", self.run_script().stdout)
+        self.cfg.pop("times")
+        self.cfg["date_now"] = "1794232800"
+        self.assertIn("startup=timestamp_order_or_future_unknown", self.run_script().stdout)
+        self.cfg["date_now"] = CANARY
+        self.assertIn("startup=date_unavailable", self.run_script().stdout)
+        self.cfg.pop("date_now")
+        self.cfg["date_end"] = CANARY
+        self.assertIn("startup=invalid_timestamp", self.run_script().stdout)
+        self.cfg.pop("date_end")
+        for stamp in (
+            "2026-02-30T14:00:00Z", "2026-11-09T24:00:00Z",
+            "2026-11-09T14:60:00Z", "2026-11-09T14:00:60Z",
+            "2026-11-09T14:00:00+00:00", "2026-11-09T14:00:00Z\n",
+            "2026-11-09T14:00:00Z|" + CANARY,
+        ):
+            self.cfg["times"] = "2026-11-09T13:59:00Z|" + stamp
+            self.assertIn("startup=invalid_timestamp", self.run_script().stdout)
+        self.cfg["times"] = "x" * 32765 + "\n0\n"
+        self.assertIn("startup=truncated", self.run_script().stdout)
+        self.cfg["times"] = "2026-11-09T13:59:00Z|" + START + "\x00"
+        self.assertIn("startup=invalid_value", self.run_script().stdout)
+
+    def test_second_pass_startup_log_privacy_and_fake_status(self):
+        self.cfg.update(logs="TypeError: " + CANARY, log_stderr="SELECT " + CANARY)
+        result = self.run_script()
+        self.assertIn("startup.logs=bounded_current_startup_first_ten_minutes", result.stdout)
+        self.assertNotIn("SELECT", result.stdout)
+        for code in (0, 1, 124):
+            self.cfg.update(logs="x" * 32765 + "\n0\nfatal", log_stderr="", docker_exit=code, times_exit=0)
+            result = self.run_script()
+            self.assertIn("odelza-jobs.startup.logs=truncated", result.stdout)
+            self.assertNotIn("class.", result.stdout)
+
+    def test_startup_end_requires_exact_ten_minute_duration(self):
+        def no_startup_logs(trace):
+            attempted = [row for row in trace if row[:2] == ["docker", "logs"]
+                         and row[5] != "2026-11-09T13:06:00Z"]
+            self.assertEqual(attempted, [], "invalid-duration startup log read was attempted")
+
+        for end in (
+            "2026-11-10T14:10:00",  # Wrong day: 24 hours and ten minutes.
+            "2026-11-09T14:00:00",  # Same as start.
+            "2026-11-09T13:59:59",  # Earlier than start.
+            "2026-11-09T14:09:59",  # 599 seconds.
+            "2026-11-09T14:10:01",  # 601 seconds.
+        ):
+            with self.subTest(end=end):
+                (self.base / "trace").unlink(missing_ok=True)
+                self.cfg["date_end"] = end
+                result = self.run_script(trace_check=no_startup_logs)
+                self.assertIn("odelza-app.startup=invalid_duration", result.stdout)
+                self.assertIn("odelza-jobs.startup=invalid_duration", result.stdout)
+                self.assertEqual(result.returncode, 2)
+
+    def test_startup_end_roundtrip_failure_and_fractional_proof(self):
+        for value, code in ((CANARY, 0), ("1794233400", 1), ("1794233400", 124),
+                            ("x" * 32765 + "\n0\n", 0), ("1794233400\x00", 0)):
+            with self.subTest(code=code, size=len(value)):
+                (self.base / "trace").unlink(missing_ok=True)
+                self.cfg.update(end_epoch=value, end_epoch_exit=code)
+                result = self.run_script()
+                self.assertIn("startup=date_unavailable", result.stdout)
+                trace = [json.loads(x) for x in (self.base / "trace").read_text().splitlines()]
+                self.assertFalse(any(row[:2] == ["docker", "logs"] and row[5] == START for row in trace))
+        self.cfg.pop("end_epoch")
+        self.cfg.pop("end_epoch_exit")
+        self.cfg.update(times="2026-11-09T13:59:00Z|2026-11-09T14:00:00Z",
+                        date_end="2026-11-09T14:10:00.1")
+        self.assertIn("startup=invalid_timestamp", self.run_script().stdout)
+        self.cfg.pop("date_end")
+        for fraction in ("", ".1", ".123456789"):
+            (self.base / "trace").unlink(missing_ok=True)
+            start = "2026-11-09T14:00:00" + fraction + "Z"
+            end = "2026-11-09T14:10:00" + fraction + "Z"
+            self.cfg["times"] = "2026-11-09T13:59:00Z|" + start
+            self.run_script()
+            trace = [json.loads(x) for x in (self.base / "trace").read_text().splitlines()]
+            for target in ("odelza-app", "odelza-jobs"):
+                self.assertIn(["docker", "logs", "--tail", "200", "--since", start, "--until", end, target], trace)
+            self.assertIn(["date", "-u", "-d", end, "+%s"], trace)
+            self.assertEqual(1794233400 - 1794232800, 600)
+            self.assertEqual(start[19:], end[19:])  # Equal nanoseconds: exactly 600 seconds.
 
 
 class Workflow(unittest.TestCase):
