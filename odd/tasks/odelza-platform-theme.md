@@ -20,10 +20,10 @@ La tarea empezó como un cambio de paleta (Gruvbox → Odelza). El 2026-11-05 se
 
 ## Fuera de alcance
 
-- Identificadores técnicos que el usuario no ve y que no son del tema: nombres de paquetes, imports `twenty-*`, `twenty-env-config`, headers `X-Twenty-Webhook-*`, User-Agent, schemas de base de datos, "Twenty standard application". Cambiarlos rompe integraciones.
+- Identificadores que viven en datos o en contratos externos: headers `X-Twenty-Webhook-*`, User-Agent, schemas de base de datos, universal identifiers y nombres guardados de "Twenty standard application", variables de entorno ya configuradas, claves de `localStorage` y cookies. Cambiarlos rompe integraciones o datos. Desde el 2026-11-09 los nombres de paquetes, carpetas, archivos y símbolos sí entran (fase 3).
 - Las claves de color guardadas como datos (`red`, `blue`, `green`... en opciones de select, etiquetas y vistas). Se conservan como identificadores porque están en la base de datos; lo que cambia es el color que muestran.
 - Branding por workspace (ya existe en Twenty).
-- `twenty-website`, `twenty-docs`, `twenty-zapier`, `twenty-companion`, `twenty-codex-plugin` y `create-twenty-app`.
+- Rebrandear `twenty-website`, `twenty-docs`, `twenty-companion` y `twenty-codex-plugin`. `twenty-zapier` se borró el 2026-11-09 (paso 31).
 - Cambios de layout o de componentes que no vengan de la paleta, y tipografía. La barra lateral Coffee Bean, el ítem activo y el botón secundario Butter sí entran, porque la paleta los define.
 - Colores finos de etiquetas y opciones de select: en la fase 1 se derivan de la paleta para que se vean Odelza; el ajuste uno a uno queda para después.
 - Comprar dominios.
@@ -44,13 +44,24 @@ La tarea empezó como un cambio de paleta (Gruvbox → Odelza). El 2026-11-05 se
 - **Documentado:** `ODELZA.md` (sección "Relationship with Twenty") y `docs/ODELZA_HANDOFF.md`.
 - **Stack local de Docker:** desde el 2026-11-05 corre `twentycrm/twenty:odelza-local`, construida desde este repo (ver registro de ese día).
 
+### 2026-11-09: fase de metadatos, paquetes y nombres de archivos
+
+- **Qué se decidió:** se agrega una fase 3 para corregir los metadatos de la página y renombrar a Odelza los paquetes, carpetas, archivos y símbolos que llevan el nombre de Twenty, con los imports ajustados de forma minuciosa. Textos y términos quedan para las fases 4 y 5.
+- **Por qué:** desde el fork el código es nuestro. El usuario quiere trabajar más cómodo y aplicar la filosofía Odelza en todo, no sobre código que se presenta como ajeno.
+- **Cambio de alcance:** los nombres de paquetes, archivos y símbolos, que antes estaban fuera de alcance como "identificadores técnicos", entran en la fase 3. Siguen fuera los identificadores guardados en datos o usados por contratos externos (pasos 32 a 34).
+- **Paquetes sin usar:** se borra `twenty-zapier`. Los demás paquetes de Twenty se quedan por ahora.
+- **Infraestructura:** los nombres de workflows y acciones de `.github`, `.vscode`, la imagen local y los comandos de `ODELZA.md` entran en la fase (paso 35).
+- **Correos:** pasan a una revisión completa en su propia fase (fase 6). En la fase 3 no se tocan.
+- **Remoto `upstream`:** se deja como está.
+
 ## Estado
 
 - **Fase 1 (tema Odelza):** replanteada el 2026-11-05. El commit `025bfb65d6` (traductor sobre la paleta de Twenty) queda como antecedente: se reemplaza su mecanismo y sus valores por la paleta oficial (ver "Paleta Odelza"). La paleta oficial se agregó al repo en `docs/brand/odelza-paleta-web.png` y se transcribió en este archivo.
 - **Fase 1, revisión:** el 2026-11-05 el usuario aprobó los colores en la app real ("por ahora"). Si hacen falta ajustes de color, se agregan como tarea previa a la fase que los necesite. Falta el commit y el PR de la fase.
-- **Fase 2 (logos y assets):** siguiente, desbloqueada por la aprobación de la fase 1.
-- **Fases 3 a 5:** planeadas, sin empezar.
-- **Fase 6 (ilustraciones):** tarea final, después de todo el branding. Decidida el 2026-11-05: no es prioritaria y el usuario aún no tiene todas las ilustraciones.
+- **Fase 2 (logos y assets):** hecha y aprobada el 2026-11-05, commit `7e8c7ca8e8`.
+- **Fase 3 (metadatos, paquetes y nombres de archivos):** agregada el 2026-11-09, en curso. Paso 31 hecho (borrado de `twenty-zapier`). Paso 33 decidido. Siguiente: inventario y codemod del renombre de paquetes (pasos 32, 34 a 36).
+- **Fases 4 a 7 (textos, enlaces y términos, correos, cierre):** planeadas, sin empezar.
+- **Fase 8 (ilustraciones):** tarea final, después de todo el branding. Decidida el 2026-11-05: no es prioritaria y el usuario aún no tiene todas las ilustraciones.
 - **Bloqueos:** ninguno para la fase 1 (la paleta ya está transcrita). La fase 2 necesita los assets del logo Odelza. Ver "Insumos pendientes".
 
 ### Registro 2026-11-05 (implementación fase 1)
@@ -177,32 +188,103 @@ Alcance: con el tema aprobado, revisar cómo están organizados los assets y ree
 25. Imagen social de los metadatos (og/twitter).
 26. Verificación visual propia y **revisión visual del usuario**, que cierra la fase.
 
-### Fase 3: textos
+### Fase 3: metadatos, paquetes y nombres de archivos Odelza
 
-27. `applyBrandToCatalog` en front y server, con tests unitarios (reemplaza la palabra completa, no toca IDs ni placeholders, funciona en todos los idiomas).
-28. Constante `APP_NAME` en `twenty-shared` y edición de los literales del front y del backend listados en el inventario (título por defecto, nombre de workspace por defecto, autor del timeline, MCP, issuer de 2FA, OpenAPI, prompts de IA, iCal, `from (via ...)`).
-29. Frases que no se pueden resolver con el reemplazo: mensajes de error de billing, "Twenty fields" y similares. Editar solo las que no se lean bien.
-30. Correos: footer sin enlaces a Twenty, reemplazar o quitar `WhatIsTwenty.tsx`, `<title>` en `BaseHead.tsx`.
-31. Metadatos de texto en `index.html` y `manifest.json` (title, description, name, short_name) y valor por defecto de `EMAIL_FROM_NAME`.
+Agregada el 2026-11-09. Alcance:
 
-### Fase 4: enlaces y dominio
+- La página se presenta como Odelza en el navegador, al compartir enlaces y al instalarla como PWA.
+- El código que mantenemos deja de llevar el nombre de Twenty en paquetes, carpetas, archivos y símbolos.
+- Se quitan los paquetes de Twenty que no usamos.
 
-32. Términos, privacidad y documentación: cambiar a URLs de Odelza (configurables) u ocultar. Incluye `FooterNote.tsx` y `DOCUMENTATION_BASE_URL`.
-33. Ocultar Community, partners y DPA si no aplican. Verificar primero si ya quedan ocultos con billing desactivado.
-34. Documentar en `ODELZA.md` las variables de dominio y correo para producción (`SERVER_URL`, `EMAIL_FROM_NAME`, `EMAIL_FROM_ADDRESS`, subdominios).
+Desde el fork el código es nuestro (decisión del 2026-11-05) y lo trabajamos como código propio, con la filosofía Odelza. La fase termina con la revisión del usuario.
 
-### Fase 5: cierre
+**Medición del 2026-11-09:**
 
-35. Barrido final con `git grep -w Twenty` sobre código visible, con lista de excepciones justificadas en este archivo.
-36. Verificación visual de la app completa con la imagen construida desde el fork.
-37. Registrar aquí lo hecho, cómo se verificó y el estado. Commit y PR solo con autorización explícita.
+- Paquetes del monorepo: 20 con nombre `twenty-*`, además de `@odelza/cross-workspace-bridge`. El paquete raíz se llama `twenty`.
+- Archivos que nombran cada paquete: `twenty-shared` 6221, `twenty-ui` 2275, `twenty-sdk` 1272, `twenty-client-sdk` 419, `twenty-server` 267, `twenty-front` 198, `create-twenty-app` 195, `twenty-emails` 90, `twenty-docker` 49, `twenty-oxlint-rules` 26, `twenty-front-component-renderer` 23, `twenty-utils` 16, `twenty-e2e-testing` 13 y `twenty-cli` 9.
+- Archivos con "twenty" en su ruta dentro de `twenty-front`, `twenty-ui`, `twenty-server`, `twenty-shared` y `twenty-emails`: 451. Casi todos están en tres carpetas del server: `twenty-standard-application` (232), `twenty-orm` (119) y `twenty-config` (75). Los otros ~25 son archivos sueltos, como `isTwentyStandardApplication.ts`, `TwentyIconsBaseUrl.ts`, `isValidTwentySubdomain.ts` y las constantes `twenty-*-version`.
+- Contrato con las apps: `twenty-sdk`, `twenty-client-sdk`, `twenty-ui`, `create-twenty-app` y `twenty-cli` se publican en npm. Las apps (`twenty-apps/*` y las que se instalen en un workspace) los instalan desde npm por nombre. Además, la plataforma resuelve esos nombres al ejecutar una app: `twenty-front-component-renderer` reescribe los imports `twenty-client-sdk/core` y `/metadata` (`SdkClientImportSpecifiers.ts`), y el runner de logic functions del server enlaza `twenty-client-sdk` en `node_modules` (`local-child-process-runner.service.ts`).
 
-### Fase 6: ilustraciones
+**3.1 Metadatos**
+
+27. Constante `APP_NAME` y una descripción corta (tagline) en `twenty-shared`. Se adelanta desde la fase de textos porque los metadatos la necesitan.
+28. `index.html`: `<title>`, `description`, og/twitter `title` y `description`, `lang`. `manifest.json`: `name`, `short_name` y `description`. Título por defecto de `utils/title-utils.ts`.
+29. og:image y twitter:image con URL absoluta. `generate-front-config.ts` del server ya reescribe `index.html` al servirlo, así que puede armar la URL con `SERVER_URL` sin esperar el dominio.
+30. Bloque de configuración inyectado: el comentario `Twenty Config` y el id `twenty-env-config`, en `index.html`, en `generate-front-config.ts` y en su test.
+
+**3.2 Paquetes que no usamos**
+
+31. Hecho el 2026-11-09: se borró `twenty-zapier` (ver registro). El resto (`twenty-website`, `twenty-docs`, `twenty-companion`, `twenty-codex-plugin`, `twenty-claude-skills`, `internal/twenty-partners`) se queda por ahora.
+
+**3.3 Nombres de paquetes e infraestructura**
+
+32. Inventario por categoría, antes de tocar nada. Cada referencia a un nombre de paquete cae en una de estas:
+    - Nombre y dependencias `workspace:*` en cada `package.json`, `workspaces` del `package.json` raíz y nombre del paquete raíz.
+    - Proyectos de nx: `project.json` (nombre, tags, `implicitDependencies`, rutas), `nx.json` y los comandos `nx run <proyecto>:...`.
+    - Configuración de TypeScript, jest, vite, vitest, storybook, lingui y codegen de GraphQL: `tsconfig*.json`, `moduleNameMapper`, alias y rutas de salida.
+    - Imports: `from 'twenty-shared/...'`, `jest.mock('twenty-ui/...')`, `import()` dinámicos y `require`.
+    - Rutas de carpeta: `packages/twenty-*` en scripts, Dockerfile, compose, workflows y acciones de `.github`, `.vscode`, `.oxfmtrc.jsonc`, `.gitignore` y `.cursor/rules`.
+    - Reglas propias de lint: `PACKAGE_TAG_MAP` de `twenty-oxlint-rules`.
+    - Documentación: `ODELZA.md`, `CLAUDE.md`, `docs/` y `odd/` (los registros con fecha no se reescriben).
+    - Contrato con las apps (ver la medición): ver el paso 33.
+33. **Decidido por el usuario el 2026-11-09:**
+    - Convención: carpeta `packages/odelza-<nombre>` y paquete `@odelza/<nombre>`, como `@odelza/cross-workspace-bridge`. Ejemplos: `twenty-shared` → `@odelza/shared`, imports `'@odelza/shared/utils'`; raíz `twenty` → `odelza`.
+    - Paquetes publicados en npm (`twenty-sdk`, `twenty-client-sdk`, `twenty-ui`, `create-twenty-app`, `twenty-cli`): se renombran con compatibilidad. La plataforma acepta los dos nombres al ejecutar apps (`twenty-client-sdk/*` y `@odelza/client-sdk/*`), y las apps existentes que instalan los paquetes de Twenty desde npm siguen funcionando. Los alias viejos quedan como excepción documentada en este archivo.
+    - Los paquetes de Twenty sin usar (`twenty-website`, `twenty-docs`, `twenty-companion`, `twenty-codex-plugin`, `twenty-claude-skills`) conservan su nombre. Solo se actualizan sus imports a los paquetes renombrados.
+    - Todo en la rama `feat/odelza-platform-theme`, con un commit por paso.
+34. Codemod `scripts/odelza-rename/renamePackages.ts`, con una tabla de nombres viejos y nuevos:
+    - Modo de prueba que reporta cantidades por categoría y archivo, sin escribir nada.
+    - Reemplaza solo coincidencias exactas del nombre de paquete, no cualquier texto con "twenty".
+    - Lista de exclusiones: identificadores en datos, variables de entorno, headers `X-Twenty-*`, claves de `localStorage` y cookies, `yarn.lock` (se regenera) y registros con fecha de `odd/`.
+    - `git mv` de las carpetas para conservar el historial.
+    - Al terminar, `git grep` de cada nombre viejo debe dar cero, salvo las excepciones listadas en este archivo.
+35. Nombres de infraestructura, en el mismo cambio: acciones y workflows de `.github` con "twenty" en el nombre, `.vscode/twenty.code-workspace`, nombre de la imagen local `twentycrm/twenty:odelza-local` y los comandos de `ODELZA.md`. Se corrigen también los nombres de contenedor que no coinciden (`odelza-server-1` contra `odelza-app` y `odelza-jobs`).
+36. Regenerar `yarn.lock` con `yarn install` y revisar que no cambie ninguna versión: solo nombres de workspace.
+
+**3.4 Nombres de archivos y símbolos**
+
+37. Renombre en el server: `twenty-config` → `odelza-config` (`TwentyConfigService` → `OdelzaConfigService`), `twenty-orm` y `twenty-standard-application`. El archivo y la clase cambian de nombre; los identificadores guardados en datos (universal identifiers, nombres de la aplicación estándar, schemas) conservan su valor.
+38. Renombre de los archivos y símbolos sueltos del front, `twenty-ui` y `twenty-shared`. `twenty-emails` queda para la fase de correos.
+
+**3.5 Verificación y cierre**
+
+39. Verificación en Linux, porque en Windows `nx typecheck` y `lint:diff-with-main` no corren completos. Para el renombre se corren en un contenedor `node:24` sobre el working tree, o en CI: build de `@odelza/shared` y de `@odelza/ui`, typecheck de front y server, lint, jest de los paquetes tocados y build de la imagen `odelza-local`.
+40. Commits separados: metadatos, borrado de paquetes, renombre de paquetes e infraestructura, imports (codemod puro), archivos y símbolos. Así cada uno se puede revisar o revertir solo.
+41. Imagen `odelza-local` reconstruida, app y jobs sanos, y revisión del usuario en la app real, que cierra la fase.
+
+### Fase 4: textos
+
+42. `applyBrandToCatalog` en front y server, con tests unitarios (reemplaza la palabra completa, no toca IDs ni placeholders, funciona en todos los idiomas).
+43. Edición de los literales del front y del backend listados en el inventario, usando `APP_NAME` (nombre de workspace por defecto, autor del timeline, MCP, issuer de 2FA, OpenAPI, prompts de IA, iCal).
+44. Frases que no se pueden resolver con el reemplazo: mensajes de error de billing, "Twenty fields" y similares. Editar solo las que no se lean bien.
+
+### Fase 5: enlaces, términos y dominio
+
+45. Términos, privacidad y documentación: cambiar a URLs de Odelza (configurables) u ocultar. Incluye `FooterNote.tsx` y `DOCUMENTATION_BASE_URL`.
+46. Ocultar Community, partners y DPA si no aplican. Verificar primero si ya quedan ocultos con billing desactivado.
+47. Documentar en `ODELZA.md` las variables de dominio y correo para producción (`SERVER_URL`, `EMAIL_FROM_NAME`, `EMAIL_FROM_ADDRESS`, subdominios).
+
+### Fase 6: correos
+
+Agregada el 2026-11-09: los correos tienen su propia revisión completa. El plan detallado se arma al empezar la fase. Por ahora incluye:
+
+- Logo de correos servido desde nuestro server (`odd/tasks/email-logo-server-url.md`).
+- Footer sin enlaces a Twenty, `WhatIsTwenty.tsx`, `<title>` de `BaseHead.tsx`, asuntos, remitente (`from (via ...)`, `EMAIL_FROM_NAME`) y la paleta de `common-style.ts`.
+- Renombre de archivos y símbolos de `twenty-emails`.
+- Revisión visual de las 12 plantillas, en claro y en un cliente de correo real.
+
+### Fase 7: cierre
+
+48. Barrido final con `git grep -w Twenty` sobre código visible, con lista de excepciones justificadas en este archivo.
+49. Verificación visual de la app completa con la imagen construida desde el fork.
+50. Registrar aquí lo hecho, cómo se verificó y el estado. Commit y PR solo con autorización explícita.
+
+### Fase 8: ilustraciones
 
 Tarea final, después de cerrar el branding. Empieza cuando el usuario tenga las ilustraciones propias.
 
-38. Ilustraciones con el estilo de Twenty, según el inventario de assets: estados vacíos y de error (`placeholders/*`, 60 PNG), portadas de Settings (`cover-*.png` y `ai/*-cover-*.png`), ilustraciones de aplicaciones (`.webp`), `onboarding/welcome-halftone.svg` e `illustration-*.svg` de twenty-ui si usan colores fijos. Reemplazar por las de Odelza, adaptar a la paleta o quitar.
-39. Revisión visual del usuario, que cierra la fase.
+51. Ilustraciones con el estilo de Twenty, según el inventario de assets: estados vacíos y de error (`placeholders/*`, 60 PNG), portadas de Settings (`cover-*.png` y `ai/*-cover-*.png`), ilustraciones de aplicaciones (`.webp`), `onboarding/welcome-halftone.svg` e `illustration-*.svg` de twenty-ui si usan colores fijos. Reemplazar por las de Odelza, adaptar a la paleta o quitar.
+52. Revisión visual del usuario, que cierra la fase.
 
 ## Inventario de assets (fase 2, paso 20, 2026-11-05)
 
@@ -241,17 +323,24 @@ Fuera de la fase: los avatares y logos de `twentyhq.github.io` en el dev-seeder 
 - **Verificación:** `tsgo -p tsconfig.json` en el front con solo los 15 errores previos de `front-components`; `oxlint --type-aware` 0/0 y `oxfmt --check` correcto en los 7 archivos y el script. No hay tests sobre estas piezas. Revisión de los PNG generados con una hoja de contacto.
 - **Docker:** respaldo previo con `pg_dump` (solo db arriba) en `backups/<fecha>-pre-phase2/`, porque `odelza-backup.sh` exige el server arriba y habría arrancado la imagen vieja. Imagen `odelza-local` reconstruida (`6382abbf`) y stack recreado con `up --detach --wait`: app y jobs sanos, sin reinicios, `/healthz` ok. El server sirve `images/odelza/*` con su tipo correcto, `index.html` y `manifest.json` apuntan a Odelza y la ruta vieja de íconos de Twenty ya no existe.
 - **Revisión del usuario (2026-11-05):** aprobó los logos e íconos visibles en la app ("están perfectos"). Igual que con los colores, los ajustes futuros van en una tarea de corrección aparte.
-- **Pendiente:** og:image es relativa; los crawlers necesitan URL absoluta, se completa en la fase 4 con el dominio. Logo de correos y `DEFAULT_WORKSPACE_LOGO` de emails (paso 23), ilustraciones (paso 24), verificación en la app real y revisión del usuario (paso 26).
+- **Pendiente:** og:image es relativa; los crawlers necesitan URL absoluta, se resuelve en la fase 3 (paso 29) con `SERVER_URL`. Logo de correos y `DEFAULT_WORKSPACE_LOGO` de emails (paso 23, ahora en la fase 6), ilustraciones (paso 24, ahora en la fase 8), verificación en la app real y revisión del usuario (paso 26).
+
+### Registro 2026-11-09 (fase 3, paso 31)
+
+- **Hecho:** `git rm` de `packages/twenty-zapier` y `.github/workflows/ci-zapier.yaml`. Se quitaron las referencias en `package.json` (workspace y las resolutions `zapier-platform-core/form-data`, `zapier-platform-cli/esbuild` y `yeoman-environment`, que solo pedía Zapier), en `.oxfmtrc.jsonc`, en `.vscode/twenty.code-workspace`, en `CLAUDE.md`, en el `PACKAGE_TAG_MAP` de `enforce-module-boundaries.ts` y en un comentario de `call-webhook-jobs.job.ts`. La resolution de `tmp` se queda porque `external-editor` la sigue necesitando; solo se quitó Zapier de su comentario.
+- **Verificación:** `corepack yarn install` correcto. En `yarn.lock` salieron 3109 líneas y no entró ninguna versión nueva: las líneas `resolution:` agregadas ya existían, solo se reagruparon. `yarn why yeoman-environment` sin consumidores. `nx show projects` resuelve el grafo sin `twenty-zapier`. `git grep twenty-zapier` sin resultados fuera de `twenty-docs`, `twenty-website` y `odd/`.
+- **Sin cambios:** las menciones a Zapier como dato de demo (seeds, mocks, `IconBrandZapier`) y las de `twenty-docs`/`twenty-website`.
+- **Estado:** hecho, en su propio commit.
 
 ## Insumos pendientes
 
 - **Fase 1:** ninguno. Los nombres provisionales (`*`) se revisan en la revisión visual.
 - **Fase 2:** logo Odelza: SVG maestro, isotipo cuadrado y variantes para fondo claro y oscuro. Logo recibido el 2026-11-05.
-- **Fase 6:** ilustraciones propias de Odelza.
+- **Fase 3:** tagline para los metadatos (paso 27). Las decisiones del paso 33 ya están tomadas.
+- **Fase 8:** ilustraciones propias de Odelza.
 - Confirmar que se avanza con el nombre "Odelza" aunque el registro de marca esté pendiente.
 - URLs propias de términos, privacidad y documentación, o la decisión de ocultar esos enlaces.
 - Nombre y dirección del remitente de correos, y el dominio cuando exista.
-- Tagline o descripción para los metadatos, e imagen social (opcional).
 
 ## Paleta Odelza
 
