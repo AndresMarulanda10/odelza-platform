@@ -73,7 +73,7 @@ La tarea empezó como un cambio de paleta (Gruvbox → Odelza). El 2026-11-05 se
 - **Fase 1, revisión:** el 2026-11-05 el usuario aprobó los colores en la app real ("por ahora"). Si hacen falta ajustes de color, se agregan como tarea previa a la fase que los necesite. Commit `a4188ebe82`.
 - **Fase 2 (logos y assets):** hecha y aprobada el 2026-11-05, commit `7e8c7ca8e8`.
 - **Fase 3 (metadatos):** implementada, commit `69cf4d9070`, imagen reconstruida y stack sano el 2026-11-09. Pendiente de la revisión del usuario en la app real. El renombre de paquetes y archivos (pasos 32 a 38) quedó pospuesto (ver "Decisiones").
-- **Fase 4 (textos):** replanteada el 2026-11-09 con el cambio en el código (ver "Decisiones"), en curso.
+- **Fase 4 (textos):** replanteada el 2026-11-09 con el cambio en el código (ver "Decisiones"). Pasos 42 a 45 hechos e imagen reconstruida; pendiente de la revisión del usuario (paso 46).
 - **Fases 5 a 7 (enlaces y términos, correos, cierre):** planeadas, sin empezar.
 - **Fase 8 (ilustraciones):** tarea final, después de todo el branding. Decidida el 2026-11-05: no es prioritaria y el usuario aún no tiene todas las ilustraciones.
 - **Bloqueos:** ninguno para la fase 4. Las fases 5 y 6 necesitan URLs, remitente y dominio (ver "Insumos pendientes").
@@ -376,6 +376,36 @@ Fuera de la fase: los avatares y logos de `twentyhq.github.io` en el dev-seeder 
 - **Commit:** `69cf4d9070`, con push a `origin/feat/odelza-platform-theme`.
 - **Docker (2026-11-09):** respaldo en `backups/20261109T204445Z-pre-phase3`. `odelza-backup.sh` falla en Git Bash: convierte `/data` del `docker run ... tar` en una ruta de Windows y deja el tar vacío. Se hicieron sus mismos pasos a mano con `MSYS_NO_PATHCONV=1` solo en el `tar`. Imagen `odelza-local` reconstruida (`cf7967cd`) y stack recreado: el primer `up --wait` venció antes de que el server terminara de arrancar; el segundo dio app healthy y jobs arriba, sin reinicios. `/healthz` 200, `<title>Odelza</title>`, `og:image` y `twitter:image` en `http://localhost:3000/images/odelza/social-card.png` (200, `image/png`), bloque `odelza-env-config` y `manifest.json` con nombre y tagline.
 - **Pendiente:** revisión del usuario en la app real (paso 41).
+
+### Registro 2026-11-09 (fase 4, pasos 42 a 45)
+
+- **Paso 42:**
+  - `APP_NAME` quitado; `title-utils.ts` devuelve `'Odelza'` (`a0bfb31029`).
+  - Catálogos de front y server sincronizados con el código, sin cambios de marca (`89b0aaecee`): se agregaron los mensajes que faltaban y se quitaron los que el código ya no usa, sin cambiar ninguna traducción existente.
+  - Los workflows de Crowdin de la app (`i18n-pull.yaml`, `i18n-push.yaml`) y `.github/crowdin-app.yml` se borraron en vez de desactivarse, porque no se van a usar (`55285b1429`). Los de docs y website se quedan con esos paquetes.
+  - Se borraron los catálogos `aa-ER`, `hy-AM` y `uz-UZ` de front y server: no están en `APP_LOCALES`, Lingui no los extrae ni los compila y nada los importa (`13dc9aa0a9`).
+- **Paso 43 (`d1ad17350b`):**
+  - 22 mensajes del front y 7 del server editados en el código. "contact Twenty team" pasa a "contact the Odelza team".
+  - `scripts/odelza-brand-catalogs.mjs` (no `scripts/odelza-brand/migrateCatalogBrand.mjs`, para seguir el nombre de `odelza-brand-assets.mjs`) busca los mensajes nuevos que quedaron sin traducir después de `lingui extract` y les copia la traducción del mensaje viejo en un commit dado, leída con el formato PO de Lingui.
+  - Reglas por idioma para lo que el cambio directo rompe: elisión en francés y catalán (`de Twenty` → `d'Odelza`), sufijos en finés (`Twentyn` → `Odelzan`, `Twentyyn` → `Odelzaan`, `Twentyä` → `Odelzaa`) y turco (`Twenty'yi` → `Odelza'yı`, `Twenty'e` → `Odelza'ya`), y artículo y sufijos en húngaro (`a Twenty` → `az Odelza`, `-ben` → `-ában`).
+  - Resultado: 658 traducciones migradas en el front y 210 en el server, ninguna perdida, cero cambios en otros mensajes.
+  - Se quedan con Twenty, para la fase 5: "The PDF is pre-signed by Twenty..." (DPA), "Hire a partner... customize Twenty" (partners) y el texto de la clave enterprise. Renombrarlos los haría falsos.
+- **Paso 44 (`dd972436b8`):**
+  - Front: autor del timeline, nombre de workspace por defecto, servidor MCP (`odelza`/`Odelza`), loggers de Apollo, y ejemplos del campo Links (ahora `example.com`).
+  - Server: nombre, instrucciones y tarjeta `well-known` del MCP, título de OpenAPI, issuer de 2FA, prompts del chat y de los workflows, textos del helper MCP del intérprete de código, descripción del esquema de favoritos, errores de versión de apps y de dominio, `prodId` de iCal, descripción de `APP_VERSION`, agente de ayuda, skill estándar y registro de la app CLI. Tests y snapshots actualizados.
+  - Se quedan (excepciones): headers `X-Twenty-Webhook-*`, User-Agent `Twenty-Marketplace`/`Twenty-AppUpgrade`, la clase `TwentyMCP` y la variable `twenty` del helper de Python (el código del AI y las skills los usan), "Twenty standard application" (nombre guardado en datos), `npx create-twenty-app` (paquete de npm) y los comentarios del código.
+- **Paso 45 (`3d1148b820`):**
+  - No hay sincronización automática de la aplicación estándar: Twenty actualiza los workspaces existentes con comandos de upgrade, y el entrypoint corre `upgrade` en cada arranque.
+  - Comando de workspace `upgrade:2-21:rebrand-standard-agent-and-skills`: cambia solo las frases exactas del agente de ayuda y de la skill, así que conserva lo que el workspace haya editado.
+  - Comando de instancia rápido `RenameCliApplicationRegistrationFastInstanceCommand`: renombra el registro `Twenty CLI` → `Odelza CLI`, con `down`. Se escribió a mano porque el generador solo crea comandos desde un diff de esquema; se registró igual que lo hace el generador.
+  - Estado de la base antes del upgrade: el agente `helper` y la skill `code-interpreter` con Twenty; no existe el registro de la CLI (se crea al usarla), así que ese comando no cambia nada en local.
+- **Verificación:**
+  - jest: `title-utils`, `mcp-and-apis`, `timeline-activities` (23/23), 2FA (115/115), versión de apps, MCP, `well-known`, OpenAPI, intérprete de código, calendario (207/207) y comandos 2.21 más el registro de upgrade (113/113).
+  - `tsgo`: front con los 15 errores previos de `front-components`, server con 1 error previo (`twenty-sdk` sin compilar).
+  - oxlint sin errores. En esta máquina el modo type-aware (`tsgolint`) se queda sin memoria con Docker corriendo, así que se corrió sin ese modo. `upgrade-version-command` está excluido de oxfmt por configuración.
+- **Docker (2026-11-09):** respaldo en `backups/20261109T225435Z-pre-phase4` (mismos pasos a mano que en la fase 3). Imagen `odelza-local` reconstruida (`4a52fe73`) y stack recreado: app healthy, jobs arriba, sin reinicios, `/healthz` 200. En el arranque corrieron `2.21.0_RenameCliApplicationRegistrationFastInstanceCommand_1794263745624` y `RebrandStandardAgentAndSkillsCommand` (1 agente y 1 skill, 1 workspace bien, 0 fallos). En la base, el agente `helper` y la skill `code-interpreter` ya no dicen Twenty. La tarjeta MCP responde con `title: "Odelza"`. El bundle servido tiene "Bienvenido a Odelza" en `es-ES` y ninguna "Bienvenido a Twenty".
+- **Pendiente:** revisión del usuario en la app real (paso 46).
+- **Para la fase 5:** quitar la opción de ChatGPT del setup de MCP (abre la app oficial de Twenty en ChatGPT y su texto ahora dice Odelza). Revisar `name: 'com.twenty/twenty'`, `websiteUrl` y `repository` de la tarjeta MCP, el `externalDocs` de OpenAPI (texto y URL a twenty.com) y la herramienta `search_help_center`, que busca en la documentación de Twenty.
 
 ## Insumos pendientes
 
