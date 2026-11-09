@@ -115,6 +115,7 @@ import { AddCatalogFieldsToViewFastInstanceCommand } from 'src/database/commands
 import { AddCatalogViewTypeFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1790275885952-add-catalog-view-type';
 import { AddPlanningWidgetTypesFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1790260990300-add-planning-widget-types';
 import { PreserveCatalogViewsOnFieldDeletionFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1791231000000-preserve-catalog-views-on-field-deletion';
+import { RenameCliApplicationRegistrationFastInstanceCommand } from 'src/database/commands/upgrade-version-command/2-21/2-21-instance-command-fast-1794263745624-rename-cli-application-registration';
 
 export const INSTANCE_COMMANDS = [
   AddViewFieldGroupIdIndexOnViewFieldFastInstanceCommand,
@@ -231,4 +232,5 @@ export const INSTANCE_COMMANDS = [
   AddCatalogViewTypeFastInstanceCommand,
   PreserveCatalogViewsOnFieldDeletionFastInstanceCommand,
   AddBeforeTodayViewFilterOperandFastInstanceCommand,
+  RenameCliApplicationRegistrationFastInstanceCommand,
 ];
