@@ -62,9 +62,19 @@ read_bounded() {
 # Exact types only: a printable-looking but unexpected value is NOT safe.
 inspect_container() {
   read_bounded docker inspect --type container --format \
-    '{{.Id}}|{{.Image}}|{{.Config.Image}}|{{.State.Status}}|{{.State.ExitCode}}|{{.RestartCount}}|{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "$1"
+    '{{.Id}}|{{.Image}}|{{.Config.Image}}|{{.State.Status}}|{{.State.ExitCode}}|{{.RestartCount}}|{{if index .State "Health"}}{{.State.Health.Status}}{{else}}none{{end}}' "$1"
   if [ "$READ_STATUS" != ok ]; then
     unavailable "$1.inspect" "$READ_STATUS"
+    # A later probe is not a claim about the earlier inspect or daemon health.
+    read_bounded docker ps --all --filter "name=^/$1$" --format '{{.Names}}'
+    EXISTENCE=unknown
+    if [ "$READ_STATUS" = ok ]; then
+      case "$DATA" in
+        '') EXISTENCE=absent_at_probe ;;
+        "$1$NL") EXISTENCE=present_at_probe ;;
+      esac
+    fi
+    printf '%s.existence=%s\n' "$1" "$EXISTENCE"
     return
   fi
   SAFE=$(printf '%s' "$DATA" | awk -F '|' '
@@ -90,13 +100,24 @@ inspect_container() {
 }
 
 classify_logs() {
-  read_bounded docker logs --tail 200 --since 2026-11-09T13:06:00Z \
-    --until 2026-11-09T13:21:00Z "$1"
+  LOG_KEY=$1.logs
+  WINDOW=bounded_incident_window_current_container_only
+  SINCE=2026-11-09T13:06:00Z
+  UNTIL=2026-11-09T13:21:00Z
+  if [ "$#" -eq 3 ]; then
+    LOG_KEY=$1.startup.logs
+    WINDOW=bounded_current_startup_first_ten_minutes
+    SINCE=$2
+    UNTIL=$3
+  else
+    printf '%s.logs_scope=historical_incident_current_container_only\n' "$1"
+  fi
+  read_bounded docker logs --tail 200 --since "$SINCE" --until "$UNTIL" "$1"
   if [ "$READ_STATUS" != ok ]; then
-    unavailable "$1.logs" "$READ_STATUS"
+    unavailable "$LOG_KEY" "$READ_STATUS"
     return
   fi
-  printf '%s.logs=bounded_incident_window_current_container_only\n' "$1"
+  printf '%s=%s\n' "$LOG_KEY" "$WINDOW"
   printf '%s' "$DATA" | awk '
     BEGIN {
       n=split("fatal panic unhandled_exception dependency_resolution module_missing connection_failure migration_failure type_error reference_error syntax_error startup_upgrade_warning startup_jobs_warning", names," ")
@@ -124,20 +145,108 @@ classify_logs() {
       print "frames=not_collected"
       print "cause=unknown_classifications_are_not_root_cause"
     }
-  ' || unavailable "$1.logs" classifier_failed
+  ' || unavailable "$LOG_KEY" classifier_failed
+}
+
+utc_timestamp() {
+  case "$1" in *"$NL"*) return 1 ;; esac
+  printf '%s' "$1" | awk '
+    NR==1 && length($0)<=30 &&
+      $0 ~ /^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+)?Z$/ {
+      y=substr($0,1,4)+0; m=substr($0,6,2)+0; d=substr($0,9,2)+0
+      split("31 28 31 30 31 30 31 31 30 31 30 31", days," ")
+      if (y%4==0 && (y%100!=0 || y%400==0)) days[2]=29
+      ok=(y>=1970 && m>=1 && m<=12 && d>=1 && d<=days[m] &&
+        substr($0,12,2)+0<24 && substr($0,15,2)+0<60 && substr($0,18,2)+0<60)
+    }
+    END { exit !(NR==1 && ok) }
+  '
+}
+
+epoch_value() {
+  DATA=${DATA%"$NL"}
+  case "$DATA" in *"$NL"*) return 1 ;; esac
+  [ "$READ_STATUS" = ok ] && printf '%s' "$DATA" | awk '
+    NR==1 && $0 ~ /^[1-9][0-9]*$/ && length($0)<=12 { ok=1 }
+    END { exit !(NR==1 && ok) }
+  ' || return 1
+}
+
+startup_window() {
+  read_bounded docker inspect --type container --format '{{.Created}}|{{.State.StartedAt}}' "$1"
+  if [ "$READ_STATUS" != ok ]; then unavailable "$1.startup" "$READ_STATUS"; return; fi
+  CREATED=${DATA%%|*}
+  STARTED=${DATA#*|}
+  # Docker adds exactly one record newline. Never trim arbitrary whitespace.
+  STARTED=${STARTED%"$NL"}
+  if ! utc_timestamp "$CREATED"; then unavailable "$1.startup" invalid_timestamp; return; fi
+  if [ "$STARTED" = 0001-01-01T00:00:00Z ]; then
+    unavailable "$1.startup" not_started
+    return
+  fi
+  if ! utc_timestamp "$STARTED"; then unavailable "$1.startup" invalid_timestamp; return; fi
+  if ! command -v date >/dev/null 2>&1; then unavailable "$1.startup" date_unavailable; return; fi
+  read_bounded date -u -d "$CREATED" +%s
+  if ! epoch_value; then unavailable "$1.startup" date_unavailable; return; fi
+  CREATED_EPOCH=$DATA
+  read_bounded date -u -d "$STARTED" +%s
+  if ! epoch_value; then unavailable "$1.startup" date_unavailable; return; fi
+  START_EPOCH=$DATA
+  read_bounded date -u +%s
+  if ! epoch_value; then unavailable "$1.startup" date_unavailable; return; fi
+  if [ "$CREATED_EPOCH" -gt "$START_EPOCH" ] || [ "$START_EPOCH" -ge "$DATA" ]; then
+    unavailable "$1.startup" timestamp_order_or_future_unknown
+    return
+  fi
+  END_EPOCH=$((START_EPOCH + 600))
+  read_bounded date -u -d "@$END_EPOCH" +%Y-%m-%dT%H:%M:%S
+  if [ "$READ_STATUS" != ok ]; then unavailable "$1.startup" date_unavailable; return; fi
+  END_BASE=${DATA%"$NL"}
+  FRACTION=${STARTED#???????????????????}
+  END_TIME=$END_BASE$FRACTION
+  if [ "${#END_BASE}" -ne 19 ] || ! utc_timestamp "$END_TIME"; then
+    unavailable "$1.startup" invalid_timestamp
+    return
+  fi
+  # Calendar validity alone cannot authorize a window. Authenticate the generated
+  # whole-second end before logs; the fraction is copied unchanged from StartedAt.
+  read_bounded date -u -d "$END_TIME" +%s
+  if ! epoch_value; then unavailable "$1.startup" date_unavailable; return; fi
+  if [ "$DATA" -le "$START_EPOCH" ] || [ "$DATA" -ne "$END_EPOCH" ]; then
+    unavailable "$1.startup" invalid_duration
+    return
+  fi
+  printf '%s.created=%s\n%s.started_at=%s\n' "$1" "$CREATED" "$1" "$STARTED"
+  classify_logs "$1" "$STARTED" "$END_TIME"
 }
 
 # Reject symlinks, non-root owners and group/world-writable path components.
 # Fixed directories are traversed from /, before reading any selected file.
 trusted() {
+  TRUST_REASON=symlink
   [ ! -L "$1" ] || return 1
+  TRUST_REASON=not_found
+  [ -e "$1" ] || return 1
   case "$2" in
-    directory) [ -d "$1" ] || return 1 ;;
-    file) [ -f "$1" ] || return 1 ;;
+    directory) TRUST_REASON=not_directory; [ -d "$1" ] || return 1 ;;
+    file) TRUST_REASON=not_regular_file; [ -f "$1" ] || return 1 ;;
     *) return 1 ;;
   esac
   read_bounded stat -c '%u:%a:%s' -- "$1"
+  TRUST_REASON=stat_failed
   [ "$READ_STATUS" = ok ] || return 1
+  TRUST_REASON=$(printf '%s' "$DATA" | awk -F: '
+    NR==1 && NF==3 && $1 ~ /^[0-9]+$/ && length($1)<=10 && $2 ~ /^[0-7]+$/ &&
+      (length($2)==3 || length($2)==4) && $3 ~ /^[0-9]+$/ && length($3)<=15 {
+      reason="not_root_owned"
+      if ($1=="0") {
+        mode=substr($2,length($2)-1); reason="insecure_mode"
+        if (substr(mode,1,1) ~ /^[0145]$/ && substr(mode,2,1) ~ /^[0145]$/) reason="ok"
+      }
+    }
+    END { if (NR==1 && reason!="") print reason; else print "invalid_stat" }
+  ')
+  [ "$TRUST_REASON" = ok ] || return 1
   SIZE=$(printf '%s' "$DATA" | awk -F: '
     NR==1 && NF==3 && $1=="0" && $2 ~ /^[0-7]+$/ &&
       (length($2)==3 || length($2)==4) && $3 ~ /^[0-9]+$/ && length($3)<=15 {
@@ -216,6 +325,14 @@ deployment_metadata() {
   # No recursive discovery. The literal incident-day/hour glob is capped at 32.
   for DIR in / /opt "$PRODUCTION_ROOT" "$PRODUCTION_ROOT/backups" "$PRODUCTION_ROOT/backups/cd-metadata"; do
     if ! trusted "$DIR" directory; then
+      case "$DIR" in
+        /) STAGE=root ;;
+        /opt) STAGE=opt ;;
+        "$PRODUCTION_ROOT") STAGE=odelza ;;
+        "$PRODUCTION_ROOT/backups") STAGE=backups ;;
+        "$PRODUCTION_ROOT/backups/cd-metadata") STAGE=cd_metadata ;;
+      esac
+      printf 'metadata.path_stage=%s\nmetadata.path_reason=%s\n' "$STAGE" "$TRUST_REASON"
       unavailable metadata unavailable_path
       return
     fi
@@ -281,8 +398,10 @@ main() {
   if command -v docker >/dev/null 2>&1; then
     inspect_container odelza-app
     classify_logs odelza-app
+    startup_window odelza-app
     inspect_container odelza-jobs
     classify_logs odelza-jobs
+    startup_window odelza-jobs
   else
     unavailable containers docker_unavailable
   fi
