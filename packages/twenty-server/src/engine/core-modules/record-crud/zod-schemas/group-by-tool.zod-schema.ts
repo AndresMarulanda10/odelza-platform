@@ -134,6 +134,7 @@ export const hasGroupByToolInputSchema = (
 export const generateGroupByToolInputSchema = (
   objectMetadata: ObjectMetadataForToolSchema,
   restrictedFields?: RestrictedFieldsPermissions,
+  limits = { maximum: 100, default: 50 },
 ): z.ZodTypeAny | null => {
   const { groupByEntries, fieldNameDescriptions } =
     buildGroupByEntriesAndDescriptions(objectMetadata, restrictedFields);
@@ -149,10 +150,23 @@ export const generateGroupByToolInputSchema = (
           groupByEntries as [z.ZodTypeAny, z.ZodTypeAny, ...z.ZodTypeAny[]],
         );
 
-  const { filterShape, filterSchema } = generateRecordFilterSchema({
+  const { filterShape } = generateRecordFilterSchema({
     objectMetadata,
     restrictedFields,
   });
+  // The reusable filter schema strips unknown nested keys. Aggregations must
+  // reject them: silently removing a predicate could broaden the source set.
+  const filterSchema: z.ZodTypeAny = z.lazy(() =>
+    z
+      .object({
+        ...filterShape,
+        and: z.array(filterSchema).optional(),
+        or: z.array(filterSchema).optional(),
+        not: filterSchema.optional(),
+      })
+      .partial()
+      .strict(),
+  );
 
   const availableAggregations = getAvailableAggregationsFromObjectFields(
     objectMetadata.fields.filter(
@@ -199,8 +213,8 @@ export const generateGroupByToolInputSchema = (
         .number()
         .int()
         .positive()
-        .max(100)
-        .default(50)
+        .max(limits.maximum)
+        .default(limits.default)
         .describe(
           'Maximum number of groups to return (default: 50, max: 100).',
         ),

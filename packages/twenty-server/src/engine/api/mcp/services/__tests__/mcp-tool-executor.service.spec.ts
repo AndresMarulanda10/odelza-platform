@@ -90,6 +90,33 @@ describe('McpToolExecutorService', () => {
   });
 
   describe('handleToolCall', () => {
+    it('retains conditional typed conflicts in its JSON relay', async () => {
+      const failure = {
+        success: false,
+        message: 'Conflict',
+        error: 'Update precondition failed',
+        errorCode: 'PRECONDITION_FAILED',
+      };
+      const result = await service.handleToolCall(
+        'cas',
+        {
+          conditional_update_one_widget: {
+            execute: jest.fn().mockResolvedValue(failure),
+          },
+        } as any,
+        {
+          name: 'conditional_update_one_widget',
+          arguments: {
+            id: 'id',
+            data: { guard: 'next' },
+            precondition: { guard: { eq: 'old' } },
+          },
+        },
+      );
+      expect(result).toMatchObject({
+        result: { content: [{ type: 'text', text: JSON.stringify(failure) }] },
+      });
+    });
     it('should return JSON-RPC error with INVALID_PARAMS for unknown tools', async () => {
       const toolSet = {} as any;
 

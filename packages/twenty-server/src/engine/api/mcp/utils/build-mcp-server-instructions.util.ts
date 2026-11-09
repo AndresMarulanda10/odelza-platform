@@ -19,6 +19,7 @@ export const buildMcpServerInstructions = (
     ``,
     ...(skillNames ? [`Available skills: ${skillNames}.`, ``] : []),
     `CRUD tool name grammar — construct names directly without prior discovery:`,
+    `  Conditional update: conditional_update_one_{object}, strict {id,data,precondition}. Uses readable target-row comparisons; FILES and relations are unsupported. PRECONDITION_FAILED uniformly means stale, missing, or hidden. Legacy update_one remains flat {id,...fields}. For cooperative CAS, capture a caller-owned unique UUID guard BEFORE dependent reads and rotate it in the same write; every participating writer must rotate it. After conflict re-read/recompute, never blindly replay stale data. No cross-record snapshot or exactly-once guarantee.`,
     `  Read:  find_many_{objects} | find_one_{object} | group_by_{objects}`,
     `  Write: create_one_{object} | create_many_{objects} | update_one_{object} | update_many_{objects} | delete_one_{object} | delete_many_{objects} | upsert_many_{objects}. Use upsert_many_{objects} instead of update_many_{objects} when each record has its own individual data.`,
     ``,

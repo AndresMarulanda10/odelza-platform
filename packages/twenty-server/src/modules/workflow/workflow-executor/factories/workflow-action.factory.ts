@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { GroupByRecordsWorkflowAction } from 'src/modules/workflow/workflow-executor/workflow-actions/record-crud/group-by-records.workflow-action';
 
 import { type WorkflowAction } from 'src/modules/workflow/workflow-executor/interfaces/workflow-action.interface';
 
@@ -49,10 +50,13 @@ export class WorkflowActionFactory {
     private readonly aiAgentWorkflowAction: AiAgentWorkflowAction,
     private readonly emptyWorkflowAction: EmptyWorkflowAction,
     private readonly delayWorkflowAction: DelayWorkflowAction,
+    private readonly groupByRecordsWorkflowAction: GroupByRecordsWorkflowAction,
   ) {}
 
   get(stepType: WorkflowActionType): WorkflowAction {
     switch (stepType) {
+      case WorkflowActionType.GROUP_BY_RECORDS:
+        return this.groupByRecordsWorkflowAction;
       case WorkflowActionType.CODE:
         return this.codeWorkflowAction;
       case WorkflowActionType.LOGIC_FUNCTION:

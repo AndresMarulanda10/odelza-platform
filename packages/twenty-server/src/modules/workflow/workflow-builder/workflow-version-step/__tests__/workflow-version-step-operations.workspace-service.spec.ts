@@ -285,6 +285,29 @@ describe('WorkflowVersionStepOperationsWorkspaceService', () => {
   });
 
   describe('runStepCreationSideEffectsAndBuildStep', () => {
+    it('creates an independently configured native group records step', async () => {
+      objectMetadataRepository.findOne.mockResolvedValue({
+        nameSingular: 'company',
+      });
+      const result = await service.runStepCreationSideEffectsAndBuildStep({
+        type: WorkflowActionType.GROUP_BY_RECORDS,
+        workspaceId: mockWorkspaceId,
+        workflowVersionId: 'version',
+      });
+      expect(result.builtStep).toMatchObject({
+        type: WorkflowActionType.GROUP_BY_RECORDS,
+        name: 'Group Records',
+        settings: {
+          input: {
+            objectName: 'company',
+            groupBy: [],
+            aggregateOperation: 'COUNT',
+            limit: 200,
+            orderBy: 'DESC',
+          },
+        },
+      });
+    });
     it('should create code step with logic function and seed input fields', async () => {
       const result = await service.runStepCreationSideEffectsAndBuildStep({
         type: WorkflowActionType.CODE,

@@ -1,5 +1,10 @@
 import { WorkflowActionType } from 'twenty-shared/workflow';
 
+export type WorkflowGroupByRecordsAction = BaseWorkflowAction & {
+  type: WorkflowActionType.GROUP_BY_RECORDS;
+  settings: WorkflowGroupByRecordsActionSettings;
+};
+
 import { type WorkflowAiAgentActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/ai-agent/types/workflow-ai-agent-action-settings.type';
 import { type WorkflowCodeActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/code/types/workflow-code-action-settings.type';
 import { type WorkflowCreateCalendarEventActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/create-calendar-event/types/workflow-create-calendar-event-action-settings.type';
@@ -13,6 +18,7 @@ import { type WorkflowLogicFunctionActionSettings } from 'src/modules/workflow/w
 import { type WorkflowSendEmailActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/mail-sender/types/workflow-send-email-action-settings.type';
 import {
   type WorkflowCreateRecordActionSettings,
+  type WorkflowGroupByRecordsActionSettings,
   type WorkflowDeleteRecordActionSettings,
   type WorkflowFindRecordsActionSettings,
   type WorkflowPickRecordActionSettings,
@@ -129,6 +135,7 @@ export type WorkflowDelayAction = BaseWorkflowAction & {
 };
 
 export type WorkflowAction =
+  | WorkflowGroupByRecordsAction
   | WorkflowCodeAction
   | WorkflowLogicFunctionAction
   | WorkflowSendEmailAction

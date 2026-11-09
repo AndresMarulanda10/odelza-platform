@@ -14,7 +14,8 @@ import {
 } from 'src/engine/twenty-orm/exceptions/twenty-orm.exception';
 import { buildRowLevelPermissionRecordFilter } from 'src/engine/twenty-orm/utils/build-row-level-permission-record-filter.util';
 import { isRecordMatchingRLSRowLevelPermissionPredicate } from 'src/engine/twenty-orm/utils/is-record-matching-rls-row-level-permission-predicate.util';
-import { resolveRoleIdFromAuthContext } from 'src/engine/twenty-orm/utils/resolve-role-id-from-auth-context.util';
+import { resolveRlsRoleIds } from 'src/engine/twenty-orm/utils/resolve-rls-role-ids.util';
+import { type RolePermissionConfig } from 'src/engine/twenty-orm/types/role-permission-config';
 
 type ValidateRLSPredicatesForRecordsArgs<T extends ObjectLiteral> = {
   records: T[];
@@ -23,6 +24,7 @@ type ValidateRLSPredicatesForRecordsArgs<T extends ObjectLiteral> = {
   authContext: WorkspaceAuthContext;
   shouldBypassPermissionChecks: boolean;
   errorMessage?: string;
+  rolePermissionConfig?: RolePermissionConfig;
 };
 
 export const validateRLSPredicatesForRecords = <T extends ObjectLiteral>({
@@ -31,52 +33,52 @@ export const validateRLSPredicatesForRecords = <T extends ObjectLiteral>({
   internalContext,
   authContext,
   shouldBypassPermissionChecks,
+  rolePermissionConfig,
   errorMessage = 'Record does not satisfy row-level security constraints of your current role',
 }: ValidateRLSPredicatesForRecordsArgs<T>): void => {
   if (shouldBypassPermissionChecks) {
     return;
   }
 
-  const roleId = resolveRoleIdFromAuthContext({
+  const roleIds = resolveRlsRoleIds({
     authContext,
     userWorkspaceRoleMap: internalContext.userWorkspaceRoleMap,
     apiKeyRoleMap: internalContext.apiKeyRoleMap,
+    rolePermissionConfig,
   });
 
-  if (!roleId) {
-    return;
-  }
-
-  const recordFilter = buildRowLevelPermissionRecordFilter({
-    flatRowLevelPermissionPredicateMaps:
-      internalContext.flatRowLevelPermissionPredicateMaps,
-    flatRowLevelPermissionPredicateGroupMaps:
-      internalContext.flatRowLevelPermissionPredicateGroupMaps,
-    flatFieldMetadataMaps: internalContext.flatFieldMetadataMaps,
-    objectMetadata,
-    roleId,
-    workspaceMember: isUserAuthContext(authContext)
-      ? authContext.workspaceMember
-      : undefined,
-  });
-
-  if (!recordFilter || Object.keys(recordFilter).length === 0) {
-    return;
-  }
-
-  for (const record of records) {
-    const matchesRLS = isRecordMatchingRLSRowLevelPermissionPredicate({
-      record: record as unknown as ObjectRecord,
-      filter: recordFilter,
-      flatObjectMetadata: objectMetadata,
+  for (const roleId of roleIds) {
+    const recordFilter = buildRowLevelPermissionRecordFilter({
+      flatRowLevelPermissionPredicateMaps:
+        internalContext.flatRowLevelPermissionPredicateMaps,
+      flatRowLevelPermissionPredicateGroupMaps:
+        internalContext.flatRowLevelPermissionPredicateGroupMaps,
       flatFieldMetadataMaps: internalContext.flatFieldMetadataMaps,
+      objectMetadata,
+      roleId,
+      workspaceMember: isUserAuthContext(authContext)
+        ? authContext.workspaceMember
+        : undefined,
     });
 
-    if (!matchesRLS) {
-      throw new TwentyORMException(
-        errorMessage,
-        TwentyORMExceptionCode.RLS_VALIDATION_FAILED,
-      );
+    if (!recordFilter || Object.keys(recordFilter).length === 0) {
+      continue;
+    }
+
+    for (const record of records) {
+      const matchesRLS = isRecordMatchingRLSRowLevelPermissionPredicate({
+        record: record as unknown as ObjectRecord,
+        filter: recordFilter,
+        flatObjectMetadata: objectMetadata,
+        flatFieldMetadataMaps: internalContext.flatFieldMetadataMaps,
+      });
+
+      if (!matchesRLS) {
+        throw new TwentyORMException(
+          errorMessage,
+          TwentyORMExceptionCode.RLS_VALIDATION_FAILED,
+        );
+      }
     }
   }
 };

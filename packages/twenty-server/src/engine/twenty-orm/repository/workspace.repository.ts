@@ -56,6 +56,7 @@ export class WorkspaceRepository<
     objectRecordsPermissions?: ObjectsPermissions,
     shouldBypassPermissionChecks = false,
     authContext?: WorkspaceAuthContext,
+    private readonly rolePermissionConfig?: import('src/engine/twenty-orm/types/role-permission-config').RolePermissionConfig,
   ) {
     super(target, manager, queryRunner);
     this.featureFlagMap = featureFlagMap;
@@ -85,6 +86,7 @@ export class WorkspaceRepository<
       this.shouldBypassPermissionChecks,
       this.authContext ?? ({} as WorkspaceAuthContext),
       this.featureFlagMap,
+      this.rolePermissionConfig,
     );
   }
 
@@ -99,6 +101,7 @@ export class WorkspaceRepository<
     const computedOptions = await this.transformOptions(options);
     const permissionOptions = {
       shouldBypassPermissionChecks: this.shouldBypassPermissionChecks,
+      rolePermissionConfig: this.rolePermissionConfig,
       objectRecordsPermissions: this.objectRecordsPermissions,
     };
     const result = await manager.find(
@@ -118,6 +121,7 @@ export class WorkspaceRepository<
     const computedOptions = await this.transformOptions({ where });
     const permissionOptions = {
       shouldBypassPermissionChecks: this.shouldBypassPermissionChecks,
+      rolePermissionConfig: this.rolePermissionConfig,
       objectRecordsPermissions: this.objectRecordsPermissions,
     };
     const result = await manager.findBy(
@@ -137,6 +141,7 @@ export class WorkspaceRepository<
     const computedOptions = await this.transformOptions(options);
     const permissionOptions = {
       shouldBypassPermissionChecks: this.shouldBypassPermissionChecks,
+      rolePermissionConfig: this.rolePermissionConfig,
       objectRecordsPermissions: this.objectRecordsPermissions,
     };
     const result = await manager.findAndCount(
@@ -156,6 +161,7 @@ export class WorkspaceRepository<
     const computedOptions = await this.transformOptions({ where });
     const permissionOptions = {
       shouldBypassPermissionChecks: this.shouldBypassPermissionChecks,
+      rolePermissionConfig: this.rolePermissionConfig,
       objectRecordsPermissions: this.objectRecordsPermissions,
     };
     const result = await manager.findAndCountBy(
@@ -175,6 +181,7 @@ export class WorkspaceRepository<
     const computedOptions = await this.transformOptions(options);
     const permissionOptions = {
       shouldBypassPermissionChecks: this.shouldBypassPermissionChecks,
+      rolePermissionConfig: this.rolePermissionConfig,
       objectRecordsPermissions: this.objectRecordsPermissions,
     };
     const result = await manager.findOne(
@@ -194,6 +201,7 @@ export class WorkspaceRepository<
     const computedOptions = await this.transformOptions({ where });
     const permissionOptions = {
       shouldBypassPermissionChecks: this.shouldBypassPermissionChecks,
+      rolePermissionConfig: this.rolePermissionConfig,
       objectRecordsPermissions: this.objectRecordsPermissions,
     };
     const result = await manager.findOneBy(
@@ -213,6 +221,7 @@ export class WorkspaceRepository<
     const computedOptions = await this.transformOptions(options);
     const permissionOptions = {
       shouldBypassPermissionChecks: this.shouldBypassPermissionChecks,
+      rolePermissionConfig: this.rolePermissionConfig,
       objectRecordsPermissions: this.objectRecordsPermissions,
     };
     const result = await manager.findOneOrFail(
@@ -232,6 +241,7 @@ export class WorkspaceRepository<
     const computedOptions = await this.transformOptions({ where });
     const permissionOptions = {
       shouldBypassPermissionChecks: this.shouldBypassPermissionChecks,
+      rolePermissionConfig: this.rolePermissionConfig,
       objectRecordsPermissions: this.objectRecordsPermissions,
     };
     const result = await manager.findOneByOrFail(

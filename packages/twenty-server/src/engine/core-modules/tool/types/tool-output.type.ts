@@ -4,6 +4,7 @@ export type ToolOutput<T = object> = {
   success: boolean;
   message: string;
   error?: string;
+  errorCode?: string;
   result?: T;
   warnings?: string[];
   status?: number;

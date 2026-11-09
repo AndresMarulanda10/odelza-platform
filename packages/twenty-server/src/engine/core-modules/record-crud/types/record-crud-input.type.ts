@@ -1,3 +1,5 @@
+import { type RecordUpdatePrecondition } from 'twenty-shared/workflow';
+
 import {
   type ObjectRecordFilter,
   type ObjectRecordOrderBy,
@@ -16,6 +18,7 @@ export type UpdateRecordInput = {
   objectRecordId: string;
   objectRecord: ObjectRecordProperties;
   fieldsToUpdate?: string[];
+  precondition?: RecordUpdatePrecondition;
 };
 
 export type DeleteRecordInput = {

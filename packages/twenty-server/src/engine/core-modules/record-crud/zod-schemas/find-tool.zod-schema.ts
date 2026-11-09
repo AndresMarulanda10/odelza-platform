@@ -5,6 +5,22 @@ import { type ObjectMetadataForToolSchema } from 'src/engine/core-modules/record
 import { ObjectRecordOrderBySchema } from 'src/engine/core-modules/record-crud/zod-schemas/order-by.zod-schema';
 import { generateRecordFilterSchema } from 'src/engine/core-modules/record-crud/zod-schemas/record-filter.zod-schema';
 
+// Also parsed at execution time: direct tool execution can bypass advertised schemas.
+export const findToolPaginationSchema = z
+  .object({
+    limit: z.number().int().positive().max(100).default(10),
+    offset: z
+      .number()
+      .int()
+      .nonnegative()
+      .max(Number.MAX_SAFE_INTEGER)
+      .default(0),
+    after: z.string().min(1).optional(),
+  })
+  .refine(({ after, offset }) => after === undefined || offset === 0, {
+    message: 'Cursor cannot be combined with a nonzero offset',
+  });
+
 export const generateFindToolInputSchema = (
   objectMetadata: ObjectMetadataForToolSchema,
   restrictedFields?: RestrictedFieldsPermissions,
@@ -14,6 +30,13 @@ export const generateFindToolInputSchema = (
     restrictedFields,
   });
   return z.object({
+    after: z
+      .string()
+      .min(1)
+      .optional()
+      .describe(
+        'Continue after pageInfo.endCursor with the same filter and ordering. Do not combine with a nonzero offset.',
+      ),
     limit: z
       .number()
       .int()
@@ -27,6 +50,7 @@ export const generateFindToolInputSchema = (
       .number()
       .int()
       .nonnegative()
+      .max(Number.MAX_SAFE_INTEGER)
       .default(0)
       .describe('Number of records to skip (default: 0)'),
     orderBy: ObjectRecordOrderBySchema.describe(

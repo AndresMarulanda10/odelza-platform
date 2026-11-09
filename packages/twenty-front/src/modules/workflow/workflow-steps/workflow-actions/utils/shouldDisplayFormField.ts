@@ -65,6 +65,7 @@ export const shouldDisplayFormField = ({
         isIdField
       );
     case 'FIND_RECORDS':
+    case 'GROUP_BY_RECORDS':
       return (
         !isNotSupportedRelation &&
         (!isHiddenSystemField(fieldMetadataItem) || isIdField) &&

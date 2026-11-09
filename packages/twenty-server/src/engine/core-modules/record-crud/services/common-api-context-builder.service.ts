@@ -4,7 +4,10 @@ import { type ObjectsPermissions } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 
 import { getAllSelectableFields } from 'src/engine/api/common/common-select-fields/utils/get-all-selectable-fields.util';
-import { type CommonBaseQueryRunnerContext } from 'src/engine/api/common/types/common-base-query-runner-context.type';
+import {
+  type CommonBaseQueryRunnerContext,
+  internalRolePermissionConfigSchema,
+} from 'src/engine/api/common/types/common-base-query-runner-context.type';
 import { type CommonSelectedFields } from 'src/engine/api/common/types/common-selected-fields-result.type';
 import { ApiKeyRoleService } from 'src/engine/core-modules/api-key/services/api-key-role.service';
 import { isApiKeyAuthContext } from 'src/engine/core-modules/auth/guards/is-api-key-auth-context.guard';
@@ -23,6 +26,8 @@ import { type FlatObjectMetadata } from 'src/engine/metadata-modules/flat-object
 import { buildObjectIdByNameMaps } from 'src/engine/metadata-modules/flat-object-metadata/utils/build-object-id-by-name-maps.util';
 import { UserRoleService } from 'src/engine/metadata-modules/user-role/user-role.service';
 import { WorkspaceCacheService } from 'src/engine/workspace-cache/services/workspace-cache.service';
+import { type RolePermissionConfig } from 'src/engine/twenty-orm/types/role-permission-config';
+import { computePermissionIntersection } from 'src/engine/twenty-orm/utils/compute-permission-intersection.util';
 
 export type CommonApiContext = {
   queryRunnerContext: CommonBaseQueryRunnerContext;
@@ -45,9 +50,11 @@ export class CommonApiContextBuilderService {
   async build({
     authContext,
     objectName,
+    rolePermissionConfig,
   }: {
     authContext: WorkspaceAuthContext;
     objectName: string;
+    rolePermissionConfig?: RolePermissionConfig;
   }): Promise<CommonApiContext> {
     const workspaceId = authContext.workspace.id;
 
@@ -94,7 +101,10 @@ export class CommonApiContextBuilderService {
       );
     }
 
-    const objectsPermissions = await this.getObjectsPermissions(authContext);
+    const objectsPermissions = await this.getObjectsPermissions(
+      authContext,
+      rolePermissionConfig,
+    );
 
     const restrictedFields =
       objectsPermissions[flatObjectMetadata.id]?.restrictedFields ?? {};
@@ -113,6 +123,7 @@ export class CommonApiContextBuilderService {
         flatFieldMetadataMaps,
         flatIndexMaps,
         objectIdByNameSingular: idByNameSingular,
+        ...(rolePermissionConfig !== undefined ? { rolePermissionConfig } : {}),
       },
       selectedFields,
       flatObjectMetadata,
@@ -124,8 +135,32 @@ export class CommonApiContextBuilderService {
 
   private async getObjectsPermissions(
     authContext: WorkspaceAuthContext,
+    rolePermissionConfig?: RolePermissionConfig,
   ): Promise<ObjectsPermissions> {
     const workspaceId = authContext.workspace.id;
+    if (rolePermissionConfig !== undefined) {
+      const config =
+        internalRolePermissionConfigSchema.parse(rolePermissionConfig);
+      if ('shouldBypassPermissionChecks' in config) return {};
+      const { rolesPermissions } =
+        await this.workspaceCacheService.getOrRecompute(workspaceId, [
+          'rolesPermissions',
+        ]);
+      const roleIds =
+        'intersectionOf' in config ? config.intersectionOf : config.unionOf;
+      const permissions = roleIds.map((id) => {
+        const permission = rolesPermissions[id];
+        if (!isDefined(permission))
+          throw new RecordCrudException(
+            'No permissions found for role',
+            RecordCrudExceptionCode.INVALID_REQUEST,
+          );
+        return permission;
+      });
+      return permissions.length === 1
+        ? permissions[0]
+        : computePermissionIntersection(permissions);
+    }
     let roleId: string;
 
     if (isApiKeyAuthContext(authContext)) {

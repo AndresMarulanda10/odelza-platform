@@ -18,6 +18,7 @@ export const getActionIconColorOrThrow = (
     case 'DELETE_RECORD':
     case 'UPSERT_RECORD':
     case 'FIND_RECORDS':
+    case 'GROUP_BY_RECORDS':
     case 'PICK_RECORD':
       return themeCssVariables.font.color.tertiary;
     case 'FORM':

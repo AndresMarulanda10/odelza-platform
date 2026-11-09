@@ -6,6 +6,7 @@ import {
 import { type WorkflowFormActionField } from '@/workflow/workflow-steps/workflow-actions/form-action/types/WorkflowFormActionField';
 import { type OutputSchemaV2 } from '@/workflow/workflow-variables/types/StepOutputSchemaV2';
 import { generateFindRecordsOutputSchema } from '@/workflow/workflow-variables/utils/generate/generateFindRecordsOutputSchema';
+import { generateGroupByRecordsOutputSchema } from './generateGroupByRecordsOutputSchema';
 import { generateFormOutputSchema } from '@/workflow/workflow-variables/utils/generate/generateFormOutputSchema';
 import { generateRecordEventOutputSchema } from '@/workflow/workflow-variables/utils/generate/generateRecordEventOutputSchema';
 import { generateRecordOutputSchema } from '@/workflow/workflow-variables/utils/generate/generateRecordOutputSchema';
@@ -75,6 +76,8 @@ export const computeStepOutputSchema = ({
   }
 
   switch (stepType) {
+    case 'GROUP_BY_RECORDS':
+      return generateGroupByRecordsOutputSchema();
     case 'DATABASE_EVENT': {
       const eventName = step.settings?.eventName;
 

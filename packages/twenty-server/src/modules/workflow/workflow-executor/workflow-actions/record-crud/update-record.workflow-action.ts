@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { validateConditionalUpdatePayload } from 'src/engine/api/common/common-query-runners/utils/validate-conditional-update-payload.util';
 
 import { isDefined, isValidUuid, resolveInput } from 'twenty-shared/utils';
 
@@ -90,6 +91,15 @@ export class UpdateRecordWorkflowAction implements WorkflowAction {
       objectMetadataInfo,
     );
 
+    if (workflowActionInput.precondition !== undefined) {
+      // Check the original resolved payload before relation formatting or field
+      // filtering can hide unsupported mutations.
+      validateConditionalUpdatePayload(
+        workflowActionInput.objectRecord,
+        objectMetadataInfo,
+      );
+    }
+
     const filteredObjectRecord = filterValidFieldsInRecord(
       formattedObjectRecord,
       objectMetadataInfo.flatObjectMetadata,
@@ -121,13 +131,17 @@ export class UpdateRecordWorkflowAction implements WorkflowAction {
       objectRecordId: workflowActionInput.objectRecordId,
       objectRecord: filteredObjectRecord,
       fieldsToUpdate: filteredFieldsToUpdate,
+      precondition: workflowActionInput.precondition,
       authContext: executionContext.authContext,
       updatedBy,
       rolePermissionConfig: executionContext.rolePermissionConfig,
     });
 
     if (!toolOutput.success) {
-      return { error: toolOutput.error || toolOutput.message };
+      return {
+        error: toolOutput.error || toolOutput.message,
+        ...(toolOutput.errorCode ? { errorCode: toolOutput.errorCode } : {}),
+      };
     }
 
     return {

@@ -70,6 +70,7 @@ import { getObjectMetadataFromEntityTarget } from 'src/engine/twenty-orm/utils/g
 import { type WorkspaceEventEmitter } from 'src/engine/workspace-event-emitter/workspace-event-emitter';
 
 type PermissionOptions = {
+  rolePermissionConfig?: RolePermissionConfig;
   shouldBypassPermissionChecks?: boolean;
   objectRecordsPermissions?: ObjectsPermissions;
 };
@@ -186,6 +187,7 @@ export class WorkspaceEntityManager extends EntityManager {
       objectPermissions,
       shouldBypassPermissionChecks,
       authContext,
+      rolePermissionConfig,
     );
 
     return newRepository;
@@ -196,6 +198,7 @@ export class WorkspaceEntityManager extends EntityManager {
     alias?: string,
     queryRunner?: QueryRunner,
     options: {
+      rolePermissionConfig?: RolePermissionConfig;
       shouldBypassPermissionChecks?: boolean;
       objectRecordsPermissions?: ObjectsPermissions;
     } = {
@@ -230,6 +233,7 @@ export class WorkspaceEntityManager extends EntityManager {
       options?.shouldBypassPermissionChecks ?? false,
       this.authContext,
       this.getFeatureFlagMap(),
+      options?.rolePermissionConfig,
     );
   }
 

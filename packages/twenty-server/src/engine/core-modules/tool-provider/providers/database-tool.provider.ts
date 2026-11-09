@@ -18,6 +18,7 @@ import { generateCreateManyRecordInputSchema } from 'src/engine/core-modules/rec
 import { generateCreateRecordInputSchema } from 'src/engine/core-modules/record-crud/utils/generate-create-record-input-schema.util';
 import { generateUpdateManyRecordInputSchema } from 'src/engine/core-modules/record-crud/utils/generate-update-many-record-input-schema.util';
 import { generateUpdateRecordInputSchema } from 'src/engine/core-modules/record-crud/utils/generate-update-record-input-schema.util';
+import { generateConditionalUpdateRecordInputSchema } from 'src/engine/core-modules/record-crud/utils/generate-conditional-update-record-input-schema.util';
 import { toToolJsonSchema } from 'src/engine/core-modules/record-crud/utils/to-tool-json-schema.util';
 import { generateBulkDeleteToolInputSchema } from 'src/engine/core-modules/record-crud/zod-schemas/bulk-delete-tool.zod-schema';
 import { DeleteToolInputSchema } from 'src/engine/core-modules/record-crud/zod-schemas/delete-tool.zod-schema';
@@ -217,6 +218,37 @@ export class DatabaseToolProvider implements ToolProvider {
       }
 
       if (permission.canUpdateObjectRecords && canBeManagedByAutomation) {
+        if (permission.canReadObjectRecords) {
+          const conditionalName = `conditional_update_one_${snakeSingular}`;
+          descriptors.push({
+            name: conditionalName,
+            ...getCrudToolLabels(
+              'update_one',
+              flatObject.labelSingular,
+              this.i18nService,
+              context.locale,
+            ),
+            description: `Atomically update one ${objectMetadata.labelSingular} only when its readable target-row precondition matches. Pass {id,data,precondition}. Zero rows returns PRECONDITION_FAILED for stale, missing, or hidden records. Files and relations are unsupported. For cooperative compare-and-swap, capture a unique UUID guard before dependent reads and rotate it in data on every participating write; re-read and recompute after conflict.`,
+            category: ToolCategory.DATABASE_CRUD,
+            ...(shouldIncludeSchema(conditionalName) && {
+              inputSchema: toToolJsonSchema(
+                generateConditionalUpdateRecordInputSchema(
+                  objectMetadata,
+                  restrictedFields,
+                ),
+              ),
+            }),
+            executionRef: {
+              kind: 'database_crud',
+              objectNameSingular: objectMetadata.nameSingular,
+              operation: 'update_one',
+              updateMode: 'conditional',
+            },
+            objectName: objectMetadata.nameSingular,
+            icon: flatObject.icon ?? undefined,
+            operation: 'update_one',
+          });
+        }
         descriptors.push({
           name: `create_one_${snakeSingular}`,
           ...getCrudToolLabels(
@@ -421,6 +453,7 @@ export class DatabaseToolProvider implements ToolProvider {
       toolNames.has(`create_one_${snakeSingular}`) ||
       toolNames.has(`create_many_${snakePlural}`) ||
       toolNames.has(`update_one_${snakeSingular}`) ||
+      toolNames.has(`conditional_update_one_${snakeSingular}`) ||
       toolNames.has(`update_many_${snakePlural}`) ||
       toolNames.has(`delete_one_${snakeSingular}`) ||
       toolNames.has(`delete_many_${snakePlural}`) ||

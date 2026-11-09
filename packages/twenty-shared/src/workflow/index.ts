@@ -53,6 +53,11 @@ export { workflowFindRecordsActionSchema } from './schemas/find-records-action-s
 export { workflowFindRecordsActionSettingsSchema } from './schemas/find-records-action-settings-schema';
 export { workflowFormActionSchema } from './schemas/form-action-schema';
 export { workflowFormActionSettingsSchema } from './schemas/form-action-settings-schema';
+export { workflowGroupByRecordsActionSchema } from './schemas/group-by-records-action-schema';
+export {
+  workflowGroupByRecordsInputSchema,
+  workflowGroupByRecordsActionSettingsSchema,
+} from './schemas/group-by-records-action-settings-schema';
 export { workflowHttpRequestActionSchema } from './schemas/http-request-action-schema';
 export { workflowHttpRequestActionSettingsSchema } from './schemas/http-request-action-settings-schema';
 export { workflowIfElseActionSchema } from './schemas/if-else-action-schema';
@@ -71,6 +76,8 @@ export {
   workflowPickRecordStrategySchema,
   workflowPickRecordActionSettingsSchema,
 } from './schemas/pick-record-action-settings-schema';
+export type { RecordUpdatePrecondition } from './schemas/record-update-precondition-schema';
+export { recordUpdatePreconditionSchema } from './schemas/record-update-precondition-schema';
 export { workflowSendEmailActionSchema } from './schemas/send-email-action-schema';
 export type { WorkflowEmailFiles } from './schemas/send-email-action-settings-schema';
 export {

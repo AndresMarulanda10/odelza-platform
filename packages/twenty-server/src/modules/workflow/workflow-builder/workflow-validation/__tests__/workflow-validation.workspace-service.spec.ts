@@ -18,6 +18,37 @@ import { WorkflowActionType } from 'twenty-shared/workflow';
 
 const WORKSPACE_ID = 'workspace-id';
 
+describe('native group-by validation', () => {
+  it('rejects an unfinished group step before activation', async () => {
+    const result = await buildService({
+      objectIdByNameSingular: { company: 'object' },
+    }).validateWorkflowDefinition({
+      workspaceId: WORKSPACE_ID,
+      trigger: null,
+      steps: [
+        {
+          id: 'group',
+          name: 'Group records',
+          type: WorkflowActionType.GROUP_BY_RECORDS,
+          valid: false,
+          settings: {
+            input: { objectName: 'company', groupBy: [] },
+            outputSchema: {},
+            errorHandlingOptions: ERROR_HANDLING_OPTIONS,
+          },
+        },
+      ],
+    });
+    expect(result.errors).toContainEqual(
+      expect.objectContaining({
+        code: 'INVALID_STEP_PARAMS',
+        stepId: 'group',
+        message: expect.stringContaining('one or two dimensions'),
+      }),
+    );
+  });
+});
+
 const ERROR_HANDLING_OPTIONS = {
   retryOnFailure: { value: false },
   continueOnFailure: { value: false },

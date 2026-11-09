@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { GroupByRecordsWorkflowAction } from 'src/modules/workflow/workflow-executor/workflow-actions/record-crud/group-by-records.workflow-action';
 
 import { ApplicationModule } from 'src/engine/core-modules/application/application.module';
 import { RecordCrudModule } from 'src/engine/core-modules/record-crud/record-crud.module';
@@ -26,6 +27,7 @@ import { WorkflowRunModule } from 'src/modules/workflow/workflow-runner/workflow
     WorkflowCommonModule,
   ],
   providers: [
+    GroupByRecordsWorkflowAction,
     WorkflowExecutionContextService,
     CreateRecordWorkflowAction,
     UpsertRecordWorkflowAction,
@@ -35,6 +37,7 @@ import { WorkflowRunModule } from 'src/modules/workflow/workflow-runner/workflow
     PickRecordWorkflowAction,
   ],
   exports: [
+    GroupByRecordsWorkflowAction,
     CreateRecordWorkflowAction,
     UpsertRecordWorkflowAction,
     UpdateRecordWorkflowAction,

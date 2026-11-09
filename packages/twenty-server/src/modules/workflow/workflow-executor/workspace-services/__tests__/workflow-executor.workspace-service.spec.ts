@@ -317,6 +317,34 @@ describe('WorkflowExecutorWorkspaceService', () => {
       });
     });
 
+    it.each([false, true])(
+      'passes the typed conflict into failed-state persistence (safe=%s)',
+      async (safe) => {
+        mockWorkflowExecutor.execute.mockResolvedValueOnce({
+          error: 'Update precondition failed',
+          errorCode: 'PRECONDITION_FAILED',
+          shouldFailSafely: safe,
+        });
+        await service.executeFromSteps({
+          workflowRunId: mockWorkflowRunId,
+          stepIds: ['step-1'],
+          workspaceId: mockWorkspaceId,
+        });
+        expect(
+          workflowRunWorkspaceService.updateWorkflowRunStepInfo,
+        ).toHaveBeenCalledWith(
+          expect.objectContaining({
+            stepId: 'step-1',
+            stepInfo: expect.objectContaining({
+              status: safe ? StepStatus.FAILED_SAFELY : StepStatus.FAILED,
+              error: 'Update precondition failed',
+              errorCode: 'PRECONDITION_FAILED',
+            }),
+          }),
+        );
+      },
+    );
+
     it('should handle pending events', async () => {
       const mockPendingEvent = {
         pendingEvent: true,
