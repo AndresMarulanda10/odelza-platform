@@ -60,15 +60,23 @@ La tarea empezó como un cambio de paleta (Gruvbox → Odelza). El 2026-11-05 se
 - **Por qué:** los nombres de archivos y paquetes solo los ve el equipo de desarrollo. La prioridad es que quien usa la plataforma vea Odelza en todas partes.
 - **Tagline:** "Tu espacio de trabajo para clientes, proyectos y operaciones", elegida por el usuario. Es un texto fijo en español; no cambia con el idioma de la interfaz.
 
+### 2026-11-09: textos con Odelza escrito en el código
+
+- **Qué se decidió:** los textos se cambian en el código fuente, no con un reemplazo al cargar las traducciones (`applyBrandToCatalog` se descarta). La marca se escribe "Odelza" directamente: no hay constante `APP_NAME` ni variable `{APP_NAME}` en los mensajes. Se quita la constante `APP_NAME` que agregó el paso 27.
+- **Por qué:** la plataforma es de Odelza. El usuario no quiere una capa que convierta "Twenty" en otro nombre, sino código que diga Odelza.
+- **Traducciones:** un script pasa las traducciones existentes de cada mensaje viejo a su mensaje nuevo en los 34 idiomas, cambiando "Twenty" por "Odelza". Todas las traducciones actuales escriben "Twenty" en letras latinas, también en japonés, chino y árabe, así que el cambio es directo.
+- **Crowdin:** las traducciones pasan a ser nuestras. Los workflows `i18n-pull.yaml` e `i18n-push.yaml` apuntan al Crowdin de Twenty y se desactivan.
+
 ## Estado
 
 - **Fase 1 (tema Odelza):** replanteada el 2026-11-05. El commit `025bfb65d6` (traductor sobre la paleta de Twenty) queda como antecedente: se reemplaza su mecanismo y sus valores por la paleta oficial (ver "Paleta Odelza"). La paleta oficial se agregó al repo en `docs/brand/odelza-paleta-web.png` y se transcribió en este archivo.
 - **Fase 1, revisión:** el 2026-11-05 el usuario aprobó los colores en la app real ("por ahora"). Si hacen falta ajustes de color, se agregan como tarea previa a la fase que los necesite. Commit `a4188ebe82`.
 - **Fase 2 (logos y assets):** hecha y aprobada el 2026-11-05, commit `7e8c7ca8e8`.
-- **Fase 3 (metadatos):** agregada el 2026-11-09, en curso. Paso 31 hecho (borrado de `twenty-zapier`). Pasos 27 a 30 implementados, pendientes de la imagen reconstruida y de la revisión del usuario. El renombre de paquetes y archivos (pasos 32 a 38) quedó pospuesto (ver "Decisiones").
-- **Fases 4 a 7 (textos, enlaces y términos, correos, cierre):** planeadas, sin empezar.
+- **Fase 3 (metadatos):** implementada, commit `69cf4d9070`, imagen reconstruida y stack sano el 2026-11-09. Pendiente de la revisión del usuario en la app real. El renombre de paquetes y archivos (pasos 32 a 38) quedó pospuesto (ver "Decisiones").
+- **Fase 4 (textos):** replanteada el 2026-11-09 con el cambio en el código (ver "Decisiones"), en curso.
+- **Fases 5 a 7 (enlaces y términos, correos, cierre):** planeadas, sin empezar.
 - **Fase 8 (ilustraciones):** tarea final, después de todo el branding. Decidida el 2026-11-05: no es prioritaria y el usuario aún no tiene todas las ilustraciones.
-- **Bloqueos:** ninguno para la fase 1 (la paleta ya está transcrita). La fase 2 necesita los assets del logo Odelza. Ver "Insumos pendientes".
+- **Bloqueos:** ninguno para la fase 4. Las fases 5 y 6 necesitan URLs, remitente y dominio (ver "Insumos pendientes").
 
 ### Registro 2026-11-05 (implementación fase 1)
 
@@ -131,12 +139,8 @@ La tarea empezó como un cambio de paleta (Gruvbox → Odelza). El 2026-11-05 se
    - **Familias de datos:** las ~30 claves que se guardan en la base (`red`, `blue`, `green`...) se mantienen como `--odz-color-<clave>-*`, con valores derivados de la paleta Odelza y fieles a su nombre.
 2. **Una sola fuente y CSS generado.** Los valores viven en archivos TS de Odelza; `theme-odelza-{light,dark}.css` y el acceso tipado se generan con un script, en lugar de mantener tres copias a mano.
 3. **Codemod de una sola vez** que hace el renombre en TS, TSX, SCSS y CSS. Después se borra el tema de Twenty. Un test de guarda falla si aparece una variable `--t-*` o un import de Radix Colors en la UI.
-4. **Textos traducidos: reemplazo de marca al cargar el catálogo.** Lingui genera el ID de cada mensaje a partir de su texto. Editar ~70 strings haría que esos mensajes pierdan sus traducciones en los 30 idiomas. En su lugar, una función `applyBrandToCatalog` reemplaza `\bTwenty\b` por el nombre de la marca en los valores del catálogo, en los dos puntos de carga:
-   - `twenty-front/src/utils/i18n/dynamicActivate.ts`
-   - `twenty-server/src/engine/core-modules/i18n/i18n.service.ts`
-
-   Así se cubren front, asuntos de correo y, si usan la misma instancia de i18n (hay que confirmarlo), los cuerpos de los correos, en todos los idiomas. Las frases que no tienen sentido con otro nombre ("Visit Twenty's GitHub", "Twenty.com, Public Benefit Corporation", "contact Twenty team") se editan o se quitan a mano.
-5. **Literales sin traducir:** edición directa usando una constante `APP_NAME` en `twenty-shared`, para que un cambio de nombre futuro sea de una línea. El nombre Odelza sigue pendiente del registro de marca.
+4. **Textos traducidos: cambio en el código y migración de traducciones** (decisión del 2026-11-09). Lingui genera el ID de cada mensaje a partir de su texto, así que al editar un mensaje se pierden sus traducciones. Un script con una tabla de mensaje viejo → mensaje nuevo copia cada traducción al mensaje nuevo con "Twenty" cambiado por "Odelza", en los 34 idiomas. Reemplaza la idea anterior de `applyBrandToCatalog`.
+5. **Literales sin traducir:** se editan a mano con "Odelza" escrito directamente, sin constante.
 6. **URLs servidas por nuestro propio server:** logo de correos y logo por defecto de workspace se sirven desde `${SERVER_URL}/images/...`, no desde `app.twenty.com` ni `twentyhq.github.io`.
 7. **Licencia:** el rebrand no quita la obligación AGPL de ofrecer el código fuente si la app se sirve públicamente. Se conservan los avisos de copyright y se agrega un enlace a "código fuente" en Settings o en el footer.
 8. **Cada fase cierra con revisión visual del usuario** y va en su propio PR. Una fase no empieza hasta que el usuario aprueba la anterior.
@@ -190,7 +194,7 @@ Alcance: con el tema aprobado, revisar cómo están organizados los assets y ree
 21. Proponer la organización de los assets Odelza (carpeta propia, nombres, formatos, fuente SVG maestra) y acordarla con el usuario.
 22. Generar el set de íconos desde el SVG maestro (favicon, Android, iOS, Windows 11) y reemplazar logo del login, logo de carga y `DEFAULT_WORKSPACE_LOGO` (front y emails).
 23. ~~Logo de correos~~: movido el 2026-11-05 a la tarea `odd/tasks/email-logo-server-url.md`, que se hace después de fusionar este branding a `main`.
-24. ~~Ilustraciones~~: movido a la fase 6 el 2026-11-05 (no prioritario, faltan las ilustraciones propias). Los sellos de confianza (`onboarding/trust-badges`) se ocultan en la fase 4 junto con el resto del contenido de Twenty Cloud.
+24. ~~Ilustraciones~~: movido a la fase 8 el 2026-11-05 (no prioritario, faltan las ilustraciones propias). Los sellos de confianza (`onboarding/trust-badges`) se ocultan en la fase 5 (paso 48) junto con el resto del contenido de Twenty Cloud.
 25. Imagen social de los metadatos (og/twitter).
 26. Verificación visual propia y **revisión visual del usuario**, que cierra la fase.
 
@@ -260,37 +264,52 @@ Desde el fork el código es nuestro (decisión del 2026-11-05) y lo trabajamos c
 
 ### Fase 4: textos
 
-42. `applyBrandToCatalog` en front y server, con tests unitarios (reemplaza la palabra completa, no toca IDs ni placeholders, funciona en todos los idiomas).
-43. Edición de los literales del front y del backend listados en el inventario, usando `APP_NAME` (nombre de workspace por defecto, autor del timeline, MCP, issuer de 2FA, OpenAPI, prompts de IA, iCal).
-44. Frases que no se pueden resolver con el reemplazo: mensajes de error de billing, "Twenty fields" y similares. Editar solo las que no se lean bien.
+Replanteada el 2026-11-09 (ver "Decisiones"). Alcance: todo texto que ve el usuario en la app y en las respuestas del server dice Odelza, escrito en el código, con las traducciones conservadas. Los correos de `twenty-emails` siguen en la fase 6; los asuntos de correo, que viven en el catálogo del server, entran aquí.
+
+**Medición del 2026-11-09:** 25 mensajes traducidos con "Twenty" en el front, 7 en el server y 10 en `twenty-emails`, cada uno en 34 idiomas. Fuera de los catálogos, unas 280 líneas en ~95 archivos de producción; casi la mitad es la plantilla DPA, que se resuelve en la fase 5. `lingui extract` corre en Windows; el catálogo del server ya tenía ~50 mensajes sin extraer antes de este cambio.
+
+42. **Preparación.**
+    - Quitar `APP_NAME` de `twenty-shared` y escribir "Odelza" en `title-utils.ts`.
+    - Commit aparte que sincroniza los catálogos con el código (`lingui extract` en front y server, sin cambios de marca), para que el diff de marca muestre solo la marca.
+    - Desactivar `i18n-pull.yaml` e `i18n-push.yaml`.
+43. **Mensajes traducidos** (front y server).
+    - Editar cada mensaje en el código. Los que no se leen bien con solo cambiar el nombre se reescriben: "contact Twenty team" → "contact the Odelza team", "Twenty fields" → "Odelza fields".
+    - Script `scripts/odelza-brand/migrateCatalogBrand.mjs` con la tabla de mensajes viejos y nuevos: copia cada traducción al mensaje nuevo con "Twenty" → "Odelza" y calcula el ID con `generateMessageId` de Lingui. Modo de prueba que muestra lo que va a cambiar.
+    - `lingui extract` y `lingui compile` en front y server. Verificación: ningún mensaje nuevo queda sin traducción en un idioma que tenía la vieja, y `git grep -w Twenty` en los `.po` da cero fuera de las excepciones.
+44. **Literales sin traducir.**
+    - Front: autor del timeline, nombre de workspace por defecto, configuración de MCP, ejemplos de campos compuestos, logger de Apollo.
+    - Server: MCP (nombre, instrucciones y tarjeta de `well-known`), OpenAPI, issuer de 2FA, prompts del chat y de los agentes, helper de MCP del intérprete de código, herramienta de ayuda, mensajes de error de versión de apps y de dominio, `prodId` de iCal y descripciones de config que se muestran en el panel de administración.
+    - Se quedan, como excepciones: headers `X-Twenty-Webhook-*`, User-Agent `Twenty-Marketplace` y `Twenty-AppUpgrade`, y nombres guardados en datos (fuera de alcance desde el inicio). Los comentarios del código van con el renombre de código pospuesto.
+45. **Textos guardados en la base.** El agente de ayuda, las skills estándar y el registro de la app CLI se escriben al crear el workspace. Revisar si la sincronización de la aplicación estándar los actualiza en los workspaces que ya existen; si no, un comando de workspace los actualiza.
+46. **Verificación.** Tests de los archivos tocados y snapshots actualizados, oxlint y oxfmt, `tsgo` de front y server, imagen `odelza-local` reconstruida y revisión del usuario en la app real en inglés y español: login, 404, importación de CSV, MCP, aplicaciones, 2FA y chat de IA.
 
 ### Fase 5: enlaces, términos y dominio
 
-45. Términos, privacidad y documentación: cambiar a URLs de Odelza (configurables) u ocultar. Incluye `FooterNote.tsx` y `DOCUMENTATION_BASE_URL`.
-46. Ocultar Community, partners y DPA si no aplican. Verificar primero si ya quedan ocultos con billing desactivado.
-47. Documentar en `ODELZA.md` las variables de dominio y correo para producción (`SERVER_URL`, `EMAIL_FROM_NAME`, `EMAIL_FROM_ADDRESS`, subdominios).
+47. Términos, privacidad y documentación: cambiar a URLs de Odelza (configurables) u ocultar. Incluye `FooterNote.tsx` y `DOCUMENTATION_BASE_URL`.
+48. Ocultar Community, partners y DPA si no aplican. Verificar primero si ya quedan ocultos con billing desactivado.
+49. Documentar en `ODELZA.md` las variables de dominio y correo para producción (`SERVER_URL`, `EMAIL_FROM_NAME`, `EMAIL_FROM_ADDRESS`, subdominios).
 
 ### Fase 6: correos
 
 Agregada el 2026-11-09: los correos tienen su propia revisión completa. El plan detallado se arma al empezar la fase. Por ahora incluye:
 
 - Logo de correos servido desde nuestro server (`odd/tasks/email-logo-server-url.md`).
-- Footer sin enlaces a Twenty, `WhatIsTwenty.tsx`, `<title>` de `BaseHead.tsx`, asuntos, remitente (`from (via ...)`, `EMAIL_FROM_NAME`) y la paleta de `common-style.ts`.
+- Footer sin enlaces a Twenty, `WhatIsTwenty.tsx`, `<title>` de `BaseHead.tsx`, remitente (`from (via ...)`, `EMAIL_FROM_NAME`) y la paleta de `common-style.ts`. Los asuntos de correo, que viven en el catálogo del server, se hacen en la fase 4.
 - Renombre de archivos y símbolos de `twenty-emails`.
 - Revisión visual de las 12 plantillas, en claro y en un cliente de correo real.
 
 ### Fase 7: cierre
 
-48. Barrido final con `git grep -w Twenty` sobre código visible, con lista de excepciones justificadas en este archivo.
-49. Verificación visual de la app completa con la imagen construida desde el fork.
-50. Registrar aquí lo hecho, cómo se verificó y el estado. Commit y PR solo con autorización explícita.
+50. Barrido final con `git grep -w Twenty` sobre código visible, con lista de excepciones justificadas en este archivo.
+51. Verificación visual de la app completa con la imagen construida desde el fork.
+52. Registrar aquí lo hecho, cómo se verificó y el estado. Commit y PR solo con autorización explícita.
 
 ### Fase 8: ilustraciones
 
 Tarea final, después de cerrar el branding. Empieza cuando el usuario tenga las ilustraciones propias.
 
-51. Ilustraciones con el estilo de Twenty, según el inventario de assets: estados vacíos y de error (`placeholders/*`, 60 PNG), portadas de Settings (`cover-*.png` y `ai/*-cover-*.png`), ilustraciones de aplicaciones (`.webp`), `onboarding/welcome-halftone.svg` e `illustration-*.svg` de twenty-ui si usan colores fijos. Reemplazar por las de Odelza, adaptar a la paleta o quitar.
-52. Revisión visual del usuario, que cierra la fase.
+53. Ilustraciones con el estilo de Twenty, según el inventario de assets: estados vacíos y de error (`placeholders/*`, 60 PNG), portadas de Settings (`cover-*.png` y `ai/*-cover-*.png`), ilustraciones de aplicaciones (`.webp`), `onboarding/welcome-halftone.svg` e `illustration-*.svg` de twenty-ui si usan colores fijos. Reemplazar por las de Odelza, adaptar a la paleta o quitar.
+54. Revisión visual del usuario, que cierra la fase.
 
 ## Inventario de assets (fase 2, paso 20, 2026-11-05)
 
