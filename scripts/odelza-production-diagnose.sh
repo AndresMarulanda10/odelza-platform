@@ -15,9 +15,11 @@ unavailable() {
   PARTIAL=1
 }
 
-# Capture only bounded bytes in memory, with a separate final status line.
-# A full buffer is discarded, including any partial classification or metadata.
+# Count bytes before shell string conversion: newlines and NUL cannot hide a
+# full buffer. Only an uncapped EOF can authenticate the final status trailer.
 read_bounded() {
+  LOG_STREAM=0
+  if [ "$1" = docker ] && [ "$2" = logs ]; then LOG_STREAM=1; fi
   RAW=$({
     if [ "$1" = docker ] && [ "$2" = logs ]; then
       # Docker routes the container stderr stream to CLI stderr. Classify both,
@@ -27,21 +29,33 @@ read_bounded() {
       timeout -k 2s 8s "$@" 2>/dev/null
     fi
     printf '\n%s\n' "$?"
-  } | head -c 32768) 2>/dev/null
+  } | head -c 32768 | od -An -v -tu1 | awk -v logs="$LOG_STREAM" '
+    {
+      for (i=1;i<=NF;i++) {
+        if ($i !~ /^[0-9]+$/ || $i>255) bad=1
+        bytes++
+        # Shell strings cannot carry NUL. Logs classify it as an unknown byte;
+        # structured observations instead fail closed rather than lose bytes.
+        if ($i==0) { if (!logs) bad=1; text=text "?" }
+        else text=text sprintf("%c", $i)
+      }
+    }
+    END {
+      if (bytes>=32768) { print "truncated"; exit }
+      if (bad || !match(text, /\n[0-9]+\n$/)) { print "invalid_value"; exit }
+      code=substr(text,RSTART+1,RLENGTH-2)
+      if (code=="0") {
+        # Non-newline sentinel preserves all payload newlines in substitution.
+        printf "ok\n%sX", substr(text,1,RSTART-1)
+      } else if (code=="124" || code=="137") print "timeout"
+      else print "read_failed"
+    }
+  ') 2>/dev/null
   DATA=
   READ_STATUS=read_failed
-  if [ "${#RAW}" -ge 32768 ]; then
-    READ_STATUS=truncated
-    return
-  fi
   case "$RAW" in
-    *"$NL"*)
-      CODE=${RAW##*"$NL"}
-      case "$CODE" in
-        0) READ_STATUS=ok; DATA=${RAW%"$NL"*} ;;
-        124|137) READ_STATUS=timeout ;;
-      esac
-      ;;
+    ok"$NL"*X) READ_STATUS=ok; DATA=${RAW#*"$NL"}; DATA=${DATA%X} ;;
+    truncated|timeout|invalid_value|read_failed) READ_STATUS=$RAW ;;
   esac
 }
 
@@ -258,7 +272,7 @@ main() {
     unavailable diagnostics arguments_refused
     return 2
   fi
-  for TOOL in timeout head awk stat; do
+  for TOOL in timeout head awk stat od; do
     if ! command -v "$TOOL" >/dev/null 2>&1; then
       unavailable diagnostics "${TOOL}_unavailable"
       return 2

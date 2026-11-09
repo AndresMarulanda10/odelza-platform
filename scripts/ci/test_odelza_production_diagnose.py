@@ -56,6 +56,9 @@ elif name == "docker":
     message = cfg.get("log_stderr", cfg["canary"]) if a[0] == "logs" else cfg["canary"]
     if message: print(message, file=sys.stderr)
     sys.exit(cfg.get("docker_exit", 0))
+elif name == "od":
+    if a != ["-An", "-v", "-tu1"]: deny()
+    os.execv("/usr/bin/od", ["od"] + a)
 elif name in ("head", "stat"):
     root = pathlib.Path(os.environ["SYNTHETIC_ROOT"])
     if name == "head":
@@ -85,7 +88,7 @@ class Diagnostics(unittest.TestCase):
         self.root = self.base / "production"
         self.root.mkdir()
         self.cfg = {"format": FORMAT, "image": IMAGE, "canary": CANARY}
-        for name in ("timeout", "docker", "head", "stat", "ssh", "sudo", "rm", "mkdir", "cat", "find", "sha256sum"):
+        for name in ("timeout", "docker", "head", "stat", "od", "ssh", "sudo", "rm", "mkdir", "cat", "find", "sha256sum"):
             p = self.bin / name
             p.write_text(FAKE)
             p.chmod(0o700)
@@ -200,6 +203,63 @@ class Diagnostics(unittest.TestCase):
         self.assertIn("observed_lines=0", result.stdout)
         self.assertIn("health_conclusion=not_inferred", result.stdout)
 
+    def test_exact_cap_payload_status_cannot_forge_success(self):
+        # First 32768 bytes end in payload '\n0\n'; real trailer is lost.
+        self.cfg.update(logs="x" * 32765 + "\n0\nfatal: later error", log_stderr="", docker_exit=1)
+        result = self.run_script()
+        self.assertIn("odelza-app.logs=truncated", result.stdout)
+        self.assertNotIn("logs=bounded_incident", result.stdout)
+        self.assertNotIn("class.", result.stdout)
+
+    def test_capture_boundaries_and_binary_bytes(self):
+        self.cfg["log_stderr"] = ""
+        # Fake print adds one newline; trusted success trailer adds three bytes.
+        for size in (32767, 32768, 32769):
+            for unit in ("x", "\n", "é", "\x00", "\x01"):
+                with self.subTest(size=size, unit=repr(unit)):
+                    count, remainder = divmod(size - 4, len(unit.encode()))
+                    self.cfg["logs"] = unit * count + "x" * remainder
+                    result = self.run_script()
+                    if size >= 32768:
+                        self.assertIn("logs=truncated", result.stdout)
+                        self.assertNotIn("class.", result.stdout)
+                    else:
+                        self.assertIn("logs=bounded_incident", result.stdout)
+
+    def test_uncapped_payload_status_is_not_real_status(self):
+        for code, status in ((0, "bounded_incident"), (1, "read_failed"), (124, "timeout"), (137, "timeout")):
+            with self.subTest(code=code):
+                self.cfg.update(logs="fatal\n0\n124\n137\n" + "\n" * 100, log_stderr="", docker_exit=code)
+                result = self.run_script()
+                self.assertIn("logs=" + status, result.stdout)
+                if code:
+                    self.assertNotIn("class.", result.stdout)
+
+    def test_structured_nul_is_not_silently_removed(self):
+        self.cfg["inspect"] = "a" * 64 + "|sha256:" + "b" * 64 + "|" + IMAGE + "|running|0\x00|2|healthy"
+        result = self.run_script()
+        self.assertIn("inspect=invalid_value", result.stdout)
+        self.assertNotIn("inspect=" + "a" * 64, result.stdout)
+
+    def test_metadata_byte_limit_preserves_trailing_newlines(self):
+        directory = self.metadata()
+        p = directory / "DEPLOYMENT.txt"
+        original = p.read_text()
+        for size in (4095, 4096, 4097):
+            with self.subTest(size=size):
+                p.write_text(original + "\n" * (size - len(original.encode())))
+                result = self.run_script()
+                expected = "unique_candidate_not_deployment_success" if size <= 4096 else "unavailable_candidate"
+                self.assertIn("metadata=" + expected, result.stdout)
+
+    def test_oversize_payload_with_error_and_timeout_is_unavailable(self):
+        for code in (0, 1, 124, 137):
+            with self.subTest(code=code):
+                self.cfg.update(logs="x" * 32765 + "\n0\n" + "\n" * 50000 + "fatal", log_stderr="", docker_exit=code)
+                result = self.run_script()
+                self.assertIn("logs=truncated", result.stdout)
+                self.assertNotIn("class.", result.stdout)
+
     def test_container_stderr_is_bounded_and_classified_not_forwarded(self):
         self.cfg["logs"] = ""
         self.cfg["log_stderr"] = "TypeError: " + CANARY
@@ -228,7 +288,7 @@ class Diagnostics(unittest.TestCase):
         self.assertLess(time.monotonic() - started, 30)
 
     def test_required_tools_missing_skip_reads(self):
-        for tool in ("timeout", "stat", "awk", "head"):
+        for tool in ("timeout", "stat", "awk", "head", "od"):
             with self.subTest(tool=tool):
                 p = self.bin / tool
                 moved = self.bin / (tool + ".disabled")
