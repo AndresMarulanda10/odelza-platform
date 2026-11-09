@@ -64,7 +64,8 @@ sys.exit(s.get('post_inspect_code', 0) if s.get('started') else s.get('inspect_c
 
 
 class Protocol(unittest.TestCase):
-    def run_case(self, changes=None, source=None, args=(), missing_tool=None):
+    def run_case(self, changes=None, source=None, args=(), missing_tool=None,
+                 workflow_boundary=False):
         with tempfile.TemporaryDirectory(prefix="odelza-start-test-") as directory:
             home = Path(directory)
             state = home / "state.json"
@@ -74,7 +75,7 @@ class Protocol(unittest.TestCase):
                 "sleep": "#!/bin/sh\nexit 0\n",
                 "timeout": '''#!/bin/sh
 case "$*" in
-    '-k 1s 1s python3 -c pass'|'-k 1s 8s python3 - '*|'-k 2s 15s docker start '*) ;;
+    '-k 1s 1s python3 -c pass'|'-k 1s 8s python3 - '*|'-k 2s 15s docker start '*|'-k 5s 480s ssh '*) ;;
     *) exit 96 ;;
 esac
 shift 3
@@ -94,12 +95,49 @@ exec "$@"
                                 "PATH=" + str(home))
             copy = home / "subject.sh"
             copy.write_text(text)
-            result = subprocess.run(["/bin/sh", str(copy), *args],
-                                    env={"FAKE_STATE": str(state)},
+            command = ["/bin/sh", str(copy), *args]
+            env = {"FAKE_STATE": str(state)}
+            if workflow_boundary:
+                # Execute the actual runner body, including SSH 2>/dev/null.
+                # Only script input and PATH are redirected to owned fakes.
+                ssh = home / "ssh"
+                ssh.write_text('''#!/usr/bin/env python3
+import os, sys
+assert len(sys.argv) == 21
+assert sys.argv[-2:] == ['synthetic@synthetic.invalid', 'sh -s']
+print('PRIVATE_SSH_STDERR', file=sys.stderr, flush=True)
+os.execv('/bin/sh', ['/bin/sh', '-s'])
+''')
+                ssh.chmod(0o700)
+                body = WORKFLOW.read_text().split("        run: |\n", 1)[1]
+                runner = home / "runner.sh"
+                runner.write_text("\n".join(line[10:] for line in body.splitlines())
+                                  .replace("< scripts/odelza-worker-start.sh", "< " + str(copy)))
+                command = ["/bin/bash", str(runner)]
+                env.update(PATH=str(home) + ":/usr/bin:/bin", RUNNER_TEMP=str(home),
+                           GITHUB_REPOSITORY="AndresMarulanda10/odelza-platform",
+                           GITHUB_REF="refs/heads/main", GITHUB_EVENT_NAME="workflow_dispatch",
+                           GITHUB_SHA="d" * 40, ODELZA_DEPLOY_HOST="synthetic.invalid",
+                           ODELZA_DEPLOY_USER="synthetic", ODELZA_DEPLOY_PORT="22",
+                           ODELZA_DEPLOY_SSH_KEY="PRIVATE_SYNTHETIC_KEY",
+                           ODELZA_DEPLOY_KNOWN_HOSTS="PRIVATE_SYNTHETIC_HOSTS")
+            result = subprocess.run(command, env=env,
                                     capture_output=True, text=True, timeout=8)
             calls = json.loads(state.read_text())["calls"]
             self.assertNotIn("PRIVATE", result.stdout + result.stderr)
             self.assertNotIn("FORBIDDEN_ARGV", result.stdout + result.stderr)
+            allowed = {
+                "worker_start=" + value for value in [
+                    "precondition_or_observation_failed", "required_tool_unavailable",
+                    "outcome_unknown", "reconciliation_validation_failed",
+                    "unstable_or_observation_unavailable", "started",
+                    "already_running_not_started_by_this_run"]
+            } | {"worker_state=" + value for value in [
+                "created", "running", "exited", "restarting", "paused", "dead", "removing"]} | {
+                "reconciliation=unavailable", "readiness=process_running_only",
+                "readiness=container_healthcheck_healthy", "observation_seconds=30",
+                "restart_policy=always_unchanged", "transport=completed_not_health_proof"}
+            self.assertTrue(set(result.stdout.splitlines()) <= allowed, result.stdout)
             starts = [a for a in calls if a[0] == "start"]
             for argv in calls:
                 if argv[0] == "start":
@@ -114,6 +152,38 @@ exec "$@"
             self.assertLessEqual(len(starts), 1)
             self.assertTrue(all(a == ["start", WORKER] for a in starts))
             return result, calls, starts
+
+    def test_failure_markers_survive_workflow_stderr_suppression(self):
+        cases = [({"worker": {"6": "TT"}}, "precondition_or_observation_failed", 0),
+                 ({"raw": "PRIVATE\n::error::PRIVATE"}, "precondition_or_observation_failed", 0),
+                 ({"start_code": 124}, "outcome_unknown", 1),
+                 ({"worker_post": {"9": "exited"}}, "unstable_or_observation_unavailable", 1)]
+        for changes, reason, attempts in cases:
+            with self.subTest(reason=reason):
+                result, _, starts = self.run_case(changes, workflow_boundary=True)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual(len(starts), attempts)
+                self.assertIn("worker_start=" + reason, result.stdout)
+                self.assertNotIn("readiness=", result.stdout)
+                self.assertNotIn("worker_start=started", result.stdout)
+                self.assertEqual(result.stderr, "transport=failed_or_partial_or_timeout\n")
+
+    def test_reconciliation_reports_only_validated_values_through_workflow(self):
+        for changes, marker in [
+            ({"post_inspect_code": 1}, "reconciliation=unavailable"),
+            ({"worker_post": {"6": "TT"}}, "worker_start=reconciliation_validation_failed"),
+            ({"worker_post": {"9": "::error::PRIVATE"}}, "reconciliation=unavailable"),
+            ({}, "worker_state=running"),
+        ]:
+            with self.subTest(marker=marker, changes=changes):
+                result, _, starts = self.run_case(
+                    {"start_code": 124, **changes}, workflow_boundary=True)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual(len(starts), 1)
+                self.assertIn("worker_start=outcome_unknown", result.stdout)
+                self.assertIn(marker, result.stdout)
+                self.assertNotIn("readiness=", result.stdout)
+                self.assertEqual(result.stderr, "transport=failed_or_partial_or_timeout\n")
 
     def test_duplicate_flag_denied(self):
         result, _, starts = self.run_case(
@@ -193,7 +263,7 @@ exec "$@"
             result, calls, starts = self.run_case({"start_code": code})
             self.assertNotEqual(result.returncode, 0)
             self.assertEqual(len(starts), 1)
-            self.assertIn("outcome_unknown", result.stderr)
+            self.assertIn("outcome_unknown", result.stdout)
             self.assertEqual(calls[-1][-1], WORKER)
             self.assertEqual(sum(a[0] == "inspect" for a in calls), 5)
 
@@ -221,7 +291,7 @@ exec "$@"
         result, _, starts = self.run_case({"post_inspect_code": 1})
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(len(starts), 1)
-        self.assertIn("unstable_or_observation_unavailable", result.stderr)
+        self.assertIn("unstable_or_observation_unavailable", result.stdout)
 
     def test_optional_healthcheck_readiness(self):
         result, _, starts = self.run_case({"worker_post": {"14": "healthy"}})

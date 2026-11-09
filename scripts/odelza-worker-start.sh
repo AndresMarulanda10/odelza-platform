@@ -5,11 +5,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export PATH
 export LC_ALL=C
 failure=precondition_or_observation_failed
-fail() { printf '%s\n' "worker_start=$failure" >&2; exit 1; }
+# Only source-literal reasons reach stdout; SSH deliberately discards stderr.
+fail() { printf '%s\n' "worker_start=$failure"; exit 1; }
 [ "$#" -eq 0 ] || fail
 for tool in timeout docker python3 sleep; do
     command -v "$tool" >/dev/null 2>&1 || {
-        printf '%s\n' 'worker_start=required_tool_unavailable' >&2
+        printf '%s\n' 'worker_start=required_tool_unavailable'
         exit 1
     }
 done
@@ -99,11 +100,14 @@ if [ "$initial_status" = created ]; then
         outcome=started
     else
         # Ambiguous start: one read-only reconciliation, never another start.
-        printf '%s\n' 'worker_start=outcome_unknown' >&2
+        printf '%s\n' 'worker_start=outcome_unknown'
+        failure=reconciliation_validation_failed
         if reconciliation=$(inspect "$worker_id" "$worker_template"); then
             parse "$reconciliation"
             [ "$id" = "$worker_id" ] && [ "$image" = "$image_id" ] || fail
             printf '%s\n' "worker_state=$status"
+        else
+            printf '%s\n' 'reconciliation=unavailable'
         fi
         exit 1
     fi
