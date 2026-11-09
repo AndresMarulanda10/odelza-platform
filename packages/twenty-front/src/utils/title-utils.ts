@@ -1,6 +1,5 @@
 import { t } from '@lingui/core/macro';
 import { AppBasePath, AppPath, SettingsPath } from 'twenty-shared/types';
-import { APP_NAME } from 'twenty-shared/constants';
 
 enum SettingsPathPrefixes {
   Accounts = `${AppBasePath.Settings}/${SettingsPath.Accounts}`,
@@ -61,6 +60,6 @@ export const getPageTitleFromPath = (pathname: string): string => {
     case SettingsPathPrefixes.Community:
       return t`Community - Settings`;
     default:
-      return APP_NAME;
+      return 'Odelza';
   }
 };
