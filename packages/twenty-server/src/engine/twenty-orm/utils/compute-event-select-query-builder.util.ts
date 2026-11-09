@@ -42,6 +42,9 @@ export const computeEventSelectQueryBuilder = <T extends ObjectLiteral>({
     conditionalRecordIds === undefined,
     authContext,
     featureFlagMap,
+    'rolePermissionConfig' in queryBuilder
+      ? queryBuilder.rolePermissionConfig
+      : undefined,
   );
 
   eventSelectQueryBuilder.expressionMap.wheres = expressionMap.wheres;

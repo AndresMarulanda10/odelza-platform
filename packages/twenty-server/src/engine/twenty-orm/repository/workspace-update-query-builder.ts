@@ -61,10 +61,12 @@ export class WorkspaceUpdateQueryBuilder<
   private _relationNestedQueries?: RelationNestedQueries;
   private _filesFieldSync?: FilesFieldSync;
   private conditionalUpdate = false;
+  private conditionalRecordId?: string;
 
   // Internal runner capability, never populated from record arguments.
-  public withConditionalUpdate(): this {
+  public withConditionalUpdate(recordId?: string): this {
     this.conditionalUpdate = true;
+    this.conditionalRecordId = recordId;
     return this;
   }
 
@@ -85,6 +87,7 @@ export class WorkspaceUpdateQueryBuilder<
     shouldBypassPermissionChecks: boolean,
     authContext: WorkspaceAuthContext,
     featureFlagMap: FeatureFlagMap,
+    public readonly rolePermissionConfig?: import('src/engine/twenty-orm/types/role-permission-config').RolePermissionConfig,
   ) {
     super(queryBuilder);
     this.objectRecordsPermissions = objectRecordsPermissions;
@@ -104,13 +107,16 @@ export class WorkspaceUpdateQueryBuilder<
       this.shouldBypassPermissionChecks,
       this.authContext,
       this.featureFlagMap,
+      this.rolePermissionConfig,
     ) as this;
     workspaceUpdateQueryBuilder.conditionalUpdate = this.conditionalUpdate;
+    workspaceUpdateQueryBuilder.conditionalRecordId = this.conditionalRecordId;
 
     return workspaceUpdateQueryBuilder;
   }
 
   override async execute(): Promise<UpdateResult> {
+    if (this.conditionalUpdate) return this.executeConditionalUpdate();
     try {
       if (this.manyInputs) {
         return this.executeMany();
@@ -185,6 +191,7 @@ export class WorkspaceUpdateQueryBuilder<
         this.shouldBypassPermissionChecks,
         this.authContext,
         this.featureFlagMap,
+        this.rolePermissionConfig,
       );
 
       const formattedBefore = formatResult<T[]>(
@@ -364,6 +371,150 @@ export class WorkspaceUpdateQueryBuilder<
     }
   }
 
+  private async executeConditionalUpdate(): Promise<UpdateResult> {
+    // There is no database-event after-commit hook on a caller-owned runner.
+    // Refuse before queries rather than emit irreversible uncommitted events.
+    if (this.queryRunner?.isTransactionActive) {
+      throw new TwentyORMException(
+        'Conditional updates do not support an active caller-owned transaction',
+        TwentyORMExceptionCode.METHOD_NOT_ALLOWED,
+      );
+    }
+    if (!this.conditionalRecordId || this.manyInputs) {
+      throw new Error('Conditional updates require a trusted single record ID');
+    }
+    const previousRunner = this.queryRunner;
+    const queryRunner = previousRunner ?? this.connection.createQueryRunner();
+    let transactionStarted = false;
+    try {
+      this.setQueryRunner(queryRunner);
+      await queryRunner.connect();
+      await queryRunner.startTransaction();
+      transactionStarted = true;
+      validateQueryIsPermittedOrThrow({
+        expressionMap: this.expressionMap,
+        objectsPermissions: this.objectRecordsPermissions,
+        flatObjectMetadataMaps: this.internalContext.flatObjectMetadataMaps,
+        flatFieldMetadataMaps: this.internalContext.flatFieldMetadataMaps,
+        objectIdByNameSingular: this.internalContext.objectIdByNameSingular,
+        shouldBypassPermissionChecks: this.shouldBypassPermissionChecks,
+      });
+      const objectMetadata = getObjectMetadataFromEntityTarget(
+        this.getMainAliasTarget(),
+        this.internalContext,
+      );
+      const selector = () =>
+        computeEventSelectQueryBuilder<T>({
+          queryBuilder: this,
+          authContext: this.authContext,
+          internalContext: this.internalContext,
+          featureFlagMap: this.featureFlagMap,
+          expressionMap: this.expressionMap,
+          objectRecordsPermissions: this.objectRecordsPermissions,
+        });
+      const lockSelector = selector();
+      lockSelector.expressionMap.queryType = 'select';
+      lockSelector.whereInIds([this.conditionalRecordId]);
+      lockSelector.select(lockSelector.expressionMap.mainAlias!.name);
+      if (!this.shouldBypassPermissionChecks) {
+        applyRowLevelPermissionPredicates({
+          queryBuilder: lockSelector,
+          objectMetadata,
+          internalContext: this.internalContext,
+          authContext: this.authContext,
+          featureFlagMap: this.featureFlagMap,
+        });
+      }
+      const locked = await lockSelector
+        .setLock('pessimistic_write')
+        .getMany({ noFormatting: true });
+      // The first read deliberately excludes the business guard. A writer may
+      // make it true while we wait; evaluate it only against the locked row.
+      const before =
+        locked.length === 0
+          ? []
+          : await selector().getMany({ noFormatting: true });
+      if (before.length === 0) {
+        await queryRunner.commitTransaction();
+        transactionStarted = false;
+        return { raw: [], generatedMaps: [], affected: 0 };
+      }
+      const values = this.expressionMap.valuesSet ?? {};
+      if (Array.isArray(values) || this.relationNestedConfig) {
+        throw new Error(
+          'Conditional updates support scalar single-record payloads only',
+        );
+      }
+      this.validateRLSPredicatesForUpdate({
+        updatedRecords: before.map((record) => ({ ...record, ...values }) as T),
+      });
+      this.expressionMap.wheres = applyTableAliasOnWhereCondition({
+        condition: this.expressionMap.wheres,
+        tableName: computeObjectTargetTable(objectMetadata),
+        aliasName: objectMetadata.nameSingular,
+      }) as WhereClause[];
+      this.andWhereInIds([this.conditionalRecordId]);
+      this.applyRowLevelPermissionPredicates();
+      const result = await super.execute();
+      const formattedAfter = formatResult<T[]>(
+        result.raw,
+        objectMetadata,
+        this.internalContext.flatObjectMetadataMaps,
+        this.internalContext.flatFieldMetadataMaps,
+      );
+      const formattedBefore = formatResult<T[]>(
+        before,
+        objectMetadata,
+        this.internalContext.flatObjectMetadataMaps,
+        this.internalContext.flatFieldMetadataMaps,
+      );
+      const projectedBefore = formattedAfter.map((afterRecord) => {
+        const beforeRecord = formattedBefore.find(
+          (record) => record.id === afterRecord.id,
+        );
+        if (!beforeRecord)
+          throw new Error(
+            'Conditional update is missing its locked before-image',
+          );
+        return Object.fromEntries(
+          Object.keys(afterRecord).map((key) => [key, beforeRecord[key]]),
+        ) as T;
+      });
+      const batches =
+        formattedAfter.length === 0
+          ? []
+          : [DatabaseEventAction.UPDATED, DatabaseEventAction.UPSERTED].map(
+              (action) =>
+                formatTwentyOrmEventToDatabaseBatchEvent({
+                  action,
+                  objectMetadataItem: objectMetadata,
+                  flatFieldMetadataMaps:
+                    this.internalContext.flatFieldMetadataMaps,
+                  workspaceId: this.internalContext.workspaceId,
+                  recordsAfter: formattedAfter,
+                  recordsBefore: projectedBefore,
+                  authContext: this.authContext,
+                }),
+            );
+      await queryRunner.commitTransaction();
+      transactionStarted = false;
+      for (const batch of batches)
+        this.internalContext.eventEmitterService.emitDatabaseBatchEvent(batch);
+      return {
+        raw: result.raw,
+        generatedMaps: formattedAfter,
+        affected: result.affected,
+      };
+    } catch (error) {
+      if (transactionStarted && queryRunner.isTransactionActive)
+        await queryRunner.rollbackTransaction();
+      throw error;
+    } finally {
+      this.queryRunner = previousRunner;
+      if (!previousRunner) await queryRunner.release();
+    }
+  }
+
   public async executeMany(): Promise<UpdateResult> {
     try {
       for (const input of this.manyInputs) {
@@ -426,6 +577,7 @@ export class WorkspaceUpdateQueryBuilder<
         this.shouldBypassPermissionChecks,
         this.authContext,
         this.featureFlagMap,
+        this.rolePermissionConfig,
       );
 
       this.relationNestedConfig =
@@ -736,6 +888,7 @@ export class WorkspaceUpdateQueryBuilder<
 
     validateRLSPredicatesForRecords({
       records: updatedRecordsFormatted,
+      rolePermissionConfig: this.rolePermissionConfig,
       objectMetadata,
       internalContext: this.internalContext,
       authContext: this.authContext,

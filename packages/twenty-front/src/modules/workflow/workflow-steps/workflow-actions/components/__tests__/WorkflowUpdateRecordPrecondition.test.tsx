@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { WorkflowUpdateRecordPrecondition } from '../WorkflowUpdateRecordPrecondition';
+import { WorkflowUpdateRecordPrecondition } from '@/workflow/workflow-steps/workflow-actions/components/WorkflowUpdateRecordPrecondition';
 
 jest.mock('@/ui/input/components/Select', () => ({
   Select: ({ label, value, options, onChange, disabled, emptyOption }: any) => (

@@ -1,5 +1,4 @@
 import { WorkflowActionType } from 'twenty-shared/workflow';
-import { type WorkflowGroupByRecordsActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/record-crud/types/workflow-record-crud-action-settings.type';
 
 export type WorkflowGroupByRecordsAction = BaseWorkflowAction & {
   type: WorkflowActionType.GROUP_BY_RECORDS;
@@ -19,6 +18,7 @@ import { type WorkflowLogicFunctionActionSettings } from 'src/modules/workflow/w
 import { type WorkflowSendEmailActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/mail-sender/types/workflow-send-email-action-settings.type';
 import {
   type WorkflowCreateRecordActionSettings,
+  type WorkflowGroupByRecordsActionSettings,
   type WorkflowDeleteRecordActionSettings,
   type WorkflowFindRecordsActionSettings,
   type WorkflowPickRecordActionSettings,

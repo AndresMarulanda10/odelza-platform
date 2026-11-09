@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { WorkflowEditActionGroupByRecords } from '../WorkflowEditActionGroupByRecords';
+import { WorkflowEditActionGroupByRecords } from '@/workflow/workflow-steps/workflow-actions/group-by-records-action/components/WorkflowEditActionGroupByRecords';
 
 jest.mock('@/object-metadata/hooks/useFilteredObjectMetadataItems', () => ({
   useFilteredObjectMetadataItems: () => ({

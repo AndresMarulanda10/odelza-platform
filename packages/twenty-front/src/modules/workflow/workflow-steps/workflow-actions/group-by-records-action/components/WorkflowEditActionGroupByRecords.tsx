@@ -8,7 +8,7 @@ import { WorkflowStepFooter } from '@/workflow/workflow-steps/components/Workflo
 import { getGroupByRecordsFieldChoices } from '../utils/getGroupByRecordsFieldChoices';
 import { WorkflowGroupByRecordsFilters } from './WorkflowGroupByRecordsFilters';
 
-type Props = {
+type WorkflowEditActionGroupByRecordsProps = {
   action: WorkflowGroupByRecordsAction;
   actionOptions:
     | { readonly: true }
@@ -21,7 +21,7 @@ type Props = {
 export const WorkflowEditActionGroupByRecords = ({
   action,
   actionOptions,
-}: Props) => {
+}: WorkflowEditActionGroupByRecordsProps) => {
   const { objectMetadataItems } = useFilteredObjectMetadataItems();
   const [input, setInput] = useState(action.settings.input);
   const readonly = actionOptions.readonly === true;

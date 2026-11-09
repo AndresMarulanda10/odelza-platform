@@ -38,7 +38,7 @@ export class CommonUpdateManyQueryRunnerService extends CommonBaseQueryRunnerSer
   async run(
     args: CommonExtendedInput<UpdateManyQueryArgs>,
     queryRunnerContext: CommonExtendedQueryRunnerContext,
-    internalOptions?: { conditionalUpdate: true },
+    internalOptions?: { conditionalUpdate: true; recordId: string },
   ): Promise<ObjectRecord[]> {
     const {
       repository,
@@ -68,7 +68,7 @@ export class CommonUpdateManyQueryRunnerService extends CommonBaseQueryRunnerSer
 
     const updateQueryBuilder = queryBuilder.update();
     if (internalOptions?.conditionalUpdate) {
-      updateQueryBuilder.withConditionalUpdate();
+      updateQueryBuilder.withConditionalUpdate(internalOptions.recordId);
     }
     const updatedObjectRecords = await updateQueryBuilder
       .set(args.data)

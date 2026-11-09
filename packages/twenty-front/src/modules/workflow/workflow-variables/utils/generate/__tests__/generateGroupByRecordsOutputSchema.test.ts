@@ -1,5 +1,5 @@
-import { generateGroupByRecordsOutputSchema } from '../generateGroupByRecordsOutputSchema';
-import { computeStepOutputSchema } from '../computeStepOutputSchema';
+import { generateGroupByRecordsOutputSchema } from '@/workflow/workflow-variables/utils/generate/generateGroupByRecordsOutputSchema';
+import { computeStepOutputSchema } from '@/workflow/workflow-variables/utils/generate/computeStepOutputSchema';
 import { getActionIcon } from '@/workflow/workflow-steps/workflow-actions/utils/getActionIcon';
 import { getOutputSchemaFromValue } from 'twenty-shared/logic-function';
 

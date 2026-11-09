@@ -4,7 +4,10 @@ import { type ObjectsPermissions } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 
 import { getAllSelectableFields } from 'src/engine/api/common/common-select-fields/utils/get-all-selectable-fields.util';
-import { type CommonBaseQueryRunnerContext } from 'src/engine/api/common/types/common-base-query-runner-context.type';
+import {
+  type CommonBaseQueryRunnerContext,
+  internalRolePermissionConfigSchema,
+} from 'src/engine/api/common/types/common-base-query-runner-context.type';
 import { type CommonSelectedFields } from 'src/engine/api/common/types/common-selected-fields-result.type';
 import { ApiKeyRoleService } from 'src/engine/core-modules/api-key/services/api-key-role.service';
 import { isApiKeyAuthContext } from 'src/engine/core-modules/auth/guards/is-api-key-auth-context.guard';
@@ -24,7 +27,6 @@ import { buildObjectIdByNameMaps } from 'src/engine/metadata-modules/flat-object
 import { UserRoleService } from 'src/engine/metadata-modules/user-role/user-role.service';
 import { WorkspaceCacheService } from 'src/engine/workspace-cache/services/workspace-cache.service';
 import { type RolePermissionConfig } from 'src/engine/twenty-orm/types/role-permission-config';
-import { internalRolePermissionConfigSchema } from 'src/engine/api/common/types/common-base-query-runner-context.type';
 import { computePermissionIntersection } from 'src/engine/twenty-orm/utils/compute-permission-intersection.util';
 
 export type CommonApiContext = {

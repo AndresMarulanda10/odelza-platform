@@ -1,4 +1,4 @@
-import { buildFindRecordsActionInput } from '../buildFindRecordsActionInput';
+import { buildFindRecordsActionInput } from '@/workflow/workflow-steps/workflow-actions/find-records-action/utils/buildFindRecordsActionInput';
 import { workflowFindRecordsActionSettingsSchema } from 'twenty-shared/workflow';
 
 describe('Find Records editor paging persistence', () => {

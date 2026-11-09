@@ -6,7 +6,7 @@
 - The user explicitly selected one PR with `size:exception`, superseding the earlier independent main-targeted slicing strategy. Delivery strategy: `single-pr`; base: `main`; include pagination, grouped aggregation, conditional updates and their shared trusted-permission foundation together. No tracker, child PRs, artificial splitting or test removal.
 - The exception is human-accepted in conversation, not an independent GitHub review. Its rationale is one coherent, already combined and independently tested delivery; its tradeoff is approximately 6,000 source changed lines and greater review risk. Source diff: 124 package paths, 5,994 additions + 58 deletions = 6,052 changed lines. Before this bookkeeping update, the full diff is 125 paths, 6,103 additions + 58 deletions = 6,161 changed lines. Record final publication counts externally after this commit.
 - Actual inspected Danger code does not implement a 400-line gate. The requested `size:exception` label may be created if absent, with the neutral description “Maintainer-approved exception to the pull request review-size budget”. This narrow metadata authorization does not waive CI, manual evidence, independent review, production environment approval, backup or health gates. Never apply `ci:local-verified` or use an admin merge.
-- I3 publication remains pending an actual PR URL/head readback. Issue #57 is approved; it is no longer a blocker. No merge, deployment or finance writes are authorized within the bounded publication worker.
+- I3 is published as PR #58; corrected-head CI and merge remain pending. Issue #57 is approved. No CI bypass, deployment or finance write follows from local verification acceptance.
 
 ## Outcome and authorization
 Combine the accepted pagination, aggregation and conditional-update capabilities against current main, verify their combined behavior, publish through repository policy, deploy production, then configure and verify Second Brain workflows without losing financial history.
@@ -24,17 +24,42 @@ The user explicitly authorized PR publication/merge in AndresMarulanda10/odelza-
 
 ## Tasks
 - [x] I1 — Integrate the four source units on current main, preserving current-main functionality, legacy flat tools, paging metadata, GroupBy output and conditional permissions/events. Route delegated: preparation and multi-file merge. Normalize, rebuild shared output, typecheck all three packages, run the deduplicated union of documented focused tests and actual PostgreSQL contention tests against a fresh owned fixture. Record observed RED/conflicts where applicable; mechanical integration need not invent RED.
-- [x] I2 — Independently verify combined compatibility/security and parent spot-check one reported command. Closed integration work-unit commit `e6f6b2622a` with tests/docs and parent-reported commit/tree evidence below. Any needed correction is bounded and must remain in exact approved surfaces.
-- [ ] I3 — Follow actual issue/PR/size policy, publish one PR to main with `type:feature` and human-accepted `size:exception`, wait for required CI and merge only the verified head. Route delegated per action. No bypasses or auto-created approvals. Issue #57 verified approved; PR URL/head remain pending publication readback.
+- [x] I2 — Parent accepts C1 independent verification: 431 tests on Node 24 with zero skips, plus a separate parent PostgreSQL spot-check passing all 18 tests. The four correctness/security concerns are closed with the documented active caller-transaction limitation. Corrected source commit and its verified identity remain pending parent recording; this bookkeeping worker does not commit.
+- [ ] I3 — PR https://github.com/AndresMarulanda10/odelza-platform/pull/58 is published; CI is not complete. Wait for required checks and merge only the independently verified head. Issue #57 is approved; the user selected one PR with `size:exception`. No bypasses or fabricated approvals.
 - [ ] I4 — Follow native production Actions deployment, approvals and backup/health gates; verify exact deployed revision and externally observed health. Route delegated per action. Report pending approval rather than substituting direct access.
 - [ ] I5 — Once deployed capabilities are actually available through authorized Second Brain MCP, reconcile current workflow/finance state, configure generic workflows, and verify calculations/history/account/card behavior proportionately. Derive exact workspace mutation scope from live state first; do not claim prior financial redesign complete.
 
 ## Verification and recovery
-Combined bytes passed writer checks and independent verification. Use installed Jest (`node node_modules/jest-cli/bin/jest.js`), not missing root yarn jest. The exact deduplicated focused commands are preserved below for recovery after scratch cleanup. Rebuild shared before consumers. Use package-local tsgo with actual configs; Node 26 observed versus declared Node 24 remains a limitation unless CI supplies supported runtime proof.
+Combined bytes passed writer checks and parent-accepted independent verification on Node 24.22.2. Use installed Jest (`node node_modules/jest-cli/bin/jest.js`), not missing root yarn jest. The exact deduplicated focused commands are preserved below for recovery after scratch cleanup. Rebuild shared before consumers and use package-local tsgo with actual configs. Historical Node 26 evidence below is superseded by the C1 supported-runtime checks, not by a claim of corrected-head CI success.
 
 The previous isolated PostgreSQL fixture was removed. Never reuse its historical endpoint as evidence; provision a fresh explicitly owned local fixture and clean it after final verification. No .env/global AppModule bootstrap or ambient database fallback. No production finance fixture or destructive data reset.
 
 ## Progress and next step
+### C1 — Independent verification accepted; corrected commit and CI pending
+Prior published head: `f16bf02dfbf31ed2142e0198af3695f4a928cb12`, source `e6f6b2622a`, main base `2c449260b8`. Its historical parent-provided CI snapshot was 116 successful, 6 failed, 27 cancelled, 11 skipped; these are prior-head failures, not corrected-head CI results. Historical 415 passing tests remain historical evidence. Parent accepts the corrected working bytes after independent 431-test verification and a separate 18-test PostgreSQL spot-check, all on Node 24 with zero skips. Writer shared build, three package typechecks and full server/frontend type-aware lint/format checks passed on Node 24.22.2. Corrected commit identity will be recorded by the parent later. I4 and I5 have not started.
+
+- [x] Correct frontend/server type-aware lint and enum ordering. Full controlled codegen remains CI-only and is NOT a local PASS.
+- [x] Reproduce and correct Pick Record canonical relation grouping against the real GroupBy schema/parser.
+- [x] Reproduce and correct trusted role propagation through manager/repository/builders, including explicit role intersections and proposed-row RLS.
+- [x] Reproduce and correct conditional mutation locking, RETURNING event images and transaction ownership; fail closed for unsupported caller-owned active transactions.
+- [x] Normalize only authorized changed surfaces; run Node 24 shared build, three typechecks, type-aware lint, all focused unions and fresh owned native PostgreSQL tests.
+- [x] Parent accepted independent verification and the separate PostgreSQL spot-check, authorizing I2 acceptance bookkeeping. Corrected source commit/identity remains pending parent recording; no CI, browser or production approval is implied.
+
+Scope: local corrections and owned synthetic PostgreSQL only; no staging, commits, push, PR edits, reruns, merge, deployment or production access. Preserve `.atl/`. Requested skills were read at all three exact supplied paths; no applicable target AGENTS.md was found. Full task mirror/readback is required before source writes and after the outcome.
+
+#### Historical required surface expansion (approved)
+Parent approved both runner paths below and `packages/twenty-server/src/engine/api/common/common-query-runners/__tests__/common-update-one-query-runner.service.spec.ts`. The initial blocker is resolved; all other scope constraints remain unchanged.
+
+Stopped under the explicit scope rule before any source writes. The conditional builder currently receives only `withConditionalUpdate()` with no base record identity. `CommonUpdateOneQueryRunnerService.run` combines the ID and business guard into one filter (lines 91–100); `CommonUpdateManyQueryRunnerService.run` compiles that combined filter before calling the zero-argument capability (lines 54–76). Consequently the builder has no separately trusted base ID for the required authorized, guard-independent row lock. Reconstructing it from compiled SQL/parameter names or locking only initially eligible rows would not satisfy the correction contract.
+
+Required exact additional edit surfaces:
+- `packages/twenty-server/src/engine/api/common/common-query-runners/common-update-one-query-runner.service.ts` — pass the validated `args.id` as internal conditional metadata, separately from the combined final filter.
+- `packages/twenty-server/src/engine/api/common/common-query-runners/common-update-many-query-runner.service.ts` — carry that internal base ID into the conditional builder capability, without accepting it from public record arguments or altering unconditional calls.
+
+These are authorization requests, not edits made. No correctness changes, RED/GREEN tests, build, typecheck, lint, codegen or PostgreSQL provisioning were performed. `/opt/homebrew/opt/node@24/bin/node --version` returned `v24.22.2`; `git rev-parse --abbrev-ref HEAD` and `git rev-parse HEAD` matched the assigned branch/head; `git diff --check` passed for this tracking-only update. No fixture or scratch resource exists from this worker. Parent should authorize these two surfaces before resuming the single bounded correction; I2, C1 and CI remain pending.
+
+The following paragraphs are historical publication bookkeeping, superseded by the C1 status above where they describe current acceptance.
+
 I1 and I2 are complete. The parent reports source commit `e6f6b2622a` (`feat(workflows): integrate generic data capabilities`) on main base `2c449260b8`: 124 package paths plus this task document, 125 files total, 6,095 additions and 58 deletions. Final corrected bytes were staged before commit; the parent verified the committed tree remained unchanged after the hook. Immediately after that commit, the working tree contained only preexisting `.atl/`; this bookkeeping update is a later documentation-only change for the parent to commit separately. No Git inspection was repeated by this worker.
 
 The parent accepts all independent verification: 415 tests (296 server, 91 frontend, 18 shared, 10 native PostgreSQL), zero skipped, plus a separate parent spot-check passing all 10 PostgreSQL tests. Writer shared build and all three package typechecks passed. Owned fixture/scratch cleanup below is accepted. Issue #57 is now approved and the user accepted the single-PR size exception; I3 publication URL remains pending, and I4/I5 remain pending. No PR, push, deployment or finance mutation has occurred at this bookkeeping checkpoint.
@@ -109,3 +134,72 @@ Cleanup worker read the exact requested cognitive-doc-design skill before writin
 - `docker rm --force` succeeded for only `752249e52968922acde3e2417b28740bf34b09b94148ec28275fdcafd602bc9f`, returning that exact ID. Subsequent exact-ID inspection exited 1 with `error: no such object: 752249e52968922acde3e2417b28740bf34b09b94148ec28275fdcafd602bc9f`. This is classified absence, not an arbitrary Docker failure. The first classifier expected uppercase wording and halted before scratch deletion; no container-removal retry was performed.
 - Every Docker invocation used `/usr/local/bin/docker`, explicit host `unix:///Users/andresmarulanda/.orbstack/run/docker.sock`, and exact owned empty config `S/docker-empty-onmzju9m`, with `DOCKER_CONTEXT`, `DOCKER_HOST`, `DOCKER_TLS_VERIFY`, `DOCKER_CERT_PATH`, and `DOCKER_AUTH_CONFIG` removed from its environment. Cached `postgres:16`, the OrbStack daemon and other resources were not removed or pruned.
 - After rechecking canonical nonsymlink scratch/receipt ownership, exact receipt binding and all three command matches, only `/private/var/folders/5q/j0cmnbmd3b54y_strvlmjngw0000gn/T/opencode/workflow-integration-7_4xwxid` was deleted. `os.path.lexists` returned false afterward; its parent temporary directory remained present. No other file artifacts were created. Historical cleanup handoff preceded the parent checkpoint; parent subsequently accepted cleanup and committed source/tests/docs in `e6f6b2622a` on base `2c449260b8`. This follow-up is bookkeeping only: no source, Git, remote or Docker operations, issue creation or labeling were performed.
+
+### C1 observed correction evidence
+The initial two-path scope blocker above was resolved by parent approval, including the existing one-runner regression file. No additional edit surfaces were needed. This writer changed 30 package paths (three new files), plus this task document: package-only +837/-120, 955 authored changed lines excluding the generated enum's two changed lines. No staging, commits, remote mutations, AppModule, Redis, .env access or production operations occurred; `.atl/` remains untouched.
+
+#### Behavior and observed RED
+- Pick Record now submits canonical `companyId`-style grouping/filter inputs. Its new public-action regression uses the real GroupByRecordsService, generated tool schema, relation/target-ID metadata and native GroupByArgProcessorService validation. Original action bytes failed with Zod `company` versus `companyId`; final assertion still selects the candidate with fewer related records. Native query execution is synthetic in this test, not live grouping transport. Fixture metadata was completed and its count column aligned to the native processor's actual `totalCount` contract; neither production schema validation nor the selection assertion was weakened.
+- Trusted role configuration now survives manager -> repository -> manager-backed find options, select clone/update conversion, update clone, and internal event selectors. Both eligibility and proposed-record RLS use every explicit intersection role, never the broader actor role; missing roles and unsupported configurations fail closed. Actor/workspace-member context remains unchanged. The helper's auth-only baseline failed three assertions (one compatibility assertion passed).
+- Conditional execution obtains a query runner before selectors, starts one short transaction, locks the authorized base ID independently of the business guard, then evaluates the guard/proposed row against current locked data. UPDATE still carries ID, guard and RLS. Returned selected columns supply after-images; before-images are paired/projected to those same columns. Native event payloads are constructed before own commit and emitted only afterward. Unconditional execution retains its legacy path.
+- An active caller-owned transaction is explicitly unsupported on this route: typed `METHOD_NOT_ALLOWED` is thrown before queries/ownership changes because there is no native database-event after-commit hook here. An inactive externally supplied runner gets an owned transaction but is not released; an allocated runner is released. Commit failure rolls back and emits nothing. No caller transaction is committed, rolled back or released by the refusal path.
+- Before restoring the fixes for final verification, a controlled baseline diagnostic reinstated original manager role loss and original conditional execution. Six native PG regressions failed: role leakage through real manager find; proposed-row actor fallback; false-to-true guard miss; post-UPDATE SELECT; complementary-gate stale validation; and absent transaction ownership. That filtered RED run had six failures/ten intentionally filtered tests, NOT a passing suite. Fixes were restored immediately. Final PG tests below have zero skips.
+
+#### Final supported-runtime checks
+All command environments prepend `PATH=/opt/homebrew/opt/node@24/bin:$PATH`; explicit Jest binary is `/opt/homebrew/opt/node@24/bin/node` (v24.22.2). Only exact changed package paths were formatted with package-local `../../node_modules/.bin/oxfmt <paths>`; the generated enum was manually aligned after FORM, preserving its original missing EOF newline. No full generated-pipeline PASS is claimed.
+
+| Check | Exact command / observed outcome |
+| --- | --- |
+| Shared rebuild after final formatting | `yarn nx run twenty-shared:build --skip-nx-cache`: passed. |
+| Shared typecheck, from packages/twenty-shared | `../../node_modules/.bin/tsgo -p tsconfig.lib.json --noEmit --incremental false`: passed. |
+| Server/front typechecks, from each package | `../../node_modules/.bin/tsgo -p tsconfig.json --noEmit --incremental false`: both passed. |
+| Full server/front type-aware lint, from each package | `../../node_modules/.bin/oxlint --type-aware -c .oxlintrc.json src/`: both passed, zero warnings/errors (6,766 server and 8,044 frontend files). |
+| Full server/front formatting checks, from each package | `../../node_modules/.bin/oxfmt --check src/`: both passed. |
+| Server focused union | Historical exact 32-path server block above plus the two new spec paths in the recovery command below: 34 suites, 304 passed, zero skipped. |
+| Front/shared focused unions | Exact historical path unions above using Node 24: frontend nine suites/91 passed; shared four suites/18 passed; zero skipped. |
+| Native PostgreSQL | `ATOMIC_UPDATE_TEST_DATABASE_URL=postgres://postgres@127.0.0.1:32770/workflow_atomic_test /opt/homebrew/opt/node@24/bin/node node_modules/jest-cli/bin/jest.js --config packages/twenty-server/test/atomic-update/jest.config.mjs --runInBand`: one suite, 18 passed, zero skipped. |
+| Whitespace | `git diff --check`: passed. |
+
+Total final functional evidence: 431 passed, zero skipped, across 48 suites. Earlier check failures were corrected and rerun, including a test-fixture native count-key mismatch and an updated internal handoff expectation. Final source formatting preceded the final shared build and checks; restoring only the generated file's original absent EOF newline has no semantic effect. Full AppModule integration, data/metadata/admin codegen and actual GitHub CI remain pending CI; no timeout extension or bypass was used. Parent accepted independent 431-test verification plus a separate parent 18-test PostgreSQL spot-check. I2 verification is accepted; corrected source commit/identity remains pending parent recording. I3 is published but not corrected-head CI-complete; I4/I5 have not started. Browser and production behavior remain unknown. Active caller-owned conditional transactions continue to fail closed before side effects as documented above.
+
+The following root command reconstructs and runs all three exact final focused argv unions from this durable file, without scratch dependencies:
+```sh
+PATH=/opt/homebrew/opt/node@24/bin:$PATH python3 - <<'PY'
+import pathlib, re, shlex, subprocess
+text = pathlib.Path('odd/tasks/workflow-data-capabilities-integration-deployment.md').read_text()
+commands = re.findall(r'```sh\n(node node_modules/jest-cli/bin/jest.js[^\n]+)\n```', text)
+assert len(commands) == 3
+for command in commands:
+    args = shlex.split(command)
+    args[0] = '/opt/homebrew/opt/node@24/bin/node'
+    if '--config packages/twenty-server/' in command:
+        args += [
+            'packages/twenty-server/src/modules/workflow/workflow-executor/workflow-actions/record-crud/__tests__/pick-record.workflow-action.spec.ts',
+            'packages/twenty-server/src/engine/twenty-orm/utils/__tests__/resolve-rls-role-ids.util.spec.ts',
+        ]
+    result = subprocess.run(args, capture_output=True, text=True)
+    output = result.stdout + result.stderr
+    print('\n'.join(line for line in output.splitlines() if line.startswith(('FAIL', 'Test Suites:', 'Tests:', 'Time:'))))
+    if result.returncode:
+        print(output)
+        raise SystemExit(result.returncode)
+PY
+```
+
+#### Fresh C1 fixture provenance (cleanup confirmed below)
+- Receipt/scratch: `/private/var/folders/5q/j0cmnbmd3b54y_strvlmjngw0000gn/T/opencode/workflow-ci-correction-kl9075x2/fixture-receipt.json`; sibling `docker-empty` is the fresh isolated Docker config. Final exact-ID inspection confirmed ownership, running state, no mounts, 512 MiB memory, one CPU and `rw,size=256m` PGDATA tmpfs.
+- Container `opencode-workflow-ci-1abecae21925`; exact ID `e36658b042d25e1598483852462f208d503d0981d8e253b403bb45246f3ad99a`; labels `opencode.task=workflow-ci-correction`, `opencode.run=1abecae2192545a8bf0ff77997577e63`.
+- Cached official `postgres:16`, `--pull=never`, synthetic database `workflow_atomic_test`, temporary local trust auth, loopback-only port 32770. Explicit host `unix:///Users/andresmarulanda/.orbstack/run/docker.sock`; all Docker calls used `/usr/local/bin/docker` and removed ambient context/host/TLS/certificate/auth variables. Readiness was bounded at 90 seconds and succeeded. No host volumes or credentials were used.
+- Tests use nonce-owned schemas/roles with finally cleanup and actual non-superuser SQL RLS. Native parser, manager/repository/builders, application RLS utilities, two-connection contention and native event formatter run; metadata/cache and event delivery transport are synthetic. No claim of deployed behavior, browser behavior, production readiness or live GroupBy transport follows from these tests.
+- Parent independent verification and its separate 18-test PostgreSQL spot-check are accepted. The exact owned container and scratch were subsequently removed as confirmed below. The PostgreSQL command above is preserved for recovery but its removed endpoint must not be reused; a future run requires a fresh authorized owned fixture.
+
+Skill resolution: all three exact requested skill files were read; no applicable target AGENTS.md was found. CodeGraph preceded source work; its unrelated runner response required exact targeted source fallback. Full task mirror/readback to Engram 10507 follows this update, with the same repository-relative locator and recovery topic. No further source writes are intended before handoff.
+
+#### C1 accepted cleanup receipt
+This final worker changed only this task document. No package edits, tests, builds, lint, formatting, Git commands, staging, commits or remote mutations were performed during this cleanup/bookkeeping phase. The accepted 30 package paths and 955 authored changed lines remain unchanged; `.atl/` was not touched.
+
+- Before removal, all three saved focused command receipts matched the durable commands and their two-spec server extension (3/3); recovery does not depend on scratch. Canonical scratch, receipt and isolated config were nonsymlinks owned by the current user. Receipt ID, name, both labels, config, scratch and synthetic URL matched the exact authorized resources.
+- Exact-ID inspection confirmed container `e36658b042d25e1598483852462f208d503d0981d8e253b403bb45246f3ad99a`, name `/opencode-workflow-ci-1abecae21925`, labels `opencode.task=workflow-ci-correction` and `opencode.run=1abecae2192545a8bf0ff77997577e63`, no attached mounts/volumes or host binds, the expected PGDATA tmpfs and loopback port.
+- `docker rm --force` returned only that exact ID. Subsequent exact-ID inspection exited 1 with `error: no such object: e36658b042d25e1598483852462f208d503d0981d8e253b403bb45246f3ad99a`, establishing classified absence rather than an arbitrary Docker error. No blind retry was used.
+- Every Docker invocation used `/usr/local/bin/docker`, explicit host `unix:///Users/andresmarulanda/.orbstack/run/docker.sock`, receipt-bound `docker-empty` config, and an environment without `DOCKER_CONTEXT`, `DOCKER_HOST`, `DOCKER_TLS_VERIFY`, `DOCKER_CERT_PATH` or `DOCKER_AUTH_CONFIG`. Cached PostgreSQL image, OrbStack and all other containers/resources were untouched; no prune or global inventory occurred.
+- After container absence, scratch/receipt/config ownership and receipt binding were checked again; all scratch descendants were nonsymlink, current-user-owned paths. Only `/private/var/folders/5q/j0cmnbmd3b54y_strvlmjngw0000gn/T/opencode/workflow-ci-correction-kl9075x2` was removed. `os.path.lexists` confirmed false afterward; its approved parent directory remains present. No fixture or scratch resource from this C1 worker remains.

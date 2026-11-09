@@ -3,9 +3,9 @@ import {
   computeRecordGqlOperationFilter,
   isDefined,
   isRecordFilterValueValid,
+  getFilterTypeFromFieldType,
+  FILTER_OPERANDS_MAP,
 } from 'twenty-shared/utils';
-import { getFilterTypeFromFieldType } from 'twenty-shared/utils';
-import { FILTER_OPERANDS_MAP } from 'twenty-shared/utils';
 import { compositeTypeDefinitions } from 'twenty-shared/types';
 import {
   WorkflowStepExecutorException,

@@ -16,7 +16,7 @@ import { type WorkspaceAuthContext } from 'src/engine/core-modules/auth/types/wo
 import { type FlatObjectMetadata } from 'src/engine/metadata-modules/flat-object-metadata/types/flat-object-metadata.type';
 import { type WorkspaceSelectQueryBuilder } from 'src/engine/twenty-orm/repository/workspace-select-query-builder';
 import { buildRowLevelPermissionRecordFilter } from 'src/engine/twenty-orm/utils/build-row-level-permission-record-filter.util';
-import { resolveRoleIdFromAuthContext } from 'src/engine/twenty-orm/utils/resolve-role-id-from-auth-context.util';
+import { resolveRlsRoleIds } from 'src/engine/twenty-orm/utils/resolve-rls-role-ids.util';
 
 type ApplyRowLevelPermissionPredicatesArgs<T extends ObjectLiteral> = {
   queryBuilder: WorkspaceSelectQueryBuilder<T>;
@@ -33,44 +33,47 @@ export const applyRowLevelPermissionPredicates = <T extends ObjectLiteral>({
   authContext,
   featureFlagMap: _featureFlagMap,
 }: ApplyRowLevelPermissionPredicatesArgs<T>): void => {
-  const roleId = resolveRoleIdFromAuthContext({
+  const roleIds = resolveRlsRoleIds({
     authContext,
     userWorkspaceRoleMap: internalContext.userWorkspaceRoleMap,
     apiKeyRoleMap: internalContext.apiKeyRoleMap,
+    rolePermissionConfig: queryBuilder.rolePermissionConfig,
   });
 
-  const recordFilter = buildRowLevelPermissionRecordFilter({
-    flatRowLevelPermissionPredicateMaps:
-      internalContext.flatRowLevelPermissionPredicateMaps,
-    flatRowLevelPermissionPredicateGroupMaps:
-      internalContext.flatRowLevelPermissionPredicateGroupMaps,
-    flatFieldMetadataMaps: internalContext.flatFieldMetadataMaps,
-    objectMetadata,
-    roleId,
-    workspaceMember: isUserAuthContext(authContext)
-      ? authContext.workspaceMember
-      : undefined,
-  });
-
-  if (!recordFilter || Object.keys(recordFilter).length === 0) {
-    return;
-  }
-
-  const isUpdateOrDeleteQuery =
-    queryBuilder.expressionMap.queryType === 'update' ||
-    queryBuilder.expressionMap.queryType === 'soft-delete' ||
-    queryBuilder.expressionMap.queryType === 'delete';
-
-  applyObjectRecordFilterToQueryBuilder({
-    queryBuilder,
-    objectNameSingular: objectMetadata.nameSingular,
-    recordFilter,
-    fieldParser: new GraphqlQueryFilterFieldParser(
+  for (const roleId of roleIds) {
+    const recordFilter = buildRowLevelPermissionRecordFilter({
+      flatRowLevelPermissionPredicateMaps:
+        internalContext.flatRowLevelPermissionPredicateMaps,
+      flatRowLevelPermissionPredicateGroupMaps:
+        internalContext.flatRowLevelPermissionPredicateGroupMaps,
+      flatFieldMetadataMaps: internalContext.flatFieldMetadataMaps,
       objectMetadata,
-      internalContext.flatFieldMetadataMaps,
-    ),
-    useDirectTableReference: isUpdateOrDeleteQuery,
-  });
+      roleId,
+      workspaceMember: isUserAuthContext(authContext)
+        ? authContext.workspaceMember
+        : undefined,
+    });
+
+    if (!recordFilter || Object.keys(recordFilter).length === 0) {
+      continue;
+    }
+
+    const isUpdateOrDeleteQuery =
+      queryBuilder.expressionMap.queryType === 'update' ||
+      queryBuilder.expressionMap.queryType === 'soft-delete' ||
+      queryBuilder.expressionMap.queryType === 'delete';
+
+    applyObjectRecordFilterToQueryBuilder({
+      queryBuilder,
+      objectNameSingular: objectMetadata.nameSingular,
+      recordFilter,
+      fieldParser: new GraphqlQueryFilterFieldParser(
+        objectMetadata,
+        internalContext.flatFieldMetadataMaps,
+      ),
+      useDirectTableReference: isUpdateOrDeleteQuery,
+    });
+  }
 };
 
 const applyObjectRecordFilterToQueryBuilder = <T extends ObjectLiteral>({

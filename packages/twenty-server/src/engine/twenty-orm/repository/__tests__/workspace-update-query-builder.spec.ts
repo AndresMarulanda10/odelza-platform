@@ -1,6 +1,33 @@
 import { WorkspaceUpdateQueryBuilder } from '../workspace-update-query-builder';
 
 describe('conditional WorkspaceUpdateQueryBuilder safety', () => {
+  it('refuses an active external transaction before any query or resource ownership change', async () => {
+    const queryRunner = {
+      isTransactionActive: true,
+      query: jest.fn(),
+      commitTransaction: jest.fn(),
+      rollbackTransaction: jest.fn(),
+      release: jest.fn(),
+    };
+    const builder = Object.assign(
+      Object.create(WorkspaceUpdateQueryBuilder.prototype),
+      {
+        queryRunner,
+      },
+    ) as WorkspaceUpdateQueryBuilder<{ id: string }>;
+    builder.withConditionalUpdate('11111111-1111-4111-8111-111111111111');
+    await expect(builder.execute()).rejects.toThrow(
+      'active caller-owned transaction',
+    );
+    for (const operation of [
+      'query',
+      'commitTransaction',
+      'rollbackTransaction',
+      'release',
+    ] as const) {
+      expect(queryRunner[operation]).not.toHaveBeenCalled();
+    }
+  });
   it('rejects unsupported fields before preparing nested relations or enriching files', () => {
     const prepareNestedRelationQueries = jest.fn();
     const enrichFilesFields = jest.fn();

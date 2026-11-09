@@ -6,7 +6,8 @@ import { CommonUpdateOneQueryRunnerService } from 'src/engine/api/common/common-
 import { CommonUpdateManyQueryRunnerService } from 'src/engine/api/common/common-query-runners/common-update-many-query-runner.service';
 import { FilterArgProcessorService } from 'src/engine/api/common/common-args-processors/filter-arg-processor/filter-arg-processor.service';
 import { GraphqlQueryParser } from 'src/engine/api/graphql/graphql-query-runner/graphql-query-parsers/graphql-query.parser';
-import { WorkspaceSelectQueryBuilder } from 'src/engine/twenty-orm/repository/workspace-select-query-builder';
+import { WorkspaceEntityManager } from 'src/engine/twenty-orm/entity-manager/workspace-entity-manager';
+import { workspaceContextStorage } from 'src/engine/twenty-orm/storage/orm-workspace-context.storage';
 import { type WorkspaceInternalContext } from 'src/engine/twenty-orm/interfaces/workspace-internal-context.interface';
 import { type CommonExtendedQueryRunnerContext } from 'src/engine/api/common/types/common-extended-query-runner-context.type';
 import { type FlatFieldMetadata } from 'src/engine/metadata-modules/flat-field-metadata/types/flat-field-metadata.type';
@@ -44,7 +45,7 @@ describe('owned PostgreSQL endpoint validation', () => {
 
 // No AppModule, .env, global integration setup, Redis, or production workspace.
 // Real native parser/runners/WorkspaceUpdateQueryBuilder and SQL policies run;
-// only core-file repository construction and event transport are in-memory.
+// Real manager/repository construction runs; metadata and event transport are synthetic.
 describe('native conditional UPDATE against isolated PostgreSQL', () => {
   let fixture: Awaited<ReturnType<typeof createLocalPostgresFixture>>;
   let sourceA: DataSource;
@@ -107,6 +108,12 @@ describe('native conditional UPDATE against isolated PostgreSQL', () => {
     connection?: QueryRunner,
     appValue?: string,
     restrictedGuard = false,
+    options?: {
+      roles?: string[];
+      secondValue?: string;
+      data?: Record<string, unknown>;
+      complementaryGates?: boolean;
+    },
   ) => {
     const rolePermissions = {
       widget: {
@@ -123,7 +130,7 @@ describe('native conditional UPDATE against isolated PostgreSQL', () => {
       flatIndexMaps: { byUniversalIdentifier: {} },
       objectIdByNameSingular: { widget: 'widget' },
       userWorkspaceRoleMap: {},
-      apiKeyRoleMap: { key: 'role' },
+      apiKeyRoleMap: { key: 'broad' },
       flatRowLevelPermissionPredicateMaps: {
         byUniversalIdentifier:
           appValue === undefined
@@ -136,25 +143,67 @@ describe('native conditional UPDATE against isolated PostgreSQL', () => {
                   fieldMetadataId: 'value',
                   operand: 'CONTAINS',
                   value: appValue,
+                  ...(options?.complementaryGates
+                    ? { rowLevelPermissionPredicateGroupId: 'gates' }
+                    : {}),
                 },
+                ...(options?.secondValue === undefined
+                  ? {}
+                  : {
+                      second: {
+                        id: 'second',
+                        roleId: 'second',
+                        objectMetadataId: 'widget',
+                        fieldMetadataId: 'value',
+                        operand: 'CONTAINS',
+                        value: options.secondValue,
+                      },
+                    }),
+                ...(options?.complementaryGates
+                  ? {
+                      gate: {
+                        id: 'gate',
+                        roleId: 'role',
+                        objectMetadataId: 'widget',
+                        fieldMetadataId: 'guard',
+                        operand: 'IS',
+                        value: t0,
+                        rowLevelPermissionPredicateGroupId: 'gates',
+                      },
+                    }
+                  : {}),
               },
       },
-      flatRowLevelPermissionPredicateGroupMaps: { byUniversalIdentifier: {} },
+      flatRowLevelPermissionPredicateGroupMaps: {
+        universalIdentifierById: { gates: 'gates' },
+        byUniversalIdentifier: options?.complementaryGates
+          ? { gates: { id: 'gates', roleId: 'role', logicalOperator: 'OR' } }
+          : {},
+      },
       coreDataSource: { getRepository: jest.fn().mockReturnValue({}) },
       eventEmitterService: { emitDatabaseBatchEvent: events },
     } as unknown as WorkspaceInternalContext;
-    const repository = {
-      objectRecordsPermissions: rolePermissions,
-      createQueryBuilder: (alias: string) =>
-        new WorkspaceSelectQueryBuilder(
-          source.getRepository('widget').createQueryBuilder(alias, connection),
-          rolePermissions as never,
-          internal,
-          false,
+    Object.assign(source, {
+      permissionsPerRoleId: {
+        role: rolePermissions,
+        broad: rolePermissions,
+        second: rolePermissions,
+      },
+      featureFlagMap: {},
+      eventEmitterService: { emitDatabaseBatchEvent: events },
+      coreDataSource: internal.coreDataSource,
+    });
+    const workspaceContext = { ...internal, authContext };
+    const manager = new WorkspaceEntityManager(source as never, connection);
+    const repository = workspaceContextStorage.run(
+      workspaceContext as never,
+      () =>
+        manager.getRepository(
+          'widget',
+          { intersectionOf: options?.roles ?? ['role'] },
           authContext as never,
-          {} as never,
         ),
-    };
+    );
     const context = {
       flatObjectMetadata: object,
       flatObjectMetadataMaps: objectMaps,
@@ -172,27 +221,34 @@ describe('native conditional UPDATE against isolated PostgreSQL', () => {
     Object.assign(runner, {
       filterArgProcessor: new FilterArgProcessorService(),
     });
-    return (
+    const run = (
       guard: string | undefined,
       value: string,
       nextGuard = t1,
       recordId = id,
     ) =>
-      runner.run(
-        {
-          id: recordId,
-          data: { value, guard: nextGuard },
-          ...(guard !== undefined
-            ? { precondition: { guard: { eq: guard } } }
-            : {}),
-          selectedFieldsResult: {
-            select: { id: true, guard: true, value: true },
-            relations: {},
-            aggregate: {},
+      workspaceContextStorage.run(workspaceContext as never, () =>
+        runner.run(
+          {
+            id: recordId,
+            data: options?.data ?? { value, guard: nextGuard },
+            ...(guard !== undefined
+              ? { precondition: { guard: { eq: guard } } }
+              : {}),
+            selectedFieldsResult: {
+              select: { id: true, guard: true, value: true },
+              relations: {},
+              aggregate: {},
+            },
           },
-        },
-        context,
+          context,
+        ),
       );
+    return Object.assign(run, {
+      repository,
+      withContext: <T>(fn: () => T) =>
+        workspaceContextStorage.run(workspaceContext as never, fn),
+    });
   };
 
   beforeAll(async () => {
@@ -244,7 +300,10 @@ describe('native conditional UPDATE against isolated PostgreSQL', () => {
     await connectionB.startTransaction();
     let pending: Promise<unknown> | undefined;
     try {
-      await nativeRunner(sourceB, connectionB)(t0, 'B-wins', t1);
+      await connectionB.query(
+        `UPDATE "${fixture.schema}"."_widget" SET value=$1, guard=$2 WHERE id=$3`,
+        ['B-wins', t1, id],
+      );
       events.mockClear();
       const [{ pid }] = await sourceA.query('SELECT pg_backend_pid() AS pid');
       pending = nativeRunner(sourceA)(t0, 'A-stale', t2).then(
@@ -304,6 +363,225 @@ describe('native conditional UPDATE against isolated PostgreSQL', () => {
     expect(events).not.toHaveBeenCalled();
   });
 
+  it('propagates trusted roles through the real manager/repository find, clone and update routes', async () => {
+    const restricted = nativeRunner(sourceA, undefined, 'unreachable');
+    await expect(
+      restricted.withContext(() => restricted.repository.findOneBy({ id })),
+    ).resolves.toBeNull();
+    await expect(
+      restricted.withContext(() =>
+        restricted.repository
+          .createQueryBuilder('widget')
+          .clone()
+          .where({ id })
+          .getMany(),
+      ),
+    ).resolves.toEqual([]);
+    await expect(restricted(t0, 'denied')).rejects.toMatchObject({
+      code: 'PRECONDITION_FAILED',
+    });
+    const intersection = nativeRunner(sourceA, undefined, 'original', false, {
+      roles: ['role', 'second'],
+      secondValue: 'unreachable',
+    });
+    await expect(
+      intersection.withContext(() => intersection.repository.findBy({ id })),
+    ).resolves.toEqual([]);
+    await expect(intersection(t0, 'original')).rejects.toMatchObject({
+      code: 'PRECONDITION_FAILED',
+    });
+    expect(events).not.toHaveBeenCalled();
+  });
+
+  it('rejects proposed rows against the explicit role rather than the broad actor', async () => {
+    await expect(
+      nativeRunner(sourceA, undefined, 'original')(t0, 'forbidden'),
+    ).rejects.toMatchObject({ code: 'RLS_VALIDATION_FAILED' });
+    expect(events).not.toHaveBeenCalled();
+    expect(
+      await sourceA.getRepository('widget').findOneBy({ id }),
+    ).toMatchObject({ value: 'original', guard: t0 });
+  });
+
+  it('rejects a missing explicit role without falling back to the broad actor', () => {
+    expect(() =>
+      nativeRunner(sourceA, undefined, undefined, false, {
+        roles: ['missing'],
+      }),
+    ).toThrow('No permissions found for role');
+  });
+
+  it('enforces every intersection role on proposed rows', async () => {
+    await expect(
+      nativeRunner(sourceA, undefined, 'or', false, {
+        roles: ['role', 'second'],
+        secondValue: 'original',
+      })(t0, 'orange'),
+    ).rejects.toMatchObject({ code: 'RLS_VALIDATION_FAILED' });
+    expect(events).not.toHaveBeenCalled();
+    expect(
+      await sourceA.getRepository('widget').findOneBy({ id }),
+    ).toMatchObject({ value: 'original', guard: t0 });
+  });
+
+  it('locks the authorized base row before evaluating a guard that becomes true', async () => {
+    const blocker = sourceB.createQueryRunner();
+    await blocker.connect();
+    await blocker.startTransaction();
+    let pending: Promise<unknown> | undefined;
+    try {
+      await blocker.query(
+        `UPDATE "${fixture.schema}"."_widget" SET guard=$1 WHERE id=$2`,
+        [t1, id],
+      );
+      const [{ pid }] = await sourceA.query('SELECT pg_backend_pid() AS pid');
+      pending = nativeRunner(sourceA)(t1, 'after-wait', t2);
+      let waiting = false;
+      const deadline = Date.now() + 4000;
+      while (Date.now() < deadline) {
+        const result = await fixture.admin.query(
+          'SELECT wait_event_type FROM pg_stat_activity WHERE pid=$1',
+          [pid],
+        );
+        if (result.rows[0]?.wait_event_type === 'Lock') {
+          waiting = true;
+          break;
+        }
+        await new Promise<void>((resolve) => setImmediate(resolve));
+      }
+      expect(waiting).toBe(true);
+      await blocker.commitTransaction();
+      await expect(pending).resolves.toMatchObject({
+        value: 'after-wait',
+        guard: t2,
+      });
+      const updated = events.mock.calls
+        .map(([event]) => event)
+        .find((event) => event.action === 'updated');
+      expect(updated.events[0].properties.before).toEqual({
+        id,
+        guard: t1,
+        value: 'original',
+      });
+    } finally {
+      if (blocker.isTransactionActive) await blocker.rollbackTransaction();
+      if (pending) await pending.catch(() => undefined);
+      await blocker.release();
+    }
+  });
+
+  it('owns event after-images from UPDATE RETURNING even when another writer runs immediately after commit', async () => {
+    const connection = sourceA.createQueryRunner();
+    const commit = connection.commitTransaction.bind(connection);
+    const queries: string[] = [];
+    const query = connection.query.bind(connection);
+    jest.spyOn(connection, 'query').mockImplementation((...args) => {
+      queries.push(args[0]);
+      return query(...args);
+    });
+    jest.spyOn(connection, 'commitTransaction').mockImplementation(async () => {
+      await commit();
+      await sourceB.query(
+        `UPDATE "${fixture.schema}"."_widget" SET value='later-writer' WHERE id=$1`,
+        [id],
+      );
+    });
+    try {
+      const result = await nativeRunner(sourceA, connection)(t0, 'our-update');
+      expect(result).toEqual({ id, guard: t1, value: 'our-update' });
+      expect(connection.isReleased).toBe(false);
+      expect(connection.isTransactionActive).toBe(false);
+      const updated = events.mock.calls
+        .map(([event]) => event)
+        .find((event) => event.action === 'updated');
+      expect(updated.events[0].properties.after).toEqual(result);
+      expect(updated.events[0].properties.before).toEqual({
+        id,
+        guard: t0,
+        value: 'original',
+      });
+      const updateIndex = queries.findIndex((sql) => sql.startsWith('UPDATE'));
+      expect(updateIndex).toBeGreaterThan(0);
+      expect(
+        queries
+          .slice(updateIndex + 1)
+          .some((sql) => sql.startsWith('SELECT') && sql.includes('_widget')),
+      ).toBe(false);
+    } finally {
+      await connection.release();
+    }
+    expect(
+      await sourceA.getRepository('widget').findOneBy({ id }),
+    ).toMatchObject({ value: 'later-writer' });
+  });
+
+  it('validates complementary RLS gates against the latest locked row rather than a stale before-image', async () => {
+    const blocker = sourceB.createQueryRunner();
+    await blocker.connect();
+    await blocker.startTransaction();
+    let pending: Promise<unknown> | undefined;
+    try {
+      await blocker.query(
+        `UPDATE "${fixture.schema}"."_widget" SET value='closed' WHERE id=$1`,
+        [id],
+      );
+      const [{ pid }] = await sourceA.query('SELECT pg_backend_pid() AS pid');
+      pending = nativeRunner(sourceA, undefined, 'original', false, {
+        complementaryGates: true,
+        data: { guard: t1 },
+      })(t0, 'unused').then(
+        (result) => ({ result }),
+        (error) => ({ error }),
+      );
+      let waiting = false;
+      const deadline = Date.now() + 4000;
+      while (Date.now() < deadline) {
+        const result = await fixture.admin.query(
+          'SELECT wait_event_type FROM pg_stat_activity WHERE pid=$1',
+          [pid],
+        );
+        if (result.rows[0]?.wait_event_type === 'Lock') {
+          waiting = true;
+          break;
+        }
+        await new Promise<void>((resolve) => setImmediate(resolve));
+      }
+      expect(waiting).toBe(true);
+      await blocker.commitTransaction();
+      expect(await pending).toMatchObject({
+        error: { code: 'RLS_VALIDATION_FAILED' },
+      });
+      expect(events).not.toHaveBeenCalled();
+      expect(
+        await sourceA.getRepository('widget').findOneBy({ id }),
+      ).toMatchObject({ value: 'closed', guard: t0 });
+    } finally {
+      if (blocker.isTransactionActive) await blocker.rollbackTransaction();
+      if (pending) await pending;
+      await blocker.release();
+    }
+  });
+
+  it('rolls back owned transactions on commit failure without releasing an external runner or emitting events', async () => {
+    const connection = sourceA.createQueryRunner();
+    jest
+      .spyOn(connection, 'commitTransaction')
+      .mockRejectedValueOnce(new Error('synthetic commit failure'));
+    try {
+      await expect(
+        nativeRunner(sourceA, connection)(t0, 'rolled-back'),
+      ).rejects.toThrow('synthetic commit failure');
+      expect(connection.isTransactionActive).toBe(false);
+      expect(connection.isReleased).toBe(false);
+      expect(events).not.toHaveBeenCalled();
+    } finally {
+      await connection.release();
+    }
+    expect(
+      await sourceA.getRepository('widget').findOneBy({ id }),
+    ).toMatchObject({ value: 'original', guard: t0 });
+  });
+
   it('returns a uniform conflict for a row hidden by actual application RLS predicates', async () => {
     await expect(
       nativeRunner(sourceA, undefined, 'unreachable')(t0, 'denied'),
@@ -361,7 +639,16 @@ describe('native conditional UPDATE against isolated PostgreSQL', () => {
     await connection.connect();
     await connection.startTransaction();
     try {
-      await nativeRunner(sourceA, connection)(t0, 'rolled-back');
+      await expect(
+        nativeRunner(sourceA, connection)(t0, 'rolled-back'),
+      ).rejects.toThrow('active caller-owned transaction');
+      expect(connection.isTransactionActive).toBe(true);
+      expect(connection.isReleased).toBe(false);
+      expect(events).not.toHaveBeenCalled();
+      await connection.query(
+        `UPDATE "${fixture.schema}"."_widget" SET value='rolled-back' WHERE id=$1`,
+        [id],
+      );
       await connection.query('SELECT 1/0').catch(() => undefined);
     } finally {
       await connection.rollbackTransaction();

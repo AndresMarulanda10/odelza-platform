@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { WorkflowEditActionUpdateRecord } from '../WorkflowEditActionUpdateRecord';
+import { WorkflowEditActionUpdateRecord } from '@/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpdateRecord';
 import { type WorkflowUpdateRecordAction } from '@/workflow/types/Workflow';
 
 jest.mock('@/object-metadata/hooks/useFilteredObjectMetadataItems', () => ({

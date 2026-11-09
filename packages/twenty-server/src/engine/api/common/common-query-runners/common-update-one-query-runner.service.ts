@@ -44,6 +44,7 @@ export class CommonUpdateOneQueryRunnerService extends CommonBaseQueryRunnerServ
     args: CommonExtendedInput<UpdateOneQueryArgs>,
     queryRunnerContext: CommonExtendedQueryRunnerContext,
   ): Promise<ObjectRecord> {
+    assertIsValidUuid(args.id);
     const conditional = args.precondition !== undefined;
     let precondition;
     if (conditional) {
@@ -96,7 +97,7 @@ export class CommonUpdateOneQueryRunnerService extends CommonBaseQueryRunnerServ
           : { id: { eq: args.id } },
       },
       queryRunnerContext,
-      conditional ? { conditionalUpdate: true } : undefined,
+      conditional ? { conditionalUpdate: true, recordId: args.id } : undefined,
     );
 
     if (!result || result.length === 0) {

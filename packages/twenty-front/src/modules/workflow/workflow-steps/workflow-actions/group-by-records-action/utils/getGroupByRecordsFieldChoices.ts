@@ -49,7 +49,11 @@ export const getGroupByRecordsFieldChoices = (fields: FieldMetadataItem[]) => {
     );
     if (composite)
       return composite.properties
-        .filter((p) => !p.hidden && p.type !== FieldMetadataType.RAW_JSON)
+        .filter(
+          (p) =>
+            (p.hidden === undefined || p.hidden === false) &&
+            p.type !== FieldMetadataType.RAW_JSON,
+        )
         .map((p) => ({
           value: `${field.name}.${p.name}`,
           label: `${field.label} / ${p.name}`,

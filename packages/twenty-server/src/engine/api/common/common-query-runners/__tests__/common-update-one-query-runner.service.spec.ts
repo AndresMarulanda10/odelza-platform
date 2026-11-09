@@ -88,7 +88,10 @@ describe('CommonUpdateOne conditional updates', () => {
     expect(run.mock.calls[0][0].filter).toEqual({
       and: [{ id: { eq: id } }, precondition],
     });
-    expect(run.mock.calls[0][2]).toEqual({ conditionalUpdate: true });
+    expect(run.mock.calls[0][2]).toEqual({
+      conditionalUpdate: true,
+      recordId: id,
+    });
   });
 
   it('does not enable conditional mode from a public flag without a precondition', async () => {
@@ -103,6 +106,17 @@ describe('CommonUpdateOne conditional updates', () => {
     );
     expect(run.mock.calls[0][0].filter).toEqual({ id: { eq: id } });
     expect(run.mock.calls[0][2]).toBeUndefined();
+  });
+
+  it('rejects a malformed base ID before delegation', async () => {
+    const run = jest.fn();
+    await expect(
+      createRunner(run).run(
+        { id: 'not-a-uuid', data: { name: 'denied' }, precondition } as never,
+        context,
+      ),
+    ).rejects.toThrow();
+    expect(run).not.toHaveBeenCalled();
   });
 
   it('rejects unreadable guards before any mutation', async () => {

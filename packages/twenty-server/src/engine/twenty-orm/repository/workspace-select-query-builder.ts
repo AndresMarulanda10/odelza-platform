@@ -36,6 +36,7 @@ export class WorkspaceSelectQueryBuilder<
   internalContext: WorkspaceInternalContext;
   authContext: WorkspaceAuthContext;
   featureFlagMap: FeatureFlagMap;
+  rolePermissionConfig?: import('src/engine/twenty-orm/types/role-permission-config').RolePermissionConfig;
   constructor(
     queryBuilder: SelectQueryBuilder<T>,
     objectRecordsPermissions: ObjectsPermissions,
@@ -43,6 +44,7 @@ export class WorkspaceSelectQueryBuilder<
     shouldBypassPermissionChecks: boolean,
     authContext: WorkspaceAuthContext,
     featureFlagMap: FeatureFlagMap,
+    rolePermissionConfig?: import('src/engine/twenty-orm/types/role-permission-config').RolePermissionConfig,
   ) {
     super(queryBuilder);
     this.objectRecordsPermissions = objectRecordsPermissions;
@@ -50,6 +52,7 @@ export class WorkspaceSelectQueryBuilder<
     this.shouldBypassPermissionChecks = shouldBypassPermissionChecks;
     this.authContext = authContext;
     this.featureFlagMap = featureFlagMap;
+    this.rolePermissionConfig = rolePermissionConfig;
   }
 
   getFindOptions() {
@@ -66,6 +69,7 @@ export class WorkspaceSelectQueryBuilder<
       this.shouldBypassPermissionChecks,
       this.authContext,
       this.featureFlagMap,
+      this.rolePermissionConfig,
     ) as this;
 
     return workspaceSelectQueryBuilder;
@@ -290,6 +294,7 @@ export class WorkspaceSelectQueryBuilder<
       this.shouldBypassPermissionChecks,
       this.authContext,
       this.featureFlagMap,
+      this.rolePermissionConfig,
     );
   }
 

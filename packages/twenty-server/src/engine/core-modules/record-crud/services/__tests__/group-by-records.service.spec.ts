@@ -83,6 +83,19 @@ describe('GroupByRecordsService', () => {
     });
   });
 
+  it('accepts canonical relation foreign keys for both grouping and filtering', async () => {
+    const output = await service.execute({
+      ...params,
+      groupBy: [{ ownerId: true }],
+      filter: { ownerId: { in: ['11111111-1111-4111-8111-111111111111'] } },
+    } as never);
+    expect(output.success).toBe(true);
+    expect(runner.execute).toHaveBeenCalledTimes(1);
+    expect(runner.execute.mock.calls[0][0].filter).toEqual({
+      ownerId: { in: ['11111111-1111-4111-8111-111111111111'] },
+    });
+  });
+
   it.each([
     { groupBy: [{ missing: true }] },
     { groupBy: [] },

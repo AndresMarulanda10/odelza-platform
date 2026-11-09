@@ -1,7 +1,9 @@
 import { WorkflowSchemaWorkspaceService } from '../workflow-schema.workspace-service';
-import { WorkflowActionType } from 'twenty-shared/workflow';
+import {
+  WorkflowActionType,
+  type BaseOutputSchemaV2,
+} from 'twenty-shared/workflow';
 import { inferArrayItemSchema } from '../utils/infer-array-item-schema';
-import { type BaseOutputSchemaV2 } from 'twenty-shared/workflow';
 
 describe('group records output schema', () => {
   const service = new WorkflowSchemaWorkspaceService({} as never, {} as never);
