@@ -63,6 +63,8 @@ Correction GREEN: all 43 tests passed, retaining the previous 41 and original 33
 
 ## Historical verification and progress
 
+R4 source work-unit commit: `60071656fe`; expected index tree and all three source SHA-256/mode freezes matched after normal hooks. Publication rerun: 43 tests PASS (5.353 seconds), updated-workflow actionlint 1.7.12 PASS and whitespace PASS. This passive checkpoint changes no executable bytes; rollback is the four-path R4 delta against b8, not unrelated application code.
+
 The following checkpoints retain their chronology and are superseded by the reconciled status above, not current operational authorization.
 R1 test-first command (recorded before source creation): `PYTHONDONTWRITEBYTECODE=1 python3 -B scripts/ci/test_odelza_candidate_image_recover.py`. Tests use synthetic data, fake SSH and local OpenSSL only. No real Docker or SSH is permitted. The work-unit-commits and cognitive-doc-design skills were loaded; no target `AGENTS.md` exists under the allowed directories. Initial full document readback matched Engram observation 10812.
 
