@@ -25,6 +25,7 @@ describe('getActionIconColorOrThrow', () => {
       'DELETE_RECORD',
       'UPSERT_RECORD',
       'FIND_RECORDS',
+      'GROUP_BY_RECORDS',
     ];
     recordActions.forEach((actionType) => {
       expect(getActionIconColorOrThrow(actionType)).toBe(

@@ -5,6 +5,11 @@ import { canObjectBeManagedByAutomation } from 'twenty-shared/workflow';
 
 import { CommonUpdateOneQueryRunnerService } from 'src/engine/api/common/common-query-runners/common-update-one-query-runner.service';
 import {
+  CommonQueryRunnerException,
+  CommonQueryRunnerExceptionCode,
+} from 'src/engine/api/common/common-query-runners/errors/common-query-runner.exception';
+import { validateConditionalUpdatePayload } from 'src/engine/api/common/common-query-runners/utils/validate-conditional-update-payload.util';
+import {
   RecordCrudException,
   RecordCrudExceptionCode,
 } from 'src/engine/core-modules/record-crud/exceptions/record-crud.exception';
@@ -49,7 +54,12 @@ export class UpdateRecordService {
       } = await this.commonApiContextBuilder.build({
         authContext,
         objectName,
+        rolePermissionConfig: params.rolePermissionConfig,
       });
+
+      if (params.precondition !== undefined) {
+        validateConditionalUpdatePayload(objectRecord, queryRunnerContext);
+      }
 
       if (
         !canObjectBeManagedByAutomation({
@@ -65,6 +75,8 @@ export class UpdateRecordService {
       const fieldsToUpdateArray = fieldsToUpdate ?? Object.keys(objectRecord);
 
       if (fieldsToUpdateArray.length === 0) {
+        if (params.precondition !== undefined)
+          throw new Error('Conditional updates require fields to update');
         return {
           success: true,
           message: 'No fields to update',
@@ -93,6 +105,9 @@ export class UpdateRecordService {
           {
             id: objectRecordId,
             data: cleanedRecord,
+            ...(params.precondition !== undefined
+              ? { precondition: params.precondition }
+              : {}),
             selectedFields,
           },
           queryRunnerContext,
@@ -117,6 +132,17 @@ export class UpdateRecordService {
         ],
       };
     } catch (error) {
+      if (
+        error instanceof CommonQueryRunnerException &&
+        error.code === CommonQueryRunnerExceptionCode.PRECONDITION_FAILED
+      ) {
+        return {
+          success: false,
+          message: `Failed to update record in ${objectName}`,
+          error: error.message,
+          errorCode: error.code,
+        };
+      }
       if (error instanceof RecordCrudException) {
         return {
           success: false,

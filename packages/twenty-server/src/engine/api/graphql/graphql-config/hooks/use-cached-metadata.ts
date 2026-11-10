@@ -33,12 +33,30 @@ export function useCachedMetadata(config: CacheMetadataPluginConfig): Plugin {
     const queryHash = createHash('sha256')
       .update(request.body.query)
       .digest('hex');
+    const variablesHash = createHash('sha256')
+      .update(
+        JSON.stringify(request.body.variables ?? {}, (_key, value) => {
+          if (
+            value !== null &&
+            typeof value === 'object' &&
+            !Array.isArray(value)
+          ) {
+            return Object.fromEntries(
+              Object.keys(value)
+                .sort()
+                .map((key) => [key, value[key]]),
+            );
+          }
+          return value;
+        }),
+      )
+      .digest('hex');
 
     if (operationName === 'FindAllViews') {
-      return `graphql:operations:${operationName}:${workspace.id}:${workspaceMetadataVersion}:${request.userWorkspaceId}:${queryHash}`;
+      return `graphql:operations:${operationName}:${workspace.id}:${workspaceMetadataVersion}:${request.userWorkspaceId}:${queryHash}:${variablesHash}`;
     }
 
-    return `graphql:operations:${operationName}:${workspace.id}:${workspaceMetadataVersion}:${locale}:${queryHash}`;
+    return `graphql:operations:${operationName}:${workspace.id}:${workspaceMetadataVersion}:${locale}:${queryHash}:${variablesHash}`;
   };
 
   // oxlint-disable-next-line typescript/no-explicit-any

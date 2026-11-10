@@ -14,6 +14,38 @@ import { buildEffectiveSelectedFields } from 'src/engine/core-modules/record-cru
 import { getRecordDisplayName } from 'src/engine/core-modules/record-crud/utils/get-record-display-name.util';
 import { type ToolOutput } from 'src/engine/core-modules/tool/types/tool-output.type';
 import { isDefined } from 'twenty-shared/utils';
+import { decodeCursor } from 'src/engine/api/graphql/graphql-query-runner/utils/cursors.util';
+import { hasRelationFieldInOrderBy } from 'src/engine/api/utils/validate-and-get-order-by.utils';
+import { buildFieldMapsFromFlatObjectMetadata } from 'src/engine/metadata-modules/flat-field-metadata/utils/build-field-maps-from-flat-object-metadata.util';
+
+const assertConsistentOrderDirections = (orderBy: ObjectRecordOrderBy) => {
+  const directionsByPath = new Map<string, unknown>();
+  const visit = (entry: Record<string, unknown>, parentPath: string[] = []) => {
+    for (const [field, direction] of Object.entries(entry)) {
+      if (direction === undefined) continue;
+      const path = [...parentPath, field];
+      if (
+        typeof direction === 'object' &&
+        direction !== null &&
+        !Array.isArray(direction)
+      ) {
+        visit(direction as Record<string, unknown>, path);
+        continue;
+      }
+      // Segment encoding avoids conflating a literal dotted name with a nested path.
+      const key = JSON.stringify(path);
+      if (
+        directionsByPath.has(key) &&
+        directionsByPath.get(key) !== direction
+      ) {
+        throw new Error(`Conflicting order directions for ${path.join('.')}`);
+      }
+      directionsByPath.set(key, direction);
+    }
+  };
+  // Equivalent duplicates remain valid; differing direction OR null placement does not.
+  for (const entry of orderBy) visit(entry);
+};
 
 @Injectable()
 export class FindRecordsService {
@@ -33,6 +65,7 @@ export class FindRecordsService {
       orderBy,
       limit,
       offset = 0,
+      after,
       authContext,
       select,
       shouldBuildEffectiveSelectFields,
@@ -47,6 +80,20 @@ export class FindRecordsService {
     }
 
     try {
+      if (limit !== undefined && (!Number.isSafeInteger(limit) || limit <= 0)) {
+        throw new Error('Limit must be a positive safe integer');
+      }
+      if (!Number.isSafeInteger(offset) || offset < 0) {
+        throw new Error('Offset must be a nonnegative safe integer');
+      }
+      if (
+        after !== undefined &&
+        (typeof after !== 'string' || !after.length || offset !== 0)
+      ) {
+        throw new Error(
+          'After must be a nonempty cursor and cannot be combined with a nonzero offset',
+        );
+      }
       const {
         queryRunnerContext,
         selectedFields: allSelectableFields,
@@ -70,24 +117,79 @@ export class FindRecordsService {
             })
           : { effectiveSelectedFields: allSelectableFields, warnings: [] };
 
-      // Add id to orderBy for consistent pagination
+      // Keep the caller's ID direction; append a tiebreaker only if absent.
       const orderByWithIdCondition: ObjectRecordOrderBy = [
         ...(orderBy ?? []).filter((item) => item !== undefined),
-        { id: OrderByDirection.AscNullsFirst },
+        ...((orderBy ?? []).some((item) => item?.id !== undefined)
+          ? []
+          : [{ id: OrderByDirection.AscNullsFirst }]),
       ];
+      assertConsistentOrderDirections(orderByWithIdCondition);
+
+      if (after !== undefined) {
+        const { fieldIdByName } = buildFieldMapsFromFlatObjectMetadata(
+          flatFieldMetadataMaps,
+          flatObjectMetadata,
+        );
+        if (
+          hasRelationFieldInOrderBy(
+            orderByWithIdCondition,
+            flatFieldMetadataMaps,
+            fieldIdByName,
+          )
+        ) {
+          throw new Error(
+            'Cursor pagination does not support relation ordering; use offset pagination',
+          );
+        }
+        if (Buffer.from(after, 'base64').toString('base64') !== after) {
+          throw new Error('Invalid cursor encoding');
+        }
+        const cursor = decodeCursor<Record<string, unknown>>(after);
+        const orderedFields = [
+          ...new Set(orderByWithIdCondition.flatMap(Object.keys)),
+        ];
+        if (
+          !cursor ||
+          typeof cursor !== 'object' ||
+          Array.isArray(cursor) ||
+          typeof cursor.id !== 'string' ||
+          !cursor.id.length ||
+          orderedFields.some(
+            (field) => !(field in cursor) || !effectiveSelectedFields[field],
+          ) ||
+          Object.keys(cursor).some((field) => !orderedFields.includes(field))
+        ) {
+          throw new Error(
+            'Cursor must contain exactly the selectable ordering fields and ID',
+          );
+        }
+      }
 
       const {
-        results: { records, totalCount },
+        results: { records, totalCount, pageInfo },
       } = await this.commonFindManyRunner.execute(
         {
           filter,
           orderBy: orderByWithIdCondition,
           first: limit ? Math.min(limit, QUERY_MAX_RECORDS) : QUERY_MAX_RECORDS,
           offset,
+          after,
           selectedFields: { ...effectiveSelectedFields, totalCount: true },
         },
         queryRunnerContext,
       );
+
+      // PostgreSQL COUNT may be a string. Never substitute the current page size.
+      const count =
+        typeof totalCount === 'string' && /^\d+$/.test(totalCount)
+          ? Number(totalCount)
+          : totalCount;
+      if (!Number.isSafeInteger(count) || count < 0) {
+        throw new Error(
+          'Matching record count exceeds the safe integer contract',
+        );
+      }
 
       this.logger.log(`Found ${records.length} records in ${objectName}`);
 
@@ -106,7 +208,8 @@ export class FindRecordsService {
         message: `Found ${records.length} ${objectName} records`,
         result: {
           records,
-          count: totalCount,
+          count,
+          pageInfo,
         },
         ...(isNonEmptyArray(warnings) ? { warnings: warnings } : {}),
         recordReferences,

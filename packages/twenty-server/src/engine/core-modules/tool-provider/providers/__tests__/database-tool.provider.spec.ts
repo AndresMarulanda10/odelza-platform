@@ -36,7 +36,13 @@ const createFlatObject = (
   });
 
 describe('DatabaseToolProvider', () => {
-  const generateDescriptors = async (objects: FlatObjectMetadata[]) => {
+  const generateDescriptors = async (
+    objects: FlatObjectMetadata[],
+    options: Parameters<DatabaseToolProvider['generateDescriptors']>[1] = {
+      includeSchemas: false,
+    },
+    permission = allObjectPermissions,
+  ) => {
     const flatObjectMetadataMaps =
       createEmptyFlatEntityMaps() as FlatEntityMaps<FlatObjectMetadata>;
 
@@ -51,7 +57,7 @@ describe('DatabaseToolProvider', () => {
       getOrRecompute: jest.fn().mockResolvedValue({
         rolesPermissions: {
           [roleId]: Object.fromEntries(
-            objects.map((object) => [object.id, allObjectPermissions]),
+            objects.map((object) => [object.id, permission]),
           ),
         },
       }),
@@ -91,7 +97,7 @@ describe('DatabaseToolProvider', () => {
         roleId,
         rolePermissionConfig: { unionOf: [roleId] },
       },
-      { includeSchemas: false },
+      options,
     )) as (ToolIndexEntry | ToolDescriptor)[];
   };
 
@@ -100,6 +106,64 @@ describe('DatabaseToolProvider', () => {
 
     return descriptors.map((descriptor) => descriptor.name);
   };
+
+  it('hydrates a targeted conditional schema and preserves trusted execution metadata', async () => {
+    const name = 'conditional_update_one_widget';
+    const descriptors = await generateDescriptors(
+      [createFlatObject({ nameSingular: 'widget', namePlural: 'widgets' })],
+      { includeSchemas: true, toolNames: new Set([name]) },
+    );
+    const descriptor = descriptors.find(
+      (item) => item.name === name,
+    ) as ToolDescriptor;
+    expect(descriptor.executionRef).toEqual({
+      kind: 'database_crud',
+      operation: 'update_one',
+      objectNameSingular: 'widget',
+      updateMode: 'conditional',
+    });
+    expect(descriptor.inputSchema).toMatchObject({
+      type: 'object',
+      additionalProperties: false,
+      required: expect.arrayContaining(['id', 'data', 'precondition']),
+    });
+    expect(
+      descriptors.find((item) => item.name === 'update_one_widget'),
+    ).not.toHaveProperty('inputSchema');
+  });
+
+  it('does not collide with a legitimate object whose name ends in Conditionally', async () => {
+    const names = await generateDescriptorNames([
+      createFlatObject({ nameSingular: 'widget', namePlural: 'widgets' }),
+      createFlatObject({
+        nameSingular: 'widgetConditionally',
+        namePlural: 'widgetsConditionally',
+      }),
+    ]);
+    expect(names).toEqual(
+      expect.arrayContaining([
+        'update_one_widget',
+        'conditional_update_one_widget',
+        'update_one_widget_conditionally',
+        'conditional_update_one_widget_conditionally',
+      ]),
+    );
+    expect(new Set(names).size).toBe(names.length);
+  });
+
+  it.each([{ canReadObjectRecords: false }, { canUpdateObjectRecords: false }])(
+    'requires both existing read and update permission: %p',
+    async (override) => {
+      const descriptors = await generateDescriptors(
+        [createFlatObject({ nameSingular: 'widget', namePlural: 'widgets' })],
+        undefined,
+        { ...allObjectPermissions, ...override },
+      );
+      expect(descriptors.map((item) => item.name)).not.toContain(
+        'conditional_update_one_widget',
+      );
+    },
+  );
 
   it('advertises write tools for join/system objects allowed by automation', async () => {
     const descriptorNames = await generateDescriptorNames([

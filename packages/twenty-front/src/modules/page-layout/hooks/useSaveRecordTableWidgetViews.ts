@@ -93,6 +93,24 @@ export const useSaveRecordTableWidgetViews = () => {
           variables: {
             input: {
               widgetId: widget.id,
+              ...(widgetViewDraft.view.timelineConfiguration !== undefined
+                ? {
+                    timelineConfiguration:
+                      widgetViewDraft.view.timelineConfiguration === null
+                        ? null
+                        : {
+                            startDateFieldMetadataUniversalIdentifier:
+                              widgetViewDraft.view.timelineConfiguration
+                                .startDateFieldMetadataUniversalIdentifier,
+                            endDateFieldMetadataUniversalIdentifier:
+                              widgetViewDraft.view.timelineConfiguration
+                                .endDateFieldMetadataUniversalIdentifier,
+                            barColor:
+                              widgetViewDraft.view.timelineConfiguration
+                                .barColor,
+                          },
+                  }
+                : {}),
               viewFields: normalizedWidgetViewDraft.viewFields.map((field) => ({
                 fieldMetadataId: field.fieldMetadataId,
                 isVisible: field.isVisible,

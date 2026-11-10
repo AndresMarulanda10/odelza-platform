@@ -1,4 +1,9 @@
-import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMetadataItemById';
+import { objectMetadataItemsSelector } from '@/object-metadata/states/objectMetadataItemsSelector';
+import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
+import { useAtomFamilySelectorValue } from '@/ui/utilities/state/jotai/hooks/useAtomFamilySelectorValue';
+import { viewFromViewIdFamilySelector } from '@/views/states/selectors/viewFromViewIdFamilySelector';
+import { TimelineViewWidget } from '@/page-layout/widgets/view/components/TimelineViewWidget';
+import { t } from '@lingui/core/macro';
 import { RecordBoardContainer } from '@/object-record/record-board/components/RecordBoardContainer';
 import { RecordTableWidgetProvider } from '@/object-record/record-table-widget/components/RecordTableWidgetProvider';
 import { getRecordIndexIdFromObjectNamePluralAndViewId } from '@/object-record/utils/getRecordIndexIdFromObjectNamePluralAndViewId';
@@ -24,9 +29,35 @@ export const ViewWidgetRendererContent = ({
   viewId,
   widgetId,
 }: ViewWidgetRendererContentProps) => {
-  const { objectMetadataItem } = useObjectMetadataItemById({
-    objectId: objectMetadataId,
+  const objectMetadataItems = useAtomStateValue(objectMetadataItemsSelector);
+  const objectMetadataItem = objectMetadataItems.find(
+    (item) => item.id === objectMetadataId,
+  );
+  const view = useAtomFamilySelectorValue(viewFromViewIdFamilySelector, {
+    viewId,
   });
+
+  if (
+    !objectMetadataItem ||
+    !view ||
+    !view.isActive ||
+    view.objectMetadataId !== objectMetadataId ||
+    (view.type !== ViewType.KANBAN && view.type !== ViewType.TIMELINE)
+  ) {
+    return <div role="status">{t`This view is unavailable.`}</div>;
+  }
+
+  if (view.type === ViewType.TIMELINE) {
+    return (
+      <StyledContainer>
+        <TimelineViewWidget
+          view={view}
+          objectMetadataItem={objectMetadataItem}
+          widgetId={widgetId}
+        />
+      </StyledContainer>
+    );
+  }
 
   const recordBoardId = getRecordIndexIdFromObjectNamePluralAndViewId(
     objectMetadataItem.namePlural,

@@ -8,6 +8,7 @@ import { SidePanelList } from '@/side-panel/components/SidePanelList';
 import { useSidePanelSubPageHistory } from '@/side-panel/hooks/useSidePanelSubPageHistory';
 import { RecordTableDataSourceDropdownContent } from '@/side-panel/pages/page-layout/components/record-table-settings/RecordTableDataSourceDropdownContent';
 import { RecordTableFieldsDropdownContent } from '@/side-panel/pages/page-layout/components/record-table-settings/RecordTableFieldsDropdownContent';
+import { RecordTableTimelineSettings } from '@/side-panel/pages/page-layout/components/record-table-settings/RecordTableTimelineSettings';
 import { WidgetSettingsFooter } from '@/side-panel/pages/page-layout/components/WidgetSettingsFooter';
 import { usePageLayoutIdFromContextStore } from '@/side-panel/pages/page-layout/hooks/usePageLayoutIdFromContextStore';
 import { useRecordTableSettingsDescriptions } from '@/side-panel/pages/page-layout/hooks/useRecordTableSettingsDescriptions';
@@ -16,6 +17,8 @@ import { useUpdateCurrentWidgetConfig } from '@/side-panel/pages/page-layout/hoo
 import { useWidgetInEditMode } from '@/side-panel/pages/page-layout/hooks/useWidgetInEditMode';
 import { SidePanelSubPages } from '@/side-panel/types/SidePanelSubPages';
 import { DropdownContent } from '@/ui/layout/dropdown/components/DropdownContent';
+import { useCloseDropdown } from '@/ui/layout/dropdown/hooks/useCloseDropdown';
+import { SelectableList } from '@/ui/layout/selectable-list/components/SelectableList';
 import { SelectableListItem } from '@/ui/layout/selectable-list/components/SelectableListItem';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
@@ -28,7 +31,9 @@ import {
   IconListDetails,
   IconTable,
   IconClock,
+  IconTimelineEvent,
 } from 'twenty-ui/icon';
+import { MenuItemSelect } from 'twenty-ui/navigation';
 import { WidgetConfigurationType } from '~/generated-metadata/graphql';
 
 const StyledContainer = styled.div`
@@ -43,6 +48,44 @@ const StyledSettingsContainer = styled.div`
   height: 100%;
   overflow: hidden;
 `;
+
+const RecordTableLayoutOptions = ({
+  mode,
+  onChange,
+}: {
+  mode: string | null | undefined;
+  onChange: (mode: 'TABLE' | 'TIMELINE') => void;
+}) => {
+  const { closeDropdown } = useCloseDropdown();
+  const select = (value: 'TABLE' | 'TIMELINE') => {
+    onChange(value);
+    closeDropdown();
+  };
+  return (
+    <DropdownContent>
+      <SelectableList
+        selectableListInstanceId="record-table-layout"
+        focusId="record-table-layout"
+        selectableItemIdArray={['TABLE', 'TIMELINE']}
+      >
+        {(['TABLE', 'TIMELINE'] as const).map((value) => (
+          <SelectableListItem
+            key={value}
+            itemId={value}
+            onEnter={() => select(value)}
+          >
+            <MenuItemSelect
+              text={value === 'TABLE' ? t`Table` : t`Timeline`}
+              LeftIcon={value === 'TABLE' ? IconTable : IconTimelineEvent}
+              selected={value === (mode === 'TIMELINE' ? 'TIMELINE' : 'TABLE')}
+              onClick={() => select(value)}
+            />
+          </SelectableListItem>
+        ))}
+      </SelectableList>
+    </DropdownContent>
+  );
+};
 
 export const SidePanelDashboardRecordTableSettings = () => {
   const { pageLayoutId } = usePageLayoutIdFromContextStore();
@@ -70,6 +113,11 @@ const SidePanelDashboardRecordTableSettingsContent = () => {
     isRecordTableConfiguration &&
     'presentationMode' in configuration &&
     configuration.presentationMode === 'OVERDUE_ATTENTION';
+  const mode =
+    isRecordTableConfiguration && 'presentationMode' in configuration
+      ? configuration.presentationMode
+      : undefined;
+  const isTimeline = mode === 'TIMELINE';
 
   const viewId =
     isRecordTableConfiguration &&
@@ -123,9 +171,17 @@ const SidePanelDashboardRecordTableSettingsContent = () => {
   const hasViewId = isDefined(viewId);
 
   const selectableItemIds = [
+    ...(!isOverdue ? ['object-view-layout'] : []),
     'record-table-source',
     ...(hasViewId
       ? [
+          ...(isTimeline
+            ? [
+                'record-table-timeline-start',
+                'record-table-timeline-end',
+                'record-table-timeline-color',
+              ]
+            : []),
           'record-table-fields',
           'record-table-filter',
           'record-table-sort',
@@ -152,14 +208,39 @@ const SidePanelDashboardRecordTableSettingsContent = () => {
             <SidePanelGroup heading={t`Settings`}>
               <SelectableListItem itemId="object-view-layout">
                 <CommandMenuItemDropdown
-                  Icon={isOverdue ? IconClock : IconTable}
+                  Icon={
+                    isOverdue
+                      ? IconClock
+                      : isTimeline
+                        ? IconTimelineEvent
+                        : IconTable
+                  }
                   label={t`Layout`}
                   id="object-view-layout"
                   dropdownId="object-view-layout"
-                  dropdownComponents={<></>}
+                  dropdownComponents={
+                    isOverdue ? (
+                      <></>
+                    ) : (
+                      <RecordTableLayoutOptions
+                        mode={mode}
+                        onChange={(presentationMode) =>
+                          updateCurrentWidgetConfig({
+                            configToUpdate: { presentationMode },
+                          })
+                        }
+                      />
+                    )
+                  }
                   dropdownPlacement="bottom-end"
-                  description={isOverdue ? t`Overdue tasks` : t`Table`}
-                  disabled={true}
+                  description={
+                    isOverdue
+                      ? t`Overdue tasks`
+                      : isTimeline
+                        ? t`Timeline`
+                        : t`Table`
+                  }
+                  disabled={!isRecordTableConfiguration || isOverdue}
                   contextualTextPosition="right"
                 />
               </SelectableListItem>
@@ -182,6 +263,14 @@ const SidePanelDashboardRecordTableSettingsContent = () => {
               </SelectableListItem>
               {hasViewId && (
                 <>
+                  {isTimeline && widgetInEditMode.objectMetadataId && (
+                    <RecordTableTimelineSettings
+                      pageLayoutId={pageLayoutId}
+                      widgetId={widgetInEditMode.id}
+                      viewId={viewId!}
+                      objectMetadataId={widgetInEditMode.objectMetadataId}
+                    />
+                  )}
                   <SelectableListItem itemId="record-table-fields">
                     <CommandMenuItemDropdown
                       Icon={IconListDetails}

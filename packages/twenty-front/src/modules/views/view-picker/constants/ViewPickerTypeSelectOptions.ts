@@ -25,4 +25,9 @@ export const VIEW_PICKER_TYPE_SELECT_OPTIONS = [
     label: VIEW_TYPE_LABELS[ViewType.CATALOG],
     Icon: viewTypeIconMapping(ViewType.CATALOG),
   },
+  {
+    value: ViewType.TIMELINE,
+    label: VIEW_TYPE_LABELS[ViewType.TIMELINE],
+    Icon: viewTypeIconMapping(ViewType.TIMELINE),
+  },
 ];

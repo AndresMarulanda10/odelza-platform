@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ConflictException,
   InternalServerErrorException,
   NotFoundException,
   UnauthorizedException,
@@ -16,6 +17,11 @@ export const commonQueryRunnerToRestApiExceptionHandler = (
   error: CommonQueryRunnerException,
 ): never => {
   switch (error.code) {
+    case CommonQueryRunnerExceptionCode.PRECONDITION_FAILED:
+      throw new ConflictException({
+        message: error.message,
+        subCode: error.code,
+      });
     case CommonQueryRunnerExceptionCode.ARGS_CONFLICT:
     case CommonQueryRunnerExceptionCode.INVALID_ARGS_FIRST:
     case CommonQueryRunnerExceptionCode.INVALID_ARGS_LAST:

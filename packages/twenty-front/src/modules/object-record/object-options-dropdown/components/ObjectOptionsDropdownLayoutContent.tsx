@@ -134,6 +134,9 @@ export const ObjectOptionsDropdownLayoutContent = () => {
     ...(isDefaultView ? [] : [ViewType.KANBAN]),
     ...(!isDefaultView ? [ViewType.CALENDAR] : []),
     ...(isDefaultView ? [] : [ViewType.CATALOG]),
+    ...(!isDefaultView && objectMetadataItem.nameSingular === 'task'
+      ? [ViewType.TIMELINE]
+      : []),
     ViewOpenRecordIn.SIDE_PANEL,
     ...(currentView?.type === ViewType.KANBAN ? ['Group'] : []),
     ...(currentView?.type === ViewType.CALENDAR
@@ -167,6 +170,20 @@ export const ObjectOptionsDropdownLayoutContent = () => {
           selectableItemIdArray={selectableItemIdArray}
         >
           <DropdownMenuItemsContainer scrollable={false}>
+            {objectMetadataItem.nameSingular === 'task' && !isDefaultView && (
+              <SelectableListItem
+                itemId={ViewType.TIMELINE}
+                onEnter={() => setAndPersistViewType(ViewType.TIMELINE)}
+              >
+                <MenuItemSelect
+                  LeftIcon={viewTypeIconMapping(ViewType.TIMELINE)}
+                  text={t(getViewTypeLabel(ViewType.TIMELINE))}
+                  selected={currentView.type === ViewType.TIMELINE}
+                  focused={selectedItemId === ViewType.TIMELINE}
+                  onClick={() => setAndPersistViewType(ViewType.TIMELINE)}
+                />
+              </SelectableListItem>
+            )}
             <SelectableListItem
               itemId={ViewType.TABLE}
               onEnter={() => {

@@ -17,14 +17,11 @@ import { usePageLayoutIdFromContextStore } from '@/side-panel/pages/page-layout/
 import { useUpdateCurrentWidgetConfig } from '@/side-panel/pages/page-layout/hooks/useUpdateCurrentWidgetConfig';
 import { useWidgetInEditMode } from '@/side-panel/pages/page-layout/hooks/useWidgetInEditMode';
 import { DropdownContent } from '@/ui/layout/dropdown/components/DropdownContent';
-import { DropdownMenuSearchInput } from '@/ui/layout/dropdown/components/DropdownMenuSearchInput';
-import { DropdownMenuItemsContainer } from '@/ui/layout/dropdown/components/DropdownMenuItemsContainer';
+import { TimelineColorDropdown } from '@/page-layout/widgets/task-timeline/components/TimelineColorDropdown';
 import { SelectableListItem } from '@/ui/layout/selectable-list/components/SelectableListItem';
 import { SelectableList } from '@/ui/layout/selectable-list/components/SelectableList';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
-import { useContext, useState } from 'react';
-import { ThemeContext } from 'twenty-ui/theme-constants';
 import { DEFAULT_TASK_TIMELINE_BAR_COLOR } from 'twenty-shared/constants';
 import { type TaskTimelineFieldMapping } from 'twenty-shared/types';
 import {
@@ -34,12 +31,6 @@ import {
   IconListDetails,
   IconTypography,
 } from 'twenty-ui/icon';
-import { MenuItemSelectColor } from 'twenty-ui/navigation';
-import {
-  MAIN_COLOR_NAMES,
-  ODELZA_THEME_DARK,
-  ODELZA_THEME_LIGHT,
-} from 'twenty-ui/theme';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -53,52 +44,6 @@ const StyledSettings = styled.div`
   min-height: 0;
   overflow: auto;
 `;
-
-const TimelineColorDropdown = ({
-  value,
-  onChange,
-}: {
-  value: string;
-  onChange: (color: string) => void;
-}) => {
-  const { colorScheme } = useContext(ThemeContext);
-  const [hex, setHex] = useState(value);
-  // The Timeline contract stores six-digit hex, which is how the Odelza
-  // palette values are written.
-  const paletteHex = (color: (typeof MAIN_COLOR_NAMES)[number]) =>
-    (colorScheme === 'dark' ? ODELZA_THEME_DARK : ODELZA_THEME_LIGHT).color[
-      color
-    ];
-  return (
-    <DropdownContent>
-      <DropdownMenuSearchInput
-        placeholder={t`Hex color`}
-        value={hex}
-        onChange={(event) => {
-          setHex(event.target.value);
-          if (/^#[0-9a-fA-F]{6}$/.test(event.target.value))
-            onChange(event.target.value);
-        }}
-      />
-      <DropdownMenuItemsContainer>
-        {MAIN_COLOR_NAMES.map((color) => (
-          <MenuItemSelectColor
-            key={color}
-            color={color}
-            selected={paletteHex(color).toLowerCase() === value.toLowerCase()}
-            onClick={() => {
-              const nextColor = paletteHex(color);
-              if (/^#[0-9a-fA-F]{6}$/.test(nextColor)) {
-                setHex(nextColor);
-                onChange(nextColor);
-              }
-            }}
-          />
-        ))}
-      </DropdownMenuItemsContainer>
-    </DropdownContent>
-  );
-};
 
 export const SidePanelDashboardTaskTimelineSettings = () => {
   const { pageLayoutId } = usePageLayoutIdFromContextStore();

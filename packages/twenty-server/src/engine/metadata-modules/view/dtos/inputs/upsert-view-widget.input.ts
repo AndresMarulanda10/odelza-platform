@@ -9,6 +9,7 @@ import {
 } from 'class-validator';
 
 import { UUIDScalarType } from 'src/engine/api/graphql/workspace-schema-builder/graphql-types/scalars';
+import { ViewTimelineConfigurationInput } from 'src/engine/metadata-modules/view/dtos/inputs/view-timeline-configuration.input';
 import { UpsertViewWidgetViewFieldInput } from 'src/engine/metadata-modules/view/dtos/inputs/upsert-view-widget-view-field.input';
 import { UpsertViewWidgetViewFilterGroupInput } from 'src/engine/metadata-modules/view/dtos/inputs/upsert-view-widget-view-filter-group.input';
 import { UpsertViewWidgetViewFilterInput } from 'src/engine/metadata-modules/view/dtos/inputs/upsert-view-widget-view-filter.input';
@@ -16,6 +17,12 @@ import { UpsertViewWidgetViewSortInput } from 'src/engine/metadata-modules/view/
 
 @InputType()
 export class UpsertViewWidgetInput {
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => ViewTimelineConfigurationInput)
+  @Field(() => ViewTimelineConfigurationInput, { nullable: true })
+  timelineConfiguration?: ViewTimelineConfigurationInput | null;
+
   @IsUUID()
   @IsNotEmpty()
   @Field(() => UUIDScalarType, {

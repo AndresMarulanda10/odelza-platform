@@ -23,6 +23,7 @@ type EventSelectQueryBuilderFactoryArgs<T extends ObjectLiteral> = {
   featureFlagMap: FeatureFlagMap;
   expressionMap: QueryExpressionMap;
   objectRecordsPermissions: ObjectsPermissions;
+  conditionalRecordIds?: string[];
 };
 
 export const computeEventSelectQueryBuilder = <T extends ObjectLiteral>({
@@ -32,19 +33,34 @@ export const computeEventSelectQueryBuilder = <T extends ObjectLiteral>({
   internalContext,
   expressionMap,
   objectRecordsPermissions,
+  conditionalRecordIds,
 }: EventSelectQueryBuilderFactoryArgs<T>): WorkspaceSelectQueryBuilder<T> => {
   const eventSelectQueryBuilder = new WorkspaceSelectQueryBuilder(
     queryBuilder as unknown as WorkspaceSelectQueryBuilder<T>,
     objectRecordsPermissions,
     internalContext,
-    true,
+    conditionalRecordIds === undefined,
     authContext,
     featureFlagMap,
+    'rolePermissionConfig' in queryBuilder
+      ? queryBuilder.rolePermissionConfig
+      : undefined,
   );
 
   eventSelectQueryBuilder.expressionMap.wheres = expressionMap.wheres;
   eventSelectQueryBuilder.expressionMap.aliases = expressionMap.aliases;
   eventSelectQueryBuilder.setParameters(expressionMap.parameters);
+  if (conditionalRecordIds !== undefined) {
+    // Replace only the business predicate on a fresh selector. getMany applies
+    // current workspace permissions and RLS; never reuse the rotated guard.
+    eventSelectQueryBuilder.whereInIds(conditionalRecordIds);
+    const returning = expressionMap.returning;
+    if (Array.isArray(returning)) {
+      eventSelectQueryBuilder.select(
+        returning.map((column) => `${expressionMap.mainAlias!.name}.${column}`),
+      );
+    }
+  }
 
   if (
     eventSelectQueryBuilder.expressionMap.selects.length === 0 &&

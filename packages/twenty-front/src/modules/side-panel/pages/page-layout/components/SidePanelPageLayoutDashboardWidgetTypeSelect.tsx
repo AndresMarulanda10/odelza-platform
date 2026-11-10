@@ -15,7 +15,6 @@ import { useCreatePageLayoutGraphWidget } from '@/page-layout/hooks/useCreatePag
 import { useCreatePageLayoutIframeWidget } from '@/page-layout/hooks/useCreatePageLayoutIframeWidget';
 import { useCreatePageLayoutRecordTableWidget } from '@/page-layout/hooks/useCreatePageLayoutRecordTableWidget';
 import { useCreatePageLayoutStandaloneRichTextWidget } from '@/page-layout/hooks/useCreatePageLayoutStandaloneRichTextWidget';
-import { useCreatePageLayoutTaskTimelineWidget } from '@/page-layout/hooks/useCreatePageLayoutTaskTimelineWidget';
 import { useCreatePageLayoutViewWidget } from '@/page-layout/hooks/useCreatePageLayoutViewWidget';
 import { useOpportunityDefaultChartConfig } from '@/page-layout/hooks/useOpportunityDefaultChartConfig';
 import { useRemovePageLayoutWidgetAndPreservePosition } from '@/page-layout/hooks/useRemovePageLayoutWidgetAndPreservePosition';
@@ -44,7 +43,6 @@ import {
   IconFrame,
   IconLayoutKanban,
   IconTable,
-  IconTimelineEvent,
   IconClock,
 } from 'twenty-ui/icon';
 import { type FrontComponent, WidgetType } from '~/generated-metadata/graphql';
@@ -93,11 +91,6 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
 
   const { createPageLayoutRecordTableWidget } =
     useCreatePageLayoutRecordTableWidget(pageLayoutId);
-  const { createPageLayoutTaskTimelineWidget } =
-    useCreatePageLayoutTaskTimelineWidget({
-      pageLayoutId,
-      tabListInstanceId,
-    });
 
   const { createPageLayoutCardCarouselWidget } =
     useCreatePageLayoutCardCarouselWidget({
@@ -325,33 +318,6 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
     });
   };
 
-  const handleCreateTaskTimelineWidget = () => {
-    if (
-      isExistingWidgetMissingOrDifferentType(
-        existingWidget?.type,
-        WidgetType.TASK_TIMELINE,
-      )
-    ) {
-      if (isDefined(pageLayoutEditingWidgetId)) {
-        removePageLayoutWidgetAndPreservePosition(pageLayoutEditingWidgetId);
-      }
-
-      const taskObjectMetadataItem = readableObjectMetadataItems.find(
-        (objectMetadataItem) =>
-          objectMetadataItem.nameSingular === CoreObjectNameSingular.Task,
-      );
-      const newWidget = createPageLayoutTaskTimelineWidget(
-        taskObjectMetadataItem?.id,
-      );
-      setPageLayoutEditingWidgetId(newWidget.id);
-    }
-
-    navigatePageLayoutSidePanel({
-      sidePanelPage: SidePanelPages.DashboardTaskTimelineSettings,
-      focusTitleInput: false,
-    });
-  };
-
   const handleCreateCardCarouselWidget = () => {
     if (
       isExistingWidgetMissingOrDifferentType(
@@ -377,7 +343,6 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
     'view',
     'iframe',
     'rich-text',
-    'task-timeline',
     'card-carousel',
     ...frontComponentsWithSelectItemId.map(({ selectItemId }) => selectItemId),
   ];
@@ -452,17 +417,6 @@ export const SidePanelPageLayoutDashboardWidgetTypeSelect = () => {
             label={t`Rich Text`}
             id="rich-text"
             onClick={handleNavigateToRichTextSettings}
-          />
-        </SelectableListItem>
-        <SelectableListItem
-          itemId="task-timeline"
-          onEnter={handleCreateTaskTimelineWidget}
-        >
-          <CommandMenuItem
-            Icon={IconTimelineEvent}
-            label={t`Task Timeline`}
-            id="task-timeline"
-            onClick={handleCreateTaskTimelineWidget}
           />
         </SelectableListItem>
         <SelectableListItem

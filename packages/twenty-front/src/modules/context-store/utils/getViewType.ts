@@ -10,6 +10,7 @@ export const getViewType = ({
   view?: View;
 }) => {
   if (isRecordIndexPage) {
+    if (view?.type === ViewType.TIMELINE) return ContextStoreViewType.Timeline;
     return view?.type === ViewType.KANBAN
       ? ContextStoreViewType.Kanban
       : ContextStoreViewType.Table;

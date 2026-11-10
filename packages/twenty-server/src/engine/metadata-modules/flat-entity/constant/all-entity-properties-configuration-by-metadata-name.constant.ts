@@ -297,6 +297,12 @@ export const ALL_ENTITY_PROPERTIES_CONFIGURATION_BY_METADATA_NAME = {
     },
   },
   view: {
+    timelineConfiguration: {
+      toCompare: true,
+      toStringify: true,
+      universalProperty: undefined,
+      isOverridable: true,
+    },
     isSystemSideEffect: {
       toCompare: false,
       toStringify: false,

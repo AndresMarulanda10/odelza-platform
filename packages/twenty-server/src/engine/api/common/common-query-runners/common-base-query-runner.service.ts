@@ -17,7 +17,10 @@ import {
 } from 'src/engine/api/common/common-query-runners/errors/common-query-runner.exception';
 import { STANDARD_ERROR_MESSAGE } from 'src/engine/api/common/common-query-runners/errors/standard-error-message.constant';
 import { CommonResultGettersService } from 'src/engine/api/common/common-result-getters/common-result-getters.service';
-import { CommonBaseQueryRunnerContext } from 'src/engine/api/common/types/common-base-query-runner-context.type';
+import {
+  CommonBaseQueryRunnerContext,
+  internalRolePermissionConfigSchema,
+} from 'src/engine/api/common/types/common-base-query-runner-context.type';
 import { CommonExtendedQueryRunnerContext } from 'src/engine/api/common/types/common-extended-query-runner-context.type';
 import {
   CommonExtendedInput,
@@ -315,11 +318,16 @@ export abstract class CommonBaseQueryRunnerService<
   ): Promise<Omit<CommonExtendedQueryRunnerContext, 'commonQueryParser'>> {
     const context = getWorkspaceContext();
 
-    const rolePermissionConfig = resolveRolePermissionConfig({
-      authContext: context.authContext,
-      userWorkspaceRoleMap: context.userWorkspaceRoleMap,
-      apiKeyRoleMap: context.apiKeyRoleMap,
-    });
+    const rolePermissionConfig =
+      queryRunnerContext.rolePermissionConfig !== undefined
+        ? internalRolePermissionConfigSchema.parse(
+            queryRunnerContext.rolePermissionConfig,
+          )
+        : resolveRolePermissionConfig({
+            authContext: context.authContext,
+            userWorkspaceRoleMap: context.userWorkspaceRoleMap,
+            apiKeyRoleMap: context.apiKeyRoleMap,
+          });
 
     if (!rolePermissionConfig) {
       throw new CommonQueryRunnerException(

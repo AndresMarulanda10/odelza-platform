@@ -23,6 +23,28 @@ const buildContext = () => ({
 });
 
 describe('get_workflow_run tool', () => {
+  it('exposes current and historical machine-readable conflicts without changing legacy errors', async () => {
+    const failure = {
+      status: StepStatus.FAILED_SAFELY,
+      error: 'Update precondition failed',
+      errorCode: 'PRECONDITION_FAILED',
+    };
+    const deps = buildDeps({
+      id: WORKFLOW_RUN_ID,
+      state: {
+        flow: {
+          steps: [{ id: 'step', name: 'Update', type: 'UPDATE_RECORD' }],
+        },
+        stepInfos: { step: { ...failure, history: [failure] } },
+      },
+    });
+    const tool = createGetWorkflowRunTool(deps as never, buildContext());
+    const result = await tool.execute({ workflowRunId: WORKFLOW_RUN_ID });
+    expect(result).toMatchObject({
+      success: true,
+      workflowRun: { steps: [{ ...failure, history: [failure] }] },
+    });
+  });
   it('should pass rolePermissionConfig to getRepository', async () => {
     const deps = buildDeps({ id: WORKFLOW_RUN_ID, state: {}, stepLogs: {} });
     const context = buildContext();

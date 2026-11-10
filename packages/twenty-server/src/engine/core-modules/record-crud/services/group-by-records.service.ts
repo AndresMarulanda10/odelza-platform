@@ -18,6 +18,8 @@ import { CommonApiContextBuilderService } from 'src/engine/core-modules/record-c
 import { type GroupByRecordsParams } from 'src/engine/core-modules/record-crud/types/group-by-records-params.type';
 import { type GroupByRecordsResult } from 'src/engine/core-modules/record-crud/types/group-by-records-result.type';
 import { type ToolOutput } from 'src/engine/core-modules/tool/types/tool-output.type';
+import { generateGroupByToolInputSchema } from 'src/engine/core-modules/record-crud/zod-schemas/group-by-tool.zod-schema';
+import { getFlatFieldsFromFlatObjectMetadata } from 'src/engine/api/graphql/workspace-schema-builder/utils/get-flat-fields-for-flat-object-metadata.util';
 
 @Injectable()
 export class GroupByRecordsService {
@@ -41,6 +43,7 @@ export class GroupByRecordsService {
       orderBy = 'DESC',
       filter,
       authContext,
+      rolePermissionConfig,
     } = params;
 
     try {
@@ -52,7 +55,40 @@ export class GroupByRecordsService {
       } = await this.commonApiContextBuilder.build({
         authContext,
         objectName,
+        rolePermissionConfig,
       });
+
+      // Validate against readable metadata at execution, not just the advertised
+      // MCP schema. This also protects dimensions and filter-only fields.
+      const inputSchema = generateGroupByToolInputSchema(
+        {
+          ...flatObjectMetadata,
+          fields: getFlatFieldsFromFlatObjectMetadata(
+            flatObjectMetadata,
+            flatFieldMetadataMaps,
+          ),
+        },
+        objectsPermissions[flatObjectMetadata.id]?.restrictedFields,
+        { maximum: Number.MAX_SAFE_INTEGER, default: QUERY_MAX_RECORDS },
+      );
+      if (!inputSchema) {
+        throw new RecordCrudException(
+          'No readable grouping fields',
+          RecordCrudExceptionCode.INVALID_REQUEST,
+        );
+      }
+      const rawInput = {
+        ...filter,
+        groupBy,
+        aggregateOperation,
+        aggregateFieldName,
+        limit,
+        orderBy,
+      };
+      const validatedInput = inputSchema.parse(rawInput) as {
+        groupBy: GroupByRecordsParams['groupBy'];
+      };
+      this.assertNoDroppedInputProperties(rawInput, validatedInput);
 
       const availableAggregations =
         this.groupByArgProcessor.getAvailableAggregations({
@@ -102,16 +138,18 @@ export class GroupByRecordsService {
         ? Math.min(limit, QUERY_MAX_RECORDS)
         : QUERY_MAX_RECORDS;
 
-      const { results } = await this.commonGroupByRunner.execute(
+      const { results: probedResults } = await this.commonGroupByRunner.execute(
         {
           filter: filter ?? {},
-          groupBy,
+          groupBy: validatedInput.groupBy,
           orderBy: mappedOrderBy,
           selectedFields,
-          limit: clampedLimit,
+          limit: clampedLimit + 1,
         },
         queryRunnerContext,
       );
+      const hasMore = probedResults.length > clampedLimit;
+      const results = probedResults.slice(0, clampedLimit);
 
       const dimensionLabels = groupBy.map((entry) =>
         this.getDimensionLabelFromGroupByEntry(entry),
@@ -132,6 +170,8 @@ export class GroupByRecordsService {
           dimensionLabels,
           aggregation: aggregateOperation,
           groupCount: results.length,
+          hasMore,
+          isComplete: !hasMore,
         },
       };
     } catch (error) {
@@ -151,6 +191,30 @@ export class GroupByRecordsService {
         error:
           error instanceof Error ? error.message : 'Failed to group records',
       };
+    }
+  }
+
+  private assertNoDroppedInputProperties(
+    original: unknown,
+    validated: unknown,
+  ): void {
+    if (original === null || typeof original !== 'object') return;
+    for (const [key, value] of Object.entries(original)) {
+      if (value === undefined) continue;
+      if (
+        validated === null ||
+        typeof validated !== 'object' ||
+        !(key in validated)
+      ) {
+        throw new RecordCrudException(
+          'Unknown group-by input property',
+          RecordCrudExceptionCode.INVALID_REQUEST,
+        );
+      }
+      this.assertNoDroppedInputProperties(
+        value,
+        (validated as Record<string, unknown>)[key],
+      );
     }
   }
 

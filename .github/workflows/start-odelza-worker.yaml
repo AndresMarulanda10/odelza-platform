@@ -1,0 +1,75 @@
+name: Odelza existing production worker start
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: odelza-production
+  cancel-in-progress: false
+
+jobs:
+  start-worker:
+    if: github.repository == 'AndresMarulanda10/odelza-platform' && github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: production
+      url: https://second-brain.odelza.com/
+    steps:
+      - name: Check out reviewed revision
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Start only the validated existing worker
+        shell: bash
+        env:
+          ODELZA_DEPLOY_HOST: ${{ secrets.ODELZA_DEPLOY_HOST }}
+          ODELZA_DEPLOY_PORT: ${{ secrets.ODELZA_DEPLOY_PORT }}
+          ODELZA_DEPLOY_USER: ${{ secrets.ODELZA_DEPLOY_USER }}
+          ODELZA_DEPLOY_SSH_KEY: ${{ secrets.ODELZA_DEPLOY_SSH_KEY }}
+          ODELZA_DEPLOY_KNOWN_HOSTS: ${{ secrets.ODELZA_DEPLOY_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          umask 077
+          fail() { printf '%s\n' 'diagnostics=runner_validation_failed' >&2; exit 1; }
+          [[ "$GITHUB_REPOSITORY" == AndresMarulanda10/odelza-platform ]] || fail
+          [[ "$GITHUB_REF" == refs/heads/main && "$GITHUB_EVENT_NAME" == workflow_dispatch ]] || fail
+          [[ "$GITHUB_SHA" =~ ^[0-9a-f]{40}$ ]] || fail
+          [[ "$ODELZA_DEPLOY_HOST" =~ ^[A-Za-z0-9][A-Za-z0-9.-]{0,252}$ ]] || fail
+          [[ "$ODELZA_DEPLOY_USER" =~ ^[a-zA-Z_][a-zA-Z0-9_-]{0,31}$ ]] || fail
+          [[ "$ODELZA_DEPLOY_PORT" =~ ^[0-9]{1,5}$ ]] || fail
+          (( 10#$ODELZA_DEPLOY_PORT >= 1 && 10#$ODELZA_DEPLOY_PORT <= 65535 )) || fail
+          [[ -n "$ODELZA_DEPLOY_SSH_KEY" && -n "$ODELZA_DEPLOY_KNOWN_HOSTS" ]] || fail
+          command -v timeout >/dev/null || fail
+          local_dir="$(mktemp -d "$RUNNER_TEMP/odelza-diagnose.XXXXXXXX")"
+          key_file="$local_dir/key"
+          known_hosts_file="$local_dir/known-hosts"
+          cleanup() { rm -f -- "$key_file" "$known_hosts_file"; rmdir -- "$local_dir"; }
+          trap cleanup EXIT
+          printf '%s\n' "$ODELZA_DEPLOY_SSH_KEY" >"$key_file"
+          printf '%s\n' "$ODELZA_DEPLOY_KNOWN_HOSTS" >"$known_hosts_file"
+          chmod 600 "$key_file" "$known_hosts_file"
+          ssh_options=(
+            -i "$key_file"
+            -p "$ODELZA_DEPLOY_PORT"
+            -o BatchMode=yes
+            -o ConnectTimeout=15
+            -o IdentitiesOnly=yes
+            -o ServerAliveInterval=30
+            -o ServerAliveCountMax=3
+            -o StrictHostKeyChecking=yes
+            -o UserKnownHostsFile="$known_hosts_file"
+          )
+          if timeout -k 5s 480s ssh "${ssh_options[@]}" \
+            "${ODELZA_DEPLOY_USER}@${ODELZA_DEPLOY_HOST}" 'sh -s' \
+            < scripts/odelza-worker-start.sh 2>/dev/null; then
+            printf '%s\n' 'transport=completed_not_health_proof'
+          else
+            printf '%s\n' 'transport=failed_or_partial_or_timeout' >&2
+            exit 1
+          fi

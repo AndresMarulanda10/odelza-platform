@@ -145,8 +145,8 @@ export class PickRecordWorkflowAction implements WorkflowAction {
 
     const groupByOutput = await this.groupByRecordsService.execute({
       objectName: loadBalance.objectNameSingular,
-      groupBy: [{ [loadBalance.fieldName]: { id: true } }],
-      filter: { [loadBalance.fieldName]: { id: { in: candidateIds } } },
+      groupBy: [{ [`${loadBalance.fieldName}Id`]: true }],
+      filter: { [`${loadBalance.fieldName}Id`]: { in: candidateIds } },
       authContext: executionContext.authContext,
       rolePermissionConfig: executionContext.rolePermissionConfig,
     });

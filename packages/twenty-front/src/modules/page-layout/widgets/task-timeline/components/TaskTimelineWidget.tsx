@@ -183,12 +183,22 @@ const StyledTaskChip = styled.div`
   font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   grid-row: 1;
   margin: ${odelzaThemeCssVariables.spacing[1]};
+  min-width: 0;
   overflow-wrap: anywhere;
   padding: ${odelzaThemeCssVariables.spacing[1]}
     ${odelzaThemeCssVariables.spacing[2]};
   position: relative;
   touch-action: none;
   z-index: 1;
+`;
+
+const StyledBarLabel = styled.span`
+  display: block;
+  line-height: ${odelzaThemeCssVariables.spacing[4]};
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const StyledPreviewNotice = styled.span<{ $invalid?: boolean }>`
@@ -251,6 +261,7 @@ const getPreviewDates = (
 };
 
 const TimelineItems = ({
+  instanceId,
   items,
   barColor,
   canEditDates,
@@ -258,6 +269,7 @@ const TimelineItems = ({
   objectNameSingular,
   objectLabelSingular,
 }: {
+  instanceId: string;
   items: TaskTimelineItem[];
   barColor: string;
   canEditDates: boolean;
@@ -551,8 +563,8 @@ const TimelineItems = ({
                 timelineEndDate: visibleBounds!.endDate,
               });
               if (span === null) return null;
-              const conflictId = `timeline-task-conflict-${item.id}`;
-              const errorId = `timeline-task-error-${item.id}`;
+              const conflictId = `timeline-task-conflict-${instanceId}-${item.id}`;
+              const errorId = `timeline-task-error-${instanceId}-${item.id}`;
               const descriptionIds = [
                 item.conflict ? conflictId : null,
                 errors[item.id] ? errorId : null,
@@ -587,6 +599,7 @@ const TimelineItems = ({
                     ))}
                     <StyledTaskChip
                       aria-label={item.title || objectLabelSingular}
+                      title={item.title || objectLabelSingular}
                       data-testid={`timeline-task-chip-${item.id}`}
                       role="button"
                       aria-describedby={
@@ -618,7 +631,9 @@ const TimelineItems = ({
                           type="button"
                         />
                       )}
-                      {item.title || objectLabelSingular}
+                      <StyledBarLabel data-testid="timeline-bar-label">
+                        {item.title || objectLabelSingular}
+                      </StyledBarLabel>
                       {item.conflict && (
                         <StyledConflict id={conflictId} role="alert">
                           {t`Dependency conflict; dates were not rescheduled.`}
@@ -700,6 +715,31 @@ type TaskTimelineWidgetContentProps = TaskTimelineWidgetProps;
 const TaskTimelineWidgetContent = ({
   widget,
 }: TaskTimelineWidgetContentProps) => {
+  const data = useTaskTimelineData(widget);
+  const barColor =
+    widget.configuration?.__typename === 'TaskTimelineConfiguration'
+      ? widget.configuration.barColor
+      : null;
+
+  return (
+    <TaskTimeline instanceId={widget.id} data={data} barColor={barColor} />
+  );
+};
+
+type TaskTimelineProps = {
+  instanceId: string;
+  data: ReturnType<typeof useTaskTimelineData>;
+  barColor?: string | null;
+  configurationScope?: 'widget' | 'view';
+};
+
+// Both saved views and legacy widgets supply their own data controller.
+export const TaskTimeline = ({
+  instanceId,
+  data,
+  barColor: configuredBarColor,
+  configurationScope = 'widget',
+}: TaskTimelineProps) => {
   const [helpOpen, setHelpOpen] = useState(false);
   const {
     status,
@@ -712,12 +752,8 @@ const TaskTimelineWidgetContent = ({
     updateTask = async () => undefined,
     objectNameSingular = CoreObjectNameSingular.Task,
     objectLabelSingular = t`Task`,
-  } = useTaskTimelineData(widget);
+  } = data;
   const isTask = objectNameSingular === CoreObjectNameSingular.Task;
-  const configuredBarColor =
-    widget.configuration?.__typename === 'TaskTimelineConfiguration'
-      ? widget.configuration.barColor
-      : null;
   const barColor = /^#[0-9a-fA-F]{6}$/.test(configuredBarColor ?? '')
     ? configuredBarColor!
     : DEFAULT_TASK_TIMELINE_BAR_COLOR;
@@ -778,10 +814,10 @@ const TaskTimelineWidgetContent = ({
       <StyledHelpBar>
         <button
           type="button"
-          data-tooltip-id={`${widget.id}-timeline-help`}
+          data-tooltip-id={`${instanceId}-timeline-help`}
           aria-label={t`Timeline help`}
           aria-describedby={
-            helpOpen ? `${widget.id}-timeline-help-content` : undefined
+            helpOpen ? `${instanceId}-timeline-help-content` : undefined
           }
           onMouseDown={(event) => event.stopPropagation()}
           onFocus={() => setHelpOpen(true)}
@@ -794,11 +830,11 @@ const TaskTimelineWidgetContent = ({
           {t`Help`}
         </button>
         <AppTooltip
-          anchorSelect={`[data-tooltip-id="${widget.id}-timeline-help"]`}
+          anchorSelect={`[data-tooltip-id="${instanceId}-timeline-help"]`}
           delay={TooltipDelay.noDelay}
           isOpen={helpOpen}
         >
-          <span role="tooltip" id={`${widget.id}-timeline-help-content`}>
+          <span role="tooltip" id={`${instanceId}-timeline-help-content`}>
             {`${
               isTask
                 ? t`Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling.`
@@ -810,9 +846,11 @@ const TaskTimelineWidgetContent = ({
       {hasConfigurationGap && (
         <StyledNotice>
           {configurationReason === 'invalid-date-mapping'
-            ? isTask
-              ? t`Configured task date fields are invalid or no longer available. Update the widget field mappings.`
-              : t`Configured date fields are invalid or no longer available. Update the widget field mappings.`
+            ? configurationScope === 'view'
+              ? t`Configured date fields are invalid or no longer available. Update the view field mappings.`
+              : isTask
+                ? t`Configured task date fields are invalid or no longer available. Update the widget field mappings.`
+                : t`Configured date fields are invalid or no longer available. Update the widget field mappings.`
             : hasConfigurationGap
               ? t`Choose an active source and configure readable date fields; unavailable dates are not inferred.`
               : isTask
@@ -822,6 +860,7 @@ const TaskTimelineWidgetContent = ({
       )}
       {items.length > 0 ? (
         <TimelineItems
+          instanceId={instanceId}
           items={items}
           barColor={barColor}
           canEditDates={canEditDates}

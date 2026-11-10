@@ -24,6 +24,7 @@ import { ViewFilterGroupDTO } from 'src/engine/metadata-modules/view-filter-grou
 import { ViewFilterDTO } from 'src/engine/metadata-modules/view-filter/dtos/view-filter.dto';
 import { ViewGroupDTO } from 'src/engine/metadata-modules/view-group/dtos/view-group.dto';
 import { ViewSortDTO } from 'src/engine/metadata-modules/view-sort/dtos/view-sort.dto';
+import { ViewTimelineConfigurationDTO } from 'src/engine/metadata-modules/view/dtos/view-timeline-configuration.dto';
 
 registerEnumType(ViewOpenRecordIn, { name: 'ViewOpenRecordIn' });
 registerEnumType(ViewType, { name: 'ViewType' });
@@ -33,6 +34,9 @@ registerEnumType(ViewVisibility, { name: 'ViewVisibility' });
 
 @ObjectType('View')
 export class ViewDTO {
+  @Field(() => ViewTimelineConfigurationDTO, { nullable: true })
+  timelineConfiguration?: ViewTimelineConfigurationDTO | null;
+
   @IDField(() => UUIDScalarType)
   id: string;
 

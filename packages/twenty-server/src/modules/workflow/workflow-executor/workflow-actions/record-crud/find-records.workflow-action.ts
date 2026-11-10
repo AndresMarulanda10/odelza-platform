@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { workflowFindRecordsActionSettingsSchema } from 'twenty-shared/workflow';
+import { parseWorkflowPaginationInput } from './utils/parse-workflow-pagination-input.util';
 
 import {
   computeRecordGqlOperationFilter,
@@ -48,10 +50,25 @@ export class FindRecordsWorkflowAction implements WorkflowAction {
       );
     }
 
+    const validatedSettings = workflowFindRecordsActionSettingsSchema.parse(
+      step.settings,
+    );
     const workflowActionInput = resolveInput(
-      step.settings.input,
+      validatedSettings.input,
       context,
     ) as WorkflowFindRecordsActionInput;
+    for (const field of ['limit', 'offset', 'after'] as const) {
+      if (
+        validatedSettings.input[field] !== undefined &&
+        workflowActionInput[field] === undefined
+      ) {
+        throw new WorkflowStepExecutorException(
+          `Pagination ${field} could not be resolved`,
+          WorkflowStepExecutorExceptionCode.INVALID_STEP_INPUT,
+        );
+      }
+    }
+    const pagination = parseWorkflowPaginationInput(workflowActionInput);
 
     const { workspaceId } = runInfo;
 
@@ -94,8 +111,7 @@ export class FindRecordsWorkflowAction implements WorkflowAction {
       objectName: workflowActionInput.objectName,
       filter: gqlOperationFilter,
       orderBy: workflowActionInput.orderBy?.gqlOperationOrderBy,
-      limit: workflowActionInput.limit,
-      offset: workflowActionInput.offset,
+      ...pagination,
       authContext: executionContext.authContext,
       rolePermissionConfig: executionContext.rolePermissionConfig,
       shouldBuildEffectiveSelectFields: false,
@@ -113,6 +129,7 @@ export class FindRecordsWorkflowAction implements WorkflowAction {
         first: records[0],
         all: records,
         totalCount,
+        pageInfo: toolOutput.result?.pageInfo,
       },
     };
   }

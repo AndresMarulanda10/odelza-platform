@@ -467,6 +467,28 @@ export class WorkflowVersionStepOperationsWorkspaceService {
           },
         };
       }
+      case WorkflowActionType.GROUP_BY_RECORDS: {
+        const object = await this.objectMetadataRepository.findOne({
+          where: { workspaceId, isActive: true, isSystem: false },
+        });
+        return {
+          builtStep: {
+            ...baseStep,
+            name: 'Group Records',
+            type: WorkflowActionType.GROUP_BY_RECORDS,
+            settings: {
+              ...BASE_STEP_DEFINITION,
+              input: {
+                objectName: object?.nameSingular ?? '',
+                groupBy: [],
+                aggregateOperation: 'COUNT',
+                limit: 200,
+                orderBy: 'DESC',
+              },
+            },
+          },
+        };
+      }
       case WorkflowActionType.PICK_RECORD: {
         const activeObjectMetadataItem =
           await this.objectMetadataRepository.findOne({

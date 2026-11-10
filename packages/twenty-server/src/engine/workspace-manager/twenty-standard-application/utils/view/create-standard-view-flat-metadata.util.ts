@@ -115,6 +115,7 @@ export const createStandardViewFlatMetadata = <
 
   return {
     calendarFieldMetadataUniversalIdentifier,
+    timelineConfiguration: null,
     catalogImageFieldMetadataUniversalIdentifier: null,
     catalogSubtitleFieldMetadataUniversalIdentifier: null,
     catalogDetailFieldMetadataUniversalIdentifier: null,

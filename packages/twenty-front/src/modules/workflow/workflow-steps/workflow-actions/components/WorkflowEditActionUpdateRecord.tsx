@@ -2,6 +2,7 @@ import { useFilteredObjectMetadataItems } from '@/object-metadata/hooks/useFilte
 import { useObjectMetadataSelectHelpers } from '@/object-metadata/hooks/useObjectMetadataSelectHelpers';
 import { formatFieldMetadataItemAsFieldDefinition } from '@/object-metadata/utils/formatFieldMetadataItemAsFieldDefinition';
 import { FormFieldInput } from '@/object-record/record-field/ui/components/FormFieldInput';
+import { WorkflowUpdateRecordPrecondition } from './WorkflowUpdateRecordPrecondition';
 import { FormSingleRecordPicker } from '@/object-record/record-field/ui/form-types/components/FormSingleRecordPicker';
 import { isFieldRelation } from '@/object-record/record-field/ui/types/guards/isFieldRelation';
 import { Select } from '@/ui/input/components/Select';
@@ -16,7 +17,10 @@ import { WorkflowVariablePicker } from '@/workflow/workflow-variables/components
 import { t } from '@lingui/core/macro';
 import { useEffect, useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-import { canObjectBeManagedByAutomation } from 'twenty-shared/workflow';
+import {
+  canObjectBeManagedByAutomation,
+  type RecordUpdatePrecondition,
+} from 'twenty-shared/workflow';
 import { HorizontalSeparator } from 'twenty-ui/layout';
 import { type SelectOption } from 'twenty-ui/input';
 import { type JsonValue } from 'type-fest';
@@ -65,6 +69,11 @@ export const WorkflowEditActionUpdateRecord = ({
   });
 
   const isFormDisabled = actionOptions.readonly === true;
+  // Conditions are never flattened into record data: custom fields named
+  // precondition and data remain ordinary record fields.
+  const [precondition, setPrecondition] = useState<
+    RecordUpdatePrecondition | undefined
+  >(action.settings.input.precondition);
 
   const handleFieldChange = (
     fieldName: keyof UpdateRecordFormData,
@@ -77,7 +86,7 @@ export const WorkflowEditActionUpdateRecord = ({
 
     setFormData(newFormData);
 
-    saveAction(newFormData);
+    saveAction(newFormData, precondition);
   };
 
   const handleFieldClear = (fieldName: keyof UpdateRecordFormData) => {
@@ -86,7 +95,7 @@ export const WorkflowEditActionUpdateRecord = ({
 
     setFormData(newFormData);
 
-    saveAction(newFormData);
+    saveAction(newFormData, precondition);
   };
 
   const selectedObjectMetadataItem = activeNonSystemObjectMetadataItems.find(
@@ -118,7 +127,10 @@ export const WorkflowEditActionUpdateRecord = ({
     : [];
 
   const saveAction = useDebouncedCallback(
-    async (formData: UpdateRecordFormData) => {
+    async (
+      formData: UpdateRecordFormData,
+      condition: RecordUpdatePrecondition | undefined,
+    ) => {
       if (actionOptions.readonly === true) {
         return;
       }
@@ -139,6 +151,7 @@ export const WorkflowEditActionUpdateRecord = ({
             objectRecordId: updatedObjectRecordId ?? '',
             fieldsToUpdate: updatedFieldsToUpdate ?? [],
             objectRecord: updatedOtherFields,
+            ...(condition !== undefined ? { precondition: condition } : {}),
           },
         },
       });
@@ -171,8 +184,9 @@ export const WorkflowEditActionUpdateRecord = ({
             };
 
             setFormData(newFormData);
+            setPrecondition(undefined);
 
-            saveAction(newFormData);
+            saveAction(newFormData, undefined);
           }}
           withSearchInput
           dropdownOffset={{ y: 4 }}
@@ -246,6 +260,16 @@ export const WorkflowEditActionUpdateRecord = ({
             />
           );
         })}
+        <WorkflowUpdateRecordPrecondition
+          value={precondition}
+          readonly={isFormDisabled}
+          fields={inlineFieldDefinitions ?? []}
+          onChange={(condition) => {
+            if (isFormDisabled) return;
+            setPrecondition(condition);
+            saveAction(formData, condition);
+          }}
+        />
       </WorkflowStepBody>
       {!actionOptions.readonly && <WorkflowStepFooter stepId={action.id} />}
     </>

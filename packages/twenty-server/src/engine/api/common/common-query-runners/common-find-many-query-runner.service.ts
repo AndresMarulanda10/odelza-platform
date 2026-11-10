@@ -88,7 +88,9 @@ export class CommonFindManyQueryRunnerService extends CommonBaseQueryRunnerServi
 
     const orderByWithIdCondition = [
       ...(args.orderBy ?? []),
-      { id: OrderByDirection.AscNullsFirst },
+      ...((args.orderBy ?? []).some((item) => item.id !== undefined)
+        ? []
+        : [{ id: OrderByDirection.AscNullsFirst }]),
     ] as ObjectRecordOrderBy;
 
     const isForwardPagination = !isDefined(args.before);

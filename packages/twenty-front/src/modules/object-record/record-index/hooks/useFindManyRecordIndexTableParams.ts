@@ -17,7 +17,7 @@ import {
   turnAnyFieldFilterIntoRecordGqlFilter,
 } from 'twenty-shared/utils';
 
-export const useFindManyRecordIndexTableParams = (
+const useRecordIndexQueryParts = (
   objectNameSingular: string,
   instanceId?: string,
 ) => {
@@ -25,12 +25,6 @@ export const useFindManyRecordIndexTableParams = (
     objectNameSingular,
   });
   const { objectMetadataItems } = useObjectMetadataItems();
-
-  const { recordGroupFilter } = useRecordGroupFilter(
-    objectMetadataItem?.fields,
-  );
-
-  const currentRecordGroupDefinition = useCurrentRecordGroupDefinition();
 
   const currentRecordFilterGroups = useAtomComponentStateValue(
     currentRecordFilterGroupsComponentState,
@@ -77,6 +71,34 @@ export const useFindManyRecordIndexTableParams = (
     objectMetadataItems,
   );
 
+  return { objectMetadataItem, currentFilters, anyFieldFilter, orderBy };
+};
+
+export const useFindManyTimelineViewParams = (
+  objectNameSingular: string,
+  instanceId?: string,
+) => {
+  const { currentFilters, anyFieldFilter, orderBy } = useRecordIndexQueryParts(
+    objectNameSingular,
+    instanceId,
+  );
+  return {
+    objectNameSingular,
+    filter: combineFilters([currentFilters, anyFieldFilter]),
+    orderBy,
+  };
+};
+
+export const useFindManyRecordIndexTableParams = (
+  objectNameSingular: string,
+  instanceId?: string,
+) => {
+  const { objectMetadataItem, currentFilters, anyFieldFilter, orderBy } =
+    useRecordIndexQueryParts(objectNameSingular, instanceId);
+  const { recordGroupFilter } = useRecordGroupFilter(
+    objectMetadataItem?.fields,
+  );
+  const currentRecordGroupDefinition = useCurrentRecordGroupDefinition();
   const combinedFilter = combineFilters([
     currentFilters,
     recordGroupFilter,

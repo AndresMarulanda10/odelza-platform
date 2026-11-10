@@ -52,6 +52,11 @@ export const RecordTableWidgetRenderer = ({
       widgetId={widget.id}
       isEmptyStateHidden
       recordLimit={recordLimit}
+      presentationMode={
+        isRecordTableConfiguration && 'presentationMode' in configuration
+          ? (configuration.presentationMode as string | null)
+          : undefined
+      }
     />
   );
 };

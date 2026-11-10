@@ -10,8 +10,15 @@ import { useObjectPermissionsForObject } from '@/object-record/hooks/useObjectPe
 import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';
 import { generateFindManyRecordsQuery } from '@/object-record/utils/generateFindManyRecordsQuery';
 import { type PageLayoutWidget } from '@/page-layout/types/PageLayoutWidget';
-import { useTaskTimelineData } from '@/page-layout/widgets/task-timeline/hooks/useTaskTimelineData';
-import { FieldMetadataType, RelationType } from 'twenty-shared/types';
+import {
+  useTaskTimelineData,
+  useTimelineData,
+} from '@/page-layout/widgets/task-timeline/hooks/useTaskTimelineData';
+import {
+  FieldMetadataType,
+  OrderByDirection,
+  RelationType,
+} from 'twenty-shared/types';
 
 jest.mock('@/object-metadata/hooks/useObjectMetadataItem');
 jest.mock('@/object-metadata/hooks/useObjectMetadataItems');
@@ -74,6 +81,116 @@ const query = jest.mocked(useFindManyRecords);
 let taskMetadata: EnrichedObjectMetadataItem;
 
 describe('useTaskTimelineData (React/query mock integration)', () => {
+  it('revokes native editing on permission refresh without mutating records', async () => {
+    const { result, rerender } = renderHook(() =>
+      useTimelineData({
+        sourceObjectMetadataId: 'task-object',
+        fieldMapping: {
+          startDateFieldMetadataId: 'start',
+          dueDateFieldMetadataId: 'due',
+        },
+        requireConfiguredDates: true,
+      }),
+    );
+    const before = JSON.stringify(query.mock.results.at(-1)?.value?.records);
+    expect(result.current.canEditDates).toBe(true);
+    jest.mocked(useObjectPermissionsForObject).mockReturnValue({
+      ...jest.mocked(useObjectPermissionsForObject).mock.results.at(-1)!.value,
+      canUpdateObjectRecords: false,
+    });
+    rerender();
+    expect(result.current.canEditDates).toBe(false);
+    await expect(
+      result.current.updateTask!({ taskId: 'task-1', startDate: '2026-09-18' }),
+    ).rejects.toThrow('Task timeline editing is unavailable');
+    expect(updateOneRecord).not.toHaveBeenCalled();
+    expect(JSON.stringify(query.mock.results.at(-1)?.value?.records)).toBe(
+      before,
+    );
+  });
+
+  it('forwards native view filters, order and page size to one timeline query', () => {
+    const params = {
+      filter: { id: { eq: 'task-1' } },
+      orderBy: [{ dueAt: OrderByDirection.AscNullsLast }],
+      limit: 25,
+    };
+    renderHook(() =>
+      useTimelineData({
+        sourceObjectMetadataId: 'task-object',
+        fieldMapping: {
+          startDateFieldMetadataId: 'start',
+          dueDateFieldMetadataId: 'due',
+        },
+        requireConfiguredDates: true,
+        query: params,
+      }),
+    );
+    expect(query).toHaveBeenCalledTimes(1);
+    expect(query.mock.calls[0][0]).toMatchObject({ ...params, skip: false });
+  });
+
+  it('does not infer native view dates when its mappings are unconfigured', () => {
+    const { result } = renderHook(() =>
+      useTimelineData({
+        sourceObjectMetadataId: 'task-object',
+        requireConfiguredDates: true,
+      }),
+    );
+    expect(result.current.hasConfigurationGap).toBe(true);
+    expect(result.current.items).toEqual([]);
+    expect(result.current.canEditDates).toBe(false);
+    expect(query.mock.calls[0][0]).toMatchObject({ skip: true });
+  });
+
+  it('exposes native pagination instead of silently truncating at the first page', async () => {
+    const fetchMoreRecords = jest.fn(async () => undefined);
+    query.mockReturnValue({
+      records: [{ id: 'task-1', startDate: '2026-09-19', dueAt: '2026-09-20' }],
+      loading: false,
+      hasNextPage: true,
+      fetchMoreRecords,
+      refetch: jest.fn(),
+    } as unknown as ReturnType<typeof useFindManyRecords>);
+    const { result } = renderHook(() =>
+      useTimelineData({
+        sourceObjectMetadataId: 'task-object',
+        fieldMapping: {
+          startDateFieldMetadataId: 'start',
+          dueDateFieldMetadataId: 'due',
+        },
+        requireConfiguredDates: true,
+      }),
+    );
+    expect(result.current.hasNextPage).toBe(true);
+    await result.current.loadMore!();
+    expect(fetchMoreRecords).toHaveBeenCalledTimes(1);
+  });
+
+  it('surfaces pagination error results from the shared record loader while preserving current items', async () => {
+    const error = new Error('Next page unavailable');
+    query.mockReturnValue({
+      records: [{ id: 'task-1', startDate: '2026-09-19', dueAt: '2026-09-20' }],
+      loading: false,
+      hasNextPage: true,
+      fetchMoreRecords: jest.fn(async () => ({ error })),
+      refetch: jest.fn(),
+    } as unknown as ReturnType<typeof useFindManyRecords>);
+    const { result } = renderHook(() =>
+      useTimelineData({
+        sourceObjectMetadataId: 'task-object',
+        fieldMapping: {
+          startDateFieldMetadataId: 'start',
+          dueDateFieldMetadataId: 'due',
+        },
+        requireConfiguredDates: true,
+      }),
+    );
+    await expect(result.current.loadMore!()).rejects.toBe(error);
+    expect(result.current.items).toHaveLength(1);
+    expect(result.current.hasNextPage).toBe(true);
+  });
+
   const generic = () => {
     taskMetadata = {
       ...metadata(),

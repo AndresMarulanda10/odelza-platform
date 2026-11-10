@@ -11,7 +11,9 @@ import {
   IsUUID,
   Max,
   Min,
+  ValidateNested,
 } from 'class-validator';
+import { Type } from 'class-transformer';
 import {
   AggregateOperations,
   ViewCalendarLayout,
@@ -25,9 +27,16 @@ import { UUIDScalarType } from 'src/engine/api/graphql/workspace-schema-builder/
 import { IsValidMetadataName } from 'src/engine/decorators/metadata/is-valid-metadata-name.decorator';
 import { KANBAN_COLUMN_MAX_WIDTH } from 'src/engine/metadata-modules/view/constants/kanban-column-max-width.constant';
 import { KANBAN_COLUMN_MIN_WIDTH } from 'src/engine/metadata-modules/view/constants/kanban-column-min-width.constant';
+import { ViewTimelineConfigurationInput } from 'src/engine/metadata-modules/view/dtos/inputs/view-timeline-configuration.input';
 
 @InputType()
 export class CreateViewInput {
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => ViewTimelineConfigurationInput)
+  @Field(() => ViewTimelineConfigurationInput, { nullable: true })
+  timelineConfiguration?: ViewTimelineConfigurationInput | null;
+
   @IsOptional()
   @IsUUID()
   @Field(() => UUIDScalarType, { nullable: true })
