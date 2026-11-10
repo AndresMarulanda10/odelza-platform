@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { indigo } from '@radix-ui/colors';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { TimelineView } from '@/object-record/record-index/components/RecordIndexTimelineContainer';
 import { useTimelineData } from '@/page-layout/widgets/task-timeline/hooks/useTaskTimelineData';
 import { TaskTimeline } from '@/page-layout/widgets/task-timeline/components/TaskTimelineWidget';
@@ -81,7 +81,7 @@ const view = {
   timelineConfiguration: {
     startDateFieldMetadataUniversalIdentifier: 'start-universal',
     endDateFieldMetadataUniversalIdentifier: 'end-universal',
-    barColor: indigo.indigo9,
+    barColor: ODELZA_THEME_LIGHT.color.blue,
   },
 };
 const query = {
@@ -158,7 +158,7 @@ it('loads once with saved mapping, scoped query and strict dates without native 
   });
   expect(jest.mocked(TaskTimeline).mock.calls[0][0]).toMatchObject({
     instanceId: 'embedded-a',
-    barColor: indigo.indigo9,
+    barColor: ODELZA_THEME_LIGHT.color.blue,
     configurationScope: 'view',
   });
 });

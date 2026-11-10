@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
+import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 import { TranscriptEntryListItem } from 'src/front-components/components/TranscriptEntryListItem';
 import { type TranscriptEntry } from 'src/front-components/types/transcript-entry.type';
@@ -8,7 +8,7 @@ const StyledTranscriptContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${() => odelzaThemeCssVariables.spacing[2]};
+  gap: ${() => themeCssVariables.spacing[2]};
   min-height: 0;
 `;
 

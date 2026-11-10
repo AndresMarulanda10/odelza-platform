@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { gray, indigo, teal } from '@radix-ui/colors';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { createStore, Provider } from 'jotai';
 import { I18nProvider } from '@lingui/react';
 import { i18n } from '@lingui/core';
@@ -72,7 +72,7 @@ it('edits readable generic-source dates and color only in the widget draft, pres
     view: {
       id: 'private',
       objectMetadataId: 'company',
-      timelineConfiguration: { barColor: indigo.indigo9 },
+      timelineConfiguration: { barColor: ODELZA_THEME_LIGHT.color.blue },
     },
     viewFields: [{ fieldMetadataId: 'name' }],
     viewFilters: [{ id: 'filter' }],
@@ -105,12 +105,12 @@ it('edits readable generic-source dates and color only in the widget draft, pres
   fireEvent.click(screen.getByText('Created date'));
   fireEvent.click(screen.getByText('Bar color'));
   fireEvent.change(screen.getByPlaceholderText('Hex color'), {
-    target: { value: teal.teal9 },
+    target: { value: ODELZA_THEME_LIGHT.color.turquoise },
   });
   const updated = store.get(atom);
   expect(updated.widget.view.timelineConfiguration).toMatchObject({
     startDateFieldMetadataUniversalIdentifier: 'start-universal',
-    barColor: teal.teal9,
+    barColor: ODELZA_THEME_LIGHT.color.turquoise,
   });
   expect(updated.widget.view.id).toBe('private');
   expect(updated.widget.viewFields).toBe(snapshot.viewFields);
@@ -137,7 +137,7 @@ it('edits readable generic-source dates and color only in the widget draft, pres
     </Provider>,
   );
   fireEvent.change(screen.getByPlaceholderText('Hex color'), {
-    target: { value: gray.gray12 },
+    target: { value: ODELZA_THEME_LIGHT.color.gray },
   });
   expect(JSON.stringify(store.get(atom))).toBe(before);
 });

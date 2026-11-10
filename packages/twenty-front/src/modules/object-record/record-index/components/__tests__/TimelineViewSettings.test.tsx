@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { indigo, teal } from '@radix-ui/colors';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { Provider, createStore } from 'jotai';
 import { I18nProvider } from '@lingui/react';
 import { i18n } from '@lingui/core';
@@ -45,7 +45,7 @@ const source = {
 const configuration = {
   startDateFieldMetadataUniversalIdentifier: 'Start-universal',
   endDateFieldMetadataUniversalIdentifier: 'End-universal',
-  barColor: indigo.indigo9,
+  barColor: ODELZA_THEME_LIGHT.color.blue,
 };
 const mount = () =>
   render(
@@ -84,13 +84,18 @@ it('offers only readable active date fields and persists universal mappings with
 it('persists a custom hexadecimal color with the existing native color picker', async () => {
   mount();
   fireEvent.click(screen.getAllByRole('button', { name: /Bar color/ }).at(-1)!);
-  expect(screen.getByPlaceholderText('Hex color')).toHaveValue(indigo.indigo9);
+  expect(screen.getByPlaceholderText('Hex color')).toHaveValue(
+    ODELZA_THEME_LIGHT.color.blue,
+  );
   fireEvent.change(screen.getByPlaceholderText('Hex color'), {
-    target: { value: teal.teal9 },
+    target: { value: ODELZA_THEME_LIGHT.color.turquoise },
   });
   await waitFor(() =>
     expect(updateCurrentView).toHaveBeenCalledWith({
-      timelineConfiguration: { ...configuration, barColor: teal.teal9 },
+      timelineConfiguration: {
+        ...configuration,
+        barColor: ODELZA_THEME_LIGHT.color.turquoise,
+      },
     }),
   );
 });
@@ -107,7 +112,7 @@ it('reloads saved universal mappings and custom color without persisting a secon
   const saved = {
     ...configuration,
     startDateFieldMetadataUniversalIdentifier: 'End-universal',
-    barColor: teal.teal9,
+    barColor: ODELZA_THEME_LIGHT.color.turquoise,
   };
   render(
     <Provider store={createStore()}>
@@ -123,25 +128,28 @@ it('reloads saved universal mappings and custom color without persisting a secon
   expect(screen.queryByText('Start', { exact: true })).not.toBeInTheDocument();
   expect(screen.getAllByText('End', { exact: true })).toHaveLength(2);
   fireEvent.click(screen.getAllByRole('button', { name: /Bar color/ }).at(-1)!);
-  expect(screen.getByPlaceholderText('Hex color')).toHaveValue(teal.teal9);
+  expect(screen.getByPlaceholderText('Hex color')).toHaveValue(
+    ODELZA_THEME_LIGHT.color.turquoise,
+  );
   expect(updateCurrentView).not.toHaveBeenCalled();
 });
 
-it.each(['', indigo.indigo9.slice(0, 4), '#12345g', '#1234567', 'red'])(
-  'rejects invalid color %j without persistence',
-  (value) => {
-    const before = JSON.stringify(configuration);
-    mount();
-    fireEvent.click(
-      screen.getAllByRole('button', { name: /Bar color/ }).at(-1)!,
-    );
-    fireEvent.change(screen.getByPlaceholderText('Hex color'), {
-      target: { value },
-    });
-    expect(updateCurrentView).not.toHaveBeenCalled();
-    expect(JSON.stringify(configuration)).toBe(before);
-  },
-);
+it.each([
+  '',
+  ODELZA_THEME_LIGHT.color.blue.slice(0, 4),
+  '#12345g',
+  '#1234567',
+  'red',
+])('rejects invalid color %j without persistence', (value) => {
+  const before = JSON.stringify(configuration);
+  mount();
+  fireEvent.click(screen.getAllByRole('button', { name: /Bar color/ }).at(-1)!);
+  fireEvent.change(screen.getByPlaceholderText('Hex color'), {
+    target: { value },
+  });
+  expect(updateCurrentView).not.toHaveBeenCalled();
+  expect(JSON.stringify(configuration)).toBe(before);
+});
 
 it('rechecks permission after opening color controls', () => {
   const mounted = mount();
@@ -159,6 +167,9 @@ it('rechecks permission after opening color controls', () => {
     </Provider>,
   );
   const input = screen.queryByPlaceholderText('Hex color');
-  if (input) fireEvent.change(input, { target: { value: teal.teal9 } });
+  if (input)
+    fireEvent.change(input, {
+      target: { value: ODELZA_THEME_LIGHT.color.turquoise },
+    });
   expect(updateCurrentView).not.toHaveBeenCalled();
 });

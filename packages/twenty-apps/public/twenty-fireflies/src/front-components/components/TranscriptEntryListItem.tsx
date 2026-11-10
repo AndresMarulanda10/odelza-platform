@@ -1,20 +1,20 @@
 import styled from '@emotion/styled';
 import { isUndefined } from '@sniptt/guards';
 import { Avatar, Chip, ChipVariant } from 'twenty-ui/data-display';
-import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
+import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 import { type TranscriptEntry } from 'src/front-components/types/transcript-entry.type';
 import { formatSecondsAsClockTimestamp } from 'src/front-components/utils/format-seconds-as-clock-timestamp.util';
 
 const StyledEntry = styled.div`
   align-items: flex-start;
-  border-radius: ${() => odelzaThemeCssVariables.border.radius.sm};
+  border-radius: ${() => themeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${() => odelzaThemeCssVariables.spacing[2]};
+  gap: ${() => themeCssVariables.spacing[2]};
   justify-content: center;
-  padding: ${() => odelzaThemeCssVariables.spacing[2]};
+  padding: ${() => themeCssVariables.spacing[2]};
   width: 100%;
 `;
 
@@ -22,21 +22,21 @@ const StyledEntryHeader = styled.div`
   align-items: center;
   align-self: stretch;
   display: flex;
-  gap: ${() => odelzaThemeCssVariables.spacing[2]};
-  min-height: ${() => odelzaThemeCssVariables.spacing[6]};
+  gap: ${() => themeCssVariables.spacing[2]};
+  min-height: ${() => themeCssVariables.spacing[6]};
   min-width: 0;
 `;
 
 const StyledTimestamp = styled.span`
-  color: ${() => odelzaThemeCssVariables.font.color.tertiary};
-  font-size: ${() => odelzaThemeCssVariables.font.size.xs};
+  color: ${() => themeCssVariables.font.color.tertiary};
+  font-size: ${() => themeCssVariables.font.size.xs};
   line-height: 1.4;
 `;
 
 const StyledEntryText = styled.p`
   align-self: stretch;
-  color: ${() => odelzaThemeCssVariables.font.color.secondary};
-  font-size: ${() => odelzaThemeCssVariables.font.size.sm};
+  color: ${() => themeCssVariables.font.color.secondary};
+  font-size: ${() => themeCssVariables.font.size.sm};
   line-height: 1.4;
   margin: 0;
 `;

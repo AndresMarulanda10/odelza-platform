@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import { indigo } from '@radix-ui/colors';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { useStore } from 'jotai';
 import { useTimelineViewWidgetQueryState } from '@/page-layout/widgets/view/hooks/useTimelineViewWidgetQueryState';
 import { useFindManyTimelineViewParams } from '@/object-record/record-index/hooks/useFindManyRecordIndexTableParams';
@@ -93,7 +93,10 @@ it('initializes zero-field scopes using real parsers without touching another wi
   });
   act(() => store.set(search('view-timeline-widget-a'), 'local'));
   rerender({
-    saved: { ...view, timelineConfiguration: { barColor: indigo.indigo9 } },
+    saved: {
+      ...view,
+      timelineConfiguration: { barColor: ODELZA_THEME_LIGHT.color.blue },
+    },
   });
   expect(store.get(search('view-timeline-widget-a'))).toBe('local');
   rerender({

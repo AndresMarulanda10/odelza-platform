@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { isUndefined } from '@sniptt/guards';
 import { useMemo } from 'react';
-import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
+import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 import { TranscriptEntryList } from 'src/front-components/components/TranscriptEntryList';
 import { TranscriptErrorBox } from 'src/front-components/components/TranscriptErrorBox';
@@ -10,14 +10,14 @@ import { parseTranscriptEntries } from 'src/front-components/utils/parse-transcr
 const StyledCenteredState = styled.div`
   align-items: center;
   box-sizing: border-box;
-  color: ${() => odelzaThemeCssVariables.font.color.tertiary};
+  color: ${() => themeCssVariables.font.color.tertiary};
   display: flex;
   flex: 1;
-  font-family: ${() => odelzaThemeCssVariables.font.family};
-  font-size: ${() => odelzaThemeCssVariables.font.size.sm};
+  font-family: ${() => themeCssVariables.font.family};
+  font-size: ${() => themeCssVariables.font.size.sm};
   justify-content: center;
   min-height: 240px;
-  padding: ${() => odelzaThemeCssVariables.spacing[4]};
+  padding: ${() => themeCssVariables.spacing[4]};
 `;
 
 type CalendarEventTranscriptBodyProps = {

@@ -1,5 +1,5 @@
 import { type RecordTableWidgetViewSnapshot } from '@/page-layout/widgets/record-table/types/RecordTableWidgetViewSnapshot';
-import { indigo } from '@radix-ui/colors';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { cloneRecordTableWidgetViewSnapshot } from '@/page-layout/widgets/record-table/utils/cloneRecordTableWidgetViewSnapshot';
 import { ViewFilterOperand } from 'twenty-shared/types';
 import {
@@ -82,7 +82,7 @@ describe('cloneRecordTableWidgetViewSnapshot', () => {
     const configuration = {
       startDateFieldMetadataUniversalIdentifier: 'start-universal',
       endDateFieldMetadataUniversalIdentifier: 'end-universal',
-      barColor: indigo.indigo9,
+      barColor: ODELZA_THEME_LIGHT.color.blue,
     };
     const source = {
       ...sourceSnapshot,

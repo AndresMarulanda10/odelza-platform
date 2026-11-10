@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import { indigo } from '@radix-ui/colors';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { createStore, Provider } from 'jotai';
 import { type ReactNode } from 'react';
 import { useSaveRecordTableWidgetViews } from '@/page-layout/hooks/useSaveRecordTableWidgetViews';
@@ -18,7 +18,7 @@ jest.mock('@/object-metadata/states/objectMetadataItemsSelector', () => {
 
 it.each([
   {
-    barColor: indigo.indigo9,
+    barColor: ODELZA_THEME_LIGHT.color.blue,
     startDateFieldMetadataUniversalIdentifier: 'start',
     endDateFieldMetadataUniversalIdentifier: 'end',
     __typename: 'ViewTimelineConfiguration',
@@ -94,7 +94,7 @@ it.each([
         timelineConfiguration === null
           ? null
           : {
-              barColor: indigo.indigo9,
+              barColor: ODELZA_THEME_LIGHT.color.blue,
               startDateFieldMetadataUniversalIdentifier: 'start',
               endDateFieldMetadataUniversalIdentifier: 'end',
             },
