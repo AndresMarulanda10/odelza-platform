@@ -11,10 +11,6 @@ export const ACTION_TOOL_STATUS_LABELS: Record<string, ToolStatusLabels> = {
     loading: msg`Drafting email`,
     completed: msg`Drafted email`,
   },
-  search_help_center: {
-    loading: msg`Searching the help center`,
-    completed: msg`Searched the help center`,
-  },
   navigate_app: {
     loading: msg`Navigating in the app`,
     completed: msg`Navigated in the app`,

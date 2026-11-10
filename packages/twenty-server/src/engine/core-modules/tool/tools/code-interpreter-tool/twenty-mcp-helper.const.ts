@@ -14,8 +14,8 @@ class TwentyMCP:
 
     Two categories of tools exist behind /mcp:
 
-     - MCP-native: execute_tool, learn_tools, load_skills,
-       search_help_center. These are the 4 surfaces exposed directly.
+     - MCP-native: execute_tool, learn_tools, load_skills. These are the
+       3 surfaces exposed directly.
 
      - Workspace catalog: 250+ CRUD / view / workflow / dashboard tools
        like find_many_companies, create_one_person, update_one_opportunity. These are
@@ -34,7 +34,6 @@ class TwentyMCP:
         'execute_tool',
         'learn_tools',
         'load_skills',
-        'search_help_center',
     })
 
     def __init__(self):

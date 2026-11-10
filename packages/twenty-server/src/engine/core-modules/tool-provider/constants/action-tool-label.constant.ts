@@ -8,7 +8,6 @@ export const ACTION_TOOL_IDS = [
   'send_email',
   'draft_email',
   'create_calendar_event',
-  'search_help_center',
   'code_interpreter',
   'navigate_app',
 ] as const;
@@ -27,9 +26,6 @@ export const ACTION_TOOL_LABELS: Record<ActionToolId, ActionToolLabel> = {
   },
   create_calendar_event: {
     label: i18nLabel(msg`Create Calendar Event`),
-  },
-  search_help_center: {
-    label: i18nLabel(msg`Search Help Center`),
   },
   code_interpreter: {
     label: i18nLabel(msg`Code Interpreter`),

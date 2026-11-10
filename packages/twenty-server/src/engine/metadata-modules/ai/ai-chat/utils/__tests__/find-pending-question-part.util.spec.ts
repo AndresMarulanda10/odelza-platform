@@ -46,7 +46,7 @@ describe('findPendingQuestionPart', () => {
 
   it('ignores other tool parts', () => {
     const otherTool = {
-      type: 'tool-search_help_center',
+      type: 'tool-navigate_app',
       toolCallId: 'call-2',
       state: 'output-available',
       input: {},

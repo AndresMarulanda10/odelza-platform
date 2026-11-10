@@ -29,7 +29,6 @@ import { HttpTool } from 'src/engine/core-modules/tool/tools/http-tool/http-tool
 import { NavigateAppTool } from 'src/engine/core-modules/tool/tools/navigate-tool/navigate-app-tool';
 import { ExtractJsonPathsTool } from 'src/engine/core-modules/tool/tools/output-navigation-tool/extract-json-paths-tool';
 import { SearchOutputTool } from 'src/engine/core-modules/tool/tools/output-navigation-tool/search-output-tool';
-import { SearchHelpCenterTool } from 'src/engine/core-modules/tool/tools/search-help-center-tool/search-help-center-tool';
 import { type ToolOutput } from 'src/engine/core-modules/tool/types/tool-output.type';
 import { type Tool } from 'src/engine/core-modules/tool/types/tool.type';
 import { PermissionsService } from 'src/engine/metadata-modules/permissions/permissions.service';
@@ -45,7 +44,6 @@ export class ActionToolProvider implements ToolProvider {
     private readonly sendEmailTool: SendEmailTool,
     private readonly draftEmailTool: DraftEmailTool,
     private readonly createCalendarEventTool: CreateCalendarEventTool,
-    private readonly searchHelpCenterTool: SearchHelpCenterTool,
     private readonly codeInterpreterTool: CodeInterpreterTool,
     private readonly navigateAppTool: NavigateAppTool,
     private readonly extractJsonPathsTool: ExtractJsonPathsTool,
@@ -59,7 +57,6 @@ export class ActionToolProvider implements ToolProvider {
       ['send_email', this.sendEmailTool],
       ['draft_email', this.draftEmailTool],
       ['create_calendar_event', this.createCalendarEventTool],
-      ['search_help_center', this.searchHelpCenterTool],
       ['code_interpreter', this.codeInterpreterTool],
       ['navigate_app', this.navigateAppTool],
       ['extract_json_paths', this.extractJsonPathsTool],
@@ -137,15 +134,6 @@ export class ActionToolProvider implements ToolProvider {
         ),
       );
     }
-
-    descriptors.push(
-      this.buildDescriptor(
-        'search_help_center',
-        this.searchHelpCenterTool,
-        includeSchemas,
-        context.locale,
-      ),
-    );
 
     descriptors.push(
       this.buildDescriptor(
