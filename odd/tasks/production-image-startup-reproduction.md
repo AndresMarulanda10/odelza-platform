@@ -37,10 +37,10 @@ Route: bounded source writer followed by independent parent acceptance and deleg
 - [x] Normalize only allowed files; focused GREEN, same 93-suite union and three native typechecks (final hardening boundary below).
 - [x] Freeze candidate hashes, source delta and exact owned-runner cleanup proof.
 - [x] Parent independent verification accepted final frozen candidate; mandatory independent review fulfilled. RDD OFF; global/native HIGH assessment unassessable, not fabricated approval.
-- [ ] Local source work-unit commit and passive identity checkpoint (authorized bookkeeping only).
+- [x] Local source work-unit commit `328378be9f4dabfd8bcfd4958afb9a80e7f3baa7`, tree `f1bdeeb3af196c489c10a33759b63c0fddaf7b5b`; expected staged tree and all three frozen source blobs/modes verified after hooks. Source unit: four files, 466 additions/207 deletions (673 lines after status bookkeeping). Passive identity checkpoint changes only this task; final build HEAD/tree is supplied in handoff, without recursive checkpoint identity edits.
 - [ ] R7 — Seeded E2E: read-only plan completed; runtime not executed, no active explorer runtime.
 
-### R6 result — technically accepted; local commit pending
+### R6 result — technically accepted and locally committed; R7 pending
 
 The two maps preserve every semantic suffix while replacing `--t-` with existing `--odz-`: document-generator 21 distinct tokens, Slack 25. Slack's owned accessor and all its references become `odelzaThemeCssVariables`; SDK extraction still uses inline values, not an imported runtime accessor. Both generated light/dark property-definition tests pass. No palette, SDK/export/version or UI-copy change.
 
