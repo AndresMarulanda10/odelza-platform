@@ -2,11 +2,9 @@ import { lazy, useMemo } from 'react';
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Navigate,
   Route,
 } from 'react-router-dom';
-import { AppPath, SettingsPath } from 'twenty-shared/types';
-import { getSettingsPath } from 'twenty-shared/utils';
+import { AppPath } from 'twenty-shared/types';
 
 import { LazyRoute } from '@/app/components/LazyRoute';
 import { SettingsRoutes } from '@/app/components/SettingsRoutes';
@@ -172,15 +170,6 @@ const createWorkspaceAppRouter = (
                   <SettingsRoutes
                     isFunctionSettingsEnabled={isFunctionSettingsEnabled}
                     isAdminPageEnabled={isAdminPageEnabled}
-                  />
-                }
-              />
-              <Route
-                path={AppPath.Dpa}
-                element={
-                  <Navigate
-                    to={getSettingsPath(SettingsPath.LegalDpa)}
-                    replace
                   />
                 }
               />

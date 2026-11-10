@@ -12,7 +12,7 @@ enum SettingsPathPrefixes {
   LogicFunctions = `${AppBasePath.Settings}/${SettingsPath.LogicFunctions}`,
   Integration = `${AppBasePath.Settings}/${SettingsPath.Integrations}`,
   General = `${AppBasePath.Settings}/${SettingsPath.General}`,
-  Community = `${AppBasePath.Settings}/${SettingsPath.Community}`,
+  Lab = `${AppBasePath.Settings}/${SettingsPath.Lab}`,
 }
 
 const getPathnameOrPrefix = (pathname: string) => {
@@ -57,8 +57,8 @@ export const getPageTitleFromPath = (pathname: string): string => {
       return t`Integrations - Settings`;
     case SettingsPathPrefixes.General:
       return t`General - Settings`;
-    case SettingsPathPrefixes.Community:
-      return t`Community - Settings`;
+    case SettingsPathPrefixes.Lab:
+      return t`Beta features - Settings`;
     default:
       return 'Odelza';
   }

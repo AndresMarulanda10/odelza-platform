@@ -29,6 +29,7 @@ export const EMPTY_COMMAND_MENU_CONTEXT_API: CommandMenuContextApi = {
   targetObjectWritePermissions: {},
   canImpersonate: false,
   canAccessFullAdminPanel: false,
+  isBillingEnabled: false,
   objectMetadataItem: {},
   objectMetadataLabel: '',
 };

@@ -5,5 +5,4 @@ export const UNTESTED_APP_PATHS = [
   AppPath.Developers,
   // Public, unauthenticated redirect route handled in useCreateWorkspaceAppRouter
   // — not part of the onboarding/auth page-change navigation matrix.
-  AppPath.Dpa,
 ];
