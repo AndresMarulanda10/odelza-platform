@@ -1,7 +1,6 @@
 export const MCP_SETUP = {
-  chatGptTwentyAppUrl:
-    'https://chatgpt.com/apps/twenty/asdk_app_6a0ac8d7e28c8191a58ea65bb0ca3d5c',
   tooltipIds: {
+    chatGptConnectorDisabled: 'mcp-chatgpt-connector-disabled',
     claudeInstallDisabled: 'mcp-claude-install-disabled',
     replitInstallDisabled: 'mcp-replit-install-disabled',
   },
@@ -17,6 +16,7 @@ export const MCP_SETUP = {
     augment: 'https://docs.augmentcode.com/setup-augment/mcp',
     amazonQ:
       'https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/qdev-mcp.html',
+    chatGpt: 'https://help.openai.com/en/articles/12584461',
     cline: 'https://docs.cline.bot/mcp/mcp-overview',
     geminiCli: 'https://geminicli.com/docs/tools/mcp-server/',
     jetbrains: 'https://www.jetbrains.com/help/ai-assistant/mcp.html',

@@ -11,16 +11,12 @@ export const buildMcpServerCard = ({
 }: BuildMcpServerCardArgs) => ({
   $schema:
     'https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json',
-  name: 'com.twenty/twenty',
+  name: 'com.odelza/odelza',
   version,
   title: 'Odelza',
   description:
     'Read and write your Odelza data - companies, people, opportunities, tasks, notes and any custom objects - from AI assistants. Tools are discovered at runtime and scoped to the authenticated workspace.',
-  websiteUrl: 'https://twenty.com',
-  repository: {
-    url: 'https://github.com/twentyhq/twenty',
-    source: 'github',
-  },
+  websiteUrl: 'https://odelza.com',
   remotes: [
     {
       type: 'streamable-http',

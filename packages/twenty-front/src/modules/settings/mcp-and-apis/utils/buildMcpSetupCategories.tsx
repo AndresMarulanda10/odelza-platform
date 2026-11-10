@@ -40,17 +40,9 @@ export const buildMcpSetupCategories = ({
 }: BuildMcpSetupCategoriesParams): McpSetupCategory[] => [
   {
     title: t`Quick install`,
-    description: t`Open a maintained integration or prefill clients that accept MCP install links.`,
+    description: t`Prefill clients that accept MCP install links.`,
     showManualConfigurationAfter: true,
     cards: [
-      {
-        title: t`ChatGPT`,
-        badge: t`Official app`,
-        description: t`Open Odelza's official ChatGPT integration for your workspace.`,
-        ctaLabel: t`Open`,
-        href: MCP_SETUP.chatGptTwentyAppUrl,
-        logo: <McpClientLogo src={OpenAiLogo} invertInDarkMode />,
-      },
       {
         title: t`Claude`,
         badge: t`Preset link`,
@@ -70,6 +62,19 @@ export const buildMcpSetupCategories = ({
     title: t`Other clients`,
     description: t`Connect additional MCP clients using install links or client docs.`,
     cards: [
+      {
+        title: t`ChatGPT`,
+        badge: t`Manual`,
+        description: t`Add the Odelza MCP server as a custom connector in ChatGPT developer mode.`,
+        ctaLabel: t`Docs`,
+        disabledTooltip: t`ChatGPT connectors require an HTTPS MCP URL.`,
+        href: isHttpsInstallLinkEnabled
+          ? MCP_SETUP.clientDocsUrls.chatGpt
+          : undefined,
+        isDisabled: !isHttpsInstallLinkEnabled,
+        logo: <McpClientLogo src={OpenAiLogo} invertInDarkMode />,
+        tooltipId: MCP_SETUP.tooltipIds.chatGptConnectorDisabled,
+      },
       {
         title: t`Cursor`,
         badge: t`Install link`,
