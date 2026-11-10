@@ -6761,11 +6761,6 @@ msgstr "A(z) {searchFieldMetadataId} azonosítójú keresési mező metaadata m�
 msgid "Search field metadata with same fieldMetadataId and objectMetadataId already exists"
 msgstr "Azonos fieldMetadataId és objectMetadataId értékekkel rendelkező keresési mező metaadata már létezik"
 
-#. js-lingui-id: K3jNeK
-#: src/engine/core-modules/tool-provider/constants/action-tool-label.constant.ts
-msgid "Search Help Center"
-msgstr "Keresés a Súgóközpontban"
-
 #. js-lingui-id: PdVIJC
 #: src/engine/metadata-modules/search-field-metadata/constants/search-vector-field.constants.ts
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-attachment-standard-flat-field-metadata.util.ts

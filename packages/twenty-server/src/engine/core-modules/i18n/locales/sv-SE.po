@@ -6765,11 +6765,6 @@ msgstr "Sökfältmetadata med id {searchFieldMetadataId} finns redan"
 msgid "Search field metadata with same fieldMetadataId and objectMetadataId already exists"
 msgstr "Sökfältmetadata med samma fieldMetadataId och objectMetadataId finns redan"
 
-#. js-lingui-id: K3jNeK
-#: src/engine/core-modules/tool-provider/constants/action-tool-label.constant.ts
-msgid "Search Help Center"
-msgstr "Sök i hjälpcentret"
-
 #. js-lingui-id: PdVIJC
 #: src/engine/metadata-modules/search-field-metadata/constants/search-vector-field.constants.ts
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-attachment-standard-flat-field-metadata.util.ts

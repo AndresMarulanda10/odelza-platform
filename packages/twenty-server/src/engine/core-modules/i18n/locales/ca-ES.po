@@ -6761,11 +6761,6 @@ msgstr "Les metadades del camp de cerca amb id {searchFieldMetadataId} ja existe
 msgid "Search field metadata with same fieldMetadataId and objectMetadataId already exists"
 msgstr "Ja existeixen metadades de camp de cerca amb el mateix fieldMetadataId i objectMetadataId"
 
-#. js-lingui-id: K3jNeK
-#: src/engine/core-modules/tool-provider/constants/action-tool-label.constant.ts
-msgid "Search Help Center"
-msgstr "Cerca al Centre d'ajuda"
-
 #. js-lingui-id: PdVIJC
 #: src/engine/metadata-modules/search-field-metadata/constants/search-vector-field.constants.ts
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-attachment-standard-flat-field-metadata.util.ts
