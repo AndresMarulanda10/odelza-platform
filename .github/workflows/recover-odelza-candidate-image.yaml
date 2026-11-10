@@ -3,9 +3,17 @@ name: Recover exact Odelza candidate image (encrypted only)
 on:
   workflow_dispatch:
     inputs:
+      operation:
+        description: 'Metadata only by default; recover requires a valid public recipient certificate'
+        required: true
+        type: choice
+        default: diagnose
+        options:
+          - diagnose
+          - recover
       recipient_cert_base64:
         description: 'Base64 of one public X.509 RSA certificate; never a private key'
-        required: true
+        required: false
         type: string
 
 permissions:
@@ -32,7 +40,7 @@ jobs:
           ref: ${{ github.sha }}
           persist-credentials: false
 
-      - name: Recover ciphertext only for the fixed log-bound candidate image
+      - name: Diagnose metadata or recover ciphertext for the fixed candidate
         shell: bash
         env:
           ODELZA_DEPLOY_HOST: ${{ secrets.ODELZA_DEPLOY_HOST }}
@@ -41,9 +49,11 @@ jobs:
           ODELZA_DEPLOY_SSH_KEY: ${{ secrets.ODELZA_DEPLOY_SSH_KEY }}
           ODELZA_DEPLOY_KNOWN_HOSTS: ${{ secrets.ODELZA_DEPLOY_KNOWN_HOSTS }}
           RECIPIENT_CERT_BASE64: ${{ inputs.recipient_cert_base64 }}
-        run: python3 -B scripts/odelza-candidate-image-recover.py recover
+          RECOVERY_OPERATION: ${{ inputs.operation }}
+        run: python3 -B scripts/odelza-candidate-image-recover.py operation
 
       - name: Retain only recipient-encrypted image for one day
+        if: success() && inputs.operation == 'recover'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: odelza-candidate-image-encrypted

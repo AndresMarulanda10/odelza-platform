@@ -10,6 +10,7 @@ import os
 from pathlib import Path, PurePosixPath
 import re
 import selectors
+import shlex
 import shutil
 import signal
 import subprocess
@@ -330,6 +331,119 @@ def recover(environment):
         encrypt_stream(ssh + [EXPORT], cert, output)
 
 
+DIAGNOSTIC_INSPECT_FORMAT = (
+    '{"Id":{{json .Id}},"Os":{{json .Os}},'
+    '"Architecture":{{json .Architecture}},"Size":{{json .Size}},'
+    '"RepoTags":{{json .RepoTags}}}'
+)
+DIAGNOSTIC_DESCRIPTOR_FORMAT = (
+    '{"digest":{{json .Descriptor.Digest}},'
+    '"mediaType":{{json .Descriptor.MediaType}}}'
+)
+DIAGNOSTIC_VERSION_FORMAT = (
+    '{"server":{{json .Server.Version}},"client":{{json .Client.Version}}}'
+)
+DIAGNOSTIC_STORE_FORMAT = (
+    '{{range .DriverStatus}}{{if and (eq (index . 0) "driver-type") '
+    '(eq (index . 1) "io.containerd.snapshotter.v1")}}true{{end}}{{end}}'
+)
+# Only fixed source arguments reach this shell. Every result is independently
+# bounded and must be a single JSON line; raw stderr never crosses SSH.
+_DIAGNOSTIC_QUERIES = [
+    ['docker', 'image', 'inspect', '--format', fmt, selector]
+    for selector in (TAG, IMAGE_ID)
+    for fmt in (DIAGNOSTIC_INSPECT_FORMAT, DIAGNOSTIC_DESCRIPTOR_FORMAT)
+] + [
+    ['docker', 'version', '--format', DIAGNOSTIC_VERSION_FORMAT],
+    ['docker', 'info', '--format', DIAGNOSTIC_STORE_FORMAT],
+]
+DIAGNOSTIC = 'timeout -k 2s 75s /bin/sh -c ' + shlex.quote(
+    "LC_ALL=C; export LC_ALL; "
+    "query() { v=$({ timeout -k 2s 10s \"$@\" 2>/dev/null; "
+    "printf '\\nstatus=%s' \"$?\"; } | head -c 32790); "
+    "case \"$v\" in *'\nstatus=0') v=${v%'\nstatus=0'};; *) v=null;; esac; "
+    # Docker normally ends its template output with one newline.
+    "v=${v%'\n'}; "
+    "[ ${#v} -le 32768 ] || v=null; "
+    "case \"$v\" in ''|*'\n'*) v=null;; esac; printf '%s\\n' \"$v\"; }; "
+    + '; '.join('query ' + shlex.join(command) for command in _DIAGNOSTIC_QUERIES)
+)
+
+
+def diagnostic_report(raw):
+    """Whitelist typed metadata; never reflect arbitrary remote strings."""
+    lines = raw.splitlines()
+    require(len(lines) == 6, 'diagnostic_protocol_invalid')
+    values = []
+    for line in lines:
+        require(len(line) <= META_LIMIT, 'metadata_limit')
+        try:
+            values.append(json.loads(line))
+        except (ValueError, UnicodeError, RecursionError):
+            values.append(None)
+
+    def digest(value):
+        return value if isinstance(value, str) and re.fullmatch(
+            r'sha256:[0-9a-f]{64}', value) else None
+
+    images = []
+    for offset, selector in ((0, 'tag'), (2, 'expected_config')):
+        value = values[offset]
+        found = (isinstance(value, dict) and digest(value.get('Id')) is not None
+                 and all(isinstance(value.get(key), str) and re.fullmatch(
+                     r'[a-z0-9][a-z0-9_.-]{0,63}', value[key])
+                     for key in ('Os', 'Architecture'))
+                 and type(value.get('Size')) is int and value['Size'] >= 0
+                 and 'RepoTags' in value and (value['RepoTags'] is None or (
+                     isinstance(value['RepoTags'], list)
+                     and all(isinstance(tag, str) for tag in value['RepoTags']))))
+        value = value if found else {}
+        descriptor = values[offset + 1]
+        descriptor = descriptor if found and isinstance(descriptor, dict) else {}
+        identifier = digest(value.get('Id'))
+        tags, size = value.get('RepoTags'), value.get('Size')
+        media = descriptor.get('mediaType')
+        images.append({
+            'selector': selector, 'status': 'found' if found else 'unavailable',
+            'id': identifier,
+            'idMatchesExpected': identifier == IMAGE_ID if identifier else None,
+            'repoTagsContainsExpectedTag': TAG in tags if isinstance(tags, list) else None,
+            'linuxAmd64': (value['Os'], value['Architecture']) == ('linux', 'amd64')
+            if isinstance(value.get('Os'), str) and isinstance(value.get('Architecture'), str)
+            else None,
+            'sizeWithinBound': 0 < size <= ARCHIVE_LIMIT if type(size) is int else None,
+            'descriptorDigest': digest(descriptor.get('digest')),
+            'descriptorMediaType': media if media in (
+                'application/vnd.oci.image.index.v1+json',
+                'application/vnd.oci.image.manifest.v1+json',
+                'application/vnd.docker.distribution.manifest.list.v2+json',
+                'application/vnd.docker.distribution.manifest.v2+json') else None,
+        })
+    versions = values[4] if isinstance(values[4], dict) else {}
+    safe_versions = {}
+    for key in ('server', 'client'):
+        value = versions.get(key)
+        safe_versions[key] = value if isinstance(value, str) and re.fullmatch(
+            r'[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}', value) else None
+    return {'images': images, 'versions': safe_versions,
+            'containerdSnapshotter': True if values[5] is True else None}
+
+
+def diagnose(environment):
+    require(environment.get('GITHUB_REPOSITORY') == 'AndresMarulanda10/odelza-platform'
+            and environment.get('GITHUB_REF') == 'refs/heads/main'
+            and environment.get('GITHUB_EVENT_NAME') == 'workflow_dispatch'
+            and re.fullmatch('[0-9a-f]{40}', environment.get('GITHUB_SHA', '')),
+            'runner_guard_denied')
+    with tempfile.TemporaryDirectory(prefix='odelza-diagnose-',
+                                     dir=environment['RUNNER_TEMP']) as scratch:
+        ssh = ssh_command(environment, Path(scratch))
+        raw = bounded_capture(ssh + [DIAGNOSTIC], seconds=90,
+                              limit=6 * (META_LIMIT + 1), failure='diagnostic_unavailable')
+        print(json.dumps(diagnostic_report(raw), sort_keys=True))
+    print('recovery=metadata_only')
+
+
 def validate_archive(path):
     """Read only; never extract or load. Unknown save formats stop safely.
 
@@ -473,6 +587,16 @@ def main():
         if len(sys.argv) == 3 and sys.argv[1] == 'validate':
             validate_archive(Path(sys.argv[2]))
             print('recovery=archive_validated_not_loaded')
+        elif sys.argv[1:] == ['diagnose']:
+            diagnose(os.environ)
+        elif sys.argv[1:] == ['operation']:
+            operation = os.environ.get('RECOVERY_OPERATION', 'diagnose')
+            require(operation in ('diagnose', 'recover'), 'operation_denied')
+            if operation == 'diagnose':
+                diagnose(os.environ)
+            else:
+                recover(os.environ)
+                print('recovery=encrypted_complete')
         else:
             require(sys.argv[1:] == ['recover'], 'usage_denied')
             recover(os.environ)
