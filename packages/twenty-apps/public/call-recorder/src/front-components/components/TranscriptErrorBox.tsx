@@ -1,32 +1,32 @@
 import styled from '@emotion/styled';
-import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
+import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledStateContainer = styled.div`
   box-sizing: border-box;
-  font-family: ${() => odelzaThemeCssVariables.font.family};
+  font-family: ${() => themeCssVariables.font.family};
   height: 100%;
-  padding: ${() => odelzaThemeCssVariables.spacing[4]};
+  padding: ${() => themeCssVariables.spacing[4]};
 `;
 
 const StyledErrorBox = styled.div`
-  background: ${() => odelzaThemeCssVariables.background.transparent.danger};
-  border: 1px solid ${() => odelzaThemeCssVariables.border.color.danger};
-  border-radius: ${() => odelzaThemeCssVariables.border.radius.md};
+  background: ${() => themeCssVariables.background.transparent.danger};
+  border: 1px solid ${() => themeCssVariables.border.color.danger};
+  border-radius: ${() => themeCssVariables.border.radius.md};
   display: flex;
   flex-direction: column;
-  gap: ${() => odelzaThemeCssVariables.spacing[1]};
-  padding: ${() => odelzaThemeCssVariables.spacing[3]};
+  gap: ${() => themeCssVariables.spacing[1]};
+  padding: ${() => themeCssVariables.spacing[3]};
 `;
 
 const StyledErrorTitle = styled.span`
-  color: ${() => odelzaThemeCssVariables.font.color.danger};
-  font-size: ${() => odelzaThemeCssVariables.font.size.sm};
-  font-weight: ${() => odelzaThemeCssVariables.font.weight.medium};
+  color: ${() => themeCssVariables.font.color.danger};
+  font-size: ${() => themeCssVariables.font.size.sm};
+  font-weight: ${() => themeCssVariables.font.weight.medium};
 `;
 
 const StyledErrorDescription = styled.span`
-  color: ${() => odelzaThemeCssVariables.font.color.secondary};
-  font-size: ${() => odelzaThemeCssVariables.font.size.sm};
+  color: ${() => themeCssVariables.font.color.secondary};
+  font-size: ${() => themeCssVariables.font.size.sm};
 `;
 
 type TranscriptErrorBoxProps = {

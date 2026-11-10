@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { isUndefined } from '@sniptt/guards';
-import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
+import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 import { SummaryMarkdown } from 'src/front-components/components/SummaryMarkdown';
 import { TranscriptErrorBox } from 'src/front-components/components/TranscriptErrorBox';
@@ -8,13 +8,13 @@ import { TranscriptErrorBox } from 'src/front-components/components/TranscriptEr
 const StyledCenteredState = styled.div`
   align-items: center;
   box-sizing: border-box;
-  color: ${() => odelzaThemeCssVariables.font.color.tertiary};
+  color: ${() => themeCssVariables.font.color.tertiary};
   display: flex;
-  font-family: ${() => odelzaThemeCssVariables.font.family};
-  font-size: ${() => odelzaThemeCssVariables.font.size.sm};
+  font-family: ${() => themeCssVariables.font.family};
+  font-size: ${() => themeCssVariables.font.size.sm};
   justify-content: center;
   min-height: 240px;
-  padding: ${() => odelzaThemeCssVariables.spacing[4]};
+  padding: ${() => themeCssVariables.spacing[4]};
 `;
 
 type CalendarEventSummaryBodyProps = {

@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import { indigo } from '@radix-ui/colors';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { useSetViewTypeFromLayoutOptionsMenu } from '@/object-record/object-options-dropdown/hooks/useSetViewTypeFromLayoutOptionsMenu';
 import { ViewType } from '@/views/types/ViewType';
 
@@ -97,7 +97,7 @@ it('retains custom configuration on return to Timeline', async () => {
   currentView.timelineConfiguration = {
     startDateFieldMetadataUniversalIdentifier: 'custom-start',
     endDateFieldMetadataUniversalIdentifier: 'custom-end',
-    barColor: indigo.indigo9,
+    barColor: ODELZA_THEME_LIGHT.color.blue,
   };
   const { result } = renderHook(() => useSetViewTypeFromLayoutOptionsMenu());
   await act(async () => {

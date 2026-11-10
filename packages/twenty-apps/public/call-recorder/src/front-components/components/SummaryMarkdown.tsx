@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useMemo } from 'react';
-import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
+import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 import { SummaryInlineSegments } from 'src/front-components/components/SummaryInlineSegments';
 import { parseSummaryMarkdownBlocks } from 'src/front-components/utils/parse-summary-markdown-blocks.util';
@@ -8,24 +8,24 @@ import { parseSummaryMarkdownBlocks } from 'src/front-components/utils/parse-sum
 const TOP_LEVEL_HEADING_MAX = 2;
 
 const StyledSummary = styled.div`
-  color: ${() => odelzaThemeCssVariables.font.color.secondary};
+  color: ${() => themeCssVariables.font.color.secondary};
   display: flex;
   flex-direction: column;
-  font-family: ${() => odelzaThemeCssVariables.font.family};
-  font-size: ${() => odelzaThemeCssVariables.font.size.sm};
-  gap: ${() => odelzaThemeCssVariables.spacing[2]};
+  font-family: ${() => themeCssVariables.font.family};
+  font-size: ${() => themeCssVariables.font.size.sm};
+  gap: ${() => themeCssVariables.spacing[2]};
   line-height: 1.5;
 `;
 
 const StyledHeading = styled.h3<{ $isTopLevel: boolean }>`
-  color: ${() => odelzaThemeCssVariables.font.color.primary};
+  color: ${() => themeCssVariables.font.color.primary};
   font-size: ${({ $isTopLevel }) =>
     $isTopLevel
-      ? odelzaThemeCssVariables.font.size.md
-      : odelzaThemeCssVariables.font.size.sm};
-  font-weight: ${() => odelzaThemeCssVariables.font.weight.medium};
+      ? themeCssVariables.font.size.md
+      : themeCssVariables.font.size.sm};
+  font-weight: ${() => themeCssVariables.font.weight.medium};
   margin: 0;
-  margin-top: ${() => odelzaThemeCssVariables.spacing[1]};
+  margin-top: ${() => themeCssVariables.spacing[1]};
 `;
 
 const StyledParagraph = styled.p`
@@ -35,9 +35,9 @@ const StyledParagraph = styled.p`
 const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: ${() => odelzaThemeCssVariables.spacing[1]};
+  gap: ${() => themeCssVariables.spacing[1]};
   margin: 0;
-  padding-left: ${() => odelzaThemeCssVariables.spacing[3]};
+  padding-left: ${() => themeCssVariables.spacing[3]};
 `;
 
 type SummaryMarkdownProps = {

@@ -5,8 +5,11 @@ import { t } from '@lingui/core/macro';
 import { useContext, useState } from 'react';
 import { ThemeContext } from 'twenty-ui/theme-constants';
 import { MenuItemSelectColor } from 'twenty-ui/navigation';
-import { MAIN_COLOR_NAMES } from 'twenty-ui/theme';
-import * as RadixColors from '@radix-ui/colors';
+import {
+  MAIN_COLOR_NAMES,
+  ODELZA_THEME_DARK,
+  ODELZA_THEME_LIGHT,
+} from 'twenty-ui/theme';
 
 export const TimelineColorDropdown = ({
   value,
@@ -17,15 +20,11 @@ export const TimelineColorDropdown = ({
 }) => {
   const { colorScheme } = useContext(ThemeContext);
   const [hex, setHex] = useState(value);
-  // Persist sRGB hex values rather than native display-P3 swatch CSS.
-  const paletteHex = (color: (typeof MAIN_COLOR_NAMES)[number]) => {
-    const paletteName =
-      color === 'blue' ? 'indigo' : color === 'turquoise' ? 'teal' : color;
-    const palette = (RadixColors as Record<string, Record<string, string>>)[
-      `${paletteName}${colorScheme === 'dark' ? 'Dark' : ''}`
+  // Persist hex values, not the CSS variables the theme context exposes.
+  const paletteHex = (color: (typeof MAIN_COLOR_NAMES)[number]) =>
+    (colorScheme === 'dark' ? ODELZA_THEME_DARK : ODELZA_THEME_LIGHT).color[
+      color
     ];
-    return palette[`${paletteName}9`];
-  };
   return (
     <DropdownContent>
       <DropdownMenuSearchInput

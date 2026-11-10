@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import { indigo } from '@radix-ui/colors';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { useLoadStaleMetadataEntities } from '@/metadata-store/hooks/useLoadStaleMetadataEntities';
 import { ViewType } from '~/generated-metadata/graphql';
 
@@ -26,7 +26,9 @@ beforeEach(() => {
         type,
         ...(type === ViewType.TIMELINE
           ? {
-              timelineConfiguration: { barColor: indigo.indigo9 },
+              timelineConfiguration: {
+                barColor: ODELZA_THEME_LIGHT.color.blue,
+              },
               viewFields: [{ id: 'timeline-field' }],
             }
           : {}),
@@ -44,7 +46,7 @@ it('hydrates saved Timeline settings and related fields after a fresh metadata l
       expect.objectContaining({
         id: 'saved-TIMELINE',
         type: ViewType.TIMELINE,
-        timelineConfiguration: { barColor: indigo.indigo9 },
+        timelineConfiguration: { barColor: ODELZA_THEME_LIGHT.color.blue },
       }),
     ]),
   );

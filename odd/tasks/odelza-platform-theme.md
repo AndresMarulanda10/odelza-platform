@@ -520,6 +520,18 @@ Fuera de la fase: los avatares y logos de `twentyhq.github.io` en el dev-seeder 
   - Las reglas propias de oxlint siguen sin correr por la misma falta de memoria.
 - **Nota para producción:** esta fase agrega comandos en `upgrade-version-command/`, así que el CD de imagen se detiene y hace falta el despliegue manual guardado (igual que la fase 4).
 
+### Registro 2026-11-10 (CI de main después de fusionar el PR #55)
+
+- **Qué pasó:** después del último push, `copilot-swe-agent[bot]` mezcló `main` dentro de la rama (`400fac305a`). Entraron 19 commits de otros PRs (timeline #56, workflows #58 y otros) escritos con el tema de Twenty. El PR #55 se fusionó así y en `main` fallaron CI Front (Storybook), CI E2E Main (build del front) y CI Twenty Apps.
+- **Causas:**
+  - `RecordIndexTimelineContainer.tsx` y `TimelineViewSettings.tsx` usaban `themeCssVariables`, que la fase 1 quitó. Linaria no lo puede evaluar y el build se rompe.
+  - `TimelineColorDropdown.tsx` y 12 tests importaban `@radix-ui/colors`, que la fase 1 sacó de las dependencias.
+  - La fase 1 había cambiado el tema en 27 archivos de `twenty-apps`. Esas apps compilan contra `twenty-ui` de npm (el de Twenty), que no tiene `odelzaThemeCssVariables`. El paso 8 del plan (contrato con `twenty-apps`) no se cumplió.
+- **Arreglo** (rama `fix/odelza-theme-after-main-merge`, `7bf114538c`): los dos componentes pasan a `odelzaThemeCssVariables`; el selector de color del timeline usa las familias de `ODELZA_THEME_LIGHT`/`ODELZA_THEME_DARK` (guarda hex); los tests usan esas mismas constantes; los 27 archivos de `twenty-apps` vuelven a su versión anterior a la fase 1.
+- **Verificación local:** typecheck del front sin errores nuevos y 248 tests de timeline, tablas y panel lateral en verde.
+- **Para el equipo:** todo código nuevo del front usa `odelzaThemeCssVariables` y las familias Odelza; ni `themeCssVariables` ni `@radix-ui/colors` existen ya. Las ramas creadas antes de la fase 1 hay que actualizarlas antes de fusionarlas.
+- **Pendiente:** las apps de `twenty-apps` siguen usando el `twenty-ui` de npm, que pinta con variables `--t-*` que la plataforma ya no define. Revisar cómo se ven sus front components dentro de Odelza.
+
 ## Revisión del PR y pendientes a futuro
 
 Actualizado el 2026-11-10, al cerrar la fase 5. Junta lo que quedó anotado en los registros de cada fase.

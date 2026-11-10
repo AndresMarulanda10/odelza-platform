@@ -7,7 +7,7 @@ jest.mock(
   () => ({ RecordTableWidgetProvider: () => null }),
 );
 import { act, render } from '@testing-library/react';
-import { indigo } from '@radix-ui/colors';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { useStore } from 'jotai';
 import { TimelineViewWidget } from '@/page-layout/widgets/view/components/TimelineViewWidget';
 import { anyFieldFilterValueComponentState as search } from '@/object-record/record-filter/states/anyFieldFilterValueComponentState';
@@ -106,7 +106,7 @@ it('S2: public mounts gate every query transition and leave other scopes byte-id
   rerender(
     ui({
       ...saved('new'),
-      timelineConfiguration: { barColor: indigo.indigo9 },
+      timelineConfiguration: { barColor: ODELZA_THEME_LIGHT.color.blue },
     }),
   );
   expect(
