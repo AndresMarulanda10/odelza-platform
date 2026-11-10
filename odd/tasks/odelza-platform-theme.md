@@ -74,6 +74,12 @@ La tarea empezó como un cambio de paleta (Gruvbox → Odelza). El 2026-11-05 se
 - **Billing:** ya está apagado (`IS_BILLING_ENABLED=false`). "Se va" significa que no aparece en ningún lado; el código no se borra, porque está mezclado con los permisos y el bloqueo enterprise.
 - **ChatGPT:** se quita la app oficial de Twenty. Se queda ChatGPT como conector propio con la URL del server de Odelza, que no requiere publicar nada.
 
+### 2026-11-10: un solo PR para las fases 1 a 5
+
+- **Qué se decidió:** el usuario prepara un PR de `feat/odelza-platform-theme` a `main` con todo lo hecho hasta la fase 5. Para estas fases reemplaza el punto 8 de la estrategia ("cada fase va en su propio PR"). Las fases 6 a 8 y el renombre pospuesto van en PRs nuevos.
+- **Por qué:** las fases 1 a 5 están aprobadas en la app real y dependen unas de otras (la fase 4 usa los textos y la paleta de las anteriores).
+- **Qué revisar en el PR:** sección "Revisión del PR y pendientes a futuro".
+
 ## Estado
 
 - **Fase 1 (tema Odelza):** replanteada el 2026-11-05. El commit `025bfb65d6` (traductor sobre la paleta de Twenty) queda como antecedente: se reemplaza su mecanismo y sus valores por la paleta oficial (ver "Paleta Odelza"). La paleta oficial se agregó al repo en `docs/brand/odelza-paleta-web.png` y se transcribió en este archivo.
@@ -81,10 +87,11 @@ La tarea empezó como un cambio de paleta (Gruvbox → Odelza). El 2026-11-05 se
 - **Fase 2 (logos y assets):** hecha y aprobada el 2026-11-05, commit `7e8c7ca8e8`.
 - **Fase 3 (metadatos):** implementada, commit `69cf4d9070`, imagen reconstruida y stack sano el 2026-11-09. Aprobada por el usuario el 2026-11-09. El renombre de paquetes y archivos (pasos 32 a 38) quedó pospuesto (ver "Decisiones").
 - **Fase 4 (textos):** replanteada el 2026-11-09 con el cambio en el código (ver "Decisiones"). Pasos 42 a 45 hechos e imagen reconstruida. Aprobada por el usuario el 2026-11-09 (paso 46).
-- **Fase 5 (enlaces, términos y dominio):** plan aprobado el 2026-11-09 (sitio `odelza.com`). Pasos 47 a 49 implementados el 2026-11-10; pendiente de la revisión del usuario en la app real (ver registro).
-- **Fases 6 y 7 (correos, cierre):** planeadas, sin empezar.
+- **Fase 5 (enlaces, términos y dominio):** plan aprobado el 2026-11-09 (sitio `odelza.com`). Pasos 47 a 49 implementados el 2026-11-10 y aprobados por el usuario en la app real el mismo día ("todo está bien").
+- **Fases 6 y 7 (correos, cierre):** planeadas, sin empezar. Van después de fusionar el PR de las fases 1 a 5.
+- **Renombre de código (pasos 32 a 38):** pospuesto el 2026-11-09, sin fase asignada. Ver "Lo que falta para terminar el plan".
 - **Fase 8 (ilustraciones):** tarea final, después de todo el branding. Decidida el 2026-11-05: no es prioritaria y el usuario aún no tiene todas las ilustraciones.
-- **Bloqueos:** ninguno para las fases 4 y 5: la fase 5 oculta lo que aún no tiene URL. La fase 6 necesita remitente y dominio (ver "Insumos pendientes").
+- **Bloqueos:** la fase 6 necesita el nombre y la dirección del remitente, y el dominio de la app con HTTPS para ver el logo en un cliente de correo real (ver "Insumos pendientes").
 
 ### Registro 2026-11-05 (implementación fase 1)
 
@@ -364,6 +371,12 @@ Agregada el 2026-11-09: los correos tienen su propia revisión completa. El plan
 
 ### Fase 7: cierre
 
+Incluye también, agregado el 2026-11-10:
+
+- Fotos de ejemplo de personas que se cargan desde `twentyhq.github.io` (`prefill-people.util.ts`, datos de los workspaces nuevos).
+- Enlace al código fuente para cumplir la AGPL (punto 7 de la estrategia): todavía no se hizo en ninguna fase. Decidir dónde va (Settings o pie) y a qué repo apunta, porque el de Odelza es privado.
+- Revisar con el usuario las excepciones de "Lo que sigue diciendo Twenty a propósito" y decidir cuáles se quedan.
+
 50. Barrido final con `git grep -w Twenty` sobre código visible, con lista de excepciones justificadas en este archivo.
 51. Verificación visual de la app completa con la imagen construida desde el fork.
 52. Registrar aquí lo hecho, cómo se verificó y el estado. Commit y PR solo con autorización explícita.
@@ -507,15 +520,78 @@ Fuera de la fase: los avatares y logos de `twentyhq.github.io` en el dev-seeder 
   - Las reglas propias de oxlint siguen sin correr por la misma falta de memoria.
 - **Nota para producción:** esta fase agrega comandos en `upgrade-version-command/`, así que el CD de imagen se detiene y hace falta el despliegue manual guardado (igual que la fase 4).
 
+## Revisión del PR y pendientes a futuro
+
+Actualizado el 2026-11-10, al cerrar la fase 5. Junta lo que quedó anotado en los registros de cada fase.
+
+### Antes de fusionar el PR
+
+- **Verificación en Linux o CI.** En Windows varias herramientas no corren completas. Falta correr en CI o en un contenedor `node:24`:
+  - `nx typecheck` de front y server, y `nx lint:diff-with-main` (en Windows usan sintaxis POSIX en `cmd`).
+  - Las reglas propias de lint (`twenty-oxlint-rules`) y el modo type-aware de oxlint: no corrieron en las fases 4 y 5 por falta de memoria.
+  - El build de Storybook (pendiente desde la fase 1).
+  - Los errores de typecheck que se dieron por previos (`front-components`, `twenty-sdk`, `@file-type/pdf`) deberían desaparecer con los paquetes compilados.
+- **Tipos GraphQL.** Los tipos del DPA se quitaron a mano de `twenty-front/src/generated/graphql.ts`. Hay que regenerarlos con el server en modo desarrollo (`npx nx run twenty-front:graphql:generate`), porque la imagen de Docker tiene la introspección apagada, y confirmar que el archivo no cambia.
+- **Test con el idioma de la máquina.** `formatDate.test.ts` falla en esta máquina porque el sistema está en español ("ene" en vez de "Jan"). En CI debería pasar; no es de este cambio.
+- **Tamaño del PR.** El codemod del tema de la fase 1 toca unos 1150 archivos. Conviene revisarlo commit por commit, no como un solo diff.
+
+### Antes de desplegar a producción
+
+- **Despliegue manual.** Las fases 4 y 5 agregan comandos en `upgrade-version-command/`. El CD de imagen se detiene a propósito con esos cambios, así que hace falta el despliegue manual guardado, con respaldo previo. Los comandos corren solos al arrancar y solo cambian lo que sigue igual a como venía:
+  - Instancia: `RenameCliApplicationRegistrationFastInstanceCommand` (registro "Twenty CLI" → "Odelza CLI").
+  - Workspaces: `rebrand-standard-agent-and-skills`, `update-standard-helper-agent-prompt` y `update-community-and-billing-command-menu-items`.
+- **Variables de producción** (`ODELZA.md`, "Production configuration"): `SERVER_URL` con HTTPS, `EMAIL_FROM_ADDRESS` y `EMAIL_FROM_NAME`. Mientras no se haga la fase 6, el nombre por defecto del remitente es "Felix from Twenty": hay que fijarlo en el `.env` de producción.
+- **Términos y privacidad.** Se ocultaron en la fase 5, pero hacen falta antes de abrir la app a usuarios reales (ver "Precedentes").
+- **AGPL.** Si la app se sirve al público, la licencia obliga a ofrecer el código fuente. Hoy no hay enlace (ver fase 7).
+- **Dominio.** La tarjeta MCP se identifica como `com.odelza/odelza` y apunta a `https://odelza.com`; eso supone que el dominio es de Odelza.
+
+### Probar cuando exista el dominio con HTTPS
+
+- Conector de ChatGPT: crear el conector con `https://<dominio>/mcp` y entrar con OAuth. Hay reportes de errores de OAuth de ChatGPT con algunos servidores, y el modo desarrollador depende del plan de ChatGPT de cada usuario.
+- Tarjetas de Claude y Replit, que también se activan solas con HTTPS.
+- og:image al compartir un enlace (fase 3).
+- Logo de los correos en un cliente real (fase 6, `odd/tasks/email-logo-server-url.md`).
+
+### Lo que sigue diciendo Twenty a propósito
+
+Se revisan en la fase 7. Hoy se quedan porque cambiarlas rompe algo o porque son de Twenty de verdad:
+
+- **Contratos y datos:** headers `X-Twenty-Webhook-*`, User-Agent `Twenty-Marketplace` y `Twenty-AppUpgrade`, el nombre guardado "Twenty standard application", universal identifiers, `npx create-twenty-app` y los paquetes de npm. En el helper de Python que usa la IA, la clase `TwentyMCP` y la variable `twenty`.
+- **Documentación de Twenty:** los 11 enlaces a `docs.twenty.com` del inventario del paso 49, incluido el widget "our documentation" del dashboard inicial.
+- **Enterprise:** Admin Panel > Enterprise, `ENTERPRISE_API_URL` y las tarjetas de funciones enterprise.
+- **Billing apagado:** el código sigue, con textos de Twenty Cloud ("Subdomain (yourco.twenty.com)", `CAL_LINK` "talk to us" de la prueba gratis). No se ve con `IS_BILLING_ENABLED=false`.
+- **DPA:** la plantilla, el servicio y la tabla `dpaAgreement` siguen en el server, sin rutas ni API.
+- **Correos:** remitente "(via Twenty)", footer, `WhatIsTwenty.tsx` y logo (fase 6).
+- **2FA:** el nombre que muestra la app de autenticación cambia solo para lo que se active desde la fase 4. Quien ya tenía 2FA sigue viendo "Twenty" hasta que lo vuelva a activar.
+- **Código:** comentarios, nombres de archivos, carpetas y paquetes (renombre pospuesto).
+
+### Notas técnicas para el futuro
+
+- **Memoria en Windows.** El servidor de lint de VS Code (`oxlint --lsp`, con el plugin JS de `twenty-oxlint-rules`) compromete unos 37 GB y deja a Windows cerca de su límite. Con eso, el build de la imagen puede tumbar la VM de Docker y oxlint por línea de comandos no arranca. Cerrar VS Code o desactivar la extensión durante el build lo evita.
+- **`scripts/odelza-backup.sh` en Git Bash:** convierte `/data` en una ruta de Windows y deja el tar vacío. Mientras no se corrija, el respaldo se hace a mano con `MSYS_NO_PATHCONV=1` solo en el `tar` (ver registros de las fases 3 a 5).
+- **Barrel de `twenty-ui`.** `npx nx run twenty-ui:generateBarrels` agrega `getTranslucentColorForSurface` a `src/theme/index.ts`, que quedó sin exportar desde la fase 1. No se corrigió en la fase 5 para no mezclar cambios.
+- **Traducciones a mano.** Los 5 mensajes nuevos de la fase 5 se tradujeron con los términos de cada catálogo, sin revisión de hablantes nativos. Conviene revisarlos en los idiomas que importen.
+- **Agente Helper.** Ya no busca en documentación; su prompt pide ayudar con lo que ve en el workspace. Si Odelza tiene documentación propia, se le puede volver a dar una herramienta de búsqueda (precedente "Documentación propia").
+- **Fase 1:** los nombres provisionales de colores (`*`) y los colores finos de etiquetas siguen abiertos para una tarea de ajuste.
+
+### Lo que falta para terminar el plan
+
+1. **Fase 6, correos:** remitente, footer, `WhatIsTwenty.tsx`, `<title>`, paleta, logo servido por el server, renombre de `twenty-emails` y revisión de las 12 plantillas. Necesita el remitente y el dominio.
+2. **Fase 7, cierre:** barrido de "Twenty" con la lista de excepciones, fotos de ejemplo, enlace AGPL, verificación visual completa y registro final.
+3. **Fase 8, ilustraciones:** cuando estén las ilustraciones de Odelza.
+4. **Renombre de código (pasos 32 a 38):** paquetes `@odelza/*`, carpetas, archivos y símbolos. Las decisiones del paso 33 siguen vigentes. Falta decidir cuándo, porque toca miles de archivos y conviene hacerlo con pocas ramas abiertas.
+5. **Precedentes de la fase 5,** cuando existan: términos y privacidad (antes de producción), redes, soporte, DPA, changelog, partners, app propia en ChatGPT y documentación propia.
+
 ## Insumos pendientes
 
-- **Fase 1:** ninguno. Los nombres provisionales (`*`) se revisan en la revisión visual.
-- **Fase 2:** logo Odelza: SVG maestro, isotipo cuadrado y variantes para fondo claro y oscuro. Logo recibido el 2026-11-05.
+- **Fase 1:** ninguno. Los nombres provisionales (`*`) quedan para una tarea de ajuste.
+- **Fase 2:** ninguno. Logo recibido el 2026-11-05.
 - **Fase 3:** ninguno. Tagline recibida el 2026-11-09.
+- **Fase 5:** ninguno. Sitio `odelza.com` recibido el 2026-11-09.
+- **Fase 6:** nombre y dirección del remitente de correos, y el dominio de la app con HTTPS.
 - **Fase 8:** ilustraciones propias de Odelza.
+- **Producción:** URLs de términos y privacidad, correo de contacto para la API (OpenAPI) y la decisión del enlace al código fuente (AGPL).
 - Confirmar que se avanza con el nombre "Odelza" aunque el registro de marca esté pendiente.
-- URLs propias de términos, privacidad y documentación, o la decisión de ocultar esos enlaces.
-- Nombre y dirección del remitente de correos, y el dominio cuando exista.
 
 ## Paleta Odelza
 
