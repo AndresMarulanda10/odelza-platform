@@ -67,16 +67,24 @@ La tarea empezó como un cambio de paleta (Gruvbox → Odelza). El 2026-11-05 se
 - **Traducciones:** un script pasa las traducciones existentes de cada mensaje viejo a su mensaje nuevo en los 34 idiomas, cambiando "Twenty" por "Odelza". Todas las traducciones actuales escriben "Twenty" en letras latinas, también en japonés, chino y árabe, así que el cambio es directo.
 - **Crowdin:** las traducciones pasan a ser nuestras. Los workflows `i18n-pull.yaml` e `i18n-push.yaml` apuntan al Crowdin de Twenty y se desactivan.
 
+### 2026-11-09: alcance de la fase 5
+
+- **Qué se decidió:** lo que es exclusivo de Twenty se quita. Lo que Odelza va a tener pero aún no tiene (redes, soporte, términos, privacidad, DPA) se quita ahora y queda registrado en "Precedentes" para implementarlo después. La documentación de Twenty se queda, inventariada como de Twenty. La licencia enterprise se queda.
+- **Por qué:** la app ya está brandeada; el usuario quiere que quede lo más cercana a Odelza posible y que no muestre contenido, contratos ni servicios de otra empresa.
+- **Billing:** ya está apagado (`IS_BILLING_ENABLED=false`). "Se va" significa que no aparece en ningún lado; el código no se borra, porque está mezclado con los permisos y el bloqueo enterprise.
+- **ChatGPT:** se quita la app oficial de Twenty. Se queda ChatGPT como conector propio con la URL del server de Odelza, que no requiere publicar nada.
+
 ## Estado
 
 - **Fase 1 (tema Odelza):** replanteada el 2026-11-05. El commit `025bfb65d6` (traductor sobre la paleta de Twenty) queda como antecedente: se reemplaza su mecanismo y sus valores por la paleta oficial (ver "Paleta Odelza"). La paleta oficial se agregó al repo en `docs/brand/odelza-paleta-web.png` y se transcribió en este archivo.
 - **Fase 1, revisión:** el 2026-11-05 el usuario aprobó los colores en la app real ("por ahora"). Si hacen falta ajustes de color, se agregan como tarea previa a la fase que los necesite. Commit `a4188ebe82`.
 - **Fase 2 (logos y assets):** hecha y aprobada el 2026-11-05, commit `7e8c7ca8e8`.
-- **Fase 3 (metadatos):** implementada, commit `69cf4d9070`, imagen reconstruida y stack sano el 2026-11-09. Pendiente de la revisión del usuario en la app real. El renombre de paquetes y archivos (pasos 32 a 38) quedó pospuesto (ver "Decisiones").
-- **Fase 4 (textos):** replanteada el 2026-11-09 con el cambio en el código (ver "Decisiones"). Pasos 42 a 45 hechos e imagen reconstruida; pendiente de la revisión del usuario (paso 46).
-- **Fases 5 a 7 (enlaces y términos, correos, cierre):** planeadas, sin empezar.
+- **Fase 3 (metadatos):** implementada, commit `69cf4d9070`, imagen reconstruida y stack sano el 2026-11-09. Aprobada por el usuario el 2026-11-09. El renombre de paquetes y archivos (pasos 32 a 38) quedó pospuesto (ver "Decisiones").
+- **Fase 4 (textos):** replanteada el 2026-11-09 con el cambio en el código (ver "Decisiones"). Pasos 42 a 45 hechos e imagen reconstruida. Aprobada por el usuario el 2026-11-09 (paso 46).
+- **Fase 5 (enlaces, términos y dominio):** plan aprobado el 2026-11-09 (sitio `odelza.com`). Pasos 47 a 49 implementados el 2026-11-10; pendiente de la revisión del usuario en la app real (ver registro).
+- **Fases 6 y 7 (correos, cierre):** planeadas, sin empezar.
 - **Fase 8 (ilustraciones):** tarea final, después de todo el branding. Decidida el 2026-11-05: no es prioritaria y el usuario aún no tiene todas las ilustraciones.
-- **Bloqueos:** ninguno para la fase 4. Las fases 5 y 6 necesitan URLs, remitente y dominio (ver "Insumos pendientes").
+- **Bloqueos:** ninguno para las fases 4 y 5: la fase 5 oculta lo que aún no tiene URL. La fase 6 necesita remitente y dominio (ver "Insumos pendientes").
 
 ### Registro 2026-11-05 (implementación fase 1)
 
@@ -285,9 +293,65 @@ Replanteada el 2026-11-09 (ver "Decisiones"). Alcance: todo texto que ve el usua
 
 ### Fase 5: enlaces, términos y dominio
 
-47. Términos, privacidad y documentación: cambiar a URLs de Odelza (configurables) u ocultar. Incluye `FooterNote.tsx` y `DOCUMENTATION_BASE_URL`.
-48. Ocultar Community, partners y DPA si no aplican. Verificar primero si ya quedan ocultos con billing desactivado.
-49. Documentar en `ODELZA.md` las variables de dominio y correo para producción (`SERVER_URL`, `EMAIL_FROM_NAME`, `EMAIL_FROM_ADDRESS`, subdominios).
+Replanteada el 2026-11-09 (ver "Decisiones"). Inventario hecho sobre el código el 2026-11-09.
+
+47. **Quitar lo exclusivo de Twenty y lo que Odelza aún no tiene.**
+
+    | Qué | Dónde | Qué se hace |
+    |---|---|---|
+    | Página Community: Discord de Twenty, X `@twentycrm`, partners (`twenty.com/partners/list`), changelog (`twenty.com/releases`) | `pages/settings/community/SettingsCommunity.tsx`, ruta en `SettingsRoutes.tsx`, ítem en `useSettingsNavigationItems.tsx`, `title-utils.ts` | Se quita la página, la ruta y el ítem del menú. Redes, partners y changelog van a "Precedentes" |
+    | Funciones beta (lab) que viven dentro de Community: relaciones muchos a muchos y hero de descubrimiento | `settings/lab/components/SettingsLabContent.tsx` | Pasan a su propia sección "Funciones beta" en Settings > Other, con su ruta e ítem de menú (confirmado por el usuario el 2026-11-09) |
+    | Chat de soporte (Front Chat de Twenty) | `useSettingsNavigationItems.tsx`, `MultiWorkspaceDropdownDefaultComponents.tsx`, `support/hooks/useInstantiateSupportChat.ts` | Ya está oculto sin `SUPPORT_FRONT_CHAT_ID`. Se verifica que no aparezca; va a "Precedentes" |
+    | DPA dentro de la app: PDF "pre-signed by Twenty" con la plantilla de Twenty.com SAS, su DPO y sus proveedores | Front: `pages/settings/legal/*`, `modules/settings/legal/*`, rutas `LegalDpa`, `LegalDpaNew` y `/dpa`. Server: `core-modules/dpa/` | Se quitan las rutas y el resolver. Va a "Precedentes" |
+    | Sellos PwC, République Française, GDPR y SOC2 | `onboarding/components/import-contacts/OnboardingTrustBadges.tsx`, `public/images/onboarding/trust-badges/` | Se quitan |
+    | App oficial de Twenty en ChatGPT | `settings/mcp-and-apis/constants/McpSetup.ts` (`chatGptTwentyAppUrl`) | Se quita (ver paso 48 para el conector propio) |
+    | Ayuda de la IA `search_help_center`: manda las preguntas a `twenty-help-search.com` | `tool/tools/search-help-center-tool/`, `common-preload-tools.const.ts`, `action-tool.provider.ts`, `mcp-protocol.service.ts`, `action-tool-label.constant.ts`, menciones en `build-mcp-server-instructions.util.ts` y `twenty-mcp-helper.const.ts` | Se quita la herramienta y sus menciones |
+    | Billing: planes, pagos, créditos, "Subdomain (yourco.twenty.com)" | `settings/billing/*`, banners de `information-banner/components/billing/` | Ya apagado. Se verifica que ningún menú, banner ni tarjeta de "upgrade" lleve a billing |
+    | Enlace de precios de Twenty y enlace al GitHub de Twenty, sin uso | `twenty-ui/src/navigation/Link/constants/TwentyPricingLink.ts` y `GithubLink.ts` | Se borran las constantes |
+
+48. **Ocultar los enlaces legales y poner datos de Odelza en lo público de MCP y API.**
+
+    | Qué | Dónde | Qué se hace |
+    |---|---|---|
+    | "By using Odelza, you agree to the Terms of Service and Data Processing Agreement" (login y registro) y "Privacy Policy · Terms of Service" (selección de workspace), con enlaces a `twenty.com/legal/*` | `auth/sign-in-up/components/FooterNote.tsx`, `SignInUpStandardContent.tsx` | Se ocultan. Va a "Precedentes" |
+    | ChatGPT como conector propio | `buildMcpSetupCategories.tsx`, `McpSetup.ts`, `mcpSetup.test.ts` | La tarjeta deja de abrir la app de Twenty y explica cómo crear el conector con la URL del MCP de Odelza. Desactivada sin HTTPS, como la de Claude |
+    | Tarjeta MCP (`/.well-known/mcp`): `name: com.twenty/twenty`, `websiteUrl: twenty.com`, `repository: github.com/twentyhq/twenty` | `well-known/utils/build-mcp-server-card.util.ts` y su test | Se adecua a Odelza, no se quita (decisión del usuario del 2026-11-09): `name` con identificador de Odelza, `websiteUrl` con la URL de Odelza, descripción de Odelza. `repository` apunta al de Twenty y se quita, porque el repo de Odelza es privado |
+    | OpenAPI: `termsOfService` (código de conducta de Twenty), `contact.email: felix@twenty.com`, `externalDocs` "Find out more about Twenty", licencia con enlace al repo de Twenty | `open-api/utils/base-schema.utils.ts` | Se adecua a Odelza: contacto de Odelza, `externalDocs` "Find out more about Odelza" con la URL de Odelza, términos cuando existan. La licencia sigue siendo AGPL-3.0, con enlace al texto oficial de la licencia |
+    | Valores de ejemplo con `twenty.com` | `SettingsCompositeFieldTypeConfigs.ts` (correos `tim@twenty.com` y otros en la vista previa del campo Emails), `prefill-workflows.util.ts` (salida de muestra del workflow "Extract domain from email") | Pasan a `example.com` |
+
+49. **Documentación, precedentes, `ODELZA.md` y verificación.**
+    - La documentación de Twenty se queda. Inventario de enlaces que llevan a ella:
+
+      | Dónde se ve | Archivo |
+      |---|---|
+      | "Documentation" en la barra lateral | `navigation/components/NavigationDrawerOtherSection.tsx` |
+      | Settings > Other > Documentation | `settings/hooks/useSettingsNavigationItems.tsx` |
+      | Chat de IA sin API key configurada | `ai/components/AiChatApiKeyNotConfiguredMessage.tsx` |
+      | Settings > Apps > Developer, "Read documentation" | `pages/settings/applications/tabs/SettingsApplicationsDeveloperTab.tsx` |
+      | Descripción de las apps estándar y propias (`twenty.com/developers/...`) | `getStandardApplicationDescription.ts`, `getCustomApplicationDescription.ts` |
+      | Aviso de buzón compartido en Communications | `pages/settings/communications/SettingsWorkspaceCommunicationGroupChannelDetail.tsx` |
+      | Ayuda del formulario en workflows | `workflow/.../form-action/components/WorkflowEditActionFormBuilder.tsx` |
+      | Widget "our documentation" del dashboard inicial (guardado en la base al crear el workspace) | `compute-my-first-dashboard-widgets.util.ts` |
+      | Catálogo público de la API (`/.well-known/api-catalog`) | `well-known/utils/build-api-catalog.util.ts` |
+      | Créditos de billing (oculto con billing apagado) | `settings/billing/components/SettingsBillingCreditsSection.tsx` |
+      | Base de todas las URLs | `twenty-shared/src/constants/DocumentationBaseUrl.ts` (`https://docs.twenty.com`) |
+
+    - Se quedan también, por ser de Twenty y funcionales: Admin Panel > Enterprise, `ENTERPRISE_API_URL` y las tarjetas de funciones enterprise.
+    - Fuera de esta fase, para la fase 7: fotos de ejemplo de personas servidas desde `twentyhq.github.io` (`prefill-people.util.ts`).
+    - Documentar en `ODELZA.md` las variables de producción (`SERVER_URL`, `EMAIL_FROM_NAME`, `EMAIL_FROM_ADDRESS`, subdominios), con lo que pasa si se dejan vacías.
+    - Tests de lo tocado, lint, imagen reconstruida y revisión del usuario en la app real.
+
+#### Precedentes (para implementar después)
+
+Se quitaron en la fase 5 porque Odelza aún no los tiene. Al retomarlos, este es el punto de partida:
+
+- **Redes y comunidad:** cuando existan las redes de Odelza, volver a una página de comunidad (el código de Twenty queda en git, commit de la fase 5) con las URLs de Odelza, idealmente desde variables de configuración.
+- **Soporte:** el front ya integra Front Chat por `SUPPORT_DRIVER` y `SUPPORT_FRONT_CHAT_ID`. Si Odelza usa otra herramienta, agregar su integración en `support/hooks/useInstantiateSupportChat.ts`.
+- **Términos y privacidad:** son necesarios antes de producción. Volver a mostrar el texto de `FooterNote.tsx` con las URLs de Odelza, desde variables que el server pase al front; si están vacías, el texto no se muestra.
+- **DPA:** el generador de PDF es genérico (plantilla, versión, firma y región en `core-modules/dpa/`). Con un DPA propio de Odelza (responsable, DPO, proveedores reales), se cambia la plantilla y se vuelven a activar las rutas.
+- **Changelog y partners:** solo si Odelza publica notas de versión u ofrece implementación.
+- **App propia de Odelza en ChatGPT:** opcional. Requiere publicarla en el directorio de ChatGPT, con dominio, política de privacidad y revisión de OpenAI.
+- **Documentación propia:** si se hace, `DOCUMENTATION_BASE_URL` y los enlaces del inventario del paso 49 pasan a ella.
 
 ### Fase 6: correos
 
@@ -406,6 +470,34 @@ Fuera de la fase: los avatares y logos de `twentyhq.github.io` en el dev-seeder 
 - **Docker (2026-11-09):** respaldo en `backups/20261109T225435Z-pre-phase4` (mismos pasos a mano que en la fase 3). Imagen `odelza-local` reconstruida (`4a52fe73`) y stack recreado: app healthy, jobs arriba, sin reinicios, `/healthz` 200. En el arranque corrieron `2.21.0_RenameCliApplicationRegistrationFastInstanceCommand_1794263745624` y `RebrandStandardAgentAndSkillsCommand` (1 agente y 1 skill, 1 workspace bien, 0 fallos). En la base, el agente `helper` y la skill `code-interpreter` ya no dicen Twenty. La tarjeta MCP responde con `title: "Odelza"`. El bundle servido tiene "Bienvenido a Odelza" en `es-ES` y ninguna "Bienvenido a Twenty".
 - **Pendiente:** revisión del usuario en la app real (paso 46).
 - **Para la fase 5:** quitar la opción de ChatGPT del setup de MCP (abre la app oficial de Twenty en ChatGPT y su texto ahora dice Odelza). Revisar `name: 'com.twenty/twenty'`, `websiteUrl` y `repository` de la tarjeta MCP, el `externalDocs` de OpenAPI (texto y URL a twenty.com) y la herramienta `search_help_center`, que busca en la documentación de Twenty.
+
+### Registro 2026-11-10 (fase 5, pasos 47 a 49)
+
+- **Quitado (paso 47):**
+  - Página Community (Discord y X de Twenty, partners, changelog), su ruta, su ítem del menú y su portada. Las funciones beta pasan a su propia página "Beta features" en Settings > Other (`pages/settings/lab/SettingsLab.tsx`, ruta `settings/lab`, `SettingsPath.Lab`).
+  - DPA: páginas, componentes y rutas del front (`/settings/legal/dpa`, `/dpa`), el resolver GraphQL del server y su test de integración. Encontrado al implementar: al crear un workspace con `IS_MULTIWORKSPACE_ENABLED` el server guardaba la aceptación del DPA de Twenty (`sign-in-up.service.ts`); también se quitó. La plantilla, el servicio y la tabla se quedan para el precedente. Los tipos del DPA se quitaron a mano de `src/generated/graphql.ts`.
+  - Sellos de confianza del onboarding y sus imágenes.
+  - Ayuda de la IA `search_help_center`: herramienta, precarga, anotaciones MCP, etiqueta, instrucciones del MCP y del helper de Python, y las variables `MINTLIFY_*`. Encontrado al implementar: el agente estándar `helper` dependía de esa herramienta; su prompt se reescribió para ayudar con lo que ve en el workspace.
+  - Constantes sin uso de twenty-ui con enlaces a Twenty: `GITHUB_LINK`, `GithubVersionLink`, `TWENTY_PRICING_LINK`. `CAL_LINK` ("talk to us" de Twenty) se queda: solo lo usa la pantalla de prueba gratis de billing, que está apagado.
+  - Billing: encontrado al implementar que el Cmd+K mostraba "Go to Billing Settings" con billing apagado. Se agregó `isBillingEnabled` al contexto de los comandos y la condición del ítem pasa a `permissionFlags.WORKSPACE and isBillingEnabled`.
+- **Adecuado a Odelza (paso 48):**
+  - El pie del login ya no muestra el texto legal ni los enlaces a twenty.com; solo queda el botón "Bypass SSO" cuando aplica.
+  - ChatGPT: la tarjeta pasa a "Other clients" como conector propio (enlace a la ayuda de OpenAI sobre el modo desarrollador), desactivada sin HTTPS como la de Claude.
+  - Tarjeta MCP: `name: com.odelza/odelza`, `websiteUrl: https://odelza.com`, sin `repository`.
+  - OpenAPI: sin términos ni contacto de Twenty, licencia AGPL-3.0 con enlace a gnu.org, `externalDocs` "Find out more about Odelza" con `https://odelza.com`, archivo de ejemplo `odelza-<schema>.json`. El correo de contacto se agrega cuando exista.
+  - Ejemplos con `example.com` en la vista previa del campo Emails y en el workflow de muestra.
+  - Ítem del Cmd+K "Go to Community Settings" pasa a "Go to Beta Features Settings" (`/settings/lab`, ícono `IconFlask`).
+- **Datos guardados (comandos de actualización 2.21):**
+  - `upgrade:2-21:update-standard-helper-agent-prompt`: cambia el prompt del agente `helper` solo si sigue siendo el exacto anterior.
+  - `upgrade:2-21:update-community-and-billing-command-menu-items`: actualiza los dos ítems del Cmd+K solo si siguen como venían.
+- **Traducciones:** `lingui extract` quitó 41 mensajes del front (DPA, Community, legal, ayuda) y 1 del server. Los 5 mensajes nuevos ("Beta features", su título, la descripción de "Quick install" y los dos de ChatGPT) se tradujeron a mano en los 29 idiomas, con los términos que cada catálogo ya usaba.
+- **Paso 49:** variables de producción documentadas en `ODELZA.md` ("Production configuration"). La documentación de Twenty y la licencia enterprise se quedan según el inventario del plan.
+- **Verificación:**
+  - Tests: server 56 suites y 345 tests; shared 3 suites; front 110 suites, solo falla `formatDate.test.ts`, que también falla sin estos cambios por el idioma de la máquina ("ene" en vez de "Jan").
+  - Typecheck de server y front: solo los errores previos por paquetes sin compilar.
+  - Lint: reglas estándar de oxlint sin errores. Las reglas propias (`twenty-oxlint-rules`) no corrieron: oxlint no logra reservar memoria para su plugin JS en esta máquina. Formato con oxfmt corregido.
+- **Respaldo:** `backups/20261110T125253Z-pre-phase5`.
+- **Nota para producción:** esta fase agrega comandos en `upgrade-version-command/`, así que el CD de imagen se detiene y hace falta el despliegue manual guardado (igual que la fase 4).
 
 ## Insumos pendientes
 

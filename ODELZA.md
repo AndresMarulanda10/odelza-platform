@@ -100,6 +100,29 @@ ENCRYPTION_KEY=<output of: openssl rand -base64 32>
 STORAGE_TYPE=local
 ```
 
+## Production configuration
+
+Values to set in the production `.env` once the domain and sender exist. The
+public site is `https://odelza.com`; the app domain below is an example.
+
+| Variable | Value | If left empty |
+|---|---|---|
+| `SERVER_URL` | Public HTTPS URL of the app, e.g. `https://app.odelza.com` | Defaults to localhost: links in emails, OAuth, the MCP URL and the API docs point to the wrong host |
+| `FRONTEND_URL` | Only when the front is served from another URL than `SERVER_URL` | The front uses `SERVER_URL` |
+| `EMAIL_FROM_ADDRESS` | Sender address on the Odelza domain, e.g. `noreply@odelza.com` | Defaults to `noreply@yourdomain.com`; mail providers reject or flag it |
+| `EMAIL_FROM_NAME` | Sender name, e.g. `Odelza` | Defaults to `Felix from Twenty` (to be reviewed in phase 6 of the branding task) |
+| `IS_MULTIWORKSPACE_ENABLED` | `true` only when each workspace gets its own subdomain | One workspace per instance, no subdomains |
+| `DEFAULT_SUBDOMAIN` | Subdomain of the login page in multi-workspace mode, e.g. `app` | `app` |
+| `IS_BILLING_ENABLED` | Keep `false`; billing is not part of Odelza | Billing stays off |
+| `SUPPORT_DRIVER` / `SUPPORT_FRONT_CHAT_ID` | Keep unset until Odelza has a support channel | No support chat is shown |
+
+MCP clients that only accept HTTPS install links (Claude, Replit, ChatGPT
+custom connectors) are enabled automatically once `SERVER_URL` uses HTTPS.
+
+Removed on purpose in branding phase 5 and kept as precedents for later:
+terms of service and privacy links, the in-app DPA, the community page and the
+support chat. See `odd/tasks/odelza-platform-theme.md` ("Precedentes").
+
 ## Backup and restore
 
 Create a timestamped PostgreSQL and `server-local-data` backup. The script
