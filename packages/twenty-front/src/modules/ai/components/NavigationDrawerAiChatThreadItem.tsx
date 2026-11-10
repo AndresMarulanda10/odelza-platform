@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { IconArchive, IconComment } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { AiChatThreadItemMenu } from '@/ai/components/AiChatThreadItemMenu';
 import { AI_CHAT_THREAD_ACTIONS_SURFACE } from '@/ai/constants/AiChatThreadActionsSurface';
@@ -17,16 +17,16 @@ import { beautifyPastDateRelativeToNowShort } from '~/utils/date-utils';
 const StyledRightOptions = styled.div`
   align-items: center;
   display: flex;
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   justify-content: flex-end;
-  min-width: ${themeCssVariables.spacing[6]};
+  min-width: ${odelzaThemeCssVariables.spacing[6]};
   position: relative;
 `;
 
 const StyledTimestamp = styled.span<{ $isDropdownOpen: boolean }>`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   opacity: ${({ $isDropdownOpen }) => ($isDropdownOpen ? 0 : 1)};
   transition: opacity 150ms;
 

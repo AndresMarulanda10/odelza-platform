@@ -3,7 +3,10 @@
 import { styled } from '@linaria/react';
 import { IconVariablePlus } from 'twenty-ui/icon';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { type VariablePickerComponent } from '@/object-record/record-field/ui/form-types/types/VariablePickerComponent';
 import { SettingsRolePermissionsObjectLevelRecordLevelPermissionMeValueSelect } from '@/settings/roles/role-permissions/object-level-permissions/record-level-permissions/components/SettingsRolePermissionsObjectLevelRecordLevelPermissionMeValueSelect';
@@ -17,38 +20,40 @@ const StyledRecordLevelPermissionPickerContainer = styled.div<{
   background-color: ${({ multiline }) =>
     multiline
       ? 'transparent'
-      : themeCssVariables.background.transparent.lighter};
+      : odelzaThemeCssVariables.background.transparent.lighter};
   border: ${({ multiline }) =>
-    multiline ? 'none' : `1px solid ${themeCssVariables.border.color.medium}`};
+    multiline
+      ? 'none'
+      : `1px solid ${odelzaThemeCssVariables.border.color.medium}`};
 
   border-bottom-right-radius: ${({ multiline }) =>
-    multiline ? '0' : themeCssVariables.border.radius.sm};
+    multiline ? '0' : odelzaThemeCssVariables.border.radius.sm};
   border-radius: ${({ multiline }) =>
-    multiline ? themeCssVariables.border.radius.sm : '0'};
+    multiline ? odelzaThemeCssVariables.border.radius.sm : '0'};
   border-top-right-radius: ${({ multiline }) =>
-    multiline ? '0' : themeCssVariables.border.radius.sm};
+    multiline ? '0' : odelzaThemeCssVariables.border.radius.sm};
   color: ${({ multiline }) =>
     multiline
-      ? themeCssVariables.font.color.primary
-      : themeCssVariables.font.color.tertiary};
+      ? odelzaThemeCssVariables.font.color.primary
+      : odelzaThemeCssVariables.font.color.tertiary};
   cursor: ${({ multiline }) => (multiline ? 'default' : 'pointer')};
   display: flex;
   justify-content: center;
   padding: ${({ multiline }) =>
     multiline
-      ? `${themeCssVariables.spacing['0.5']} ${themeCssVariables.spacing[0]}`
-      : themeCssVariables.spacing[2]};
+      ? `${odelzaThemeCssVariables.spacing['0.5']} ${odelzaThemeCssVariables.spacing[0]}`
+      : odelzaThemeCssVariables.spacing[2]};
   position: ${({ multiline }) => (multiline ? 'absolute' : 'relative')};
   right: ${({ multiline }) =>
-    multiline ? themeCssVariables.spacing[0] : 'auto'};
+    multiline ? odelzaThemeCssVariables.spacing[0] : 'auto'};
   top: ${({ multiline }) =>
-    multiline ? themeCssVariables.spacing[0] : 'auto'};
+    multiline ? odelzaThemeCssVariables.spacing[0] : 'auto'};
 
   &:hover {
     background-color: ${({ readonly }) =>
       readonly
         ? 'transparent'
-        : themeCssVariables.background.transparent.light};
+        : odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 

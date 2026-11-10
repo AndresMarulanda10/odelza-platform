@@ -12,14 +12,14 @@ import {
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { IconColorSwatch, IconPlus, IconTrash } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type CustomSideMenuProps = {
   editor: typeof BLOCK_SCHEMA.BlockNoteEditor;
 };
 
 const StyledDivToCreateGap = styled.div`
-  width: ${themeCssVariables.spacing[2]};
+  width: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const CustomSideMenu = ({ editor }: CustomSideMenuProps) => {

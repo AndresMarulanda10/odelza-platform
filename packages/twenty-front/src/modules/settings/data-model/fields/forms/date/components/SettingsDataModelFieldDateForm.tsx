@@ -14,7 +14,7 @@ import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { IconSlash } from 'twenty-ui/icon';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const fieldDateSettings = z.discriminatedUnion('displayFormat', [
   z.object({
@@ -34,7 +34,7 @@ export const settingsDataModelFieldDateFormSchema = z.object({
 });
 
 const StyledTextInputContainer = styled.div`
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
   padding-top: 0;
 `;
 

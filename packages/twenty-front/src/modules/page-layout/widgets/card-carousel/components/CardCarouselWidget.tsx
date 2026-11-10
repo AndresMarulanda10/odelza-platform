@@ -22,7 +22,7 @@ import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { AppPath } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useNavigateApp } from '~/hooks/useNavigateApp';
 
 const StyledContainer = styled.div`
@@ -30,17 +30,17 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
   width: 100%;
 `;
 
 const StyledNotice = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex-direction: column;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: center;
   min-height: 8rem;
   text-align: center;

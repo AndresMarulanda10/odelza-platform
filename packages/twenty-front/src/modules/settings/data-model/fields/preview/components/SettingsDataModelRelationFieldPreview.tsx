@@ -11,7 +11,10 @@ import { SettingsDataModelSetFieldValueEffect } from '@/settings/data-model/fiel
 import { useFieldPreviewValue } from '@/settings/data-model/fields/preview/hooks/useFieldPreviewValue';
 import { useIcons } from 'twenty-ui/icon';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { v4 } from 'uuid';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
 
@@ -27,28 +30,30 @@ type SettingsDataModelRelationFieldPreviewProps = {
 
 const StyledFieldPreview = styled.div<{ shrink?: boolean }>`
   align-items: center;
-  background-color: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.primary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   height: fit-content;
   line-height: 24px;
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
   overflow: hidden;
   padding: 0
     ${({ shrink }) =>
-      shrink ? themeCssVariables.spacing[1] : themeCssVariables.spacing[2]};
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[2]};
+      shrink
+        ? odelzaThemeCssVariables.spacing[1]
+        : odelzaThemeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
   white-space: nowrap;
 `;
 
 const StyledFieldLabel = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const SettingsDataModelRelationFieldPreview = ({

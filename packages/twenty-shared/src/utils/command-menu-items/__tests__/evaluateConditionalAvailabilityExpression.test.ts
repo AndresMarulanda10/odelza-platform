@@ -29,6 +29,7 @@ const buildContext = (
   targetObjectWritePermissions: {},
   canImpersonate: false,
   canAccessFullAdminPanel: false,
+  isBillingEnabled: false,
   objectMetadataItem: {},
   objectMetadataLabel: '',
   ...overrides,

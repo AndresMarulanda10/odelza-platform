@@ -1,7 +1,7 @@
 import type { WorkflowRunStepStatus } from '@/workflow/types/Workflow';
 import { getWorkflowDiagramColors } from '@/workflow/workflow-diagram/utils/getWorkflowDiagramColors';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledNodeTitle = styled.div<{
   highlight?: boolean;
@@ -18,8 +18,8 @@ const StyledNodeTitle = styled.div<{
     return selected ? colors.selected.titleColor : colors.unselected.titleColor;
   }};
   display: -webkit-box;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   overflow: hidden;
 
   text-overflow: ellipsis;

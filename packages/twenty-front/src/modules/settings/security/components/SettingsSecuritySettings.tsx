@@ -34,7 +34,7 @@ import {
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
 import { Card } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { UpdateWorkspaceDocument } from '~/generated-metadata/graphql';
 import { OrganizationAdornment } from '~/pages/settings/enterprise/components/OrganizationAdornment';
 
@@ -45,7 +45,7 @@ const StyledContainer = styled.div`
 const StyledMainContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[10]};
+  gap: ${odelzaThemeCssVariables.spacing[10]};
   min-height: 200px;
 `;
 

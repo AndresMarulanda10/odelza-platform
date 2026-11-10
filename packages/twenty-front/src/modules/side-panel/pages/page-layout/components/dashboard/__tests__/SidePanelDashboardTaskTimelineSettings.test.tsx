@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { I18nProvider } from '@lingui/react';
 import { i18n } from '@lingui/core';
 import { Provider, createStore } from 'jotai';
-import { indigo } from '@radix-ui/colors';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { SidePanelDashboardTaskTimelineSettings } from '@/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings';
 import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadataItems';
 import { useObjectPermissions } from '@/object-record/hooks/useObjectPermissions';
@@ -270,10 +270,10 @@ describe('Timeline native configuration controls (no Select/control mocks)', () 
     click('Bar color');
     click('Blue');
     expect(update).toHaveBeenLastCalledWith({
-      configToUpdate: { barColor: indigo.indigo9 },
+      configToUpdate: { barColor: ODELZA_THEME_LIGHT.color.blue },
     });
     expect(screen.getByPlaceholderText('Hex color')).toHaveValue(
-      indigo.indigo9,
+      ODELZA_THEME_LIGHT.color.blue,
     );
   });
 });

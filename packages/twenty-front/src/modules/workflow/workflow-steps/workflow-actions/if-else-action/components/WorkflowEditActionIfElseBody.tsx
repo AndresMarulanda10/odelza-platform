@@ -30,13 +30,13 @@ import { type StepIfElseBranch } from 'twenty-shared/workflow';
 import { IconPlus } from 'twenty-ui/icon';
 import { HorizontalSeparator } from 'twenty-ui/layout';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: start;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 type WorkflowEditActionIfElseBodyProps = {
@@ -247,7 +247,7 @@ export const WorkflowEditActionIfElseBody = ({
   };
 
   return (
-    <WorkflowStepBody rowGap={themeCssVariables.spacing[2]}>
+    <WorkflowStepBody rowGap={odelzaThemeCssVariables.spacing[2]}>
       <InputLabel>{t`Conditions`}</InputLabel>
       <StyledContainer>
         {branches.map((branch, branchIndex) => {

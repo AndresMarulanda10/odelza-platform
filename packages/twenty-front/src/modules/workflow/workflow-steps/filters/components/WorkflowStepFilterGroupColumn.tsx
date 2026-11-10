@@ -6,7 +6,7 @@ import { WorkflowStepFilterContext } from '@/workflow/workflow-steps/filters/sta
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { type StepFilterGroup } from 'twenty-shared/types';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type WorkflowStepFilterGroupColumnProps = {
   parentStepFilterGroup: StepFilterGroup;
@@ -17,7 +17,7 @@ type WorkflowStepFilterGroupColumnProps = {
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: space-between;
 `;
 

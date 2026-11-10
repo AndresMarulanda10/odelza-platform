@@ -15,7 +15,7 @@ import {
   SegmentedControl,
   type SegmentedControlOption,
 } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   BillingPlanKey,
   SubscriptionInterval,
@@ -30,7 +30,7 @@ type SettingsBillingPlanComparisonTableProps = {
   planPrices: SettingsBillingPlanPrices;
 };
 
-const STICKY_HEADER_TOP_OFFSET = themeCssVariables.spacing[6];
+const STICKY_HEADER_TOP_OFFSET = odelzaThemeCssVariables.spacing[6];
 
 const StyledContentContainer = styled.div`
   max-width: 694px;
@@ -38,7 +38,7 @@ const StyledContentContainer = styled.div`
 `;
 
 const StyledStickyHeaderContainer = styled.div`
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   margin-top: calc(${STICKY_HEADER_TOP_OFFSET} * -1);
   padding-top: ${STICKY_HEADER_TOP_OFFSET};
   position: sticky;
@@ -49,14 +49,14 @@ const StyledStickyHeaderContainer = styled.div`
 
 const StyledComparisonTable = styled.div`
   display: grid;
-  row-gap: ${themeCssVariables.spacing[2]};
+  row-gap: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
 const StyledComparisonHeaderGrid = styled.div`
-  background: ${themeCssVariables.border.color.medium};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background: ${odelzaThemeCssVariables.border.color.medium};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -74,67 +74,67 @@ const StyledComparisonBodyGrid = styled.div`
 
 const StyledHeaderCell = styled.div`
   align-items: flex-start;
-  background: ${themeCssVariables.background.secondary};
+  background: ${odelzaThemeCssVariables.background.secondary};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[5]};
+  gap: ${odelzaThemeCssVariables.spacing[5]};
   justify-content: space-between;
   min-height: 104px;
   min-width: 0;
   overflow: clip;
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledHeaderText = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   min-width: 0;
   width: 100%;
 `;
 
 const StyledPlanTitle = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   line-height: 1.4;
   min-height: 20px;
   width: 100%;
 `;
 
 const StyledComparisonTitle = styled(StyledPlanTitle)`
-  color: ${themeCssVariables.font.color.secondary};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
 `;
 
 const StyledPlanSubtitle = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   line-height: 1.6;
 `;
 
 const StyledPriceLine = styled.div`
   align-items: baseline;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
 const StyledPrice = styled.span`
-  font-size: ${themeCssVariables.font.size.lg};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-size: ${odelzaThemeCssVariables.font.size.lg};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   line-height: 1.2;
 `;
 
 const StyledPriceSuffix = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   line-height: 1.4;
 `;
 

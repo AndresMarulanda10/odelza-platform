@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { Avatar, AvatarGroup } from 'twenty-ui/data-display';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { getAbsoluteImageUrl } from '~/utils/image/getAbsoluteImageUrl';
 
@@ -31,7 +31,7 @@ const StyledAvatarStackContainer = styled.div`
 `;
 
 const StyledAvatarContainer = styled.div`
-  border: 1px solid ${themeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.background.secondary};
   border-radius: 50%;
   corner-shape: round;
   display: flex;
@@ -39,18 +39,18 @@ const StyledAvatarContainer = styled.div`
 
 const StyledMoreAvatar = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.tertiary};
-  border: 1px solid ${themeCssVariables.background.secondary};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.tertiary};
+  border: 1px solid ${odelzaThemeCssVariables.background.secondary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
   font-size: 12px;
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   height: ${WORKSPACE_MEMBER_AVATAR_CHIP_SIZE};
   justify-content: center;
   min-width: ${WORKSPACE_MEMBER_AVATAR_CHIP_SIZE};
-  padding: 0 ${themeCssVariables.spacing[1]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
   width: fit-content;
 `;
 

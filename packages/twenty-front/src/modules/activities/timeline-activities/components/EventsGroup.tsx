@@ -3,7 +3,7 @@ import { styled } from '@linaria/react';
 import { EventRow } from '@/activities/timeline-activities/components/EventRow';
 import { type EventGroup } from '@/activities/timeline-activities/utils/groupEventsByMonth';
 import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/EnrichedObjectMetadataItem';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type EventsGroupProps = {
   group: EventGroup;
@@ -15,22 +15,22 @@ type EventsGroupProps = {
 const StyledActivityGroup = styled.div`
   display: flex;
   flex-flow: column;
-  gap: ${themeCssVariables.spacing[4]};
-  margin-bottom: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
   width: 100%;
 `;
 
 const StyledActivityGroupContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[3]};
-  margin-top: ${themeCssVariables.spacing[3]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[3]};
+  margin-top: ${odelzaThemeCssVariables.spacing[3]};
   position: relative;
 `;
 
 const StyledActivityGroupBar = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -43,15 +43,15 @@ const StyledActivityGroupBar = styled.div`
 const StyledMonthSeperator = styled.div`
   align-items: center;
   align-self: stretch;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: flex;
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  gap: ${themeCssVariables.spacing[4]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 const StyledMonthSeperatorLine = styled.div`
-  background: ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.pill};
+  background: ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   corner-shape: round;
   flex: 1 0 0;
   height: 1px;

@@ -5,7 +5,10 @@ import { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { type IconComponent } from 'twenty-ui/icon';
 import { Card, OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 export type TableItem = {
   Icon?: IconComponent;
@@ -36,15 +39,15 @@ export const SettingsTableCard = ({
     <Card
       rounded={rounded}
       className={className}
-      backgroundColor={themeCssVariables.background.secondary}
+      backgroundColor={odelzaThemeCssVariables.background.secondary}
     >
       <Table>
         {items.map((item, index) => (
           <TableRow key={index + item.label} gridAutoColumns={gridAutoColumns}>
             <TableCell
               align={labelAlign}
-              color={themeCssVariables.font.color.tertiary}
-              gap={themeCssVariables.spacing[2]}
+              color={odelzaThemeCssVariables.font.color.tertiary}
+              gap={odelzaThemeCssVariables.spacing[2]}
               overflow="hidden"
             >
               {item.Icon && <item.Icon size={theme.icon.size.md} />}
@@ -52,7 +55,7 @@ export const SettingsTableCard = ({
             </TableCell>
             <TableCell
               align={valueAlign}
-              color={themeCssVariables.font.color.primary}
+              color={odelzaThemeCssVariables.font.color.primary}
               onClick={item.onClick}
               clickable={isDefined(item.onClick)}
             >

@@ -57,7 +57,7 @@ const TwentyUiComponent = () => {
         <div style={ROW_STYLE}>
           <Button
             title="Increment"
-            accent="blue"
+            accent="primary"
             onClick={() => setCount((previous) => previous + 1)}
           />
           <Button

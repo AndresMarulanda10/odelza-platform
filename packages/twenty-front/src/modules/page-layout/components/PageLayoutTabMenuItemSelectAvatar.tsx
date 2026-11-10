@@ -11,12 +11,15 @@ import {
   StyledMenuItemLabel,
   StyledMenuItemLeftContent,
 } from 'twenty-ui/navigation';
-import { themeCssVariables, ThemeContext } from 'twenty-ui/theme-constants';
+import {
+  odelzaThemeCssVariables,
+  ThemeContext,
+} from 'twenty-ui/theme-constants';
 const StyledTextContainer = styled.div`
   align-items: center;
   display: flex;
   flex: 1 0 0;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -25,7 +28,7 @@ const StyledTextContainer = styled.div`
 const StyledRightContent = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type PageLayoutTabMenuItemSelectAvatarProps = {

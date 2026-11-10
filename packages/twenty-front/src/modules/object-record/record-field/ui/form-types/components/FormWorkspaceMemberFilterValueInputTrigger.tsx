@@ -2,25 +2,25 @@ import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { IconUserCircle } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { FormFieldPlaceholder } from '@/object-record/record-field/ui/form-types/components/FormFieldPlaceholder';
 import { VariableChipStandalone } from '@/object-record/record-field/ui/form-types/components/VariableChipStandalone';
 
 const StyledTriggerLabel = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[1]};
-  margin: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  margin: ${odelzaThemeCssVariables.spacing[2]};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const StyledPlaceholderContainer = styled.div`
-  margin: ${themeCssVariables.spacing[2]};
+  margin: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type FormWorkspaceMemberFilterValueInputTriggerProps = {

@@ -6,7 +6,7 @@ import { IconChevronLeft, IconCoins, IconInfoCircle } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
 import {
   MOBILE_VIEWPORT,
-  themeCssVariables,
+  odelzaThemeCssVariables,
   useTheme,
 } from 'twenty-ui/theme-constants';
 
@@ -15,11 +15,13 @@ const StyledHeader = styled.div`
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  padding: ${themeCssVariables.spacing[8]} ${themeCssVariables.spacing[8]} 1px;
+  padding: ${odelzaThemeCssVariables.spacing[8]}
+    ${odelzaThemeCssVariables.spacing[8]} 1px;
   width: 100%;
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
-    padding: ${themeCssVariables.spacing[8]} ${themeCssVariables.spacing[4]} 1px;
+    padding: ${odelzaThemeCssVariables.spacing[8]}
+      ${odelzaThemeCssVariables.spacing[4]} 1px;
   }
 `;
 
@@ -33,7 +35,7 @@ const StyledSide = styled.div`
 
 const StyledLeftSide = styled(StyledSide)`
   justify-content: flex-end;
-  padding-right: ${themeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
     justify-content: flex-start;
@@ -54,60 +56,60 @@ const StyledCenter = styled.div`
 
 const StyledRightSide = styled(StyledSide)`
   justify-content: flex-end;
-  padding-left: ${themeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledLogo = styled.div`
-  background-image: url('/images/integrations/twenty-logo.svg');
+  background-image: url('/images/odelza/icon.svg');
   background-size: cover;
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   opacity: 0.4;
-  width: ${themeCssVariables.spacing[6]};
+  width: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledFreeCredits = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
 `;
 
 const StyledCreditsTag = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.tertiary};
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
-  border-bottom-left-radius: ${themeCssVariables.border.radius.pill};
-  border-left: 1px solid ${themeCssVariables.border.color.light};
-  border-top: 1px solid ${themeCssVariables.border.color.light};
-  border-top-left-radius: ${themeCssVariables.border.radius.pill};
+  background-color: ${odelzaThemeCssVariables.background.tertiary};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-bottom-left-radius: ${odelzaThemeCssVariables.border.radius.pill};
+  border-left: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-top-left-radius: ${odelzaThemeCssVariables.border.radius.pill};
   box-sizing: border-box;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[6]};
-  padding: 0 ${themeCssVariables.spacing[2]} 0
-    ${themeCssVariables.spacing['1.5']};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]} 0
+    ${odelzaThemeCssVariables.spacing['1.5']};
 `;
 
 const StyledCreditsCount = styled.span`
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledCreditsLabel = styled.span`
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const StyledInfoTag = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.tertiary};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-bottom-right-radius: ${themeCssVariables.border.radius.rounded};
-  border-top-right-radius: ${themeCssVariables.border.radius.rounded};
+  background-color: ${odelzaThemeCssVariables.background.tertiary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-bottom-right-radius: ${odelzaThemeCssVariables.border.radius.rounded};
+  border-top-right-radius: ${odelzaThemeCssVariables.border.radius.rounded};
   box-sizing: border-box;
   display: flex;
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   justify-content: center;
-  padding: 0 ${themeCssVariables.spacing['1.5']} 0
-    ${themeCssVariables.spacing[1]};
+  padding: 0 ${odelzaThemeCssVariables.spacing['1.5']} 0
+    ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type OnboardingHeaderProps = {
@@ -144,7 +146,7 @@ export const OnboardingHeader = ({
             <StyledCreditsTag>
               <IconCoins
                 size={theme.icon.size.md}
-                color={themeCssVariables.font.color.tertiary}
+                color={odelzaThemeCssVariables.font.color.tertiary}
               />
               <StyledCreditsCount>{freeCredits}</StyledCreditsCount>
               <StyledCreditsLabel>{t`free credits`}</StyledCreditsLabel>
@@ -152,7 +154,7 @@ export const OnboardingHeader = ({
             <StyledInfoTag>
               <IconInfoCircle
                 size={theme.icon.size.md}
-                color={themeCssVariables.font.color.tertiary}
+                color={odelzaThemeCssVariables.font.color.tertiary}
               />
             </StyledInfoTag>
           </StyledFreeCredits>

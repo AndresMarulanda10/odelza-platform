@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import type { IconComponent } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { CancelButton } from './CancelButton';
 import { SaveButton } from './SaveButton';
@@ -8,7 +8,7 @@ import { SaveButton } from './SaveButton';
 const StyledContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type SaveAndCancelButtonsProps = {

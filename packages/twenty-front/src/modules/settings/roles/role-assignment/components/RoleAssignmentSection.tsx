@@ -8,7 +8,7 @@ import { IconPlus } from 'twenty-ui/icon';
 import { AppTooltip, TooltipDelay } from 'twenty-ui/surfaces';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type Agent, type ApiKeyForRole } from '~/generated-metadata/graphql';
 import {
   type PartialWorkspaceMember,
@@ -19,7 +19,7 @@ import { ROLE_TARGET_CONFIG } from '@/settings/roles/role-assignment/constants/R
 const StyledAssignToMemberContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding-block: ${themeCssVariables.spacing[2]};
+  padding-block: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type RoleAssignmentSectionProps = {

@@ -1,18 +1,18 @@
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledSkipButton = styled.button`
   background-color: transparent;
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.md};
-  color: ${themeCssVariables.font.color.tertiary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: pointer;
-  font-family: ${themeCssVariables.font.family};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  height: ${themeCssVariables.spacing[8]};
-  padding: 0 ${themeCssVariables.spacing[5]};
+  font-family: ${odelzaThemeCssVariables.font.family};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  height: ${odelzaThemeCssVariables.spacing[8]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[5]};
 `;
 
 type OnboardingSkipButtonProps = {

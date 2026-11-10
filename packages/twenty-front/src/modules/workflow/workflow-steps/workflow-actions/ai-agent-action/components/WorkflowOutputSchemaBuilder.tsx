@@ -13,7 +13,10 @@ import { IconChevronDown, IconPlus, IconVariable, IconX } from 'twenty-ui/icon';
 import { AnimatedLightIconButton, LightIconButton } from 'twenty-ui/input';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
 import { MenuItem } from 'twenty-ui/navigation';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { WorkflowOutputFieldTypeSelector } from './WorkflowOutputFieldTypeSelector';
 type WorkflowOutputSchemaBuilderProps = {
   fields: OutputSchemaField[];
@@ -29,25 +32,25 @@ const StyledOutputSchemaContainer = styled.div`
 const StyledFieldsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledOutputSchemaFieldContainer = styled.div`
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledSettingsContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
-  padding-bottom: ${themeCssVariables.spacing[3]};
-  padding-inline: ${themeCssVariables.spacing[3]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[3]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[3]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSettingsHeader = styled.div<{
@@ -56,43 +59,45 @@ const StyledSettingsHeader = styled.div<{
 }>`
   align-items: center;
   border-bottom: ${({ isExpanded }) =>
-    isExpanded ? `1px solid ${themeCssVariables.border.color.medium}` : 'none'};
+    isExpanded
+      ? `1px solid ${odelzaThemeCssVariables.border.color.medium}`
+      : 'none'};
   cursor: pointer;
   display: grid;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   grid-template-columns: ${({ showRemoveFieldButton }) =>
     showRemoveFieldButton
-      ? `1fr ${themeCssVariables.spacing[6]} ${themeCssVariables.spacing[6]}`
-      : `1fr ${themeCssVariables.spacing[6]}`};
-  height: ${themeCssVariables.spacing[8]};
-  padding-left: ${themeCssVariables.spacing[2]};
-  padding-right: ${themeCssVariables.spacing[1]};
+      ? `1fr ${odelzaThemeCssVariables.spacing[6]} ${odelzaThemeCssVariables.spacing[6]}`
+      : `1fr ${odelzaThemeCssVariables.spacing[6]}`};
+  height: ${odelzaThemeCssVariables.spacing[8]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledTitleContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledAddFieldButtonContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledMessageContentContainer = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   line-height: normal;
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledMessageDescription = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
 `;
 
 export const WorkflowOutputSchemaBuilder = ({

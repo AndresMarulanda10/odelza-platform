@@ -2,12 +2,12 @@ import { styled } from '@linaria/react';
 import { isValidElement, type ReactNode } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { Radio } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledCard = styled.div`
-  background-color: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.primary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -20,14 +20,16 @@ const StyledHeader = styled.button<{ hasBody: boolean; hasNote: boolean }>`
   background-color: transparent;
   border: none;
   border-bottom: ${({ hasBody }) =>
-    hasBody ? `1px solid ${themeCssVariables.border.color.light}` : 'none'};
+    hasBody
+      ? `1px solid ${odelzaThemeCssVariables.border.color.light}`
+      : 'none'};
   cursor: pointer;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   padding: ${({ hasNote }) =>
     hasNote
-      ? `${themeCssVariables.spacing[4]} ${themeCssVariables.spacing[3]}`
-      : themeCssVariables.spacing[3]};
+      ? `${odelzaThemeCssVariables.spacing[4]} ${odelzaThemeCssVariables.spacing[3]}`
+      : odelzaThemeCssVariables.spacing[3]};
   position: relative;
   text-align: left;
   width: 100%;
@@ -37,84 +39,85 @@ const StyledHeaderLeft = styled.div<{ hasNote: boolean }>`
   display: flex;
   flex: 1 1 0;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   min-width: 0;
   padding-right: ${({ hasNote }) =>
-    hasNote ? themeCssVariables.spacing[8] : '0'};
+    hasNote ? odelzaThemeCssVariables.spacing[8] : '0'};
 `;
 
 const StyledTitleRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledTitle = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   line-height: 1.4;
 `;
 
 const StyledTitleSuffix = styled.span<{ isEmphasized: boolean }>`
   color: ${({ isEmphasized }) =>
     isEmphasized
-      ? themeCssVariables.font.color.tertiary
-      : themeCssVariables.font.color.extraLight};
+      ? odelzaThemeCssVariables.font.color.tertiary
+      : odelzaThemeCssVariables.font.color.extraLight};
   font-size: ${({ isEmphasized }) =>
     isEmphasized
-      ? themeCssVariables.font.size.md
-      : themeCssVariables.font.size.sm};
+      ? odelzaThemeCssVariables.font.size.md
+      : odelzaThemeCssVariables.font.size.sm};
   font-weight: ${({ isEmphasized }) =>
     isEmphasized
-      ? themeCssVariables.font.weight.medium
-      : themeCssVariables.font.weight.regular};
+      ? odelzaThemeCssVariables.font.weight.medium
+      : odelzaThemeCssVariables.font.weight.regular};
   line-height: 1.4;
 `;
 
 const StyledNote = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   line-height: 1.4;
 `;
 
 const StyledHeaderRight = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  min-height: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  min-height: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledBadge = styled.span`
   align-items: center;
-  background-color: ${themeCssVariables.grayScale.gray3};
-  border-radius: ${themeCssVariables.border.radius.pill};
+  background-color: ${odelzaThemeCssVariables.grayScale.gray3};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   corner-shape: round;
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  height: ${themeCssVariables.spacing[5]};
-  padding: 0 ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  height: ${odelzaThemeCssVariables.spacing[5]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledRadioContainer = styled.div`
   align-items: center;
   display: flex;
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   justify-content: center;
   position: absolute;
-  right: ${themeCssVariables.spacing[2]};
-  top: ${themeCssVariables.spacing[2]};
-  width: ${themeCssVariables.spacing[6]};
+  right: ${odelzaThemeCssVariables.spacing[2]};
+  top: ${odelzaThemeCssVariables.spacing[2]};
+  width: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledBody = styled.div`
   display: flex;
   flex-direction: column;
-  padding: ${themeCssVariables.spacing[4]} ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[4]}
+    ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 type OnboardingPlanCardProps = {

@@ -5,7 +5,6 @@ import { FieldActorSource } from 'twenty-shared/types';
 import { JSON_RPC_ERROR_CODE } from 'src/engine/api/mcp/constants/json-rpc-error-code.const';
 import { MCP_CLOSED_WORLD_READ_ONLY_TOOL_ANNOTATIONS } from 'src/engine/api/mcp/constants/mcp-closed-world-read-only-tool-annotations.const';
 import { MCP_EXECUTE_TOOL_ANNOTATIONS } from 'src/engine/api/mcp/constants/mcp-execute-tool-annotations.const';
-import { MCP_OPEN_WORLD_READ_ONLY_TOOL_ANNOTATIONS } from 'src/engine/api/mcp/constants/mcp-open-world-read-only-tool-annotations.const';
 import { MCP_PROTOCOL_VERSION } from 'src/engine/api/mcp/constants/mcp-protocol-version.const';
 import { MCP_SERVER_INFO } from 'src/engine/api/mcp/constants/mcp-server-info.const';
 import { type JsonRpc } from 'src/engine/api/mcp/dtos/json-rpc';
@@ -49,7 +48,6 @@ describe('McpProtocolService', () => {
     LOAD_SKILL_TOOL_NAME,
     LIST_OBJECT_METADATA_NAMES_TOOL_NAME,
     LIST_SKILLS_TOOL_NAME,
-    'search_help_center',
   ] as const;
 
   const EXPECTED_MCP_TOOL_ANNOTATIONS: Record<
@@ -62,16 +60,9 @@ describe('McpProtocolService', () => {
     [LIST_OBJECT_METADATA_NAMES_TOOL_NAME]:
       MCP_CLOSED_WORLD_READ_ONLY_TOOL_ANNOTATIONS,
     [LIST_SKILLS_TOOL_NAME]: MCP_CLOSED_WORLD_READ_ONLY_TOOL_ANNOTATIONS,
-    search_help_center: MCP_OPEN_WORLD_READ_ONLY_TOOL_ANNOTATIONS,
   };
 
   beforeEach(async () => {
-    const mockSearchHelpCenterTool = {
-      description: 'Search help center',
-      inputSchema: { jsonSchema: { type: 'object' } },
-      execute: jest.fn(),
-    };
-
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         McpProtocolService,
@@ -79,9 +70,7 @@ describe('McpProtocolService', () => {
           provide: ToolRegistryService,
           useValue: {
             buildToolIndex: jest.fn().mockResolvedValue([]),
-            getToolsByName: jest.fn().mockResolvedValue({
-              search_help_center: mockSearchHelpCenterTool,
-            }),
+            getToolsByName: jest.fn().mockResolvedValue({}),
             getToolInfo: jest.fn().mockResolvedValue([]),
             resolveAndExecute: jest.fn(),
           },

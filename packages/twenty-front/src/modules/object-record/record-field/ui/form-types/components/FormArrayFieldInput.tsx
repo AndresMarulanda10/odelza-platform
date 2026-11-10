@@ -28,7 +28,10 @@ import { isNonEmptyArray } from '@sniptt/guards';
 import { useContext, useId, useRef, useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconPlus } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { MenuItem } from 'twenty-ui/navigation';
 import { toSpliced } from '~/utils/array/toSpliced';
 
@@ -48,7 +51,7 @@ const StyledDisplayModeReadonlyContainer = styled.div`
   border: none;
   display: flex;
   font-family: inherit;
-  padding-inline: ${themeCssVariables.spacing[2]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
@@ -61,17 +64,18 @@ const StyledDisplayModeContainer = styled.div`
   display: flex;
   font-family: inherit;
   height: 30px;
-  padding-inline: ${themeCssVariables.spacing[2]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 
   &:hover,
   &[data-open='true'] {
-    background-color: ${themeCssVariables.background.transparent.lighter};
+    background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
   }
 `;
 
 const StyledInputContainer = styled.div`
-  padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledPlaceholderContainer = styled.div`

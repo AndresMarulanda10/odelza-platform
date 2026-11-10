@@ -11,20 +11,20 @@ import { IconPlus } from 'twenty-ui/icon';
 
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
 
 const StyledTableRows = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledAddAccountSectionContainer = styled.div`
   > * {
-    border-top: 1px solid ${themeCssVariables.border.color.light};
+    border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
     display: flex;
     justify-content: flex-end;
-    padding-top: ${themeCssVariables.spacing[2]};
+    padding-top: ${odelzaThemeCssVariables.spacing[2]};
   }
 `;
 

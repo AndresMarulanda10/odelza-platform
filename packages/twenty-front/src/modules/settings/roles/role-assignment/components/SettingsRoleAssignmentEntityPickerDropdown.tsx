@@ -15,25 +15,25 @@ import {
   GetApiKeysDocument,
 } from '~/generated-metadata/graphql';
 import { normalizeSearchText } from '~/utils/normalizeSearchText';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledLoadingContainer = styled.div`
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   text-align: center;
 `;
 
 const StyledDropdownItem = styled.div`
   cursor: pointer;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 
   &:hover {
-    background-color: ${themeCssVariables.background.transparent.lighter};
+    background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
   }
 `;
 
 const StyledItemName = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 type EntityData = Agent | ApiKeyForRole;

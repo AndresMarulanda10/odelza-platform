@@ -1,11 +1,13 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledTr = styled.div<{
   isDragging: boolean;
 }>`
   border-top: ${({ isDragging }) =>
-    isDragging ? `1px solid ${themeCssVariables.border.color.medium}` : 'none'};
+    isDragging
+      ? `1px solid ${odelzaThemeCssVariables.border.color.medium}`
+      : 'none'};
 
   display: flex;
   flex-direction: row;
@@ -15,12 +17,12 @@ const StyledTr = styled.div<{
     div.table-cell,
     div.table-cell-0-0 {
       &:not(:first-of-type) {
-        background-color: ${themeCssVariables.accent.quaternary};
-        border-bottom: 1px solid ${themeCssVariables.border.color.medium};
-        border-color: ${themeCssVariables.border.color.medium};
+        background-color: ${odelzaThemeCssVariables.background.selection};
+        border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+        border-color: ${odelzaThemeCssVariables.border.color.medium};
       }
       &:nth-of-type(2) {
-        border-left: 1px solid ${themeCssVariables.border.color.medium};
+        border-left: 1px solid ${odelzaThemeCssVariables.border.color.medium};
 
         margin-left: -1px;
 
@@ -29,9 +31,9 @@ const StyledTr = styled.div<{
         }
       }
       &:last-of-type {
-        border-radius: 0 ${themeCssVariables.border.radius.sm}
-          ${themeCssVariables.border.radius.sm} 0;
-        border-right: 1px solid ${themeCssVariables.border.color.medium};
+        border-radius: 0 ${odelzaThemeCssVariables.border.radius.sm}
+          ${odelzaThemeCssVariables.border.radius.sm} 0;
+        border-right: 1px solid ${odelzaThemeCssVariables.border.color.medium};
       }
     }
   }

@@ -9,15 +9,18 @@ import { TintedIconTile } from 'twenty-ui/data-display';
 import { IconChevronDown, type IconComponent } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { type ThemeColor } from 'twenty-ui/theme';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledIconChevronDownWrapper = styled.div<{
   disabled?: boolean;
 }>`
   color: ${({ disabled }) =>
     disabled
-      ? themeCssVariables.font.color.extraLight
-      : themeCssVariables.font.color.tertiary};
+      ? odelzaThemeCssVariables.font.color.extraLight
+      : odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
 `;
 

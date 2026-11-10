@@ -5,8 +5,8 @@ import { clsx } from 'clsx';
 import { handleClickableElementKeyDown } from '@ui/accessibility/utils/handleClickableElementKeyDown';
 import { Checkmark } from '@ui/data-display/Checkmark/Checkmark';
 import { type ColorScheme } from '@ui/input/types/ColorScheme';
-import { GRAY_SCALE_DARK } from '@ui/theme/constants/GrayScaleDark';
-import { GRAY_SCALE_LIGHT } from '@ui/theme/constants/GrayScaleLight';
+import { ODELZA_THEME_DARK } from '@ui/theme/constants/OdelzaThemeDark';
+import { ODELZA_THEME_LIGHT } from '@ui/theme/constants/OdelzaThemeLight';
 import { isDefined } from '@ui/utilities/utils/isDefined';
 
 import styles from './ColorSchemeCard.module.scss';
@@ -24,7 +24,10 @@ const ColorSchemeSegment = ({
   onMouseEnter,
   onMouseLeave,
 }: ColorSchemeSegmentProps) => {
-  const grayScale = variant === 'Dark' ? GRAY_SCALE_DARK : GRAY_SCALE_LIGHT;
+  const grayScale =
+    variant === 'Dark'
+      ? ODELZA_THEME_DARK.grayScale
+      : ODELZA_THEME_LIGHT.grayScale;
 
   return (
     <div

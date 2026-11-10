@@ -19,7 +19,7 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { useSetAtomState } from '@/ui/utilities/state/jotai/hooks/useSetAtomState';
 import { styled } from '@linaria/react';
 import { useCallback, useState } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledSidePanelWrapper = styled.div<{
   isOpen: boolean;
@@ -31,13 +31,13 @@ const StyledSidePanelWrapper = styled.div<{
   transition: ${({ isResizing }) =>
     isResizing
       ? 'none'
-      : `width calc(${themeCssVariables.animation.duration.normal} * 1s)`};
+      : `width calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s)`};
   width: ${({ isOpen }) => (isOpen ? `var(${SIDE_PANEL_WIDTH_VAR})` : '0px')};
 `;
 
 const StyledSidePanel = styled.aside`
-  background: ${themeCssVariables.background.primary};
-  border-left: 1px solid ${themeCssVariables.border.color.medium};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-left: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

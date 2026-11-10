@@ -5,19 +5,22 @@ import { TableCell } from '@/ui/layout/table/components/TableCell';
 import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledNameCell = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledTableRowContainer = styled.div`
   > * {
     &:hover {
-      background-color: ${themeCssVariables.background.transparent.light};
+      background-color: ${odelzaThemeCssVariables.background.transparent.light};
       cursor: pointer;
     }
   }

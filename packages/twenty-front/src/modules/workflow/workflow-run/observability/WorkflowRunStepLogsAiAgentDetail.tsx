@@ -11,7 +11,7 @@ import {
   IconTool,
   IconWorld,
 } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { formatDuration } from '@/workflow/workflow-run/observability/workflowRunStepLogsFormatters';
 import {
@@ -32,34 +32,36 @@ import { WorkflowRunStepLogsToolCallRow } from '@/workflow/workflow-run/observab
 import { formatNumber } from '~/utils/format/formatNumber';
 
 const StyledModelBadge = styled.span`
-  background: ${themeCssVariables.background.transparent.light};
-  border-radius: ${themeCssVariables.border.radius.xs};
-  color: ${themeCssVariables.font.color.tertiary};
-  font-family: ${themeCssVariables.font.family};
-  font-size: ${themeCssVariables.font.size.xs};
-  padding: ${themeCssVariables.spacing['0.5']} ${themeCssVariables.spacing[1]};
+  background: ${odelzaThemeCssVariables.background.transparent.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.xs};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-family: ${odelzaThemeCssVariables.font.family};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  padding: ${odelzaThemeCssVariables.spacing['0.5']}
+    ${odelzaThemeCssVariables.spacing[1]};
   white-space: nowrap;
 `;
 
 const StyledUsageGrid = styled.div`
-  background: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: grid;
-  gap: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[4]};
   grid-template-columns: max-content 1fr;
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledUsageLabel = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const StyledUsageValue = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-family: ${themeCssVariables.font.family};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-family: ${odelzaThemeCssVariables.font.family};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   font-variant-numeric: tabular-nums;
   text-align: right;
 `;
@@ -67,7 +69,7 @@ const StyledUsageValue = styled.span`
 const StyledToolList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const formatCost = (dollars: number): string => {

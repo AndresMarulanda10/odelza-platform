@@ -16,7 +16,10 @@ import { useContext, useRef, useState } from 'react';
 import { IconChevronLeft, IconChevronRight } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { LightIconButton } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 export type GraphWidgetLegendItem = {
   id: string;
@@ -47,7 +50,7 @@ const StyledItemsWrapperBase = styled.div<{ centered?: boolean }>`
   display: flex;
   flex: 1;
   flex-wrap: nowrap;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   justify-content: ${({ centered }) => (centered ? 'center' : 'flex-start')};
   min-width: 0;
 `;
@@ -57,11 +60,11 @@ const StyledLegendContainer = styled.div<{ needsPagination: boolean }>`
   align-items: center;
   display: flex;
   flex-wrap: nowrap;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   justify-content: ${({ needsPagination }) =>
     needsPagination ? 'flex-start' : 'center'};
   overflow: hidden;
-  padding-top: ${themeCssVariables.spacing[3]};
+  padding-top: ${odelzaThemeCssVariables.spacing[3]};
   width: 100%;
 `;
 
@@ -74,9 +77,9 @@ const StyledLegendItem = styled.div<{
   cursor: ${({ isInteractive }) => (isInteractive ? 'pointer' : 'default')};
   display: flex;
   flex-shrink: ${({ canShrink }) => (canShrink ? 1 : 0)};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
@@ -84,7 +87,7 @@ const StyledLegendLabel = styled.div<{
   fixedWidth?: boolean;
   isHidden?: boolean;
 }>`
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   opacity: ${({ isHidden }) =>
     isHidden ? LEGEND_HIGHLIGHT_DIMMED_OPACITY : 1};
   overflow: hidden;
@@ -108,12 +111,12 @@ const StyledPaginationContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
-  gap: ${themeCssVariables.spacing[0.5]};
+  gap: ${odelzaThemeCssVariables.spacing[0.5]};
 `;
 
 const StyledPaginationIndicator = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
 `;
 
 const legendEnterExitVariants = {

@@ -24,19 +24,19 @@ import { VIEW_BAR_FILTER_BOTTOM_MENU_ITEM_IDS } from '@/views/constants/ViewBarF
 import { ViewBarFilterDropdownIds } from '@/views/constants/ViewBarFilterDropdownIds';
 import { useLingui } from '@lingui/react/macro';
 import { IconX } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export const StyledInput = styled.input`
   background: transparent;
   border: none;
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   border-radius: 0;
   border-top: none;
-  border-top-left-radius: ${themeCssVariables.border.radius.md};
-  border-top-right-radius: ${themeCssVariables.border.radius.md};
-  color: ${themeCssVariables.font.color.primary};
+  border-top-left-radius: ${odelzaThemeCssVariables.border.radius.md};
+  border-top-right-radius: ${odelzaThemeCssVariables.border.radius.md};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   font-family: inherit;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   font-weight: inherit;
   margin: 0;
   max-width: 100%;
@@ -44,11 +44,11 @@ export const StyledInput = styled.input`
 
   outline: none;
   overflow: hidden;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   text-decoration: none;
 
   &::placeholder {
-    color: ${themeCssVariables.font.color.light};
+    color: ${odelzaThemeCssVariables.font.color.light};
   }
 `;
 

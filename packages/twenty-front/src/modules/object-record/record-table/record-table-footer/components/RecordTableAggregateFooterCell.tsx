@@ -1,6 +1,9 @@
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import {
   RECORD_TABLE_CHECKBOX_WIDTH_CSS_VAR,
@@ -26,12 +29,12 @@ const StyledColumnFooterCell = styled.div<{
   isFirstCell: boolean;
   isReadOnly: boolean;
 }>`
-  background-color: ${themeCssVariables.background.primary};
-  border-right: solid 1px ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
+  border-right: solid 1px ${odelzaThemeCssVariables.background.primary};
 
   bottom: 0;
 
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 
   cursor: ${({ isReadOnly }) => (isReadOnly ? 'default' : 'pointer')};
   height: ${RECORD_TABLE_ROW_HEIGHT}px;
@@ -44,8 +47,8 @@ const StyledColumnFooterCell = styled.div<{
   &:hover {
     background: ${({ isReadOnly }) =>
       isReadOnly
-        ? themeCssVariables.background.primary
-        : themeCssVariables.background.secondary};
+        ? odelzaThemeCssVariables.background.primary
+        : odelzaThemeCssVariables.background.secondary};
   }
 
   min-width: ${({ columnWidth }) => columnWidth}px;

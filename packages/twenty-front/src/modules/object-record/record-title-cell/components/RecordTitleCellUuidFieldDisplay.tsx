@@ -5,20 +5,20 @@ import { type RecordTitleCellContainerType } from '@/object-record/record-title-
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledDiv = styled.div`
   align-items: center;
   background: inherit;
   border: none;
-  border-radius: ${themeCssVariables.border.radius.md};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   height: 24px;
   justify-content: center;
   overflow: hidden;
-  padding: ${themeCssVariables.spacing[0]} 5px;
+  padding: ${odelzaThemeCssVariables.spacing[0]} 5px;
 `;
 
 export const RecordTitleCellUuidFieldDisplay = ({

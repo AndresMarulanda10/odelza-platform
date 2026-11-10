@@ -12,25 +12,25 @@ import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type ObjectPermission, type Role } from '~/generated-metadata/graphql';
 
 const StyledPermissionContent = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   white-space: nowrap;
 `;
 
 const StyledPermissionLabel = styled.span`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
 `;
 
 const StyledOverrideInfo = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   white-space: nowrap;
 `;
 
@@ -132,7 +132,7 @@ export const SettingsRolePermissionsObjectLevelObjectFormObjectLevelTableRow =
         onClick={handleCheckboxChange}
         cursor={!isEditable ? 'default' : 'pointer'}
       >
-        <TableCell gap={themeCssVariables.spacing[1]}>
+        <TableCell gap={odelzaThemeCssVariables.spacing[1]}>
           <StyledPermissionContent>
             <PermissionIcon
               permission={permission.key as SettingsRoleObjectPermissionKey}
@@ -161,7 +161,7 @@ export const SettingsRolePermissionsObjectLevelObjectFormObjectLevelTableRow =
         </TableCell>
         <TableCell
           align="right"
-          padding={`0 ${themeCssVariables.spacing[1]} 0 ${themeCssVariables.spacing[2]}`}
+          padding={`0 ${odelzaThemeCssVariables.spacing[1]} 0 ${odelzaThemeCssVariables.spacing[2]}`}
           onClick={(e) => e.stopPropagation()}
         >
           <OverridableCheckbox

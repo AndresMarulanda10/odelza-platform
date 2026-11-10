@@ -9,7 +9,7 @@ import { useMemo } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { IconTrash, useIcons } from 'twenty-ui/icon';
 import { IconButton, type SelectOption } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type SettingsObjectNewIndexFormValues } from '~/pages/settings/data-model/new-index/SettingsObjectNewIndexFormValues';
 
 type SettingsObjectIndexFieldsFormProps = {
@@ -19,8 +19,8 @@ type SettingsObjectIndexFieldsFormProps = {
 const StyledFieldRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSelectWrapper = styled.div`
@@ -29,8 +29,8 @@ const StyledSelectWrapper = styled.div`
 `;
 
 const StyledPlaceholder = styled.div`
-  height: ${themeCssVariables.spacing[8]};
-  width: ${themeCssVariables.spacing[8]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
+  width: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 export const SettingsObjectIndexFieldsForm = ({

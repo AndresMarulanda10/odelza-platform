@@ -8,14 +8,14 @@ import { isStandaloneVariableString } from '@/workflow/utils/isStandaloneVariabl
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { isNonEmptyArray } from '@sniptt/guards';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledChipsContainer = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[1]};
-  margin-inline: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  margin-inline: ${odelzaThemeCssVariables.spacing[2]};
   min-width: 0;
   overflow: hidden;
 `;

@@ -17,7 +17,7 @@ import { isDefined } from 'twenty-shared/utils';
 import { TRIGGER_STEP_ID } from 'twenty-shared/workflow';
 import { useIcons } from 'twenty-ui/icon';
 import { type SelectOption } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type WorkflowEditTriggerManualProps = {
   trigger: WorkflowManualTrigger;
@@ -33,15 +33,15 @@ type WorkflowEditTriggerManualProps = {
 };
 
 const StyledLabel = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledDescription = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   margin-top: 1px;
 `;
 

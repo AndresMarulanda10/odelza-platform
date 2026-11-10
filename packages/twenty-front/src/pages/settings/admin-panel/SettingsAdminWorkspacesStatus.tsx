@@ -12,7 +12,7 @@ import { getSettingsPath } from 'twenty-shared/utils';
 import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   GetInstanceAndAllWorkspacesUpgradeStatusDocument,
   RefreshUpgradeStatusDocument,
@@ -21,14 +21,14 @@ import {
 const StyledRefreshButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-bottom: ${themeCssVariables.spacing[4]};
-  margin-top: ${themeCssVariables.spacing[3]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
+  margin-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledAccordionCardsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 export const SettingsAdminWorkspacesStatus = () => {

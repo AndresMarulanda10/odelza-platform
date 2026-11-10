@@ -14,7 +14,10 @@ import { Avatar, type AvatarType } from 'twenty-ui/data-display';
 import { type IconComponent } from 'twenty-ui/icon';
 import { AppTooltip } from 'twenty-ui/surfaces';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
 import {
   beautifyExactDateTime,
@@ -40,36 +43,38 @@ export const StyledShowPageSummaryCard = styled.div<{
   isMobile: boolean;
 }>`
   align-items: center;
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   box-sizing: border-box;
   display: flex;
   flex-direction: ${({ isMobile }) => (isMobile ? 'row' : 'column')};
   gap: ${({ isMobile }) =>
-    isMobile ? themeCssVariables.spacing[2] : themeCssVariables.spacing[3]};
+    isMobile
+      ? odelzaThemeCssVariables.spacing[2]
+      : odelzaThemeCssVariables.spacing[3]};
   height: ${({ isMobile }) => (isMobile ? '77px' : '127px')};
   justify-content: ${({ isMobile }) => (isMobile ? 'flex-start' : 'center')};
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledInfoContainer = styled.div<{ isMobile: boolean }>`
   align-items: ${({ isMobile }) => (isMobile ? 'flex-start' : 'center')};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   width: 100%;
 `;
 
 const StyledDate = styled.div<{ isMobile: boolean }>`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: pointer;
-  padding-left: ${themeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledTitle = styled.div<{ isMobile: boolean }>`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.xl};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  font-size: ${odelzaThemeCssVariables.font.size.xl};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
   justify-content: ${({ isMobile }) => (isMobile ? 'flex-start' : 'center')};
   width: 90%;
 `;
@@ -79,8 +84,8 @@ const StyledAvatarWrapper = styled.div<{
   hasIcon: boolean;
 }>`
   background-color: ${({ hasIcon }) =>
-    hasIcon ? themeCssVariables.background.transparent.light : 'unset'};
-  border-radius: ${themeCssVariables.border.radius.md};
+    hasIcon ? odelzaThemeCssVariables.background.transparent.light : 'unset'};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   cursor: ${({ isAvatarEditable }) =>
     isAvatarEditable ? 'pointer' : 'default'};
 `;

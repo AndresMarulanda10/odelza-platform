@@ -8,14 +8,15 @@ import { IconCopy } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
 import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
 const StyledInputsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[4]};
   width: 100%;
 `;
 
@@ -26,13 +27,13 @@ const StyledContainer = styled.div`
 
 const StyledLinkContainer = styled.div`
   flex: 1;
-  margin-right: ${themeCssVariables.spacing[2]};
+  margin-right: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledButtonCopy = styled.div`
   align-items: end;
   display: flex;
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const SettingsSSOOIDCForm = () => {

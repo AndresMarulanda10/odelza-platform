@@ -3,7 +3,7 @@ import { WorkflowStepFilterBuilder } from '@/workflow/workflow-steps/filters/com
 import { type Meta, type StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { ComponentDecorator } from 'twenty-ui/testing';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { WorkflowStepActionDrawerDecorator } from '~/testing/decorators/WorkflowStepActionDrawerDecorator';
 import { WorkflowStepDecorator } from '~/testing/decorators/WorkflowStepDecorator';
 import { WorkspaceDecorator } from '~/testing/decorators/WorkspaceDecorator';
@@ -27,7 +27,7 @@ const meta: Meta<typeof WorkflowStepFilterBuilder> = {
   },
   decorators: [
     (Story) => (
-      <WorkflowStepBody rowGap={themeCssVariables.spacing[0]}>
+      <WorkflowStepBody rowGap={odelzaThemeCssVariables.spacing[0]}>
         <Story />
       </WorkflowStepBody>
     ),

@@ -2,7 +2,10 @@ import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 
 import { PagePanel } from './PagePanel';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type PageBodyProps = {
   children: ReactNode;
@@ -10,20 +13,20 @@ type PageBodyProps = {
 };
 
 const StyledMainContainer = styled.div`
-  background: ${themeCssVariables.background.noisy};
+  background: ${odelzaThemeCssVariables.background.noisy};
   box-sizing: border-box;
   display: flex;
   flex: 1 1 auto;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-height: 0;
-  padding-bottom: ${themeCssVariables.spacing[3]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[3]};
   padding-left: 0;
-  padding-right: ${themeCssVariables.spacing[3]};
+  padding-right: ${odelzaThemeCssVariables.spacing[3]};
   width: 100%;
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
-    padding-left: ${themeCssVariables.spacing[3]};
+    padding-left: ${odelzaThemeCssVariables.spacing[3]};
   }
 `;
 

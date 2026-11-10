@@ -13,7 +13,10 @@ import { SettingsPath } from 'twenty-shared/types';
 import { IconSearch } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
 
 const StyledTypeSelectContainer = styled.div`
@@ -26,7 +29,7 @@ const StyledTypeSelectContainer = styled.div`
 const StyledContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: flex-start;
   width: 100%;
 `;
@@ -35,17 +38,17 @@ const StyledCardContainer = styled.div`
   cursor: pointer;
   display: flex;
   position: relative;
-  width: calc(50% - ${themeCssVariables.spacing[1]});
+  width: calc(50% - ${odelzaThemeCssVariables.spacing[1]});
 `;
 
 const StyledSearchContainer = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSearchInputContainer = styled.div`
   > * input {
-    background: ${themeCssVariables.background.transparent.lighter};
-    border: 1px solid ${themeCssVariables.border.color.medium};
+    background: ${odelzaThemeCssVariables.background.transparent.lighter};
+    border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   }
 `;
 

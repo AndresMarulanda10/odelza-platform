@@ -17,7 +17,10 @@ import { capitalize, isDefined } from 'twenty-shared/utils';
 import { InlineBanner } from 'twenty-ui/feedback';
 import { IconInfoCircle, IconLink, IconRefresh } from 'twenty-ui/icon';
 import { AppTooltip, Card, TooltipDelay } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { parseThemeColor } from 'twenty-ui/utilities';
 import { type StringKeyOf } from 'type-fest';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
@@ -32,8 +35,8 @@ type SettingsDataModelObjectAboutFormProps = {
 
 const StyledInputsContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
@@ -46,26 +49,26 @@ const StyledAdvancedSettingsSectionInputWrapper = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   width: 100%;
 `;
 
 const StyledAdvancedSettingsOuterContainer = styled.div`
-  padding-top: ${themeCssVariables.spacing[4]};
+  padding-top: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledAdvancedSettingsContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   position: relative;
   width: 100%;
 `;
 
 const StyledLabel = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const infoCircleElementId = 'info-circle-id';
@@ -258,7 +261,7 @@ export const SettingsDataModelObjectAboutForm = ({
           <StyledAdvancedSettingsSectionInputWrapper>
             {isDefined(conflictingObjectMetadataItem) && (
               <InlineBanner
-                color={'blue'}
+                color="primary"
                 message={t`An object with this name already exists`}
                 button={{
                   title: t`Open`,

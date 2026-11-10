@@ -19,12 +19,12 @@ import { ExpandableList } from '@/ui/layout/expandable-list/components/Expandabl
 import { styled } from '@linaria/react';
 import { isArray } from '@sniptt/guards';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: flex-start;
   max-width: 100%;
   overflow: hidden;

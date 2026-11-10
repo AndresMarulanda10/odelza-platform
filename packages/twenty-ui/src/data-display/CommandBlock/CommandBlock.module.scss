@@ -1,16 +1,16 @@
 .container {
-  border-radius: var(--t-border-radius-sm);
-  border: 1px solid var(--t-border-color-medium);
-  background: var(--t-background-secondary);
+  border-radius: var(--odz-border-radius-sm);
+  border: 1px solid var(--odz-border-color-medium);
+  background: var(--odz-background-secondary);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--t-spacing-3);
-  gap: var(--t-spacing-3);
+  padding: var(--odz-spacing-3);
+  gap: var(--odz-spacing-3);
 }
 
 .commandContain {
-  font-family: var(--t-code-font-family);
+  font-family: var(--odz-code-font-family);
 }
 
 .buttonContainer {
@@ -18,9 +18,9 @@
 }
 
 .lineStartSpan {
-  color: var(--t-code-text-orange);
+  color: var(--odz-code-text-orange);
 }
 
 .lineSpan {
-  color: var(--t-code-text-green);
+  color: var(--odz-code-text-green);
 }

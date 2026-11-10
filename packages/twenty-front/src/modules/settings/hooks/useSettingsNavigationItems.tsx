@@ -23,6 +23,7 @@ import {
   type IconComponent,
   IconCurrencyDollar,
   IconDoorEnter,
+  IconFlask,
   IconHelpCircle,
   IconHierarchy2,
   IconLayout,
@@ -193,9 +194,9 @@ const useSettingsNavigationItems = (): SettingsNavigationSection[] => {
           isHidden: !isAdminEnabled,
         },
         {
-          label: t`Community`,
-          path: SettingsPath.Community,
-          Icon: IconUsers,
+          label: t`Beta features`,
+          path: SettingsPath.Lab,
+          Icon: IconFlask,
           isHidden: !permissionMap[PermissionFlagType.WORKSPACE],
         },
         {

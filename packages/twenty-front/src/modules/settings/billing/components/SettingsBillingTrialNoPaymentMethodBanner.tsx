@@ -63,7 +63,7 @@ export const SettingsBillingTrialNoPaymentMethodBanner = ({
 
   return (
     <InlineBanner
-      color="blue"
+      color="primary"
       message={message}
       button={{
         title: t`Add card`,

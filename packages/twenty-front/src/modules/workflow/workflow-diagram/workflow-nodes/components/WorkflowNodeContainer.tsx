@@ -1,7 +1,7 @@
 import type { WorkflowRunStepStatus } from '@/workflow/types/Workflow';
 import { getWorkflowDiagramColors } from '@/workflow/workflow-diagram/utils/getWorkflowDiagramColors';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledNodeContainer = styled.div<{
   runStatus?: WorkflowRunStepStatus;
@@ -19,16 +19,16 @@ const StyledNodeContainer = styled.div<{
       ? colors.selected.borderColor
       : colors.unselected.borderColor;
   }};
-  border-radius: ${themeCssVariables.border.radius.md};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   border-style: solid;
   border-width: 1px;
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   max-width: 240px;
   min-width: 44px;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 
   position: relative;
 
@@ -40,11 +40,11 @@ const StyledNodeContainer = styled.div<{
       const bg = selected
         ? colors.selected.background
         : colors.unselected.background;
-      return `linear-gradient(0deg, ${themeCssVariables.background.transparent.lighter} 0%, ${themeCssVariables.background.transparent.lighter} 100%), ${bg}`;
+      return `linear-gradient(0deg, ${odelzaThemeCssVariables.background.transparent.lighter} 0%, ${odelzaThemeCssVariables.background.transparent.lighter} 100%), ${bg}`;
     }};
 
     border-color: ${({ runStatus, selected, isConnectable }) => {
-      if (isConnectable === true) return themeCssVariables.color.blue;
+      if (isConnectable === true) return odelzaThemeCssVariables.color.primary;
       const colors = getWorkflowDiagramColors({ runStatus });
       return selected
         ? colors.selected.borderColor

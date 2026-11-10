@@ -5,21 +5,21 @@ import { WorkflowStepFilterContext } from '@/workflow/workflow-steps/filters/sta
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div<{ isGrayBackground?: boolean }>`
   align-items: start;
   background-color: ${({ isGrayBackground }) =>
     isGrayBackground
-      ? themeCssVariables.background.transparent.lighter
+      ? odelzaThemeCssVariables.background.transparent.lighter
       : 'transparent'};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[6]};
-  padding: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[6]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type WorkflowStepFilterGroupChildrenProps = {

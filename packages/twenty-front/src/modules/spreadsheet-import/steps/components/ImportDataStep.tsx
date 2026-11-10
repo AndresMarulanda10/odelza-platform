@@ -5,22 +5,22 @@ import { spreadsheetImportCreatedRecordsProgressState } from '@/spreadsheet-impo
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 import { ModalContent } from 'twenty-ui/surfaces';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { t } from '@lingui/core/macro';
 import { Loader } from 'twenty-ui/feedback';
 
 const StyledHeader = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledDescription = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  margin-bottom: ${themeCssVariables.spacing[5]};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[5]};
 `;
 
 type ImportDataStepProps = {

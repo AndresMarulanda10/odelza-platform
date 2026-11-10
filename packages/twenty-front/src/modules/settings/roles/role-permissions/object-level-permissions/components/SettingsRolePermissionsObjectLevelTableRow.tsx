@@ -12,7 +12,10 @@ import { useContext } from 'react';
 import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath } from 'twenty-shared/utils';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledNameLabel = styled.div`
   overflow: hidden;
@@ -50,8 +53,8 @@ export const SettingsRolePermissionsObjectLevelTableRow = ({
       gridAutoColumns={OBJECT_LEVEL_PERMISSION_TABLE_GRID_AUTO_COLUMNS}
     >
       <TableCell
-        color={themeCssVariables.font.color.primary}
-        gap={themeCssVariables.spacing[1]}
+        color={odelzaThemeCssVariables.font.color.primary}
+        gap={odelzaThemeCssVariables.spacing[1]}
       >
         <ObjectMetadataIcon
           objectMetadataItem={objectMetadataItem}
@@ -84,7 +87,7 @@ export const SettingsRolePermissionsObjectLevelTableRow = ({
       <TableCell></TableCell>
       <TableCell
         align="right"
-        padding={`0 ${themeCssVariables.spacing[1]} 0 ${themeCssVariables.spacing[2]}`}
+        padding={`0 ${odelzaThemeCssVariables.spacing[1]} 0 ${odelzaThemeCssVariables.spacing[2]}`}
       >
         <SettingsRolePermissionsObjectLevelTableRowOptionsDropdown
           roleId={roleId}

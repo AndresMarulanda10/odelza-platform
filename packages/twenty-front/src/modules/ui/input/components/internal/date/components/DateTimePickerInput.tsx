@@ -17,27 +17,27 @@ import { useUserTimezone } from '@/ui/input/components/internal/date/hooks/useUs
 import { useEffect, useState } from 'react';
 import { Temporal } from 'temporal-polyfill';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { isDifferentZonedDateTime } from '~/utils/dates/isDifferentZonedDateTime';
 
 const StyledInputContainer = styled.div`
   align-items: center;
 
-  border-top-left-radius: ${themeCssVariables.border.radius.md};
-  border-top-right-radius: ${themeCssVariables.border.radius.md};
+  border-top-left-radius: ${odelzaThemeCssVariables.border.radius.md};
+  border-top-right-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
-  height: ${themeCssVariables.spacing[8]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   width: 100%;
 `;
 
 const StyledInput = styled.input<{ hasError?: boolean }>`
   background: transparent;
   border: none;
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   font-weight: 500;
   outline: none;
-  padding-left: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
   width: 140px;
 `;
 

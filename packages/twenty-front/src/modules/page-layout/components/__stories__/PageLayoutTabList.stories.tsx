@@ -11,12 +11,12 @@ import { PageLayoutEditModeProviderContext } from '@/page-layout/contexts/PageLa
 import { PageLayoutComponentInstanceContext } from '@/page-layout/states/contexts/PageLayoutComponentInstanceContext';
 import { type PageLayoutTab } from '@/page-layout/types/PageLayoutTab';
 import { calculateNewPosition } from '@/ui/layout/draggable-list/utils/calculateNewPosition';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { PageLayoutType } from '~/generated-metadata/graphql';
 
 const StyledContainer = styled.div`
-  border: 1px solid ${themeCssVariables.border.color.strong};
-  padding: ${themeCssVariables.spacing[4]};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.strong};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
   width: 720px;
 `;
 

@@ -11,7 +11,7 @@ import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import camelCase from 'lodash.camelcase';
 import { type SelectOption } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type WorkflowFormFieldSettingsRecordPickerProps = {
   field: WorkflowFormActionField;
@@ -21,7 +21,7 @@ type WorkflowFormFieldSettingsRecordPickerProps = {
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const WorkflowFormFieldSettingsRecordPicker = ({

@@ -18,7 +18,7 @@ import { Status } from 'twenty-ui/data-display';
 import { IconDotsVertical } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
 import { MenuItem } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   GetServerAdminsDocument,
   UpdateServerAdminAccessDocument,
@@ -41,18 +41,18 @@ const SERVER_ADMIN_ACCESS_CONFIRMATION_MODAL_ID =
 const StyledValue = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledChips = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledNoAccess = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   flex: 1;
 `;
 
@@ -60,12 +60,12 @@ const StyledConfirmationContent = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledOTPContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const SettingsAdminServerAdminAccess = ({
@@ -220,7 +220,7 @@ export const SettingsAdminServerAdminAccess = ({
       <ConfirmationModal
         modalInstanceId={SERVER_ADMIN_ACCESS_CONFIRMATION_MODAL_ID}
         title={pendingChange?.isRevoking ? t`Revoke access` : t`Grant access`}
-        confirmButtonAccent={pendingChange?.isRevoking ? 'danger' : 'blue'}
+        confirmButtonAccent={pendingChange?.isRevoking ? 'danger' : 'primary'}
         confirmButtonText={t`Confirm`}
         onConfirmClick={handleConfirm}
         onClose={() => {

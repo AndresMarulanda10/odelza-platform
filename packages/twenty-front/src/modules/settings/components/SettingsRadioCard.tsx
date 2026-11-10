@@ -3,21 +3,24 @@ import { useContext } from 'react';
 import { CardContent } from 'twenty-ui/surfaces';
 import { type IconComponent } from 'twenty-ui/icon';
 import { Radio } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledRadioCardContentContainer = styled.div`
   > * {
     align-items: center;
-    border: 1px solid ${themeCssVariables.border.color.medium};
-    border-radius: ${themeCssVariables.border.radius.sm};
+    border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+    border-radius: ${odelzaThemeCssVariables.border.radius.sm};
     cursor: pointer;
     display: flex;
     flex-grow: 1;
-    gap: ${themeCssVariables.spacing[2]};
-    padding: ${themeCssVariables.spacing[2]};
+    gap: ${odelzaThemeCssVariables.spacing[2]};
+    padding: ${odelzaThemeCssVariables.spacing[2]};
 
     &:hover {
-      background: ${themeCssVariables.background.transparent.lighter};
+      background: ${odelzaThemeCssVariables.background.transparent.lighter};
     }
   }
 `;
@@ -26,18 +29,18 @@ const StyledRadioContainer = styled.span`
   align-items: center;
   display: flex;
   margin-left: auto;
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledTitle = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledDescription = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
-  line-height: ${themeCssVariables.text.lineHeight.lg};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.lg};
 `;
 
 type SettingsRadioCardProps = {

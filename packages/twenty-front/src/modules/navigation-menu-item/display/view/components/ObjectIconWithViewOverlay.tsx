@@ -2,11 +2,14 @@ import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { getIconTileColorShades } from 'twenty-ui/data-display';
 import { type IconComponent } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledCompositeContainer = styled.div`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   flex-shrink: 0;
@@ -24,7 +27,7 @@ const StyledObjectIconWrapper = styled.div<{
   background-color: ${({ $backgroundColor }) => $backgroundColor};
   border: ${({ $borderColor }) =>
     $borderColor ? `1px solid ${$borderColor}` : 'none'};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   inset: 0;
@@ -35,7 +38,7 @@ const StyledObjectIconWrapper = styled.div<{
 const StyledViewOverlay = styled.div<{ $backgroundColor: string }>`
   align-items: center;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   bottom: -5px;
   display: flex;
   height: 14px;
@@ -71,11 +74,13 @@ export const ObjectIconWithViewOverlay = ({
           color={objectStyle.iconColor}
         />
       </StyledObjectIconWrapper>
-      <StyledViewOverlay $backgroundColor={themeCssVariables.grayScale.gray4}>
+      <StyledViewOverlay
+        $backgroundColor={odelzaThemeCssVariables.grayScale.gray4}
+      >
         <ViewIcon
           size="12px"
           stroke={theme.icon.stroke.md}
-          color={themeCssVariables.grayScale.gray10}
+          color={odelzaThemeCssVariables.grayScale.gray10}
         />
       </StyledViewOverlay>
     </StyledCompositeContainer>

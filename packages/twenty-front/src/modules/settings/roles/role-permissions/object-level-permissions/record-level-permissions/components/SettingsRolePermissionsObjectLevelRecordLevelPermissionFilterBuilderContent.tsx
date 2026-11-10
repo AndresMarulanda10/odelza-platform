@@ -5,7 +5,7 @@ import { t } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { IconFilter, IconPlus } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { CommandMenuButton } from '@/command-menu/components/CommandMenuButton';
 import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/EnrichedObjectMetadataItem';
@@ -32,18 +32,18 @@ const StyledContainer = styled.div`
   align-items: start;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledFiltersContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
 const StyledActionButtonWrapper = styled.div`
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type SettingsRolePermissionsObjectLevelRecordLevelPermissionFilterBuilderContentProps =

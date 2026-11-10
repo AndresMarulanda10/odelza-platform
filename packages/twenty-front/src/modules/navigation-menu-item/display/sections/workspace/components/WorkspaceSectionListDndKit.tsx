@@ -11,7 +11,7 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { NavigationMenuItemType } from 'twenty-shared/types';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { NavigationMenuItemDragContext } from '@/navigation-menu-item/common/contexts/NavigationMenuItemDragContext';
 import { NavigationMenuItemDisplay } from '@/navigation-menu-item/display/components/NavigationMenuItemDisplay';
@@ -24,8 +24,8 @@ type WorkspaceSectionListDndKitProps = NavigationMenuItemSectionListDndKitProps;
 const StyledList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.betweenSiblingsGap};
-  padding-top: ${themeCssVariables.betweenSiblingsGap};
+  gap: ${odelzaThemeCssVariables.betweenSiblingsGap};
+  padding-top: ${odelzaThemeCssVariables.betweenSiblingsGap};
 `;
 
 const StyledListItemRow = styled.div`
@@ -35,7 +35,7 @@ const StyledListItemRow = styled.div`
 `;
 
 const StyledOrphanAppendSlotOverlap = styled.div`
-  margin-top: calc(-1 * ${themeCssVariables.betweenSiblingsGap});
+  margin-top: calc(-1 * ${odelzaThemeCssVariables.betweenSiblingsGap});
 `;
 
 export const WorkspaceSectionListDndKit = ({

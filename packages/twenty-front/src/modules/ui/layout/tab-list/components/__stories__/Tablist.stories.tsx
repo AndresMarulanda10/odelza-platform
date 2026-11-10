@@ -38,14 +38,14 @@ const tabs = [
   { id: 'reports', title: 'Reports', Icon: IconCheckbox },
 ];
 
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledInteractiveContainer = styled.div`
-  border: 1px solid ${themeCssVariables.border.color.strong};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.strong};
   max-width: 100%;
   min-width: 300px;
   overflow: auto;
-  padding: ${themeCssVariables.spacing[5]};
+  padding: ${odelzaThemeCssVariables.spacing[5]};
   resize: horizontal;
   width: 600px;
 `;

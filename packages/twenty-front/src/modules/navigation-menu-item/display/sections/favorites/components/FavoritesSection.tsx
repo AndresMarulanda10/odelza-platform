@@ -4,7 +4,7 @@ import { useCallback, useContext, useMemo } from 'react';
 import { SidePanelPages } from 'twenty-shared/types';
 import { IconHeart, IconHeartOff, IconPlus } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type NavigationMenuItem } from '~/generated-metadata/graphql';
 
 import { NavigationMenuItemDroppableIds } from '@/navigation-menu-item/common/constants/NavigationMenuItemDroppableIds';
@@ -33,7 +33,7 @@ import { useSetAtomState } from '@/ui/utilities/state/jotai/hooks/useSetAtomStat
 const StyledList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.betweenSiblingsGap};
+  gap: ${odelzaThemeCssVariables.betweenSiblingsGap};
 `;
 
 const StyledListItemRow = styled.div`

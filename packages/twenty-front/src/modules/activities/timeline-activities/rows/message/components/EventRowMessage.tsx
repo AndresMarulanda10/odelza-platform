@@ -8,20 +8,20 @@ import { type EventRowDynamicComponentProps } from '@/activities/timeline-activi
 import { EventRowItem } from '@/activities/timeline-activities/rows/components/EventRowItem';
 import { EventCardMessage } from '@/activities/timeline-activities/rows/message/components/EventCardMessage';
 import { isTimelineActivityWithLinkedRecord } from '@/activities/timeline-activities/types/TimelineActivity';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type EventRowMessageProps = EventRowDynamicComponentProps;
 
 const StyledEventRowMessageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledRowContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const EventRowMessage = ({

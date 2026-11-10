@@ -6,7 +6,7 @@
   align-items: center;
   background: var(--abtn-bg);
   border-color: var(--abtn-border-color);
-  border-radius: var(--abtn-radius, var(--t-border-radius-md));
+  border-radius: var(--abtn-radius, var(--odz-border-radius-md));
   border-style: solid;
   border-width: var(--abtn-border-width);
   box-shadow: var(--abtn-box-shadow);
@@ -14,12 +14,12 @@
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  font-family: var(--t-font-family);
-  font-size: var(--t-font-size-md);
+  font-family: var(--odz-font-family);
+  font-size: var(--odz-font-size-md);
   font-weight: 500;
-  gap: var(--t-spacing-1);
+  gap: var(--odz-spacing-1);
   justify-content: var(--abtn-justify, flex-start);
-  padding: 0 var(--t-spacing-2);
+  padding: 0 var(--odz-spacing-2);
   text-decoration: none;
   transition: background 0.1s ease;
   white-space: nowrap;
@@ -48,7 +48,7 @@
 // These rules only assign the custom property so the border-radius
 // declaration stays on the flat .button class for overridability.
 .button[data-position='left'] {
-  --abtn-radius: var(--t-border-radius-md) 0px 0px var(--t-border-radius-md);
+  --abtn-radius: var(--odz-border-radius-md) 0px 0px var(--odz-border-radius-md);
 }
 
 .button[data-position='middle'] {
@@ -56,7 +56,7 @@
 }
 
 .button[data-position='right'] {
-  --abtn-radius: 0px var(--t-border-radius-md) var(--t-border-radius-md) 0px;
+  --abtn-radius: 0px var(--odz-border-radius-md) var(--odz-border-radius-md) 0px;
 }
 
 // --abtn-square-size keeps the square width declaration flat on .square.
@@ -90,38 +90,38 @@
 }
 
 .separator {
-  background: var(--t-font-color-light);
-  height: var(--t-spacing-4);
+  background: var(--odz-font-color-light);
+  height: var(--odz-spacing-4);
   margin: 0;
   width: 1px;
 
   &[data-size='small'] {
-    height: var(--t-spacing-2);
+    height: var(--odz-spacing-2);
   }
 
-  &[data-accent='blue'] {
-    background: var(--t-border-color-blue);
+  &[data-accent='primary'] {
+    background: var(--odz-border-color-accent);
   }
 
   &[data-accent='danger'] {
-    background: var(--t-border-color-danger);
+    background: var(--odz-border-color-danger);
   }
 }
 
 .shortcutLabel {
-  color: var(--t-font-color-light);
-  font-weight: var(--t-font-weight-medium);
+  color: var(--odz-font-color-light);
+  font-weight: var(--odz-font-weight-medium);
 
-  &[data-accent='blue'] {
-    color: var(--t-border-color-blue);
+  &[data-accent='primary'] {
+    color: var(--odz-border-color-accent);
   }
 
   &[data-accent='danger'] {
-    color: var(--t-color-red8);
+    color: var(--odz-color-red8);
   }
 
   &[data-accent='danger'][data-variant='primary'] {
-    color: var(--t-border-color-danger);
+    color: var(--odz-border-color-danger);
   }
 }
 

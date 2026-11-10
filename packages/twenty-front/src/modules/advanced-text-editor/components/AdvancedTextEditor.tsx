@@ -4,7 +4,7 @@ import { TextBubbleMenu } from '@/advanced-text-editor/components/TextBubbleMenu
 import { FORM_FIELD_PLACEHOLDER_STYLES } from '@/object-record/record-field/ui/form-types/constants/FormFieldPlaceholderStyles';
 import { styled } from '@linaria/react';
 import { EditorContent, type Editor } from '@tiptap/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledEditorContainer = styled.div<{
   readonly?: boolean;
@@ -29,13 +29,14 @@ const StyledEditorContainer = styled.div<{
     box-sizing: border-box;
     color: ${({ readonly }) =>
       readonly
-        ? themeCssVariables.font.color.secondary
-        : themeCssVariables.font.color.primary};
-    font-family: ${themeCssVariables.font.family};
-    font-size: ${themeCssVariables.font.size.sm};
-    font-weight: ${themeCssVariables.font.weight.regular};
+        ? odelzaThemeCssVariables.font.color.secondary
+        : odelzaThemeCssVariables.font.color.primary};
+    font-family: ${odelzaThemeCssVariables.font.family};
+    font-size: ${odelzaThemeCssVariables.font.size.sm};
+    font-weight: ${odelzaThemeCssVariables.font.weight.regular};
     height: 100%;
-    padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
+    padding: ${odelzaThemeCssVariables.spacing[1]}
+      ${odelzaThemeCssVariables.spacing[2]};
 
     p.is-editor-empty:first-of-type::before {
       ${FORM_FIELD_PLACEHOLDER_STYLES}
@@ -51,10 +52,10 @@ const StyledEditorContainer = styled.div<{
     }
 
     .variable-tag {
-      background-color: ${themeCssVariables.color.blue3};
-      border-radius: ${themeCssVariables.border.radius.sm};
-      color: ${themeCssVariables.color.blue};
-      padding: ${themeCssVariables.spacing[1]};
+      background-color: ${odelzaThemeCssVariables.color.primary3};
+      border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+      color: ${odelzaThemeCssVariables.color.primary};
+      padding: ${odelzaThemeCssVariables.spacing[1]};
     }
 
     h1 {
@@ -71,7 +72,7 @@ const StyledEditorContainer = styled.div<{
 
     li {
       line-height: 1.5;
-      margin-bottom: ${themeCssVariables.spacing[2]};
+      margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
     }
   }
 

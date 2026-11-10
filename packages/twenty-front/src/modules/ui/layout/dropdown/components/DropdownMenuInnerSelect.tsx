@@ -8,24 +8,27 @@ import { useContext } from 'react';
 import { IconChevronDown } from 'twenty-ui/icon';
 import { type SelectOption } from 'twenty-ui/input';
 import { MenuItemSelect } from 'twenty-ui/navigation';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledDropdownMenuInnerSelectDropdownButton = styled.div`
   align-items: center;
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   cursor: pointer;
 
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 
-  height: ${themeCssVariables.spacing[7]};
+  height: ${odelzaThemeCssVariables.spacing[7]};
   justify-content: space-between;
-  padding-left: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
 
-  padding-right: ${themeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 

@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { useState } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsApplicationScreenshotGalleryProps = {
   screenshots: string[];
@@ -10,8 +10,8 @@ type SettingsApplicationScreenshotGalleryProps = {
 const StyledGalleryContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-bottom: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
   min-width: 0;
   width: 100%;
 `;
@@ -19,9 +19,9 @@ const StyledGalleryContainer = styled.div`
 const StyledScreenshotsContainer = styled.div`
   align-items: center;
   aspect-ratio: 8 / 5;
-  background-color: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -35,7 +35,7 @@ const StyledScreenshotImage = styled.img`
 
 const StyledScreenshotThumbnails = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-width: 0;
   overflow-x: auto;
 `;
@@ -43,13 +43,13 @@ const StyledScreenshotThumbnails = styled.div`
 const StyledThumbnail = styled.div<{ isSelected?: boolean }>`
   align-items: center;
   aspect-ratio: 8 / 5;
-  background-color: ${themeCssVariables.background.secondary};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
   border: 1px solid
     ${({ isSelected }) =>
       isSelected
-        ? themeCssVariables.color.blue
-        : themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+        ? odelzaThemeCssVariables.color.primary
+        : odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   cursor: pointer;
   display: flex;
   flex: 0 0 96px;
@@ -57,7 +57,7 @@ const StyledThumbnail = styled.div<{ isSelected?: boolean }>`
   overflow: hidden;
 
   &:hover {
-    border-color: ${themeCssVariables.color.blue};
+    border-color: ${odelzaThemeCssVariables.color.primary};
   }
 `;
 

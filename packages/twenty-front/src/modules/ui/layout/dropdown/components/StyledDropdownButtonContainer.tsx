@@ -1,4 +1,4 @@
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { styled } from '@linaria/react';
 
 type StyledDropdownButtonProps = {
@@ -13,20 +13,20 @@ export const StyledDropdownButtonContainer = styled.div<StyledDropdownButtonProp
     transparentBackground
       ? 'none'
       : isUnfolded
-        ? themeCssVariables.background.transparent.light
-        : themeCssVariables.background.primary};
-  border-radius: ${themeCssVariables.border.radius.md};
+        ? odelzaThemeCssVariables.background.transparent.light
+        : odelzaThemeCssVariables.background.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   color: ${({ isActive }) =>
     isActive
-      ? themeCssVariables.color.blue
-      : themeCssVariables.font.color.secondary};
+      ? odelzaThemeCssVariables.color.primary
+      : odelzaThemeCssVariables.font.color.secondary};
   cursor: pointer;
   display: flex;
 
-  padding: ${themeCssVariables.spacing[1]};
-  padding-left: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
 
-  padding-right: ${themeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
   user-select: none;
 
   &:hover {
@@ -34,7 +34,7 @@ export const StyledDropdownButtonContainer = styled.div<StyledDropdownButtonProp
       transparentBackground
         ? 'transparent'
         : isUnfolded
-          ? themeCssVariables.background.transparent.medium
-          : themeCssVariables.background.transparent.light};
+          ? odelzaThemeCssVariables.background.transparent.medium
+          : odelzaThemeCssVariables.background.transparent.light};
   }
 `;

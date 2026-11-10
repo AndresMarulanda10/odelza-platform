@@ -3,7 +3,10 @@ import { useContext, useState } from 'react';
 
 import { IconBrain, IconChevronDown, IconChevronUp } from 'twenty-ui/icon';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { ShimmeringText } from '@/ai/components/ShimmeringText';
 import { t } from '@lingui/core/macro';
@@ -11,27 +14,27 @@ import { t } from '@lingui/core/macro';
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledThinkingText = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledReasoningContainer = styled.div`
-  background: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
-  padding: ${themeCssVariables.spacing[3]};
+  background: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledReasoningText = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.sm};
-  line-height: ${themeCssVariables.text.lineHeight.lg};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.lg};
   white-space: pre-wrap;
 `;
 
@@ -39,24 +42,25 @@ const StyledToggleButton = styled.div`
   align-items: center;
   background: none;
   border: none;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: pointer;
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[1]} 0;
-  transition: color calc(${themeCssVariables.animation.duration.normal} * 1s);
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]} 0;
+  transition: color
+    calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s);
 
   &:hover {
-    color: ${themeCssVariables.font.color.secondary};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
   }
 `;
 
 const StyledIconContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const ReasoningSummaryDisplay = ({

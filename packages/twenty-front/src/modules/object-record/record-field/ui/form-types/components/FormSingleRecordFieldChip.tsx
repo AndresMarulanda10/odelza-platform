@@ -11,22 +11,22 @@ import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { IconForbid } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledRecordChipContainer = styled.div`
-  margin: ${themeCssVariables.spacing[2]};
+  margin: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledPlaceholderContainer = styled.div`
-  margin: ${themeCssVariables.spacing[2]};
+  margin: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledNoRecordContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  margin: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  margin: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type FormSingleRecordFieldChipProps = {

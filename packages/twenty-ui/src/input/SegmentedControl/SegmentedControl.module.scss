@@ -1,14 +1,14 @@
 .container {
   align-items: center;
-  background: var(--t-background-secondary);
-  border: 1px solid var(--t-border-color-medium);
-  border-radius: var(--t-border-radius-pill);
+  background: var(--odz-background-secondary);
+  border: 1px solid var(--odz-border-color-medium);
+  border-radius: var(--odz-border-radius-pill);
   corner-shape: round;
   box-sizing: border-box;
   display: inline-flex;
   flex-shrink: 0;
   gap: 2px;
-  height: var(--t-spacing-7);
+  height: var(--odz-spacing-7);
   padding: 3px;
   width: var(--segmented-control-width, auto);
 }
@@ -17,28 +17,28 @@
   align-items: center;
   background: transparent;
   border: 0;
-  border-radius: var(--t-border-radius-pill);
+  border-radius: var(--odz-border-radius-pill);
   corner-shape: round;
-  color: var(--t-font-color-secondary);
+  color: var(--odz-font-color-secondary);
   cursor: pointer;
   display: flex;
   flex: 1;
-  font-family: var(--t-font-family);
-  font-size: var(--t-font-size-md);
-  font-weight: var(--t-font-weight-medium);
-  gap: var(--t-spacing-1);
+  font-family: var(--odz-font-family);
+  font-size: var(--odz-font-size-md);
+  font-weight: var(--odz-font-weight-medium);
+  gap: var(--odz-spacing-1);
   height: 100%;
   justify-content: center;
   line-height: 1.4;
   min-width: 0;
-  padding: 0 var(--t-spacing-2);
+  padding: 0 var(--odz-spacing-2);
   transition:
     background 0.1s ease,
     color 0.1s ease;
   white-space: nowrap;
 
   &:hover {
-    background: var(--t-background-transparent-lighter);
+    background: var(--odz-background-transparent-lighter);
   }
 
   &:disabled {
@@ -46,11 +46,11 @@
   }
 
   &[data-active] {
-    background: var(--t-background-transparent-light);
-    color: var(--t-font-color-primary);
+    background: var(--odz-background-transparent-light);
+    color: var(--odz-font-color-primary);
 
     &:hover {
-      background: var(--t-background-transparent-light);
+      background: var(--odz-background-transparent-light);
     }
   }
 }
@@ -60,7 +60,7 @@
 }
 
 .iconOnly {
-  min-width: var(--t-spacing-5);
+  min-width: var(--odz-spacing-5);
   padding: 0;
 }
 
@@ -68,9 +68,9 @@
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  height: var(--t-spacing-5);
+  height: var(--odz-spacing-5);
   justify-content: center;
-  width: var(--t-spacing-5);
+  width: var(--odz-spacing-5);
 }
 
 .label {

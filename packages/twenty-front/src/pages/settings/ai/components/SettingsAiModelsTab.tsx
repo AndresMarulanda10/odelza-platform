@@ -27,7 +27,10 @@ import { SearchInput } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
 import { Card } from 'twenty-ui/surfaces';
 import { UndecoratedLink } from 'twenty-ui/navigation';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { GetAiSystemPromptPreviewDocument } from '~/generated-metadata/graphql';
 import { useSettingsAiModelsActions } from '~/pages/settings/ai/hooks/useSettingsAiModelsActions';
 import { formatNumber } from '~/utils/format/formatNumber';
@@ -35,8 +38,8 @@ import { formatNumber } from '~/utils/format/formatNumber';
 const StyledCustomModelsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
-  padding-top: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
+  padding-top: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 export const SettingsAiModelsTab = () => {

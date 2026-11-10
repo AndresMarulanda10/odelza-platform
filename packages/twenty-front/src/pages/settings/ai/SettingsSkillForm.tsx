@@ -29,7 +29,10 @@ import { AppTooltip, Card, TooltipDelay } from 'twenty-ui/surfaces';
 import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useMutation, useQuery } from '@apollo/client/react';
 import {
   ActivateSkillDocument,
@@ -52,13 +55,13 @@ import { isDeeplyEqual } from '~/utils/isDeeplyEqual';
 const StyledFormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledIconNameRow = styled.div`
   align-items: flex-start;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledNameContainer = styled.div`
@@ -66,19 +69,19 @@ const StyledNameContainer = styled.div`
 `;
 
 const StyledAdvancedSettingsOuterContainer = styled.div`
-  padding-top: ${themeCssVariables.spacing[4]};
+  padding-top: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledAdvancedSettingsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   width: 100%;
 `;
 
 const StyledDangerButtonsContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type SkillFormValues = {
@@ -420,7 +423,9 @@ export const SettingsSkillForm = ({ mode }: { mode: 'create' | 'edit' }) => {
   return (
     <SettingsPageLayout
       title={title}
-      icon={<SkillIcon size={theme.icon.size.md} color={theme.color.blue9} />}
+      icon={
+        <SkillIcon size={theme.icon.size.md} color={theme.color.primary9} />
+      }
       actionButton={
         isCreateMode ? (
           <SaveAndCancelButtons

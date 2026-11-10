@@ -24,7 +24,7 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { useSetAtomState } from '@/ui/utilities/state/jotai/hooks/useSetAtomState';
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { isNonEmptyString } from '@sniptt/guards';
 import { AppPath, SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath } from 'twenty-shared/utils';
@@ -49,8 +49,8 @@ import { getWorkspaceUrl } from '~/utils/getWorkspaceUrl';
 import { getAbsoluteImageUrl } from '~/utils/image/getAbsoluteImageUrl';
 
 const StyledDescription = styled.div`
-  color: ${themeCssVariables.font.color.light};
-  padding-left: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const MultiWorkspaceDropdownDefaultComponents = () => {

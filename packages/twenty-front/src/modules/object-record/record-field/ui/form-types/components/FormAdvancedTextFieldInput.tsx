@@ -18,7 +18,7 @@ import { useId, useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconMaximize } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useIsMobile } from 'twenty-ui/utilities';
 
 const StyledAdvancedTextFieldContainerWrapper = styled.div`
@@ -29,14 +29,14 @@ const StyledAdvancedTextFieldFieldContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   position: relative;
 `;
 
 const StyledAdvancedTextFieldInnerContainer = styled.div`
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
 
   display: flex;
@@ -48,24 +48,24 @@ const StyledAdvancedTextFieldInnerContainer = styled.div`
 const StyledEditorActionButtonContainer = styled.div<{
   hasVariablePicker?: boolean;
 }>`
-  margin-top: ${themeCssVariables.spacing[1]};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
   position: absolute;
   right: ${({ hasVariablePicker }) =>
     hasVariablePicker
-      ? `calc(${themeCssVariables.spacing[7]} + ${themeCssVariables.spacing[2]})`
-      : themeCssVariables.spacing[1]};
-  top: ${themeCssVariables.spacing[0]};
+      ? `calc(${odelzaThemeCssVariables.spacing[7]} + ${odelzaThemeCssVariables.spacing[2]})`
+      : odelzaThemeCssVariables.spacing[1]};
+  top: ${odelzaThemeCssVariables.spacing[0]};
   z-index: 1;
 `;
 
 const StyledFullScreenEditorContainer = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type FormAdvancedTextFieldInputProps = {

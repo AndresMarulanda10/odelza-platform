@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledSubViewContainer = styled.div`
   display: flex;
@@ -13,17 +13,17 @@ const StyledSubViewContainer = styled.div`
 
 const StyledSearchContainer = styled.div`
   align-items: center;
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
-  height: ${themeCssVariables.spacing[10]};
+  height: ${odelzaThemeCssVariables.spacing[10]};
   min-width: 0;
-  padding-inline: ${themeCssVariables.spacing[3]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledSearchInput = styled.input`
   background: transparent;
   border: none;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
 
   outline: none;
@@ -31,7 +31,7 @@ const StyledSearchInput = styled.input`
   width: 100%;
 
   &::placeholder {
-    color: ${themeCssVariables.font.color.tertiary};
+    color: ${odelzaThemeCssVariables.font.color.tertiary};
   }
 `;
 

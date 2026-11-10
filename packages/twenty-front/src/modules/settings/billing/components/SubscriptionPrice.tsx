@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { SubscriptionInterval } from '~/generated-metadata/graphql';
 
 type SubscriptionPriceProps = {
@@ -9,16 +9,16 @@ type SubscriptionPriceProps = {
 };
 
 const StyledPriceSpan = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.xxl};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.xxl};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledPriceUnitSpan = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const formatYearlyPriceToMonthly = (price: number): number => {

@@ -13,12 +13,12 @@ import { type RecordFilterGroup } from '@/object-record/record-filter-group/type
 import { type RecordFilter } from '@/object-record/record-filter/types/RecordFilter';
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: space-between;
 `;
 

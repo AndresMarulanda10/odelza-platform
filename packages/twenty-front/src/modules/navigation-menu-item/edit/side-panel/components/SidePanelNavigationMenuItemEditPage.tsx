@@ -26,18 +26,18 @@ import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { IconPlus } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { parseThemeColor } from 'twenty-ui/utilities';
 
 const ADD_ITEM_TO_FOLDER_ACTION_ID = 'add-item-to-folder';
 
 const StyledSidePanelPlaceholder = styled.p`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const StyledSidePanelPageContainer = styled.div`
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 export const SidePanelNavigationMenuItemEditPage = () => {

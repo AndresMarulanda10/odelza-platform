@@ -5,14 +5,14 @@ import { useLingui } from '@lingui/react/macro';
 import { motion } from 'framer-motion';
 import { Controller, useFormContext } from 'react-hook-form';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledFullWidthMotionDiv = styled(motion.div)`
   width: 100%;
 `;
 
 const StyledInputContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[3]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 export const SignInUpEmailField = ({

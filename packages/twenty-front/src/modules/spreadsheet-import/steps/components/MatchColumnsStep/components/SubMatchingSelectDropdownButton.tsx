@@ -9,12 +9,15 @@ import { type SpreadsheetMatchedOptions } from '@/spreadsheet-import/types/Sprea
 import { getFieldOptions } from '@/spreadsheet-import/utils/getFieldOptions';
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { Tag, type TagColor } from 'twenty-ui/data-display';
 import { IconChevronDown } from 'twenty-ui/icon';
 import { type SelectOption } from 'twenty-ui/input';
 const StyledIconChevronDownContainer = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
 `;
 

@@ -4,7 +4,10 @@ import { useContext } from 'react';
 import { type EmailAttachment } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { IconUpload } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { useUploadEmailAttachment } from '@/activities/emails/hooks/useUploadEmailAttachment';
 import { AttachmentChip } from '@/file/components/AttachmentChip';
@@ -23,21 +26,21 @@ const StyledContainer = styled.div`
 `;
 
 const StyledUploadArea = styled.div<{ hasFiles: boolean }>`
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: ${({ hasFiles }) => (hasFiles ? 'auto' : '24px')};
-  padding-bottom: ${themeCssVariables.spacing[1]};
-  padding-left: ${themeCssVariables.spacing[2]};
-  padding-right: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[1]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[1]};
 
   &:hover {
-    background-color: ${themeCssVariables.background.transparent.light};
-    border-color: ${themeCssVariables.border.color.strong};
+    background-color: ${odelzaThemeCssVariables.background.transparent.light};
+    border-color: ${odelzaThemeCssVariables.border.color.strong};
   }
 `;
 
@@ -45,15 +48,15 @@ const StyledChipsContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledUploadAreaLabel = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: center;
 `;
 

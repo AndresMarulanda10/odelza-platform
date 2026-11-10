@@ -41,6 +41,11 @@ msgstr " per {intervalLabel}"
 msgid "—"
 msgstr "—"
 
+#. js-lingui-id: X9nCq4
+#: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
+msgid ": Before today{timeZoneAbbreviationSuffix}"
+msgstr ""
+
 #. js-lingui-id: ypz2+E
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
 msgid ": Empty"
@@ -97,7 +102,6 @@ msgid "· FREE"
 msgstr "· GRATIS"
 
 #. js-lingui-id: TaLmrR
-#. placeholder {0}: formatNumber(currentCreditsByPeriod, { decimals: 2 })
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "({0} credits)"
 msgstr "({0} krediete)"
@@ -163,132 +167,103 @@ msgid "[empty string]"
 msgstr "[leë string]"
 
 #. js-lingui-id: Z2fCN4
-#. placeholder {0}: failedResults.length
-#. placeholder {1}: failedResults.length
-#. placeholder {2}: failedResults.length
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
 msgid "{0, plural, one {{1} job could not be deleted} other {{2} jobs could not be deleted}}"
 msgstr "{0, plural, one {{1} werk kon nie uitgevee word nie} other {{2} werke kon nie uitgevee word nie}}"
 
 #. js-lingui-id: VjPlMz
-#. placeholder {0}: failedResults.length
-#. placeholder {1}: failedResults.length
-#. placeholder {2}: failedResults.length
 #: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
 msgid "{0, plural, one {{1} job could not be retried} other {{2} jobs could not be retried}}"
 msgstr "{0, plural, one {{1} werk kon nie herprobeer word nie} other {{2} werke kon nie herprobeer word nie}}"
 
 #. js-lingui-id: 0LMb5P
-#. placeholder {0}: Math.abs(days)
 #: src/utils/date-utils.ts
 msgid "{0, plural, one {{days} day} other {{days} days}}"
 msgstr "{0, plural, one {{days} dag} other {{days} dae}}"
 
 #. js-lingui-id: dXYycw
-#. placeholder {0}: Math.abs(years)
 #: src/utils/date-utils.ts
 msgid "{0, plural, one {{years} year} other {{years} years}}"
 msgstr "{0, plural, one {{years} jaar} other {{years} jaar}}"
 
 #. js-lingui-id: Qvm3VE
-#. placeholder {0}: selectedOptions.length
 #: src/modules/settings/components/SettingsMorphRelationMultiSelect.tsx
 #: src/modules/settings/components/SettingsMorphRelationMultiSelect.tsx
 msgid "{0, plural, one {# Object} other {# Objects}}"
 msgstr "{0, plural, one {# Voorwerp} other {# Voorwerpe}}"
 
 #. js-lingui-id: 8ob0vY
-#. placeholder {0}: failedCount + behindCount
 #: src/modules/settings/admin-panel/utils/getWorkspacesUpgradeHealthText.ts
 msgid "{0, plural, one {# workspace failed or behind} other {# workspaces failed or behind}}"
 msgstr "{0, plural, one {# werkruimte het misluk of is agterstallig} other {# werkruimtes het misluk of is agterstallig}}"
 
 #. js-lingui-id: WTc9VY
-#. placeholder {0}: restriction.fieldNames.length
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay.tsx
 msgid "{0, plural, one {You do not have permission to access the {fieldsList} field} other {You do not have permission to access the {fieldsList} fields}}"
 msgstr "{0, plural, one {Jy het nie toestemming om toegang tot die {fieldsList} veld te hê nie} other {Jy het nie toestemming om toegang tot die {fieldsList} velde te hê nie}}"
 
 #. js-lingui-id: dNIJYp
-#. placeholder {0}: formatNumber(nextCreditsByPeriod, { decimals: 2, })
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "{0} credits"
 msgstr "{0} krediete"
 
 #. js-lingui-id: QpgBEp
-#. placeholder {0}: withoutCreditCardTrialPeriod.duration
 #: src/pages/onboarding/UpgradeFreeTrial.tsx
 msgid "{0} days"
 msgstr "{0} dae"
 
 #. js-lingui-id: okrK9q
-#. placeholder {0}: preview.duplicateEmails
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 msgid "{0} duplicate"
 msgstr "{0} duplikaat"
 
 #. js-lingui-id: stCODw
-#. placeholder {0}: appObject.fields.length
 #: src/modules/settings/applications/hooks/useComputeObjectAndFieldsContentForApplication.ts
 msgid "{0} fields"
 msgstr "{0} velde"
 
 #. js-lingui-id: l8kqMU
-#. placeholder {0}: loadBalanceObjectMetadataItem.labelPlural
 #: src/modules/workflow/workflow-steps/workflow-actions/pick-record-action/components/WorkflowEditActionPickRecord.tsx
 msgid "{0} have no relation to {loadBalancePoolObjectLabel}. Pick a different object to balance by."
 msgstr "{0} het geen verband met {loadBalancePoolObjectLabel} nie. Kies 'n ander objek om volgens te balanseer."
 
 #. js-lingui-id: MY0lRK
-#. placeholder {0}: preview.totalMembers
-#. placeholder {1}: preview.sendable
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 msgid "{0} in this list — {1} sendable"
 msgstr "{0} in hierdie lys — {1} stuurbaar"
 
 #. js-lingui-id: T8aKxO
-#. placeholder {0}: layout.name
 #: src/modules/settings/applications/hooks/useComputeApplicationContentForLayoutAndLogic.ts
 msgid "{0} layout"
 msgstr "{0} uitleg"
 
 #. js-lingui-id: Zo6POu
-#. placeholder {0}: recordPageLayoutObject.labelPlural
 #: src/modules/layout-customization/components/LayoutCustomizationBar.tsx
 msgid "{0} layout edition"
 msgstr "Redigering van {0}-uitleg"
 
 #. js-lingui-id: uLS8YU
-#. placeholder {0}: provider.displayName
 #: src/pages/settings/applications/tabs/SettingsApplicationConnectionsSection.tsx
 msgid "{0} OAuth is not yet set up by your server administrator. They need to fill in the OAuth client ID and secret on the application registration before you can add a connection."
 msgstr "{0} OAuth is nog nie deur jou bedieneradministrateur ingestel nie. Hulle moet die OAuth-kliënt-ID en geheime sleutel op die toepassingsregistrasie invul voordat jy 'n verbinding kan byvoeg."
 
 #. js-lingui-id: FGOUAP
-#. placeholder {0}: formatNumber(displayedRecords.length)
-#. placeholder {1}: formatNumber(totalCount + liveRecords.length)
 #: src/modules/settings/event-logs/components/SettingsLogs.tsx
 msgid "{0} of {1}"
 msgstr "{0} van {1}"
 
 #. js-lingui-id: BzvoVr
-#. placeholder {0}: preview.topicUnsubscribed
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 msgid "{0} opted out of this topic"
 msgstr "{0} het van hierdie onderwerp afgeteken"
 
 #. js-lingui-id: fvImQM
-#. placeholder {0}: formatNumber(contextStoreNumberOfSelectedRecords)
-#. placeholder {0}: formatNumber(totalCount ?? 0)
 #: src/modules/object-record/record-index/components/RecordIndexPageHeader.tsx
 #: src/modules/side-panel/components/SidePanelMultipleRecordsInfo.tsx
 msgid "{0} selected"
 msgstr "{0} geselekteer"
 
 #. js-lingui-id: peiknr
-#. placeholder {0}: activeFilterLabels.length
-#. placeholder {0}: activeSortLabels.length
-#. placeholder {0}: activeVisibleFieldLabels.length
 #: src/modules/side-panel/pages/page-layout/hooks/useRecordTableSettingsDescriptions.ts
 #: src/modules/side-panel/pages/page-layout/hooks/useRecordTableSettingsDescriptions.ts
 #: src/modules/side-panel/pages/page-layout/hooks/useRecordTableSettingsDescriptions.ts
@@ -296,37 +271,31 @@ msgid "{0} shown"
 msgstr "{0} vertoon"
 
 #. js-lingui-id: nZUq+6
-#. placeholder {0}: preview.globallyUnsubscribed
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 msgid "{0} unsubscribed from everything"
 msgstr "{0} het van alles afgeteken"
 
 #. js-lingui-id: r4l/MK
-#. placeholder {0}: formatUsageValue(totalCredits)
 #: src/pages/settings/billing/SettingsUsageUserDetail.tsx
 msgid "{0} used"
 msgstr "{0} gebruik"
 
 #. js-lingui-id: izNf/z
-#. placeholder {0}: view.name
 #: src/modules/settings/applications/hooks/useComputeApplicationContentForLayoutAndLogic.ts
 msgid "{0} view"
 msgstr "{0} aansig"
 
 #. js-lingui-id: /ZFL82
-#. placeholder {0}: widgets.length
 #: src/pages/settings/layout/SettingsLayoutPageLayoutDetail.tsx
 msgid "{0} widgets"
 msgstr "{0} widgets"
 
 #. js-lingui-id: Aixgij
-#. placeholder {0}: preview.withoutEmail
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 msgid "{0} without email"
 msgstr "{0} sonder e-pos"
 
 #. js-lingui-id: 2UKfhY
-#. placeholder {0}: selectedItemNames.length
 #: src/modules/object-record/record-field/ui/form-types/components/FormWorkspaceMemberFilterValueInput.tsx
 msgid "{0} workspace members"
 msgstr "{0} werkruimtelede"
@@ -383,10 +352,6 @@ msgid "{cachedPercent}% cached"
 msgstr "{cachedPercent}% in kas"
 
 #. js-lingui-id: 8SynPU
-#. placeholder {0}: (type === 'percentage' ? 99 : 1000).toFixed(count)
-#. placeholder {1}: type === 'percentage' ? '%' : ''
-#. placeholder {2}: (type === 'percentage' ? 99 : 1000).toFixed(count)
-#. placeholder {3}: type === 'percentage' ? '%' : ''
 #: src/modules/settings/data-model/fields/forms/number/components/SettingsDataModelFieldNumberForm.tsx
 msgid "{count, plural, one {E.g. {0}{1} for {count} decimal} other {E.g. {2}{3} for {count} decimals}}"
 msgstr "{count, plural, one {Byv. {0}{1} vir {count} desimaal} other {Byv. {2}{3} vir {count} desimale}}"
@@ -402,8 +367,6 @@ msgid "{days, plural, one {{days} day} other {{days} days}}"
 msgstr "{days, plural, one {{days} dag} other {{days} dae}}"
 
 #. js-lingui-id: 0KwX9P
-#. placeholder {0}: (1000).toFixed(decimals)
-#. placeholder {1}: (1000).toFixed(decimals)
 #: src/modules/settings/data-model/fields/forms/currency/components/SettingsDataModelFieldCurrencyForm.tsx
 msgid "{decimals, plural, one {E.g. {0} for {decimals} decimal} other {E.g. {1} for {decimals} decimals}}"
 msgstr "{decimals, plural, one {Byvoorbeeld {0} vir {decimals} desimaal} other {Byvoorbeeld {1} vir {decimals} desimale}}"
@@ -719,14 +682,11 @@ msgid "% left"
 msgstr "% oor"
 
 #. js-lingui-id: n9nj+X
-#. placeholder {0}: aiChatThreadPendingDelete?.threadTitle ?? ''
 #: src/modules/ai/components/AiChatThreadDeleteConfirmationModal.tsx
 msgid "<0>{0}</0> and all its messages will be removed."
 msgstr "<0>{0}</0> en al sy boodskappe sal verwyder word."
 
 #. js-lingui-id: SMgdEJ
-#. placeholder {0}: formatNumber( section.estimatedTokenCount, { abbreviate: true, decimals: 1, }, )
-#. placeholder {0}: formatNumber(preview.estimatedTokenCount, { abbreviate: true, decimals: 1, })
 #: src/pages/settings/ai/SettingsAiPrompts.tsx
 #: src/pages/settings/ai/SettingsAiPrompts.tsx
 msgid "~ {0} tokens"
@@ -960,11 +920,6 @@ msgstr "Oor hierdie werkruimte"
 msgid "About your app"
 msgstr "Oor jou toepassing"
 
-#. js-lingui-id: nJJAYH
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-msgid "Accepted and signed DPAs for this workspace, with their template version and date."
-msgstr "Aanvaarde en ondertekende DPA's vir hierdie werksruimte, met hul templaatweergawe en datum."
-
 #. js-lingui-id: pNW+Rt
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
 msgid "Access Key ID"
@@ -1020,11 +975,6 @@ msgstr "Rekeningverwydering"
 #: src/pages/settings/accounts/SettingsNewAccount.tsx
 msgid "Accounts"
 msgstr "Rekeninge"
-
-#. js-lingui-id: BXMLsb
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Acme GmbH"
-msgstr "Acme GmbH"
 
 #. js-lingui-id: X5unbK
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
@@ -1388,6 +1338,11 @@ msgstr "Voeg objek by"
 msgid "Add object permission"
 msgstr "Voeg voorwerp reg toe"
 
+#. js-lingui-id: yT8omL
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Add Odelza as a Streamable HTTP extension in Goose."
+msgstr "Voeg Odelza as 'n Streamable HTTP-uitbreiding in Goose by."
+
 #. js-lingui-id: Dl5lVI
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx
 msgid "Add option"
@@ -1462,35 +1417,40 @@ msgstr "Voeg taak by"
 msgid "Add test input for evaluation (e.g., \"Find all customers in NY\")"
 msgstr ""
 
-#. js-lingui-id: FKGcEL
+#. js-lingui-id: VZnGmb
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server as a remote context server in Zed."
-msgstr "Voeg die Twenty MCP-bediener as 'n afgeleë konteksbediener in Zed by."
+msgid "Add the Odelza MCP server as a custom connector in ChatGPT developer mode."
+msgstr "Voeg die Odelza MCP-bediener as 'n pasgemaakte koppelaar in ChatGPT se ontwikkelaarsmodus by."
 
-#. js-lingui-id: iA2nHX
+#. js-lingui-id: PZ9W2V
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server from Augment Code settings."
-msgstr "Voeg die Twenty MCP-bediener vanuit Augment Code-instellings by."
+msgid "Add the Odelza MCP server as a remote context server in Zed."
+msgstr "Voeg die Odelza MCP-bediener as 'n afgeleë konteksbediener in Zed by."
 
-#. js-lingui-id: l+NzAk
+#. js-lingui-id: cE6ZAA
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server from Raycast's MCP commands or settings."
-msgstr "Voeg die Twenty MCP-bediener vanuit Raycast se MCP-opdragte of -instellings by."
+msgid "Add the Odelza MCP server from Augment Code settings."
+msgstr "Voeg die Odelza MCP-bediener vanuit Augment Code-instellings by."
 
-#. js-lingui-id: j6G/yI
+#. js-lingui-id: V9totg
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server in Gemini CLI settings."
-msgstr "Voeg die Twenty MCP-bediener in Gemini CLI-instellings by."
+msgid "Add the Odelza MCP server from Raycast's MCP commands or settings."
+msgstr "Voeg die Odelza MCP-bediener vanuit Raycast se MCP-opdragte of -instellings by."
 
-#. js-lingui-id: /OyhlM
+#. js-lingui-id: 00MgD2
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server to your LibreChat configuration file."
-msgstr "Voeg die Twenty MCP-bediener by jou LibreChat-konfigurasielêer."
+msgid "Add the Odelza MCP server in Gemini CLI settings."
+msgstr "Voeg die Odelza MCP-bediener in Gemini CLI-instellings by."
 
-#. js-lingui-id: K0DXoj
+#. js-lingui-id: E9G1EO
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty remote server with LM Studio's install link."
-msgstr "Voeg die Twenty-afgeleë bediener by met LM Studio se installasieskakel."
+msgid "Add the Odelza MCP server to your LibreChat configuration file."
+msgstr "Voeg die Odelza MCP-bediener by jou LibreChat-konfigurasielêer."
+
+#. js-lingui-id: lUn4sy
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Add the Odelza remote server with LM Studio's install link."
+msgstr "Voeg die Odelza-afgeleë bediener by met LM Studio se installasieskakel."
 
 #. js-lingui-id: 5+ttxv
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistInput.tsx
@@ -1506,11 +1466,6 @@ msgstr "Voeg by tot gunstelinge"
 #: src/modules/settings/unsubscribe-topics/components/SettingsWorkspaceUnsubscribeTopicSection.tsx
 msgid "Add topic"
 msgstr "Voeg onderwerp by"
-
-#. js-lingui-id: 4D/zWv
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add Twenty as a Streamable HTTP extension in Goose."
-msgstr "Voeg Twenty as 'n Streamable HTTP-uitbreiding in Goose by."
 
 #. js-lingui-id: XnwceV
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationRedirectURIsInput.tsx
@@ -1936,9 +1891,9 @@ msgstr "Alle app-registrasies"
 msgid "All application registrations across the platform, including orphaned marketplace apps"
 msgstr "Alle toepassingsregistrasies oor die platform, insluitend wees-apps in die markplek"
 
-#. js-lingui-id: zHxUsQ
+#. js-lingui-id: QgR+Od
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "All dated tasks have already ended."
+msgid "All dated records have already ended."
 msgstr ""
 
 #. js-lingui-id: 1kLn6M
@@ -2173,9 +2128,9 @@ msgstr "'n Fout het voorgekom tydens die kontrole van gebruiker se bestaan"
 msgid "An error occurred while loading financial data."
 msgstr ""
 
-#. js-lingui-id: PAwBtR
+#. js-lingui-id: oHNBPZ
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "An error occurred while loading tasks."
+msgid "An error occurred while loading records."
 msgstr ""
 
 #. js-lingui-id: LfKkm6
@@ -2254,7 +2209,6 @@ msgid "An object with this name already exists"
 msgstr "'n Objek met hierdie naam bestaan reeds"
 
 #. js-lingui-id: HZFm5R
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettingsDeleteRoleConfirmationModalSubtitle.tsx
 #: src/utils/date-utils.ts
 msgid "and"
@@ -2276,7 +2230,6 @@ msgid "Anterior"
 msgstr ""
 
 #. js-lingui-id: 9BhGWn
-#. placeholder {0}: fieldLabel ?? ''
 #: src/modules/object-record/advanced-filter/components/AdvancedFilterCompositeSubFieldSelectMenu.tsx
 msgid "Any {0} field"
 msgstr "Enige {0}-veld"
@@ -2583,13 +2536,11 @@ msgid "Are you sure you want to delete this tool? This action cannot be undone."
 msgstr "Is jy seker jy wil hierdie hulpmiddel verwyder? Hierdie aksie kan nie ongedaan gemaak word nie."
 
 #. js-lingui-id: EySr+c
-#. placeholder {0}: objectMetadataItem.labelPlural
 #: src/modules/command-menu-item/engine-command/record/components/DestroyRecordsCommand.tsx
 msgid "Are you sure you want to destroy these {0}? They won't be recoverable anymore."
 msgstr "Is jy seker jy wil hierdie {0} vernietig? Hulle sal nie meer herstelbaar wees nie."
 
 #. js-lingui-id: GfgNgF
-#. placeholder {0}: objectMetadataItem.labelSingular
 #: src/modules/command-menu-item/engine-command/record/components/DestroyRecordsCommand.tsx
 msgid "Are you sure you want to destroy this {0}? It cannot be recovered anymore."
 msgstr "Is jy seker jy wil hierdie {0} vernietig? Dit kan nie meer herstel word nie."
@@ -2600,13 +2551,11 @@ msgid "Are you sure you want to reset this variable?"
 msgstr "Is jy seker jy wil hierdie veranderlike terugstel?"
 
 #. js-lingui-id: RzJL8J
-#. placeholder {0}: objectMetadataItem.labelPlural
 #: src/modules/command-menu-item/engine-command/record/components/RestoreRecordsCommand.tsx
 msgid "Are you sure you want to restore these {0}?"
 msgstr "Is jy seker jy wil hierdie {0} herstel?"
 
 #. js-lingui-id: XTKWxO
-#. placeholder {0}: objectMetadataItem.labelSingular
 #: src/modules/command-menu-item/engine-command/record/components/RestoreRecordsCommand.tsx
 msgid "Are you sure you want to restore this {0}?"
 msgstr "Is jy seker jy wil hierdie {0} herstel?"
@@ -2752,7 +2701,6 @@ msgid "at {minuteNumStr} minutes past the hour"
 msgstr "{minuteNumStr} minute na die uur"
 
 #. js-lingui-id: FNAAlz
-#. placeholder {0}: lastTime ?? ''
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getHoursDescription.ts
 msgid "at {remainingTimes} and {0}"
 msgstr "om {remainingTimes} en {0}"
@@ -2788,7 +2736,6 @@ msgid "at minutes {firstValue} and {secondValue}"
 msgstr "op minute {firstValue} en {secondValue}"
 
 #. js-lingui-id: VgeWVl
-#. placeholder {0}: lastValue ?? ''
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMinutesDescription.ts
 msgid "at minutes {remainingValues} and {0}"
 msgstr "op minute {remainingValues} en {0}"
@@ -2882,11 +2829,6 @@ msgstr "Magtiging het misluk. Probeer asseblief weer."
 msgid "Authorize"
 msgstr "Otoriseer"
 
-#. js-lingui-id: 3yzHpm
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Authorized signatory name"
-msgstr "Gemagtigde ondertekenaar se naam"
-
 #. js-lingui-id: wTBNbL
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
 msgid "Authorized URI"
@@ -2913,8 +2855,8 @@ msgid "Auto-generated role for {agentDisplayName}"
 msgstr ""
 
 #. js-lingui-id: Dnn2XG
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Automatic"
 msgstr ""
 
@@ -3033,6 +2975,11 @@ msgstr "Agtergrondkleure"
 msgid "Balance by"
 msgstr "Balans volgens"
 
+#. js-lingui-id: sKyCPZ
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Bar color"
+msgstr ""
+
 #. js-lingui-id: b2ghLW
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
 msgid "Base credits"
@@ -3091,6 +3038,18 @@ msgstr "Beste"
 #: src/pages/onboarding/InstallAppsContent.tsx
 msgid "Beta"
 msgstr "Beta"
+
+#. js-lingui-id: Zz7XBz
+#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
+#: src/pages/settings/lab/SettingsLab.tsx
+#: src/pages/settings/lab/SettingsLab.tsx
+msgid "Beta features"
+msgstr "Beta-kenmerke"
+
+#. js-lingui-id: zaMR13
+#: src/utils/title-utils.ts
+msgid "Beta features - Settings"
+msgstr "Beta-kenmerke - Instellings"
 
 #. js-lingui-id: NgFKo1
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMonthsDescription.ts
@@ -3152,10 +3111,10 @@ msgstr "Faktureringsinterval"
 msgid "Billing period"
 msgstr "Faktureringsperiode"
 
-#. js-lingui-id: xF/NXI
+#. js-lingui-id: hvQPEr
 #: src/modules/settings/billing/hooks/useBillingPortalSession.ts
-msgid "Billing portal session error. Please retry or contact Twenty team"
-msgstr "Faktureringsportaal-sessiefout. Probeer asseblief weer of kontak die Twenty-span"
+msgid "Billing portal session error. Please retry or contact the Odelza team"
+msgstr "Faktureringsportaal-sessiefout. Probeer asseblief weer of kontak die Odelza-span"
 
 #. js-lingui-id: K1172m
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistSection.tsx
@@ -3218,11 +3177,6 @@ msgstr "Bruin"
 #: src/pages/settings/applications/SettingsApplications.tsx
 msgid "Browse"
 msgstr "Blaai"
-
-#. js-lingui-id: hKAV/O
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Browse partners"
-msgstr "Blaai deur vennote"
 
 #. js-lingui-id: GsXRxc
 #: src/modules/settings/data-model/indexes/forms/components/SettingsObjectIndexOptionsForm.tsx
@@ -3293,11 +3247,6 @@ msgstr "Gebundel met {applicationName}"
 #: src/pages/settings/applications/components/SettingsAvailableApplicationCard.tsx
 msgid "by {author}"
 msgstr "deur {author}"
-
-#. js-lingui-id: 8Pfllj
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "By using Twenty, you agree to the"
-msgstr "Deur gebruik te maak van Twenty, stem jy in tot die"
 
 #. js-lingui-id: Yx41df
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
@@ -3626,12 +3575,6 @@ msgstr "Katalaans"
 msgid "Catalog"
 msgstr ""
 
-#. js-lingui-id: r8+cl4
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
-msgid "Catalog fields"
-msgstr ""
-
 #. js-lingui-id: K7tIrx
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 msgid "Category"
@@ -3772,6 +3715,11 @@ msgstr "Gesels met KI-agente en gebruik KI-funksies"
 msgid "ChatGPT"
 msgstr "ChatGPT"
 
+#. js-lingui-id: P+wAKD
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "ChatGPT connectors require an HTTPS MCP URL."
+msgstr "ChatGPT-koppelaars vereis 'n HTTPS MCP-URL."
+
 #. js-lingui-id: 8Q+lLG
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
 msgid "Chats"
@@ -3792,11 +3740,11 @@ msgstr "Gaan jou e-pos na"
 msgid "Check your inbox to verify your new email address."
 msgstr "Kontroleer jou inkassie om jou nuwe e-posadres te bevestig."
 
-#. js-lingui-id: SxwQE8
+#. js-lingui-id: jqbYQu
 #: src/modules/settings/billing/hooks/useHandleCheckoutSession.ts
 #: src/modules/settings/billing/hooks/useHandleCheckoutSession.ts
-msgid "Checkout session error. Please retry or contact Twenty team"
-msgstr "Betaalafhandeling sessie fout. Probeer asseblief weer of kontak Twenty-span"
+msgid "Checkout session error. Please retry or contact the Odelza team"
+msgstr "Betaalafhandeling sessie fout. Probeer asseblief weer of kontak Odelza-span"
 
 #. js-lingui-id: SviKkE
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -3813,10 +3761,20 @@ msgstr "Chinees — Tradisioneel"
 msgid "Choose {intervalAdjective} credits"
 msgstr "Kies {intervalAdjective} krediete"
 
+#. js-lingui-id: KvPBuR
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Choose a readable active source to configure its fields."
+msgstr ""
+
 #. js-lingui-id: NFfUic
 #: src/pages/auth/SignInUp.tsx
 msgid "Choose a Workspace"
 msgstr "Kies 'n Werksruimte"
+
+#. js-lingui-id: ri0An0
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Choose an active source and configure readable date fields; unavailable dates are not inferred."
+msgstr ""
 
 #. js-lingui-id: Qz73jD
 #: src/modules/settings/security/components/SSO/SettingsSSOIdentitiesProvidersForm.tsx
@@ -3960,11 +3918,6 @@ msgstr "Klik om data te sien"
 #: src/modules/ui/input/components/IconPicker.tsx
 msgid "Click to select icon {iconAriaLabel}"
 msgstr "Klik om ikoon {iconAriaLabel} te kies"
-
-#. js-lingui-id: ss6vFU
-#: src/modules/settings/legal/components/SettingsDpaAgreementRow.tsx
-msgid "Click-through acceptance"
-msgstr "Klik-aanvaarding"
 
 #. js-lingui-id: ZwIUeU
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
@@ -4142,7 +4095,6 @@ msgid "Command Menu"
 msgstr "Opdragkieslys"
 
 #. js-lingui-id: 8mZkyL
-#. placeholder {0}: getOsControlSymbol()
 #: src/modules/side-panel/components/SidePanelToggleButton.tsx
 msgid "Command menu | {0}K"
 msgstr "Opdragkieslys | {0}K"
@@ -4202,16 +4154,8 @@ msgstr "Kommunikasie"
 
 #. js-lingui-id: chL5IG
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
-#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
-#: src/pages/settings/community/SettingsCommunity.tsx
-#: src/pages/settings/community/SettingsCommunity.tsx
 msgid "Community"
 msgstr "Gemeenskap"
-
-#. js-lingui-id: myLjjN
-#: src/utils/title-utils.ts
-msgid "Community - Settings"
-msgstr "Gemeenskap - Instellings"
 
 #. js-lingui-id: NM9bMd
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
@@ -4371,6 +4315,16 @@ msgstr "Konfigureer SMTP-instellings om e-posse vanaf u rekening te stuur."
 msgid "Configure the default AI models for all workspaces"
 msgstr "Konfigureer die verstek-AI-modelle vir alle werkruimtes"
 
+#. js-lingui-id: /iOabO
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Configure the Odelza MCP server manually in Cascade."
+msgstr "Konfigureer die Odelza MCP-bediener handmatig in Cascade."
+
+#. js-lingui-id: OPG1Ma
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Configure the Odelza MCP server manually in Cline."
+msgstr "Konfigureer die Odelza MCP-bediener handmatig in Cline."
+
 #. js-lingui-id: CcCy4C
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Configure the remote MCP server through Warp's agent settings."
@@ -4380,16 +4334,6 @@ msgstr "Konfigureer die afgeleë MCP-bediener via Warp se agent-instellings."
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Configure the remote server in Amazon Q Developer's MCP settings."
 msgstr "Konfigureer die afgeleë bediener in Amazon Q Developer se MCP-instellings."
-
-#. js-lingui-id: g1/8jH
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Configure the Twenty MCP server manually in Cascade."
-msgstr "Konfigureer die Twenty MCP-bediener handmatig in Cascade."
-
-#. js-lingui-id: XiyvRh
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Configure the Twenty MCP server manually in Cline."
-msgstr "Konfigureer die Twenty MCP-bediener handmatig in Cline."
 
 #. js-lingui-id: qA9AGQ
 #: src/modules/settings/domains/components/SettingsDomainRecords.tsx
@@ -4411,6 +4355,16 @@ msgstr "Stel jou e-posse en kalender instellings op."
 #: src/modules/settings/admin-panel/apps/components/SettingsAdminApps.tsx
 msgid "Configured"
 msgstr "Opgestel"
+
+#. js-lingui-id: /YVSa4
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Configured date fields are invalid or no longer available. Update the widget field mappings."
+msgstr ""
+
+#. js-lingui-id: RiShNf
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Configured task date fields are invalid or no longer available. Update the widget field mappings."
+msgstr ""
 
 #. js-lingui-id: 7VpPHA
 #: src/modules/settings/admin-panel/components/SettingsAdminServerAdminAccess.tsx
@@ -4835,16 +4789,6 @@ msgstr "Koste per miljoen tokens vir gekasde invoer (USD)"
 msgid "Could not delete approved access domain"
 msgstr "Kon nie goedgekeurde toegangsdomein uitvee nie"
 
-#. js-lingui-id: E5v5TK
-#: src/modules/settings/legal/components/SettingsDpaAgreementsTable.tsx
-msgid "Could not download the document."
-msgstr "Kon nie die dokument aflaai nie."
-
-#. js-lingui-id: NonvA5
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Could not generate the signed DPA. Please try again."
-msgstr "Kon nie die ondertekende DPA genereer nie. Probeer asseblief weer."
-
 #. js-lingui-id: KqYYBp
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Could not open billing portal. Please check your enterprise key is present, or contact support."
@@ -5139,7 +5083,6 @@ msgid "Created by"
 msgstr "Geskep deur"
 
 #. js-lingui-id: t3sqJR
-#. placeholder {0}: beautifyExactDateTime(signingKey.createdAt)
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminSigningKeysTable.tsx
 msgid "Created on {0}"
 msgstr "Geskep op {0}"
@@ -5643,13 +5586,6 @@ msgstr "Datamodel - Instellings"
 msgid "Data on display"
 msgstr "Data op vertoon"
 
-#. js-lingui-id: /qrjU8
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-msgid "Data Processing Agreement"
-msgstr "Dataverwerkingsooreenkoms"
-
 #. js-lingui-id: Ix/CMz
 #: src/modules/settings/ai/components/SettingsAiModelHoverCard.tsx
 msgid "Data residency"
@@ -5686,7 +5622,6 @@ msgstr "Databasis gebeurtenis"
 #: src/modules/object-record/record-board/record-board-column/components/RecordBoardColumnHeaderAggregateDropdownMenuContent.tsx
 #: src/modules/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterDropdownContent.tsx
 #: src/modules/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterMenuContent.tsx
-#: src/modules/settings/legal/components/SettingsDpaAgreementsTable.tsx
 #: src/pages/settings/ai/components/SettingsAgentLogsTab.tsx
 #: src/pages/settings/ai/components/SettingsAgentLogsTab.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
@@ -5729,7 +5664,14 @@ msgstr "Datumsgraan X"
 msgid "Date Granularity Y"
 msgstr "Datumsgraan Y"
 
+#. js-lingui-id: 61fDxz
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Dates are full-day and inclusive. Dependencies and status are not interpreted for this source."
+msgstr ""
+
 #. js-lingui-id: Lgnlah
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling."
 msgstr ""
@@ -6446,13 +6388,9 @@ msgstr "Moenie invoer nie"
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Docs"
 msgstr "Dokumentasie"
-
-#. js-lingui-id: 7Zdnlq
-#: src/modules/settings/legal/components/SettingsDpaAgreementsTable.tsx
-msgid "Document"
-msgstr "Dokument"
 
 #. js-lingui-id: TvY/XA
 #: src/modules/navigation/components/NavigationDrawerOtherSection.tsx
@@ -6526,7 +6464,6 @@ msgstr "Degradeer na maandeliks"
 #. js-lingui-id: mzI/c+
 #: src/modules/activities/files/components/AttachmentDropdown.tsx
 #: src/modules/activities/files/components/DocumentViewer.tsx
-#: src/modules/settings/legal/components/SettingsDpaAgreementRow.tsx
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
 msgid "Download"
 msgstr "Laai af"
@@ -7456,13 +7393,11 @@ msgid "Entity ID copied to clipboard"
 msgstr "Entiteit-ID na knipbord gekopieer"
 
 #. js-lingui-id: /qwiJU
-#. placeholder {0}: entries.length
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsEntries.tsx
 msgid "Entries ({0}, latest iteration only)"
 msgstr "Inskrywings ({0}, slegs nuutste iterasie)"
 
 #. js-lingui-id: 3aFckQ
-#. placeholder {0}: entries.length
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsEntries.tsx
 msgid "Entries ({0})"
 msgstr "Inskrywings ({0})"
@@ -7558,7 +7493,6 @@ msgid "Error opening Stripe"
 msgstr "Fout met die oopmaak van Stripe"
 
 #. js-lingui-id: bEAPCW
-#. placeholder {0}: String(error)
 #: src/modules/ui/field/display/components/PhonesDisplay.tsx
 msgid "Error parsing additional phones: {0}"
 msgstr "Fout met ontleding van bykomende fone: {0}"
@@ -7633,10 +7567,10 @@ msgstr "Fout tydens die kansellasie van intervalwisseling."
 msgid "Error while cancelling plan switching."
 msgstr "Fout tydens die kansellasie van planwisseling."
 
-#. js-lingui-id: QmR+2U
+#. js-lingui-id: 3EWWOB
 #: src/modules/settings/billing/hooks/useEndSubscriptionTrialPeriod.ts
-msgid "Error while ending trial period. Please contact Twenty team."
-msgstr "Fout tydens die beëindiging van die proefperiode. Kontak asseblief die Twenty-span."
+msgid "Error while ending trial period. Please contact the Odelza team."
+msgstr "Fout tydens die beëindiging van die proefperiode. Kontak asseblief die Odelza-span."
 
 #. js-lingui-id: 5g78zo
 #: src/pages/settings/members/SettingsWorkspaceMember.tsx
@@ -7799,11 +7733,6 @@ msgstr "Sluit die volgende mense en domeine uit van my e-pos sinkronisasie."
 msgid "Exclude the following people and domains from my email sync. Internal conversations will not be imported"
 msgstr "Sluit die volgende mense en domeine uit van my e-possinchronisasie. Interne gesprekke sal nie ingevoer word nie"
 
-#. js-lingui-id: g3jaWB
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-msgid "Executed copies"
-msgstr "Ondertekende eksemplare"
-
 #. js-lingui-id: B0clc7
 #: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.tsx
 msgid "Execution ID"
@@ -7952,11 +7881,6 @@ msgstr "Uitdrukking"
 #: src/modules/onboarding/components/upgrade-free-trial/OnboardingTrialExtensionTag.tsx
 msgid "Extended"
 msgstr "Verleng"
-
-#. js-lingui-id: qlMg0V
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
-msgid "Extra field"
-msgstr ""
 
 #. js-lingui-id: 7Bj3x9
 #: src/modules/ai/components/CodeExecutionDisplay.tsx
@@ -8314,7 +8238,7 @@ msgid "Feature Flags"
 msgstr "Kenmerkvlae"
 
 #. js-lingui-id: PpZkda
-#: src/pages/settings/community/SettingsCommunity.tsx
+#: src/pages/settings/lab/SettingsLab.tsx
 msgid "Features"
 msgstr "Kenmerke"
 
@@ -8390,6 +8314,7 @@ msgstr "velde"
 #: src/modules/settings/data-model/object-details/components/tabs/ObjectFields.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/record-level-permissions/components/SettingsRolePermissionsObjectLevelRecordLevelPermissionFieldSelectFieldMenu.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/record-page/SidePanelRecordPageFieldSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutRecordPageWidgetTypeSelect.tsx
 #: src/modules/side-panel/utils/getSidePanelSubPageTitle.ts
@@ -8661,11 +8586,6 @@ msgstr "Vouer-/etiket-invoer"
 msgid "Folders"
 msgstr "Lêers"
 
-#. js-lingui-id: I7Exsw
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Follow us on X"
-msgstr "Volg ons op X"
-
 #. js-lingui-id: Ghistm
 #: src/modules/settings/applications/hooks/useComputeApplicationContentForLayoutAndLogic.ts
 msgid "for {objectLabel}"
@@ -8867,17 +8787,6 @@ msgstr "Algemeen"
 #: src/utils/title-utils.ts
 msgid "General - Settings"
 msgstr "Algemeen - Instellings"
-
-#. js-lingui-id: ziAjHi
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Generate"
-msgstr "Genereer"
-
-#. js-lingui-id: H3rta9
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Generate DPA"
-msgstr "Genereer DPA"
 
 #. js-lingui-id: CjKOAP
 #: src/modules/workflow/workflow-steps/workflow-actions/code-action/components/WorkflowEditActionCode.tsx
@@ -9139,11 +9048,6 @@ msgstr ""
 msgid "Handle"
 msgstr "Handvatsel"
 
-#. js-lingui-id: Gpb1xF
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Head of Legal"
-msgstr "Hoof van Regsake"
-
 #. js-lingui-id: w3CVxK
 #: src/pages/onboarding/CreateProfile.tsx
 msgid "Head of Partnerships"
@@ -9219,10 +9123,20 @@ msgstr "Gesondheidstatus"
 msgid "Hebrew"
 msgstr "Hebreeus"
 
+#. js-lingui-id: c3XJ18
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Help"
+msgstr ""
+
 #. js-lingui-id: CRzGla
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
 msgid "Help center"
 msgstr "Hulpsentrum"
+
+#. js-lingui-id: VpExZs
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Hex color"
+msgstr ""
 
 #. js-lingui-id: D+zLDD
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownHiddenRecordGroupsContent.tsx
@@ -9270,7 +9184,6 @@ msgid "Hide empty groups"
 msgstr "Versteek leë groepe"
 
 #. js-lingui-id: CbeJV4
-#. placeholder {0}: groupValue ?? ''
 #: src/modules/object-record/record-group/components/RecordGroupMenuItemDraggable.tsx
 msgid "Hide group {0}"
 msgstr "Versteek groep {0}"
@@ -9289,11 +9202,6 @@ msgstr "Versteek etiket"
 #: src/modules/settings/data-model/object-details/components/tabs/SettingsObjectIndexesSection.tsx
 msgid "Hide system indexes"
 msgstr "Versteek stelselindekse"
-
-#. js-lingui-id: 1ETc0T
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Hire a partner to help you implement and customize Twenty."
-msgstr "Huur ’n vennoot om jou te help om Twenty te implementeer en aan te pas."
 
 #. js-lingui-id: i0qMbr
 #: src/modules/navigation/components/MainNavigationDrawerTabsRow.tsx
@@ -9555,7 +9463,6 @@ msgid "iFrame Widget"
 msgstr "iFrame Widget"
 
 #. js-lingui-id: hG89Ed
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
 msgid "Image"
 msgstr "Beeld"
@@ -10070,7 +9977,6 @@ msgid "Invalid email verification link."
 msgstr "Ongeldige e-pos verifikasie skakel."
 
 #. js-lingui-id: 4D6/HO
-#. placeholder {0}: samlMetadataParsed.reason
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 msgid "Invalid file: {0}"
 msgstr "Ongeldige lêer: {0}"
@@ -10168,7 +10074,6 @@ msgid "Invoice amount may vary if you add members or credits between periods"
 msgstr "Faktuurbedrag kan wissel as jy lede of krediete tussen periodes byvoeg"
 
 #. js-lingui-id: 6gmWKp
-#. placeholder {0}: index + 1
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
 msgid "Ir a la tarjeta {0}"
 msgstr ""
@@ -10192,6 +10097,11 @@ msgstr "Is na of gelyk aan"
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
 msgid "Is before"
 msgstr "Is voor"
+
+#. js-lingui-id: bMjg2C
+#: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
+msgid "Is before today{timeZoneAbbreviationSuffix}"
+msgstr ""
 
 #. js-lingui-id: Hte7bc
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
@@ -10308,11 +10218,6 @@ msgstr "Items om oor te gaan"
 msgid "Jade"
 msgstr "Jade"
 
-#. js-lingui-id: A1CyH/
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Jane Doe"
-msgstr "Jane Doe"
-
 #. js-lingui-id: dFtidv
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Japanese"
@@ -10370,16 +10275,6 @@ msgstr "john.doe@example.com"
 msgid "Join {workspaceName} team"
 msgstr "Sluit aan by {workspaceName} span"
 
-#. js-lingui-id: 31TuIx
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Join our Discord"
-msgstr "Sluit aan by ons Discord"
-
-#. js-lingui-id: cIo6Vk
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Join the community"
-msgstr "Sluit by die gemeenskap aan"
-
 #. js-lingui-id: B2Zb/F
 #: src/pages/settings/ai/components/SettingsAgentResponseFormat.tsx
 msgid "JSON"
@@ -10397,6 +10292,16 @@ msgstr "Net vir my"
 #: src/modules/views/types/ViewType.ts
 msgid "Kanban"
 msgstr "Kanban"
+
+#. js-lingui-id: DDTZaR
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Kanban View"
+msgstr ""
+
+#. js-lingui-id: twIexG
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
+msgid "Kanban view selected"
+msgstr ""
 
 #. js-lingui-id: 7sMeHQ
 #: src/modules/workflow/workflow-steps/workflow-actions/http-request-action/components/KeyValuePairInput.tsx
@@ -10695,7 +10600,6 @@ msgid "Layout customization menu"
 msgstr "Uitlegpasmaak-kieslys"
 
 #. js-lingui-id: uQ0+Yc
-#. placeholder {0}: tab.layoutMode
 #: src/pages/settings/layout/SettingsLayoutPageLayoutDetail.tsx
 msgid "Layout mode: {0}"
 msgstr "Uitlegmodus: {0}"
@@ -10767,17 +10671,6 @@ msgstr "Erfenis (HS256)"
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminSigningKeysTable.tsx
 msgid "Legacy HS256 verifications across all tokens"
 msgstr "Erfenis-HS256-verifikasies oor alle tokens"
-
-#. js-lingui-id: vifyyw
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Legal"
-msgstr "Regsake"
-
-#. js-lingui-id: nc/jNe
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Legal entity name"
-msgstr "Regsentiteitsnaam"
 
 #. js-lingui-id: MP1v+1
 #: src/modules/side-panel/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
@@ -10955,6 +10848,7 @@ msgid "Load balanced"
 msgstr "Lasgebalanseer"
 
 #. js-lingui-id: yQ2kGp
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
 #: src/modules/object-record/record-table/record-table-section/components/RecordTableRecordGroupSectionLoadMore.tsx
 msgid "Load more"
 msgstr "Laai meer"
@@ -10968,6 +10862,12 @@ msgstr "Het {formattedNames} gelaai"
 #: src/modules/ai/utils/tool-display/get-tool-display-message.ts
 msgid "Loaded skills"
 msgstr "Vaardighede gelaai"
+
+#. js-lingui-id: yQE2r9
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "Loading"
+msgstr ""
 
 #. js-lingui-id: znv7zA
 #: src/modules/ai/utils/tool-display/get-tool-display-message.ts
@@ -11195,7 +11095,6 @@ msgid "Manage billing information"
 msgstr "Bestuur faktuurinligting"
 
 #. js-lingui-id: GDz4fg
-#. placeholder {0}: provider.displayName
 #: src/pages/settings/applications/tabs/SettingsApplicationConnectionsSection.tsx
 msgid "Manage connections used by this app to call {0}."
 msgstr "Bestuur verbindings wat deur hierdie toepassing gebruik word om {0} aan te roep."
@@ -11269,6 +11168,7 @@ msgstr "Bestuurde"
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 #: src/modules/side-panel/pages/page-layout/hooks/useGraphGroupBySortOptionLabels.ts
 #: src/modules/side-panel/pages/page-layout/hooks/useGraphXSortOptionLabels.ts
 msgid "Manual"
@@ -11295,7 +11195,6 @@ msgid "Marketplace catalog synchronization started."
 msgstr "Markplek-katalogus-sinchronisering begin."
 
 #. js-lingui-id: 8r6vNs
-#. placeholder {0}: fieldLabel ?? ''
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/UnmatchColumn.tsx
 msgid "Match {0} ({unmatchedCount} Unmatched)"
 msgstr "Pas {0} by ({unmatchedCount} nie-ooreenstemmend)"
@@ -11594,13 +11493,11 @@ msgid "Model"
 msgstr "Model"
 
 #. js-lingui-id: bC/dq9
-#. placeholder {0}: values.label.trim()
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
 msgid "Model \"{0}\" added"
 msgstr "Model \"{0}\" bygevoeg"
 
 #. js-lingui-id: dpLl7b
-#. placeholder {0}: modelToRemove.label
 #: src/pages/settings/admin-panel/SettingsAdminAiProviderDetail.tsx
 msgid "Model \"{0}\" removed"
 msgstr "Model \"{0}\" verwyder"
@@ -11692,7 +11589,6 @@ msgid "More"
 msgstr "Meer"
 
 #. js-lingui-id: G2I8i7
-#. placeholder {0}: hiddenFieldsWithOffsetGlobalIndex.length
 #: src/modules/page-layout/widgets/fields/components/FieldsWidget.tsx
 msgid "More ({0})"
 msgstr "Meer ({0})"
@@ -12271,6 +12167,11 @@ msgstr "Geen {objectLabelSingular} gevind nie"
 msgid "No access"
 msgstr "Geen toegang"
 
+#. js-lingui-id: jU1iLu
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No active records to display"
+msgstr ""
+
 #. js-lingui-id: glQp+P
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
 msgid "No active subscription."
@@ -12408,11 +12309,6 @@ msgstr "Geen konfig veranderlikes pas by jou huidige filters nie. Probeer jou fi
 msgid "No context was provided for this request"
 msgstr "Geen konteks is vir hierdie versoek voorsien nie"
 
-#. js-lingui-id: Zpgvun
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-msgid "No copy has been generated yet. This is the agreement that applies to your deployment — generate a signed copy from the top-right."
-msgstr "Nog geen kopie is gegenereer nie. Dit is die ooreenkoms wat op jou ontplooiing van toepassing is — genereer 'n ondertekende kopie regs bo."
-
 #. js-lingui-id: 4BSfjK
 #: src/modules/object-record/record-field/ui/form-types/components/FormCountrySelectInput.tsx
 #: src/modules/settings/data-model/fields/forms/address/components/SettingsDataModelFieldAddressForm.tsx
@@ -12477,6 +12373,11 @@ msgstr "Geen data gevind nie"
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 msgid "No Date field"
 msgstr "Geen datum veld nie"
+
+#. js-lingui-id: BTfesL
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No dated records to display"
+msgstr ""
 
 #. js-lingui-id: zqwWN2
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
@@ -12582,11 +12483,6 @@ msgstr "Geen gidse is vir hierdie rekening gevind nie"
 #. js-lingui-id: cYD+0r
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
 msgid "No hay elementos para mostrar"
-msgstr ""
-
-#. js-lingui-id: IKz5W+
-#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
-msgid "No hay registros para mostrar"
 msgstr ""
 
 #. js-lingui-id: 9kCSLK
@@ -12734,6 +12630,16 @@ msgstr "Geen toestemmings vir hierdie toepassing gekonfigureer nie."
 msgid "No permissions have been set for individual objects."
 msgstr "Geen toestemmings is ingestel vir individuele voorwerpe nie."
 
+#. js-lingui-id: wxGzJE
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "No readable active objects available."
+msgstr ""
+
+#. js-lingui-id: VFFC5+
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "No readable compatible fields. Choose another source or update its fields."
+msgstr ""
+
 #. js-lingui-id: 5sv+ia
 #: src/modules/activities/emails/hooks/useSendMessageCampaign.ts
 msgid "No recipients to send to ({skippedCount} skipped)"
@@ -12767,6 +12673,12 @@ msgstr "Geen rekords gevind nie"
 #: src/modules/object-record/record-table/empty-state/components/RecordTableEmptyStateNoRecordFoundForFilter.tsx
 msgid "No records matching the filter criteria were found."
 msgstr "Geen rekords wat aan die filterkriteria voldoen, is gevind nie."
+
+#. js-lingui-id: TdaAeM
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No records to display"
+msgstr ""
 
 #. js-lingui-id: gvIkAA
 #: src/modules/workflow/workflow-steps/workflow-actions/pick-record-action/components/WorkflowEditActionPickRecord.tsx
@@ -12940,7 +12852,6 @@ msgid "No variables to set for this application"
 msgstr "Geen veranderlikes om vir hierdie toepassing in te stel nie"
 
 #. js-lingui-id: JdLdch
-#. placeholder {0}: nonVettedApplications.length
 #: src/pages/settings/applications/tabs/SettingsApplicationsAvailableTab.tsx
 msgid "No vetted applications found. {0} non-vetted result(s) available — "
 msgstr "Geen nagegane toepassings gevind nie. {0} nie-nagegane resultaat(te) beskikbaar — "
@@ -13024,6 +12935,9 @@ msgstr "Nie beskikbaar in verstek aansig nie"
 
 #. js-lingui-id: SDND4q
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Not configured"
 msgstr ""
@@ -13225,6 +13139,11 @@ msgstr "objektoestemming"
 msgid "Object permission options"
 msgstr "Opsies vir objektoestemming"
 
+#. js-lingui-id: cStG/n
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
+msgid "Object selected"
+msgstr ""
+
 #. js-lingui-id: gaqIMK
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Object type"
@@ -13278,6 +13197,11 @@ msgstr "Objekte en velde wat deur hierdie toepassing bestuur word"
 msgid "Objects and fields permissions settings"
 msgstr "Voorwerp- en veldtoestemminginstellings"
 
+#. js-lingui-id: HWoL49
+#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/ColumnGrid.tsx
+msgid "Odelza fields"
+msgstr "Odelza-velde"
+
 #. js-lingui-id: BwJKBw
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "of"
@@ -13287,11 +13211,6 @@ msgstr "van"
 #: src/pages/not-found/NotFound.tsx
 msgid "Off the beaten path"
 msgstr "\"Van die gebaande pad af\""
-
-#. js-lingui-id: s1X4Cm
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Official app"
-msgstr "Amptelike toepassing"
 
 #. js-lingui-id: Zd5vVt
 #: src/modules/workflow/workflow-steps/workflow-actions/find-records-action/components/WorkflowEditActionFindRecords.tsx
@@ -13314,9 +13233,6 @@ msgid "Omit zero values"
 msgstr "Los nulwaardes weg"
 
 #. js-lingui-id: UCQiqt
-#. placeholder {0}: appObject.labelSingular
-#. placeholder {0}: item.labelSingular
-#. placeholder {0}: objectMetadataItem.labelSingular
 #: src/modules/settings/applications/hooks/useComputeObjectAndFieldsContentForApplication.ts
 #: src/modules/settings/applications/hooks/useComputeObjectAndFieldsContentForApplication.ts
 #: src/modules/settings/applications/hooks/useComputeObjectAndFieldsContentForApplication.ts
@@ -13339,7 +13255,6 @@ msgid "on the {ordinalDay} of the month"
 msgstr "op die {ordinalDay} van die maand"
 
 #. js-lingui-id: P5MEzQ
-#. placeholder {0}: lastDay ?? ''
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfMonthDescription.ts
 msgid "on the {remainingDays} and {0} of the month"
 msgstr "op die {remainingDays} en {0} van die maand"
@@ -13417,7 +13332,6 @@ msgid "only in {monthName}"
 msgstr "slegs in {monthName}"
 
 #. js-lingui-id: VKB4PB
-#. placeholder {0}: lastMonth ?? ''
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMonthsDescription.ts
 msgid "only in {remainingMonths} and {0}"
 msgstr "slegs in {remainingMonths} en {0}"
@@ -13434,7 +13348,6 @@ msgid "only on {firstDay} and {secondDay}"
 msgstr "slegs op {firstDay} en {secondDay}"
 
 #. js-lingui-id: ODid5C
-#. placeholder {0}: lastDay ?? ''
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
 msgid "only on {remainingDays} and {0}"
 msgstr "slegs op {remainingDays} en {0}"
@@ -13462,30 +13375,24 @@ msgstr "Slegs jy sal jou e-posse en gebeurtenisse kan sien"
 #. js-lingui-id: 1TNIig
 #: src/modules/command-menu-item/components/RecordShowSidePanelOpenRecordButton.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectAboutForm.tsx
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 #: src/pages/settings/members/tabs/SettingsWorkspaceMembersTeamTab.tsx
 msgid "Open"
 msgstr "Maak Oop"
-
-#. js-lingui-id: Kkq3xr
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open a maintained integration or prefill clients that accept MCP install links."
-msgstr "Maak 'n in stand gehoue integrasie oop of vul kliënte vooraf in wat MCP-installasieskakels aanvaar."
 
 #. js-lingui-id: JG4LoU
 #: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldOnClickActionForm.tsx
 msgid "Open as link"
 msgstr "Maak oop as 'n skakel"
 
-#. js-lingui-id: n0vVgf
+#. js-lingui-id: IalAdn
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Claude with the Twenty connector name and MCP URL prefilled."
-msgstr "Maak Claude oop met die Twenty-koppelnaam en MCP-URL vooraf ingevul."
+msgid "Open Claude with the Odelza connector name and MCP URL prefilled."
+msgstr "Maak Claude oop met die Odelza-koppelnaam en MCP-URL vooraf ingevul."
 
-#. js-lingui-id: +n2jpB
+#. js-lingui-id: N2Bs2F
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Cursor's MCP installer with the Twenty remote server config."
-msgstr "Maak Cursor se MCP-installeerder oop met die Twenty-afgeleë bediener-konfigurasie."
+msgid "Open Cursor's MCP installer with the Odelza remote server config."
+msgstr "Maak Cursor se MCP-installeerder oop met die Odelza-afgeleë bediener-konfigurasie."
 
 #. js-lingui-id: pZZH4Q
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
@@ -13518,15 +13425,10 @@ msgstr "Maak Outlook oop"
 msgid "Open records in"
 msgstr "Maak rekords oop in"
 
-#. js-lingui-id: q170S2
+#. js-lingui-id: LjQHbP
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Replit with the Twenty remote server config."
-msgstr "Maak Replit oop met die Twenty-afgeleë bediener-konfigurasie."
-
-#. js-lingui-id: sBd/cl
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Twenty's official ChatGPT integration for your workspace."
-msgstr "Maak Twenty se amptelike ChatGPT-integrasie vir jou werksruimte oop."
+msgid "Open Replit with the Odelza remote server config."
+msgstr "Maak Replit oop met die Odelza-afgeleë bediener-konfigurasie."
 
 #. js-lingui-id: OV5wZZ
 #: src/modules/navigation-menu-item/display/sections/components/NavigationDrawerOpenedSection.tsx
@@ -13649,7 +13551,7 @@ msgstr "Rangskik"
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceChatThread.tsx
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
 #: src/pages/settings/admin-panel/SettingsAdminWorkspacesStatus.tsx
-#: src/pages/settings/community/SettingsCommunity.tsx
+#: src/pages/settings/lab/SettingsLab.tsx
 msgid "Other"
 msgstr "Ander"
 
@@ -13714,6 +13616,12 @@ msgstr "Uitset"
 #: src/modules/ai/components/internal/AiChatContextUsageButton.tsx
 msgid "Output tokens"
 msgstr "Uitvoertekens"
+
+#. js-lingui-id: K+b1b+
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Overdue tasks"
+msgstr ""
 
 #. js-lingui-id: in6CUw
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
@@ -13792,10 +13700,10 @@ msgstr "Bladsyuitlegte"
 msgid "Page name"
 msgstr "Bladsynaam"
 
-#. js-lingui-id: NRvxzv
+#. js-lingui-id: AfMbxS
 #: src/pages/not-found/NotFound.tsx
-msgid "Page Not Found | Twenty"
-msgstr "Bladsy nie gevind nie | Twenty"
+msgid "Page Not Found | Odelza"
+msgstr "Bladsy nie gevind nie | Odelza"
 
 #. js-lingui-id: sF+Xp9
 #: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
@@ -13822,11 +13730,6 @@ msgstr "Paragraaf"
 #: src/pages/settings/ai/SettingsToolDetail.tsx
 msgid "Parameters"
 msgstr "Parameters"
-
-#. js-lingui-id: mPkInZ
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Partners"
-msgstr "Vennote"
 
 #. js-lingui-id: 8ZsakT
 #: src/modules/auth/sign-in-up/components/internal/SignInUpPasswordField.tsx
@@ -14002,11 +13905,6 @@ msgstr "Magtigings · {objectLabelSingular}"
 #: src/modules/activities/emails/recipients/components/EmailRecipientChipMenuContent.tsx
 msgid "Person created"
 msgstr "Persoon geskep"
-
-#. js-lingui-id: KOtX3r
-#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
-msgid "Personal Finance"
-msgstr ""
 
 #. js-lingui-id: pCopzO
 #: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
@@ -14291,6 +14189,11 @@ msgstr "Slegs vooraf geïnstalleer"
 msgid "Precision"
 msgstr ""
 
+#. js-lingui-id: l67lZS
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Prefill clients that accept MCP install links."
+msgstr "Vul kliënte vooraf in wat MCP-installasieskakels aanvaar."
+
 #. js-lingui-id: 0Lqxjs
 #: src/modules/auth/sign-in-up/constants/WorkspaceActivationMessages.tsx
 msgid "Prefilling your <0>workspace data</0>..."
@@ -14316,7 +14219,6 @@ msgstr "Voorkom dat dieselfde waarde aan verskillende rekords toegeken word"
 #: src/modules/settings/data-model/components/SettingsDataModelPreviewFormCard.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectSettingsFormCard.tsx
 #: src/pages/settings/applications/SettingsApplicationFrontComponentDetail.tsx
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
 msgid "Preview"
 msgstr "Voorskou"
 
@@ -14377,12 +14279,6 @@ msgstr "Prioriteit"
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
 msgid "Priority support"
 msgstr "Prioriteitsondersteuning"
-
-#. js-lingui-id: LcET2C
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "Privacy Policy"
-msgstr "Privaatheidsbeleid"
 
 #. js-lingui-id: zwBp5t
 #: src/modules/settings/unsubscribe-topics/components/SettingsWorkspaceUnsubscribeTopicSection.tsx
@@ -14478,13 +14374,11 @@ msgid "Provider"
 msgstr "Verskaffer"
 
 #. js-lingui-id: d7tyJ/
-#. placeholder {0}: values.label.trim()
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
 msgid "Provider \"{0}\" added"
 msgstr "Verskaffer \"{0}\" bygevoeg"
 
 #. js-lingui-id: Bkg47g
-#. placeholder {0}: provider?.label ?? providerName
 #: src/pages/settings/admin-panel/SettingsAdminAiProviderDetail.tsx
 msgid "Provider \"{0}\" removed"
 msgstr "Verskaffer \"{0}\" verwyder"
@@ -14610,11 +14504,6 @@ msgstr "Rou JSON"
 msgid "Raycast"
 msgstr "Raycast"
 
-#. js-lingui-id: 549d7o
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Read changelog"
-msgstr "Lees die veranderingslogboek"
-
 #. js-lingui-id: ibPuCP
 #: src/pages/settings/applications/tabs/SettingsApplicationsDeveloperTab.tsx
 msgid "Read documentation"
@@ -14631,7 +14520,6 @@ msgid "Read the system prompts to understand how the AI works"
 msgstr "Lees die stelselaanwysings om te verstaan hoe die KI werk"
 
 #. js-lingui-id: 0URVx8
-#. placeholder {0}: formatNumber( systemPromptTokenCount, { abbreviate: true, decimals: 1 }, )
 #: src/pages/settings/ai/components/SettingsAiModelsTab.tsx
 msgid "Read the system prompts to understand how the AI works (~{0} tokens)"
 msgstr "Lees die stelselaanwysings om te verstaan hoe die KI werk (~{0} tokens)"
@@ -14776,6 +14664,8 @@ msgstr "Rekord beeld"
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Record label"
 msgstr "Rekord etiket"
 
@@ -14824,6 +14714,16 @@ msgstr "{count, plural, one {Rekord gekies} other {Rekords gekies}}"
 #: src/pages/settings/data-model/constants/SettingsObjectTableMetadata.ts
 msgid "Records"
 msgstr "Rekords"
+
+#. js-lingui-id: bCyMeu
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Records with both a valid start and end date will appear in the calendar."
+msgstr ""
+
+#. js-lingui-id: iVCsdg
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Records with configured start and end dates will appear here."
+msgstr ""
 
 #. js-lingui-id: wRTiSD
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
@@ -14980,19 +14880,16 @@ msgid "Remove"
 msgstr "Verwyder"
 
 #. js-lingui-id: w61W3L
-#. placeholder {0}: recipient.address
 #: src/modules/activities/emails/recipients/components/EmailRecipientsFieldChip.tsx
 msgid "Remove {0}"
 msgstr "Verwyder {0}"
 
 #. js-lingui-id: UG0bdD
-#. placeholder {0}: favoritesEdit.navigationMenuItemCount
 #: src/modules/navigation-menu-item/display/folder/components/NavigationMenuItemFolderDnd.tsx
 msgid "Remove {0} navigation menu item?"
 msgstr "Verwyder {0} navigasiekieslysitem?"
 
 #. js-lingui-id: XABoh4
-#. placeholder {0}: favoritesEdit.navigationMenuItemCount
 #: src/modules/navigation-menu-item/display/folder/components/NavigationMenuItemFolderDnd.tsx
 msgid "Remove {0} navigation menu items?"
 msgstr "Verwyder {0} navigasiekieslysitems?"
@@ -15053,7 +14950,6 @@ msgid "Remove member from workspace"
 msgstr "Verwyder lid uit werksruimte"
 
 #. js-lingui-id: FeQ/sf
-#. placeholder {0}: modelToRemove?.label ?? ''
 #: src/pages/settings/admin-panel/SettingsAdminAiProviderDetail.tsx
 msgid "Remove model \"{0}\""
 msgstr "Verwyder model \"{0}\""
@@ -15069,7 +14965,6 @@ msgid "Remove provider"
 msgstr "Verwyder verskaffer"
 
 #. js-lingui-id: hJ4+Zq
-#. placeholder {0}: provider?.label ?? providerName ?? ''
 #: src/pages/settings/admin-panel/SettingsAdminAiProviderDetail.tsx
 msgid "Remove provider \"{0}\""
 msgstr "Verwyder verskaffer \"{0}\""
@@ -15259,6 +15154,16 @@ msgstr "Herstel veranderlike"
 msgid "Resize"
 msgstr ""
 
+#. js-lingui-id: ua09SU
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize record end date"
+msgstr ""
+
+#. js-lingui-id: 9lOmol
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize record start date"
+msgstr ""
+
 #. js-lingui-id: k2DjdV
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Resize task due date"
@@ -15353,6 +15258,7 @@ msgstr "Hervat"
 
 #. js-lingui-id: 6gRgw8
 #: src/modules/ai/components/AiChatErrorMessage.tsx
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
 #: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobRowDropdownMenu.tsx
@@ -15682,9 +15588,9 @@ msgstr "Omvangs"
 msgid "Score"
 msgstr ""
 
-#. js-lingui-id: 2YCiey
+#. js-lingui-id: 63PgVc
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Scroll horizontally and vertically, or drag empty space to pan. Task bars and controls remain interactive."
+msgid "Scroll horizontally and vertically, or drag empty space to pan. Record bars and controls remain interactive."
 msgstr ""
 
 #. js-lingui-id: hJjXGo
@@ -15880,11 +15786,11 @@ msgstr "soek veldmetadata"
 #. js-lingui-id: 7taA9j
 #: src/modules/object-record/advanced-filter/components/AdvancedFilterFieldSelectSearchInput.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarFieldsContent.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownFieldsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupFieldsContent.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableHeaderPlusButtonContent.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartFieldSelectionForAggregateOperationDropdownContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartGroupByFieldSelectionDropdownContentBase.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartGroupByFieldSelectionTargetObjectFieldsView.tsx
@@ -15914,9 +15820,16 @@ msgstr "Soek vir 'n objek..."
 msgid "Search icon"
 msgstr "Soek-ikoon"
 
+#. js-lingui-id: aLoGD1
+#: src/modules/side-panel/pages/page-layout/components/view-settings/ViewWidgetViewDropdownContent.tsx
+msgid "Search Kanban views"
+msgstr ""
+
 #. js-lingui-id: two5rl
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartDataSourceDropdownContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/record-table-settings/RecordTableDataSourceDropdownContent.tsx
+#: src/modules/side-panel/pages/page-layout/components/view-settings/ViewWidgetDataSourceDropdownContent.tsx
 msgid "Search objects"
 msgstr "Soek vir 'n objek"
 
@@ -15951,11 +15864,6 @@ msgstr "Soek..."
 msgid "Searched {objectLabel}"
 msgstr "Het na {objectLabel} gesoek"
 
-#. js-lingui-id: w3oYcQ
-#: src/modules/ai/constants/action-tool-status-labels.constant.ts
-msgid "Searched the help center"
-msgstr "Het die hulpsentrum deursoek"
-
 #. js-lingui-id: iOkPjn
 #: src/modules/ai/utils/tool-display/get-tool-display-message.ts
 msgid "Searched the web"
@@ -15970,11 +15878,6 @@ msgstr "Het op die web na {query} gesoek"
 #: src/modules/ai/constants/crud-tool-operation-verbs.constant.ts
 msgid "Searching {objectLabel}"
 msgstr "Besig om na {objectLabel} te soek"
-
-#. js-lingui-id: KhCAL1
-#: src/modules/ai/constants/action-tool-status-labels.constant.ts
-msgid "Searching the help center"
-msgstr "Besig om die hulpsentrum te deursoek"
 
 #. js-lingui-id: AyoeWR
 #: src/modules/ai/utils/tool-display/get-tool-display-message.ts
@@ -16182,6 +16085,11 @@ msgstr "Kies 'n veld uit 'n vorige stap"
 msgid "Select a field to display in this widget"
 msgstr "Kies 'n veld om in hierdie widget te vertoon"
 
+#. js-lingui-id: xWICn6
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
+msgid "Select a Kanban view"
+msgstr ""
+
 #. js-lingui-id: rHNnAT
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
 msgid "Select a known model or add a custom one"
@@ -16202,6 +16110,11 @@ msgstr "Kies 'n navigasie-item om te wysig"
 msgid "Select a sender"
 msgstr "Kies 'n afsender"
 
+#. js-lingui-id: gIz6Pc
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Select a source and configure timeline date fields."
+msgstr ""
+
 #. js-lingui-id: jL3gox
 #: src/modules/object-record/record-field/ui/form-types/components/FormBooleanFieldInput.tsx
 msgid "Select a value"
@@ -16218,6 +16131,11 @@ msgstr "Kies Aksie"
 #: src/modules/side-panel/pages/workflow/hooks/useSidePanelWorkflowNavigation.ts
 msgid "Select Action"
 msgstr "Kies Aksie"
+
+#. js-lingui-id: q+QH+O
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
+msgid "Select an object"
+msgstr ""
 
 #. js-lingui-id: hVPa4O
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/UnmatchColumn.tsx
@@ -16353,11 +16271,6 @@ msgstr "Kies watter modelle as aanbevole modelle in die werkruimte se modelkiese
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
 msgid "Select your preferred language"
 msgstr "Kies jou voorkeurtaal"
-
-#. js-lingui-id: YMYE4/
-#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
-msgid "Selected color"
-msgstr ""
 
 #. js-lingui-id: JlFcis
 #: src/modules/page-layout/widgets/email-thread/components/EmailThreadComposer.tsx
@@ -16563,6 +16476,8 @@ msgstr "Besig om jou <0>databasis</0> op te stel..."
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/RegularTabSettingsContent.tsx
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownDefaultComponents.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
@@ -16677,7 +16592,6 @@ msgid "Show all"
 msgstr "Wys alles"
 
 #. js-lingui-id: JObkI8
-#. placeholder {0}: groupValue ?? ''
 #: src/modules/object-record/record-group/components/RecordGroupMenuItemDraggable.tsx
 msgid "Show group {0}"
 msgstr "Wys groep {0}"
@@ -16748,21 +16662,6 @@ msgstr "Registreer"
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithCredentials.tsx
 msgid "Sign-up is temporarily unavailable during maintenance."
 msgstr "Registrasie is tydelik onbeskikbaar tydens onderhoud."
-
-#. js-lingui-id: a6TaW9
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Signatory title"
-msgstr "Ondertekenaarstitel"
-
-#. js-lingui-id: Lz4j8Q
-#: src/modules/settings/legal/components/SettingsDpaAgreementRow.tsx
-msgid "Signed copy"
-msgstr "Ondertekende kopie"
-
-#. js-lingui-id: Z2Wg9g
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Signed DPA generated and downloaded"
-msgstr "Ondertekende DPA gegenereer en afgelaai"
 
 #. js-lingui-id: X1zsRT
 #: src/modules/settings/admin-panel/signing-keys/hooks/useRevokeSigningKey.ts
@@ -16965,20 +16864,18 @@ msgid "Some layout changes could not be saved"
 msgstr "Sommige uitlegveranderings kon nie gestoor word nie."
 
 #. js-lingui-id: VOOhW/
-#. placeholder {0}: stepLog.truncated.droppedEntries
-#. placeholder {1}: stepLog.truncated.droppedBytes
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 msgid "Some log data was dropped to fit the size limit ({0} entries, {1} bytes)."
 msgstr "Sommige logdata is weggelaat om by die groottelimiet te pas ({0} inskrywings, {1} bytes)."
 
-#. js-lingui-id: cSrzsO
+#. js-lingui-id: 0/sbpy
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Some task data could not be loaded."
+msgid "Some record data could not be loaded."
 msgstr ""
 
-#. js-lingui-id: 4aNyrb
+#. js-lingui-id: sByq3S
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Some tasks have unavailable dates or progress."
+msgid "Some records have unavailable dates or progress."
 msgstr ""
 
 #. js-lingui-id: ZVl+JT
@@ -17057,6 +16954,8 @@ msgstr "Sorterings"
 #: src/modules/settings/admin-panel/apps/components/SettingsAdminApps.tsx
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableOptionsDropdownContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
 #: src/modules/side-panel/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
@@ -17225,10 +17124,10 @@ msgstr "Staat"
 msgid "Status"
 msgstr "Toestand"
 
-#. js-lingui-id: oCQwvS
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Stay up to date with product news and community updates."
-msgstr "Bly op hoogte van produknuus en gemeenskapsopdaterings."
+#. js-lingui-id: 0kMX/f
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Status and dependencies are Task-only. Numeric progress and boolean milestones are retained only when compatible; they are not inferred."
+msgstr ""
 
 #. js-lingui-id: lATgy+
 #: src/modules/workflow/workflow-steps/filters/components/WorkflowStepFilterGroupOptionsDropdown.tsx
@@ -17398,16 +17297,15 @@ msgstr "Subskripsie"
 msgid "Subscription activated."
 msgstr "Intekening geaktiveer."
 
-#. js-lingui-id: 0okvpx
+#. js-lingui-id: vqC8xM
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts
 #: src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts
-msgid "Subscription error. Please retry or contact Twenty team"
-msgstr "Intekeningsfout. Probeer asseblief weer of kontak die Twenty-span"
+msgid "Subscription error. Please retry or contact the Odelza team"
+msgstr "Intekeningsfout. Probeer asseblief weer of kontak die Odelza-span"
 
 #. js-lingui-id: FooJUj
-#. placeholder {0}: getTargetPlanLabel(targetPlanKey)
 #: src/modules/settings/billing/hooks/useSwitchBillingPlan.ts
 msgid "Subscription has been switched to {0} Plan."
 msgstr "Intekening is verwissel na die {0}-plan."
@@ -17423,14 +17321,11 @@ msgid "Subscription has been switched to Yearly."
 msgstr "Inschrijving is verander na jaarliks."
 
 #. js-lingui-id: ulJRqh
-#. placeholder {0}: getTargetPlanLabel(targetPlanKey)
-#. placeholder {1}: getBeautifiedRenewDate()
 #: src/modules/settings/billing/hooks/useSwitchBillingPlan.ts
 msgid "Subscription will be switched to {0} Plan the {1}."
 msgstr "Intekening sal oorgeskakel word na die {0}-plan op {1}."
 
 #. js-lingui-id: 7Vg+lX
-#. placeholder {0}: getBeautifiedRenewDate()
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "Subscription will be switched to Monthly the {0}."
 msgstr "Intekening sal oorgeskakel word na maandeliks op {0}."
@@ -17438,11 +17333,6 @@ msgstr "Intekening sal oorgeskakel word na maandeliks op {0}."
 #. js-lingui-id: pEToQK
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "subtitle"
-msgstr ""
-
-#. js-lingui-id: a0w0iQ
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
-msgid "Subtitle"
 msgstr ""
 
 #. js-lingui-id: 8QCMSh
@@ -17638,7 +17528,6 @@ msgid "Tab"
 msgstr "Oortjie"
 
 #. js-lingui-id: eDW3Jm
-#. placeholder {0}: tab.title
 #: src/pages/settings/layout/SettingsLayoutPageLayoutDetail.tsx
 msgid "Tab {tabNumber}: {0}"
 msgstr "Oortjie {tabNumber}: {0}"
@@ -17682,19 +17571,7 @@ msgstr "Teiken-werkruimte-subdomein"
 
 #. js-lingui-id: Q3P/4s
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Task"
-msgstr ""
-
-#. js-lingui-id: iKS7vc
-#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
-#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
-msgid "Task bar color"
-msgstr ""
-
-#. js-lingui-id: I/ObQ6
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Task date fields are not configured; unavailable dates are not inferred."
 msgstr ""
 
 #. js-lingui-id: hVUUhm
@@ -17738,16 +17615,6 @@ msgstr "Taaktitel"
 msgid "Task Title"
 msgstr "Taaktitel"
 
-#. js-lingui-id: YDv82r
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Tasks with approved start and end dates will appear here."
-msgstr ""
-
-#. js-lingui-id: l9tCD6
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Tasks with both a valid start and end date will appear in the calendar."
-msgstr ""
-
 #. js-lingui-id: KM6m8p
 #: src/pages/settings/members/SettingsWorkspaceMembers.tsx
 #: src/pages/settings/members/SettingsWorkspaceMembers.tsx
@@ -17769,12 +17636,6 @@ msgstr "Tydelike Mislukking"
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 msgid "Terms / Privacy"
 msgstr "Bepalings / Privaatheid"
-
-#. js-lingui-id: xowcRf
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "Terms of Service"
-msgstr "Gebruiksvoorwaardes"
 
 #. js-lingui-id: NnH3pK
 #: src/modules/settings/logic-functions/components/tabs/SettingsLogicFunctionCodeEditorTab.tsx
@@ -17835,14 +17696,14 @@ msgstr "Die API-eindpunt vir jou OpenAI-versoenbare verskaffer"
 msgid "The AWS region for Bedrock"
 msgstr "Die AWS-streek vir Bedrock"
 
-#. js-lingui-id: HP7per
+#. js-lingui-id: KinWL/
 #: src/pages/settings/applications/utils/getStandardApplicationDescription.ts
 msgid ""
-"The base data model every Twenty workspace runs on.\n"
+"The base data model every Odelza workspace runs on.\n"
 "\n"
 "#### What \"foundation\" means\n"
 "\n"
-"Every Twenty workspace starts with this set of objects. They define the shape of your CRM, including relationships, activity, and reporting. Everything else, including marketplace apps, AI agents, and custom objects, plugs into them.\n"
+"Every Odelza workspace starts with this set of objects. They define the shape of your CRM, including relationships, activity, and reporting. Everything else, including marketplace apps, AI agents, and custom objects, plugs into them.\n"
 "\n"
 "#### Included objects\n"
 "- **People & Companies**: contact and account records\n"
@@ -17850,11 +17711,11 @@ msgid ""
 "- **Notes & Tasks**: activity and follow-ups\n"
 "- **Workflows & Dashboards**: automation and reporting\n"
 "\n"
-"Remove this app and the rest of Twenty has nothing to hang off.\n"
+"Remove this app and the rest of Odelza has nothing to hang off.\n"
 "\n"
 "#### Build your own app\n"
 "\n"
-"Extend Twenty with your own objects, fields, logic functions, or AI skills. Scaffold a new app in one command:\n"
+"Extend Odelza with your own objects, fields, logic functions, or AI skills. Scaffold a new app in one command:\n"
 "\n"
 "```bash\n"
 "npx create-twenty-app@latest my-twenty-app\n"
@@ -17869,11 +17730,11 @@ msgid ""
 "\n"
 "See the [Getting Started guide](https://twenty.com/developers/extend/apps/getting-started) for the full walkthrough, and [Building Apps](https://twenty.com/developers/extend/apps/building) for the `defineApplication` / `defineEntity` APIs."
 msgstr ""
-"Die basiese datamodel waarop elke Twenty-werkruimte loop.\n"
+"Die basiese datamodel waarop elke Odelza-werkruimte loop.\n"
 "\n"
 "#### Wat 'grondslag' beteken\n"
 "\n"
-"Elke Twenty-werkruimte begin met hierdie stel objekte. Hulle bepaal die vorm van jou Kliënteverhoudingsbestuur, insluitend verhoudings, aktiwiteit en rapportering. Alles anders, insluitend markplek-toepassings, KI-agente en pasgemaakte objekte, koppel daarby in.\n"
+"Elke Odelza-werkruimte begin met hierdie stel objekte. Hulle bepaal die vorm van jou Kliënteverhoudingsbestuur, insluitend verhoudings, aktiwiteit en rapportering. Alles anders, insluitend markplek-toepassings, KI-agente en pasgemaakte objekte, koppel daarby in.\n"
 "\n"
 "#### Ingeslote objekte\n"
 "- **Mense & Maatskappye**: kontak- en rekeningrekords\n"
@@ -17881,11 +17742,11 @@ msgstr ""
 "- **Notas & Take**: aktiwiteit en opvolgaksies\n"
 "- **Werkvloeie & Dashboards**: outomatisering en rapportering\n"
 "\n"
-"Verwyder hierdie toepassing en die res van Twenty het niks om op te steun nie.\n"
+"Verwyder hierdie toepassing en die res van Odelza het niks om op te steun nie.\n"
 "\n"
 "#### Bou jou eie toepassing\n"
 "\n"
-"Brei Twenty uit met jou eie objekte, velde, logikafunksies of KI-vaardighede. Skep 'n nuwe toepassing met een opdrag:\n"
+"Brei Odelza uit met jou eie objekte, velde, logikafunksies of KI-vaardighede. Skep 'n nuwe toepassing met een opdrag:\n"
 "\n"
 "```bash\n"
 "npx create-twenty-app@latest my-twenty-app\n"
@@ -17899,11 +17760,6 @@ msgstr ""
 "```\n"
 "\n"
 "Sien die [Aan die gang-gids](https://twenty.com/developers/extend/apps/getting-started) vir die volledige stap-vir-stapgids, en [Bou toepassings](https://twenty.com/developers/extend/apps/building) vir die `defineApplication` / `defineEntity` API's."
-
-#. js-lingui-id: /kfzmx
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-msgid "The Data Processing Agreement could not be loaded. Please try again."
-msgstr "Die Dataverwerkingsooreenkoms kon nie gelaai word nie. Probeer asseblief weer."
 
 #. js-lingui-id: n+CCXl
 #: src/pages/settings/ai/components/SettingsAiModelsTab.tsx
@@ -17934,11 +17790,6 @@ msgstr ""
 #: src/pages/settings/profile/SettingsProfile.tsx
 msgid "The email associated to your account"
 msgstr "Die e-pos geassosieerd met jou rekening"
-
-#. js-lingui-id: 21Xjwu
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "The full agreement with fields resolved for your deployment."
-msgstr "Die volledige ooreenkoms met velde wat vir jou ontplooiing opgelos is."
 
 #. js-lingui-id: diO3fm
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerManual.tsx
@@ -17981,11 +17832,6 @@ msgstr "Die bladsy waarna jy soek is of weg of het nooit bestaan nie. Kom ons kr
 #: src/pages/settings/communications/SettingsWorkspaceCommunications.tsx
 msgid "The page your users will get redirected to to unsubscribe from your emails"
 msgstr "Die bladsy waarheen jou gebruikers herlei sal word om van jou e-posse af te teken"
-
-#. js-lingui-id: Ya1wb4
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "The PDF is pre-signed by Twenty and executed with your legal entity and authorized signatory."
-msgstr "Die PDF is vooraf deur Twenty onderteken en uitgevoer met jou regs-entiteit en gemagtigde ondertekenaar."
 
 #. js-lingui-id: 1Bzg5s
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
@@ -18161,7 +18007,6 @@ msgid "This action cannot be undone. Your membership will be removed; synced ema
 msgstr "Hierdie aksie kan nie ontdoen word nie. Jou lidmaatskap sal verwyder word; gesinchroniseerde e-posse en kalenders bly by die werksruimte."
 
 #. js-lingui-id: muD0kr
-#. placeholder {0}: favoritesEdit.navigationMenuItemCount
 #: src/modules/navigation-menu-item/display/folder/components/NavigationMenuItemFolderDnd.tsx
 msgid "This action will delete this folder and all {0} navigation menu items inside. Do you want to continue?"
 msgstr "Hierdie aksie sal hierdie vouer en al {0} navigasiekieslysitems daarin uitvee. Wil jy voortgaan?"
@@ -18342,14 +18187,11 @@ msgid "This value will be saved to the database."
 msgstr "Hierdie waarde sal in die databasis gestoor word."
 
 #. js-lingui-id: esVnxk
-#. placeholder {0}: nonReadableViewFieldInfo.fieldLabel
-#. placeholder {1}: nonReadableViewFieldInfo.objectLabel
 #: src/modules/object-record/record-index/utils/getNonReadableViewFieldSubTitle.ts
 msgid "This view uses {usageLabel} on field \"{0}\" on \"{1}\" which is not accessible."
 msgstr "Hierdie aansig gebruik {usageLabel} op die veld \"{0}\" van \"{1}\" wat nie toeganklik is nie."
 
 #. js-lingui-id: IbwUNd
-#. placeholder {0}: nonReadableViewFieldInfo.objectLabel
 #: src/modules/object-record/record-index/utils/getNonReadableViewFieldSubTitle.ts
 msgid "This view uses {usageLabel} on object \"{0}\" which is not accessible."
 msgstr "Hierdie aansig gebruik {usageLabel} op die objek \"{0}\" wat nie toeganklik is nie."
@@ -18358,6 +18200,11 @@ msgstr "Hierdie aansig gebruik {usageLabel} op die objek \"{0}\" wat nie toegank
 #: src/modules/settings/admin-panel/health-status/constants/WorkerQueueMetricsSelectOptions.ts
 msgid "This week"
 msgstr "Hierdie week"
+
+#. js-lingui-id: pAhR87
+#: src/modules/page-layout/widgets/components/RetiredWidgetPlaceholder.tsx
+msgid "This widget is no longer available. Remove it from the dashboard."
+msgstr ""
 
 #. js-lingui-id: gjpwN3
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
@@ -18396,13 +18243,11 @@ msgid "This will disconnect all models from this provider. Models will no longer
 msgstr "Dit sal alle modelle van hierdie verskaffer ontkoppel. Modelle sal nie meer beskikbaar wees totdat 'n nuwe verskaffer gekonfigureer is nie."
 
 #. js-lingui-id: XZWXeK
-#. placeholder {0}: pendingChange?.description ?? ''
 #: src/modules/settings/admin-panel/components/SettingsAdminServerAdminAccess.tsx
 msgid "This will grant {0} to {userLabel}."
 msgstr "Dit sal {0} aan {userLabel} verleen."
 
 #. js-lingui-id: jn8Xjg
-#. placeholder {0}: registration.name
 #: src/pages/settings/admin-panel/SettingsAdminApplicationRegistrationGeneralToggles.tsx
 msgid "This will install the latest version of \"{0}\" on all existing active and suspended workspaces, upgrading any workspace that already has an older version. It runs as a background job and may take a while. Continue?"
 msgstr "Dit sal die nuutste weergawe van \"{0}\" op alle bestaande aktiewe en opgeskorte werksruimtes installeer en enige werksruimte opgradeer wat reeds 'n ouer weergawe het. Dit loop as 'n agtergrondtaak en kan 'n rukkie neem. Wil jy voortgaan?"
@@ -18428,7 +18273,6 @@ msgid "This will permanently delete your two factor authentication method.<0/>Si
 msgstr "Dit sal jou twee-faktor-verifikasiemetode permanent uitvee.<0/>Aangesien 2FA verpligtend is in jou werksruimte, sal jy ná uitvee afgemeld word en gevra word om dit weer te konfigureer wanneer jy aanmeld. <1/>Tik asseblief jou e-pos in om te bevestig."
 
 #. js-lingui-id: Dg+3bR
-#. placeholder {0}: pendingChange?.description ?? ''
 #: src/modules/settings/admin-panel/components/SettingsAdminServerAdminAccess.tsx
 msgid "This will revoke {0} for {userLabel}."
 msgstr "Dit sal {0} vir {userLabel} terugtrek."
@@ -18465,12 +18309,33 @@ msgstr "Tydsone"
 
 #. js-lingui-id: cklVjM
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Timeline"
 msgstr "Tydlyn"
+
+#. js-lingui-id: fD2IVX
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline calendar"
+msgstr ""
+
+#. js-lingui-id: fyTdZC
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline calendar viewport"
+msgstr ""
 
 #. js-lingui-id: ewpwRb
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Timeline data is incomplete"
+msgstr ""
+
+#. js-lingui-id: eDwzWt
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline help"
+msgstr ""
+
+#. js-lingui-id: 2KSmRm
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline unavailable"
 msgstr ""
 
 #. js-lingui-id: xY9s5E
@@ -18510,8 +18375,14 @@ msgstr "titel"
 msgid "Title"
 msgstr "Titel"
 
+#. js-lingui-id: 5Tf3iy
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Title and dates"
+msgstr ""
+
 #. js-lingui-id: 6P1iPM
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Title field"
 msgstr ""
 
@@ -18578,8 +18449,6 @@ msgid "Tomorrow"
 msgstr "Môre"
 
 #. js-lingui-id: x+3/CM
-#. placeholder {0}: composerState.recipientCount
-#. placeholder {1}: composerState.maxRecipients
 #: src/modules/activities/emails/components/EmailComposerFields.tsx
 msgid "Too many recipients ({0}/{1})."
 msgstr "Te veel ontvangers ({0}/{1})."
@@ -18591,7 +18460,6 @@ msgid "Too many records. Up to {maxRecordsString} allowed"
 msgstr "Te veel rekords. Tot {maxRecordsString} toegelaat"
 
 #. js-lingui-id: tfaidv
-#. placeholder {0}: part.toolName ?? ''
 #: src/modules/settings/admin-panel/components/SettingsAdminChatThreadMessageList.tsx
 msgid "Tool call: {0}"
 msgstr "Gereedskap-oproep: {0}"
@@ -18603,7 +18471,6 @@ msgid "Tool calls"
 msgstr "Gereedskap-oproepe"
 
 #. js-lingui-id: XfXfry
-#. placeholder {0}: toolCalls.length
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsAiAgentDetail.tsx
 msgid "Tool calls ({0})"
 msgstr "Gereedskap-oproepe ({0})"
@@ -18810,7 +18677,7 @@ msgid "Try our REST or GraphQL API playgrounds"
 msgstr "Probeer ons REST- of GraphQL API-speelgronde"
 
 #. js-lingui-id: 3WWUB9
-#: src/pages/settings/community/SettingsCommunity.tsx
+#: src/pages/settings/lab/SettingsLab.tsx
 msgid "Try our upcoming features. Note they are still in beta. Please bear with us and report any issues you find."
 msgstr "Probeer ons komende funksies. Let wel: hulle is nog in beta. Wees asseblief geduldig met ons en rapporteer enige probleme wat jy teëkom."
 
@@ -18861,11 +18728,6 @@ msgstr ""
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
 msgid "Turquoise"
 msgstr "Turkoois"
-
-#. js-lingui-id: JnaRPe
-#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/ColumnGrid.tsx
-msgid "Twenty fields"
-msgstr "Twenty-velde"
 
 #. js-lingui-id: YIjS4q
 #: src/modules/ai/components/SettingsAgentModelCapabilities.tsx
@@ -18976,9 +18838,19 @@ msgstr "Kon nie toepassingsbesonderhede laai nie. Probeer asseblief weer later."
 msgid "Unable to load personal-finance data"
 msgstr ""
 
+#. js-lingui-id: OgyxlX
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "Unable to load records"
+msgstr ""
+
 #. js-lingui-id: aU7aM1
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Unable to load task timeline"
+msgstr ""
+
+#. js-lingui-id: tBWlrP
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unable to load timeline"
 msgstr ""
 
 #. js-lingui-id: l+ALBd
@@ -18986,9 +18858,9 @@ msgstr ""
 msgid "Unable to Reach Back-end"
 msgstr "Nie in staat om rugsteun te bereik nie"
 
-#. js-lingui-id: 3y+qu/
+#. js-lingui-id: id5px8
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Unable to save task timeline changes."
+msgid "Unable to save timeline changes."
 msgstr ""
 
 #. js-lingui-id: 5JOLV9
@@ -19003,9 +18875,14 @@ msgstr "Haal uit argief"
 msgid "Unavailable"
 msgstr "Nie beskikbaar nie"
 
-#. js-lingui-id: PcSvms
+#. js-lingui-id: 89aRTf
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Unavailable field"
+msgstr ""
+
+#. js-lingui-id: 6C4NZS
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Unavailable task data is not shown as zero or an invented date."
+msgid "Unavailable record data is not shown as zero or an invented date."
 msgstr ""
 
 #. js-lingui-id: NYFASA
@@ -19268,14 +19145,6 @@ msgstr "Ongenoemde lys"
 msgid "Untitled role"
 msgstr "Ongenoemde rol"
 
-#. js-lingui-id: CowgFX
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Untitled task"
-msgstr ""
-
 #. js-lingui-id: jxRjAG
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 #: src/modules/settings/unsubscribe-topics/components/SettingsWorkspaceUnsubscribeTopicSection.tsx
@@ -19438,15 +19307,11 @@ msgid "Upgrade status refreshed"
 msgstr "Opgraderingsstatus verfris"
 
 #. js-lingui-id: doMiaH
-#. placeholder {0}: latestAvailableVersion ?? ''
 #: src/pages/settings/applications/tabs/SettingsApplicationDetailAboutTab.tsx
 msgid "Upgrade to {0}"
 msgstr "Gradeer op na {0}"
 
 #. js-lingui-id: nCRRVY
-#. placeholder {0}: nextResourceCreditsAmount ?? ''
-#. placeholder {1}: nextResourceCreditPrice ?? ''
-#. placeholder {2}: nextTierInterval ?? ''
 #: src/modules/ai/components/AIChatNoMoreBillingCreditsBanner.tsx
 #: src/modules/information-banner/components/billing/InformationBannerNoMoreCredits.tsx
 msgid "Upgrade to {0} credits for ${1}/{2}."
@@ -19872,11 +19737,6 @@ msgstr "Veranderlike nie gevind nie"
 msgid "Variance"
 msgstr ""
 
-#. js-lingui-id: dEDwEM
-#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
-msgid "Ver más"
-msgstr ""
-
 #. js-lingui-id: QDEWii
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
 msgid "Verified"
@@ -19906,11 +19766,6 @@ msgstr "Verifieer tans jou <0>aanmeldingstoken</0>"
 #: src/modules/auth/components/VerifyEmail.tsx
 msgid "Verifying your email"
 msgstr "Verifieer tans jou e-pos"
-
-#. js-lingui-id: eE0JZ4
-#: src/modules/settings/legal/components/SettingsDpaAgreementsTable.tsx
-msgid "Version"
-msgstr "Weergawe"
 
 #. js-lingui-id: J709SW
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationInstalledWorkspaces.tsx
@@ -19961,6 +19816,7 @@ msgstr "aansig"
 #: src/modules/settings/developers/components/WebhookEntitySelect.tsx
 #: src/modules/side-panel/components/hooks/usePageLayoutHeaderInfo.ts
 #: src/modules/side-panel/components/SidePanelObjectViewRecordInfo.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
 #: src/pages/settings/layout/SettingsLayoutViewDetail.tsx
 msgid "View"
@@ -20240,7 +20096,6 @@ msgid "We encountered an issue verifying"
 msgstr "Ons het 'n probleem ondervind met die verifikasie"
 
 #. js-lingui-id: 4x3zRh
-#. placeholder {0}: objectLabelSingular ?? ''
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
 msgid "We match on these fields. If a {0} already exists, we update it. Otherwise, we create a new one."
 msgstr "Ons pas op hierdie velde. As ’n {0} reeds bestaan, werk ons dit by. Anders skep ons ’n nuwe een."
@@ -20368,10 +20223,10 @@ msgstr ""
 msgid "Weight"
 msgstr "Gewig"
 
-#. js-lingui-id: nTuObL
+#. js-lingui-id: OeCsyd
 #: src/pages/auth/SignInUp.tsx
-msgid "Welcome to Twenty"
-msgstr "Welkom by Twenty"
+msgid "Welcome to Odelza"
+msgstr "Welkom by Odelza"
 
 #. js-lingui-id: t8ZvkC
 #: src/pages/auth/SignInUp.tsx
@@ -20597,8 +20452,6 @@ msgstr "Werksvloeie"
 #: src/pages/settings/general/SettingsGeneral.tsx
 #: src/pages/settings/layout/components/SettingsLayoutDetailScaffold.tsx
 #: src/pages/settings/layout/SettingsLayout.tsx
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
 #: src/pages/settings/logic-functions/SettingsLogicFunctionDetail.tsx
 #: src/pages/settings/logic-functions/SettingsLogicFunctionDetail.tsx
 #: src/pages/settings/members/roles/SettingsRoleAddObjectLevel.tsx
@@ -20863,6 +20716,11 @@ msgstr "Jy kan nie jou eie rekening naboots nie"
 msgid "You do not have permission to access the {objectName} object"
 msgstr "U het nie vergunning om toegang te verkry tot die {objectName} objek nie"
 
+#. js-lingui-id: aMQVbw
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "You do not have permission to view source data."
+msgstr ""
+
 #. js-lingui-id: hFuTsh
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "You do not have permission to view task data."
@@ -20933,9 +20791,6 @@ msgstr ""
 "Kontak ons ondersteuningspan om op te gradeer."
 
 #. js-lingui-id: NTyvVW
-#. placeholder {0}: nextResourceCreditsAmount ?? ''
-#. placeholder {1}: nextResourceCreditPrice ?? ''
-#. placeholder {2}: nextTierInterval ?? ''
 #: src/modules/ai/components/AIChatNoMoreBillingCreditsBanner.tsx
 msgid ""
 "You've hit your usage limit. \n"
@@ -20963,11 +20818,6 @@ msgstr "Jou faktureringsinterval sal onmiddellik na maandeliks verander en jou p
 #: src/modules/settings/billing/hooks/useBillingWording.ts
 msgid "Your billing interval will switch to yearly immediately and your trial will continue. When it ends, you will be charged ${yearlyPrice} per user per year billed annually."
 msgstr "Jou faktureringsinterval sal onmiddellik na jaarliks verander en jou proeflopie sal voortgaan. Wanneer dit eindig, sal jy ${yearlyPrice} per gebruiker per jaar betaal, jaarliks gefaktureer."
-
-#. js-lingui-id: mmGBWT
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Your details"
-msgstr "Jou besonderhede"
 
 #. js-lingui-id: ahEwS4
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx

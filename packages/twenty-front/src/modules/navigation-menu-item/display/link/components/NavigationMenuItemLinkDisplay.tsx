@@ -1,6 +1,9 @@
 import { useContext } from 'react';
 import { IconArrowUpRight } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { isLayoutCustomizationModeEnabledState } from '@/layout-customization/states/isLayoutCustomizationModeEnabledState';
 import { NavigationMenuItemIcon } from '@/navigation-menu-item/display/components/NavigationMenuItemIcon';
@@ -30,7 +33,7 @@ export const NavigationMenuItemLinkDisplay = ({
     <IconArrowUpRight
       size={theme.icon.size.sm}
       stroke={theme.icon.stroke.md}
-      color={themeCssVariables.font.color.light}
+      color={odelzaThemeCssVariables.font.color.light}
     />
   );
 

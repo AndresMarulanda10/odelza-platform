@@ -9,7 +9,7 @@ import { t } from '@lingui/core/macro';
 import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type MemberInfosTabProps = {
   member: WorkspaceMember;
@@ -20,13 +20,13 @@ type MemberInfosTabProps = {
 
 const StyledNameRow = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 `;
 
 const StyledActionRow = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const MemberInfosTab = ({

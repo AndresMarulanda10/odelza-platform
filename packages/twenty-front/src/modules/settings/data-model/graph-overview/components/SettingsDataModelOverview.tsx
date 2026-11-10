@@ -31,7 +31,7 @@ import {
   IconX,
 } from 'twenty-ui/icon';
 import { Button, IconButtonGroup } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const nodeTypes: NodeTypes = {
   object: SettingsDataModelOverviewObject,
@@ -63,9 +63,9 @@ const StyledContainer = styled.div`
 `;
 
 const StyledCloseButton = styled.div`
-  left: ${themeCssVariables.spacing[3]};
+  left: ${odelzaThemeCssVariables.spacing[3]};
   position: absolute;
-  top: ${themeCssVariables.spacing[3]};
+  top: ${odelzaThemeCssVariables.spacing[3]};
   z-index: 5;
 `;
 

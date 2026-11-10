@@ -2,13 +2,13 @@ import { type SelectableItem } from '@/object-record/select/types/SelectableItem
 import { styled } from '@linaria/react';
 import { Avatar } from 'twenty-ui/data-display';
 import { MenuItemMultiSelectAvatar } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { getAbsoluteImageUrl } from '~/utils/image/getAbsoluteImageUrl';
 
 const StyledPinnedItemsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const ObjectFilterDropdownRecordPinnedItems = (props: {

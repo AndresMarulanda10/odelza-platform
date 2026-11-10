@@ -4,30 +4,33 @@ import { useContext } from 'react';
 import { TopBar } from '@/ui/layout/top-bar/components/TopBar';
 import { TintedIconTile } from 'twenty-ui/data-display';
 import { IconBuildingSkyscraper, IconChevronDown } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledViewPicker = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   cursor: pointer;
   display: flex;
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 100%;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledViewPickerCount = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 const StyledRightAction = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  font-weight: ${themeCssVariables.font.weight.regular};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   height: 100%;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const BackgroundMockViewBar = () => {

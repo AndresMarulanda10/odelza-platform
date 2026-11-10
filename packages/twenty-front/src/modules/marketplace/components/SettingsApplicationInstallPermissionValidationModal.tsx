@@ -11,7 +11,7 @@ import { useMemo } from 'react';
 import { type RoleManifest } from 'twenty-shared/application';
 import { IconChevronLeft } from 'twenty-ui/icon';
 import { LightButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { StyledAppModal } from '~/pages/settings/applications/components/SettingsAppModalLayout';
 
 type SettingsApplicationInstallPermissionValidationModalProps = {
@@ -25,7 +25,7 @@ type SettingsApplicationInstallPermissionValidationModalProps = {
 
 const StyledFullscreenContainer = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
+  background: ${odelzaThemeCssVariables.background.secondary};
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -35,9 +35,9 @@ const StyledFullscreenContainer = styled.div`
 `;
 
 const StyledLightButton = styled(LightButton)`
-  left: ${themeCssVariables.spacing[4]};
+  left: ${odelzaThemeCssVariables.spacing[4]};
   position: absolute;
-  top: ${themeCssVariables.spacing[4]};
+  top: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledContent = styled.div`
@@ -48,43 +48,43 @@ const StyledContent = styled.div`
 `;
 
 const StyledAppConnectionHeaderContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[4]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.lg};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-bottom: ${themeCssVariables.spacing[6]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.lg};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
   text-align: center;
 `;
 
 const StyledPermissionsCard = styled.div`
-  background: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
-  margin-bottom: ${themeCssVariables.spacing[6]};
-  padding: ${themeCssVariables.spacing[4]};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledPermissionsTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  margin-bottom: ${themeCssVariables.spacing[3]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledPermissionRow = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
-  gap: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[2]} 0;
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]} 0;
 `;
 
 const StyledPermissionIcon = styled.div`
-  color: ${themeCssVariables.color.blue9};
+  color: ${odelzaThemeCssVariables.color.primary9};
   display: flex;
 `;
 

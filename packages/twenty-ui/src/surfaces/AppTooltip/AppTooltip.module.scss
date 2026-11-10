@@ -2,19 +2,19 @@
   // the tooltip never intercepts pointer events unless clickable,
   // like react-tooltip's core styles
   pointer-events: none;
-  z-index: var(--t-last-layer-z-index);
+  z-index: var(--odz-last-layer-z-index);
 }
 
 .tooltip {
-  backdrop-filter: var(--t-blur-strong);
-  background-color: var(--t-color-transparent-gray11);
-  border-radius: var(--t-border-radius-md);
-  box-shadow: var(--t-box-shadow-light);
-  color: var(--t-gray-scale-gray1);
-  font-size: var(--t-font-size-sm);
-  font-weight: var(--t-font-weight-regular);
+  backdrop-filter: var(--odz-blur-strong);
+  background-color: var(--odz-color-transparent-gray11);
+  border-radius: var(--odz-border-radius-md);
+  box-shadow: var(--odz-box-shadow-light);
+  color: var(--odz-gray-scale-gray1);
+  font-size: var(--odz-font-size-sm);
+  font-weight: var(--odz-font-weight-regular);
   overflow: visible;
-  padding: var(--t-spacing-2);
+  padding: var(--odz-spacing-2);
   word-break: break-word;
   width: max-content;
   max-width: 100%;

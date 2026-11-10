@@ -41,6 +41,11 @@ msgstr " لكل {intervalLabel}"
 msgid "—"
 msgstr "—"
 
+#. js-lingui-id: X9nCq4
+#: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
+msgid ": Before today{timeZoneAbbreviationSuffix}"
+msgstr ""
+
 #. js-lingui-id: ypz2+E
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
 msgid ": Empty"
@@ -97,7 +102,6 @@ msgid "· FREE"
 msgstr "· مجانًا"
 
 #. js-lingui-id: TaLmrR
-#. placeholder {0}: formatNumber(currentCreditsByPeriod, { decimals: 2 })
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "({0} credits)"
 msgstr "({0} أرصدة)"
@@ -163,132 +167,103 @@ msgid "[empty string]"
 msgstr "[empty string]"
 
 #. js-lingui-id: Z2fCN4
-#. placeholder {0}: failedResults.length
-#. placeholder {1}: failedResults.length
-#. placeholder {2}: failedResults.length
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
 msgid "{0, plural, one {{1} job could not be deleted} other {{2} jobs could not be deleted}}"
 msgstr "{0, plural, zero {لا توجد وظائف لم يمكن حذفها} one {تعذّر حذف {1} وظيفة} two {تعذّر حذف {1} وظيفتين} few {تعذّر حذف {2} وظائف} many {تعذّر حذف {2} وظيفة} other {تعذّر حذف {2} وظيفة}}"
 
 #. js-lingui-id: VjPlMz
-#. placeholder {0}: failedResults.length
-#. placeholder {1}: failedResults.length
-#. placeholder {2}: failedResults.length
 #: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
 msgid "{0, plural, one {{1} job could not be retried} other {{2} jobs could not be retried}}"
 msgstr "{0, plural, zero {لا توجد وظائف لم تتم إعادة محاولتها} one {تعذّرت إعادة محاولة {1} وظيفة} two {تعذّرت إعادة محاولة {1} وظيفتين} few {تعذّرت إعادة محاولة {2} وظائف} many {تعذّرت إعادة محاولة {2} وظيفة} other {تعذّرت إعادة محاولة {2} وظيفة}}"
 
 #. js-lingui-id: 0LMb5P
-#. placeholder {0}: Math.abs(days)
 #: src/utils/date-utils.ts
 msgid "{0, plural, one {{days} day} other {{days} days}}"
 msgstr "{0, plural, zero {{days} يوم} one {{days} يوم} two {{days} يومان} few {{days} أيام} many {{days} يومًا} other {{days} يوم}}"
 
 #. js-lingui-id: dXYycw
-#. placeholder {0}: Math.abs(years)
 #: src/utils/date-utils.ts
 msgid "{0, plural, one {{years} year} other {{years} years}}"
 msgstr "{0, plural, zero {{years} سنة} one {{years} سنة} two {{years} سنتان} few {{years} سنوات} many {{years} سنةً} other {{years} سنة}}"
 
 #. js-lingui-id: Qvm3VE
-#. placeholder {0}: selectedOptions.length
 #: src/modules/settings/components/SettingsMorphRelationMultiSelect.tsx
 #: src/modules/settings/components/SettingsMorphRelationMultiSelect.tsx
 msgid "{0, plural, one {# Object} other {# Objects}}"
 msgstr "{0, plural, zero {# أشياء} one {# شيء} two {# شيئان} few {# أشياء} many {# أشياء} other {# أشياء}}"
 
 #. js-lingui-id: 8ob0vY
-#. placeholder {0}: failedCount + behindCount
 #: src/modules/settings/admin-panel/utils/getWorkspacesUpgradeHealthText.ts
 msgid "{0, plural, one {# workspace failed or behind} other {# workspaces failed or behind}}"
 msgstr "{0, plural, zero {لا مساحات عمل فاشلة أو متأخرة} one {مساحة عمل واحدة فاشلة أو متأخرة} two {مساحتا عمل فاشلتان أو متأخرتان} few {# مساحات عمل فاشلة أو متأخرة} many {# مساحة عمل فاشلة أو متأخرة} other {# مساحة عمل فاشلة أو متأخرة}}},{"
 
 #. js-lingui-id: WTc9VY
-#. placeholder {0}: restriction.fieldNames.length
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay.tsx
 msgid "{0, plural, one {You do not have permission to access the {fieldsList} field} other {You do not have permission to access the {fieldsList} fields}}"
 msgstr "{0, plural, zero {ليس لديك إذن للوصول إلى حقل {fieldsList}} one {ليس لديك إذن للوصول إلى حقل {fieldsList}} two {ليس لديك إذن للوصول إلى الحقول {fieldsList}} few {ليس لديك إذن للوصول إلى الحقول {fieldsList}} many {ليس لديك إذن للوصول إلى الحقول {fieldsList}} other {ليس لديك إذن للوصول إلى الحقول {fieldsList}}}"
 
 #. js-lingui-id: dNIJYp
-#. placeholder {0}: formatNumber(nextCreditsByPeriod, { decimals: 2, })
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "{0} credits"
 msgstr "{0} أرصدة"
 
 #. js-lingui-id: QpgBEp
-#. placeholder {0}: withoutCreditCardTrialPeriod.duration
 #: src/pages/onboarding/UpgradeFreeTrial.tsx
 msgid "{0} days"
 msgstr "{0} أيام"
 
 #. js-lingui-id: okrK9q
-#. placeholder {0}: preview.duplicateEmails
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 msgid "{0} duplicate"
 msgstr "{0} مكرّرة"
 
 #. js-lingui-id: stCODw
-#. placeholder {0}: appObject.fields.length
 #: src/modules/settings/applications/hooks/useComputeObjectAndFieldsContentForApplication.ts
 msgid "{0} fields"
 msgstr "{0} حقل"
 
 #. js-lingui-id: l8kqMU
-#. placeholder {0}: loadBalanceObjectMetadataItem.labelPlural
 #: src/modules/workflow/workflow-steps/workflow-actions/pick-record-action/components/WorkflowEditActionPickRecord.tsx
 msgid "{0} have no relation to {loadBalancePoolObjectLabel}. Pick a different object to balance by."
 msgstr "{0} ليست لها أي علاقة بـ {loadBalancePoolObjectLabel}. اختر كائنًا مختلفًا للموازنة بناءً عليه."
 
 #. js-lingui-id: MY0lRK
-#. placeholder {0}: preview.totalMembers
-#. placeholder {1}: preview.sendable
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 msgid "{0} in this list — {1} sendable"
 msgstr "{0} في هذه القائمة — {1} قابلة للإرسال"
 
 #. js-lingui-id: T8aKxO
-#. placeholder {0}: layout.name
 #: src/modules/settings/applications/hooks/useComputeApplicationContentForLayoutAndLogic.ts
 msgid "{0} layout"
 msgstr "تخطيط {0}"
 
 #. js-lingui-id: Zo6POu
-#. placeholder {0}: recordPageLayoutObject.labelPlural
 #: src/modules/layout-customization/components/LayoutCustomizationBar.tsx
 msgid "{0} layout edition"
 msgstr "تحرير تخطيط {0}"
 
 #. js-lingui-id: uLS8YU
-#. placeholder {0}: provider.displayName
 #: src/pages/settings/applications/tabs/SettingsApplicationConnectionsSection.tsx
 msgid "{0} OAuth is not yet set up by your server administrator. They need to fill in the OAuth client ID and secret on the application registration before you can add a connection."
 msgstr "لم يتم إعداد OAuth لـ {0} بعد بواسطة مسؤول الخادم. يجب على مسؤول الخادم إدخال معرّف عميل OAuth والسر في تسجيل التطبيق قبل أن تتمكن من إضافة اتصال."
 
 #. js-lingui-id: FGOUAP
-#. placeholder {0}: formatNumber(displayedRecords.length)
-#. placeholder {1}: formatNumber(totalCount + liveRecords.length)
 #: src/modules/settings/event-logs/components/SettingsLogs.tsx
 msgid "{0} of {1}"
 msgstr "{0} من {1}"
 
 #. js-lingui-id: BzvoVr
-#. placeholder {0}: preview.topicUnsubscribed
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 msgid "{0} opted out of this topic"
 msgstr "{0} أوقفوا الاشتراك في هذا الموضوع"
 
 #. js-lingui-id: fvImQM
-#. placeholder {0}: formatNumber(contextStoreNumberOfSelectedRecords)
-#. placeholder {0}: formatNumber(totalCount ?? 0)
 #: src/modules/object-record/record-index/components/RecordIndexPageHeader.tsx
 #: src/modules/side-panel/components/SidePanelMultipleRecordsInfo.tsx
 msgid "{0} selected"
 msgstr "تم تحديد {0}"
 
 #. js-lingui-id: peiknr
-#. placeholder {0}: activeFilterLabels.length
-#. placeholder {0}: activeSortLabels.length
-#. placeholder {0}: activeVisibleFieldLabels.length
 #: src/modules/side-panel/pages/page-layout/hooks/useRecordTableSettingsDescriptions.ts
 #: src/modules/side-panel/pages/page-layout/hooks/useRecordTableSettingsDescriptions.ts
 #: src/modules/side-panel/pages/page-layout/hooks/useRecordTableSettingsDescriptions.ts
@@ -296,37 +271,31 @@ msgid "{0} shown"
 msgstr "{0} معروض"
 
 #. js-lingui-id: nZUq+6
-#. placeholder {0}: preview.globallyUnsubscribed
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 msgid "{0} unsubscribed from everything"
 msgstr "{0} أوقفوا الاشتراك في كل شيء"
 
 #. js-lingui-id: r4l/MK
-#. placeholder {0}: formatUsageValue(totalCredits)
 #: src/pages/settings/billing/SettingsUsageUserDetail.tsx
 msgid "{0} used"
 msgstr "تم استخدام {0}"
 
 #. js-lingui-id: izNf/z
-#. placeholder {0}: view.name
 #: src/modules/settings/applications/hooks/useComputeApplicationContentForLayoutAndLogic.ts
 msgid "{0} view"
 msgstr "عرض {0}"
 
 #. js-lingui-id: /ZFL82
-#. placeholder {0}: widgets.length
 #: src/pages/settings/layout/SettingsLayoutPageLayoutDetail.tsx
 msgid "{0} widgets"
 msgstr "{0} أدوات"
 
 #. js-lingui-id: Aixgij
-#. placeholder {0}: preview.withoutEmail
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 msgid "{0} without email"
 msgstr "{0} بدون بريد إلكتروني"
 
 #. js-lingui-id: 2UKfhY
-#. placeholder {0}: selectedItemNames.length
 #: src/modules/object-record/record-field/ui/form-types/components/FormWorkspaceMemberFilterValueInput.tsx
 msgid "{0} workspace members"
 msgstr "{0} من أعضاء مساحة العمل"
@@ -383,10 +352,6 @@ msgid "{cachedPercent}% cached"
 msgstr "{cachedPercent}% مخزن مؤقتًا"
 
 #. js-lingui-id: 8SynPU
-#. placeholder {0}: (type === 'percentage' ? 99 : 1000).toFixed(count)
-#. placeholder {1}: type === 'percentage' ? '%' : ''
-#. placeholder {2}: (type === 'percentage' ? 99 : 1000).toFixed(count)
-#. placeholder {3}: type === 'percentage' ? '%' : ''
 #: src/modules/settings/data-model/fields/forms/number/components/SettingsDataModelFieldNumberForm.tsx
 msgid "{count, plural, one {E.g. {0}{1} for {count} decimal} other {E.g. {2}{3} for {count} decimals}}"
 msgstr "{count, plural, zero {مثال: {0}{1} لـ {count} منزلة عشرية} one {مثال: {0}{1} لـ {count} منزلة عشرية} two {مثال: {0}{1} لـ {count} منزلتين عشريتين} few {مثال: {2}{3} لـ {count} منازل عشرية} many {مثال: {2}{3} لـ {count} منزلة عشرية} other {مثال: {2}{3} لـ {count} منزلة عشرية}}"
@@ -402,8 +367,6 @@ msgid "{days, plural, one {{days} day} other {{days} days}}"
 msgstr "{days, plural, zero {{days} أيام} one {{days} يوم} two {{days} يومان} few {{days} أيام} many {{days} أيام} other {{days} أيام}}"
 
 #. js-lingui-id: 0KwX9P
-#. placeholder {0}: (1000).toFixed(decimals)
-#. placeholder {1}: (1000).toFixed(decimals)
 #: src/modules/settings/data-model/fields/forms/currency/components/SettingsDataModelFieldCurrencyForm.tsx
 msgid "{decimals, plural, one {E.g. {0} for {decimals} decimal} other {E.g. {1} for {decimals} decimals}}"
 msgstr "{decimals, plural, one {مثال {0} لـ {decimals} منزلة عشرية} other {مثال {1} لـ {decimals} منازل عشرية}}"
@@ -719,14 +682,11 @@ msgid "% left"
 msgstr "٪ متبقّية"
 
 #. js-lingui-id: n9nj+X
-#. placeholder {0}: aiChatThreadPendingDelete?.threadTitle ?? ''
 #: src/modules/ai/components/AiChatThreadDeleteConfirmationModal.tsx
 msgid "<0>{0}</0> and all its messages will be removed."
 msgstr "<0>{0}</0> وستتم إزالة جميع رسائلها."
 
 #. js-lingui-id: SMgdEJ
-#. placeholder {0}: formatNumber( section.estimatedTokenCount, { abbreviate: true, decimals: 1, }, )
-#. placeholder {0}: formatNumber(preview.estimatedTokenCount, { abbreviate: true, decimals: 1, })
 #: src/pages/settings/ai/SettingsAiPrompts.tsx
 #: src/pages/settings/ai/SettingsAiPrompts.tsx
 msgid "~ {0} tokens"
@@ -960,11 +920,6 @@ msgstr "عن مساحة العمل هذه"
 msgid "About your app"
 msgstr "حول تطبيقك"
 
-#. js-lingui-id: nJJAYH
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-msgid "Accepted and signed DPAs for this workspace, with their template version and date."
-msgstr "اتفاقيات معالجة البيانات (DPA) المقبولة والموقَّعة لمساحة العمل هذه، مع إصدار القالب وتاريخه."
-
 #. js-lingui-id: pNW+Rt
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
 msgid "Access Key ID"
@@ -1020,11 +975,6 @@ msgstr "حذف الحساب"
 #: src/pages/settings/accounts/SettingsNewAccount.tsx
 msgid "Accounts"
 msgstr "الحسابات"
-
-#. js-lingui-id: BXMLsb
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Acme GmbH"
-msgstr "Acme GmbH"
 
 #. js-lingui-id: X5unbK
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
@@ -1388,6 +1338,11 @@ msgstr "إضافة كائن"
 msgid "Add object permission"
 msgstr "إضافة إذن الكائن"
 
+#. js-lingui-id: yT8omL
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Add Odelza as a Streamable HTTP extension in Goose."
+msgstr "أضف Odelza كامتداد HTTP قابل للبث في Goose."
+
 #. js-lingui-id: Dl5lVI
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx
 msgid "Add option"
@@ -1462,35 +1417,40 @@ msgstr "أضف مهمة"
 msgid "Add test input for evaluation (e.g., \"Find all customers in NY\")"
 msgstr "أضف مدخل اختبار للتقييم (مثال: \"اعثر على جميع العملاء في نيويورك\")"
 
-#. js-lingui-id: FKGcEL
+#. js-lingui-id: VZnGmb
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server as a remote context server in Zed."
-msgstr "أضف خادم Twenty MCP كخادم سياق بعيد في Zed."
+msgid "Add the Odelza MCP server as a custom connector in ChatGPT developer mode."
+msgstr "أضف خادم Odelza MCP كموصل مخصص في وضع المطوّر في ChatGPT."
 
-#. js-lingui-id: iA2nHX
+#. js-lingui-id: PZ9W2V
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server from Augment Code settings."
-msgstr "أضف خادم Twenty MCP من إعدادات Augment Code."
+msgid "Add the Odelza MCP server as a remote context server in Zed."
+msgstr "أضف خادم Odelza MCP كخادم سياق بعيد في Zed."
 
-#. js-lingui-id: l+NzAk
+#. js-lingui-id: cE6ZAA
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server from Raycast's MCP commands or settings."
-msgstr "أضف خادم Twenty MCP من أوامر أو إعدادات MCP في Raycast."
+msgid "Add the Odelza MCP server from Augment Code settings."
+msgstr "أضف خادم Odelza MCP من إعدادات Augment Code."
 
-#. js-lingui-id: j6G/yI
+#. js-lingui-id: V9totg
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server in Gemini CLI settings."
-msgstr "أضف خادم Twenty MCP في إعدادات Gemini CLI."
+msgid "Add the Odelza MCP server from Raycast's MCP commands or settings."
+msgstr "أضف خادم Odelza MCP من أوامر أو إعدادات MCP في Raycast."
 
-#. js-lingui-id: /OyhlM
+#. js-lingui-id: 00MgD2
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty MCP server to your LibreChat configuration file."
-msgstr "أضف خادم Twenty MCP البعيد إلى ملف تهيئة LibreChat لديك."
+msgid "Add the Odelza MCP server in Gemini CLI settings."
+msgstr "أضف خادم Odelza MCP في إعدادات Gemini CLI."
 
-#. js-lingui-id: K0DXoj
+#. js-lingui-id: E9G1EO
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add the Twenty remote server with LM Studio's install link."
-msgstr "أضف خادم Twenty البعيد عبر رابط التثبيت في LM Studio."
+msgid "Add the Odelza MCP server to your LibreChat configuration file."
+msgstr "أضف خادم Odelza MCP البعيد إلى ملف تهيئة LibreChat لديك."
+
+#. js-lingui-id: lUn4sy
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Add the Odelza remote server with LM Studio's install link."
+msgstr "أضف خادم Odelza البعيد عبر رابط التثبيت في LM Studio."
 
 #. js-lingui-id: 5+ttxv
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistInput.tsx
@@ -1506,11 +1466,6 @@ msgstr "إضافة إلى المفضلة"
 #: src/modules/settings/unsubscribe-topics/components/SettingsWorkspaceUnsubscribeTopicSection.tsx
 msgid "Add topic"
 msgstr "إضافة موضوع"
-
-#. js-lingui-id: 4D/zWv
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Add Twenty as a Streamable HTTP extension in Goose."
-msgstr "أضف Twenty كامتداد HTTP قابل للبث في Goose."
 
 #. js-lingui-id: XnwceV
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationRedirectURIsInput.tsx
@@ -1936,9 +1891,9 @@ msgstr "جميع تسجيلات التطبيقات"
 msgid "All application registrations across the platform, including orphaned marketplace apps"
 msgstr "جميع تسجيلات التطبيقات عبر المنصة، بما في ذلك التطبيقات اليتيمة في سوق التطبيقات"
 
-#. js-lingui-id: zHxUsQ
+#. js-lingui-id: QgR+Od
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "All dated tasks have already ended."
+msgid "All dated records have already ended."
 msgstr ""
 
 #. js-lingui-id: 1kLn6M
@@ -2173,9 +2128,9 @@ msgstr "حدث خطأ أثناء التحقق من وجود المستخدم"
 msgid "An error occurred while loading financial data."
 msgstr ""
 
-#. js-lingui-id: PAwBtR
+#. js-lingui-id: oHNBPZ
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "An error occurred while loading tasks."
+msgid "An error occurred while loading records."
 msgstr ""
 
 #. js-lingui-id: LfKkm6
@@ -2254,7 +2209,6 @@ msgid "An object with this name already exists"
 msgstr "يوجد بالفعل كائن يحمل هذا الاسم"
 
 #. js-lingui-id: HZFm5R
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettingsDeleteRoleConfirmationModalSubtitle.tsx
 #: src/utils/date-utils.ts
 msgid "and"
@@ -2276,7 +2230,6 @@ msgid "Anterior"
 msgstr ""
 
 #. js-lingui-id: 9BhGWn
-#. placeholder {0}: fieldLabel ?? ''
 #: src/modules/object-record/advanced-filter/components/AdvancedFilterCompositeSubFieldSelectMenu.tsx
 msgid "Any {0} field"
 msgstr "أي حقل {0}"
@@ -2583,13 +2536,11 @@ msgid "Are you sure you want to delete this tool? This action cannot be undone."
 msgstr "هل أنت متأكد أنك تريد حذف هذه الأداة؟ لا يمكن التراجع عن هذا الإجراء."
 
 #. js-lingui-id: EySr+c
-#. placeholder {0}: objectMetadataItem.labelPlural
 #: src/modules/command-menu-item/engine-command/record/components/DestroyRecordsCommand.tsx
 msgid "Are you sure you want to destroy these {0}? They won't be recoverable anymore."
 msgstr "هل أنت متأكد أنك تريد تدمير هذه {0}؟ لن يمكن استرجاعها بعد الآن."
 
 #. js-lingui-id: GfgNgF
-#. placeholder {0}: objectMetadataItem.labelSingular
 #: src/modules/command-menu-item/engine-command/record/components/DestroyRecordsCommand.tsx
 msgid "Are you sure you want to destroy this {0}? It cannot be recovered anymore."
 msgstr "هل أنت متأكد أنك تريد تدمير هذا {0}؟ لن يمكن استرجاعه بعد الآن."
@@ -2600,13 +2551,11 @@ msgid "Are you sure you want to reset this variable?"
 msgstr "هل أنت متأكد أنك تريد إعادة تعيين هذا المتغير؟"
 
 #. js-lingui-id: RzJL8J
-#. placeholder {0}: objectMetadataItem.labelPlural
 #: src/modules/command-menu-item/engine-command/record/components/RestoreRecordsCommand.tsx
 msgid "Are you sure you want to restore these {0}?"
 msgstr "هل أنت متأكد أنك تريد استعادة هذه {0}؟"
 
 #. js-lingui-id: XTKWxO
-#. placeholder {0}: objectMetadataItem.labelSingular
 #: src/modules/command-menu-item/engine-command/record/components/RestoreRecordsCommand.tsx
 msgid "Are you sure you want to restore this {0}?"
 msgstr "هل أنت متأكد أنك تريد استعادة هذا {0}؟"
@@ -2752,7 +2701,6 @@ msgid "at {minuteNumStr} minutes past the hour"
 msgstr "في {minuteNumStr} دقائق بعد بداية الساعة"
 
 #. js-lingui-id: FNAAlz
-#. placeholder {0}: lastTime ?? ''
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getHoursDescription.ts
 msgid "at {remainingTimes} and {0}"
 msgstr "في {remainingTimes} و {0}"
@@ -2788,7 +2736,6 @@ msgid "at minutes {firstValue} and {secondValue}"
 msgstr "في الدقائق {firstValue} و {secondValue}"
 
 #. js-lingui-id: VgeWVl
-#. placeholder {0}: lastValue ?? ''
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMinutesDescription.ts
 msgid "at minutes {remainingValues} and {0}"
 msgstr "في الدقائق {remainingValues} و {0}"
@@ -2882,11 +2829,6 @@ msgstr "فشل التفويض. يرجى المحاولة مرة أخرى."
 msgid "Authorize"
 msgstr "اعتماد"
 
-#. js-lingui-id: 3yzHpm
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Authorized signatory name"
-msgstr "اسم الموقِّع المخوَّل"
-
 #. js-lingui-id: wTBNbL
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
 msgid "Authorized URI"
@@ -2913,8 +2855,8 @@ msgid "Auto-generated role for {agentDisplayName}"
 msgstr "دور تم إنشاؤه تلقائيًا لـ {agentDisplayName}"
 
 #. js-lingui-id: Dnn2XG
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Automatic"
 msgstr ""
 
@@ -3033,6 +2975,11 @@ msgstr "ألوان الخلفية"
 msgid "Balance by"
 msgstr "موازنة حسب"
 
+#. js-lingui-id: sKyCPZ
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Bar color"
+msgstr ""
+
 #. js-lingui-id: b2ghLW
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
 msgid "Base credits"
@@ -3091,6 +3038,18 @@ msgstr "الأفضل"
 #: src/pages/onboarding/InstallAppsContent.tsx
 msgid "Beta"
 msgstr "بيتا"
+
+#. js-lingui-id: Zz7XBz
+#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
+#: src/pages/settings/lab/SettingsLab.tsx
+#: src/pages/settings/lab/SettingsLab.tsx
+msgid "Beta features"
+msgstr "الميزات التجريبية"
+
+#. js-lingui-id: zaMR13
+#: src/utils/title-utils.ts
+msgid "Beta features - Settings"
+msgstr "الميزات التجريبية - الإعدادات"
 
 #. js-lingui-id: NgFKo1
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMonthsDescription.ts
@@ -3152,10 +3111,10 @@ msgstr "فترة الفوترة"
 msgid "Billing period"
 msgstr "فترة الفوترة"
 
-#. js-lingui-id: xF/NXI
+#. js-lingui-id: hvQPEr
 #: src/modules/settings/billing/hooks/useBillingPortalSession.ts
-msgid "Billing portal session error. Please retry or contact Twenty team"
-msgstr "خطأ في جلسة بوابة الفوترة. يُرجى المحاولة مرة أخرى أو الاتصال بفريق Twenty"
+msgid "Billing portal session error. Please retry or contact the Odelza team"
+msgstr "خطأ في جلسة بوابة الفوترة. يُرجى المحاولة مرة أخرى أو الاتصال بفريق Odelza"
 
 #. js-lingui-id: K1172m
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistSection.tsx
@@ -3218,11 +3177,6 @@ msgstr "بني"
 #: src/pages/settings/applications/SettingsApplications.tsx
 msgid "Browse"
 msgstr "تصفّح"
-
-#. js-lingui-id: hKAV/O
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Browse partners"
-msgstr "تصفح الشركاء"
 
 #. js-lingui-id: GsXRxc
 #: src/modules/settings/data-model/indexes/forms/components/SettingsObjectIndexOptionsForm.tsx
@@ -3293,11 +3247,6 @@ msgstr "مضمَّن مع {applicationName}"
 #: src/pages/settings/applications/components/SettingsAvailableApplicationCard.tsx
 msgid "by {author}"
 msgstr "بواسطة {author}"
-
-#. js-lingui-id: 8Pfllj
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "By using Twenty, you agree to the"
-msgstr "باستخدامك Twenty، فإنك توافق على"
 
 #. js-lingui-id: Yx41df
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
@@ -3626,12 +3575,6 @@ msgstr "الكاتالانية"
 msgid "Catalog"
 msgstr ""
 
-#. js-lingui-id: r8+cl4
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
-msgid "Catalog fields"
-msgstr ""
-
 #. js-lingui-id: K7tIrx
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 msgid "Category"
@@ -3772,6 +3715,11 @@ msgstr "التحدث مع وكلاء الذكاء الاصطناعي واستخ�
 msgid "ChatGPT"
 msgstr "ChatGPT"
 
+#. js-lingui-id: P+wAKD
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "ChatGPT connectors require an HTTPS MCP URL."
+msgstr "تتطلّب موصلات ChatGPT عنوان MCP URL عبر HTTPS."
+
 #. js-lingui-id: 8Q+lLG
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
 msgid "Chats"
@@ -3792,11 +3740,11 @@ msgstr "تحقق من بريدك الإلكتروني"
 msgid "Check your inbox to verify your new email address."
 msgstr "تحقق من صندوق الوارد لديك لتأكيد عنوان بريدك الإلكتروني الجديد."
 
-#. js-lingui-id: SxwQE8
+#. js-lingui-id: jqbYQu
 #: src/modules/settings/billing/hooks/useHandleCheckoutSession.ts
 #: src/modules/settings/billing/hooks/useHandleCheckoutSession.ts
-msgid "Checkout session error. Please retry or contact Twenty team"
-msgstr "خطأ في جلسة الدفع. يُرجى المحاولة مرة أخرى أو الاتصال بفريق Twenty"
+msgid "Checkout session error. Please retry or contact the Odelza team"
+msgstr "خطأ في جلسة الدفع. يُرجى المحاولة مرة أخرى أو الاتصال بفريق Odelza"
 
 #. js-lingui-id: SviKkE
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -3813,10 +3761,20 @@ msgstr "الصينية — التقليدية"
 msgid "Choose {intervalAdjective} credits"
 msgstr "اختر أرصدة {intervalAdjective}"
 
+#. js-lingui-id: KvPBuR
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Choose a readable active source to configure its fields."
+msgstr ""
+
 #. js-lingui-id: NFfUic
 #: src/pages/auth/SignInUp.tsx
 msgid "Choose a Workspace"
 msgstr "اختر مساحة العمل"
+
+#. js-lingui-id: ri0An0
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Choose an active source and configure readable date fields; unavailable dates are not inferred."
+msgstr ""
 
 #. js-lingui-id: Qz73jD
 #: src/modules/settings/security/components/SSO/SettingsSSOIdentitiesProvidersForm.tsx
@@ -3960,11 +3918,6 @@ msgstr "انقر لعرض البيانات"
 #: src/modules/ui/input/components/IconPicker.tsx
 msgid "Click to select icon {iconAriaLabel}"
 msgstr "انقر لاختيار الأيقونة {iconAriaLabel}"
-
-#. js-lingui-id: ss6vFU
-#: src/modules/settings/legal/components/SettingsDpaAgreementRow.tsx
-msgid "Click-through acceptance"
-msgstr "القبول عبر النقر (Click-through acceptance)"
 
 #. js-lingui-id: ZwIUeU
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
@@ -4142,7 +4095,6 @@ msgid "Command Menu"
 msgstr "قائمة الأوامر"
 
 #. js-lingui-id: 8mZkyL
-#. placeholder {0}: getOsControlSymbol()
 #: src/modules/side-panel/components/SidePanelToggleButton.tsx
 msgid "Command menu | {0}K"
 msgstr "قائمة الأوامر | {0}K"
@@ -4202,16 +4154,8 @@ msgstr "الاتصالات"
 
 #. js-lingui-id: chL5IG
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
-#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
-#: src/pages/settings/community/SettingsCommunity.tsx
-#: src/pages/settings/community/SettingsCommunity.tsx
 msgid "Community"
 msgstr "المجتمع"
-
-#. js-lingui-id: myLjjN
-#: src/utils/title-utils.ts
-msgid "Community - Settings"
-msgstr "المجتمع - الإعدادات"
 
 #. js-lingui-id: NM9bMd
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
@@ -4371,6 +4315,16 @@ msgstr "قم بتكوين إعدادات SMTP لإرسال رسائل البري
 msgid "Configure the default AI models for all workspaces"
 msgstr "تهيئة نماذج الذكاء الاصطناعي الافتراضية لجميع مساحات العمل"
 
+#. js-lingui-id: /iOabO
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Configure the Odelza MCP server manually in Cascade."
+msgstr "اضبط خادم Odelza MCP يدويًا في Cascade."
+
+#. js-lingui-id: OPG1Ma
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Configure the Odelza MCP server manually in Cline."
+msgstr "اضبط خادم Odelza MCP يدويًا في Cline."
+
 #. js-lingui-id: CcCy4C
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Configure the remote MCP server through Warp's agent settings."
@@ -4380,16 +4334,6 @@ msgstr "اضبط خادم MCP البعيد من إعدادات الوكيل في
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Configure the remote server in Amazon Q Developer's MCP settings."
 msgstr "اضبط الخادم البعيد في إعدادات MCP في Amazon Q Developer."
-
-#. js-lingui-id: g1/8jH
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Configure the Twenty MCP server manually in Cascade."
-msgstr "اضبط خادم Twenty MCP يدويًا في Cascade."
-
-#. js-lingui-id: XiyvRh
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Configure the Twenty MCP server manually in Cline."
-msgstr "اضبط خادم Twenty MCP يدويًا في Cline."
 
 #. js-lingui-id: qA9AGQ
 #: src/modules/settings/domains/components/SettingsDomainRecords.tsx
@@ -4411,6 +4355,16 @@ msgstr "ضبط إعدادات بريدك الإلكتروني والتقويم."
 #: src/modules/settings/admin-panel/apps/components/SettingsAdminApps.tsx
 msgid "Configured"
 msgstr "تم الإعداد"
+
+#. js-lingui-id: /YVSa4
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Configured date fields are invalid or no longer available. Update the widget field mappings."
+msgstr ""
+
+#. js-lingui-id: RiShNf
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Configured task date fields are invalid or no longer available. Update the widget field mappings."
+msgstr ""
 
 #. js-lingui-id: 7VpPHA
 #: src/modules/settings/admin-panel/components/SettingsAdminServerAdminAccess.tsx
@@ -4835,16 +4789,6 @@ msgstr "التكلفة لكل مليون رمز للإدخال المخزَّن 
 msgid "Could not delete approved access domain"
 msgstr "تعذر حذف نطاق الوصول الموافق عليه"
 
-#. js-lingui-id: E5v5TK
-#: src/modules/settings/legal/components/SettingsDpaAgreementsTable.tsx
-msgid "Could not download the document."
-msgstr "تعذّر تنزيل المستند."
-
-#. js-lingui-id: NonvA5
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Could not generate the signed DPA. Please try again."
-msgstr "تعذّر إنشاء DPA موقّعة. يُرجى المحاولة مرة أخرى."
-
 #. js-lingui-id: KqYYBp
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Could not open billing portal. Please check your enterprise key is present, or contact support."
@@ -5139,7 +5083,6 @@ msgid "Created by"
 msgstr "تم الإنشاء بواسطة"
 
 #. js-lingui-id: t3sqJR
-#. placeholder {0}: beautifyExactDateTime(signingKey.createdAt)
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminSigningKeysTable.tsx
 msgid "Created on {0}"
 msgstr "تم الإنشاء في {0}"
@@ -5643,13 +5586,6 @@ msgstr "نموذج البيانات - إعدادات"
 msgid "Data on display"
 msgstr "البيانات المعروضة"
 
-#. js-lingui-id: /qrjU8
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-msgid "Data Processing Agreement"
-msgstr "اتفاقية معالجة البيانات"
-
 #. js-lingui-id: Ix/CMz
 #: src/modules/settings/ai/components/SettingsAiModelHoverCard.tsx
 msgid "Data residency"
@@ -5686,7 +5622,6 @@ msgstr "حدث قاعدة البيانات"
 #: src/modules/object-record/record-board/record-board-column/components/RecordBoardColumnHeaderAggregateDropdownMenuContent.tsx
 #: src/modules/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterDropdownContent.tsx
 #: src/modules/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterMenuContent.tsx
-#: src/modules/settings/legal/components/SettingsDpaAgreementsTable.tsx
 #: src/pages/settings/ai/components/SettingsAgentLogsTab.tsx
 #: src/pages/settings/ai/components/SettingsAgentLogsTab.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
@@ -5729,7 +5664,14 @@ msgstr "الدقة الزمنية للتاريخ X"
 msgid "Date Granularity Y"
 msgstr "الدقة الزمنية للتاريخ Y"
 
+#. js-lingui-id: 61fDxz
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Dates are full-day and inclusive. Dependencies and status are not interpreted for this source."
+msgstr ""
+
 #. js-lingui-id: Lgnlah
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Dates are full-day and inclusive. Finish-to-start conflicts remain visible without automatic rescheduling."
 msgstr ""
@@ -6446,13 +6388,9 @@ msgstr "عدم الاستيراد"
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 msgid "Docs"
 msgstr "وثائق"
-
-#. js-lingui-id: 7Zdnlq
-#: src/modules/settings/legal/components/SettingsDpaAgreementsTable.tsx
-msgid "Document"
-msgstr "المستند"
 
 #. js-lingui-id: TvY/XA
 #: src/modules/navigation/components/NavigationDrawerOtherSection.tsx
@@ -6526,7 +6464,6 @@ msgstr "التحويل إلى دفع شهري"
 #. js-lingui-id: mzI/c+
 #: src/modules/activities/files/components/AttachmentDropdown.tsx
 #: src/modules/activities/files/components/DocumentViewer.tsx
-#: src/modules/settings/legal/components/SettingsDpaAgreementRow.tsx
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
 msgid "Download"
 msgstr "تنزيل"
@@ -7456,13 +7393,11 @@ msgid "Entity ID copied to clipboard"
 msgstr "تم نسخ معرف الكيان إلى الحافظة"
 
 #. js-lingui-id: /qwiJU
-#. placeholder {0}: entries.length
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsEntries.tsx
 msgid "Entries ({0}, latest iteration only)"
 msgstr "الإدخالات ({0}، أحدث تكرار فقط)"
 
 #. js-lingui-id: 3aFckQ
-#. placeholder {0}: entries.length
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsEntries.tsx
 msgid "Entries ({0})"
 msgstr "الإدخالات ({0})"
@@ -7558,7 +7493,6 @@ msgid "Error opening Stripe"
 msgstr "خطأ في فتح Stripe"
 
 #. js-lingui-id: bEAPCW
-#. placeholder {0}: String(error)
 #: src/modules/ui/field/display/components/PhonesDisplay.tsx
 msgid "Error parsing additional phones: {0}"
 msgstr "خطأ في تحليل أرقام الهواتف الإضافية: {0}"
@@ -7633,10 +7567,10 @@ msgstr "خطأ أثناء إلغاء تبديل الفاصل الزمني."
 msgid "Error while cancelling plan switching."
 msgstr "خطأ أثناء إلغاء تبديل الخطة."
 
-#. js-lingui-id: QmR+2U
+#. js-lingui-id: 3EWWOB
 #: src/modules/settings/billing/hooks/useEndSubscriptionTrialPeriod.ts
-msgid "Error while ending trial period. Please contact Twenty team."
-msgstr "خطأ أثناء إنهاء فترة التجربة، يرجى التواصل مع فريق Twenty."
+msgid "Error while ending trial period. Please contact the Odelza team."
+msgstr "خطأ أثناء إنهاء فترة التجربة، يرجى التواصل مع فريق Odelza."
 
 #. js-lingui-id: 5g78zo
 #: src/pages/settings/members/SettingsWorkspaceMember.tsx
@@ -7799,11 +7733,6 @@ msgstr "استثناء الأشخاص والنطاقات التالية من م�
 msgid "Exclude the following people and domains from my email sync. Internal conversations will not be imported"
 msgstr "استبعاد الأشخاص والمجالات التالية من مزامنة البريد الإلكتروني الخاص بي. لن يتم استيراد المحادثات الداخلية"
 
-#. js-lingui-id: g3jaWB
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-msgid "Executed copies"
-msgstr "النسخ المنفَّذة"
-
 #. js-lingui-id: B0clc7
 #: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.tsx
 msgid "Execution ID"
@@ -7952,11 +7881,6 @@ msgstr "تعبير"
 #: src/modules/onboarding/components/upgrade-free-trial/OnboardingTrialExtensionTag.tsx
 msgid "Extended"
 msgstr "ممتد"
-
-#. js-lingui-id: qlMg0V
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
-msgid "Extra field"
-msgstr ""
 
 #. js-lingui-id: 7Bj3x9
 #: src/modules/ai/components/CodeExecutionDisplay.tsx
@@ -8314,7 +8238,7 @@ msgid "Feature Flags"
 msgstr "علامات الميزات"
 
 #. js-lingui-id: PpZkda
-#: src/pages/settings/community/SettingsCommunity.tsx
+#: src/pages/settings/lab/SettingsLab.tsx
 msgid "Features"
 msgstr "الميزات"
 
@@ -8390,6 +8314,7 @@ msgstr "حقول"
 #: src/modules/settings/data-model/object-details/components/tabs/ObjectFields.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/record-level-permissions/components/SettingsRolePermissionsObjectLevelRecordLevelPermissionFieldSelectFieldMenu.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/record-page/SidePanelRecordPageFieldSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutRecordPageWidgetTypeSelect.tsx
 #: src/modules/side-panel/utils/getSidePanelSubPageTitle.ts
@@ -8661,11 +8586,6 @@ msgstr "استيراد المجلد/التسمية"
 msgid "Folders"
 msgstr "مجلدات"
 
-#. js-lingui-id: I7Exsw
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Follow us on X"
-msgstr "تابعنا على X"
-
 #. js-lingui-id: Ghistm
 #: src/modules/settings/applications/hooks/useComputeApplicationContentForLayoutAndLogic.ts
 msgid "for {objectLabel}"
@@ -8867,17 +8787,6 @@ msgstr "عام"
 #: src/utils/title-utils.ts
 msgid "General - Settings"
 msgstr "الإعدادات العامة"
-
-#. js-lingui-id: ziAjHi
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Generate"
-msgstr "إنشاء"
-
-#. js-lingui-id: H3rta9
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Generate DPA"
-msgstr "إنشاء DPA"
 
 #. js-lingui-id: CjKOAP
 #: src/modules/workflow/workflow-steps/workflow-actions/code-action/components/WorkflowEditActionCode.tsx
@@ -9139,11 +9048,6 @@ msgstr ""
 msgid "Handle"
 msgstr "المُعرّف"
 
-#. js-lingui-id: Gpb1xF
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Head of Legal"
-msgstr "رئيس الشؤون القانونية"
-
 #. js-lingui-id: w3CVxK
 #: src/pages/onboarding/CreateProfile.tsx
 msgid "Head of Partnerships"
@@ -9219,10 +9123,20 @@ msgstr "الحالة الصحية"
 msgid "Hebrew"
 msgstr "العبرية"
 
+#. js-lingui-id: c3XJ18
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Help"
+msgstr ""
+
 #. js-lingui-id: CRzGla
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
 msgid "Help center"
 msgstr "مركز المساعدة"
+
+#. js-lingui-id: VpExZs
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Hex color"
+msgstr ""
 
 #. js-lingui-id: D+zLDD
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownHiddenRecordGroupsContent.tsx
@@ -9270,7 +9184,6 @@ msgid "Hide empty groups"
 msgstr "إخفاء المجموعات الفارغة"
 
 #. js-lingui-id: CbeJV4
-#. placeholder {0}: groupValue ?? ''
 #: src/modules/object-record/record-group/components/RecordGroupMenuItemDraggable.tsx
 msgid "Hide group {0}"
 msgstr "إخفاء المجموعة {0}"
@@ -9289,11 +9202,6 @@ msgstr "إخفاء التسمية"
 #: src/modules/settings/data-model/object-details/components/tabs/SettingsObjectIndexesSection.tsx
 msgid "Hide system indexes"
 msgstr "إخفاء فهارس النظام"
-
-#. js-lingui-id: 1ETc0T
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Hire a partner to help you implement and customize Twenty."
-msgstr "استعن بشريك لمساعدتك في تنفيذ Twenty وتخصيصه."
 
 #. js-lingui-id: i0qMbr
 #: src/modules/navigation/components/MainNavigationDrawerTabsRow.tsx
@@ -9555,7 +9463,6 @@ msgid "iFrame Widget"
 msgstr "ودجت iFrame"
 
 #. js-lingui-id: hG89Ed
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
 msgid "Image"
 msgstr "صورة"
@@ -10070,7 +9977,6 @@ msgid "Invalid email verification link."
 msgstr "رابط التحقق من البريد الإلكتروني غير صالح."
 
 #. js-lingui-id: 4D6/HO
-#. placeholder {0}: samlMetadataParsed.reason
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 msgid "Invalid file: {0}"
 msgstr "ملف غير صالح: {0}"
@@ -10168,7 +10074,6 @@ msgid "Invoice amount may vary if you add members or credits between periods"
 msgstr "قد يختلف مبلغ الفاتورة إذا أضفت أعضاء أو أرصدة بين الفترات"
 
 #. js-lingui-id: 6gmWKp
-#. placeholder {0}: index + 1
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
 msgid "Ir a la tarjeta {0}"
 msgstr ""
@@ -10192,6 +10097,11 @@ msgstr "هو بعد أو يساوي"
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
 msgid "Is before"
 msgstr "قبل"
+
+#. js-lingui-id: bMjg2C
+#: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
+msgid "Is before today{timeZoneAbbreviationSuffix}"
+msgstr ""
 
 #. js-lingui-id: Hte7bc
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
@@ -10308,11 +10218,6 @@ msgstr "عناصر للتكرار عليها"
 msgid "Jade"
 msgstr "يشم"
 
-#. js-lingui-id: A1CyH/
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Jane Doe"
-msgstr "Jane Doe"
-
 #. js-lingui-id: dFtidv
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Japanese"
@@ -10370,16 +10275,6 @@ msgstr "john.doe@example.com"
 msgid "Join {workspaceName} team"
 msgstr "انضم إلى فريق {workspaceName}"
 
-#. js-lingui-id: 31TuIx
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Join our Discord"
-msgstr "انضم إلى Discord الخاص بنا"
-
-#. js-lingui-id: cIo6Vk
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Join the community"
-msgstr "انضم إلى المجتمع"
-
 #. js-lingui-id: B2Zb/F
 #: src/pages/settings/ai/components/SettingsAgentResponseFormat.tsx
 msgid "JSON"
@@ -10397,6 +10292,16 @@ msgstr "لي فقط"
 #: src/modules/views/types/ViewType.ts
 msgid "Kanban"
 msgstr "كانبان"
+
+#. js-lingui-id: DDTZaR
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Kanban View"
+msgstr ""
+
+#. js-lingui-id: twIexG
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
+msgid "Kanban view selected"
+msgstr ""
 
 #. js-lingui-id: 7sMeHQ
 #: src/modules/workflow/workflow-steps/workflow-actions/http-request-action/components/KeyValuePairInput.tsx
@@ -10695,7 +10600,6 @@ msgid "Layout customization menu"
 msgstr "قائمة تخصيص التخطيط"
 
 #. js-lingui-id: uQ0+Yc
-#. placeholder {0}: tab.layoutMode
 #: src/pages/settings/layout/SettingsLayoutPageLayoutDetail.tsx
 msgid "Layout mode: {0}"
 msgstr "وضع التخطيط: {0}"
@@ -10767,17 +10671,6 @@ msgstr "قديم (HS256)"
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminSigningKeysTable.tsx
 msgid "Legacy HS256 verifications across all tokens"
 msgstr "عمليات تحقق HS256 القديمة عبر جميع الرموز"
-
-#. js-lingui-id: vifyyw
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Legal"
-msgstr "قانوني"
-
-#. js-lingui-id: nc/jNe
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Legal entity name"
-msgstr "اسم الكيان القانوني"
 
 #. js-lingui-id: MP1v+1
 #: src/modules/side-panel/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
@@ -10955,6 +10848,7 @@ msgid "Load balanced"
 msgstr "موازنة الأحمال"
 
 #. js-lingui-id: yQ2kGp
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
 #: src/modules/object-record/record-table/record-table-section/components/RecordTableRecordGroupSectionLoadMore.tsx
 msgid "Load more"
 msgstr "تحميل المزيد"
@@ -10968,6 +10862,12 @@ msgstr "تم تحميل {formattedNames}"
 #: src/modules/ai/utils/tool-display/get-tool-display-message.ts
 msgid "Loaded skills"
 msgstr "تم تحميل المهارات"
+
+#. js-lingui-id: yQE2r9
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "Loading"
+msgstr ""
 
 #. js-lingui-id: znv7zA
 #: src/modules/ai/utils/tool-display/get-tool-display-message.ts
@@ -11195,7 +11095,6 @@ msgid "Manage billing information"
 msgstr "إدارة معلومات الفوترة"
 
 #. js-lingui-id: GDz4fg
-#. placeholder {0}: provider.displayName
 #: src/pages/settings/applications/tabs/SettingsApplicationConnectionsSection.tsx
 msgid "Manage connections used by this app to call {0}."
 msgstr "أدر الاتصالات التي يستخدمها هذا التطبيق لاستدعاء {0}."
@@ -11269,6 +11168,7 @@ msgstr "مدارة"
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 #: src/modules/side-panel/pages/page-layout/hooks/useGraphGroupBySortOptionLabels.ts
 #: src/modules/side-panel/pages/page-layout/hooks/useGraphXSortOptionLabels.ts
 msgid "Manual"
@@ -11295,7 +11195,6 @@ msgid "Marketplace catalog synchronization started."
 msgstr "تم بدء مزامنة كتالوج السوق."
 
 #. js-lingui-id: 8r6vNs
-#. placeholder {0}: fieldLabel ?? ''
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/UnmatchColumn.tsx
 msgid "Match {0} ({unmatchedCount} Unmatched)"
 msgstr "مطابقة {0} ({unmatchedCount} غير مطابق)"
@@ -11594,13 +11493,11 @@ msgid "Model"
 msgstr "نموذج"
 
 #. js-lingui-id: bC/dq9
-#. placeholder {0}: values.label.trim()
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
 msgid "Model \"{0}\" added"
 msgstr "تمت إضافة النموذج \"{0}\""
 
 #. js-lingui-id: dpLl7b
-#. placeholder {0}: modelToRemove.label
 #: src/pages/settings/admin-panel/SettingsAdminAiProviderDetail.tsx
 msgid "Model \"{0}\" removed"
 msgstr "تمت إزالة النموذج \"{0}\""
@@ -11692,7 +11589,6 @@ msgid "More"
 msgstr "المزيد"
 
 #. js-lingui-id: G2I8i7
-#. placeholder {0}: hiddenFieldsWithOffsetGlobalIndex.length
 #: src/modules/page-layout/widgets/fields/components/FieldsWidget.tsx
 msgid "More ({0})"
 msgstr "المزيد ({0})"
@@ -12271,6 +12167,11 @@ msgstr "لم يتم العثور على {objectLabelSingular}"
 msgid "No access"
 msgstr "لا وصول"
 
+#. js-lingui-id: jU1iLu
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No active records to display"
+msgstr ""
+
 #. js-lingui-id: glQp+P
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
 msgid "No active subscription."
@@ -12408,11 +12309,6 @@ msgstr "لا توجد متغيرات تكوين مطابقة للمرشحات ا
 msgid "No context was provided for this request"
 msgstr "لم يتم توفير سياق لهذا الطلب"
 
-#. js-lingui-id: Zpgvun
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-msgid "No copy has been generated yet. This is the agreement that applies to your deployment — generate a signed copy from the top-right."
-msgstr "لم يتم حتى الآن إنشاء أي نسخة. هذه هي الاتفاقية المطبّقة على عملية النشر لديك — أنشئ نسخة موقَّعة من الزاوية العلوية اليمنى."
-
 #. js-lingui-id: 4BSfjK
 #: src/modules/object-record/record-field/ui/form-types/components/FormCountrySelectInput.tsx
 #: src/modules/settings/data-model/fields/forms/address/components/SettingsDataModelFieldAddressForm.tsx
@@ -12477,6 +12373,11 @@ msgstr "لم يتم العثور على بيانات"
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 msgid "No Date field"
 msgstr "لا حقل تاريخ"
+
+#. js-lingui-id: BTfesL
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No dated records to display"
+msgstr ""
 
 #. js-lingui-id: zqwWN2
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
@@ -12582,11 +12483,6 @@ msgstr "لم يتم العثور على مجلدات لهذا الحساب"
 #. js-lingui-id: cYD+0r
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarousel.tsx
 msgid "No hay elementos para mostrar"
-msgstr ""
-
-#. js-lingui-id: IKz5W+
-#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
-msgid "No hay registros para mostrar"
 msgstr ""
 
 #. js-lingui-id: 9kCSLK
@@ -12734,6 +12630,16 @@ msgstr "لا توجد أذونات مُكوّنة لهذا التطبيق."
 msgid "No permissions have been set for individual objects."
 msgstr "لم يتم تعيين أي أذونات للعناصر الفردية."
 
+#. js-lingui-id: wxGzJE
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "No readable active objects available."
+msgstr ""
+
+#. js-lingui-id: VFFC5+
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "No readable compatible fields. Choose another source or update its fields."
+msgstr ""
+
 #. js-lingui-id: 5sv+ia
 #: src/modules/activities/emails/hooks/useSendMessageCampaign.ts
 msgid "No recipients to send to ({skippedCount} skipped)"
@@ -12767,6 +12673,12 @@ msgstr "لم يتم العثور على سجلات"
 #: src/modules/object-record/record-table/empty-state/components/RecordTableEmptyStateNoRecordFoundForFilter.tsx
 msgid "No records matching the filter criteria were found."
 msgstr "لم يتم العثور على سجلات تطابق معايير التصفية."
+
+#. js-lingui-id: TdaAeM
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "No records to display"
+msgstr ""
 
 #. js-lingui-id: gvIkAA
 #: src/modules/workflow/workflow-steps/workflow-actions/pick-record-action/components/WorkflowEditActionPickRecord.tsx
@@ -12940,7 +12852,6 @@ msgid "No variables to set for this application"
 msgstr "لا توجد متغيرات لضبطها لهذا التطبيق"
 
 #. js-lingui-id: JdLdch
-#. placeholder {0}: nonVettedApplications.length
 #: src/pages/settings/applications/tabs/SettingsApplicationsAvailableTab.tsx
 msgid "No vetted applications found. {0} non-vetted result(s) available — "
 msgstr "لم يتم العثور على تطبيقات مُراجَعة. {0} نتيجة غير مُراجَعة متاحة — "
@@ -13024,6 +12935,9 @@ msgstr "غير متاح في العرض الافتراضي"
 
 #. js-lingui-id: SDND4q
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Not configured"
 msgstr ""
@@ -13225,6 +13139,11 @@ msgstr "إذن الكائن"
 msgid "Object permission options"
 msgstr "خيارات أذونات الكائن"
 
+#. js-lingui-id: cStG/n
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
+msgid "Object selected"
+msgstr ""
+
 #. js-lingui-id: gaqIMK
 #: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Object type"
@@ -13278,6 +13197,11 @@ msgstr "الكائنات والحقول التي يديرها هذا التطب�
 msgid "Objects and fields permissions settings"
 msgstr "إعدادات أذونات الكائنات والحقول"
 
+#. js-lingui-id: HWoL49
+#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/ColumnGrid.tsx
+msgid "Odelza fields"
+msgstr "حقول Odelza"
+
 #. js-lingui-id: BwJKBw
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "of"
@@ -13287,11 +13211,6 @@ msgstr "من"
 #: src/pages/not-found/NotFound.tsx
 msgid "Off the beaten path"
 msgstr "خارج المألوف"
-
-#. js-lingui-id: s1X4Cm
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Official app"
-msgstr "تطبيق رسمي"
 
 #. js-lingui-id: Zd5vVt
 #: src/modules/workflow/workflow-steps/workflow-actions/find-records-action/components/WorkflowEditActionFindRecords.tsx
@@ -13314,9 +13233,6 @@ msgid "Omit zero values"
 msgstr "تجاهل القيم الصفرية"
 
 #. js-lingui-id: UCQiqt
-#. placeholder {0}: appObject.labelSingular
-#. placeholder {0}: item.labelSingular
-#. placeholder {0}: objectMetadataItem.labelSingular
 #: src/modules/settings/applications/hooks/useComputeObjectAndFieldsContentForApplication.ts
 #: src/modules/settings/applications/hooks/useComputeObjectAndFieldsContentForApplication.ts
 #: src/modules/settings/applications/hooks/useComputeObjectAndFieldsContentForApplication.ts
@@ -13339,7 +13255,6 @@ msgid "on the {ordinalDay} of the month"
 msgstr "في {ordinalDay} من الشهر"
 
 #. js-lingui-id: P5MEzQ
-#. placeholder {0}: lastDay ?? ''
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfMonthDescription.ts
 msgid "on the {remainingDays} and {0} of the month"
 msgstr "في {remainingDays} و {0} من الشهر"
@@ -13417,7 +13332,6 @@ msgid "only in {monthName}"
 msgstr "فقط في {monthName}"
 
 #. js-lingui-id: VKB4PB
-#. placeholder {0}: lastMonth ?? ''
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMonthsDescription.ts
 msgid "only in {remainingMonths} and {0}"
 msgstr "فقط في {remainingMonths} و {0}"
@@ -13434,7 +13348,6 @@ msgid "only on {firstDay} and {secondDay}"
 msgstr "فقط في {firstDay} و {secondDay}"
 
 #. js-lingui-id: ODid5C
-#. placeholder {0}: lastDay ?? ''
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
 msgid "only on {remainingDays} and {0}"
 msgstr "فقط في {remainingDays} و {0}"
@@ -13462,30 +13375,24 @@ msgstr "أنت فقط من سيتمكن من رؤية رسائلك الإلكت�
 #. js-lingui-id: 1TNIig
 #: src/modules/command-menu-item/components/RecordShowSidePanelOpenRecordButton.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectAboutForm.tsx
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
 #: src/pages/settings/members/tabs/SettingsWorkspaceMembersTeamTab.tsx
 msgid "Open"
 msgstr "افتح"
-
-#. js-lingui-id: Kkq3xr
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open a maintained integration or prefill clients that accept MCP install links."
-msgstr "افتح تكاملاً مُدارًا أو املأ مسبقًا العملاء الذين يقبلون روابط تثبيت MCP."
 
 #. js-lingui-id: JG4LoU
 #: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldOnClickActionForm.tsx
 msgid "Open as link"
 msgstr "فتح كرابط"
 
-#. js-lingui-id: n0vVgf
+#. js-lingui-id: IalAdn
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Claude with the Twenty connector name and MCP URL prefilled."
-msgstr "افتح Claude مع اسم موصل Twenty وعنوان MCP URL مملوءين مسبقًا."
+msgid "Open Claude with the Odelza connector name and MCP URL prefilled."
+msgstr "افتح Claude مع اسم موصل Odelza وعنوان MCP URL مملوءين مسبقًا."
 
-#. js-lingui-id: +n2jpB
+#. js-lingui-id: N2Bs2F
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Cursor's MCP installer with the Twenty remote server config."
-msgstr "افتح مُثبّت MCP في Cursor مع تهيئة خادم Twenty البعيد."
+msgid "Open Cursor's MCP installer with the Odelza remote server config."
+msgstr "افتح مُثبّت MCP في Cursor مع تهيئة خادم Odelza البعيد."
 
 #. js-lingui-id: pZZH4Q
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
@@ -13518,15 +13425,10 @@ msgstr "فتح Outlook"
 msgid "Open records in"
 msgstr "فتح السجلات في"
 
-#. js-lingui-id: q170S2
+#. js-lingui-id: LjQHbP
 #: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Replit with the Twenty remote server config."
-msgstr "افتح Replit مع تهيئة خادم Twenty البعيد."
-
-#. js-lingui-id: sBd/cl
-#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
-msgid "Open Twenty's official ChatGPT integration for your workspace."
-msgstr "افتح تكامل Twenty الرسمي مع ChatGPT لمساحة العمل الخاصة بك."
+msgid "Open Replit with the Odelza remote server config."
+msgstr "افتح Replit مع تهيئة خادم Odelza البعيد."
 
 #. js-lingui-id: OV5wZZ
 #: src/modules/navigation-menu-item/display/sections/components/NavigationDrawerOpenedSection.tsx
@@ -13649,7 +13551,7 @@ msgstr "تنظيم"
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceChatThread.tsx
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
 #: src/pages/settings/admin-panel/SettingsAdminWorkspacesStatus.tsx
-#: src/pages/settings/community/SettingsCommunity.tsx
+#: src/pages/settings/lab/SettingsLab.tsx
 msgid "Other"
 msgstr "أخرى"
 
@@ -13714,6 +13616,12 @@ msgstr "المخرجات"
 #: src/modules/ai/components/internal/AiChatContextUsageButton.tsx
 msgid "Output tokens"
 msgstr "رموز الإخراج"
+
+#. js-lingui-id: K+b1b+
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
+msgid "Overdue tasks"
+msgstr ""
 
 #. js-lingui-id: in6CUw
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
@@ -13792,10 +13700,10 @@ msgstr "تخطيطات الصفحات"
 msgid "Page name"
 msgstr "اسم الصفحة"
 
-#. js-lingui-id: NRvxzv
+#. js-lingui-id: AfMbxS
 #: src/pages/not-found/NotFound.tsx
-msgid "Page Not Found | Twenty"
-msgstr "الصفحة غير موجودة | Twenty"
+msgid "Page Not Found | Odelza"
+msgstr "الصفحة غير موجودة | Odelza"
 
 #. js-lingui-id: sF+Xp9
 #: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
@@ -13822,11 +13730,6 @@ msgstr "فقرة"
 #: src/pages/settings/ai/SettingsToolDetail.tsx
 msgid "Parameters"
 msgstr "المعلمات"
-
-#. js-lingui-id: mPkInZ
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Partners"
-msgstr "الشركاء"
 
 #. js-lingui-id: 8ZsakT
 #: src/modules/auth/sign-in-up/components/internal/SignInUpPasswordField.tsx
@@ -14002,11 +13905,6 @@ msgstr "الأذونات · {objectLabelSingular}"
 #: src/modules/activities/emails/recipients/components/EmailRecipientChipMenuContent.tsx
 msgid "Person created"
 msgstr "تم إنشاء الشخص"
-
-#. js-lingui-id: KOtX3r
-#: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
-msgid "Personal Finance"
-msgstr ""
 
 #. js-lingui-id: pCopzO
 #: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
@@ -14291,6 +14189,11 @@ msgstr "مثبتة مسبقًا فقط"
 msgid "Precision"
 msgstr ""
 
+#. js-lingui-id: l67lZS
+#: src/modules/settings/mcp-and-apis/utils/buildMcpSetupCategories.tsx
+msgid "Prefill clients that accept MCP install links."
+msgstr "املأ مسبقًا العملاء الذين يقبلون روابط تثبيت MCP."
+
 #. js-lingui-id: 0Lqxjs
 #: src/modules/auth/sign-in-up/constants/WorkspaceActivationMessages.tsx
 msgid "Prefilling your <0>workspace data</0>..."
@@ -14316,7 +14219,6 @@ msgstr "منع المستخدمين من تعيين نفس القيمة لسجل
 #: src/modules/settings/data-model/components/SettingsDataModelPreviewFormCard.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectSettingsFormCard.tsx
 #: src/pages/settings/applications/SettingsApplicationFrontComponentDetail.tsx
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
 msgid "Preview"
 msgstr "معاينة"
 
@@ -14377,12 +14279,6 @@ msgstr "الأولوية"
 #: src/modules/settings/billing/constants/SettingsBillingPlanComparisonRows.ts
 msgid "Priority support"
 msgstr "دعم ذو أولوية"
-
-#. js-lingui-id: LcET2C
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "Privacy Policy"
-msgstr "سياسة الخصوصية"
 
 #. js-lingui-id: zwBp5t
 #: src/modules/settings/unsubscribe-topics/components/SettingsWorkspaceUnsubscribeTopicSection.tsx
@@ -14478,13 +14374,11 @@ msgid "Provider"
 msgstr "المزود"
 
 #. js-lingui-id: d7tyJ/
-#. placeholder {0}: values.label.trim()
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
 msgid "Provider \"{0}\" added"
 msgstr "تمت إضافة المزود \"{0}\""
 
 #. js-lingui-id: Bkg47g
-#. placeholder {0}: provider?.label ?? providerName
 #: src/pages/settings/admin-panel/SettingsAdminAiProviderDetail.tsx
 msgid "Provider \"{0}\" removed"
 msgstr "تمت إزالة المزود \"{0}\""
@@ -14610,11 +14504,6 @@ msgstr "JSON خام"
 msgid "Raycast"
 msgstr "Raycast"
 
-#. js-lingui-id: 549d7o
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Read changelog"
-msgstr "اطّلع على سجلّ التغييرات"
-
 #. js-lingui-id: ibPuCP
 #: src/pages/settings/applications/tabs/SettingsApplicationsDeveloperTab.tsx
 msgid "Read documentation"
@@ -14631,7 +14520,6 @@ msgid "Read the system prompts to understand how the AI works"
 msgstr "اقرأ موجهات النظام لفهم كيفية عمل الذكاء الاصطناعي"
 
 #. js-lingui-id: 0URVx8
-#. placeholder {0}: formatNumber( systemPromptTokenCount, { abbreviate: true, decimals: 1 }, )
 #: src/pages/settings/ai/components/SettingsAiModelsTab.tsx
 msgid "Read the system prompts to understand how the AI works (~{0} tokens)"
 msgstr "اقرأ موجهات النظام لفهم كيفية عمل الذكاء الاصطناعي (~{0} من الرموز)"
@@ -14776,6 +14664,8 @@ msgstr "صورة سجل"
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Record label"
 msgstr "ملصق السجل"
 
@@ -14824,6 +14714,16 @@ msgstr "السجلات المحددة"
 #: src/pages/settings/data-model/constants/SettingsObjectTableMetadata.ts
 msgid "Records"
 msgstr "السجلات"
+
+#. js-lingui-id: bCyMeu
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Records with both a valid start and end date will appear in the calendar."
+msgstr ""
+
+#. js-lingui-id: iVCsdg
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Records with configured start and end dates will appear here."
+msgstr ""
 
 #. js-lingui-id: wRTiSD
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
@@ -14980,19 +14880,16 @@ msgid "Remove"
 msgstr "إزالة"
 
 #. js-lingui-id: w61W3L
-#. placeholder {0}: recipient.address
 #: src/modules/activities/emails/recipients/components/EmailRecipientsFieldChip.tsx
 msgid "Remove {0}"
 msgstr "إزالة {0}"
 
 #. js-lingui-id: UG0bdD
-#. placeholder {0}: favoritesEdit.navigationMenuItemCount
 #: src/modules/navigation-menu-item/display/folder/components/NavigationMenuItemFolderDnd.tsx
 msgid "Remove {0} navigation menu item?"
 msgstr "إزالة {0} عنصر قائمة التنقل؟"
 
 #. js-lingui-id: XABoh4
-#. placeholder {0}: favoritesEdit.navigationMenuItemCount
 #: src/modules/navigation-menu-item/display/folder/components/NavigationMenuItemFolderDnd.tsx
 msgid "Remove {0} navigation menu items?"
 msgstr "إزالة {0} عناصر قائمة التنقل؟"
@@ -15053,7 +14950,6 @@ msgid "Remove member from workspace"
 msgstr "إزالة العضو من مساحة العمل"
 
 #. js-lingui-id: FeQ/sf
-#. placeholder {0}: modelToRemove?.label ?? ''
 #: src/pages/settings/admin-panel/SettingsAdminAiProviderDetail.tsx
 msgid "Remove model \"{0}\""
 msgstr "إزالة النموذج \"{0}\""
@@ -15069,7 +14965,6 @@ msgid "Remove provider"
 msgstr "إزالة المزود"
 
 #. js-lingui-id: hJ4+Zq
-#. placeholder {0}: provider?.label ?? providerName ?? ''
 #: src/pages/settings/admin-panel/SettingsAdminAiProviderDetail.tsx
 msgid "Remove provider \"{0}\""
 msgstr "إزالة المزود \"{0}\""
@@ -15259,6 +15154,16 @@ msgstr "إعادة تعيين المتغير"
 msgid "Resize"
 msgstr ""
 
+#. js-lingui-id: ua09SU
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize record end date"
+msgstr ""
+
+#. js-lingui-id: 9lOmol
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Resize record start date"
+msgstr ""
+
 #. js-lingui-id: k2DjdV
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Resize task due date"
@@ -15353,6 +15258,7 @@ msgstr "استئناف"
 
 #. js-lingui-id: 6gRgw8
 #: src/modules/ai/components/AiChatErrorMessage.tsx
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
 #: src/modules/page-layout/widgets/personal-finance/components/PersonalFinanceWidget.tsx
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobRowDropdownMenu.tsx
@@ -15682,9 +15588,9 @@ msgstr "النطاقات"
 msgid "Score"
 msgstr "النتيجة"
 
-#. js-lingui-id: 2YCiey
+#. js-lingui-id: 63PgVc
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Scroll horizontally and vertically, or drag empty space to pan. Task bars and controls remain interactive."
+msgid "Scroll horizontally and vertically, or drag empty space to pan. Record bars and controls remain interactive."
 msgstr ""
 
 #. js-lingui-id: hJjXGo
@@ -15880,11 +15786,11 @@ msgstr "البحث في البيانات الوصفية للحقل"
 #. js-lingui-id: 7taA9j
 #: src/modules/object-record/advanced-filter/components/AdvancedFilterFieldSelectSearchInput.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarFieldsContent.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownFieldsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupFieldsContent.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableHeaderPlusButtonContent.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartFieldSelectionForAggregateOperationDropdownContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartGroupByFieldSelectionDropdownContentBase.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartGroupByFieldSelectionTargetObjectFieldsView.tsx
@@ -15914,9 +15820,16 @@ msgstr "ابحث عن كائن..."
 msgid "Search icon"
 msgstr "رمز البحث"
 
+#. js-lingui-id: aLoGD1
+#: src/modules/side-panel/pages/page-layout/components/view-settings/ViewWidgetViewDropdownContent.tsx
+msgid "Search Kanban views"
+msgstr ""
+
 #. js-lingui-id: two5rl
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/ChartDataSourceDropdownContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/record-table-settings/RecordTableDataSourceDropdownContent.tsx
+#: src/modules/side-panel/pages/page-layout/components/view-settings/ViewWidgetDataSourceDropdownContent.tsx
 msgid "Search objects"
 msgstr "ابحث عن الكائنات"
 
@@ -15951,11 +15864,6 @@ msgstr "بحث..."
 msgid "Searched {objectLabel}"
 msgstr "تم البحث عن {objectLabel}"
 
-#. js-lingui-id: w3oYcQ
-#: src/modules/ai/constants/action-tool-status-labels.constant.ts
-msgid "Searched the help center"
-msgstr "تم البحث في مركز المساعدة"
-
 #. js-lingui-id: iOkPjn
 #: src/modules/ai/utils/tool-display/get-tool-display-message.ts
 msgid "Searched the web"
@@ -15970,11 +15878,6 @@ msgstr "تم البحث على الويب عن {query}"
 #: src/modules/ai/constants/crud-tool-operation-verbs.constant.ts
 msgid "Searching {objectLabel}"
 msgstr "جارٍ البحث عن {objectLabel}"
-
-#. js-lingui-id: KhCAL1
-#: src/modules/ai/constants/action-tool-status-labels.constant.ts
-msgid "Searching the help center"
-msgstr "جارٍ البحث في مركز المساعدة"
 
 #. js-lingui-id: AyoeWR
 #: src/modules/ai/utils/tool-display/get-tool-display-message.ts
@@ -16182,6 +16085,11 @@ msgstr "اختر حقلًا من خطوة سابقة"
 msgid "Select a field to display in this widget"
 msgstr "اختر حقلاً لعرضه في هذه الأداة"
 
+#. js-lingui-id: xWICn6
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
+msgid "Select a Kanban view"
+msgstr ""
+
 #. js-lingui-id: rHNnAT
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
 msgid "Select a known model or add a custom one"
@@ -16202,6 +16110,11 @@ msgstr "حدّد عنصر تنقل لتحريره"
 msgid "Select a sender"
 msgstr "اختر مرسلًا"
 
+#. js-lingui-id: gIz6Pc
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Select a source and configure timeline date fields."
+msgstr ""
+
 #. js-lingui-id: jL3gox
 #: src/modules/object-record/record-field/ui/form-types/components/FormBooleanFieldInput.tsx
 msgid "Select a value"
@@ -16218,6 +16131,11 @@ msgstr "اختر الإجراء"
 #: src/modules/side-panel/pages/workflow/hooks/useSidePanelWorkflowNavigation.ts
 msgid "Select Action"
 msgstr "اختر الإجراء"
+
+#. js-lingui-id: q+QH+O
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
+msgid "Select an object"
+msgstr ""
 
 #. js-lingui-id: hVPa4O
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/UnmatchColumn.tsx
@@ -16353,11 +16271,6 @@ msgstr "حدد النماذج التي ستظهر كموصى بها في منت�
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
 msgid "Select your preferred language"
 msgstr "اختر اللغة المفضلة لديك"
-
-#. js-lingui-id: YMYE4/
-#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
-msgid "Selected color"
-msgstr ""
 
 #. js-lingui-id: JlFcis
 #: src/modules/page-layout/widgets/email-thread/components/EmailThreadComposer.tsx
@@ -16563,6 +16476,8 @@ msgstr "جارٍ إعداد <0>قاعدة البيانات</0> الخاصة بك
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/RegularTabSettingsContent.tsx
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownDefaultComponents.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
@@ -16677,7 +16592,6 @@ msgid "Show all"
 msgstr "إظهار الكل"
 
 #. js-lingui-id: JObkI8
-#. placeholder {0}: groupValue ?? ''
 #: src/modules/object-record/record-group/components/RecordGroupMenuItemDraggable.tsx
 msgid "Show group {0}"
 msgstr "إظهار المجموعة {0}"
@@ -16748,21 +16662,6 @@ msgstr "إنشاء حساب"
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithCredentials.tsx
 msgid "Sign-up is temporarily unavailable during maintenance."
 msgstr "التسجيل غير متاح مؤقتًا أثناء الصيانة."
-
-#. js-lingui-id: a6TaW9
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Signatory title"
-msgstr "المسمّى الوظيفي للموقِّع"
-
-#. js-lingui-id: Lz4j8Q
-#: src/modules/settings/legal/components/SettingsDpaAgreementRow.tsx
-msgid "Signed copy"
-msgstr "نسخة موقَّعة"
-
-#. js-lingui-id: Z2Wg9g
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Signed DPA generated and downloaded"
-msgstr "تم إنشاء DPA موقَّعة وتم تنزيلها"
 
 #. js-lingui-id: X1zsRT
 #: src/modules/settings/admin-panel/signing-keys/hooks/useRevokeSigningKey.ts
@@ -16965,20 +16864,18 @@ msgid "Some layout changes could not be saved"
 msgstr "تعذّر حفظ بعض تغييرات التخطيط"
 
 #. js-lingui-id: VOOhW/
-#. placeholder {0}: stepLog.truncated.droppedEntries
-#. placeholder {1}: stepLog.truncated.droppedBytes
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 msgid "Some log data was dropped to fit the size limit ({0} entries, {1} bytes)."
 msgstr "تم حذف بعض بيانات السجل لتلائم الحد الأقصى للحجم ({0} إدخالات، {1} بايت)."
 
-#. js-lingui-id: cSrzsO
+#. js-lingui-id: 0/sbpy
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Some task data could not be loaded."
+msgid "Some record data could not be loaded."
 msgstr ""
 
-#. js-lingui-id: 4aNyrb
+#. js-lingui-id: sByq3S
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Some tasks have unavailable dates or progress."
+msgid "Some records have unavailable dates or progress."
 msgstr ""
 
 #. js-lingui-id: ZVl+JT
@@ -17057,6 +16954,8 @@ msgstr "معايير الترتيب"
 #: src/modules/settings/admin-panel/apps/components/SettingsAdminApps.tsx
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableOptionsDropdownContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
 #: src/modules/side-panel/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
@@ -17225,10 +17124,10 @@ msgstr "الولاية"
 msgid "Status"
 msgstr "الحالة"
 
-#. js-lingui-id: oCQwvS
-#: src/pages/settings/community/SettingsCommunity.tsx
-msgid "Stay up to date with product news and community updates."
-msgstr "ابق على اطلاع بأخبار المنتج وتحديثات المجتمع."
+#. js-lingui-id: 0kMX/f
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Status and dependencies are Task-only. Numeric progress and boolean milestones are retained only when compatible; they are not inferred."
+msgstr ""
 
 #. js-lingui-id: lATgy+
 #: src/modules/workflow/workflow-steps/filters/components/WorkflowStepFilterGroupOptionsDropdown.tsx
@@ -17398,16 +17297,15 @@ msgstr "الاشتراك"
 msgid "Subscription activated."
 msgstr "تم تفعيل الاشتراك."
 
-#. js-lingui-id: 0okvpx
+#. js-lingui-id: vqC8xM
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/modules/settings/billing/components/AddPaymentMethodForm.tsx
 #: src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts
 #: src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts
-msgid "Subscription error. Please retry or contact Twenty team"
-msgstr "خطأ في الاشتراك. يُرجى المحاولة مرة أخرى أو الاتصال بفريق Twenty"
+msgid "Subscription error. Please retry or contact the Odelza team"
+msgstr "خطأ في الاشتراك. يُرجى المحاولة مرة أخرى أو الاتصال بفريق Odelza"
 
 #. js-lingui-id: FooJUj
-#. placeholder {0}: getTargetPlanLabel(targetPlanKey)
 #: src/modules/settings/billing/hooks/useSwitchBillingPlan.ts
 msgid "Subscription has been switched to {0} Plan."
 msgstr "تم تبديل الاشتراك إلى خطة {0}."
@@ -17423,14 +17321,11 @@ msgid "Subscription has been switched to Yearly."
 msgstr "تم تغيير الاشتراك إلى سنوي."
 
 #. js-lingui-id: ulJRqh
-#. placeholder {0}: getTargetPlanLabel(targetPlanKey)
-#. placeholder {1}: getBeautifiedRenewDate()
 #: src/modules/settings/billing/hooks/useSwitchBillingPlan.ts
 msgid "Subscription will be switched to {0} Plan the {1}."
 msgstr "سيتم تبديل الاشتراك إلى خطة {0} في {1}."
 
 #. js-lingui-id: 7Vg+lX
-#. placeholder {0}: getBeautifiedRenewDate()
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "Subscription will be switched to Monthly the {0}."
 msgstr "سيتم تبديل الاشتراك إلى شهري في {0}."
@@ -17439,11 +17334,6 @@ msgstr "سيتم تبديل الاشتراك إلى شهري في {0}."
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "subtitle"
 msgstr "عنوان فرعي"
-
-#. js-lingui-id: a0w0iQ
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCatalogFieldsContent.tsx
-msgid "Subtitle"
-msgstr ""
 
 #. js-lingui-id: 8QCMSh
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
@@ -17638,7 +17528,6 @@ msgid "Tab"
 msgstr "علامة التبويب"
 
 #. js-lingui-id: eDW3Jm
-#. placeholder {0}: tab.title
 #: src/pages/settings/layout/SettingsLayoutPageLayoutDetail.tsx
 msgid "Tab {tabNumber}: {0}"
 msgstr "علامة تبويب {tabNumber}: {0}"
@@ -17682,19 +17571,7 @@ msgstr "النطاق الفرعي لمساحة العمل المستهدفة"
 
 #. js-lingui-id: Q3P/4s
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Task"
-msgstr ""
-
-#. js-lingui-id: iKS7vc
-#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
-#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
-msgid "Task bar color"
-msgstr ""
-
-#. js-lingui-id: I/ObQ6
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Task date fields are not configured; unavailable dates are not inferred."
 msgstr ""
 
 #. js-lingui-id: hVUUhm
@@ -17738,16 +17615,6 @@ msgstr "عنوان المهمة"
 msgid "Task Title"
 msgstr "عنوان المهمة"
 
-#. js-lingui-id: YDv82r
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Tasks with approved start and end dates will appear here."
-msgstr ""
-
-#. js-lingui-id: l9tCD6
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Tasks with both a valid start and end date will appear in the calendar."
-msgstr ""
-
 #. js-lingui-id: KM6m8p
 #: src/pages/settings/members/SettingsWorkspaceMembers.tsx
 #: src/pages/settings/members/SettingsWorkspaceMembers.tsx
@@ -17769,12 +17636,6 @@ msgstr "فشل مؤقت"
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 msgid "Terms / Privacy"
 msgstr "الشروط / الخصوصية"
-
-#. js-lingui-id: xowcRf
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "Terms of Service"
-msgstr "شروط الخدمة"
 
 #. js-lingui-id: NnH3pK
 #: src/modules/settings/logic-functions/components/tabs/SettingsLogicFunctionCodeEditorTab.tsx
@@ -17835,14 +17696,14 @@ msgstr "نقطة نهاية واجهة برمجة التطبيقات لمزود�
 msgid "The AWS region for Bedrock"
 msgstr "منطقة AWS الخاصة بـ Bedrock"
 
-#. js-lingui-id: HP7per
+#. js-lingui-id: KinWL/
 #: src/pages/settings/applications/utils/getStandardApplicationDescription.ts
 msgid ""
-"The base data model every Twenty workspace runs on.\n"
+"The base data model every Odelza workspace runs on.\n"
 "\n"
 "#### What \"foundation\" means\n"
 "\n"
-"Every Twenty workspace starts with this set of objects. They define the shape of your CRM, including relationships, activity, and reporting. Everything else, including marketplace apps, AI agents, and custom objects, plugs into them.\n"
+"Every Odelza workspace starts with this set of objects. They define the shape of your CRM, including relationships, activity, and reporting. Everything else, including marketplace apps, AI agents, and custom objects, plugs into them.\n"
 "\n"
 "#### Included objects\n"
 "- **People & Companies**: contact and account records\n"
@@ -17850,11 +17711,11 @@ msgid ""
 "- **Notes & Tasks**: activity and follow-ups\n"
 "- **Workflows & Dashboards**: automation and reporting\n"
 "\n"
-"Remove this app and the rest of Twenty has nothing to hang off.\n"
+"Remove this app and the rest of Odelza has nothing to hang off.\n"
 "\n"
 "#### Build your own app\n"
 "\n"
-"Extend Twenty with your own objects, fields, logic functions, or AI skills. Scaffold a new app in one command:\n"
+"Extend Odelza with your own objects, fields, logic functions, or AI skills. Scaffold a new app in one command:\n"
 "\n"
 "```bash\n"
 "npx create-twenty-app@latest my-twenty-app\n"
@@ -17869,11 +17730,11 @@ msgid ""
 "\n"
 "See the [Getting Started guide](https://twenty.com/developers/extend/apps/getting-started) for the full walkthrough, and [Building Apps](https://twenty.com/developers/extend/apps/building) for the `defineApplication` / `defineEntity` APIs."
 msgstr ""
-"نموذج البيانات الأساسي الذي تعمل عليه كل مساحة عمل في Twenty.\n"
+"نموذج البيانات الأساسي الذي تعمل عليه كل مساحة عمل في Odelza.\n"
 "\n"
 "#### معنى \"الأساس\"\n"
 "\n"
-"كل مساحة عمل في Twenty تبدأ بهذه المجموعة من العناصر. تحدّد شكل CRM الخاص بك، بما في ذلك العلاقات والنشاط والتقارير. كل شيء آخر — بما في ذلك تطبيقات السوق ووكلاء الذكاء الاصطناعي والعناصر المخصصة — يندمج معها.\n"
+"كل مساحة عمل في Odelza تبدأ بهذه المجموعة من العناصر. تحدّد شكل CRM الخاص بك، بما في ذلك العلاقات والنشاط والتقارير. كل شيء آخر — بما في ذلك تطبيقات السوق ووكلاء الذكاء الاصطناعي والعناصر المخصصة — يندمج معها.\n"
 "\n"
 "#### العناصر المتضمنة\n"
 "- **الأشخاص والشركات**: سجلات جهات الاتصال والحسابات\n"
@@ -17881,11 +17742,11 @@ msgstr ""
 "- **الملاحظات والمهام**: النشاط والمتابعات\n"
 "- **سير العمل ولوحات القيادة**: الأتمتة والتقارير\n"
 "\n"
-"أزل هذا التطبيق وباقي Twenty لن يكون له ما يبنى عليه.\n"
+"أزل هذا التطبيق وباقي Odelza لن يكون له ما يبنى عليه.\n"
 "\n"
 "#### ابنِ تطبيقك الخاص\n"
 "\n"
-"وسّع Twenty بعناصرك وحقولك ودوال المنطق أو مهارات الذكاء الاصطناعي الخاصة بك. أنشئ هيكل تطبيق جديد بأمر واحد:\n"
+"وسّع Odelza بعناصرك وحقولك ودوال المنطق أو مهارات الذكاء الاصطناعي الخاصة بك. أنشئ هيكل تطبيق جديد بأمر واحد:\n"
 "\n"
 "```bash\n"
 "npx create-twenty-app@latest my-twenty-app\n"
@@ -17899,11 +17760,6 @@ msgstr ""
 "```\n"
 "\n"
 "راجع [دليل البدء](https://twenty.com/developers/extend/apps/getting-started) للشرح الكامل، و[بناء التطبيقات](https://twenty.com/developers/extend/apps/building) لواجهات `defineApplication` / `defineEntity`."
-
-#. js-lingui-id: /kfzmx
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-msgid "The Data Processing Agreement could not be loaded. Please try again."
-msgstr "تعذّر تحميل اتفاقية معالجة البيانات. يُرجى المحاولة مرة أخرى."
 
 #. js-lingui-id: n+CCXl
 #: src/pages/settings/ai/components/SettingsAiModelsTab.tsx
@@ -17934,11 +17790,6 @@ msgstr "البريد الإلكتروني المرتبط بهذا الحساب"
 #: src/pages/settings/profile/SettingsProfile.tsx
 msgid "The email associated to your account"
 msgstr "البريد الإلكتروني المرتبط بحسابك"
-
-#. js-lingui-id: 21Xjwu
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "The full agreement with fields resolved for your deployment."
-msgstr "الاتفاقية الكاملة مع الحقول المُفسَّرة لعملية النشر الخاصة بك."
 
 #. js-lingui-id: diO3fm
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerManual.tsx
@@ -17981,11 +17832,6 @@ msgstr "الصفحة التي تبحث عنها إما أنها اختفت أو 
 #: src/pages/settings/communications/SettingsWorkspaceCommunications.tsx
 msgid "The page your users will get redirected to to unsubscribe from your emails"
 msgstr "الصفحة التي سيتم إعادة توجيه المستخدمين إليها لإلغاء الاشتراك من رسائلك الإلكترونية"
-
-#. js-lingui-id: Ya1wb4
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "The PDF is pre-signed by Twenty and executed with your legal entity and authorized signatory."
-msgstr "تم توقيع ملف PDF مسبقًا بواسطة Twenty ويُبرَم مع كيانك القانوني والموقِّع المفوَّض لديك."
 
 #. js-lingui-id: 1Bzg5s
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
@@ -18161,7 +18007,6 @@ msgid "This action cannot be undone. Your membership will be removed; synced ema
 msgstr "لا يمكن التراجع عن هذا الإجراء. سيتم إزالة عضويتك؛ وستبقى رسائلك الإلكترونية وتقويماتك المتزامنة مع مساحة العمل."
 
 #. js-lingui-id: muD0kr
-#. placeholder {0}: favoritesEdit.navigationMenuItemCount
 #: src/modules/navigation-menu-item/display/folder/components/NavigationMenuItemFolderDnd.tsx
 msgid "This action will delete this folder and all {0} navigation menu items inside. Do you want to continue?"
 msgstr "سيؤدي هذا الإجراء إلى حذف هذا المجلد وجميع عناصر قائمة التنقل البالغ عددها {0} بداخله. هل تريد المتابعة؟"
@@ -18342,14 +18187,11 @@ msgid "This value will be saved to the database."
 msgstr "سيتم حفظ هذه القيمة في قاعدة البيانات."
 
 #. js-lingui-id: esVnxk
-#. placeholder {0}: nonReadableViewFieldInfo.fieldLabel
-#. placeholder {1}: nonReadableViewFieldInfo.objectLabel
 #: src/modules/object-record/record-index/utils/getNonReadableViewFieldSubTitle.ts
 msgid "This view uses {usageLabel} on field \"{0}\" on \"{1}\" which is not accessible."
 msgstr "تستخدم طريقة العرض هذه {usageLabel} على الحقل \"{0}\" في \"{1}\"، وهو غير قابل للوصول."
 
 #. js-lingui-id: IbwUNd
-#. placeholder {0}: nonReadableViewFieldInfo.objectLabel
 #: src/modules/object-record/record-index/utils/getNonReadableViewFieldSubTitle.ts
 msgid "This view uses {usageLabel} on object \"{0}\" which is not accessible."
 msgstr "تستخدم طريقة العرض هذه {usageLabel} على الكائن \"{0}\"، وهو غير قابل للوصول."
@@ -18358,6 +18200,11 @@ msgstr "تستخدم طريقة العرض هذه {usageLabel} على الكائ
 #: src/modules/settings/admin-panel/health-status/constants/WorkerQueueMetricsSelectOptions.ts
 msgid "This week"
 msgstr "هذا الأسبوع"
+
+#. js-lingui-id: pAhR87
+#: src/modules/page-layout/widgets/components/RetiredWidgetPlaceholder.tsx
+msgid "This widget is no longer available. Remove it from the dashboard."
+msgstr ""
 
 #. js-lingui-id: gjpwN3
 #: src/modules/page-layout/widgets/card-carousel/components/CardCarouselWidget.tsx
@@ -18396,13 +18243,11 @@ msgid "This will disconnect all models from this provider. Models will no longer
 msgstr "سيؤدي هذا إلى فصل جميع النماذج عن هذا المزود. لن تكون النماذج متاحة بعد الآن حتى يتم تكوين مزود جديد."
 
 #. js-lingui-id: XZWXeK
-#. placeholder {0}: pendingChange?.description ?? ''
 #: src/modules/settings/admin-panel/components/SettingsAdminServerAdminAccess.tsx
 msgid "This will grant {0} to {userLabel}."
 msgstr "سيمنح هذا {0} لـ {userLabel}."
 
 #. js-lingui-id: jn8Xjg
-#. placeholder {0}: registration.name
 #: src/pages/settings/admin-panel/SettingsAdminApplicationRegistrationGeneralToggles.tsx
 msgid "This will install the latest version of \"{0}\" on all existing active and suspended workspaces, upgrading any workspace that already has an older version. It runs as a background job and may take a while. Continue?"
 msgstr "سيؤدي هذا إلى تثبيت أحدث إصدار من \"{0}\" على جميع مساحات العمل النشطة والمعلَّقة الحالية، وترقية أي مساحة عمل تحتوي بالفعل على إصدار أقدم. يُنفَّذ كعملية في الخلفية وقد يستغرق بعض الوقت. هل تريد المتابعة؟"
@@ -18428,7 +18273,6 @@ msgid "This will permanently delete your two factor authentication method.<0/>Si
 msgstr "سيؤدي ذلك إلى حذف طريقة المصادقة الثنائية الخاصة بك بشكل دائم.<0/>نظرًا لأن المصادقة الثنائية إلزامية في مساحة العمل لديك، سيتم تسجيل خروجك بعد الحذف وسيُطلب منك تهيئتها مرة أخرى عند تسجيل الدخول. <1/>الرجاء إدخال بريدك الإلكتروني للتأكيد."
 
 #. js-lingui-id: Dg+3bR
-#. placeholder {0}: pendingChange?.description ?? ''
 #: src/modules/settings/admin-panel/components/SettingsAdminServerAdminAccess.tsx
 msgid "This will revoke {0} for {userLabel}."
 msgstr "سيُلغي هذا {0} لـ {userLabel}."
@@ -18465,12 +18309,33 @@ msgstr "المنطقة الزمنية"
 
 #. js-lingui-id: cklVjM
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Timeline"
 msgstr "الجدول الزمني"
+
+#. js-lingui-id: fD2IVX
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline calendar"
+msgstr ""
+
+#. js-lingui-id: fyTdZC
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline calendar viewport"
+msgstr ""
 
 #. js-lingui-id: ewpwRb
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Timeline data is incomplete"
+msgstr ""
+
+#. js-lingui-id: eDwzWt
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline help"
+msgstr ""
+
+#. js-lingui-id: 2KSmRm
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Timeline unavailable"
 msgstr ""
 
 #. js-lingui-id: xY9s5E
@@ -18510,8 +18375,14 @@ msgstr "العنوان"
 msgid "Title"
 msgstr "العنوان"
 
+#. js-lingui-id: 5Tf3iy
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Title and dates"
+msgstr ""
+
 #. js-lingui-id: 6P1iPM
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardCardCarouselSettings.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
 msgid "Title field"
 msgstr ""
 
@@ -18578,8 +18449,6 @@ msgid "Tomorrow"
 msgstr "غدًا"
 
 #. js-lingui-id: x+3/CM
-#. placeholder {0}: composerState.recipientCount
-#. placeholder {1}: composerState.maxRecipients
 #: src/modules/activities/emails/components/EmailComposerFields.tsx
 msgid "Too many recipients ({0}/{1})."
 msgstr "عدد المستلمين كبير جدًا ({0}/{1})."
@@ -18591,7 +18460,6 @@ msgid "Too many records. Up to {maxRecordsString} allowed"
 msgstr "عدد كبير جدًا من السجلات. يُسمح بما يصل إلى {maxRecordsString}"
 
 #. js-lingui-id: tfaidv
-#. placeholder {0}: part.toolName ?? ''
 #: src/modules/settings/admin-panel/components/SettingsAdminChatThreadMessageList.tsx
 msgid "Tool call: {0}"
 msgstr "استدعاء الأداة: {0}"
@@ -18603,7 +18471,6 @@ msgid "Tool calls"
 msgstr "استدعاءات الأدوات"
 
 #. js-lingui-id: XfXfry
-#. placeholder {0}: toolCalls.length
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsAiAgentDetail.tsx
 msgid "Tool calls ({0})"
 msgstr "استدعاءات الأدوات ({0})"
@@ -18810,7 +18677,7 @@ msgid "Try our REST or GraphQL API playgrounds"
 msgstr "جرّب ساحات تجارب واجهة برمجة التطبيقات (API) الخاصة بـ REST أو GraphQL"
 
 #. js-lingui-id: 3WWUB9
-#: src/pages/settings/community/SettingsCommunity.tsx
+#: src/pages/settings/lab/SettingsLab.tsx
 msgid "Try our upcoming features. Note they are still in beta. Please bear with us and report any issues you find."
 msgstr "جرّب الميزات القادمة. ملاحظة: ما زالت في مرحلة التجربة. يُرجى الإبلاغ عن أي مشكلات تواجهها."
 
@@ -18861,11 +18728,6 @@ msgstr "الدورة غير موجودة"
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
 msgid "Turquoise"
 msgstr "فيروزي"
-
-#. js-lingui-id: JnaRPe
-#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/ColumnGrid.tsx
-msgid "Twenty fields"
-msgstr "حقول Twenty"
 
 #. js-lingui-id: YIjS4q
 #: src/modules/ai/components/SettingsAgentModelCapabilities.tsx
@@ -18976,9 +18838,19 @@ msgstr "تعذر تحميل تفاصيل التطبيق. يرجى المحاول
 msgid "Unable to load personal-finance data"
 msgstr ""
 
+#. js-lingui-id: OgyxlX
+#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
+msgid "Unable to load records"
+msgstr ""
+
 #. js-lingui-id: aU7aM1
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "Unable to load task timeline"
+msgstr ""
+
+#. js-lingui-id: tBWlrP
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "Unable to load timeline"
 msgstr ""
 
 #. js-lingui-id: l+ALBd
@@ -18986,9 +18858,9 @@ msgstr ""
 msgid "Unable to Reach Back-end"
 msgstr "غير قادر على الوصول إلى الخلفية"
 
-#. js-lingui-id: 3y+qu/
+#. js-lingui-id: id5px8
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Unable to save task timeline changes."
+msgid "Unable to save timeline changes."
 msgstr ""
 
 #. js-lingui-id: 5JOLV9
@@ -19003,9 +18875,14 @@ msgstr "إلغاء الأرشفة"
 msgid "Unavailable"
 msgstr "غير متاح"
 
-#. js-lingui-id: PcSvms
+#. js-lingui-id: 89aRTf
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardTaskTimelineSettings.tsx
+msgid "Unavailable field"
+msgstr ""
+
+#. js-lingui-id: 6C4NZS
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Unavailable task data is not shown as zero or an invented date."
+msgid "Unavailable record data is not shown as zero or an invented date."
 msgstr ""
 
 #. js-lingui-id: NYFASA
@@ -19268,14 +19145,6 @@ msgstr "قائمة بدون عنوان"
 msgid "Untitled role"
 msgstr "دور بدون عنوان"
 
-#. js-lingui-id: CowgFX
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
-msgid "Untitled task"
-msgstr ""
-
 #. js-lingui-id: jxRjAG
 #: src/modules/activities/emails/components/CampaignComposerFields.tsx
 #: src/modules/settings/unsubscribe-topics/components/SettingsWorkspaceUnsubscribeTopicSection.tsx
@@ -19438,15 +19307,11 @@ msgid "Upgrade status refreshed"
 msgstr "تم تحديث حالة الترقية"
 
 #. js-lingui-id: doMiaH
-#. placeholder {0}: latestAvailableVersion ?? ''
 #: src/pages/settings/applications/tabs/SettingsApplicationDetailAboutTab.tsx
 msgid "Upgrade to {0}"
 msgstr "الترقية إلى {0}"
 
 #. js-lingui-id: nCRRVY
-#. placeholder {0}: nextResourceCreditsAmount ?? ''
-#. placeholder {1}: nextResourceCreditPrice ?? ''
-#. placeholder {2}: nextTierInterval ?? ''
 #: src/modules/ai/components/AIChatNoMoreBillingCreditsBanner.tsx
 #: src/modules/information-banner/components/billing/InformationBannerNoMoreCredits.tsx
 msgid "Upgrade to {0} credits for ${1}/{2}."
@@ -19872,11 +19737,6 @@ msgstr "المتغير غير موجود"
 msgid "Variance"
 msgstr ""
 
-#. js-lingui-id: dEDwEM
-#: src/modules/object-record/record-index/components/RecordIndexCatalogContainer.tsx
-msgid "Ver más"
-msgstr ""
-
 #. js-lingui-id: QDEWii
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
 msgid "Verified"
@@ -19906,11 +19766,6 @@ msgstr "جارٍ التحقق من <0>رمز تسجيل الدخول</0> الخ�
 #: src/modules/auth/components/VerifyEmail.tsx
 msgid "Verifying your email"
 msgstr "جارٍ التحقق من بريدك الإلكتروني"
-
-#. js-lingui-id: eE0JZ4
-#: src/modules/settings/legal/components/SettingsDpaAgreementsTable.tsx
-msgid "Version"
-msgstr "الإصدار"
 
 #. js-lingui-id: J709SW
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationInstalledWorkspaces.tsx
@@ -19961,6 +19816,7 @@ msgstr "عرض"
 #: src/modules/settings/developers/components/WebhookEntitySelect.tsx
 #: src/modules/side-panel/components/hooks/usePageLayoutHeaderInfo.ts
 #: src/modules/side-panel/components/SidePanelObjectViewRecordInfo.tsx
+#: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardViewSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/SidePanelPageLayoutDashboardWidgetTypeSelect.tsx
 #: src/pages/settings/layout/SettingsLayoutViewDetail.tsx
 msgid "View"
@@ -20240,7 +20096,6 @@ msgid "We encountered an issue verifying"
 msgstr "واجهنا مشكلة في التحقق"
 
 #. js-lingui-id: 4x3zRh
-#. placeholder {0}: objectLabelSingular ?? ''
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
 msgid "We match on these fields. If a {0} already exists, we update it. Otherwise, we create a new one."
 msgstr "نقوم بالمطابقة على هذه الحقول. إذا كان هناك {0} موجود بالفعل، نقوم بتحديثه. خلاف ذلك، نقوم بإنشاء واحد جديد."
@@ -20368,10 +20223,10 @@ msgstr "أسابيع"
 msgid "Weight"
 msgstr "الوزن"
 
-#. js-lingui-id: nTuObL
+#. js-lingui-id: OeCsyd
 #: src/pages/auth/SignInUp.tsx
-msgid "Welcome to Twenty"
-msgstr "مرحبًا بك في Twenty"
+msgid "Welcome to Odelza"
+msgstr "مرحبًا بك في Odelza"
 
 #. js-lingui-id: t8ZvkC
 #: src/pages/auth/SignInUp.tsx
@@ -20597,8 +20452,6 @@ msgstr "سير العمل"
 #: src/pages/settings/general/SettingsGeneral.tsx
 #: src/pages/settings/layout/components/SettingsLayoutDetailScaffold.tsx
 #: src/pages/settings/layout/SettingsLayout.tsx
-#: src/pages/settings/legal/SettingsLegalDpa.tsx
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
 #: src/pages/settings/logic-functions/SettingsLogicFunctionDetail.tsx
 #: src/pages/settings/logic-functions/SettingsLogicFunctionDetail.tsx
 #: src/pages/settings/members/roles/SettingsRoleAddObjectLevel.tsx
@@ -20863,6 +20716,11 @@ msgstr "لا يمكنك انتحال شخصية حسابك الخاص"
 msgid "You do not have permission to access the {objectName} object"
 msgstr "ليست لديك الإذن للوصول إلى كائن {objectName}"
 
+#. js-lingui-id: aMQVbw
+#: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
+msgid "You do not have permission to view source data."
+msgstr ""
+
 #. js-lingui-id: hFuTsh
 #: src/modules/page-layout/widgets/task-timeline/components/TaskTimelineWidget.tsx
 msgid "You do not have permission to view task data."
@@ -20933,9 +20791,6 @@ msgstr ""
 "تواصل مع فريق الدعم لدينا للترقية."
 
 #. js-lingui-id: NTyvVW
-#. placeholder {0}: nextResourceCreditsAmount ?? ''
-#. placeholder {1}: nextResourceCreditPrice ?? ''
-#. placeholder {2}: nextTierInterval ?? ''
 #: src/modules/ai/components/AIChatNoMoreBillingCreditsBanner.tsx
 msgid ""
 "You've hit your usage limit. \n"
@@ -20963,11 +20818,6 @@ msgstr "ستتحول فترة الفوترة لديك إلى شهرية فورً
 #: src/modules/settings/billing/hooks/useBillingWording.ts
 msgid "Your billing interval will switch to yearly immediately and your trial will continue. When it ends, you will be charged ${yearlyPrice} per user per year billed annually."
 msgstr "ستتحول فترة الفوترة لديك إلى سنوية فورًا وسيستمر إصدارك التجريبي. عند انتهائه، سيتم تحصيل ${yearlyPrice} لكل مستخدم في السنة، وتُفوتر سنويًا."
-
-#. js-lingui-id: mmGBWT
-#: src/pages/settings/legal/SettingsLegalDpaNew.tsx
-msgid "Your details"
-msgstr "بياناتك"
 
 #. js-lingui-id: ahEwS4
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx

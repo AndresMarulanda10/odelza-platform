@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { isUndefined } from '@sniptt/guards';
 import { Avatar, Chip, ChipVariant } from 'twenty-ui/data-display';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { type CalendarEventRecordingParticipant } from 'src/front-components/types/calendar-event-recording-participant.type';
 import {
@@ -14,15 +14,15 @@ const StyledEntry = styled.div<{ $isActive: boolean }>`
   align-items: flex-start;
   background: ${({ $isActive }) =>
     $isActive
-      ? themeCssVariables.background.transparent.blue
+      ? odelzaThemeCssVariables.background.transparent.accent
       : 'transparent'};
-  border-radius: ${() => themeCssVariables.border.radius.sm};
+  border-radius: ${() => odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${() => themeCssVariables.spacing[2]};
+  gap: ${() => odelzaThemeCssVariables.spacing[2]};
   justify-content: center;
-  padding: ${() => themeCssVariables.spacing[2]};
+  padding: ${() => odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
@@ -30,21 +30,21 @@ const StyledEntryHeader = styled.div`
   align-items: center;
   align-self: stretch;
   display: flex;
-  gap: ${() => themeCssVariables.spacing[2]};
-  min-height: ${() => themeCssVariables.spacing[6]};
+  gap: ${() => odelzaThemeCssVariables.spacing[2]};
+  min-height: ${() => odelzaThemeCssVariables.spacing[6]};
   min-width: 0;
 `;
 
 const StyledTimestamp = styled.span`
-  color: ${() => themeCssVariables.font.color.tertiary};
-  font-size: ${() => themeCssVariables.font.size.xs};
+  color: ${() => odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${() => odelzaThemeCssVariables.font.size.xs};
   line-height: 1.4;
 `;
 
 const StyledEntryText = styled.p`
   align-self: stretch;
-  color: ${() => themeCssVariables.font.color.secondary};
-  font-size: ${() => themeCssVariables.font.size.sm};
+  color: ${() => odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${() => odelzaThemeCssVariables.font.size.sm};
   line-height: 1.4;
   margin: 0;
 `;
@@ -52,8 +52,8 @@ const StyledEntryText = styled.p`
 const StyledWord = styled.span<{ $isSpoken: boolean }>`
   color: ${({ $isSpoken }) =>
     $isSpoken
-      ? themeCssVariables.font.color.primary
-      : themeCssVariables.font.color.secondary};
+      ? odelzaThemeCssVariables.font.color.primary
+      : odelzaThemeCssVariables.font.color.secondary};
   line-height: 1.4;
   transition: color 0.15s ease;
 `;

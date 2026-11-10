@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useCallback, useState } from 'react';
 
 import { Heading } from '@/spreadsheet-import/components/Heading';
@@ -16,7 +16,7 @@ import { useLingui } from '@lingui/react/macro';
 import { SelectHeaderTable } from './components/SelectHeaderTable';
 
 const StyledHeadingContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[8]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 const StyledTableContainer = styled.div`

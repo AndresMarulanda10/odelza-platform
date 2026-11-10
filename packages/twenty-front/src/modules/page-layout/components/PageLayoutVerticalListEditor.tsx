@@ -14,7 +14,7 @@ import {
 } from '@hello-pangea/dnd';
 import { styled } from '@linaria/react';
 import { type ReactNode, useId } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useIsMobile } from 'twenty-ui/utilities';
 
 import { getCssCompatibleDraggableProps } from '@/ui/layout/draggable-list/utils/getCssCompatibleDraggableProps';
@@ -25,23 +25,23 @@ const StyledVerticalListContainer = styled.div<{
 }>`
   background: ${({ shouldUseWhiteBackground }) =>
     shouldUseWhiteBackground
-      ? themeCssVariables.background.primary
-      : themeCssVariables.background.secondary};
+      ? odelzaThemeCssVariables.background.primary
+      : odelzaThemeCssVariables.background.secondary};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   padding: ${({ variant }) =>
     variant === 'side-column'
-      ? themeCssVariables.spacing[1]
-      : themeCssVariables.spacing[2]};
+      ? odelzaThemeCssVariables.spacing[1]
+      : odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledDraggableWrapper = styled.div<{ isDragging: boolean }>`
   background: ${({ isDragging }) =>
     isDragging
-      ? themeCssVariables.background.transparent.light
+      ? odelzaThemeCssVariables.background.transparent.light
       : 'transparent'};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   transition: background 0.1s ease;
 `;
 

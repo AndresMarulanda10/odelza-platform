@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 
 import { recordIndexAllRecordIdsComponentSelector } from '@/object-record/record-index/states/selectors/recordIndexAllRecordIdsComponentSelector';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { RECORD_TABLE_COLUMN_CHECKBOX_WIDTH } from '@/object-record/record-table/constants/RecordTableColumnCheckboxWidth';
 import { RECORD_TABLE_COLUMN_CHECKBOX_WIDTH_CLASS_NAME } from '@/object-record/record-table/constants/RecordTableColumnCheckboxWidthClassName';
@@ -18,17 +18,17 @@ import { Checkbox } from 'twenty-ui/input';
 
 const StyledContainer = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.primary};
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  background-color: ${odelzaThemeCssVariables.background.primary};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
   height: ${RECORD_TABLE_ROW_HEIGHT}px;
   justify-content: center;
   min-width: 24px;
-  padding-right: ${themeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledColumnHeaderCell = styled.div`
-  background-color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
 
   cursor: pointer;
 

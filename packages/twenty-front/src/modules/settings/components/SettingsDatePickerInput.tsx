@@ -22,7 +22,7 @@ import { ParentClickOutsideIdContext } from '@/ui/utilities/pointer-event/contex
 import { useListenClickOutside } from '@/ui/utilities/pointer-event/hooks/useListenClickOutside';
 import { isDefined } from 'twenty-shared/utils';
 import { IconCalendar } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const SETTINGS_DATE_PICKER_CLICK_OUTSIDE_ID = 'settings-date-picker-floating';
 
@@ -32,35 +32,35 @@ const StyledInputContainer = styled.div`
 
 const StyledInput = styled.div<{ hasValue: boolean }>`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   color: ${({ hasValue }) =>
     hasValue
-      ? themeCssVariables.font.color.primary
-      : themeCssVariables.font.color.light};
+      ? odelzaThemeCssVariables.font.color.primary
+      : odelzaThemeCssVariables.font.color.light};
   cursor: pointer;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   height: 32px;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 
   &:hover {
-    border-color: ${themeCssVariables.border.color.strong};
+    border-color: ${odelzaThemeCssVariables.border.color.strong};
   }
 `;
 
 const StyledLabel = styled.div`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledIconContainer = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
 `;
 

@@ -7,7 +7,7 @@ import {
 } from '@/ui/navigation/bread-crumb/components/Breadcrumb';
 import { styled } from '@linaria/react';
 import { useIsMobile } from 'twenty-ui/utilities';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type FullScreenContainerProps = {
   children: JSX.Element | JSX.Element[];
@@ -16,7 +16,7 @@ type FullScreenContainerProps = {
 };
 
 const StyledFullScreen = styled.div`
-  background: ${themeCssVariables.background.noisy};
+  background: ${odelzaThemeCssVariables.background.noisy};
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -24,14 +24,14 @@ const StyledFullScreen = styled.div`
 
 const StyledMainContainer = styled.div`
   height: calc(
-    100% - ${PAGE_BAR_MIN_HEIGHT}px - ${themeCssVariables.spacing[9]}
+    100% - ${PAGE_BAR_MIN_HEIGHT}px - ${odelzaThemeCssVariables.spacing[9]}
   );
-  padding: 0 ${themeCssVariables.spacing[3]} ${themeCssVariables.spacing[3]}
-    ${themeCssVariables.spacing[3]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[3]}
+    ${odelzaThemeCssVariables.spacing[3]} ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledPageHeaderContainer = styled.div`
-  padding-left: ${themeCssVariables.spacing[3]};
+  padding-left: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 export const FullScreenContainer = ({

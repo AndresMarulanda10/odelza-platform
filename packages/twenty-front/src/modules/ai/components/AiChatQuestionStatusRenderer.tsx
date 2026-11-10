@@ -5,16 +5,19 @@ import { type DynamicToolUIPart, type ToolUIPart } from 'ai';
 import { useContext } from 'react';
 import { type AskQuestionsToolResult } from 'twenty-shared/ai';
 import { IconHelpCircle } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { ShimmeringText } from '@/ai/components/ShimmeringText';
 
 const StyledContainer = styled.div`
   align-items: flex-start;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[1]} 0;
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]} 0;
 
   svg {
     flex-shrink: 0;
@@ -25,23 +28,23 @@ const StyledContainer = styled.div`
 const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing['0.5']};
+  gap: ${odelzaThemeCssVariables.spacing['0.5']};
   min-width: 0;
 `;
 
 const StyledMessage = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledAnswerLine = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const StyledAnswerValue = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
 `;
 
 export const AiChatQuestionStatusRenderer = ({

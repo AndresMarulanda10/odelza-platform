@@ -18,26 +18,26 @@ import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { RelationType } from '~/generated-metadata/graphql';
 
 const StyledSelectsContainer = styled.div<{ isMobile: boolean }>`
   display: grid;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   grid-template-columns: ${({ isMobile }) => (isMobile ? '1fr' : '1fr 1fr')};
-  margin-bottom: ${themeCssVariables.spacing[4]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
 `;
 const StyledInputsLabel = styled.span`
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: block;
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledInputsContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 

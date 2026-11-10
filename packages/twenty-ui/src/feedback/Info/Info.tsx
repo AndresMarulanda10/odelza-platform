@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './Info.module.scss';
 
-export type InfoAccent = 'blue' | 'danger';
+export type InfoAccent = 'primary' | 'danger';
 export type InfoProps = {
   accent?: InfoAccent;
   text: string;
@@ -18,12 +18,12 @@ export type InfoProps = {
 };
 
 const INFO_ACCENT_CLASS_NAMES: Record<InfoAccent, string> = {
-  blue: styles.accentBlue,
+  primary: styles.accentPrimary,
   danger: styles.accentDanger,
 };
 
 export const Info = ({
-  accent = 'blue',
+  accent = 'primary',
   text,
   buttonTitle,
   onClick,

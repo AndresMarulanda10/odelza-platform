@@ -5,7 +5,7 @@ import {
   type CatalogStory,
   ComponentDecorator,
 } from '@ui/testing';
-import { themeCssVariables } from '@ui/theme-constants';
+import { odelzaThemeCssVariables } from '@ui/theme-constants';
 import { useState } from 'react';
 
 import { Toggle, type ToggleSize } from '@ui/input/Toggle/Toggle';
@@ -91,7 +91,7 @@ export const Catalog: CatalogStory<Story, typeof InteractiveToggle> = {
             if (color === 'default') {
               return {};
             }
-            return { color: themeCssVariables.color.yellow };
+            return { color: odelzaThemeCssVariables.color.yellow };
           },
         },
       ],

@@ -2,12 +2,12 @@ import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconPhoto } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledCard = styled.div`
-  background: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -20,12 +20,12 @@ const StyledCard = styled.div`
   width: 100%;
 
   &:hover {
-    box-shadow: ${themeCssVariables.boxShadow.light};
+    box-shadow: ${odelzaThemeCssVariables.boxShadow.light};
     transform: translateY(-2px);
   }
 
   &:focus-visible {
-    outline: 1px solid ${themeCssVariables.border.color.blue};
+    outline: 1px solid ${odelzaThemeCssVariables.border.color.accent};
     outline-offset: 1px;
   }
 `;
@@ -33,7 +33,7 @@ const StyledCard = styled.div`
 const StyledImageFrame = styled.div`
   align-items: center;
   aspect-ratio: 3 / 2;
-  background: ${themeCssVariables.background.tertiary};
+  background: ${odelzaThemeCssVariables.background.tertiary};
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -52,44 +52,44 @@ const StyledImage = styled.img`
 /* Hueco de los registros sin foto: la inicial del titulo o un icono. */
 const StyledPlaceholder = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   justify-content: center;
 `;
 
 const StyledInitial = styled.span`
-  font-size: ${themeCssVariables.font.size.xxl};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  font-size: ${odelzaThemeCssVariables.font.size.xxl};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
   text-transform: uppercase;
 `;
 
 const StyledBody = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledTitle = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const StyledSubtitle = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const StyledDetail = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.xs};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

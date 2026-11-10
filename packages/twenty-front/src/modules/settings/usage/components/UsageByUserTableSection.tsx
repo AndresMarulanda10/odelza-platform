@@ -14,16 +14,19 @@ import { IconChevronRight } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { SearchInput } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { type UsageOperationType } from '~/generated-metadata/graphql';
 import { normalizeSearchText } from '~/utils/normalizeSearchText';
 
 const StyledSearchInputContainer = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledIconChevronRightContainer = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 const GRID_TEMPLATE_COLUMNS = '1fr 120px 36px';
@@ -112,8 +115,8 @@ export const UsageByUserTableSection = ({
             to={getDetailPath(item.key)}
           >
             <TableCell
-              color={themeCssVariables.font.color.primary}
-              gap={showAvatar ? themeCssVariables.spacing[2] : undefined}
+              color={odelzaThemeCssVariables.font.color.primary}
+              gap={showAvatar ? odelzaThemeCssVariables.spacing[2] : undefined}
             >
               {showAvatar && (
                 <Avatar

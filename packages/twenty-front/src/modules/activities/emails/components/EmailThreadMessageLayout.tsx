@@ -1,15 +1,16 @@
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledThreadMessage = styled.div<{ hideBottomBorder?: boolean }>`
   border-bottom: ${({ hideBottomBorder }) =>
     hideBottomBorder
       ? 'none'
-      : `1px solid ${themeCssVariables.border.color.light}`};
+      : `1px solid ${odelzaThemeCssVariables.border.color.light}`};
   display: flex;
   flex-direction: column;
-  padding: ${themeCssVariables.spacing[4]} ${themeCssVariables.spacing[0]};
+  padding: ${odelzaThemeCssVariables.spacing[4]}
+    ${odelzaThemeCssVariables.spacing[0]};
 `;
 
 const StyledHeader = styled.div<{ isClickable?: boolean }>`
@@ -17,12 +18,14 @@ const StyledHeader = styled.div<{ isClickable?: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[0]} ${themeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[0]}
+    ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledBody = styled.div`
-  padding: ${themeCssVariables.spacing[0]} ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[0]}
+    ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type EmailThreadMessageLayoutProps = {

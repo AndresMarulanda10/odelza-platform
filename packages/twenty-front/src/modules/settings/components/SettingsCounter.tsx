@@ -2,7 +2,7 @@ import { SettingsTextInput } from '@/ui/input/components/SettingsTextInput';
 import { styled } from '@linaria/react';
 import { IconMinus, IconPlus } from 'twenty-ui/icon';
 import { IconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { castAsNumberOrNull } from '~/utils/cast-as-number-or-null';
 
 type SettingsCounterProps = {
@@ -17,22 +17,22 @@ type SettingsCounterProps = {
 const StyledCounterContainer = styled.div<{ showButtons: boolean }>`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   margin-left: auto;
   width: ${({ showButtons }) =>
     showButtons
-      ? themeCssVariables.spacing[30]
-      : themeCssVariables.spacing[16]};
+      ? odelzaThemeCssVariables.spacing[30]
+      : odelzaThemeCssVariables.spacing[16]};
 `;
 
 const StyledTextInputContainer = styled.div`
-  width: ${themeCssVariables.spacing[16]};
+  width: ${odelzaThemeCssVariables.spacing[16]};
 
   > * input {
-    font-weight: ${themeCssVariables.font.weight.medium};
-    height: ${themeCssVariables.spacing[6]};
+    font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+    height: ${odelzaThemeCssVariables.spacing[6]};
     text-align: center;
-    width: ${themeCssVariables.spacing[16]};
+    width: ${odelzaThemeCssVariables.spacing[16]};
   }
 `;
 

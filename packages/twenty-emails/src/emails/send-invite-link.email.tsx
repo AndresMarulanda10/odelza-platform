@@ -55,7 +55,7 @@ export const SendInviteLinkEmail = ({
               <Link
                 href={`mailto:${senderEmail}`}
                 value={senderEmail}
-                color={emailTheme.font.colors.blue}
+                color={emailTheme.font.colors.link}
               />
             ),
             1: <b />,

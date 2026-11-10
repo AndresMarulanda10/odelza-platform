@@ -30,7 +30,7 @@ export const ModalHeader = ({
       {
         '--modal-header-padding-horizontal':
           paddingHorizontal !== undefined
-            ? `var(--t-spacing-${paddingHorizontal})`
+            ? `var(--odz-spacing-${paddingHorizontal})`
             : undefined,
         backgroundColor,
       } as React.CSSProperties

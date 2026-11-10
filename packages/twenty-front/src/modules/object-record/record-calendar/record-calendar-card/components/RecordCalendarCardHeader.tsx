@@ -14,7 +14,7 @@ import { isDefined } from 'twenty-shared/utils';
 import { ChipVariant } from 'twenty-ui/data-display';
 import { Checkbox, CheckboxVariant } from 'twenty-ui/input';
 import { isRecordCalendarCardSelectedComponentFamilyState } from '@/object-record/record-calendar/record-calendar-card/states/isRecordCalendarCardSelectedComponentFamilyState';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledCheckboxContainer = styled.div`
   margin-left: auto;
@@ -24,7 +24,7 @@ const StyledRecordChipContainer = styled.div`
   display: flex;
   flex: 1 1 auto;
   overflow: hidden;
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type RecordCalendarCardHeaderProps = {
@@ -66,7 +66,7 @@ export const RecordCalendarCardHeader = ({
   return (
     <RecordCardHeaderContainer
       isCompact={isCompactModeActive}
-      padding={themeCssVariables.spacing[1]}
+      padding={odelzaThemeCssVariables.spacing[1]}
     >
       <StyledRecordChipContainer>
         <StopPropagationContainer>

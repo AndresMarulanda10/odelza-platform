@@ -1,4 +1,4 @@
 :root {
-  --welcome-dot-color: #4a38f5;
-  --welcome-dot-highlight: #9b91f9;
+  --welcome-dot-color: var(--odz-color-primary);
+  --welcome-dot-highlight: var(--odz-color-primary8);
 }

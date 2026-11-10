@@ -5,7 +5,7 @@ import { FieldContext } from '@/object-record/record-field/ui/contexts/FieldCont
 import { useFieldFocus } from '@/object-record/record-field/ui/hooks/useFieldFocus';
 import { useRecordInlineCellContext } from '@/object-record/record-inline-cell/components/RecordInlineCellContext';
 import { RecordInlineCellValue } from '@/object-record/record-inline-cell/components/RecordInlineCellValue';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledValueContainer = styled.div<{ readonly: boolean }>`
   display: flex;
@@ -19,7 +19,7 @@ const StyledInlineCellBaseContainer = styled.div<{ readonly: boolean }>`
   box-sizing: border-box;
   cursor: ${({ readonly }) => (readonly ? 'default' : 'pointer')};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: fit-content;
   user-select: none;
   width: 100%;

@@ -8,31 +8,34 @@ import { isDefined } from 'twenty-shared/utils';
 import { IconBrandX, IconWorld } from 'twenty-ui/icon';
 import { Checkbox } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledCheckboxContainer = styled.div<{ disabled: boolean }>`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   display: flex;
-  height: ${themeCssVariables.spacing[8]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   justify-content: space-between;
-  padding-inline: ${themeCssVariables.spacing[2]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[2]};
   transition: background-color
-    calc(${themeCssVariables.animation.duration.normal} * 1s) ease;
+    calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s) ease;
 
   &:hover {
     background-color: ${({ disabled }) =>
       disabled
         ? 'transparent'
-        : themeCssVariables.background.transparent.light};
+        : odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 
 const StyledCheckboxLabel = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type ModelConfiguration = {

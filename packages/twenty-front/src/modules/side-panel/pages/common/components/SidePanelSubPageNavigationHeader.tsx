@@ -1,21 +1,21 @@
 import { styled } from '@linaria/react';
 import { IconChevronLeft } from 'twenty-ui/icon';
 import { IconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: center;
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 40px;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledText = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 type SidePanelSubPageNavigationHeaderProps = {

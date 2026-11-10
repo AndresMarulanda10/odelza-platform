@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { Loader } from 'twenty-ui/feedback';
 import { CardPicker, MainButton } from 'twenty-ui/input';
 import { ModalContent } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export const ENTERPRISE_PLAN_MODAL_ID = 'enterprise-plan-modal';
 
@@ -22,36 +22,38 @@ const MONTHLY_PRICE = 25;
 const YEARLY_PRICE = 19;
 
 const StyledSubscriptionContainer = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex-direction: column;
-  margin: ${themeCssVariables.spacing[8]} 0 ${themeCssVariables.spacing[2]};
+  margin: ${odelzaThemeCssVariables.spacing[8]} 0
+    ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
 const StyledPriceContainer = styled.div`
   align-items: center;
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
   flex-direction: column;
-  margin: ${themeCssVariables.spacing[4]} ${themeCssVariables.spacing[3]} 0
-    ${themeCssVariables.spacing[4]};
-  padding-bottom: ${themeCssVariables.spacing[3]};
+  margin: ${odelzaThemeCssVariables.spacing[4]}
+    ${odelzaThemeCssVariables.spacing[3]} 0
+    ${odelzaThemeCssVariables.spacing[4]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledPrice = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.xxl};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.xxl};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledPriceUnit = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledBenefitsContainer = styled.div`
@@ -59,15 +61,16 @@ const StyledBenefitsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: ${themeCssVariables.spacing[4]} ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[4]}
+    ${odelzaThemeCssVariables.spacing[3]};
   width: 100%;
 `;
 
 const StyledIntervalContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-bottom: ${themeCssVariables.spacing[8]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[8]};
   width: 100%;
 `;
 
@@ -77,14 +80,14 @@ const StyledIntervalCardContent = styled.div`
 `;
 
 const StyledIntervalTitle = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.md};
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledIntervalSubtitle = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
 `;
 
 export const EnterprisePlanModal = () => {

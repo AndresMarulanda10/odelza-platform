@@ -7,12 +7,15 @@ import { getUrlHostnameOrThrow, isValidUrl } from 'twenty-shared/utils';
 import { IconChevronRight } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { type Webhook } from '~/generated-metadata/graphql';
 
 const StyledIconChevronRightContainer = styled.span`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
 `;
 
@@ -32,7 +35,10 @@ export const SettingsDevelopersWebhookTableRow = ({
       gridTemplateColumns={WEBHOOK_TABLE_ROW_GRID_TEMPLATE_COLUMNS}
       to={to}
     >
-      <TableCell color={themeCssVariables.font.color.primary} overflow="hidden">
+      <TableCell
+        color={odelzaThemeCssVariables.font.color.primary}
+        overflow="hidden"
+      >
         <OverflowingTextWithTooltip
           text={
             isValidUrl(webhook.targetUrl)
@@ -43,7 +49,7 @@ export const SettingsDevelopersWebhookTableRow = ({
       </TableCell>
       <TableCell
         align="center"
-        padding={`0 ${themeCssVariables.spacing[1]} 0 0`}
+        padding={`0 ${odelzaThemeCssVariables.spacing[1]} 0 0`}
       >
         <StyledIconChevronRightContainer>
           <IconChevronRight

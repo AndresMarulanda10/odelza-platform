@@ -2,12 +2,12 @@
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: var(--t-spacing-1);
+  gap: var(--odz-spacing-1);
   justify-content: center;
 }
 
 .commandText {
-  color: var(--t-font-color-light);
+  color: var(--odz-font-color-light);
   vertical-align: middle;
   white-space: nowrap;
 }
@@ -15,15 +15,15 @@
 .commandKey {
   box-sizing: content-box;
   align-items: center;
-  background-color: var(--t-background-secondary);
-  border: 1px solid var(--t-border-color-strong);
+  background-color: var(--odz-background-secondary);
+  border: 1px solid var(--odz-border-color-strong);
   // Concentric with the md dropdown container: parent radius minus its inset.
-  border-radius: calc(var(--t-border-radius-md) - var(--t-spacing-1));
-  box-shadow: var(--t-box-shadow-underline);
+  border-radius: calc(var(--odz-border-radius-md) - var(--odz-spacing-1));
+  box-shadow: var(--odz-box-shadow-underline);
   display: flex;
   flex-direction: column;
   height: 18px;
   justify-content: center;
   text-align: center;
-  width: var(--t-spacing-4);
+  width: var(--odz-spacing-4);
 }

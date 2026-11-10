@@ -19,7 +19,7 @@ import {
 } from 'twenty-shared/utils';
 import { IconCircleOff, IconPlus, useIcons } from 'twenty-ui/icon';
 import { type SelectOption } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type z } from 'zod';
 
 export const settingsDataModelObjectIdentifiersFormSchema =
@@ -43,7 +43,7 @@ const IMAGE_IDENTIFIER_FIELD_METADATA_ID: SettingsDataModelObjectIdentifiers =
 
 const StyledContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 export const SettingsDataModelObjectIdentifiersForm = ({

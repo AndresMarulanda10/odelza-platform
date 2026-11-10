@@ -2,11 +2,11 @@
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: var(--t-spacing-2);
+  gap: var(--odz-spacing-2);
   height: 60px;
   justify-content: flex-end;
   overflow: hidden;
-  padding: var(--t-spacing-5);
+  padding: var(--odz-spacing-5);
 }
 
 .autoHeight {
@@ -18,5 +18,5 @@
 }
 
 .smallPadding {
-  padding: var(--t-spacing-3);
+  padding: var(--odz-spacing-3);
 }

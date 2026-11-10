@@ -10,7 +10,10 @@ import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath } from 'twenty-shared/utils';
 import { IconChevronRight } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { type FindManySkillsQuery } from '~/generated-metadata/graphql';
 import { SettingsSkillInactiveMenuDropDown } from '~/pages/settings/ai/components/SettingsSkillInactiveMenuDropDown';
@@ -27,7 +30,7 @@ type SettingsAgentSkillsTableProps = {
 };
 
 const StyledTableHeaderRowContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const SettingsAgentSkillsTable = ({

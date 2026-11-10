@@ -31,7 +31,7 @@ import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
 import { UndecoratedLink } from 'twenty-ui/navigation';
 import { H2Title } from 'twenty-ui/typography';
-import { themeCssVariables, useTheme } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from 'twenty-ui/theme-constants';
 import {
   PermissionFlagType,
   SubscriptionStatus,
@@ -42,57 +42,57 @@ const MIN_VISIBLE_EMPTY_CREDIT_PROGRESS_PERCENTAGE = 4;
 const StyledSettingsBillingCardBody = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
-  padding: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledCreditsHeading = styled.div`
   align-items: baseline;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
 const StyledCreditsHeadingLeft = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledCreditsAmount = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   white-space: nowrap;
 `;
 
 const StyledCreditsInterval = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   white-space: nowrap;
 `;
 
 const StyledCreditsFooter = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex-wrap: wrap;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: flex-end;
 `;
 
 const StyledCreditsCardBody = styled(StyledSettingsBillingCardBody)`
-  padding: ${themeCssVariables.spacing[4]} ${themeCssVariables.spacing[3]}
-    ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[4]}
+    ${odelzaThemeCssVariables.spacing[3]} ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledRolloverText = styled.div`
   align-items: center;
   display: flex;
   flex: 1 1 280px;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
@@ -100,20 +100,20 @@ const StyledUsageMetrics = styled.div`
   align-items: center;
   display: flex;
   flex: 0 0 auto;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   white-space: nowrap;
 `;
 
 const StyledMetricValue = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledCreditUsageFooterActions = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[3]};
-  margin-top: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
+  margin-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 export const SettingsBillingCreditsSection = ({
@@ -221,7 +221,7 @@ export const SettingsBillingCreditsSection = ({
           <StyledCreditsHeadingLeft>
             <IconCoins
               size={theme.icon.size.md}
-              color={themeCssVariables.color.green9}
+              color={odelzaThemeCssVariables.color.green9}
             />
             <StyledCreditsHeading>
               <StyledCreditsAmount>
@@ -253,11 +253,11 @@ export const SettingsBillingCreditsSection = ({
         <StyledCreditsCardBody>
           <ProgressBar
             value={displayedProgressBarValue}
-            backgroundColor={themeCssVariables.background.tertiary}
+            backgroundColor={odelzaThemeCssVariables.background.tertiary}
             barColor={
               isCreditsEmpty
-                ? themeCssVariables.color.red9
-                : themeCssVariables.color.green9
+                ? odelzaThemeCssVariables.color.red9
+                : odelzaThemeCssVariables.color.green9
             }
             withBorderRadius
           />

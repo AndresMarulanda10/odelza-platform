@@ -7,7 +7,7 @@ import { t } from '@lingui/core/macro';
 import { styled } from '@linaria/react';
 import camelCase from 'lodash.camelcase';
 import { FieldMetadataType } from 'twenty-shared/types';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type WorkflowFormFieldSettingsTextProps = {
   field: WorkflowFormActionField;
@@ -17,7 +17,7 @@ type WorkflowFormFieldSettingsTextProps = {
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const WorkflowFormFieldSettingsText = ({

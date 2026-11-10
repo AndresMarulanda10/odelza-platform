@@ -10,17 +10,17 @@ import { DropdownMenuSeparator } from '@/ui/layout/dropdown/components/DropdownM
 import { DropdownContent } from '@/ui/layout/dropdown/components/DropdownContent';
 import 'react-phone-number-input/style.css';
 import { MenuItem, MenuItemSelectAvatar } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledIconContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  padding-right: ${themeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
 
   svg {
     align-items: center;
-    border-radius: ${themeCssVariables.border.radius.xs};
+    border-radius: ${odelzaThemeCssVariables.border.radius.xs};
     display: flex;
     height: 12px;
     justify-content: center;

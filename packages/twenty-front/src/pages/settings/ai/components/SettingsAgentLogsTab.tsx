@@ -20,7 +20,7 @@ import {
   AnimatedPlaceholderEmptyTitle,
 } from 'twenty-ui/feedback';
 import { UndecoratedLink } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useMutation, useQuery } from '@apollo/client/react';
 import {
   EvaluateAgentTurnDocument,
@@ -28,11 +28,11 @@ import {
 } from '~/generated-metadata/graphql';
 
 const StyledTableContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[3]};
+  margin-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledTableHeaderRowContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type SettingsAgentLogsTabProps = {
@@ -200,7 +200,7 @@ export const SettingsAgentLogsTab = ({
 
           return (
             <TableRow key={turn.id} gridTemplateColumns="140px 80px 1fr 40px">
-              <TableCell color={themeCssVariables.font.color.tertiary}>
+              <TableCell color={odelzaThemeCssVariables.font.color.tertiary}>
                 {new Date(turn.createdAt).toLocaleDateString('en-US', {
                   month: 'short',
                   day: 'numeric',
@@ -208,7 +208,7 @@ export const SettingsAgentLogsTab = ({
                   minute: '2-digit',
                 })}
               </TableCell>
-              <TableCell gap={themeCssVariables.spacing[2]}>
+              <TableCell gap={odelzaThemeCssVariables.spacing[2]}>
                 {latestEvaluation ? (
                   <Status
                     color={getScoreColor(latestEvaluation.score)}
@@ -236,7 +236,7 @@ export const SettingsAgentLogsTab = ({
               </TableCell>
               <TableCell
                 align="right"
-                padding={`0 ${themeCssVariables.spacing[2]} 0 0`}
+                padding={`0 ${odelzaThemeCssVariables.spacing[2]} 0 0`}
               >
                 {latestEvaluation && (
                   <UndecoratedLink

@@ -11,11 +11,16 @@ const mockedFs = fs as jest.Mocked<typeof fs>;
 
 const INDEX_TEMPLATE = `<html>
   <head>
-    <!-- BEGIN: Twenty Config -->
-    <script id="twenty-env-config">
+    <meta
+      property="og:image"
+      content="http://stale-value/images/odelza/social-card.png"
+    />
+    <meta name="twitter:image" content="/images/odelza/social-card.png" />
+    <!-- BEGIN: Odelza Config -->
+    <script id="odelza-env-config">
       window._env_ = {"REACT_APP_SERVER_BASE_URL":"http://stale-value"};
     </script>
-    <!-- END: Twenty Config -->
+    <!-- END: Odelza Config -->
   </head>
 </html>`;
 
@@ -27,6 +32,16 @@ const getInjectedEnv = (): string => {
   const match = writtenContent.match(/window\._env_ = (\{[\s\S]*?\});/);
 
   return match ? match[1].replace(/\s+/g, '') : '';
+};
+
+const getSocialImageUrls = (): string[] => {
+  const writtenContent = mockedFs.writeFileSync.mock.calls[0][1] as string;
+
+  return [
+    ...writtenContent.matchAll(
+      /<meta\s+(?:property="og:image"|name="twitter:image")\s+content="([^"]*)"/g,
+    ),
+  ].map((match) => match[1]);
 };
 
 describe('generateFrontConfig', () => {
@@ -80,5 +95,29 @@ describe('generateFrontConfig', () => {
     expect(getInjectedEnv()).toBe(
       '{"REACT_APP_SERVER_BASE_URL":"http://x.com"}',
     );
+  });
+
+  it('should point the social image tags to SERVER_URL when it is set', () => {
+    process.env.SERVER_URL = 'https://app.odelza.test/';
+    delete process.env.FRONT_AUTO_BASE_URL;
+
+    generateFrontConfig();
+
+    expect(getSocialImageUrls()).toEqual([
+      'https://app.odelza.test/images/odelza/social-card.png',
+      'https://app.odelza.test/images/odelza/social-card.png',
+    ]);
+  });
+
+  it('should keep relative social image tags when the front resolves its own URL', () => {
+    process.env.SERVER_URL = 'http://x.com';
+    process.env.FRONT_AUTO_BASE_URL = 'true';
+
+    generateFrontConfig();
+
+    expect(getSocialImageUrls()).toEqual([
+      '/images/odelza/social-card.png',
+      '/images/odelza/social-card.png',
+    ]);
   });
 });

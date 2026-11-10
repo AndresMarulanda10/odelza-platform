@@ -29,7 +29,7 @@ import {
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
 import { getAbsoluteImageUrl } from '~/utils/image/getAbsoluteImageUrl';
 import { formatDateTimeString } from '~/utils/string/formatDateTimeString';
@@ -42,8 +42,8 @@ type SettingsAdminWorkspaceContentProps = {
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
-  margin-top: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
+  margin-top: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 export const SettingsAdminWorkspaceContent = ({

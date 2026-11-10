@@ -25,7 +25,7 @@ import { getSettingsPath, isDefined } from 'twenty-shared/utils';
 import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type z } from 'zod';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
 import { useNavigateApp } from '~/hooks/useNavigateApp';
@@ -189,7 +189,7 @@ export const SettingsObjectNewFieldConfigure = () => {
             objectMetadataItem={activeObjectMetadataItem}
           />
         }
-        titleColor={themeCssVariables.font.color.tertiary}
+        titleColor={odelzaThemeCssVariables.font.color.tertiary}
         links={[
           {
             children: t`Workspace`,
@@ -222,7 +222,7 @@ export const SettingsObjectNewFieldConfigure = () => {
                 title={t`Save`}
                 variant="primary"
                 size="small"
-                accent="blue"
+                accent="primary"
                 onClick={formConfig.handleSubmit(handleSave)}
                 disabled={!canSave || isSaving}
               />

@@ -11,22 +11,22 @@ import { useFieldMetadataItemById } from '@/object-metadata/hooks/useFieldMetada
 import { useGetRecordFilterDisplayValue } from '@/object-record/record-filter/hooks/useGetRecordFilterDisplayValue';
 import { t } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 // TODO: factorize this with https://github.com/twentyhq/core-team-issues/issues/752
 const StyledControlContainer = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   cursor: pointer;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[8]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   max-width: 100%;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   text-align: left;
 `;
 

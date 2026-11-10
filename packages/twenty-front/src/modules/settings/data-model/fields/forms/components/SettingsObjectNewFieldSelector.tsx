@@ -20,7 +20,10 @@ import { getSettingsPath } from 'twenty-shared/utils';
 import { IconSearch } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { UndecoratedLink } from 'twenty-ui/navigation';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
 import { type SettingsDataModelFieldTypeFormValues } from '~/pages/settings/data-model/new-field/SettingsObjectNewFieldSelect';
 
@@ -45,7 +48,7 @@ const StyledTypeSelectContainer = styled.div`
 const StyledContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: flex-start;
   width: 100%;
 `;
@@ -54,7 +57,7 @@ const StyledCardContainer = styled.div`
   display: flex;
 
   position: relative;
-  width: calc(50% - ${themeCssVariables.spacing[1]});
+  width: calc(50% - ${odelzaThemeCssVariables.spacing[1]});
 `;
 
 const StyledSearchInputContainer = styled.div`

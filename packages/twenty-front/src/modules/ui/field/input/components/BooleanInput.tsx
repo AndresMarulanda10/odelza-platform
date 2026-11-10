@@ -2,14 +2,14 @@ import { styled } from '@linaria/react';
 import { useEffect, useState } from 'react';
 
 import { BooleanDisplay } from '@/ui/field/display/components/BooleanDisplay';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledEditableBooleanFieldContainer = styled.div<{ readonly?: boolean }>`
   align-items: center;
   color: ${({ readonly }) =>
     readonly
-      ? themeCssVariables.font.color.tertiary
-      : themeCssVariables.font.color.primary};
+      ? odelzaThemeCssVariables.font.color.tertiary
+      : odelzaThemeCssVariables.font.color.primary};
   cursor: ${({ onClick }) => (onClick ? 'pointer' : 'default')};
 
   display: flex;

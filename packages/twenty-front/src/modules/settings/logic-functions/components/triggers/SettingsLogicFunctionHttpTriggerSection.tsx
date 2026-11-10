@@ -20,7 +20,10 @@ import {
   type IconComponent,
 } from 'twenty-ui/icon';
 import { Toggle } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useGetLogicFunctionHttpUrl } from '@/settings/logic-functions/hooks/useGetLogicFunctionHttpUrl';
 import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
@@ -45,18 +48,18 @@ const DEFAULT_HTTP_SETTINGS: HttpRouteTriggerSettings = {
 const StyledFields = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledAuthRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledAuthLabel = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
 `;
 
 type SettingsLogicFunctionHttpTriggerSectionProps = {
@@ -137,7 +140,7 @@ export const SettingsLogicFunctionHttpTriggerSection = ({
               onChange={(checked) => updateField('isAuthRequired', checked)}
               disabled={readonly}
               toggleSize="small"
-              color={theme.color.blue}
+              color={theme.color.primary}
             />
             <StyledAuthLabel>{t`Require authentication`}</StyledAuthLabel>
           </StyledAuthRow>

@@ -3,26 +3,31 @@ import { useContext } from 'react';
 import { DataGrid, type DataGridProps } from 'react-data-grid';
 import 'react-data-grid/lib/styles.css';
 import { useSpreadsheetImportInternal } from '@/spreadsheet-import/hooks/useSpreadsheetImportInternal';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledDataGridContainer = styled.div<{ headerRowHeight?: number }>`
-  --rdg-background-color: ${themeCssVariables.background.primary};
-  --rdg-border-color: ${themeCssVariables.border.color.medium};
-  --rdg-color: ${themeCssVariables.font.color.primary};
-  --rdg-error-cell-background-color: ${themeCssVariables.color.transparent
+  --rdg-background-color: ${odelzaThemeCssVariables.background.primary};
+  --rdg-border-color: ${odelzaThemeCssVariables.border.color.medium};
+  --rdg-color: ${odelzaThemeCssVariables.font.color.primary};
+  --rdg-error-cell-background-color: ${odelzaThemeCssVariables.color.transparent
     .red5};
-  --rdg-font-size: ${themeCssVariables.font.size.sm};
+  --rdg-font-size: ${odelzaThemeCssVariables.font.size.sm};
   --rdg-frozen-cell-box-shadow: none;
-  --rdg-header-background-color: ${themeCssVariables.background.primary};
-  --rdg-info-cell-background-color: ${themeCssVariables.color.blue};
-  --rdg-row-hover-background-color: ${themeCssVariables.background.secondary};
-  --rdg-row-selected-background-color: ${themeCssVariables.background.primary};
-  --rdg-row-selected-hover-background-color: ${themeCssVariables.background
+  --rdg-header-background-color: ${odelzaThemeCssVariables.background.primary};
+  --rdg-info-cell-background-color: ${odelzaThemeCssVariables.color.primary};
+  --rdg-row-hover-background-color: ${odelzaThemeCssVariables.background
     .secondary};
-  --rdg-selection-color: ${themeCssVariables.color.blue};
-  --rdg-summary-border-color: ${themeCssVariables.border.color.medium};
-  --rdg-warning-cell-background-color: ${themeCssVariables.color.orange};
-  --row-selected-hover-background-color: ${themeCssVariables.background
+  --rdg-row-selected-background-color: ${odelzaThemeCssVariables.background
+    .primary};
+  --rdg-row-selected-hover-background-color: ${odelzaThemeCssVariables
+    .background.secondary};
+  --rdg-selection-color: ${odelzaThemeCssVariables.color.primary};
+  --rdg-summary-border-color: ${odelzaThemeCssVariables.border.color.medium};
+  --rdg-warning-cell-background-color: ${odelzaThemeCssVariables.color.orange};
+  --row-selected-hover-background-color: ${odelzaThemeCssVariables.background
     .secondary};
   flex: 1;
   min-height: 0;
@@ -35,19 +40,19 @@ const StyledDataGridContainer = styled.div<{ headerRowHeight?: number }>`
 
   .rdg-header-row .rdg-cell {
     box-shadow: none;
-    color: ${themeCssVariables.font.color.tertiary};
-    background-color: ${themeCssVariables.background.secondary};
-    font-size: ${themeCssVariables.font.size.sm};
-    font-weight: ${themeCssVariables.font.weight.semiBold};
+    color: ${odelzaThemeCssVariables.font.color.tertiary};
+    background-color: ${odelzaThemeCssVariables.background.secondary};
+    font-size: ${odelzaThemeCssVariables.font.size.sm};
+    font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
     letter-spacing: wider;
     border-bottom: ${({ headerRowHeight }) =>
       headerRowHeight === 0
         ? 'none'
-        : `1px solid ${themeCssVariables.border.color.medium}`};
+        : `1px solid ${odelzaThemeCssVariables.border.color.medium}`};
   }
 
   .rdg-cell {
-    border-bottom: 1px solid ${themeCssVariables.border.color.medium};
+    border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.medium};
     border-inline-end: none;
     border-right: none;
     box-shadow: none;
@@ -65,15 +70,15 @@ const StyledDataGridContainer = styled.div<{ headerRowHeight?: number }>`
   }
 
   .rdg-cell-error {
-    background-color: ${themeCssVariables.color.yellow3};
+    background-color: ${odelzaThemeCssVariables.color.yellow3};
   }
 
   .rdg-cell-warning {
-    background-color: ${themeCssVariables.color.transparent.orange2};
+    background-color: ${odelzaThemeCssVariables.color.transparent.orange2};
   }
 
   .rdg-cell-info {
-    background-color: ${themeCssVariables.color.transparent.blue2};
+    background-color: ${odelzaThemeCssVariables.color.transparent.primary2};
   }
 
   .rdg-static {

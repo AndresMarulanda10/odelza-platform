@@ -1,10 +1,10 @@
 import { styled } from '@linaria/react';
 import React from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledPanel = styled.div`
-  background: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   display: flex;
   flex-direction: column;
   height: 100%;

@@ -2,27 +2,30 @@ import { SKELETON_LOADER_HEIGHT_SIZES } from '@/activities/components/SkeletonLo
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledSkeletonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[2]} 0;
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[2]} 0;
 `;
 
 const StyledSkeletonRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledSkeletonFolderInfo = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const SKELETON_ROWS = [

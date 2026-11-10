@@ -3,7 +3,10 @@ import { type ReactNode, useContext, useState } from 'react';
 import { TableBody } from './TableBody';
 import { IconChevronDown, IconChevronUp } from 'twenty-ui/icon';
 import { Label } from 'twenty-ui/typography';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type TableSectionProps = {
   children: ReactNode;
@@ -13,13 +16,13 @@ type TableSectionProps = {
 
 const StyledSectionHeader = styled.div<{ isExpanded: boolean }>`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   cursor: pointer;
   display: flex;
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   justify-content: space-between;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   text-align: left;
 `;
 
@@ -28,12 +31,12 @@ const StyledSection = styled.div<{ isExpanded: boolean }>`
   opacity: ${({ isExpanded }) => (isExpanded ? 1 : 0)};
   overflow: hidden;
   transition:
-    max-height calc(${themeCssVariables.animation.duration.normal} * 1s),
-    opacity calc(${themeCssVariables.animation.duration.normal} * 1s);
+    max-height calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s),
+    opacity calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s);
 `;
 
 const StyledSectionContentContainer = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
 `;
 
 export const TableSection = ({

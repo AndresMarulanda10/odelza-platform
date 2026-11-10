@@ -2,19 +2,19 @@
   box-sizing: content-box;
   align-items: center;
   background: var(--tag-background);
-  border-radius: var(--t-border-radius-sm-round);
+  border-radius: var(--odz-border-radius-sm-round);
   corner-shape: round;
   color: var(--tag-text);
   display: inline-flex;
-  font-size: var(--t-font-size-md);
+  font-size: var(--odz-font-size-md);
   font-style: normal;
-  font-weight: var(--t-font-weight-regular);
-  height: var(--t-spacing-5);
+  font-weight: var(--odz-font-weight-regular);
+  height: var(--odz-spacing-5);
   margin: 0;
   overflow: hidden;
-  padding: 0 var(--t-spacing-2);
+  padding: 0 var(--odz-spacing-2);
   border: none;
-  gap: var(--t-spacing-1);
+  gap: var(--odz-spacing-1);
   // 'none' is not a valid min-width value; kept for byte-equivalence with the
   // deprecated Linaria styles where the declaration was equally inert.
   min-width: none;
@@ -28,15 +28,15 @@
 }
 
 .weightMedium {
-  font-weight: var(--t-font-weight-medium);
+  font-weight: var(--odz-font-weight-medium);
 }
 
 .variantOutline {
-  border: 1px dashed var(--t-border-color-strong);
+  border: 1px dashed var(--odz-border-color-strong);
 }
 
 .variantBorder {
-  border: 1px solid var(--t-border-color-strong);
+  border: 1px solid var(--odz-border-color-strong);
 }
 
 .preventShrink {

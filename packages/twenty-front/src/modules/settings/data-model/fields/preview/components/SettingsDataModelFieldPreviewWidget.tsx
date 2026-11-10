@@ -5,7 +5,7 @@ import { type FieldMetadataItem } from '@/object-metadata/types/FieldMetadataIte
 import { SettingsDataModelFieldPreview } from '@/settings/data-model/fields/preview/components/SettingsDataModelFieldPreview';
 import { SettingsDataModelObjectPreview } from '@/settings/data-model/objects/components/SettingsDataModelObjectSummary';
 import { Card, CardContent } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { computeMetadataNameFromLabel } from '~/pages/settings/data-model/utils/computeMetadataNameFromLabel';
 
 type SettingsDataModelFieldPreviewWidgetProps = {
@@ -23,14 +23,14 @@ type SettingsDataModelFieldPreviewWidgetProps = {
 
 const StyledCardContainer = styled.div`
   > * {
-    border-radius: ${themeCssVariables.border.radius.md};
-    color: ${themeCssVariables.font.color.primary};
+    border-radius: ${odelzaThemeCssVariables.border.radius.md};
+    color: ${odelzaThemeCssVariables.font.color.primary};
   }
 `;
 
 const StyledCardContentContainer = styled.div`
   > * {
-    padding: ${themeCssVariables.spacing[2]};
+    padding: ${odelzaThemeCssVariables.spacing[2]};
   }
 `;
 

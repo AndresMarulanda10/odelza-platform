@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { WelcomeAnimationAutoLeaveEffect } from '@/onboarding/components/WelcomeOverlay/WelcomeAnimationAutoLeaveEffect';
 import { WelcomeHalftoneCanvas } from '@/onboarding/components/WelcomeOverlay/WelcomeHalftoneCanvas';
@@ -32,7 +32,7 @@ const StyledOverlay = styled.div`
 `;
 
 const StyledBackdrop = styled.div`
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   inset: 0;
   position: absolute;
   will-change: opacity;
@@ -66,16 +66,17 @@ const StyledCanvasLayer = styled.div`
 const StyledTitle = styled.div`
   align-items: center;
   animation: welcomeTitleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
-  background: ${themeCssVariables.background.primary};
-  border-radius: ${themeCssVariables.border.radius.pill};
-  color: ${themeCssVariables.font.color.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex-wrap: nowrap;
   font-size: 26px;
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  gap: ${themeCssVariables.spacing[2]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: center;
-  padding: ${themeCssVariables.spacing[4]} ${themeCssVariables.spacing[8]};
+  padding: ${odelzaThemeCssVariables.spacing[4]}
+    ${odelzaThemeCssVariables.spacing[8]};
   position: relative;
   white-space: nowrap;
   will-change: transform, opacity;

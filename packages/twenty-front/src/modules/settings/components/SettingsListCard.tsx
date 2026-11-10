@@ -5,34 +5,37 @@ import { SettingsListSkeletonCard } from '@/settings/components/SettingsListSkel
 
 import { type IconComponent, IconPlus } from 'twenty-ui/icon';
 import { Card, CardFooter } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { SettingsListItemCardContent } from './SettingsListItemCardContent';
 
 const StyledFooterContainer = styled.div`
   > * {
     align-items: center;
     display: flex;
-    padding: ${themeCssVariables.spacing[1]};
+    padding: ${odelzaThemeCssVariables.spacing[1]};
   }
 `;
 
 const StyledButton = styled.button`
   align-items: center;
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   border: none;
-  border-radius: ${themeCssVariables.border.radius.sm};
-  color: ${themeCssVariables.font.color.secondary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   cursor: pointer;
   display: flex;
   flex: 1 0 0;
-  gap: ${themeCssVariables.spacing[2]};
-  height: ${themeCssVariables.spacing[8]};
-  padding: 0 ${themeCssVariables.spacing[1]};
-  padding-left: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 
   &:hover {
-    background: ${themeCssVariables.background.transparent.light};
+    background: ${odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 

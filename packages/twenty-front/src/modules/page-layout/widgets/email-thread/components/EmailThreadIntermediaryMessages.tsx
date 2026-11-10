@@ -6,11 +6,12 @@ import { type EmailThreadMessageWithSender } from '@/activities/emails/types/Ema
 import { t } from '@lingui/core/macro';
 import { IconArrowsVertical } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledButtonContainer = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
-  padding: ${themeCssVariables.spacing[4]} ${themeCssVariables.spacing[6]};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  padding: ${odelzaThemeCssVariables.spacing[4]}
+    ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 export const EmailThreadIntermediaryMessages = ({

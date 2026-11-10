@@ -18,12 +18,12 @@ import { isDefined } from 'twenty-shared/utils';
 import { Avatar } from 'twenty-ui/data-display';
 import { IconTrash, IconUpload } from 'twenty-ui/icon';
 import { Button, LightIconButton, MainButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[14]};
+  gap: ${odelzaThemeCssVariables.spacing[14]};
   max-width: 100%;
   width: ${ONBOARDING_CONTENT_BLOCK_WIDTH}px;
 `;
@@ -31,45 +31,45 @@ const StyledContentContainer = styled.div`
 const StyledHeading = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.xl};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.xl};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
   line-height: 1.2;
 `;
 
 const StyledSubtitle = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.md};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   line-height: 1.4;
 `;
 
 const StyledFormSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[8]};
-  padding-bottom: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[8]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[4]};
   width: 100%;
 `;
 
 const StyledLogoRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledLogoAvatar = styled(Avatar)`
-  height: ${themeCssVariables.spacing[8]};
-  width: ${themeCssVariables.spacing[8]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
+  width: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 const StyledLogoButtons = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing['0.5']};
+  gap: ${odelzaThemeCssVariables.spacing['0.5']};
 `;
 
 const StyledHiddenFileInput = styled.input`
@@ -79,56 +79,56 @@ const StyledHiddenFileInput = styled.input`
 const StyledSubdomainSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
 const StyledAlternativesBox = styled.div`
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledAlternativesLabel = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  padding-bottom: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledAlternativeRows = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledAlternativeRow = styled.button`
   align-items: center;
   background: transparent;
   border: none;
-  color: ${themeCssVariables.color.green};
+  color: ${odelzaThemeCssVariables.color.green};
   cursor: pointer;
   display: flex;
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   padding: 2px 0;
   text-align: left;
 `;
 
 const StyledAvailabilityDotBox = styled.div`
   display: flex;
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledAvailabilityDot = styled.div`
-  background-color: ${themeCssVariables.color.green};
+  background-color: ${odelzaThemeCssVariables.color.green};
   border-radius: 50%;
-  box-shadow: 0 0 0 3px ${themeCssVariables.color.green5};
+  box-shadow: 0 0 0 3px ${odelzaThemeCssVariables.color.green5};
   corner-shape: round;
   flex-shrink: 0;
   height: 6px;

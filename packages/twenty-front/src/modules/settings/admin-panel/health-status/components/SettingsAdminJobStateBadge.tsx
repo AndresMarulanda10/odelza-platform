@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { Tag, type TagColor } from 'twenty-ui/data-display';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { JobState } from '~/generated-admin/graphql';
 
 type SettingsAdminJobStateBadgeProps = {
@@ -21,17 +21,18 @@ const JOB_STATE_COLORS: Record<JobState, TagColor> = {
 const StyledContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledAttemptBadge = styled.span`
-  background-color: ${themeCssVariables.background.danger};
-  border: 1px solid ${themeCssVariables.border.color.danger};
-  border-radius: ${themeCssVariables.border.radius.sm};
-  color: ${themeCssVariables.font.color.danger};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  padding: ${themeCssVariables.spacing['0.5']} ${themeCssVariables.spacing[1]};
+  background-color: ${odelzaThemeCssVariables.background.danger};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.danger};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  color: ${odelzaThemeCssVariables.font.color.danger};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  padding: ${odelzaThemeCssVariables.spacing['0.5']}
+    ${odelzaThemeCssVariables.spacing[1]};
   white-space: nowrap;
 `;
 

@@ -2,13 +2,13 @@ import { styled } from '@linaria/react';
 
 import { type MessageChannel } from '@/accounts/types/MessageChannel';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledNameCell = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   min-width: 0;
 `;
 

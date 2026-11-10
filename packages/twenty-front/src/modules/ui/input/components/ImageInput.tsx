@@ -6,7 +6,10 @@ import React, { useContext, useState } from 'react';
 import { getImageAbsoluteURI, isDefined } from 'twenty-shared/utils';
 import { IconPhotoUp, IconTrash, IconUpload, IconX } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
 const StyledContainer = styled.div`
   display: flex;
@@ -17,12 +20,12 @@ const StyledPicture = styled.button<{ withPicture: boolean }>`
   align-items: center;
   background: ${({ disabled }) =>
     disabled
-      ? themeCssVariables.background.secondary
-      : themeCssVariables.background.transparent.light};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+      ? odelzaThemeCssVariables.background.secondary
+      : odelzaThemeCssVariables.background.transparent.light};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: content-box;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   display: flex;
   height: 66px;
@@ -40,14 +43,14 @@ const StyledPicture = styled.button<{ withPicture: boolean }>`
   }
 
   &:hover svg {
-    color: ${themeCssVariables.font.color.tertiary};
+    color: ${odelzaThemeCssVariables.font.color.tertiary};
   }
 
   &:hover {
     background: ${({ withPicture, disabled }) =>
       withPicture || disabled
         ? 'transparent'
-        : themeCssVariables.background.transparent.medium};
+        : odelzaThemeCssVariables.background.transparent.medium};
   }
 `;
 
@@ -55,28 +58,28 @@ const StyledContent = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   justify-content: start;
 
-  margin-left: ${themeCssVariables.spacing[4]};
+  margin-left: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
 
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledText = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
 `;
 
 const StyledErrorText = styled.span`
-  color: ${themeCssVariables.font.color.danger};
-  font-size: ${themeCssVariables.font.size.xs};
-  margin-top: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.danger};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledHiddenFileInput = styled.input`

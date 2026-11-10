@@ -6,10 +6,10 @@ import { Select } from '@/ui/input/components/Select';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledSectionContainer = styled.div`
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   width: auto;
 `;
 

@@ -6,7 +6,10 @@ import { TableCell } from '@/ui/layout/table/components/TableCell';
 import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { useIcons } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { type Skill } from '~/generated-metadata/graphql';
 
@@ -39,13 +42,13 @@ export const SettingsSkillTableRow = ({
       style={{ opacity: skill.isActive ? 1 : 0.5 }}
     >
       <TableCell
-        color={themeCssVariables.font.color.primary}
-        gap={themeCssVariables.spacing[2]}
+        color={odelzaThemeCssVariables.font.color.primary}
+        gap={odelzaThemeCssVariables.spacing[2]}
         minWidth="0"
         overflow="hidden"
       >
         <StyledIconContainer>
-          <Icon size={theme.icon.size.md} color={theme.color.blue9} />
+          <Icon size={theme.icon.size.md} color={theme.color.primary9} />
         </StyledIconContainer>
         <OverflowingTextWithTooltip text={skill.label} />
       </TableCell>

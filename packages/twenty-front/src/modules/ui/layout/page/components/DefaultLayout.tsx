@@ -12,24 +12,24 @@ import { useShowFullscreen } from '@/ui/layout/fullscreen/hooks/useShowFullscree
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { styled } from '@linaria/react';
 import { Outlet } from 'react-router-dom';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 const StyledLayout = styled.div`
-  background: ${themeCssVariables.grayScale.gray3};
+  background: ${odelzaThemeCssVariables.background.secondary};
   display: flex;
   flex-direction: column;
   height: 100dvh;
   overflow: hidden;
   position: relative;
-  scrollbar-color: ${themeCssVariables.border.color.medium} transparent;
+  scrollbar-color: ${odelzaThemeCssVariables.border.color.medium} transparent;
   scrollbar-width: 4px;
   width: 100%;
 
   *::-webkit-scrollbar-thumb {
-    border-radius: ${themeCssVariables.border.radius.md};
+    border-radius: ${odelzaThemeCssVariables.border.radius.md};
   }
 
   @media print {
-    background: ${themeCssVariables.background.primary};
+    background: ${odelzaThemeCssVariables.background.primary};
     height: auto;
     min-height: 100%;
     overflow: visible;

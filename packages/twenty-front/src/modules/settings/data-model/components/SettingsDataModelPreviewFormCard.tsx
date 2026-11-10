@@ -5,7 +5,7 @@ import { StyledFormCardTitle } from '@/settings/data-model/fields/components/Sty
 import { Trans } from '@lingui/react/macro';
 import { Card, CardContent } from 'twenty-ui/surfaces';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsDataModelPreviewFormCardProps = {
   className?: string;
@@ -16,7 +16,7 @@ type SettingsDataModelPreviewFormCardProps = {
 
 const StyledPreviewContainerWrapper = styled.div`
   > * {
-    background-color: ${themeCssVariables.background.transparent.lighter};
+    background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
   }
 `;
 

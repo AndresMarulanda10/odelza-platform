@@ -1,7 +1,10 @@
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { SkeletonTheme } from 'react-loading-skeleton';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { SKELETON_LOADER_HEIGHT_SIZES } from '@/activities/components/SkeletonLoader';
 import { RecordCardBodyContainer } from '@/object-record/record-card/components/RecordCardBodyContainer';
@@ -12,24 +15,24 @@ import { useGetCurrentViewOnly } from '@/views/hooks/useGetCurrentViewOnly';
 
 const StyledSkeletonIconAndText = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledSkeletonTitle = styled.div`
-  padding-left: ${themeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledBodyContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing['0.5']};
+  gap: ${odelzaThemeCssVariables.spacing['0.5']};
   padding-bottom: 4px;
   padding-top: 4px;
 `;
 
 const StyledStaticCellSkeleton = styled.div<{ width: number; height: number }>`
-  background-color: ${themeCssVariables.background.tertiary};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.tertiary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
 
   height: ${({ height }) => height}px;
   width: ${({ width }) => width}px;

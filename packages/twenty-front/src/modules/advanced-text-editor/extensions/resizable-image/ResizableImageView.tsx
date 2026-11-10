@@ -2,7 +2,7 @@ import { styled } from '@linaria/react';
 import { type NodeViewProps, NodeViewWrapper } from '@tiptap/react';
 import React, { useCallback, useRef, useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const IMAGE_MIN_WIDTH = 32;
 const IMAGE_MAX_WIDTH = 600;
@@ -32,20 +32,20 @@ const StyledImage = styled.img`
 `;
 
 const StyledImageHandle = styled.div<{ handle: 'left' | 'right' }>`
-  background-color: ${themeCssVariables.background.primaryInverted};
-  border: 1px solid ${themeCssVariables.background.primary};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.primaryInverted};
+  border: 1px solid ${odelzaThemeCssVariables.background.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   cursor: col-resize;
-  height: ${themeCssVariables.spacing[8]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   left: ${({ handle }) =>
-    handle === 'left' ? themeCssVariables.spacing[1] : 'auto'};
+    handle === 'left' ? odelzaThemeCssVariables.spacing[1] : 'auto'};
   position: absolute;
   right: ${({ handle }) =>
-    handle === 'right' ? themeCssVariables.spacing[1] : 'auto'};
+    handle === 'right' ? odelzaThemeCssVariables.spacing[1] : 'auto'};
   top: 50%;
   transform: translateY(-50%);
 
-  width: ${themeCssVariables.spacing[2]};
+  width: ${odelzaThemeCssVariables.spacing[2]};
   z-index: 1;
 `;
 

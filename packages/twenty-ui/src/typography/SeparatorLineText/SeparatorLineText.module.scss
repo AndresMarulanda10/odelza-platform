@@ -2,23 +2,23 @@
   display: flex;
   align-items: center;
   width: 100%;
-  font-size: var(--t-font-size-md);
-  font-weight: var(--t-font-weight-semi-bold);
-  color: var(--t-font-color-extra-light);
+  font-size: var(--odz-font-size-md);
+  font-weight: var(--odz-font-weight-semi-bold);
+  color: var(--odz-font-color-extra-light);
 
   &::before,
   &::after {
     content: '';
     height: 1px;
     flex-grow: 1;
-    background: var(--t-background-transparent-light);
+    background: var(--odz-background-transparent-light);
   }
 
   &::before {
-    margin: 0 var(--t-spacing-4) 0 0;
+    margin: 0 var(--odz-spacing-4) 0 0;
   }
 
   &::after {
-    margin: 0 0 0 var(--t-spacing-4);
+    margin: 0 0 0 var(--odz-spacing-4);
   }
 }

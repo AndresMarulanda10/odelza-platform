@@ -1,18 +1,18 @@
 // Shared base replicating the deprecated Linaria StyledMenuItemBase /
 // StyledHoverableMenuItemBase static rules.
 @mixin menu-item-base {
-  --horizontal-padding: var(--t-spacing-1);
-  --vertical-padding: var(--t-spacing-2);
+  --horizontal-padding: var(--odz-spacing-1);
+  --vertical-padding: var(--odz-spacing-2);
 
   // Height and width below are sized against the content box.
   box-sizing: content-box;
   align-items: center;
   // Concentric with the md dropdown container: parent radius minus its inset.
-  border-radius: calc(var(--t-border-radius-md) - var(--t-spacing-1));
+  border-radius: calc(var(--odz-border-radius-md) - var(--odz-spacing-1));
   display: flex;
   flex-direction: row;
-  font-size: var(--t-font-size-sm);
-  gap: var(--t-spacing-2);
+  font-size: var(--odz-font-size-sm);
+  gap: var(--odz-spacing-2);
   height: calc(32px - 2 * var(--vertical-padding));
   justify-content: space-between;
   padding: var(--vertical-padding) var(--horizontal-padding);
@@ -21,7 +21,7 @@
   width: calc(100% - 2 * var(--horizontal-padding));
   background: transparent;
   transition: background 0.1s ease;
-  color: var(--t-font-color-secondary);
+  color: var(--odz-font-color-secondary);
 }
 
 // Cascade order mirrors the deprecated Linaria ternaries:
@@ -30,15 +30,15 @@
 @mixin menu-item-base-states {
   &[data-key-selected],
   &[data-focused] {
-    background: var(--t-background-transparent-light);
+    background: var(--odz-background-transparent-light);
   }
 
   &[data-accent='danger'] {
-    color: var(--t-font-color-danger);
+    color: var(--odz-font-color-danger);
   }
 
   &[data-accent='placeholder'] {
-    color: var(--t-font-color-tertiary);
+    color: var(--odz-font-color-tertiary);
   }
 
   &[data-hover-background-disabled] {
@@ -46,12 +46,12 @@
   }
 
   &[data-disabled] {
-    color: var(--t-font-color-tertiary);
+    color: var(--odz-font-color-tertiary);
     transition: none;
   }
 
   &:hover {
-    background: var(--t-background-transparent-light);
+    background: var(--odz-background-transparent-light);
   }
 
   &[data-hover-background-disabled]:hover {
@@ -59,7 +59,7 @@
   }
 
   &[data-accent='danger']:hover {
-    background: var(--t-background-transparent-danger);
+    background: var(--odz-background-transparent-danger);
   }
 
   &[data-disabled]:hover {
@@ -68,7 +68,7 @@
 
   &[data-disabled][data-key-selected]:hover,
   &[data-disabled][data-focused]:hover {
-    background: var(--t-background-transparent-light);
+    background: var(--odz-background-transparent-light);
   }
 }
 
@@ -107,7 +107,7 @@
 .hoverableMenuItemBase[data-icon-displayed-on-hover-only]
   :global(.hoverable-buttons) {
   opacity: 0;
-  right: var(--t-spacing-2);
+  right: var(--odz-spacing-2);
 }
 
 .hoverableMenuItemBase:hover :global(.hoverable-buttons) {
@@ -125,31 +125,31 @@
 .menuItemLabel {
   display: flex;
   flex-direction: row;
-  font-size: var(--t-font-size-md);
-  font-weight: var(--t-font-weight-regular);
+  font-size: var(--odz-font-size-md);
+  font-weight: var(--odz-font-weight-regular);
   overflow: hidden;
   white-space: nowrap;
 }
 
 .menuItemLabelLight {
-  color: var(--t-font-color-light);
+  color: var(--odz-font-color-light);
   display: flex;
   flex-direction: row;
-  font-size: var(--t-font-size-md);
-  font-weight: var(--t-font-weight-regular);
+  font-size: var(--odz-font-size-md);
+  font-weight: var(--odz-font-weight-regular);
   overflow: hidden;
   white-space: nowrap;
 }
 
 .noIconFiller {
-  width: var(--t-spacing-1);
+  width: var(--odz-spacing-1);
 }
 
 .menuItemLeftContent {
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: var(--t-spacing-2);
+  gap: var(--odz-spacing-2);
   min-width: 0;
   width: 100%;
 }
@@ -162,7 +162,7 @@
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: var(--t-spacing-2);
+  gap: var(--odz-spacing-2);
 }
 
 .menuItemRightContent svg {
@@ -179,25 +179,25 @@
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  margin-right: var(--t-spacing-1);
+  margin-right: var(--odz-spacing-1);
 }
 
 .menuItemContextualText {
-  color: var(--t-font-color-light);
+  color: var(--odz-font-color-light);
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
-  padding-left: var(--t-spacing-1);
+  padding-left: var(--odz-spacing-1);
   flex-shrink: 1;
   overflow: hidden;
 }
 
 .rightMenuItemContextualText {
-  color: var(--t-font-color-light);
+  color: var(--odz-font-color-light);
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
-  padding-left: var(--t-spacing-1);
+  padding-left: var(--odz-spacing-1);
   flex-shrink: 1;
   overflow: hidden;
   text-align: right;

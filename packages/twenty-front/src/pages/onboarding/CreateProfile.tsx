@@ -28,22 +28,25 @@ import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
 import { Key } from 'ts-key-enum';
 import { isDefined } from 'twenty-shared/utils';
 import { MainButton } from 'twenty-ui/input';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { z } from 'zod';
 
 const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[8]};
+  gap: ${odelzaThemeCssVariables.spacing[8]};
   max-width: 100%;
-  padding-bottom: ${themeCssVariables.spacing[4]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[4]};
   width: ${ONBOARDING_CONTENT_BLOCK_WIDTH}px;
 `;
 
 const StyledNameRow = styled.div`
   align-items: flex-end;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {

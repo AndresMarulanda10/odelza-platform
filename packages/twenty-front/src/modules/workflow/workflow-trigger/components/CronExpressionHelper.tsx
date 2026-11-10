@@ -11,7 +11,7 @@ import { t } from '@lingui/core/macro';
 import { CronExpressionParser } from 'cron-parser';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
 import { formatDateTimeString } from '~/utils/string/formatDateTimeString';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const getNextExecutions = (
   cronExpression: string,
@@ -45,39 +45,40 @@ const getNextExecutions = (
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
-  margin-top: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSection = styled.div`
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[3]} ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[3]}
+    ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledScheduleDescription = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledScheduleTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledExecutionItem = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  margin-top: ${themeCssVariables.spacing[0.5]};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  margin-top: ${odelzaThemeCssVariables.spacing[0.5]};
 `;
 
 type CronExpressionHelperProps = {

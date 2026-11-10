@@ -14,7 +14,7 @@ import { RecordIndexEmptyStateNotShared } from '@/object-record/record-index/com
 import { RecordIndexFiltersToContextStoreEffect } from '@/object-record/record-index/components/RecordIndexFiltersToContextStoreEffect';
 import { useHasCurrentViewNonReadableFields } from '@/object-record/record-index/hooks/useHasCurrentViewNonReadableFields';
 import { ViewType } from '@/views/types/ViewType';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ const StyledContainer = styled.div`
 const StyledContainerWithPadding = styled.div`
   box-sizing: border-box;
   flex: 1;
-  margin-left: ${themeCssVariables.spacing[2]};
+  margin-left: ${odelzaThemeCssVariables.spacing[2]};
   min-height: 0;
 `;
 

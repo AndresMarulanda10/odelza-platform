@@ -20,7 +20,7 @@ import { useGetCurrentViewOnly } from '@/views/hooks/useGetCurrentViewOnly';
 import { ViewOpenRecordIn } from '~/generated-metadata/graphql';
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { isDefined } from 'twenty-shared/utils';
 import { ChipVariant } from 'twenty-ui/data-display';
 import { IconEye, IconEyeOff } from 'twenty-ui/icon';
@@ -30,7 +30,7 @@ const StyledCompactIconContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-left: ${themeCssVariables.spacing[1]};
+  margin-left: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledCheckboxContainer = styled.div`

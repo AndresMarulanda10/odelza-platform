@@ -1,6 +1,6 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const SKELETON_ENTRY_COUNT = 3;
 const SKELETON_BAR_HEIGHT = '16px';
@@ -13,7 +13,7 @@ const skeletonHighlightSweep = keyframes`
 `;
 
 const StyledSkeletonBar = styled.div`
-  background-color: ${() => themeCssVariables.background.tertiary};
+  background-color: ${() => odelzaThemeCssVariables.background.tertiary};
   border-radius: ${SKELETON_BORDER_RADIUS};
   height: ${SKELETON_BAR_HEIGHT};
   overflow: hidden;
@@ -24,7 +24,7 @@ const StyledSkeletonBar = styled.div`
     background-image: linear-gradient(
       90deg,
       transparent,
-      ${() => themeCssVariables.background.transparent.lighter},
+      ${() => odelzaThemeCssVariables.background.transparent.lighter},
       transparent
     );
     content: '';
@@ -52,23 +52,23 @@ const StyledSkeletonEntry = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${() => themeCssVariables.spacing[2]};
-  padding: ${() => themeCssVariables.spacing[2]};
+  gap: ${() => odelzaThemeCssVariables.spacing[2]};
+  padding: ${() => odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
 const StyledSkeletonEntryHeader = styled.div`
   align-items: center;
   display: flex;
-  gap: ${() => themeCssVariables.spacing[2]};
-  min-height: ${() => themeCssVariables.spacing[6]};
+  gap: ${() => odelzaThemeCssVariables.spacing[2]};
+  min-height: ${() => odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledSkeletonContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${() => themeCssVariables.spacing[2]};
+  gap: ${() => odelzaThemeCssVariables.spacing[2]};
   min-height: 240px;
   width: 100%;
 `;

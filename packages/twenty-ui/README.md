@@ -23,7 +23,7 @@ import { ThemeProvider } from 'twenty-ui/theme-constants';
 import { Button } from 'twenty-ui/input';
 
 import 'twenty-ui/style.css';
-import 'twenty-ui/theme-light.css';
+import 'twenty-ui/odelza-theme-light.css';
 
 export const App = () => (
   <ThemeProvider colorScheme="light">
@@ -63,7 +63,7 @@ import { Button } from 'twenty-ui/input';
 # Theming
 
 - `twenty-ui/style.css` ships the base reset and component styles. Import it once.
-- `twenty-ui/theme-light.css` and `twenty-ui/theme-dark.css` define the design-token CSS variables for each color scheme.
+- `twenty-ui/odelza-theme-light.css` and `twenty-ui/odelza-theme-dark.css` define the design-token CSS variables for each color scheme.
 - `ThemeProvider` exposes the active theme through `useTheme()` and applies the `light` / `dark` class. Pass `applyToRoot={false}` with `overrides` to scope a theme to a subtree instead of the document root.
 
 # Development

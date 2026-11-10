@@ -12,7 +12,7 @@ import {
   IconMail,
   IconWorld,
 } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export type ContentEntry = {
   icon: IconComponent;
@@ -45,7 +45,7 @@ const StyledSidebar = styled.div`
 `;
 
 const StyledSidebarSection = styled.div`
-  padding: ${themeCssVariables.spacing[3]} 0;
+  padding: ${odelzaThemeCssVariables.spacing[3]} 0;
 
   &:first-of-type {
     padding-top: 0;
@@ -53,31 +53,31 @@ const StyledSidebarSection = styled.div`
 `;
 
 const StyledSidebarLabel = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSidebarValue = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledContentList = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledLink = styled.a`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[2]};
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
   text-decoration: none;
 
   &:hover {

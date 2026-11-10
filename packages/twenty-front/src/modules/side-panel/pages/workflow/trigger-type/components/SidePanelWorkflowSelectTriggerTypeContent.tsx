@@ -85,7 +85,7 @@ export const SidePanelWorkflowSelectTriggerTypeContent = () => {
           <MenuItem
             withIconContainer={true}
             key={action.defaultLabel}
-            LeftIcon={() => <Icon color={theme.color.blue} size={16} />}
+            LeftIcon={() => <Icon color={theme.color.primary} size={16} />}
             text={action.defaultLabel}
             onClick={handleTriggerTypeClick(action)}
           />

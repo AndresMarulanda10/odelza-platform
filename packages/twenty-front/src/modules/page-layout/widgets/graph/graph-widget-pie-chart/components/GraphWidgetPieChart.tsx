@@ -28,7 +28,10 @@ import {
   useRef,
 } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { type PieChartConfiguration } from '~/generated-metadata/graphql';
 
 type GraphWidgetPieChartProps = {
@@ -139,7 +142,7 @@ export const GraphWidgetPieChart = ({
 
   const chartData = hasNoData ? emptyStateData : enrichedData;
   const chartColors = hasNoData
-    ? [themeCssVariables.background.tertiary]
+    ? [odelzaThemeCssVariables.background.tertiary]
     : enrichedData.map((item) => item.colorScheme.solid);
   const pieChartPadAngle = hasNoData || enrichedData.length <= 1 ? 0 : 0.4;
 
@@ -207,13 +210,13 @@ export const GraphWidgetPieChart = ({
             }}
             arcLinkLabelsDiagonalLength={10}
             arcLinkLabelsStraightLength={10}
-            arcLinkLabelsTextColor={themeCssVariables.font.color.light}
-            arcLinkLabelsColor={themeCssVariables.font.color.extraLight}
+            arcLinkLabelsTextColor={odelzaThemeCssVariables.font.color.light}
+            arcLinkLabelsColor={odelzaThemeCssVariables.font.color.extraLight}
             theme={{
               labels: {
                 text: {
-                  fontSize: themeCssVariables.font.size.sm,
-                  fontWeight: themeCssVariables.font.weight.medium,
+                  fontSize: odelzaThemeCssVariables.font.size.sm,
+                  fontWeight: odelzaThemeCssVariables.font.weight.medium,
                 },
               },
             }}

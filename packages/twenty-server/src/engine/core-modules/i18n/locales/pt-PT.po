@@ -143,10 +143,10 @@ msgstr "Uma função com este nome já existe."
 msgid "A hand-picked audience of people"
 msgstr "Um público de pessoas selecionado manualmente"
 
-#. js-lingui-id: TF/ZV2
+#. js-lingui-id: /baemW
 #: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "A heads up before your Twenty trial ends"
-msgstr "Um aviso antes do fim do seu período de teste do Twenty"
+msgid "A heads up before your Odelza trial ends"
+msgstr "Um aviso antes do fim do seu período de teste do Odelza"
 
 #. js-lingui-id: 6yZjO1
 #: src/engine/core-modules/application/application.exception.ts
@@ -3489,6 +3489,16 @@ msgstr "Tipo de configuração inválido para o widget de texto rico independent
 msgid "Invalid configuration type for standalone rich text widget \"{widgetTitle}\". Expected STANDALONE_RICH_TEXT, got {configurationTypeString}"
 msgstr "Tipo de configuração inválido para o widget de rich text independente \"{widgetTitle}\". Esperado STANDALONE_RICH_TEXT, obtido {configurationTypeString}"
 
+#. js-lingui-id: q+6rbB
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Invalid configuration type for view widget"
+msgstr ""
+
+#. js-lingui-id: eLXKNE
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Invalid configuration type for view widget \"{widgetTitle}\". Expected VIEW"
+msgstr ""
+
 #. js-lingui-id: IptMRL
 #: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-simple-record-page-widget-for-creation.util.ts
 #: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-simple-record-page-widget-for-update.util.ts
@@ -4083,6 +4093,16 @@ msgstr "Código de verificação inválido."
 msgid "Invalid verification code. Please try again."
 msgstr "Código de verificação inválido. Por favor, tente novamente."
 
+#. js-lingui-id: Lww+CJ
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Invalid view reference for view widget"
+msgstr ""
+
+#. js-lingui-id: SpLKMj
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Invalid view reference for view widget \"{widgetTitle}\""
+msgstr ""
+
 #. js-lingui-id: UV7Pll
 #: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-fields-flat-page-layout-widget-for-creation.util.ts
 msgid "Invalid viewUniversalIdentifier for fields widget"
@@ -4207,10 +4227,10 @@ msgstr "O nome da coluna de junção é obrigatório."
 msgid "Join table linking message channel message associations to message folders"
 msgstr "Tabela de junção que liga as associações de mensagens do canal de mensagens às pastas de mensagens"
 
-#. js-lingui-id: PviVyk
+#. js-lingui-id: vUa5JX
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
-msgid "Join your team on Twenty"
-msgstr "Junte-se à sua equipa no Twenty"
+msgid "Join your team on Odelza"
+msgstr "Junte-se à sua equipa no Odelza"
 
 #. js-lingui-id: ffWso3
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-call-recording-standard-flat-field-metadata.util.ts
@@ -6266,6 +6286,26 @@ msgstr "Resumo da gravação"
 msgid "Recurring Event ID"
 msgstr "ID do evento recorrente"
 
+#. js-lingui-id: /Lq8ju
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Referenced view belongs to another object"
+msgstr ""
+
+#. js-lingui-id: eItpvD
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Referenced view is inactive"
+msgstr ""
+
+#. js-lingui-id: txJXD5
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Referenced view is not a Kanban view"
+msgstr ""
+
+#. js-lingui-id: RfGnMo
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "Referenced view was not found"
+msgstr ""
+
 #. js-lingui-id: 1GvzpH
 #: src/engine/metadata-modules/connected-account/exceptions/connected-account-refresh-tokens.exception.ts
 msgid "Refresh token not found."
@@ -6721,11 +6761,6 @@ msgstr "Metadados do campo de pesquisa com id {searchFieldMetadataId} já existe
 msgid "Search field metadata with same fieldMetadataId and objectMetadataId already exists"
 msgstr "Metadados do campo de pesquisa com o mesmo fieldMetadataId e objectMetadataId já existem"
 
-#. js-lingui-id: K3jNeK
-#: src/engine/core-modules/tool-provider/constants/action-tool-label.constant.ts
-msgid "Search Help Center"
-msgstr "Pesquisar no Centro de Ajuda"
-
 #. js-lingui-id: PdVIJC
 #: src/engine/metadata-modules/search-field-metadata/constants/search-vector-field.constants.ts
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-attachment-standard-flat-field-metadata.util.ts
@@ -7116,10 +7151,10 @@ msgstr "Campos do sistema não podem ser excluídos"
 msgid "System fields cannot be updated"
 msgstr "Campos do sistema não podem ser atualizados"
 
-#. js-lingui-id: aK2k19
+#. js-lingui-id: nkalOB
 #: src/engine/metadata-modules/index-metadata/services/index-metadata.service.ts
-msgid "System indexes are required for Twenty to work and cannot be deleted."
-msgstr "Índices de sistema são necessários para o Twenty funcionar e não podem ser excluídos."
+msgid "System indexes are required for Odelza to work and cannot be deleted."
+msgstr "Índices de sistema são necessários para o Odelza funcionar e não podem ser excluídos."
 
 #. js-lingui-id: /ojawH
 #: src/engine/workspace-manager/workspace-migration/workspace-migration-builder/validators/services/flat-object-metadata-validator.service.ts
@@ -7765,11 +7800,11 @@ msgstr "Esta chave API expirou. Por favor, crie uma nova."
 msgid "This API key has no role assigned."
 msgstr "Esta chave de API não tem função atribuída."
 
-#. js-lingui-id: zISk4k
+#. js-lingui-id: /3C8Hb
 #: src/engine/core-modules/application/application-registration/application-registration.exception.ts
 #: src/engine/core-modules/application/application.exception.ts
-msgid "This app requires a newer version of the Twenty server. Please upgrade your server or use a compatible app version."
-msgstr "Este aplicativo requer uma versão mais recente do servidor Twenty. Atualize o seu servidor ou use uma versão do aplicativo compatível."
+msgid "This app requires a newer version of the Odelza server. Please upgrade your server or use a compatible app version."
+msgstr "Este aplicativo requer uma versão mais recente do servidor Odelza. Atualize o seu servidor ou use uma versão do aplicativo compatível."
 
 #. js-lingui-id: y2nks/
 #: src/engine/core-modules/application/application.exception.ts
@@ -8544,6 +8579,26 @@ msgstr "Vídeo"
 msgid "Video recording"
 msgstr "Gravação de vídeo"
 
+#. js-lingui-id: HAMZ1j
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "View {viewUniversalIdentifier} referenced by widget \"{widgetTitle}\" belongs to another object"
+msgstr ""
+
+#. js-lingui-id: 2sopGW
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "View {viewUniversalIdentifier} referenced by widget \"{widgetTitle}\" is inactive"
+msgstr ""
+
+#. js-lingui-id: U28q2V
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "View {viewUniversalIdentifier} referenced by widget \"{widgetTitle}\" is not a Kanban view"
+msgstr ""
+
+#. js-lingui-id: ZsRhTP
+#: src/engine/metadata-modules/flat-page-layout-widget/validators/utils/validate-view-flat-page-layout-widget.util.ts
+msgid "View {viewUniversalIdentifier} referenced by widget \"{widgetTitle}\" was not found"
+msgstr ""
+
 #. js-lingui-id: HhN1Bv
 #: src/engine/workspace-manager/workspace-migration/workspace-migration-builder/validators/services/flat-view-validator.service.ts
 msgid "View already exists"
@@ -8965,10 +9020,10 @@ msgstr "Webhook não encontrado."
 msgid "Wednesday"
 msgstr "Quarta-feira"
 
-#. js-lingui-id: TVkCrJ
+#. js-lingui-id: ZnbxL+
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
-msgid "Welcome to Twenty: Please Confirm Your Email"
-msgstr "Bem-vindo ao Twenty: Por favor, confirme seu e-mail"
+msgid "Welcome to Odelza: Please Confirm Your Email"
+msgstr "Bem-vindo ao Odelza: Por favor, confirme seu e-mail"
 
 #. js-lingui-id: nCHI/F
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-message-campaign-standard-flat-field-metadata.util.ts
@@ -9019,12 +9074,6 @@ msgstr "O tipo de posição do widget deve corresponder ao modo de layout da aba
 #: src/engine/metadata-modules/page-layout-widget/utils/validate-widget-grid-position.util.ts
 msgid "Widget row exceeds grid height"
 msgstr "A linha do widget excede a altura da grade"
-
-#. js-lingui-id: rL2haJ
-#: src/engine/metadata-modules/flat-page-layout-widget/services/flat-page-layout-widget-type-validator.service.ts
-#: src/engine/metadata-modules/flat-page-layout-widget/services/flat-page-layout-widget-type-validator.service.ts
-msgid "Widget type VIEW is not supported yet."
-msgstr "O tipo de widget VIEW ainda não é suportado."
 
 #. js-lingui-id: qRILxq
 #: src/engine/metadata-modules/view-field-group/constants/standard-view-field-group-names.ts
@@ -9274,11 +9323,6 @@ msgstr "Incompatibilidade entre ID do espaço de trabalho e função."
 #: src/engine/core-modules/auth/services/sign-in-up.service.ts
 msgid "Workspace is not ready to welcome new members"
 msgstr "Espaço de trabalho não está pronto para receber novos membros"
-
-#. js-lingui-id: iN7doz
-#: src/engine/core-modules/auth/services/sign-in-up.service.ts
-msgid "Workspace limit reached. A valid enterprise key is required to create more workspaces."
-msgstr "Limite de espaços de trabalho atingido. É necessária uma chave corporativa válida para criar mais espaços de trabalho."
 
 #. js-lingui-id: CbGxon
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-message-participant-standard-flat-field-metadata.util.ts
@@ -9648,6 +9692,16 @@ msgstr "A versão do seu aplicativo está desatualizada. Por favor, atualize a p
 msgid "Your billing subscription is corrupted. Please contact support."
 msgstr "Sua assinatura de cobrança está corrompida. Por favor, entre em contato com o suporte."
 
+#. js-lingui-id: +R4Ipy
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza plan renews soon"
+msgstr "O seu plano Odelza será renovado em breve"
+
+#. js-lingui-id: IvAgJP
+#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
+msgid "Your Odelza trial is ending soon"
+msgstr "O seu período de teste do Odelza termina em breve"
+
 #. js-lingui-id: bTyBrW
 #: src/engine/core-modules/auth/services/auth.service.ts
 msgid "Your Password Has Been Successfully Changed"
@@ -9664,16 +9718,6 @@ msgstr "Seu papel nesta área de trabalho não pôde ser encontrado. Por favor, 
 #: src/engine/workspace-manager/twenty-standard-application/utils/field-metadata/compute-company-standard-flat-field-metadata.util.ts
 msgid "Your team member responsible for managing the company account"
 msgstr "O membro da sua equipa responsável pela gestão da conta da empresa"
-
-#. js-lingui-id: sOfbGC
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty plan renews soon"
-msgstr "O seu plano Twenty será renovado em breve"
-
-#. js-lingui-id: qW+K5e
-#: src/engine/core-modules/billing/reminders/services/billing-reminder.service.ts
-msgid "Your Twenty trial is ending soon"
-msgstr "O seu período de teste do Twenty termina em breve"
 
 #. js-lingui-id: ej/tZF
 #: src/engine/core-modules/graphql/hooks/use-graphql-error-handler.hook.ts

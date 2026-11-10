@@ -2,22 +2,25 @@ import { styled } from '@linaria/react';
 import { Trans } from '@lingui/react/macro';
 import { useContext } from 'react';
 import { IconLock } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.transparent.light};
+  background: ${odelzaThemeCssVariables.background.transparent.light};
 
-  border-radius: ${themeCssVariables.border.radius.md};
-  color: ${themeCssVariables.font.color.tertiary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: inline-flex;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[5]};
-  line-height: ${themeCssVariables.text.lineHeight.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[5]};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.md};
   overflow: hidden;
-  padding: 0 ${themeCssVariables.spacing[1]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
   user-select: none;
   white-space: nowrap;
 `;

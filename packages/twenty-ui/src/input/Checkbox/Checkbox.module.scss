@@ -3,11 +3,11 @@
   --checkbox-icon-size: 14px;
   --checkbox-border-width: 1px;
   --checkbox-bg: transparent;
-  --checkbox-border-color: var(--t-border-color-secondary-inverted);
-  --checkbox-box-radius: var(--t-border-radius-sm-round);
+  --checkbox-border-color: var(--odz-border-color-secondary-inverted);
+  --checkbox-box-radius: var(--odz-border-radius-sm-round);
 
   align-items: center;
-  border-radius: var(--t-border-radius-md-round);
+  border-radius: var(--odz-border-radius-md-round);
   corner-shape: round;
   cursor: pointer;
   display: flex;
@@ -16,15 +16,15 @@
 }
 
 .primary {
-  --checkbox-border-color: var(--t-border-color-inverted);
+  --checkbox-border-color: var(--odz-border-color-inverted);
 }
 
 .secondary {
-  --checkbox-border-color: var(--t-border-color-secondary-inverted);
+  --checkbox-border-color: var(--odz-border-color-secondary-inverted);
 }
 
 .tertiary {
-  --checkbox-border-color: var(--t-border-color-medium);
+  --checkbox-border-color: var(--odz-border-color-medium);
   --checkbox-border-width: 1.43px;
 }
 
@@ -40,29 +40,29 @@
 }
 
 .squared {
-  --checkbox-box-radius: var(--t-border-radius-sm-round);
+  --checkbox-box-radius: var(--odz-border-radius-sm-round);
 
-  border-radius: var(--t-border-radius-md-round);
+  border-radius: var(--odz-border-radius-md-round);
 }
 
 .rounded {
-  --checkbox-box-radius: var(--t-border-radius-rounded);
+  --checkbox-box-radius: var(--odz-border-radius-rounded);
 
-  border-radius: var(--t-border-radius-rounded);
+  border-radius: var(--odz-border-radius-rounded);
 
   corner-shape: round;
 }
 
-.blue {
-  --checkbox-accent: var(--t-color-blue);
-  --checkbox-accent-disabled: var(--t-color-blue7);
-  --checkbox-accent-hover: var(--t-background-transparent-blue);
+.accentPrimary {
+  --checkbox-accent: var(--odz-color-primary);
+  --checkbox-accent-disabled: var(--odz-color-primary7);
+  --checkbox-accent-hover: var(--odz-background-transparent-accent);
 }
 
 .orange {
-  --checkbox-accent: var(--t-color-orange);
-  --checkbox-accent-disabled: var(--t-color-orange7);
-  --checkbox-accent-hover: var(--t-background-transparent-orange);
+  --checkbox-accent: var(--odz-color-orange);
+  --checkbox-accent-disabled: var(--odz-color-orange7);
+  --checkbox-accent-hover: var(--odz-background-transparent-orange);
 }
 
 .hoverable {
@@ -74,7 +74,7 @@
 }
 
 .hoverable:hover {
-  background-color: var(--t-background-transparent-light);
+  background-color: var(--odz-background-transparent-light);
 }
 
 .hoverable[data-checked]:hover,
@@ -84,7 +84,7 @@
 
 // Disabled border falls back to the strong border color unless checked (see below).
 .root[data-disabled] {
-  --checkbox-border-color: var(--t-border-color-strong);
+  --checkbox-border-color: var(--odz-border-color-strong);
 
   cursor: not-allowed;
 }
@@ -140,6 +140,6 @@
 .indicator svg {
   display: block;
   height: 100%;
-  stroke: var(--t-font-color-inverted);
+  stroke: var(--odz-font-color-inverted);
   width: 100%;
 }

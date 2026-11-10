@@ -9,10 +9,7 @@
 
 export { ClickToActionLink } from './ClickToActionLink/ClickToActionLink';
 export { ContactLink } from './ContactLink/ContactLink';
-export { GithubVersionLink } from './GithubVersionLink/GithubVersionLink';
 export { CAL_LINK } from './Link/constants/Cal';
-export { GITHUB_LINK } from './Link/constants/GithubLink';
-export { TWENTY_PRICING_LINK } from './Link/constants/TwentyPricingLink';
 export type { ColorLabels } from './MenuItem/constants/DefaultColorLabels';
 export { DEFAULT_COLOR_LABELS } from './MenuItem/constants/DefaultColorLabels';
 export type { MenuItemIconButton, MenuItemProps } from './MenuItem/MenuItem';

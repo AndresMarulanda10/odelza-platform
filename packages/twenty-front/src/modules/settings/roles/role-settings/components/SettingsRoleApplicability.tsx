@@ -6,27 +6,30 @@ import { H2Title } from 'twenty-ui/typography';
 import { Checkbox } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledCheckboxContainer = styled.div<{ disabled: boolean }>`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   display: flex;
   justify-content: space-between;
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
   transition: background-color
-    calc(${themeCssVariables.animation.duration.normal} * 1s) ease;
+    calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s) ease;
 
   &:hover {
-    background-color: ${themeCssVariables.background.transparent.light};
+    background-color: ${odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 
 const StyledCheckboxLabel = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type SettingsRoleApplicabilityValues = {

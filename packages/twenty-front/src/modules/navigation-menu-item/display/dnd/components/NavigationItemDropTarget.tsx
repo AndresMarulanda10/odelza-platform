@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { type ReactNode, useContext } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { type NavigationSections } from '@/navigation-menu-item/common/constants/NavigationSections.constants';
 import { NavigationDropTargetContext } from '@/navigation-menu-item/common/contexts/NavigationDropTargetContext';
@@ -10,12 +10,12 @@ const StyledDropTarget = styled.div<{
   $highlightPosition?: 'top' | 'bottom';
 }>`
   min-height: ${({ $compact }) =>
-    $compact ? 0 : themeCssVariables.spacing[2]};
+    $compact ? 0 : odelzaThemeCssVariables.spacing[2]};
   position: relative;
   transition: all 150ms ease-in-out;
 
   &[data-drag-over='true'] {
-    background-color: ${themeCssVariables.background.transparent.blue};
+    background-color: ${odelzaThemeCssVariables.background.transparent.accent};
 
     &::before {
       content: '';
@@ -23,18 +23,18 @@ const StyledDropTarget = styled.div<{
       left: 0;
       width: 100%;
       height: 2px;
-      background-color: ${themeCssVariables.color.blue};
+      background-color: ${odelzaThemeCssVariables.color.primary};
       ${({ $highlightPosition }) =>
         $highlightPosition === 'top'
           ? `
       top: 0;
-      border-radius: 0 0 ${themeCssVariables.border.radius.sm}
-        ${themeCssVariables.border.radius.sm};
+      border-radius: 0 0 ${odelzaThemeCssVariables.border.radius.sm}
+        ${odelzaThemeCssVariables.border.radius.sm};
       `
           : `
       bottom: 0;
-      border-radius: ${themeCssVariables.border.radius.sm}
-        ${themeCssVariables.border.radius.sm} 0 0;
+      border-radius: ${odelzaThemeCssVariables.border.radius.sm}
+        ${odelzaThemeCssVariables.border.radius.sm} 0 0;
       `}
     }
   }

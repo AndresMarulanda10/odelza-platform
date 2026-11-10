@@ -1,10 +1,10 @@
 .modal {
   display: flex;
   flex-direction: column;
-  box-shadow: var(--t-box-shadow-strong);
-  background: var(--t-background-primary);
-  color: var(--t-font-color-primary);
-  border-radius: var(--t-border-radius-md);
+  box-shadow: var(--odz-box-shadow-strong);
+  background: var(--odz-background-primary);
+  color: var(--odz-font-color-primary);
+  border-radius: var(--odz-border-radius-md);
   overflow-x: hidden;
   overflow-y: auto;
   z-index: var(--modal-z-index, 40);
@@ -27,44 +27,44 @@
 // isMobile > overlay and smallBorderRadius > size
 
 .small {
-  width: var(--t-modal-size-sm-width);
+  width: var(--odz-modal-size-sm-width);
 }
 
 .medium {
-  width: var(--t-modal-size-md-width);
+  width: var(--odz-modal-size-md-width);
 }
 
 .large {
-  width: var(--t-modal-size-lg-width);
+  width: var(--odz-modal-size-lg-width);
 }
 
 .extraLarge {
-  width: var(--t-modal-size-xl-width);
-  height: var(--t-modal-size-xl-height);
+  width: var(--odz-modal-size-xl-width);
+  height: var(--odz-modal-size-xl-height);
 }
 
 .paddingNone {
-  padding: var(--t-spacing-0);
+  padding: var(--odz-spacing-0);
 }
 
 .paddingSmall {
-  padding: var(--t-spacing-2);
+  padding: var(--odz-spacing-2);
 }
 
 .paddingMedium {
-  padding: var(--t-spacing-4);
+  padding: var(--odz-spacing-4);
 }
 
 .paddingLarge {
-  padding: var(--t-spacing-6);
+  padding: var(--odz-spacing-6);
 }
 
 .overlayDark {
-  box-shadow: var(--t-box-shadow-super-heavy);
+  box-shadow: var(--odz-box-shadow-super-heavy);
 }
 
 .smallBorderRadius {
-  border-radius: var(--t-spacing-1);
+  border-radius: var(--odz-spacing-1);
 }
 
 .overlayTransparent {
@@ -75,13 +75,13 @@
 
 .mobile {
   border-radius: 0;
-  width: var(--t-modal-size-fullscreen-width);
-  height: var(--t-modal-size-fullscreen-height);
+  width: var(--odz-modal-size-fullscreen-width);
+  height: var(--odz-modal-size-fullscreen-height);
   max-height: none;
 }
 
 .narrowWidth {
-  width: calc(400px - var(--t-spacing-32));
+  width: calc(400px - var(--odz-spacing-32));
 }
 
 .autoHeight {
@@ -90,9 +90,9 @@
 
 .fullscreen {
   box-shadow: none;
-  background: var(--t-background-primary);
+  background: var(--odz-background-primary);
   border-radius: 0;
-  width: var(--t-modal-size-fullscreen-width);
-  height: var(--t-modal-size-fullscreen-height);
+  width: var(--odz-modal-size-fullscreen-width);
+  height: var(--odz-modal-size-fullscreen-height);
   max-height: none;
 }

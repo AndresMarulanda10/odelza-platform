@@ -16,14 +16,14 @@ import { isDefined } from 'twenty-shared/utils';
 
 import { CustomSideMenuOptions } from '@/blocknote-editor/components/CustomSideMenuOptions';
 import { type DASHBOARD_BLOCK_SCHEMA } from '@/page-layout/widgets/standalone-rich-text/constants/DashboardBlockSchema';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type DashboardEditorSideMenuProps = {
   editor: typeof DASHBOARD_BLOCK_SCHEMA.BlockNoteEditor;
 };
 
 const StyledDivToCreateGap = styled.div`
-  width: ${themeCssVariables.spacing[2]};
+  width: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const DashboardAddBlockItem = ({

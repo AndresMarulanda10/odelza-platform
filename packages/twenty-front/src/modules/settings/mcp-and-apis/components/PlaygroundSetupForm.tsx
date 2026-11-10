@@ -9,7 +9,7 @@ import { useLingui } from '@lingui/react/macro';
 import { Controller, useForm } from 'react-hook-form';
 import { IconApi, IconBrandGraphql } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { z } from 'zod';
 
 const playgroundSetupFormSchema = z.object({
@@ -22,7 +22,7 @@ type PlaygroundSetupFormValues = z.infer<typeof playgroundSetupFormSchema>;
 const StyledForm = styled.form`
   align-items: end;
   display: grid;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   grid-template-columns: 1fr 1fr auto;
   width: 100%;
 `;
@@ -91,7 +91,7 @@ export const PlaygroundSetupForm = () => {
       <Button
         title={t`Launch`}
         variant="primary"
-        accent="blue"
+        accent="primary"
         type="submit"
         disabled={isSubmitting}
       />

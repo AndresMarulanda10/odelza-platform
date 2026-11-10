@@ -5,7 +5,7 @@ import { useFieldFocus } from '@/object-record/record-field/ui/hooks/useFieldFoc
 import { useRecordInlineCellContext } from '@/object-record/record-inline-cell/components/RecordInlineCellContext';
 import { RecordInlineCellDisplayMode } from '@/object-record/record-inline-cell/components/RecordInlineCellDisplayMode';
 import { RecordInlineCellSkeletonLoader } from '@/object-record/record-inline-cell/components/RecordInlineCellSkeletonLoader';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledClickableContainer = styled.div<{
   readonly?: boolean;
@@ -14,7 +14,7 @@ const StyledClickableContainer = styled.div<{
   align-items: center;
   cursor: ${({ readonly }) => (readonly ? 'default' : 'pointer')};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 
   justify-content: ${({ isCentered }) =>
     isCentered === true ? 'center' : 'normal'};

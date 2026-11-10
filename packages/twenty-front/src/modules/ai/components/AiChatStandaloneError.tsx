@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { AiChatErrorRenderer } from '@/ai/components/AiChatErrorRenderer';
 import { agentChatErrorComponentFamilyState } from '@/ai/states/agentChatErrorComponentFamilyState';
@@ -16,7 +16,7 @@ const StyledErrorContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
   width: 100%;
 `;
 

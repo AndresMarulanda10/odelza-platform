@@ -4,7 +4,7 @@ import { isDefined } from 'twenty-shared/utils';
 import { workflowRunStepLogSchema } from 'twenty-shared/workflow';
 import { IconInfoCircle } from 'twenty-ui/icon';
 import { isTwoFirstDepths, JsonTree } from 'twenty-ui/json-visualizer';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type JsonValue } from 'type-fest';
 
 import { useFlowOrThrow } from '@/workflow/hooks/useFlowOrThrow';
@@ -22,28 +22,31 @@ const StyledRoot = styled.div`
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   overflow: hidden scroll;
-  padding: ${themeCssVariables.spacing[4]} ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[4]}
+    ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledEmptyState = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex-direction: column;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[8]} ${themeCssVariables.spacing[3]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[8]}
+    ${odelzaThemeCssVariables.spacing[3]};
   text-align: center;
 `;
 
 const StyledTruncatedNotice = styled.div`
-  background: ${themeCssVariables.background.transparent.orange};
-  border-radius: ${themeCssVariables.border.radius.sm};
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.xs};
-  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[3]};
+  background: ${odelzaThemeCssVariables.background.transparent.orange};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  padding: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 export const WorkflowRunStepLogsDetail = ({ stepId }: { stepId: string }) => {

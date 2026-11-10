@@ -6,18 +6,18 @@
 .button {
   align-items: center;
   backdrop-filter: var(--floating-button-backdrop-filter, none);
-  background: var(--t-background-primary);
+  background: var(--odz-background-primary);
   border: var(--floating-button-border, none);
-  border-radius: var(--floating-button-radius, var(--t-border-radius-md));
+  border-radius: var(--floating-button-radius, var(--odz-border-radius-md));
   box-shadow: var(--floating-button-box-shadow, none);
-  color: var(--floating-button-color, var(--t-font-color-secondary));
+  color: var(--floating-button-color, var(--odz-font-color-secondary));
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  font-family: var(--t-font-family);
-  font-weight: var(--t-font-weight-regular);
-  gap: var(--t-spacing-1);
-  padding: 0 var(--t-spacing-2);
+  font-family: var(--odz-font-family);
+  font-weight: var(--odz-font-weight-regular);
+  gap: var(--odz-spacing-1);
+  padding: 0 var(--odz-spacing-2);
   text-decoration: none;
   transition: background 0.1s ease;
   white-space: nowrap;
@@ -25,14 +25,14 @@
   &:hover {
     background: var(
       --floating-button-hover-bg,
-      var(--t-background-transparent-lighter)
+      var(--odz-background-transparent-lighter)
     );
   }
 
   &:active {
     background: var(
       --floating-button-active-bg,
-      var(--t-background-transparent-medium)
+      var(--odz-background-transparent-medium)
     );
   }
 
@@ -57,8 +57,8 @@
 
 // position only reshapes the radius; standalone keeps the .button default.
 .button[data-position='left'] {
-  --floating-button-radius: var(--t-border-radius-md) 0px 0px
-    var(--t-border-radius-md);
+  --floating-button-radius: var(--odz-border-radius-md) 0px 0px
+    var(--odz-border-radius-md);
 }
 
 .button[data-position='middle'] {
@@ -66,8 +66,8 @@
 }
 
 .button[data-position='right'] {
-  --floating-button-radius: 0px var(--t-border-radius-md)
-    var(--t-border-radius-md) 0px;
+  --floating-button-radius: 0px var(--odz-border-radius-md)
+    var(--odz-border-radius-md) 0px;
 }
 
 .button[data-apply-blur] {
@@ -78,27 +78,27 @@
 // shadow+focus — the combined rule comes last so it wins the cascade.
 .button[data-apply-shadow] {
   --floating-button-box-shadow:
-    0px 2px 4px 0px var(--t-background-transparent-light),
-    0px 0px 4px 0px var(--t-background-transparent-medium);
+    0px 2px 4px 0px var(--odz-background-transparent-light),
+    0px 0px 4px 0px var(--odz-background-transparent-medium);
 }
 
 // focus is gated by !disabled in the component, like the legacy call-site.
 .button[data-focus] {
-  --floating-button-border: 1px solid var(--t-color-blue);
-  --floating-button-box-shadow: 0 0 0 3px var(--t-color-blue3);
-  --floating-button-color: var(--t-color-blue);
+  --floating-button-border: 1px solid var(--odz-color-primary);
+  --floating-button-box-shadow: 0 0 0 3px var(--odz-color-primary3);
+  --floating-button-color: var(--odz-color-primary);
 }
 
 .button[data-apply-shadow][data-focus] {
   --floating-button-box-shadow:
-    0px 2px 4px 0px var(--t-background-transparent-light),
-    0px 0px 4px 0px var(--t-background-transparent-medium),
-    0 0 0 3px var(--t-color-blue3);
+    0px 2px 4px 0px var(--odz-background-transparent-light),
+    0px 0px 4px 0px var(--odz-background-transparent-medium),
+    0 0 0 3px var(--odz-color-primary3);
 }
 
 // disabled comes last: it beats focus in the legacy color ternary.
 .button[data-disabled] {
-  --floating-button-color: var(--t-font-color-extra-light);
+  --floating-button-color: var(--odz-font-color-extra-light);
   --floating-button-hover-bg: transparent;
   --floating-button-active-bg: transparent;
 }

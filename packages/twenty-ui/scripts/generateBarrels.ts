@@ -220,8 +220,8 @@ const generateModulePackageExports = (moduleDirectories: string[]) => {
     },
     {
       './style.css': './dist/style.css',
-      './theme-light.css': './dist/theme-light.css',
-      './theme-dark.css': './dist/theme-dark.css',
+      './odelza-theme-light.css': './dist/odelza-theme-light.css',
+      './odelza-theme-dark.css': './dist/odelza-theme-dark.css',
     },
   );
 };

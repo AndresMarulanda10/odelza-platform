@@ -27,8 +27,8 @@ import { UserContext } from '../src/modules/users/contexts/UserContext';
 
 import 'react-loading-skeleton/dist/skeleton.css';
 import 'twenty-ui/style.css';
-import 'twenty-ui/theme-light.css';
-import 'twenty-ui/theme-dark.css';
+import 'twenty-ui/odelza-theme-light.css';
+import 'twenty-ui/odelza-theme-dark.css';
 import { ThemeProvider } from 'twenty-ui/theme-constants';
 // oxlint-disable-next-line no-restricted-imports
 import { messages as enMessages } from '../src/locales/generated/en';
@@ -117,11 +117,31 @@ const waitForInterFontLoadedBeforeScreenshot = async () => {
 };
 
 const preview: Preview = {
+  globalTypes: {
+    colorScheme: {
+      description: 'Odelza color scheme',
+      toolbar: {
+        title: 'Theme',
+        icon: 'mirror',
+        items: [
+          { value: 'light', title: 'Light' },
+          { value: 'dark', title: 'Dark' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
+  initialGlobals: {
+    colorScheme: 'light',
+  },
   decorators: [
-    (Story) => {
+    (Story, context) => {
+      const colorScheme =
+        context.globals.colorScheme === 'dark' ? 'dark' : 'light';
+
       return (
         <I18nProvider i18n={i18n}>
-          <ThemeProvider colorScheme="light">
+          <ThemeProvider key={colorScheme} colorScheme={colorScheme}>
             <FileUploadProvider>
               <ClickOutsideListenerContext.Provider
                 value={{ excludedClickOutsideId: undefined }}

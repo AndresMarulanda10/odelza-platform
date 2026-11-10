@@ -4,7 +4,10 @@ import { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconTrendingDown, IconTrendingUp } from 'twenty-ui/icon';
 import { H1Title, H1TitleFontColor } from 'twenty-ui/typography';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 type GraphWidgetAggregateChartProps = {
   value: string | number;
   trendPercentage?: number;
@@ -13,10 +16,10 @@ type GraphWidgetAggregateChartProps = {
 };
 
 const StyledTrendPercentageValue = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  margin-right: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  margin-right: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledContainer = styled.div`
@@ -35,7 +38,7 @@ const StyledTrendIconContainer = styled.div`
 
 const StyledH1TitleWrapper = styled.div`
   > h2 {
-    font-size: ${themeCssVariables.font.size.xxl};
+    font-size: ${odelzaThemeCssVariables.font.size.xxl};
     margin: 0;
   }
 `;

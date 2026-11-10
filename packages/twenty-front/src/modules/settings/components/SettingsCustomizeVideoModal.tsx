@@ -5,7 +5,7 @@ import { styled } from '@linaria/react';
 import { useState } from 'react';
 import { type IconComponent, IconX } from 'twenty-ui/icon';
 import { IconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export type SettingsCustomizeVideoModalTab = {
   id: string;
@@ -23,29 +23,29 @@ type SettingsCustomizeVideoModalProps = {
 const StyledHeader = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   height: 48px;
   justify-content: space-between;
-  padding-right: ${themeCssVariables.spacing[3]};
+  padding-right: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledTabsContainer = styled.div`
   flex: 1 1 auto;
   min-width: 0;
-  padding-left: ${themeCssVariables.spacing[3]};
+  padding-left: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledVideoContainer = styled.div`
   display: flex;
   justify-content: center;
-  padding: ${themeCssVariables.spacing[6]};
+  padding: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledVideoIframe = styled.iframe`
   aspect-ratio: 1440 / 900;
   border: 0;
-  border-radius: ${themeCssVariables.border.radius.md};
-  box-shadow: ${themeCssVariables.boxShadow.strong};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
   display: block;
   height: auto;
   max-width: 100%;

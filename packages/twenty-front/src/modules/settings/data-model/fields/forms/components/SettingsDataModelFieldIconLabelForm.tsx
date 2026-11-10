@@ -18,7 +18,10 @@ import { FieldMetadataType } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { IconInfoCircle, IconRefresh } from 'twenty-ui/icon';
 import { AppTooltip, Card, TooltipDelay } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { computeMetadataNameFromLabel } from '~/pages/settings/data-model/utils/computeMetadataNameFromLabel';
 
 export const settingsDataModelFieldIconLabelFormSchema = (
@@ -45,8 +48,8 @@ type SettingsDataModelFieldIconLabelFormValues = z.infer<
 
 const StyledInputsContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
   width: 100%;
 `;
 
@@ -54,17 +57,17 @@ const StyledAdvancedSettingsSectionInputWrapper = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   width: 100%;
 `;
 
 const StyledAdvancedSettingsOuterContainer = styled.div`
-  padding-top: ${themeCssVariables.spacing[4]};
+  padding-top: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledAdvancedSettingsContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   position: relative;
   width: 100%;
 `;

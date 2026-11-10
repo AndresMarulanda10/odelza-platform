@@ -1,10 +1,10 @@
 .button {
   align-items: center;
-  background: var(--t-color-blue);
+  background: var(--odz-color-primary);
   border: none;
   border-radius: 50%;
   corner-shape: round;
-  color: var(--t-font-color-inverted);
+  color: var(--odz-font-color-inverted);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -15,12 +15,12 @@
     background 0.1s ease-in-out;
 
   &:hover:not(:disabled) {
-    background: var(--t-color-blue10);
+    background: var(--odz-color-primary10);
   }
 
   &:disabled {
-    background: var(--t-background-quaternary);
-    color: var(--t-font-color-tertiary);
+    background: var(--odz-background-quaternary);
+    color: var(--odz-font-color-tertiary);
     cursor: default;
   }
 

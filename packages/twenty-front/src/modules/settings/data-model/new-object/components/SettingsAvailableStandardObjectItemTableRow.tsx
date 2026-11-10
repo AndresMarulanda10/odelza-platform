@@ -6,7 +6,10 @@ import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { Checkbox } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 export const AVAILABLE_STANDARD_OBJECTS_GRID_TEMPLATE_COLUMNS =
   '28px 148px 256px 80px';
@@ -40,13 +43,13 @@ export const SettingsAvailableStandardObjectItemTableRow = ({
     >
       <TableCell
         align="center"
-        padding={`0 0 0 ${themeCssVariables.spacing[1]}`}
+        padding={`0 0 0 ${odelzaThemeCssVariables.spacing[1]}`}
       >
         <Checkbox checked={!!isSelected} />
       </TableCell>
       <TableCell
-        color={themeCssVariables.font.color.primary}
-        gap={themeCssVariables.spacing[2]}
+        color={odelzaThemeCssVariables.font.color.primary}
+        gap={odelzaThemeCssVariables.spacing[2]}
       >
         <ObjectMetadataIcon
           objectMetadataItem={objectItem}

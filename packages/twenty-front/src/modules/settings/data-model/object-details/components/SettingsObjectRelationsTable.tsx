@@ -24,7 +24,7 @@ import { FieldMetadataType } from 'twenty-shared/types';
 import { IconArchive, IconFilter, IconSearch } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
 import { MenuItemToggle } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { isDefined } from 'twenty-shared/utils';
 import { normalizeSearchText } from '~/utils/normalizeSearchText';
 import { TableRow } from '@/ui/layout/table/components/TableRow';
@@ -35,8 +35,8 @@ import {
 
 const StyledSearchAndFilterContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
@@ -255,7 +255,7 @@ export const SettingsObjectRelationsTable = ({
                 />
               ))
             ) : (
-              <TableCell color={themeCssVariables.font.color.tertiary}>
+              <TableCell color={odelzaThemeCssVariables.font.color.tertiary}>
                 {t`No relations found`}
               </TableCell>
             )}

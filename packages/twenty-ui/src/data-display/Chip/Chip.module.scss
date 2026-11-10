@@ -1,6 +1,6 @@
 .chip {
-  --chip-horizontal-padding: var(--t-spacing-1);
-  --chip-vertical-padding: var(--t-spacing-1);
+  --chip-horizontal-padding: var(--odz-spacing-1);
+  --chip-vertical-padding: var(--odz-spacing-1);
 
   // Height and max-width are sized against the content box.
   box-sizing: content-box;
@@ -9,7 +9,7 @@
   cursor: inherit;
   display: inline-flex;
   justify-content: flex-start;
-  gap: var(--t-spacing-1);
+  gap: var(--odz-spacing-1);
   max-width: 100%;
   overflow: hidden;
   padding: var(--chip-vertical-padding) var(--chip-horizontal-padding);
@@ -17,7 +17,7 @@
   font-weight: inherit;
   background-color: inherit;
   border: none;
-  border-radius: var(--t-border-radius-sm-round);
+  border-radius: var(--odz-border-radius-sm-round);
   corner-shape: round;
 
   & > svg {
@@ -26,28 +26,28 @@
 }
 
 .sizeLarge {
-  height: var(--t-spacing-4);
+  height: var(--odz-spacing-4);
 }
 
 .sizeSmall {
-  height: var(--t-spacing-3);
+  height: var(--odz-spacing-3);
 }
 
 .accentTextPrimary {
-  color: var(--t-font-color-primary);
+  color: var(--odz-font-color-primary);
 }
 
 .accentTextSecondary {
-  color: var(--t-font-color-secondary);
+  color: var(--odz-font-color-secondary);
 }
 
 // Disabled color wins over accent colors, matching the Linaria ternary order.
 .disabled {
-  color: var(--t-font-color-light);
+  color: var(--odz-font-color-light);
 }
 
 .fontMedium {
-  font-weight: var(--t-font-weight-medium);
+  font-weight: var(--odz-font-weight-medium);
 }
 
 .cursorPointer {
@@ -59,37 +59,37 @@
 }
 
 .backgroundHighlighted {
-  background-color: var(--t-background-transparent-light);
+  background-color: var(--odz-background-transparent-light);
 
   &:hover {
-    background-color: var(--t-background-transparent-medium);
+    background-color: var(--odz-background-transparent-medium);
   }
 
   &:active {
-    background-color: var(--t-background-transparent-strong);
+    background-color: var(--odz-background-transparent-strong);
   }
 }
 
 .backgroundStatic {
-  background-color: var(--t-background-transparent-light);
+  background-color: var(--odz-background-transparent-light);
 
   &:hover {
-    background-color: var(--t-background-transparent-light);
+    background-color: var(--odz-background-transparent-light);
   }
 
   &:active {
-    background-color: var(--t-background-transparent-light);
+    background-color: var(--odz-background-transparent-light);
   }
 }
 
 // Applied only when variant is regular, clickable and not disabled.
 .interactiveRegular {
   &:hover {
-    background-color: var(--t-background-transparent-light);
+    background-color: var(--odz-background-transparent-light);
   }
 
   &:active {
-    background-color: var(--t-background-transparent-medium);
+    background-color: var(--odz-background-transparent-medium);
   }
 }
 
@@ -98,14 +98,14 @@
 }
 
 .paddingLeftNone {
-  padding-left: var(--t-spacing-0);
+  padding-left: var(--odz-spacing-0);
 }
 
 .emptyLabel {
-  color: var(--t-font-color-tertiary);
+  color: var(--odz-font-color-tertiary);
 }
 
 .rightComponentDivider {
   align-self: stretch;
-  border-left: 1px solid var(--t-border-color-light);
+  border-left: 1px solid var(--odz-border-color-light);
 }

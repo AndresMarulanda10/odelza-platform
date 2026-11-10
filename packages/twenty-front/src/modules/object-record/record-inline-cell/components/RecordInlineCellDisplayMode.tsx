@@ -10,7 +10,7 @@ import {
 import { RecordInlineCellButton } from '@/object-record/record-inline-cell/components/RecordInlineCellEditButton';
 import { useLingui } from '@lingui/react/macro';
 import { useContext } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledRecordInlineCellNormalModeOuterContainer = styled.div<
   Pick<
@@ -21,9 +21,9 @@ const StyledRecordInlineCellNormalModeOuterContainer = styled.div<
   align-items: center;
   background-color: ${({ isHovered, readonly, disableHoverEffect }) =>
     isHovered && !readonly && !disableHoverEffect
-      ? themeCssVariables.background.transparent.light
+      ? odelzaThemeCssVariables.background.transparent.light
       : 'transparent'};
-  border-radius: ${themeCssVariables.border.radius.md};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   cursor: ${({ isHovered, readonly }) =>
     isHovered && !readonly ? 'pointer' : 'default'};
   display: flex;
@@ -33,17 +33,17 @@ const StyledRecordInlineCellNormalModeOuterContainer = styled.div<
   outline: 1px solid
     ${({ isHovered, readonly }) =>
       isHovered && readonly
-        ? themeCssVariables.border.color.medium
+        ? odelzaThemeCssVariables.border.color.medium
         : 'transparent'};
   overflow: hidden;
-  padding-left: ${themeCssVariables.spacing[1]};
-  padding-right: ${themeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledRecordInlineCellNormalModeInnerContainer = styled.div`
   align-content: center;
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   height: fit-content;
 
   overflow: hidden;
@@ -56,7 +56,7 @@ const StyledRecordInlineCellNormalModeInnerContainer = styled.div`
 
 const StyledEmptyField = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: flex;
   height: 20px;
 `;

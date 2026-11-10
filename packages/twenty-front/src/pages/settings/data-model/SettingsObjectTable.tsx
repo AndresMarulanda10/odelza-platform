@@ -36,18 +36,18 @@ import { MenuItemToggle } from 'twenty-ui/navigation';
 import {
   MOBILE_VIEWPORT,
   ThemeContext,
-  themeCssVariables,
+  odelzaThemeCssVariables,
 } from 'twenty-ui/theme-constants';
 import { GET_SETTINGS_OBJECT_TABLE_METADATA } from '~/pages/settings/data-model/constants/SettingsObjectTableMetadata';
 import type { SettingsObjectTableItem } from '~/pages/settings/data-model/types/SettingsObjectTableItem';
 import { normalizeSearchText } from '~/utils/normalizeSearchText';
 
 const StyledIconChevronRightContainer = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 const StyledSearchInputContainer = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledScrollWrapper = styled.div`

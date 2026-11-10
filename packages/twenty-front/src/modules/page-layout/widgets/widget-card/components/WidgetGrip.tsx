@@ -1,12 +1,15 @@
 import { styled } from '@linaria/react';
 import { motion } from 'framer-motion';
 import { IconGripVertical } from 'twenty-ui/icon';
-import { themeCssVariables, ThemeContext } from 'twenty-ui/theme-constants';
+import {
+  odelzaThemeCssVariables,
+  ThemeContext,
+} from 'twenty-ui/theme-constants';
 import { useContext } from 'react';
 
 const StyledGripContainerBase = styled.div`
   align-items: center;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   cursor: grab;
   display: flex;
@@ -16,12 +19,12 @@ const StyledGripContainerBase = styled.div`
   width: 20px;
 
   &:active {
-    background: ${themeCssVariables.background.tertiary};
+    background: ${odelzaThemeCssVariables.background.tertiary};
     cursor: grabbing;
   }
 
   &:hover {
-    background: ${themeCssVariables.background.tertiary};
+    background: ${odelzaThemeCssVariables.background.tertiary};
   }
 `;
 const StyledGripContainer = motion.create(StyledGripContainerBase);

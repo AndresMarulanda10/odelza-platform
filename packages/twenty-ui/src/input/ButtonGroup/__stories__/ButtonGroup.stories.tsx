@@ -66,7 +66,7 @@ export const Catalog: CatalogStory<Story, typeof ButtonGroup> = {
         },
         {
           name: 'accents',
-          values: ['default', 'blue', 'danger'] satisfies ButtonAccent[],
+          values: ['default', 'primary', 'danger'] satisfies ButtonAccent[],
           props: (accent: ButtonAccent) => ({ accent }),
         },
         {

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { isUndefined } from '@sniptt/guards';
 import { useMemo } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { TranscriptEntryList } from 'src/front-components/components/TranscriptEntryList';
 import { TranscriptErrorBox } from 'src/front-components/components/TranscriptErrorBox';
@@ -12,10 +12,10 @@ import { isNonEmptyString } from 'src/logic-functions/utils/is-non-empty-string.
 
 const StyledTranscriptCenteredState = styled.div`
   align-items: center;
-  color: ${() => themeCssVariables.font.color.tertiary};
+  color: ${() => odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex: 1;
-  font-size: ${() => themeCssVariables.font.size.sm};
+  font-size: ${() => odelzaThemeCssVariables.font.size.sm};
   justify-content: center;
 `;
 

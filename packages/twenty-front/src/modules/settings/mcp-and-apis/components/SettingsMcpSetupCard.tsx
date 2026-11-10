@@ -10,25 +10,26 @@ import {
   CardContent,
   TooltipDelay,
 } from 'twenty-ui/surfaces';
-import { themeCssVariables, useTheme } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from 'twenty-ui/theme-constants';
 
 const StyledCardContent = styled(CardContent)`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   min-width: 0;
-  padding: ${themeCssVariables.spacing[3]} ${themeCssVariables.spacing[3]}
-    ${themeCssVariables.spacing[3]} ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[3]}
+    ${odelzaThemeCssVariables.spacing[3]} ${odelzaThemeCssVariables.spacing[3]}
+    ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledLogo = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  flex: 0 0 ${themeCssVariables.spacing[8]};
-  height: ${themeCssVariables.spacing[8]};
+  flex: 0 0 ${odelzaThemeCssVariables.spacing[8]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   justify-content: center;
-  width: ${themeCssVariables.spacing[8]};
+  width: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 const StyledBody = styled.div`
@@ -36,21 +37,21 @@ const StyledBody = styled.div`
   display: flex;
   flex: 1 1 0;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-width: 0;
 `;
 
 const StyledHeader = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-width: 0;
 `;
 
 const StyledTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -63,8 +64,8 @@ const StyledActionSlot = styled.div`
 `;
 
 const StyledDescription = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 // Install links use custom URI schemes (goose://, vscode:, lmstudio://) that
@@ -72,26 +73,26 @@ const StyledDescription = styled.div`
 // so the call to action has to stay a raw anchor with the untouched href.
 const StyledInstallAction = styled.a`
   align-items: center;
-  background: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.background.transparent.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.background.transparent.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[6]};
-  padding: 0 ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   text-decoration: none;
   white-space: nowrap;
 
   &:hover {
-    background: ${themeCssVariables.background.transparent.light};
+    background: ${odelzaThemeCssVariables.background.transparent.light};
   }
 
   &[aria-disabled='true'] {
-    color: ${themeCssVariables.font.color.light};
+    color: ${odelzaThemeCssVariables.font.color.light};
     cursor: not-allowed;
   }
 `;

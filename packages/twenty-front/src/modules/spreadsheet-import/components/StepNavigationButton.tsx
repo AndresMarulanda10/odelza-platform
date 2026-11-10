@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { t } from '@lingui/core/macro';
 import { CircularProgressBar } from 'twenty-ui/feedback';
@@ -9,8 +9,8 @@ import { isUndefinedOrNull } from '~/utils/isUndefinedOrNull';
 
 const StyledFooterContainer = styled.div`
   > div {
-    border-top: 1px solid ${themeCssVariables.border.color.medium};
-    box-shadow: ${themeCssVariables.boxShadow.strong};
+    border-top: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+    box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
     justify-content: space-between;
   }
 `;

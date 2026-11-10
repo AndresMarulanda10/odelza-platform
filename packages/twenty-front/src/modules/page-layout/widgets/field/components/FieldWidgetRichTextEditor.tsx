@@ -8,7 +8,10 @@ import { styled } from '@linaria/react';
 import { lazy, Suspense, useContext } from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { isUndefined } from '@sniptt/guards';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const RichTextFieldEditor = lazy(() =>
   import('@/object-record/record-field/ui/meta-types/input/components/RichTextFieldEditor').then(
@@ -35,7 +38,7 @@ const StyledSkeletonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 ${themeCssVariables.spacing[4]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const LoadingSkeleton = () => {

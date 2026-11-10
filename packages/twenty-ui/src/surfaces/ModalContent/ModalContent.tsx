@@ -31,10 +31,10 @@ export const ModalContent = ({
     )}
     style={
       {
-        gap: gap !== undefined ? `var(--t-spacing-${gap})` : undefined,
+        gap: gap !== undefined ? `var(--odz-spacing-${gap})` : undefined,
         '--modal-content-padding':
           contentPadding !== undefined
-            ? `var(--t-spacing-${contentPadding})`
+            ? `var(--odz-spacing-${contentPadding})`
             : undefined,
       } as React.CSSProperties
     }

@@ -1,6 +1,9 @@
 import { type NavigationDrawerSubItemState } from '@/ui/navigation/navigation-drawer/types/NavigationDrawerSubItemState';
 import { styled } from '@linaria/react';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 export type NavigationDrawerItemBreadcrumbProps = {
   state?: NavigationDrawerSubItemState;
@@ -10,7 +13,7 @@ const StyledNavigationDrawerItemBreadcrumbContainer = styled.div`
   height: 28px;
 
   margin-left: 7.5px;
-  margin-right: ${themeCssVariables.spacing[2]};
+  margin-right: ${odelzaThemeCssVariables.spacing[2]};
   width: 9px;
 
   [data-dnd-dragging] & {
@@ -18,15 +21,15 @@ const StyledNavigationDrawerItemBreadcrumbContainer = styled.div`
   }
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
-    height: ${themeCssVariables.spacing[8]};
+    height: ${odelzaThemeCssVariables.spacing[8]};
   }
 `;
 
 const StyledGapVerticalLine = styled.div<{ darker: boolean }>`
   background: ${({ darker }) =>
     darker
-      ? themeCssVariables.font.color.tertiary
-      : themeCssVariables.border.color.strong};
+      ? odelzaThemeCssVariables.font.color.tertiary
+      : odelzaThemeCssVariables.border.color.strong};
 
   height: 2px;
   position: relative;
@@ -38,16 +41,16 @@ const StyledGapVerticalLine = styled.div<{ darker: boolean }>`
 const StyledSecondaryFullVerticalBar = styled.div<{ darker: boolean }>`
   background: ${({ darker }) =>
     darker
-      ? themeCssVariables.font.color.tertiary
-      : themeCssVariables.border.color.strong};
+      ? odelzaThemeCssVariables.font.color.tertiary
+      : odelzaThemeCssVariables.border.color.strong};
 
-  height: calc(${themeCssVariables.spacing[7]} + 1px);
+  height: calc(${odelzaThemeCssVariables.spacing[7]} + 1px);
   position: relative;
   top: -17px;
   width: 1px;
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
-    height: calc(${themeCssVariables.spacing[8]} + 1px);
+    height: calc(${odelzaThemeCssVariables.spacing[8]} + 1px);
   }
 `;
 
@@ -55,8 +58,8 @@ const StyledRoundedProtrusion = styled.div<{ darker: boolean }>`
   border: 1px solid
     ${({ darker }) =>
       darker
-        ? themeCssVariables.font.color.tertiary
-        : themeCssVariables.border.color.strong};
+        ? odelzaThemeCssVariables.font.color.tertiary
+        : odelzaThemeCssVariables.border.color.strong};
   border-bottom-left-radius: 4px;
 
   border-right: none;

@@ -9,7 +9,7 @@ import { IconChevronDown, IconDotsVertical } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { SettingsSectionSkeletonLoader } from '@/settings/components/SettingsSectionSkeletonLoader';
 import { useApolloAdminClient } from '@/settings/admin-panel/apollo/hooks/useApolloAdminClient';
@@ -28,17 +28,17 @@ const INITIAL_VISIBLE_WORKSPACES = 3;
 const INSTALLED_WORKSPACES_GRID_TEMPLATE_COLUMNS = '1fr 120px';
 
 const StyledSection = styled(Section)`
-  margin-top: ${themeCssVariables.spacing[5]};
+  margin-top: ${odelzaThemeCssVariables.spacing[5]};
 `;
 
 const StyledSearchInputContainer = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const SettingsApplicationRegistrationInstalledWorkspaces = ({
@@ -164,8 +164,8 @@ export const SettingsApplicationRegistrationInstalledWorkspaces = ({
                 })}
               >
                 <TableCell
-                  color={themeCssVariables.font.color.primary}
-                  gap={themeCssVariables.spacing[2]}
+                  color={odelzaThemeCssVariables.font.color.primary}
+                  gap={odelzaThemeCssVariables.spacing[2]}
                   overflow="hidden"
                 >
                   <Avatar
@@ -180,7 +180,7 @@ export const SettingsApplicationRegistrationInstalledWorkspaces = ({
                 </TableCell>
                 <TableCell
                   align="right"
-                  color={themeCssVariables.font.color.tertiary}
+                  color={odelzaThemeCssVariables.font.color.tertiary}
                 >
                   {workspace.version ?? '—'}
                 </TableCell>

@@ -24,7 +24,10 @@ import {
   MenuItemSelectColor,
 } from 'twenty-ui/navigation';
 import { computeOptionValueFromLabel } from '~/pages/settings/data-model/utils/computeOptionValueFromLabel';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { MAIN_COLOR_NAMES } from 'twenty-ui/theme';
 
 const useColorLabels = (): ColorLabels => ({
@@ -71,18 +74,18 @@ type SettingsDataModelFieldSelectFormOptionRowProps = {
 const StyledRow = styled.div`
   align-items: center;
   display: flex;
-  min-height: ${themeCssVariables.spacing[6]};
-  padding: ${themeCssVariables.spacing['1.5']} 0;
+  min-height: ${odelzaThemeCssVariables.spacing[6]};
+  padding: ${odelzaThemeCssVariables.spacing['1.5']} 0;
 `;
 
 const StyledColorSampleContainer = styled.span`
   align-items: center;
   cursor: pointer;
   display: flex;
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
   margin-left: 14px;
   margin-right: 14px;
-  margin-top: ${themeCssVariables.spacing[1]};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledOptionInputContainer = styled.div`
@@ -90,7 +93,7 @@ const StyledOptionInputContainer = styled.div`
   width: 100%;
 
   & input {
-    height: ${themeCssVariables.spacing[6]};
+    height: ${odelzaThemeCssVariables.spacing[6]};
   }
 `;
 
@@ -103,7 +106,7 @@ const StyledIconGripVerticalContainer = styled.span`
 const StyledLightIconButtonContainer = styled.span`
   align-items: center;
   display: flex;
-  margin-left: ${themeCssVariables.spacing[2]};
+  margin-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const SettingsDataModelFieldSelectFormOptionRow = ({

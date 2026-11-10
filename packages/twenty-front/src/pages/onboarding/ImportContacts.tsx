@@ -7,17 +7,16 @@ import { StyledOnboardingStepTagsRow } from '@/onboarding/components/StyledOnboa
 import { StyledOnboardingStepTitle } from '@/onboarding/components/StyledOnboardingStepTitle';
 import { OnboardingCreditsRewardTag } from '@/onboarding/components/import-contacts/OnboardingCreditsRewardTag';
 import { OnboardingImportPreview } from '@/onboarding/components/import-contacts/OnboardingImportPreview';
-import { OnboardingTrustBadges } from '@/onboarding/components/import-contacts/OnboardingTrustBadges';
 import { ONBOARDING_CONTENT_BLOCK_WIDTH } from '@/onboarding/constants/OnboardingContentBlockWidth';
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { IconGoogle, IconMicrosoft } from 'twenty-ui/icon';
 import { MainButton } from 'twenty-ui/input';
-import { themeCssVariables, useTheme } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from 'twenty-ui/theme-constants';
 
 const StyledOnboardingStep = styled(StyledOnboardingStepPage)`
-  gap: ${themeCssVariables.spacing[8]};
+  gap: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 const StyledSubtitle = styled(StyledOnboardingStepSubtitle)`
@@ -29,14 +28,14 @@ const StyledMiddle = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledFooter = styled.div`
   align-items: flex-end;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   max-width: 100%;
   width: ${ONBOARDING_CONTENT_BLOCK_WIDTH}px;
 `;
@@ -44,7 +43,7 @@ const StyledFooter = styled.div`
 const StyledButtons = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
@@ -86,7 +85,6 @@ export const ImportContacts = ({
 
       <OnboardingStepAnimatedItem index={3}>
         <StyledMiddle>
-          <OnboardingTrustBadges />
           <OnboardingImportPreview />
         </StyledMiddle>
       </OnboardingStepAnimatedItem>

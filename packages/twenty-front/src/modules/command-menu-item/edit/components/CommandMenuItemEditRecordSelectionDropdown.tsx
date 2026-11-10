@@ -14,27 +14,30 @@ import { useLingui } from '@lingui/react/macro';
 import { useContext } from 'react';
 import { IconChevronDown, IconSquareCheck, IconSquareX } from 'twenty-ui/icon';
 import { MenuItemSelect } from 'twenty-ui/navigation';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const DROPDOWN_ID = 'command-menu-edit-record-selection-dropdown';
 
 const StyledClickableArea = styled.div<{ disabled?: boolean }>`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 24px;
   opacity: ${({ disabled }) => (disabled ? '0.5' : '1')};
-  padding-left: ${themeCssVariables.spacing[2]};
-  padding-right: ${themeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledLabel = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

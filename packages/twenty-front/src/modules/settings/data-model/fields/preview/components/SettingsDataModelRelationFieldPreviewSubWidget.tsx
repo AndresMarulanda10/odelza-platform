@@ -6,7 +6,7 @@ import { SettingsDataModelRelationFieldPreview } from '@/settings/data-model/fie
 import { SettingsDataModelObjectPreview } from '@/settings/data-model/objects/components/SettingsDataModelObjectSummary';
 import { isDefined } from 'twenty-shared/utils';
 import { Card, CardContent } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export type SettingsDataModelRelationFieldPreviewSubWidgetProps = {
   fieldMetadataItem: Pick<
@@ -27,14 +27,14 @@ const StyledCardContainer = styled.div`
   min-width: 0;
 
   > * {
-    border-radius: ${themeCssVariables.border.radius.md};
-    color: ${themeCssVariables.font.color.primary};
+    border-radius: ${odelzaThemeCssVariables.border.radius.md};
+    color: ${odelzaThemeCssVariables.font.color.primary};
   }
 `;
 
 const StyledCardContentContainer = styled.div`
   > * {
-    padding: ${themeCssVariables.spacing[2]};
+    padding: ${odelzaThemeCssVariables.spacing[2]};
   }
 `;
 

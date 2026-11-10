@@ -3,7 +3,10 @@ import { useContext, useState } from 'react';
 import { isNonEmptyString } from '@sniptt/guards';
 import { Avatar } from 'twenty-ui/data-display';
 import { IconRefresh } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type AppConnectionHeaderProps = {
   appLogoUrl?: string | null;
@@ -13,44 +16,44 @@ type AppConnectionHeaderProps = {
 const StyledContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: center;
 `;
 
 const StyledAppLogoTile = styled.div`
   align-items: center;
-  backdrop-filter: ${themeCssVariables.blur.strong};
-  background: ${themeCssVariables.background.primary};
-  border-radius: ${themeCssVariables.border.radius.md};
-  box-shadow: ${themeCssVariables.boxShadow.strong};
+  backdrop-filter: ${odelzaThemeCssVariables.blur.strong};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
   box-sizing: border-box;
   display: flex;
   flex-shrink: 0;
-  height: ${themeCssVariables.spacing[12]};
+  height: ${odelzaThemeCssVariables.spacing[12]};
   justify-content: center;
-  padding: ${themeCssVariables.spacing[1]};
-  width: ${themeCssVariables.spacing[12]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
+  width: ${odelzaThemeCssVariables.spacing[12]};
 `;
 
 const StyledAppLogo = styled.img`
-  border-radius: ${themeCssVariables.border.radius.sm};
-  height: ${themeCssVariables.spacing[10]};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  height: ${odelzaThemeCssVariables.spacing[10]};
   object-fit: cover;
-  width: ${themeCssVariables.spacing[10]};
+  width: ${odelzaThemeCssVariables.spacing[10]};
 `;
 
 const StyledLinkIconContainer = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.primary};
-  border-radius: ${themeCssVariables.border.radius.rounded};
-  box-shadow: ${themeCssVariables.boxShadow.strong};
-  color: ${themeCssVariables.font.color.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.rounded};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   corner-shape: round;
   display: flex;
   flex-shrink: 0;
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   justify-content: center;
-  width: ${themeCssVariables.spacing[6]};
+  width: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 export const AppConnectionHeader = ({
@@ -66,7 +69,7 @@ export const AppConnectionHeader = ({
   return (
     <StyledContainer>
       <StyledAppLogoTile>
-        <StyledAppLogo src={'/images/integrations/twenty-logo.svg'} alt="" />
+        <StyledAppLogo src={'/images/odelza/icon.svg'} alt="" />
       </StyledAppLogoTile>
       <StyledLinkIconContainer aria-hidden>
         <IconRefresh size={theme.icon.size.md} stroke={theme.icon.stroke.lg} />

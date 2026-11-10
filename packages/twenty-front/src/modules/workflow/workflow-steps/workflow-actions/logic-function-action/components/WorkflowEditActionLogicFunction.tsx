@@ -27,7 +27,7 @@ import { isDefined } from 'twenty-shared/utils';
 import { getFunctionInputFromInputSchema } from 'twenty-shared/workflow';
 import { Callout } from 'twenty-ui/feedback';
 import { IconPlayerPlay, IconSettingsAutomation } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useDebouncedCallback } from 'use-debounce';
 
 const INPUT_TAB_ID = 'input';
@@ -36,12 +36,12 @@ const TEST_TAB_ID = 'test';
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledTabListContainer = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  padding-left: ${themeCssVariables.spacing[2]};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledResultContainer = styled.div`

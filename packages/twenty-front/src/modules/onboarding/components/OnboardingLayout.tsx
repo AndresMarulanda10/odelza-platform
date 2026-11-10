@@ -1,10 +1,10 @@
 import { OnboardingHeader } from '@/onboarding/components/OnboardingHeader';
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledBackground = styled.div`
-  background: ${themeCssVariables.background.secondary};
+  background: ${odelzaThemeCssVariables.background.secondary};
   display: flex;
   flex-direction: column;
   height: 100dvh;

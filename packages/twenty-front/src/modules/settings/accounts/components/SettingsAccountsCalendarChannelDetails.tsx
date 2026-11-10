@@ -9,13 +9,13 @@ import { Section } from '@react-email/components';
 import { IconUserPlus } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { Card } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type CalendarChannelVisibility } from '~/generated/graphql';
 
 const StyledDetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 type SettingsAccountsCalendarChannelDetailsProps = {

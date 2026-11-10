@@ -5,16 +5,16 @@ import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { type CronTriggerSettings } from 'twenty-shared/application';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const DEFAULT_CRON_SETTINGS: CronTriggerSettings = {
   pattern: '0 */1 * * *',
 };
 
 const StyledHint = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
-  margin-top: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type SettingsLogicFunctionCronTriggerSectionProps = {

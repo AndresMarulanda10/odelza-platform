@@ -1,17 +1,18 @@
 import { styled } from '@linaria/react';
 import { Fragment } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
-  border-top: 1px solid ${themeCssVariables.border.color.light};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
   bottom: 0;
   box-sizing: border-box;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: flex-end;
-  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[3]};
   width: 100%;
 `;
 

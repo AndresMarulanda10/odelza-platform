@@ -6,7 +6,7 @@ import { t } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { IconBox, IconNorthStar, IconPlus, IconTrash } from 'twenty-ui/icon';
 import { IconButton, type SelectOption } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const OBJECT_DROPDOWN_WIDTH = 240;
 const ACTION_DROPDOWN_WIDTH = 240;
@@ -16,21 +16,21 @@ const ACTION_MOBILE_WIDTH = 140;
 const StyledFilterRow = styled.div<{ isMobile: boolean }>`
   align-items: center;
   display: grid;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   grid-template-columns: ${({ isMobile }) =>
     isMobile
       ? `minmax(${OBJECT_MOBILE_WIDTH}px, 1fr) ${ACTION_MOBILE_WIDTH}px ${
-          themeCssVariables.spacing[8]
+          odelzaThemeCssVariables.spacing[8]
         }`
       : `minmax(${OBJECT_DROPDOWN_WIDTH}px, 1fr) ${ACTION_DROPDOWN_WIDTH}px ${
-          themeCssVariables.spacing[8]
+          odelzaThemeCssVariables.spacing[8]
         }`};
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledPlaceholder = styled.div`
-  height: ${themeCssVariables.spacing[8]};
-  width: ${themeCssVariables.spacing[8]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
+  width: ${odelzaThemeCssVariables.spacing[8]};
 `;
 
 export const SettingsDatabaseEventsForm = ({

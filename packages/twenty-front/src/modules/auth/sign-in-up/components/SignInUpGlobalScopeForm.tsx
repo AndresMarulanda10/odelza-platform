@@ -30,7 +30,10 @@ import { useContext } from 'react';
 import { Avatar } from 'twenty-ui/data-display';
 import { IconChevronRight, IconPlus } from 'twenty-ui/icon';
 import { HorizontalSeparator } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import {
   type AvailableWorkspace,
   GetWorkspaceCreationDefaultsDocument,
@@ -44,16 +47,16 @@ const StyledContentContainer = styled(StyledOnboardingContentContainer)`
 `;
 
 const StyledWorkspaceContainer = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex-direction: column;
   overflow: hidden;
   width: 100%;
 
   > * {
-    border-bottom: 1px solid ${themeCssVariables.border.color.medium};
+    border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.medium};
 
     &:last-child {
       border-bottom: none;
@@ -66,7 +69,7 @@ const StyledWorkspaceItem = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  height: ${themeCssVariables.spacing[15]};
+  height: ${odelzaThemeCssVariables.spacing[15]};
   justify-content: space-between;
   overflow: hidden;
 
@@ -74,7 +77,7 @@ const StyledWorkspaceItem = styled.div`
   width: 100%;
 
   &:hover {
-    background-color: ${themeCssVariables.background.transparent.light};
+    background-color: ${odelzaThemeCssVariables.background.transparent.light};
   }
 
   &:last-child {
@@ -85,8 +88,8 @@ const StyledWorkspaceItem = styled.div`
 const StyledWorkspaceContent = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[4]};
-  padding: 0 ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[4]};
   width: 100%;
 `;
 
@@ -98,35 +101,35 @@ const StyledWorkspaceTextContainer = styled.div`
 
 const StyledWorkspaceLogo = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.transparent.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   justify-content: center;
-  width: ${themeCssVariables.spacing[6]};
+  width: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledWorkspaceName = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  padding-bottom: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledWorkspaceUrl = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.xs};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
 `;
 
 const StyledChevronIcon = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
 `;
 
 const StyledForgotPasswordLinkContainer = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: ${themeCssVariables.spacing[4]};
+  padding-top: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 export const SignInUpGlobalScopeForm = () => {
@@ -253,7 +256,7 @@ export const SignInUpGlobalScopeForm = () => {
           )}
           {(authProviders.google || authProviders.microsoft) && (
             <HorizontalSeparator
-              color={themeCssVariables.background.transparent.light}
+              color={odelzaThemeCssVariables.background.transparent.light}
             />
           )}
           {/* oxlint-disable-next-line react/jsx-props-no-spreading */}

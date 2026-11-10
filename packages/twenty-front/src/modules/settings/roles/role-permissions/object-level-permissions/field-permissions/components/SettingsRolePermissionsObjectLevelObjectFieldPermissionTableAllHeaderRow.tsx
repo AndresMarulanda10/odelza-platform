@@ -11,24 +11,24 @@ import { useAtomFamilyStateValue } from '@/ui/utilities/state/jotai/hooks/useAto
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { Label } from 'twenty-ui/typography';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledSectionHeader = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: grid;
   grid-template-columns: ${FIELD_LEVEL_PERMISSION_TABLE_GRID_TEMPLATE_COLUMNS};
 
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
 
-  padding-left: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledCheckboxContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding-right: ${themeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const SettingsRolePermissionsObjectLevelObjectFieldPermissionTableAllHeaderRow =

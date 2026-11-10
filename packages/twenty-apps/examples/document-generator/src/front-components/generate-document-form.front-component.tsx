@@ -19,27 +19,27 @@ import { GENERATE_DOCUMENT_FORM_FRONT_COMPONENT_UNIVERSAL_IDENTIFIER } from 'src
 // Theme tokens are inlined as CSS-variable values: the SDK mocks the UI package
 // during manifest extraction, so importing them at module level would be undefined.
 const theme = {
-  spacing2: 'var(--t-spacing-2)',
-  spacing3: 'var(--t-spacing-3)',
-  spacing4: 'var(--t-spacing-4)',
-  spacing8: 'var(--t-spacing-8)',
-  bgPrimary: 'var(--t-background-primary)',
-  bgSecondary: 'var(--t-background-secondary)',
-  borderMedium: 'var(--t-border-color-medium)',
-  borderLight: 'var(--t-border-color-light)',
-  radiusSm: 'var(--t-border-radius-sm)',
-  fontPrimary: 'var(--t-font-color-primary)',
-  fontSecondary: 'var(--t-font-color-secondary)',
-  fontTertiary: 'var(--t-font-color-tertiary)',
-  fontInverted: 'var(--t-font-color-inverted)',
-  fontFamily: 'var(--t-font-family)',
-  sizeXs: 'var(--t-font-size-xs)',
-  sizeSm: 'var(--t-font-size-sm)',
-  sizeMd: 'var(--t-font-size-md)',
-  weightMedium: 'var(--t-font-weight-medium)',
-  weightSemiBold: 'var(--t-font-weight-semi-bold)',
-  blue: 'var(--t-color-blue)',
-  accent: 'var(--t-accent-accent4060)',
+  spacing2: 'var(--odz-spacing-2)',
+  spacing3: 'var(--odz-spacing-3)',
+  spacing4: 'var(--odz-spacing-4)',
+  spacing8: 'var(--odz-spacing-8)',
+  bgPrimary: 'var(--odz-background-primary)',
+  bgSecondary: 'var(--odz-background-secondary)',
+  borderMedium: 'var(--odz-border-color-medium)',
+  borderLight: 'var(--odz-border-color-light)',
+  radiusSm: 'var(--odz-border-radius-sm)',
+  fontPrimary: 'var(--odz-font-color-primary)',
+  fontSecondary: 'var(--odz-font-color-secondary)',
+  fontTertiary: 'var(--odz-font-color-tertiary)',
+  fontInverted: 'var(--odz-font-color-inverted)',
+  fontFamily: 'var(--odz-font-family)',
+  sizeXs: 'var(--odz-font-size-xs)',
+  sizeSm: 'var(--odz-font-size-sm)',
+  sizeMd: 'var(--odz-font-size-md)',
+  weightMedium: 'var(--odz-font-weight-medium)',
+  weightSemiBold: 'var(--odz-font-weight-semi-bold)',
+  blue: 'var(--odz-color-primary)',
+  accent: 'var(--odz-accent-accent4060)',
 };
 
 type Template = { id: string; name: string };
@@ -263,8 +263,7 @@ const GenerateDocumentForm = () => {
       handleClose();
     } catch (error) {
       await enqueueSnackbar({
-        message:
-          error instanceof Error ? error.message : 'Generation failed.',
+        message: error instanceof Error ? error.message : 'Generation failed.',
         variant: 'error',
       });
     } finally {

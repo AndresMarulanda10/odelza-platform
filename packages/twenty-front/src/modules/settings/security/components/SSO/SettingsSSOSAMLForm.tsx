@@ -12,14 +12,17 @@ import { IconCheck, IconCopy, IconDownload, IconUpload } from 'twenty-ui/icon';
 import { HorizontalSeparator, Section } from 'twenty-ui/layout';
 import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
 import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
 const StyledUploadFileContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledFileInput = styled.input`
@@ -29,7 +32,8 @@ const StyledFileInput = styled.input`
 const StyledInputsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[4]};
   width: 100%;
 `;
 
@@ -40,13 +44,13 @@ const StyledContainer = styled.div`
 
 const StyledLinkContainer = styled.div`
   flex: 1;
-  margin-right: ${themeCssVariables.spacing[2]};
+  margin-right: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledButtonCopy = styled.div`
   align-items: end;
   display: flex;
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const SettingsSSOSAMLForm = () => {
@@ -142,7 +146,7 @@ export const SettingsSSOSAMLForm = () => {
             <IconCheck
               size={theme.icon.size.md}
               stroke={theme.icon.stroke.lg}
-              color={theme.color.blue}
+              color={theme.color.primary}
             />
           )}
         </StyledUploadFileContainer>

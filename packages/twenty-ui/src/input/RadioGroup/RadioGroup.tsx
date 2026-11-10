@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { themeCssVariables } from '@ui/theme-constants';
+import { odelzaThemeCssVariables } from '@ui/theme-constants';
 import { type RadioProps } from '@ui/input/Radio/Radio';
 
 type RadioGroupProps = React.PropsWithChildren & {
@@ -25,7 +25,7 @@ export const RadioGroup = ({
       {React.Children.map(children, (child) => {
         if (React.isValidElement<RadioProps>(child)) {
           return React.cloneElement(child, {
-            style: { marginBottom: themeCssVariables.spacing[2] },
+            style: { marginBottom: odelzaThemeCssVariables.spacing[2] },
             checked: child.props.value === value,
             onChange: handleChange,
           });

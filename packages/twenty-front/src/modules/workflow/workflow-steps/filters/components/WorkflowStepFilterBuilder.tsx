@@ -18,26 +18,26 @@ import { isStepFilterGroupChildAStepFilterGroup } from '@/workflow/workflow-step
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: start;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledChildContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[6]};
   width: 100%;
 `;
 
 const StyledConditions = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: ${themeCssVariables.spacing[0]};
+  row-gap: ${odelzaThemeCssVariables.spacing[0]};
 `;
 
 type WorkflowStepFilterBuilderProps = {

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState, type SyntheticEvent } from 'react';
 import { CircularProgressBar } from 'twenty-ui/feedback';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const DEFAULT_VIDEO_ASPECT_RATIO = '16 / 9';
 
@@ -14,16 +14,16 @@ type RecordingVideoLoadState = 'awaiting-first-frame' | 'ready' | 'errored';
 
 const StyledVideoViewport = styled.div`
   aspect-ratio: ${DEFAULT_VIDEO_ASPECT_RATIO};
-  background: ${() => themeCssVariables.background.primary};
-  border-radius: ${() => themeCssVariables.border.radius.sm};
+  background: ${() => odelzaThemeCssVariables.background.primary};
+  border-radius: ${() => odelzaThemeCssVariables.border.radius.sm};
   overflow: hidden;
   position: relative;
   width: 100%;
 `;
 
 const StyledVideo = styled.video<{ $isFirstFrameReady: boolean }>`
-  accent-color: ${() => themeCssVariables.accent.accent9};
-  background: ${() => themeCssVariables.background.primary};
+  accent-color: ${() => odelzaThemeCssVariables.accent.accent9};
+  background: ${() => odelzaThemeCssVariables.background.primary};
   color-scheme: light dark;
   display: block;
   height: 100%;
@@ -39,7 +39,7 @@ const StyledVideo = styled.video<{ $isFirstFrameReady: boolean }>`
 
 const StyledBufferingOverlay = styled.div<{ $isVisible: boolean }>`
   align-items: center;
-  color: ${() => themeCssVariables.font.color.tertiary};
+  color: ${() => odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   inset: 0;
   justify-content: center;
@@ -59,38 +59,38 @@ const StyledPlaybackErrorState = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${() => themeCssVariables.spacing[2]};
+  gap: ${() => odelzaThemeCssVariables.spacing[2]};
   height: 100%;
   justify-content: center;
-  padding: ${() => themeCssVariables.spacing[4]};
+  padding: ${() => odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledPlaybackErrorTitle = styled.span`
-  color: ${() => themeCssVariables.font.color.primary};
-  font-size: ${() => themeCssVariables.font.size.sm};
-  font-weight: ${() => themeCssVariables.font.weight.medium};
+  color: ${() => odelzaThemeCssVariables.font.color.primary};
+  font-size: ${() => odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${() => odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledPlaybackErrorDescription = styled.span`
-  color: ${() => themeCssVariables.font.color.secondary};
-  font-size: ${() => themeCssVariables.font.size.xs};
+  color: ${() => odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${() => odelzaThemeCssVariables.font.size.xs};
 `;
 
 const StyledRetryButton = styled.button`
-  background: ${() => themeCssVariables.background.secondary};
-  border: 1px solid ${() => themeCssVariables.border.color.medium};
-  border-radius: ${() => themeCssVariables.border.radius.sm};
-  color: ${() => themeCssVariables.font.color.secondary};
+  background: ${() => odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${() => odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${() => odelzaThemeCssVariables.border.radius.sm};
+  color: ${() => odelzaThemeCssVariables.font.color.secondary};
   cursor: pointer;
-  font-family: ${() => themeCssVariables.font.family};
-  font-size: ${() => themeCssVariables.font.size.sm};
-  font-weight: ${() => themeCssVariables.font.weight.medium};
-  margin-top: ${() => themeCssVariables.spacing[1]};
-  padding: ${() => themeCssVariables.spacing[1]}
-    ${() => themeCssVariables.spacing[3]};
+  font-family: ${() => odelzaThemeCssVariables.font.family};
+  font-size: ${() => odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${() => odelzaThemeCssVariables.font.weight.medium};
+  margin-top: ${() => odelzaThemeCssVariables.spacing[1]};
+  padding: ${() => odelzaThemeCssVariables.spacing[1]}
+    ${() => odelzaThemeCssVariables.spacing[3]};
 
   &:hover {
-    background: ${() => themeCssVariables.background.tertiary};
+    background: ${() => odelzaThemeCssVariables.background.tertiary};
   }
 `;
 

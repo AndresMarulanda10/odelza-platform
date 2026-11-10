@@ -271,7 +271,7 @@ export const SettingsAdminNewAiProvider = () => {
 
           {isModelsDevWithoutNativeSdk && (
             <Info
-              accent="blue"
+              accent="primary"
               text={t`This provider doesn't have a native SDK yet — it will use OpenAI-compatible mode. Need native support? Reach out to us.`}
             />
           )}

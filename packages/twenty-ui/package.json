@@ -72,7 +72,6 @@
   "dependencies": {
     "@base-ui/react": "^1.5.0",
     "@monaco-editor/react": "^4.7.0",
-    "@radix-ui/colors": "^3.0.0",
     "@sniptt/guards": "^0.2.0",
     "@tabler/icons-react": "^3.31.0",
     "clsx": "^2.1.1",
@@ -102,8 +101,8 @@
       "require": "./dist/index.cjs"
     },
     "./style.css": "./dist/style.css",
-    "./theme-light.css": "./dist/theme-light.css",
-    "./theme-dark.css": "./dist/theme-dark.css",
+    "./odelza-theme-light.css": "./dist/odelza-theme-light.css",
+    "./odelza-theme-dark.css": "./dist/odelza-theme-dark.css",
     "./accessibility": {
       "types": "./dist/accessibility/index.d.ts",
       "import": "./dist/accessibility.mjs",

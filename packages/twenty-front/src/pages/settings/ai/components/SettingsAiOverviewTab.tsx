@@ -20,7 +20,10 @@ import { Section } from 'twenty-ui/layout';
 import { UndecoratedLink } from 'twenty-ui/navigation';
 import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath } from 'twenty-shared/utils';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useDebouncedCallback } from 'use-debounce';
 import {
   FindWorkspaceAiStatsDocument,
@@ -30,7 +33,7 @@ import {
 const StyledInstructionsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const MCP_DEEP_LINK = `${getSettingsPath(SettingsPath.ApiWebhooks)}#mcp`;

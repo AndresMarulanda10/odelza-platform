@@ -13,7 +13,10 @@ import { useContext, useEffect, useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconDownload } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { getFileNameAndExtension } from '~/utils/file/getFileNameAndExtension';
 
 const MS_OFFICE_EXTENSIONS = [
@@ -27,7 +30,7 @@ const MS_OFFICE_EXTENSIONS = [
 ];
 
 const StyledDocumentViewerContainer = styled.div`
-  background: ${themeCssVariables.background.secondary};
+  background: ${odelzaThemeCssVariables.background.secondary};
   display: flex;
   flex-direction: column;
   height: calc(100vh - 200px);
@@ -58,60 +61,60 @@ const StyledUnavailablePreviewContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   height: 100%;
   justify-content: center;
-  padding: ${themeCssVariables.spacing[8]};
+  padding: ${odelzaThemeCssVariables.spacing[8]};
   text-align: center;
 `;
 
 const StyledMessage = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.lg};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.lg};
   max-width: 400px;
 `;
 
 const StyledLightMessage = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const StyledTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.xl};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.xl};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
 `;
 
 const StyledCsvTable = styled.table`
   border-collapse: collapse;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   text-align: left;
   width: 100%;
 
   th {
-    border-bottom: 1px solid ${themeCssVariables.border.color.light};
-    color: ${themeCssVariables.font.color.tertiary};
-    font-weight: ${themeCssVariables.font.weight.medium};
-    height: ${themeCssVariables.spacing[8]};
-    padding: 0 ${themeCssVariables.spacing[2]};
+    border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
+    color: ${odelzaThemeCssVariables.font.color.tertiary};
+    font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+    height: ${odelzaThemeCssVariables.spacing[8]};
+    padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   }
 
   td {
-    color: ${themeCssVariables.font.color.secondary};
-    height: ${themeCssVariables.spacing[8]};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
+    height: ${odelzaThemeCssVariables.spacing[8]};
     max-width: 200px;
     overflow: hidden;
-    padding: 0 ${themeCssVariables.spacing[2]};
+    padding: 0 ${odelzaThemeCssVariables.spacing[2]};
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   tbody tr {
-    border-bottom: 1px solid ${themeCssVariables.border.color.light};
+    border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   }
 
   tbody tr:hover {
-    background-color: ${themeCssVariables.background.transparent.light};
+    background-color: ${odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 

@@ -17,13 +17,13 @@ import { IconReload, IconTrash } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { Button, ButtonGroup } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
 import { useCheckCustomDomainValidRecords } from '@/settings/domains/hooks/useCheckCustomDomainValidRecords';
 
 const StyledDomainFormWrapper = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledButtonGroupContainer = styled.div`
@@ -37,10 +37,10 @@ const StyledButtonContainer = styled.div`
 `;
 
 const StyledRecordsWrapper = styled.div`
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 
   & > :not(:first-of-type) {
-    margin-top: ${themeCssVariables.spacing[4]};
+    margin-top: ${odelzaThemeCssVariables.spacing[4]};
   }
 `;
 

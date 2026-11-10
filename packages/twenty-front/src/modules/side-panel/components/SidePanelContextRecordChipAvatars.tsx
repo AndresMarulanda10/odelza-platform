@@ -6,20 +6,23 @@ import { getAbsoluteImageUrl } from '~/utils/image/getAbsoluteImageUrl';
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { Avatar } from 'twenty-ui/data-display';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 const StyledIconWrapper = styled.div<{ withIconBackground?: boolean }>`
   align-items: center;
   background: ${({ withIconBackground }) =>
-    withIconBackground ? themeCssVariables.background.primary : 'unset'};
+    withIconBackground ? odelzaThemeCssVariables.background.primary : 'unset'};
   border: 1px solid
     ${({ withIconBackground }) =>
       withIconBackground
-        ? themeCssVariables.border.color.medium
+        ? odelzaThemeCssVariables.border.color.medium
         : 'transparent'};
   &:not(:first-of-type) {
-    margin-left: -${themeCssVariables.spacing[1]};
+    margin-left: -${odelzaThemeCssVariables.spacing[1]};
   }
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   justify-content: center;
 `;

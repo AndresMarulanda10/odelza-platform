@@ -9,13 +9,16 @@ import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { type ReactNode, useContext } from 'react';
 import { Card } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { FeatureFlagKey } from '~/generated-metadata/graphql';
 
 const COVER_HEIGHT = 150;
 
 const StyledCoverContainer = styled.div`
-  background: ${themeCssVariables.background.secondary};
+  background: ${odelzaThemeCssVariables.background.secondary};
   box-sizing: border-box;
   height: ${COVER_HEIGHT}px;
   overflow: hidden;
@@ -41,8 +44,8 @@ const StyledOverlay = styled.div`
 `;
 
 const StyledFooter = styled.div`
-  background: ${themeCssVariables.background.secondary};
-  border-top: 1px solid ${themeCssVariables.border.color.medium};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.medium};
 `;
 
 type SettingsDiscoveryHeroCardProps = {

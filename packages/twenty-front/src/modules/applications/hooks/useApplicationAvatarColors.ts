@@ -30,9 +30,9 @@ export const useApplicationAvatarColors = (
 
   if (isTwentyStandardApplication(application)) {
     return {
-      backgroundColor: theme.color.blue3,
-      borderColor: theme.color.blue4,
-      color: theme.color.blue9,
+      backgroundColor: theme.color.primary3,
+      borderColor: theme.color.primary4,
+      color: theme.color.primary9,
     };
   }
 

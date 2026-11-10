@@ -13,7 +13,10 @@ import { GraphiQL } from 'graphiql';
 import 'graphiql/style.css';
 import { useContext } from 'react';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type GraphQLPlaygroundProps = {
   onError(): void;
@@ -30,8 +33,8 @@ const StyledGraphiQLContainer = styled.div`
   width: 100%;
 
   .graphiql-container {
-    background: ${themeCssVariables.background.primary};
-    border-radius: ${themeCssVariables.border.radius.md};
+    background: ${odelzaThemeCssVariables.background.primary};
+    border-radius: ${odelzaThemeCssVariables.border.radius.md};
   }
 `;
 

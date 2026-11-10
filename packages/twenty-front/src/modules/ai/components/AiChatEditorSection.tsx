@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 import { EditorContent } from '@tiptap/react';
 import { useLingui } from '@lingui/react/macro';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { isDefined } from 'twenty-shared/utils';
 
@@ -32,31 +32,32 @@ import { type SelectOption } from 'twenty-ui/input';
 
 const StyledInputArea = styled.div<{ isMobile: boolean }>`
   align-items: flex-end;
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   padding-block: ${({ isMobile }) =>
-    isMobile ? '0' : themeCssVariables.spacing[3]};
-  padding-inline: ${themeCssVariables.spacing[3]};
+    isMobile ? '0' : odelzaThemeCssVariables.spacing[3]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledInputBox = styled.div`
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-height: 140px;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 
   &:focus-within {
-    border-color: ${themeCssVariables.color.blue};
-    box-shadow: 0px 0px 0px 3px ${themeCssVariables.color.transparent.blue2};
+    border-color: ${odelzaThemeCssVariables.color.primary};
+    box-shadow: 0px 0px 0px 3px
+      ${odelzaThemeCssVariables.color.transparent.primary2};
   }
 `;
 
@@ -70,10 +71,10 @@ const StyledEditorWrapper = styled.div`
     background: transparent;
     border: none;
     box-shadow: none;
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
     font-family: inherit;
-    font-size: ${themeCssVariables.font.size.md};
-    font-weight: ${themeCssVariables.font.weight.regular};
+    font-size: ${odelzaThemeCssVariables.font.size.md};
+    font-weight: ${odelzaThemeCssVariables.font.weight.regular};
     line-height: 16px;
     max-height: 320px;
     min-height: 48px;
@@ -86,10 +87,10 @@ const StyledEditorWrapper = styled.div`
     }
 
     p.is-editor-empty:first-of-type::before {
-      color: ${themeCssVariables.font.color.light};
+      color: ${odelzaThemeCssVariables.font.color.light};
       content: attr(data-placeholder);
       float: left;
-      font-weight: ${themeCssVariables.font.weight.regular};
+      font-weight: ${odelzaThemeCssVariables.font.weight.regular};
       height: 0;
       pointer-events: none;
     }
@@ -106,13 +107,13 @@ const StyledButtonsContainer = styled.div`
 const StyledLeftButtonsContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing['0.5']};
+  gap: ${odelzaThemeCssVariables.spacing['0.5']};
 `;
 
 const StyledRightButtonsContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const AiChatEditorSection = () => {

@@ -7,7 +7,7 @@ import { useStepBar } from '@/ui/navigation/step-bar/hooks/useStepBar';
 import { spreadsheetImportDialogState } from '@/spreadsheet-import/states/spreadsheetImportDialogState';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 import { useLingui } from '@lingui/react/macro';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { ModalHeader } from 'twenty-ui/surfaces';
 import { SpreadsheetImportStepper } from './SpreadsheetImportStepper';
 
@@ -39,7 +39,7 @@ export const SpreadsheetImportStepperContainer = () => {
       <ModalHeader
         hasBorderBottom
         paddingHorizontal={30}
-        backgroundColor={themeCssVariables.background.secondary}
+        backgroundColor={odelzaThemeCssVariables.background.secondary}
       >
         {spreadsheetImportDialog.isStepBarVisible && (
           <StepBar activeStep={activeStep}>

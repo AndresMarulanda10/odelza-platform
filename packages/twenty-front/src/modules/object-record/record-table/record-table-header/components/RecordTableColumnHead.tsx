@@ -11,18 +11,18 @@ import { useIcons } from 'twenty-ui/icon';
 import {
   MOBILE_VIEWPORT,
   ThemeContext,
-  themeCssVariables,
+  odelzaThemeCssVariables,
 } from 'twenty-ui/theme-constants';
 
 const StyledTitle = styled.div<{ hideTitle?: boolean }>`
   align-items: center;
   display: flex;
   flex-direction: row;
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[8]};
-  padding-left: ${themeCssVariables.spacing[2]};
-  padding-right: ${themeCssVariables.spacing[2]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
     display: ${({ hideTitle }) => (hideTitle ? 'none' : 'flex')};
@@ -34,8 +34,8 @@ const StyledIcon = styled.div`
   flex-shrink: 0;
 
   & > svg {
-    height: ${themeCssVariables.icon.size.md}px;
-    width: ${themeCssVariables.icon.size.md}px;
+    height: ${odelzaThemeCssVariables.icon.size.md}px;
+    width: ${odelzaThemeCssVariables.icon.size.md}px;
   }
 `;
 

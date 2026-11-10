@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const BREADCRUMB_WIDTH = 24;
 const ICON_CENTER_OFFSET = 8;
@@ -24,7 +24,7 @@ const StyledAncestorLine = styled.div<{
   showLine: boolean;
 }>`
   background: ${({ showLine }) =>
-    showLine ? themeCssVariables.border.color.strong : 'transparent'};
+    showLine ? odelzaThemeCssVariables.border.color.strong : 'transparent'};
   height: 28px;
   left: ${({ index }) => index * BREADCRUMB_WIDTH + ICON_CENTER_OFFSET}px;
   position: absolute;
@@ -41,7 +41,7 @@ const StyledBreadcrumbConnector = styled.div<{ depth: number }>`
 `;
 
 const StyledVerticalLineTop = styled.div`
-  background: ${themeCssVariables.border.color.strong};
+  background: ${odelzaThemeCssVariables.border.color.strong};
   height: 12px;
   left: 0;
   position: absolute;
@@ -50,9 +50,9 @@ const StyledVerticalLineTop = styled.div`
 `;
 
 const StyledRoundedCorner = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.strong};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.strong};
   border-bottom-left-radius: 4px;
-  border-left: 1px solid ${themeCssVariables.border.color.strong};
+  border-left: 1px solid ${odelzaThemeCssVariables.border.color.strong};
   height: 8px;
   left: 0;
   position: absolute;
@@ -61,7 +61,7 @@ const StyledRoundedCorner = styled.div`
 `;
 
 const StyledVerticalLineBottom = styled.div`
-  background: ${themeCssVariables.border.color.strong};
+  background: ${odelzaThemeCssVariables.border.color.strong};
   height: 16px;
   left: 0;
   position: absolute;

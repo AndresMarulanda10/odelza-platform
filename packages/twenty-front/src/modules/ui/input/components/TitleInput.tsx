@@ -9,7 +9,7 @@ import { useRemoveFocusItemFromFocusStackById } from '@/ui/utilities/focus/hooks
 import { FocusComponentType } from '@/ui/utilities/focus/types/FocusComponentType';
 import { styled } from '@linaria/react';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type CommonInputProps = {
   instanceId: string;
@@ -62,10 +62,10 @@ const StyledDiv = styled.div<{
   align-items: center;
   background: inherit;
   border: none;
-  border-radius: ${themeCssVariables.border.radius.md};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
   color: ${({ textColor }) =>
-    textColor ?? themeCssVariables.font.color.primary};
+    textColor ?? odelzaThemeCssVariables.font.color.primary};
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   display: flex;
   height: ${({ sizeVariant }) =>
@@ -77,10 +77,12 @@ const StyledDiv = styled.div<{
           ? '28px'
           : '32px'};
   overflow: hidden;
-  padding: ${themeCssVariables.spacing[0]} 5px;
+  padding: ${odelzaThemeCssVariables.spacing[0]} 5px;
   &:hover {
     background: ${({ disabled }) =>
-      disabled ? 'inherit' : themeCssVariables.background.transparent.light};
+      disabled
+        ? 'inherit'
+        : odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 

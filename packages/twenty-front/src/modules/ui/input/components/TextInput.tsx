@@ -18,7 +18,10 @@ import { type IconComponent, IconEye, IconEyeOff } from 'twenty-ui/icon';
 import { AutogrowWrapper } from 'twenty-ui/layout';
 import { useCombinedRefs } from '~/hooks/useCombinedRefs';
 import { turnIntoEmptyStringIfWhitespacesOnly } from '~/utils/string/turnIntoEmptyStringIfWhitespacesOnly';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 const StyledContainer = styled.div<Pick<TextInputComponentProps, 'fullWidth'>>`
   box-sizing: border-box;
   display: inline-flex;
@@ -42,21 +45,21 @@ type StyledAdornmentContainerProps = {
 
 const StyledAdornmentContainer = styled.div<StyledAdornmentContainerProps>`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.light};
-  border: 1px solid ${themeCssVariables.border.color.medium};
+  background-color: ${odelzaThemeCssVariables.background.transparent.light};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   border-left-style: ${({ position }) =>
     position === 'right' ? 'none' : 'solid'};
   border-radius: ${({ position }) =>
     position === 'left'
-      ? `${themeCssVariables.border.radius.md} 0 0 ${themeCssVariables.border.radius.md}`
-      : `0 ${themeCssVariables.border.radius.md} ${themeCssVariables.border.radius.md} 0`};
+      ? `${odelzaThemeCssVariables.border.radius.md} 0 0 ${odelzaThemeCssVariables.border.radius.md}`
+      : `0 ${odelzaThemeCssVariables.border.radius.md} ${odelzaThemeCssVariables.border.radius.md} 0`};
   border-right-style: ${({ position }) =>
     position === 'left' ? 'none' : 'solid'};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   height: ${({ sizeVariant }) =>
     sizeVariant === 'xs'
       ? '20px'
@@ -76,7 +79,7 @@ const StyledAdornmentContainer = styled.div<StyledAdornmentContainerProps>`
           : '32px'};
   min-width: fit-content;
 
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   width: auto;
 `;
 
@@ -94,29 +97,31 @@ const StyledInput = styled.input<
     | 'leftAdornment'
   >
 >`
-  background-color: ${themeCssVariables.background.transparent.lighter};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
   border: 1px solid
     ${({ error }) =>
       error
-        ? themeCssVariables.border.color.danger
-        : themeCssVariables.border.color.medium};
+        ? odelzaThemeCssVariables.border.color.danger
+        : odelzaThemeCssVariables.border.color.medium};
 
   border-radius: ${({ leftAdornment, rightAdornment }) =>
     leftAdornment
-      ? `0 ${themeCssVariables.border.radius.md} ${themeCssVariables.border.radius.md} 0`
+      ? `0 ${odelzaThemeCssVariables.border.radius.md} ${odelzaThemeCssVariables.border.radius.md} 0`
       : rightAdornment
-        ? `${themeCssVariables.border.radius.md} 0 0 ${themeCssVariables.border.radius.md}`
-        : themeCssVariables.border.radius.md};
+        ? `${odelzaThemeCssVariables.border.radius.md} 0 0 ${odelzaThemeCssVariables.border.radius.md}`
+        : odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex-grow: 1;
   font-family: ${({ inheritFontStyles }) =>
-    inheritFontStyles ? 'inherit' : themeCssVariables.font.family};
+    inheritFontStyles ? 'inherit' : odelzaThemeCssVariables.font.family};
   font-size: ${({ inheritFontStyles }) =>
-    inheritFontStyles ? 'inherit' : themeCssVariables.font.size.md};
+    inheritFontStyles ? 'inherit' : odelzaThemeCssVariables.font.size.md};
   font-weight: ${({ inheritFontStyles }) =>
-    inheritFontStyles ? 'inherit' : themeCssVariables.font.weight.regular};
+    inheritFontStyles
+      ? 'inherit'
+      : odelzaThemeCssVariables.font.weight.regular};
   height: ${({ sizeVariant }) =>
     sizeVariant === 'xs'
       ? '20px'
@@ -131,34 +136,34 @@ const StyledInput = styled.input<
     autoGrow
       ? 0
       : sizeVariant === 'xs'
-        ? `${themeCssVariables.spacing[2]} 0`
-        : themeCssVariables.spacing[2]};
+        ? `${odelzaThemeCssVariables.spacing[2]} 0`
+        : odelzaThemeCssVariables.spacing[2]};
   padding-left: ${({ LeftIcon, autoGrow }) =>
     autoGrow
-      ? themeCssVariables.spacing[1]
+      ? odelzaThemeCssVariables.spacing[1]
       : LeftIcon
-        ? `calc(${themeCssVariables.spacing[3]} + 16px)`
-        : themeCssVariables.spacing[2]};
+        ? `calc(${odelzaThemeCssVariables.spacing[3]} + 16px)`
+        : odelzaThemeCssVariables.spacing[2]};
   padding-right: ${({ RightIcon, autoGrow }) =>
     autoGrow
-      ? themeCssVariables.spacing[1]
+      ? odelzaThemeCssVariables.spacing[1]
       : RightIcon
-        ? `calc(${themeCssVariables.spacing[3]} + 16px)`
-        : themeCssVariables.spacing[2]};
+        ? `calc(${odelzaThemeCssVariables.spacing[3]} + 16px)`
+        : odelzaThemeCssVariables.spacing[2]};
   text-overflow: ellipsis;
   width: ${({ width }) =>
     isDefined(width)
-      ? `calc(${width}px + ${themeCssVariables.spacing[0.5]})`
+      ? `calc(${width}px + ${odelzaThemeCssVariables.spacing[0.5]})`
       : '100%'};
   &::placeholder,
   &::-webkit-input-placeholder {
-    color: ${themeCssVariables.font.color.light};
-    font-family: ${themeCssVariables.font.family};
-    font-weight: ${themeCssVariables.font.weight.medium};
+    color: ${odelzaThemeCssVariables.font.color.light};
+    font-family: ${odelzaThemeCssVariables.font.family};
+    font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   }
 
   &:disabled {
-    color: ${themeCssVariables.font.color.tertiary};
+    color: ${odelzaThemeCssVariables.font.color.tertiary};
   }
 
   &[readonly] {
@@ -168,8 +173,8 @@ const StyledInput = styled.input<
   &:focus {
     border-color: ${({ error }) =>
       error
-        ? themeCssVariables.border.color.danger
-        : themeCssVariables.color.blue};
+        ? odelzaThemeCssVariables.border.color.danger
+        : odelzaThemeCssVariables.color.primary};
   }
 `;
 
@@ -181,10 +186,10 @@ const StyledLeftIconContainer = styled.div<{ sizeVariant: TextInputSize }>`
   margin: auto 0;
   padding-left: ${({ sizeVariant }) =>
     sizeVariant === 'xs'
-      ? themeCssVariables.spacing[0.5]
+      ? odelzaThemeCssVariables.spacing[0.5]
       : sizeVariant === 'md' || sizeVariant === 'sm'
-        ? themeCssVariables.spacing[1]
-        : themeCssVariables.spacing[2]};
+        ? odelzaThemeCssVariables.spacing[1]
+        : odelzaThemeCssVariables.spacing[2]};
   position: absolute;
   top: 0;
 `;
@@ -197,7 +202,7 @@ const StyledTrailingIconContainer = styled.div<
   display: flex;
   justify-content: center;
   margin: auto 0;
-  padding-right: ${themeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
   position: absolute;
   right: 0;
   top: 0;
@@ -210,8 +215,8 @@ const StyledTrailingIcon = styled.div<{
   align-items: center;
   color: ${({ isFocused }) =>
     isFocused
-      ? themeCssVariables.font.color.secondary
-      : themeCssVariables.font.color.light};
+      ? odelzaThemeCssVariables.font.color.secondary
+      : odelzaThemeCssVariables.font.color.light};
   cursor: ${({ onClick }) => (onClick ? 'pointer' : 'default')};
   display: flex;
   justify-content: center;

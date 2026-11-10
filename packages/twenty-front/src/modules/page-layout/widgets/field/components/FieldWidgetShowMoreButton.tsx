@@ -2,7 +2,7 @@ import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 
 import { IconChevronDown } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type FieldWidgetShowMoreButtonProps = {
   remainingCount: number;
@@ -14,19 +14,19 @@ const StyledButton = styled.button`
   background: transparent;
   border: none;
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: pointer;
   display: flex;
-  font-family: ${themeCssVariables.font.family};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  gap: ${themeCssVariables.spacing[1]};
+  font-family: ${odelzaThemeCssVariables.font.family};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 24px;
   padding: 0;
-  transition: color ${themeCssVariables.animation.duration.instant}s ease;
+  transition: color ${odelzaThemeCssVariables.animation.duration.instant}s ease;
   width: 100%;
 
   &:hover {
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
   }
 `;
 

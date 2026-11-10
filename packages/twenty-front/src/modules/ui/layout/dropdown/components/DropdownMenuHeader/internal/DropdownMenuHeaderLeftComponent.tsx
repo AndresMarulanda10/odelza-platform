@@ -3,7 +3,10 @@ import { styled } from '@linaria/react';
 import { type Avatar, type AvatarProps } from 'twenty-ui/data-display';
 import { type IconComponent } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledNonClickableStartIcon = styled.div`
   align-items: center;
@@ -13,18 +16,18 @@ const StyledNonClickableStartIcon = styled.div`
   display: flex;
   flex-direction: row;
 
-  font-family: ${themeCssVariables.font.family};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[6]};
+  font-family: ${odelzaThemeCssVariables.font.family};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
 
   justify-content: center;
   white-space: nowrap;
-  width: ${themeCssVariables.spacing[6]};
+  width: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 const StyledAvatarWrapper = styled.div`
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const DropdownMenuHeaderLeftComponent = ({

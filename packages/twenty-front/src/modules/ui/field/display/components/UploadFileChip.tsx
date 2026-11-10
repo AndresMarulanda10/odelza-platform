@@ -2,25 +2,28 @@ import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { IconArrowUp } from 'twenty-ui/icon';
 import { Loader } from 'twenty-ui/feedback';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.light};
-  border-radius: ${themeCssVariables.border.radius.smRound};
+  background-color: ${odelzaThemeCssVariables.background.transparent.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.smRound};
   corner-shape: round;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[5]};
-  margin-right: ${themeCssVariables.spacing[1]};
-  padding: 0 ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[5]};
+  margin-right: ${odelzaThemeCssVariables.spacing[1]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledIconBox = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.font.color.tertiary};
-  border-radius: ${themeCssVariables.border.radius.smRound};
-  color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.font.color.tertiary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.smRound};
+  color: ${odelzaThemeCssVariables.background.primary};
   corner-shape: round;
   display: flex;
   height: 14px;
@@ -30,8 +33,8 @@ const StyledIconBox = styled.div`
 
 const StyledStaticLoader = styled.div`
   align-items: center;
-  border: 1px solid ${themeCssVariables.font.color.tertiary};
-  border-radius: ${themeCssVariables.border.radius.pill};
+  border: 1px solid ${odelzaThemeCssVariables.font.color.tertiary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   box-sizing: border-box;
   corner-shape: round;
   display: flex;

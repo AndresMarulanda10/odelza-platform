@@ -6,7 +6,10 @@ import { styled } from '@linaria/react';
 import { Handle, Position } from '@xyflow/react';
 import { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { RelationType } from '~/generated-metadata/graphql';
 
 type ObjectFieldRowProps = {
@@ -16,14 +19,14 @@ type ObjectFieldRowProps = {
 const StyledRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
-  padding: 0 ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   position: relative;
   width: 100%;
 `;
 
 const StyledFieldName = styled.div`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
 `;
 
 export const ObjectFieldRow = ({ field }: ObjectFieldRowProps) => {

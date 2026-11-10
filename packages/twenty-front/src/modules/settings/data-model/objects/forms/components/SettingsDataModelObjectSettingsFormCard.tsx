@@ -9,7 +9,7 @@ import { SettingsDataModelObjectPreview } from '@/settings/data-model/objects/co
 import { SettingsDataModelObjectIdentifiersForm } from '@/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm';
 import { Trans } from '@lingui/react/macro';
 import { Card, CardContent } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsDataModelObjectSettingsFormCardProps = {
   objectMetadataItem: EnrichedObjectMetadataItem;
@@ -17,7 +17,7 @@ type SettingsDataModelObjectSettingsFormCardProps = {
 
 const StyledTopCardContentContainer = styled.div`
   > * {
-    background-color: ${themeCssVariables.background.transparent.lighter};
+    background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
   }
 `;
 
@@ -25,14 +25,14 @@ const StyledObjectSummaryCardContainer = styled.div`
   max-width: 480px;
 
   > * {
-    border-radius: ${themeCssVariables.border.radius.md};
-    color: ${themeCssVariables.font.color.primary};
+    border-radius: ${odelzaThemeCssVariables.border.radius.md};
+    color: ${odelzaThemeCssVariables.font.color.primary};
   }
 `;
 
 const StyledObjectSummaryCardContentContainer = styled.div`
   > * {
-    padding: ${themeCssVariables.spacing[2]};
+    padding: ${odelzaThemeCssVariables.spacing[2]};
   }
 `;
 

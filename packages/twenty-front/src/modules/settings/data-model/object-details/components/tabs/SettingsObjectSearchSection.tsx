@@ -16,7 +16,10 @@ import { isDefined } from 'twenty-shared/utils';
 
 import { IconEye, IconSearch, useIcons } from 'twenty-ui/icon';
 import { Card } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type SettingsObjectSearchSectionProps = {
   objectMetadataItem: EnrichedObjectMetadataItem;
@@ -34,7 +37,7 @@ type IndexedFieldEntry = {
 const StyledSearchSectionContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledNameLabel = styled.div`

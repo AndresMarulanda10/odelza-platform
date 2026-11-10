@@ -8,8 +8,8 @@
 }
 
 .bar {
-  background-color: var(--t-background-quaternary);
-  border-radius: var(--t-border-radius-pill);
+  background-color: var(--odz-background-quaternary);
+  border-radius: var(--odz-border-radius-pill);
   corner-shape: round;
   height: 3px;
   transition: background-color duration(fast);
@@ -17,5 +17,5 @@
 }
 
 .area:hover > .bar {
-  background-color: var(--t-font-color-tertiary);
+  background-color: var(--odz-font-color-tertiary);
 }

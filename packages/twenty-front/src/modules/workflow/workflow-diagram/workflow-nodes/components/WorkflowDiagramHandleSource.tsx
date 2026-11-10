@@ -5,7 +5,7 @@ import { getWorkflowDiagramColors } from '@/workflow/workflow-diagram/utils/getW
 import { styled } from '@linaria/react';
 import { Handle, Position, type HandleProps } from '@xyflow/react';
 import { useMemo, type CSSProperties } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const HANDLE_SCALE_ON_HOVER = 1.5;
 
@@ -24,12 +24,12 @@ const StyledHandleContainer = styled.div`
 
     &::after {
       content: '';
-      height: calc(100% + ${themeCssVariables.spacing[4]});
+      height: calc(100% + ${odelzaThemeCssVariables.spacing[4]});
       left: 50%;
       position: absolute;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: calc(100% + ${themeCssVariables.spacing[4]});
+      width: calc(100% + ${odelzaThemeCssVariables.spacing[4]});
     }
 
     width: ${NODE_HANDLE_WIDTH_PX}px;
@@ -83,11 +83,11 @@ export const WorkflowDiagramHandleSource = ({
       bg = colors.selected.background;
       borderColor = colors.selected.borderColor;
     } else {
-      bg = themeCssVariables.background.primary;
+      bg = odelzaThemeCssVariables.background.primary;
       borderColor =
         hovered && disableHoverEffect !== true
-          ? themeCssVariables.font.color.light
-          : themeCssVariables.border.color.strong;
+          ? odelzaThemeCssVariables.font.color.light
+          : odelzaThemeCssVariables.border.color.strong;
     }
 
     const styles: Record<string, string> = {

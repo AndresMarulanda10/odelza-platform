@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { type PointerEvent as ReactPointerEvent } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledRecordColumnResizeHandle = styled.div<{
   isResizing: boolean;
@@ -16,7 +16,7 @@ const StyledRecordColumnResizeHandle = styled.div<{
   z-index: 1;
 
   &:after {
-    background-color: ${themeCssVariables.color.blue};
+    background-color: ${odelzaThemeCssVariables.color.primary};
     bottom: 0;
     content: '';
     display: ${({ isResizing }) => (isResizing ? 'block' : 'none')};

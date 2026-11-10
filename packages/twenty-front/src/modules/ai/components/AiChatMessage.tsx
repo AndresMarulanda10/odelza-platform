@@ -13,7 +13,7 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 
 import { isExtendedFileUIPart } from 'twenty-shared/ai';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
 import { beautifyPastDateRelativeToNow } from '~/utils/date-utils';
 
@@ -32,19 +32,19 @@ const StyledMessageBubble = styled.div<{ isUser?: boolean }>`
 
 const StyledMessageText = styled.div<{ isUser?: boolean }>`
   background: ${({ isUser }) =>
-    isUser ? themeCssVariables.background.tertiary : 'transparent'};
+    isUser ? odelzaThemeCssVariables.background.tertiary : 'transparent'};
   border-radius: ${({ isUser }) =>
-    isUser ? themeCssVariables.border.radius.sm : '0'};
+    isUser ? odelzaThemeCssVariables.border.radius.sm : '0'};
   color: ${({ isUser }) =>
     isUser
-      ? themeCssVariables.font.color.secondary
-      : themeCssVariables.font.color.primary};
+      ? odelzaThemeCssVariables.font.color.secondary
+      : odelzaThemeCssVariables.font.color.primary};
   font-weight: ${({ isUser }) => (isUser ? 500 : 400)};
   line-height: 1.4em;
   max-width: 100%;
   overflow-wrap: break-word;
   padding: ${({ isUser }) =>
-    isUser ? `0 ${themeCssVariables.spacing[2]}` : '0'};
+    isUser ? `0 ${odelzaThemeCssVariables.spacing[2]}` : '0'};
   white-space: normal;
   width: ${({ isUser }) => (isUser ? 'fit-content' : '100%')};
   /* Pre-wrap within the whole container turns every newline between block
@@ -52,8 +52,8 @@ const StyledMessageText = styled.div<{ isUser?: boolean }>`
   word-wrap: break-word;
 
   code {
-    background: ${themeCssVariables.background.tertiary};
-    border-radius: ${themeCssVariables.border.radius.sm};
+    background: ${odelzaThemeCssVariables.background.tertiary};
+    border-radius: ${odelzaThemeCssVariables.border.radius.sm};
     line-height: 1.4;
     max-width: 100%;
     overflow: auto;
@@ -63,11 +63,11 @@ const StyledMessageText = styled.div<{ isUser?: boolean }>`
   }
 
   pre {
-    background: ${themeCssVariables.background.tertiary};
-    border-radius: ${themeCssVariables.border.radius.sm};
+    background: ${odelzaThemeCssVariables.background.tertiary};
+    border-radius: ${odelzaThemeCssVariables.border.radius.sm};
     max-width: 100%;
     overflow-x: auto;
-    padding: ${themeCssVariables.spacing[2]};
+    padding: ${odelzaThemeCssVariables.spacing[2]};
 
     code {
       background: none;
@@ -79,14 +79,14 @@ const StyledMessageText = styled.div<{ isUser?: boolean }>`
   p {
     line-height: 1.4em;
     margin-block: ${({ isUser }) =>
-      isUser ? '0' : themeCssVariables.spacing[1]};
+      isUser ? '0' : odelzaThemeCssVariables.spacing[1]};
   }
 
   ul,
   ol {
     line-height: 1.4em;
-    margin: ${themeCssVariables.spacing[1]} 0;
-    padding-left: ${themeCssVariables.spacing[4]};
+    margin: ${odelzaThemeCssVariables.spacing[1]} 0;
+    padding-left: ${odelzaThemeCssVariables.spacing[4]};
   }
 
   ul {
@@ -95,35 +95,35 @@ const StyledMessageText = styled.div<{ isUser?: boolean }>`
 
   li {
     line-height: 1.4em;
-    margin: ${themeCssVariables.spacing['0.5']} 0;
-    padding-bottom: ${themeCssVariables.spacing['0.5']};
-    padding-top: ${themeCssVariables.spacing['0.5']};
+    margin: ${odelzaThemeCssVariables.spacing['0.5']} 0;
+    padding-bottom: ${odelzaThemeCssVariables.spacing['0.5']};
+    padding-top: ${odelzaThemeCssVariables.spacing['0.5']};
   }
 
   blockquote {
-    border-left: 3px solid ${themeCssVariables.border.color.medium};
-    color: ${themeCssVariables.font.color.secondary};
-    margin: ${themeCssVariables.spacing[2]} 0;
-    padding-left: ${themeCssVariables.spacing[2]};
+    border-left: 3px solid ${odelzaThemeCssVariables.border.color.medium};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
+    margin: ${odelzaThemeCssVariables.spacing[2]} 0;
+    padding-left: ${odelzaThemeCssVariables.spacing[2]};
   }
 `;
 
 const StyledMessageFooter = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   justify-content: space-between;
-  margin-top: ${themeCssVariables.spacing[1]};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
   opacity: 0;
   pointer-events: none;
-  transition: opacity calc(${themeCssVariables.animation.duration.normal} * 1s)
-    ease-in-out;
+  transition: opacity
+    calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s) ease-in-out;
   width: 100%;
 `;
 
 const StyledMessageTimestamp = styled.span`
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
 `;
 
 const StyledMessageContainer = styled.div<{ isUser?: boolean }>`
@@ -136,8 +136,8 @@ const StyledFilesContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-top: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type AiChatMessageProps = {

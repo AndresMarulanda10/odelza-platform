@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 import { Card, CardContent } from 'twenty-ui/surfaces';
 import { Toggle } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type Parameter = {
   value: boolean;
@@ -19,23 +19,23 @@ const StyledCardContentContainer = styled.div`
     align-items: center;
     cursor: pointer;
     display: flex;
-    gap: ${themeCssVariables.spacing[4]};
+    gap: ${odelzaThemeCssVariables.spacing[4]};
 
     &:hover {
-      background: ${themeCssVariables.background.transparent.lighter};
+      background: ${odelzaThemeCssVariables.background.transparent.lighter};
     }
   }
 `;
 
 const StyledTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledDescription = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const StyledToggleContainer = styled.span`

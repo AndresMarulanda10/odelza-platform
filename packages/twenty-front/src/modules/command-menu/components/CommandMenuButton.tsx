@@ -7,10 +7,10 @@ import { isDefined } from 'twenty-shared/utils';
 import { type IconComponent } from 'twenty-ui/icon';
 import { AppTooltip, TooltipDelay, TooltipPosition } from 'twenty-ui/surfaces';
 import { Button, IconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledWrapper = styled.div`
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
 `;
 
 export type CommandMenuButtonProps = {
@@ -40,7 +40,7 @@ export const CommandMenuButton = ({
     ? getCommandMenuItemLabel(command.shortLabel)
     : undefined;
 
-  const buttonAccent = command.isPrimaryCTA ? 'blue' : 'default';
+  const buttonAccent = command.isPrimaryCTA ? 'primary' : 'default';
 
   return (
     <>
@@ -49,7 +49,7 @@ export const CommandMenuButton = ({
           Icon={command.Icon}
           size="small"
           variant={isPrimaryAction ? 'primary' : 'secondary'}
-          accent={isPrimaryAction ? 'blue' : buttonAccent}
+          accent={isPrimaryAction ? 'primary' : buttonAccent}
           to={to}
           onClick={onClick}
           disabled={disabled}
@@ -62,7 +62,7 @@ export const CommandMenuButton = ({
             Icon={command.Icon}
             size="small"
             variant={isPrimaryAction ? 'primary' : 'secondary'}
-            accent={isPrimaryAction ? 'blue' : buttonAccent}
+            accent={isPrimaryAction ? 'primary' : buttonAccent}
             to={to}
             onClick={onClick}
             disabled={disabled}

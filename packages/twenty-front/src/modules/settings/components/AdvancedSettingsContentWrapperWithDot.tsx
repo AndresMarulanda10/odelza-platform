@@ -1,7 +1,10 @@
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { IconPoint } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledWrapper = styled.div`
   position: relative;
@@ -20,7 +23,7 @@ const StyledDotContainer = styled.div<{ dotPosition: DotPosition }>`
     dotPosition === 'top' ? 'stretch' : 'center'};
   display: flex;
   height: 100%;
-  left: calc(-1 * ${themeCssVariables.spacing[5]});
+  left: calc(-1 * ${odelzaThemeCssVariables.spacing[5]});
 
   position: absolute;
   top: ${({ dotPosition }) => (dotPosition === 'top' ? '0' : 'auto')};

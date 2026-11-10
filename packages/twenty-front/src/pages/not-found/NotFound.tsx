@@ -12,7 +12,7 @@ import { RootStackingContextZIndices } from '@/ui/layout/constants/RootStackingC
 import { PageTitle } from '@/ui/utilities/page-title/components/PageTitle';
 import { styled } from '@linaria/react';
 import { MainButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   AnimatedPlaceholder,
   AnimatedPlaceholderEmptyTextContainer,
@@ -24,8 +24,8 @@ import { UndecoratedLink } from 'twenty-ui/navigation';
 
 const StyledBackDrop = styled.div`
   align-items: center;
-  backdrop-filter: ${themeCssVariables.blur.light};
-  background: ${themeCssVariables.background.transparent.secondary};
+  backdrop-filter: ${odelzaThemeCssVariables.blur.light};
+  background: ${odelzaThemeCssVariables.background.transparent.secondary};
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -46,7 +46,7 @@ export const NotFound = () => {
 
   return (
     <>
-      <PageTitle title={t`Page Not Found | Twenty`} />
+      <PageTitle title={t`Page Not Found | Odelza`} />
       <StyledBackDrop>
         <AnimatedPlaceholderErrorContainer>
           <AnimatedPlaceholder type="error404" />

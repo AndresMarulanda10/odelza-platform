@@ -11,17 +11,17 @@ import {
   type IconComponent,
 } from 'twenty-ui/icon';
 import { Card } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { FeatureFlagKey } from '~/generated-metadata/graphql';
 
 const StyledCardGrid = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   grid-template-columns: 1fr;
 `;
 
 const StyledImage = styled.img`
-  border-bottom: 1px solid ${themeCssVariables.border.color.medium};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   display: flex;
   height: 120px;
   object-fit: cover;
@@ -63,7 +63,7 @@ export const SettingsLabContent = () => {
           <Card
             key={flag.key}
             rounded
-            backgroundColor={themeCssVariables.background.secondary}
+            backgroundColor={odelzaThemeCssVariables.background.secondary}
           >
             {!hasImageLoadingError[flag.key] && (
               <StyledImage
@@ -86,7 +86,7 @@ export const SettingsLabContent = () => {
         {labPublicFeatureFlagsWithoutImage.length > 0 && (
           <Card
             rounded
-            backgroundColor={themeCssVariables.background.secondary}
+            backgroundColor={odelzaThemeCssVariables.background.secondary}
           >
             {labPublicFeatureFlagsWithoutImage.map((flag, index) => (
               <SettingsOptionCardContentToggle

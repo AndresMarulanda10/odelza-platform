@@ -1,16 +1,16 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledShimmeringText = styled.div`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer-wave 1s infinite linear;
-  background: ${themeCssVariables.font.color.light}
+  background: ${odelzaThemeCssVariables.font.color.light}
     linear-gradient(
       90deg,
-      ${themeCssVariables.font.color.light} 0%,
-      ${themeCssVariables.font.color.primary} 50%,
-      ${themeCssVariables.font.color.light} 100%
+      ${odelzaThemeCssVariables.font.color.light} 0%,
+      ${odelzaThemeCssVariables.font.color.primary} 50%,
+      ${odelzaThemeCssVariables.font.color.light} 100%
     );
   background-clip: text;
   background-position: -200% top;

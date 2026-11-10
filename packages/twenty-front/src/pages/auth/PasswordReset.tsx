@@ -30,7 +30,10 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { useSetAtomState } from '@/ui/utilities/state/jotai/hooks/useSetAtomState';
 import { AppPath } from 'twenty-shared/types';
 import { MainButton } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { AnimatedEaseIn } from 'twenty-ui/layout';
 import { z } from 'zod';
 import { useMutation, useQuery } from '@apollo/client/react';
@@ -74,11 +77,11 @@ const StyledFullWidthContainer = styled.div`
 `;
 
 const StyledInputContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[3]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledMainButtonContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const PasswordReset = () => {
@@ -234,7 +237,7 @@ export const PasswordReset = () => {
                   height={SKELETON_LOADER_HEIGHT_SIZES.standard.m}
                   count={2}
                   style={{
-                    marginBottom: themeCssVariables.spacing[2],
+                    marginBottom: odelzaThemeCssVariables.spacing[2],
                   }}
                 />
               </SkeletonTheme>

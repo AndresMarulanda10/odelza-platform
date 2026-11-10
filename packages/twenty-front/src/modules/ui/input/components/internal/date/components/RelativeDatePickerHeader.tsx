@@ -17,21 +17,21 @@ import {
   type RelativeDateFilterDirection,
   type RelativeDateFilterUnit,
 } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div<{ noPadding: boolean }>`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   padding: ${({ noPadding }) =>
-    noPadding ? '0' : themeCssVariables.spacing[2]};
+    noPadding ? '0' : odelzaThemeCssVariables.spacing[2]};
   padding-bottom: 0;
 `;
 
 const StyledControlsRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type RelativeDatePickerHeaderProps = {

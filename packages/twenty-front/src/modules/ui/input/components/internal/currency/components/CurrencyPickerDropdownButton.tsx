@@ -9,28 +9,31 @@ import { useCloseDropdown } from '@/ui/layout/dropdown/hooks/useCloseDropdown';
 import { useContext } from 'react';
 import { IconChevronDown } from 'twenty-ui/icon';
 import { CurrencyPickerDropdownSelect } from './CurrencyPickerDropdownSelect';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 const StyledDropdownButtonContainer = styled.div`
   align-items: center;
-  border-right: 1px solid ${themeCssVariables.border.color.medium};
+  border-right: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   color: ${({ color }) => color ?? 'none'};
   cursor: pointer;
   display: flex;
   height: 32px;
-  padding-left: ${themeCssVariables.spacing[2]};
-  padding-right: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
   user-select: none;
   &:hover {
-    background-color: ${themeCssVariables.background.transparent.light};
+    background-color: ${odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 
 const StyledIconContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: center;
 
   svg {

@@ -16,7 +16,7 @@ import { styled } from '@linaria/react';
 import { CoreObjectNameSingular } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { PageLayoutType } from '~/generated-metadata/graphql';
 
 const StyledShowPageBannerContainer = styled.div`
@@ -33,7 +33,7 @@ const StyledShowPageRightContainer = styled.div`
 `;
 
 const StyledContentContainer = styled.div<{ isInSidePanel: boolean }>`
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   flex: 1;
   overflow-y: auto;
 `;
@@ -125,7 +125,9 @@ export const PageLayoutRecordPageRenderer = ({
                       variant={
                         commandMenuItem.isPrimaryCTA ? 'primary' : 'secondary'
                       }
-                      accent={commandMenuItem.isPrimaryCTA ? 'blue' : 'default'}
+                      accent={
+                        commandMenuItem.isPrimaryCTA ? 'primary' : 'default'
+                      }
                       title={commandMenuItem.label}
                       Icon={commandMenuItem.Icon}
                       hotkeys={commandMenuItem.hotkeys}

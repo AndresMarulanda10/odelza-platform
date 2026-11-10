@@ -1,6 +1,6 @@
 import { RECORD_TABLE_ROW_HEIGHT } from '@/object-record/record-table/constants/RecordTableRowHeight';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledHeaderCell = styled.div<{
   zIndex?: number;
@@ -8,14 +8,14 @@ const StyledHeaderCell = styled.div<{
   isResizing: boolean;
   isReadOnly: boolean;
 }>`
-  background-color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
   border-bottom: ${({ shouldDisplayBorderBottom }) =>
     shouldDisplayBorderBottom
-      ? `1px solid ${themeCssVariables.border.color.light}`
+      ? `1px solid ${odelzaThemeCssVariables.border.color.light}`
       : 'none'};
-  border-right: 1px solid ${themeCssVariables.border.color.light};
+  border-right: 1px solid ${odelzaThemeCssVariables.border.color.light};
 
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 
   cursor: ${({ isResizing, isReadOnly }) =>
     isReadOnly ? 'default' : isResizing ? 'col-resize' : 'pointer'};
@@ -31,15 +31,15 @@ const StyledHeaderCell = styled.div<{
   &:hover {
     background: ${({ isResizing, isReadOnly }) =>
       isReadOnly || isResizing
-        ? themeCssVariables.background.primary
-        : themeCssVariables.background.secondary};
+        ? odelzaThemeCssVariables.background.primary
+        : odelzaThemeCssVariables.background.secondary};
   }
 
   &:active {
     background: ${({ isResizing, isReadOnly }) =>
       isReadOnly || isResizing
-        ? themeCssVariables.background.primary
-        : themeCssVariables.background.tertiary};
+        ? odelzaThemeCssVariables.background.primary
+        : odelzaThemeCssVariables.background.tertiary};
   }
 
   user-select: none;

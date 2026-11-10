@@ -1,6 +1,6 @@
 import { RecordInlineCellHoveredPortal } from '@/object-record/record-inline-cell/components/RecordInlineCellHoveredPortal';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledRecordTableCellHoveredPortalContent = styled.div<{
   readonly?: boolean;
@@ -8,7 +8,7 @@ const StyledRecordTableCellHoveredPortalContent = styled.div<{
 }>`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: ${({ isCentered }) =>
     isCentered === true ? 'center' : 'normal'};
 
@@ -17,10 +17,10 @@ const StyledRecordTableCellHoveredPortalContent = styled.div<{
 
 const StyledInlineCellBaseContainer = styled.div<{ readonly: boolean }>`
   align-items: center;
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   box-sizing: border-box;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: fit-content;
   user-select: text;
   width: 100%;

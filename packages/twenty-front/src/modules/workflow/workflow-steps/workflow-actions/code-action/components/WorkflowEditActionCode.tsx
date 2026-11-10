@@ -47,7 +47,7 @@ import { isDefined } from 'twenty-shared/utils';
 import { getFunctionInputFromInputSchema } from 'twenty-shared/workflow';
 import { IconCode, IconPlayerPlay } from 'twenty-ui/icon';
 import { CodeEditor } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useIsMobile } from 'twenty-ui/utilities';
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -58,8 +58,8 @@ const StyledCodeEditorContainer = styled.div`
 `;
 
 const StyledTabListContainer = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  padding-left: ${themeCssVariables.spacing[2]};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledFullScreenCodeEditorContainer = styled.div`

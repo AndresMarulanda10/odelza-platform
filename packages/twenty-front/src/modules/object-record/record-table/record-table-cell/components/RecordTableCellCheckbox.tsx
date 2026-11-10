@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { useCallback } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { RECORD_TABLE_COLUMN_CHECKBOX_WIDTH } from '@/object-record/record-table/constants/RecordTableColumnCheckboxWidth';
 import { RECORD_TABLE_COLUMN_CHECKBOX_WIDTH_CLASS_NAME } from '@/object-record/record-table/constants/RecordTableColumnCheckboxWidthClassName';
@@ -18,7 +18,7 @@ const StyledContainer = styled.div`
   height: ${RECORD_TABLE_ROW_HEIGHT}px;
   justify-content: center;
   min-width: ${RECORD_TABLE_COLUMN_CHECKBOX_WIDTH};
-  padding-right: ${themeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
   width: ${RECORD_TABLE_COLUMN_CHECKBOX_WIDTH};
 `;
 

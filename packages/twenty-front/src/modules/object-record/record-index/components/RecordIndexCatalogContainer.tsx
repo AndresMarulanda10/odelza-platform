@@ -4,7 +4,7 @@ import { atom, useAtomValue, useStore } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { Loader } from 'twenty-ui/feedback';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { RecordCatalogCard } from '@/object-record/record-index/components/RecordCatalogCard';
 import { RecordCatalogField } from '@/object-record/record-index/components/RecordCatalogField';
@@ -28,32 +28,33 @@ import { useAtomFamilyStateValue } from '@/ui/utilities/state/jotai/hooks/useAto
 const StyledScroll = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   height: 100%;
   overflow-y: auto;
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledGrid = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 `;
 
 const StyledMoreButton = styled.button`
   align-self: center;
-  background: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
-  color: ${themeCssVariables.font.color.secondary};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   cursor: pointer;
-  font-size: ${themeCssVariables.font.size.sm};
-  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[4]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  padding: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledEmpty = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   height: 100%;
   justify-content: center;

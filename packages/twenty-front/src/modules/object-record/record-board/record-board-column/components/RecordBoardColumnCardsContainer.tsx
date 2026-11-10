@@ -1,7 +1,7 @@
 import { Draggable } from '@hello-pangea/dnd';
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { getCssCompatibleDraggableProps } from '@/ui/layout/draggable-list/utils/getCssCompatibleDraggableProps';
 import { RecordBoardCardDraggableContainer } from '@/object-record/record-board/record-board-card/components/RecordBoardCardDraggableContainer';
@@ -21,7 +21,7 @@ const StyledColumnCardsContainer = styled.div`
 `;
 
 const StyledNewButtonContainer = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[4]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 type RecordBoardColumnCardsContainerProps = {

@@ -53,7 +53,7 @@ export const SettingsBillingPlansWithoutSubscription = ({
     isDisabled: boolean;
     isLoading: boolean;
   }): SettingsBillingPlanAction => ({
-    accent: 'blue',
+    accent: 'primary',
     disabled: isDisabled,
     isLoading,
     onClick: handleCheckoutSession,

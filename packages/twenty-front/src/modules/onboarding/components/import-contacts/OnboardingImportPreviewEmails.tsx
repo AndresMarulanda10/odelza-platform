@@ -8,14 +8,17 @@ import {
 } from '@/onboarding/constants/ImportContactsPreviewEmails';
 import { styled } from '@linaria/react';
 import { IconStar } from 'twenty-ui/icon';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const EMAIL_ROW_HEIGHT = 32;
 const EMAIL_CHECKBOX_SIZE = 12;
 const EMAIL_STAR_SIZE = 11;
 
 const StyledColumn = styled.div`
-  background-color: ${themeCssVariables.border.color.light};
+  background-color: ${odelzaThemeCssVariables.border.color.light};
   box-sizing: border-box;
   display: flex;
   flex: 1 1 0;
@@ -29,23 +32,23 @@ const StyledColumn = styled.div`
 
 const StyledEmailRow = styled.div<{ isUnread: boolean }>`
   align-items: center;
-  background-color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
   box-sizing: border-box;
   color: ${({ isUnread }) =>
     isUnread
-      ? themeCssVariables.font.color.primary
-      : themeCssVariables.font.color.tertiary};
+      ? odelzaThemeCssVariables.font.color.primary
+      : odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex-shrink: 0;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   height: ${EMAIL_ROW_HEIGHT}px;
-  padding: 0 ${themeCssVariables.spacing[3]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[3]};
   white-space: nowrap;
 `;
 
 const StyledEmailCheckbox = styled.div`
-  border: 1px solid ${themeCssVariables.font.color.light};
+  border: 1px solid ${odelzaThemeCssVariables.font.color.light};
   border-radius: 1px;
   box-sizing: border-box;
   flex-shrink: 0;
@@ -62,36 +65,36 @@ const StyledEmailStar = styled.div`
 const StyledEmailSender = styled.span<{ isUnread: boolean }>`
   font-weight: ${({ isUnread }) =>
     isUnread
-      ? themeCssVariables.font.weight.medium
-      : themeCssVariables.font.weight.regular};
+      ? odelzaThemeCssVariables.font.weight.medium
+      : odelzaThemeCssVariables.font.weight.regular};
 `;
 
 const StyledEmailSubject = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
 `;
 
 const StyledEventCard = styled.div<{ color: 'orange' | 'sky' }>`
   background-color: ${({ color }) =>
     color === 'orange'
-      ? themeCssVariables.color.orange3
-      : themeCssVariables.color.sky3};
+      ? odelzaThemeCssVariables.color.orange3
+      : odelzaThemeCssVariables.color.sky3};
   border-left: 2px solid
     ${({ color }) =>
       color === 'orange'
-        ? themeCssVariables.color.orange11
-        : themeCssVariables.color.sky11};
-  border-radius: ${themeCssVariables.border.radius.md};
-  box-shadow: ${themeCssVariables.boxShadow.strong};
+        ? odelzaThemeCssVariables.color.orange11
+        : odelzaThemeCssVariables.color.sky11};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
   box-sizing: border-box;
   color: ${({ color }) =>
     color === 'orange'
-      ? themeCssVariables.color.orange11
-      : themeCssVariables.color.sky11};
+      ? odelzaThemeCssVariables.color.orange11
+      : odelzaThemeCssVariables.color.sky11};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   line-height: 1.1;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   position: absolute;
   width: 160px;
 
@@ -101,8 +104,8 @@ const StyledEventCard = styled.div<{ color: 'orange' | 'sky' }>`
 `;
 
 const StyledEventTitle = styled.span`
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
 `;
 
 const StyledEventTime = styled.span`
@@ -123,7 +126,7 @@ const EmailRow = ({ email }: { email: ImportContactsPreviewEmail }) => (
     <StyledEmailStar>
       <IconStar
         size={EMAIL_STAR_SIZE}
-        color={themeCssVariables.font.color.light}
+        color={odelzaThemeCssVariables.font.color.light}
       />
     </StyledEmailStar>
     <StyledEmailSender isUnread={email.isUnread}>

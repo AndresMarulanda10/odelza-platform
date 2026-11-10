@@ -2,7 +2,10 @@ import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { IconReload, IconX } from 'twenty-ui/icon';
 import { Checkbox } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { AnimatedRotate } from 'twenty-ui/layout';
 
 export type OverridableCheckboxType = 'default' | 'override' | 'no_cta';
@@ -11,15 +14,15 @@ const StyledOverridableCheckboxContainer = styled.div`
   align-items: center;
   display: inline-flex;
   justify-content: flex-start;
-  width: calc(${themeCssVariables.icon.size.xl} * 2 * 1px);
+  width: calc(${odelzaThemeCssVariables.icon.size.xl} * 2 * 1px);
 `;
 
 const StyledOverridableCheckboxContainerItem = styled.div`
   align-items: center;
   display: flex;
-  height: calc(${themeCssVariables.icon.size.xl} * 1px);
+  height: calc(${odelzaThemeCssVariables.icon.size.xl} * 1px);
   justify-content: center;
-  width: calc(${themeCssVariables.icon.size.xl} * 1px);
+  width: calc(${odelzaThemeCssVariables.icon.size.xl} * 1px);
 `;
 
 const StyledIconWrapper = styled.div<{

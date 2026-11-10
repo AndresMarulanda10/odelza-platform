@@ -36,7 +36,7 @@ import { t } from '@lingui/core/macro';
 import { isNonEmptyArray, isNonEmptyString } from '@sniptt/guards';
 import { isDefined } from 'twenty-shared/utils';
 import { LightButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export type ViewBarDetailsProps = {
   hasFilterButton?: boolean;
@@ -47,13 +47,13 @@ export type ViewBarDetailsProps = {
 
 const StyledBar = styled.div`
   align-items: center;
-  border-top: 1px solid ${themeCssVariables.border.color.light};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   min-height: 32px;
-  padding-bottom: ${themeCssVariables.spacing[1]};
-  padding-top: ${themeCssVariables.spacing[1]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[1]};
+  padding-top: ${odelzaThemeCssVariables.spacing[1]};
   z-index: 4;
 `;
 
@@ -61,20 +61,20 @@ const StyledChipContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   z-index: 1;
 `;
 
 const StyledActionButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledFilterContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 
   overflow-x: hidden;
 `;
@@ -83,15 +83,15 @@ const StyledSeparatorContainer = styled.div`
   align-items: flex-start;
   align-self: stretch;
   display: flex;
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-left: ${themeCssVariables.spacing[1]};
-  padding-right: ${themeCssVariables.spacing[1]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSeparator = styled.div`
   align-self: stretch;
-  background: ${themeCssVariables.background.quaternary};
+  background: ${odelzaThemeCssVariables.background.quaternary};
   width: 1px;
 `;
 

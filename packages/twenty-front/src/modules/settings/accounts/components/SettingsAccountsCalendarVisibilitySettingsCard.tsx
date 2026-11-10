@@ -4,7 +4,7 @@ import { SettingsAccountsRadioSettingsCard } from '@/settings/accounts/component
 import { SettingsAccountsVisibilityIcon } from '@/settings/accounts/components/SettingsAccountsVisibilityIcon';
 import { msg } from '@lingui/core/macro';
 import { CalendarChannelVisibility } from '~/generated/graphql';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsAccountsEventVisibilitySettingsCardProps = {
   onChange: (nextValue: CalendarChannelVisibility) => void;
@@ -13,7 +13,7 @@ type SettingsAccountsEventVisibilitySettingsCardProps = {
 
 const StyledCardMediaContainer = styled.div`
   > * {
-    height: ${themeCssVariables.spacing[6]};
+    height: ${odelzaThemeCssVariables.spacing[6]};
   }
 `;
 

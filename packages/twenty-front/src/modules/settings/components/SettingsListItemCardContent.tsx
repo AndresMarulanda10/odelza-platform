@@ -4,32 +4,35 @@ import { Link } from 'react-router-dom';
 import { isDefined } from 'twenty-shared/utils';
 import { IconChevronRight, type IconComponent } from 'twenty-ui/icon';
 import { CardContent } from 'twenty-ui/surfaces';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledRowContainer = styled.div`
   > * {
     align-items: center;
     box-sizing: border-box;
     display: flex;
-    font-size: ${themeCssVariables.font.size.md};
-    font-weight: ${themeCssVariables.font.weight.medium};
-    gap: ${themeCssVariables.spacing[2]};
-    height: ${themeCssVariables.spacing[10]};
-    padding: ${themeCssVariables.spacing[2]};
-    padding-left: ${themeCssVariables.spacing[3]};
+    font-size: ${odelzaThemeCssVariables.font.size.md};
+    font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+    gap: ${odelzaThemeCssVariables.spacing[2]};
+    height: ${odelzaThemeCssVariables.spacing[10]};
+    padding: ${odelzaThemeCssVariables.spacing[2]};
+    padding-left: ${odelzaThemeCssVariables.spacing[3]};
   }
 `;
 
 const StyledRightContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledContent = styled.div`
   display: flex;
   flex: 1 1 0;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
   overflow: hidden;
 `;
@@ -41,15 +44,15 @@ const StyledLabel = styled.span`
 `;
 
 const StyledDescription = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  line-height: ${themeCssVariables.text.lineHeight.lg};
-  padding-left: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.lg};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledLinkContainer = styled.div`
   > a {
-    color: ${themeCssVariables.font.color.secondary};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
     text-decoration: none;
   }
 `;

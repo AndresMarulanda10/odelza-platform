@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { MatchColumnToFieldSelect } from '@/spreadsheet-import/components/MatchColumnToFieldSelect';
 import { DO_NOT_IMPORT_OPTION_KEY } from '@/spreadsheet-import/constants/DoNotImportOptionKey';
@@ -20,10 +20,10 @@ const StyledContainer = styled.div`
 `;
 
 const StyledErrorMessage = styled.span`
-  color: ${themeCssVariables.font.color.danger};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  margin-top: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.danger};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type TemplateColumnProps = {

@@ -2,7 +2,10 @@ import { type IconComponent } from 'twenty-ui/icon';
 import React, { useContext } from 'react';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type SubscriptionInfoRowContainerProps = {
   Icon: IconComponent;
@@ -13,17 +16,17 @@ type SubscriptionInfoRowContainerProps = {
 
 const StyledContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: grid;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   grid-template-columns: repeat(3, 1fr);
 `;
 
 const StyledIconLabelContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledLabelContainer = styled.div`
@@ -33,8 +36,8 @@ const StyledLabelContainer = styled.div`
 `;
 
 const StyledHeaderText = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 export const SubscriptionInfoHeaderRow = ({ show }: { show: boolean }) => {

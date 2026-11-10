@@ -112,7 +112,6 @@ packages/
 ├── twenty-emails/         # Email templates with React Email
 ├── twenty-website/    # Next.js marketing website
 ├── twenty-docs/           # Documentation website
-├── twenty-zapier/         # Zapier integration
 └── twenty-e2e-testing/    # Playwright E2E tests
 ```
 

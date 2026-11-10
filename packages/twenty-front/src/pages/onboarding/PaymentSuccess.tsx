@@ -13,14 +13,14 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { MainButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { GetCurrentUserDocument } from '~/generated-metadata/graphql';
 
 const SUBSCRIPTION_CONFIRMATION_POLL_INTERVAL_MS = 2000;
 const SUBSCRIPTION_CONFIRMATION_MAX_ATTEMPTS = 30;
 
 const StyledRetryButtonContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[8]};
+  margin-top: ${odelzaThemeCssVariables.spacing[8]};
   width: 200px;
 `;
 

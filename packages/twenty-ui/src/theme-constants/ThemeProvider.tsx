@@ -4,7 +4,7 @@ import { createContext, useLayoutEffect, useRef, useState } from 'react';
 import { isDefined } from '@ui/utilities/utils/isDefined';
 
 import { ThemeScopeContext } from './ThemeScopeContext';
-import { themeCssVariables } from './themeCssVariables';
+import { odelzaThemeCssVariables } from './odelzaThemeCssVariables';
 
 type StringLeaves<T> = {
   [K in keyof T]: T[K] extends string ? string : StringLeaves<T[K]>;
@@ -42,7 +42,7 @@ type NumericOverrides = {
 };
 
 export type ThemeType = DeepMerge<
-  StringLeaves<typeof themeCssVariables>,
+  StringLeaves<typeof odelzaThemeCssVariables>,
   NumericOverrides
 >;
 
@@ -58,7 +58,7 @@ const computeThemeFromCss = (sourceElement?: HTMLElement): ThemeType => {
     typeof document === 'undefined' ||
     typeof getComputedStyle !== 'function'
   ) {
-    return themeCssVariables as unknown as ThemeType;
+    return odelzaThemeCssVariables as unknown as ThemeType;
   }
 
   const computedStyle = getComputedStyle(
@@ -87,7 +87,7 @@ const computeThemeFromCss = (sourceElement?: HTMLElement): ThemeType => {
   };
 
   return resolve(
-    themeCssVariables as unknown as Record<string, unknown>,
+    odelzaThemeCssVariables as unknown as Record<string, unknown>,
   ) as unknown as ThemeType;
 };
 
@@ -100,7 +100,7 @@ const applyColorSchemeClass = (colorScheme: 'light' | 'dark') => {
 };
 
 export const ThemeContext = createContext<ThemeContextType>({
-  theme: themeCssVariables as unknown as ThemeType,
+  theme: odelzaThemeCssVariables as unknown as ThemeType,
   colorScheme: 'light',
 });
 

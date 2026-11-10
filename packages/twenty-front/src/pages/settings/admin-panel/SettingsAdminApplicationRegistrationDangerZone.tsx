@@ -22,7 +22,7 @@ import {
   TransferApplicationRegistrationOwnershipDocument,
 } from '~/generated-metadata/graphql';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   StyledAppModal,
   StyledAppModalButton,
@@ -43,7 +43,7 @@ const DELETE_REGISTRATION_BUTTON_ID = 'delete-registration-button';
 
 const StyledDangerButtonGroup = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const SettingsAdminApplicationRegistrationDangerZone = ({
@@ -263,7 +263,7 @@ export const SettingsAdminApplicationRegistrationDangerZone = ({
         }
         onConfirmClick={handleClaimOwnership}
         confirmButtonText={t`Claim`}
-        confirmButtonAccent="blue"
+        confirmButtonAccent="primary"
         loading={isClaiming}
       />
 

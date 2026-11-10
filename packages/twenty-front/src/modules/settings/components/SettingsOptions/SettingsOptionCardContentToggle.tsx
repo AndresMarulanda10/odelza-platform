@@ -11,20 +11,23 @@ import { useContext, useId } from 'react';
 import { type IconComponent } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { Toggle } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledSettingsCardToggleContent = styled.div<{ disabled?: boolean }>`
   align-items: center;
-  background-color: ${themeCssVariables.background.secondary};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   display: flex;
-  gap: ${themeCssVariables.spacing[3]};
-  padding: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
   position: relative;
 
   &:hover {
-    background: ${themeCssVariables.background.transparent.lighter};
+    background: ${odelzaThemeCssVariables.background.transparent.lighter};
   }
 `;
 
@@ -95,7 +98,7 @@ export const SettingsOptionCardContentToggle = ({
             onChange={onChange}
             disabled={disabled}
             toggleSize="small"
-            color={advancedMode ? theme.color.yellow : theme.color.blue}
+            color={advancedMode ? theme.color.yellow : theme.color.primary}
             centered={toggleCentered}
           />
         </StyledSettingsCardToggleButtonContainer>

@@ -13,7 +13,7 @@ import {
 } from 'react';
 import { flushSync } from 'react-dom';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { EmailRecipientsFieldChip } from '@/activities/emails/recipients/components/EmailRecipientsFieldChip';
@@ -50,29 +50,30 @@ const SUGGESTIONS_SEARCH_DEBOUNCE_MS = 300;
 const StyledRowContainer = styled.div`
   align-content: flex-start;
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
   cursor: text;
   display: flex;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   max-height: 96px;
   min-height: 32px;
   overflow-y: auto;
-  padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
 const StyledInput = styled.input`
   background: transparent;
   border: none;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   flex: 1 1 60px;
   font-family: inherit;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   height: 20px;
   min-width: 60px;
   outline: none;

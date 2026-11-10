@@ -12,7 +12,7 @@ import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/use
 import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { useState } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const UPDATE_MULTIPLE_RECORDS_CONFIRMATION_MODAL_ID =
   'update-multiple-records-confirmation';
@@ -27,10 +27,10 @@ const StyledShowPageRightContainer = styled.div`
 `;
 
 const StyledContentContainer = styled.div`
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   flex: 1;
   overflow-y: auto;
-  padding-bottom: ${themeCssVariables.spacing[16]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[16]};
 `;
 
 export type UpdateMultipleRecordsState = Record<string, any>;
@@ -125,7 +125,7 @@ export const UpdateMultipleRecordsContainer = ({
         subtitle={t`This will modify ${contextStoreNumberOfSelectedRecords} records. This action cannot be undone.`}
         onConfirmClick={handleConfirmedUpdate}
         confirmButtonText={t`Update records`}
-        confirmButtonAccent="blue"
+        confirmButtonAccent="primary"
       />
     </SidePanelProvider>
   );

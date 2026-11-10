@@ -7,15 +7,18 @@ import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { styled } from '@linaria/react';
 import { Checkbox } from 'twenty-ui/input';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { v4 } from 'uuid';
 
 const StyledName = styled.span`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
 `;
 
 const StyledDescription = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
 `;
 
 const StyledIconContainer = styled.div`
@@ -100,7 +103,7 @@ export const SettingsRolePermissionsSettingsTableRow = ({
       onClick={handleRowClick}
       cursor={isDisabled ? 'default' : 'pointer'}
     >
-      <TableCell gap={themeCssVariables.spacing[2]}>
+      <TableCell gap={odelzaThemeCssVariables.spacing[2]}>
         <StyledIconContainer>
           <permission.Icon
             size={theme.icon.size.md}
@@ -110,12 +113,12 @@ export const SettingsRolePermissionsSettingsTableRow = ({
         </StyledIconContainer>
         <StyledName>{permission.name}</StyledName>
       </TableCell>
-      <TableCell gap={themeCssVariables.spacing[2]}>
+      <TableCell gap={odelzaThemeCssVariables.spacing[2]}>
         <StyledDescription>{permission.description}</StyledDescription>
       </TableCell>
       <TableCell
         align="right"
-        padding={`0 ${themeCssVariables.spacing[1]} 0 ${themeCssVariables.spacing[2]}`}
+        padding={`0 ${odelzaThemeCssVariables.spacing[1]} 0 ${odelzaThemeCssVariables.spacing[2]}`}
         onClick={(e) => e.stopPropagation()}
       >
         <Checkbox

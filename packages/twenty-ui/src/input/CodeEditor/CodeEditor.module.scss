@@ -5,17 +5,17 @@
   height: var(--code-editor-height);
   border: none;
   border-radius: 0;
-  background-color: var(--t-background-transparent-lighter);
+  background-color: var(--odz-background-transparent-lighter);
 
   &[data-variant='default'] {
-    border: 1px solid var(--t-border-color-medium);
-    border-radius: var(--t-border-radius-md);
+    border: 1px solid var(--odz-border-color-medium);
+    border-radius: var(--odz-border-radius-md);
   }
 
   &[data-variant='with-header'] {
-    border: 1px solid var(--t-border-color-medium);
+    border: 1px solid var(--odz-border-color-medium);
     border-top: none;
-    border-radius: 0 0 var(--t-border-radius-md) var(--t-border-radius-md);
+    border-radius: 0 0 var(--odz-border-radius-md) var(--odz-border-radius-md);
   }
 }
 
@@ -29,8 +29,8 @@
 
 .editorWrapper :global(.monaco-editor) {
   outline-width: 0;
-  border-radius: var(--t-border-radius-md);
-  background-color: var(--t-background-secondary);
+  border-radius: var(--odz-border-radius-md);
+  background-color: var(--odz-background-secondary);
 }
 
 .editorWrapper[data-transparent-background] :global(.monaco-editor) {
@@ -48,12 +48,12 @@
 }
 
 .editorWrapper[data-variant='default'] :global(.overflow-guard) {
-  border: 1px solid var(--t-border-color-medium);
-  border-radius: var(--t-border-radius-md);
+  border: 1px solid var(--odz-border-color-medium);
+  border-radius: var(--odz-border-radius-md);
 }
 
 .editorWrapper[data-variant='with-header'] :global(.overflow-guard) {
-  border: 1px solid var(--t-border-color-medium);
+  border: 1px solid var(--odz-border-color-medium);
   border-top: none;
-  border-radius: 0 0 var(--t-border-radius-md) var(--t-border-radius-md);
+  border-radius: 0 0 var(--odz-border-radius-md) var(--odz-border-radius-md);
 }

@@ -15,14 +15,17 @@ import { IconChevronRight } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { GetServerAdminsDocument } from '~/generated-admin/graphql';
 
 const SERVER_ADMINS_GRID_TEMPLATE_COLUMNS = '1fr 2fr 1fr 36px';
 
 const StyledEmptyState = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  padding: ${themeCssVariables.spacing[4]} 0;
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  padding: ${odelzaThemeCssVariables.spacing[4]} 0;
 `;
 
 export const SettingsAdminServerAdmins = () => {
@@ -70,7 +73,7 @@ export const SettingsAdminServerAdmins = () => {
                   })}
                 >
                   <TableCell
-                    color={themeCssVariables.font.color.primary}
+                    color={odelzaThemeCssVariables.font.color.primary}
                     overflow="hidden"
                   >
                     <OverflowingTextWithTooltip text={adminLabel} />

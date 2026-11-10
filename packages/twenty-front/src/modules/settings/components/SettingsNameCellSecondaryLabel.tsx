@@ -1,13 +1,13 @@
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledSettingsNameCellSecondaryLabel = styled.span`
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   flex: 0 999 auto;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   min-width: 48px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -15,7 +15,7 @@ const StyledSettingsNameCellSecondaryLabel = styled.span`
 
   &::before {
     content: '·';
-    margin-right: ${themeCssVariables.spacing[1]};
+    margin-right: ${odelzaThemeCssVariables.spacing[1]};
   }
 `;
 

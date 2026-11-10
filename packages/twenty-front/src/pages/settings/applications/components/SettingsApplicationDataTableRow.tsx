@@ -9,7 +9,10 @@ import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconChevronRight, useIcons } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { type ApplicationDataTableRow } from '~/pages/settings/applications/types/applicationDataTableRow';
 import { AppChip } from '@/applications/components/AppChip';
@@ -20,7 +23,7 @@ const StyledNameContainer = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 

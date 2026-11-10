@@ -28,7 +28,10 @@ import { isDefined } from 'twenty-shared/utils';
 import { Info, Loader } from 'twenty-ui/feedback';
 import { MainButton } from 'twenty-ui/input';
 import { CAL_LINK, ClickToActionLink } from 'twenty-ui/navigation';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import {
   type Billing,
   type BillingPlanKey,
@@ -36,31 +39,33 @@ import {
 } from '~/generated-metadata/graphql';
 
 const StyledPage = styled(StyledOnboardingStepPage)`
-  gap: ${themeCssVariables.spacing[5]};
-  padding: ${themeCssVariables.spacing[6]} ${themeCssVariables.spacing[8]};
+  gap: ${odelzaThemeCssVariables.spacing[5]};
+  padding: ${odelzaThemeCssVariables.spacing[6]}
+    ${odelzaThemeCssVariables.spacing[8]};
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
-    padding: ${themeCssVariables.spacing[6]} ${themeCssVariables.spacing[4]};
+    padding: ${odelzaThemeCssVariables.spacing[6]}
+      ${odelzaThemeCssVariables.spacing[4]};
   }
 `;
 
 const StyledCards = styled(StyledOnboardingContentBlock)`
-  gap: ${themeCssVariables.spacing['1.5']};
+  gap: ${odelzaThemeCssVariables.spacing['1.5']};
 `;
 
 const StyledFooter = styled(StyledOnboardingContentBlock)`
   align-items: center;
-  gap: ${themeCssVariables.spacing['1.5']};
+  gap: ${odelzaThemeCssVariables.spacing['1.5']};
 `;
 
 const StyledLinkGroup = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: center;
 
   > span {
-    background-color: ${themeCssVariables.font.color.extraLight};
+    background-color: ${odelzaThemeCssVariables.font.color.extraLight};
     border-radius: 50%;
     corner-shape: round;
     height: 2px;

@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type StyledCardContentProps = {
   disabled?: boolean;
@@ -9,28 +9,28 @@ type StyledCardContentProps = {
 
 export const StyledSettingsCardContent = styled.div<StyledCardContentProps>`
   align-items: ${({ alignItems }) => alignItems ?? 'center'};
-  background-color: ${themeCssVariables.background.secondary};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
   display: flex;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   height: ${({ fullHeight }) => (fullHeight ? '100%' : 'auto')};
-  padding: ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
 `;
 export const StyledSettingsCardIcon = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.primary};
-  border: 2px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.primary};
+  border: 2px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
-  height: ${themeCssVariables.spacing[7]};
+  height: ${odelzaThemeCssVariables.spacing[7]};
   justify-content: center;
-  min-width: ${themeCssVariables.icon.size.md};
-  width: ${themeCssVariables.spacing[7]};
+  min-width: ${odelzaThemeCssVariables.icon.size.md};
+  width: ${odelzaThemeCssVariables.spacing[7]};
 `;
 
 export const StyledSettingsCardTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const StyledSettingsCardTextContainer = styled.div`
@@ -39,9 +39,9 @@ export const StyledSettingsCardTextContainer = styled.div`
 `;
 
 export const StyledSettingsCardDescription = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.sm};
-  line-height: ${themeCssVariables.text.lineHeight.lg};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.lg};
   overflow: hidden;
 
   a {
@@ -52,7 +52,7 @@ export const StyledSettingsCardDescription = styled.div`
 `;
 
 export const StyledSettingsCardThirdLine = styled.div`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  margin-top: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
 `;

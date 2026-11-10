@@ -11,7 +11,10 @@ import { TableHeader } from '@/ui/layout/table/components/TableHeader';
 import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { ScrollWrapper } from '@/ui/utilities/scroll/components/ScrollWrapper';
 import { useScrollWrapperHTMLElement } from '@/ui/utilities/scroll/hooks/useScrollWrapperHTMLElement';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import {
   type EventLogRecord,
@@ -49,7 +52,7 @@ const StyledResizableHeaderContainer = styled.div<{ isResizing?: boolean }>`
 
 const StyledResizeHandle = styled.div<{ isResizing: boolean }>`
   background: ${({ isResizing }) =>
-    isResizing ? themeCssVariables.color.blue : 'transparent'};
+    isResizing ? odelzaThemeCssVariables.color.primary : 'transparent'};
   bottom: 0;
   cursor: col-resize;
   position: absolute;
@@ -58,13 +61,13 @@ const StyledResizeHandle = styled.div<{ isResizing: boolean }>`
   width: 4px;
 
   &:hover {
-    background: ${themeCssVariables.color.blue};
+    background: ${odelzaThemeCssVariables.color.primary};
   }
 `;
 
 const StyledLoadingMore = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  padding: ${themeCssVariables.spacing[4]};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
   text-align: center;
 `;
 

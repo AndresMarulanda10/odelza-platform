@@ -4,7 +4,10 @@ import { useContext, useState } from 'react';
 import { IconChevronDown, IconChevronUp } from 'twenty-ui/icon';
 import { JsonTree } from 'twenty-ui/json-visualizer';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { useLingui } from '@lingui/react/macro';
 import { type DataMessagePart } from 'twenty-shared/ai';
@@ -15,33 +18,34 @@ import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
-  margin-top: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledToggleButton = styled.div`
   align-items: center;
   background: none;
   border: none;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: pointer;
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[1]} 0;
-  transition: color calc(${themeCssVariables.animation.duration.normal} * 1s);
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]} 0;
+  transition: color
+    calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s);
 
   &:hover {
-    color: ${themeCssVariables.font.color.secondary};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
   }
 `;
 
 const StyledContentContainer = styled.div`
-  background: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   min-width: 0;
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledJsonTreeContainer = styled.div`
@@ -53,52 +57,53 @@ const StyledJsonTreeContainer = styled.div`
 `;
 
 const StyledTabContainer = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
-  gap: ${themeCssVariables.spacing[3]};
-  margin-bottom: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledTab = styled.div<{ isActive: boolean }>`
   color: ${({ isActive }) =>
     isActive
-      ? themeCssVariables.font.color.primary
-      : themeCssVariables.font.color.tertiary};
+      ? odelzaThemeCssVariables.font.color.primary
+      : odelzaThemeCssVariables.font.color.tertiary};
   cursor: pointer;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   font-weight: ${({ isActive }) =>
     isActive
-      ? themeCssVariables.font.weight.medium
-      : themeCssVariables.font.weight.regular};
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  transition: color calc(${themeCssVariables.animation.duration.normal} * 1s);
+      ? odelzaThemeCssVariables.font.weight.medium
+      : odelzaThemeCssVariables.font.weight.regular};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  transition: color
+    calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s);
 
   &:hover {
-    color: ${themeCssVariables.font.color.secondary};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
   }
 `;
 
 const StyledTimingSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTimingRow = styled.div`
   align-items: center;
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   justify-content: space-between;
-  padding: ${themeCssVariables.spacing[1]} 0;
+  padding: ${odelzaThemeCssVariables.spacing[1]} 0;
 `;
 
 const StyledTimingLabel = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
 `;
 
 const StyledTimingValue = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 type TabType = 'timing' | 'details' | 'context';

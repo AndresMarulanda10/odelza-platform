@@ -2,7 +2,7 @@ import { useIsSettingsDrawer } from '@/navigation/hooks/useIsSettingsDrawer';
 import { isNavigationDrawerExpandedState } from '@/ui/navigation/states/isNavigationDrawerExpanded';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useIsMobile } from 'twenty-ui/utilities';
 
 const StyledSection = styled.div`
@@ -15,11 +15,11 @@ const StyledSectionInnerContainerMinusScrollPadding = styled.div<{
 }>`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.betweenSiblingsGap};
+  gap: ${odelzaThemeCssVariables.betweenSiblingsGap};
   width: ${({ isMobile, isMainNavCollapsed }) =>
     isMobile || isMainNavCollapsed
       ? '100%'
-      : `calc(100% - ${themeCssVariables.spacing[2]})`};
+      : `calc(100% - ${odelzaThemeCssVariables.spacing[2]})`};
 `;
 
 export const NavigationDrawerSection = ({

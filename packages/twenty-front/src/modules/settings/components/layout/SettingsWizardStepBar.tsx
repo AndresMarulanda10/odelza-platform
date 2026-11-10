@@ -2,7 +2,7 @@ import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 import { IconChevronLeft } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsWizardStepBarProps = {
   label: ReactNode;
@@ -25,9 +25,9 @@ const StyledLeft = styled.div`
 `;
 
 const StyledLabel = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
   justify-self: center;
   min-width: 0;
   text-align: center;
@@ -36,7 +36,7 @@ const StyledLabel = styled.div`
 const StyledRight = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: flex-end;
   min-width: 0;
 `;

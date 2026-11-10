@@ -11,7 +11,7 @@ import { type ConfigVariableValue } from 'twenty-shared/types';
 import { CustomError } from 'twenty-shared/utils';
 import { CodeEditor } from 'twenty-ui/input';
 import { MenuItemMultiSelect } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { ConfigVariableType } from '~/generated-admin/graphql';
 import { type ConfigVariableOptions } from '@/settings/admin-panel/config-variables/types/ConfigVariableOptions';
 
@@ -22,11 +22,11 @@ const StyledJsonEditorContainer = styled.div`
 `;
 
 const StyledJsonEditorLabel = styled.span`
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: block;
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type ConfigVariableDatabaseInputProps = {

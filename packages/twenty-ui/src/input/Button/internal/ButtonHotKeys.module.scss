@@ -1,35 +1,43 @@
 .separator {
-  background: var(--t-font-color-light);
-  height: var(--t-spacing-4);
+  background: var(--odz-font-color-light);
+  height: var(--odz-spacing-4);
   margin: 0;
   width: 1px;
 
   &[data-size='small'] {
-    height: var(--t-spacing-2);
+    height: var(--odz-spacing-2);
   }
 
-  &[data-accent='blue'] {
-    background: var(--t-buttons-secondary-text-color);
+  &[data-accent='primary'] {
+    background: var(--odz-accent-accent8);
+  }
+
+  &[data-accent='primary'][data-variant='primary'] {
+    background: var(--odz-buttons-on-primary-muted);
   }
 
   &[data-accent='danger'] {
-    background: var(--t-border-color-danger);
+    background: var(--odz-border-color-danger);
   }
 }
 
 .shortcutLabel {
-  color: var(--t-font-color-light);
-  font-weight: var(--t-font-weight-medium);
+  color: var(--odz-font-color-light);
+  font-weight: var(--odz-font-weight-medium);
 
-  &[data-accent='blue'] {
-    color: var(--t-buttons-secondary-text-color);
+  &[data-accent='primary'] {
+    color: var(--odz-accent-accent8);
+  }
+
+  &[data-accent='primary'][data-variant='primary'] {
+    color: var(--odz-buttons-on-primary-muted);
   }
 
   &[data-accent='danger'] {
-    color: var(--t-color-red8);
+    color: var(--odz-color-red8);
   }
 
   &[data-accent='danger'][data-variant='primary'] {
-    color: var(--t-border-color-danger);
+    color: var(--odz-border-color-danger);
   }
 }

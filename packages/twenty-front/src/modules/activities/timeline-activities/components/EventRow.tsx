@@ -14,16 +14,16 @@ import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/Enriche
 import { getObjectRecordIdentifier } from '@/object-metadata/utils/getObjectRecordIdentifier';
 import { recordStoreFamilyState } from '@/object-record/record-store/states/recordStoreFamilyState';
 import { useAtomFamilyStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomFamilyStateValue';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
 import { beautifyPastDateRelativeToNow } from '~/utils/date-utils';
 import { isUndefinedOrNull } from '~/utils/isUndefinedOrNull';
 import { allowRequestsToTwentyIconsState } from '@/client-config/states/allowRequestsToTwentyIcons';
 
 const StyledTimelineItemContainer = styled.div`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   height: 'auto';
   justify-content: space-between;
   overflow: hidden;
@@ -37,7 +37,7 @@ const StyledLeftContainer = styled.div`
 
 const StyledIconContainer = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   height: 16px;
   justify-content: center;
@@ -57,7 +57,7 @@ const StyledVerticalLineContainer = styled.div`
 `;
 
 const StyledVerticalLine = styled.div`
-  background: ${themeCssVariables.border.color.light};
+  background: ${odelzaThemeCssVariables.border.color.light};
   height: 100%;
   width: 2px;
 `;
@@ -71,9 +71,9 @@ const StyledItemContainer = styled.div<{ isMarginBottom?: boolean }>`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   margin-bottom: ${({ isMarginBottom }) =>
-    isMarginBottom ? themeCssVariables.spacing[3] : '0'};
+    isMarginBottom ? odelzaThemeCssVariables.spacing[3] : '0'};
   min-height: 26px;
   overflow: hidden;
 `;

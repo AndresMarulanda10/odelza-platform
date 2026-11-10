@@ -30,7 +30,10 @@ import { BodyInput } from './BodyInput';
 import { HttpRequestExecutionResult } from './HttpRequestExecutionResult';
 import { HttpRequestTestVariableInput } from './HttpRequestTestVariableInput';
 import { KeyValuePairInput } from './KeyValuePairInput';
-import { themeCssVariables, ThemeContext } from 'twenty-ui/theme-constants';
+import {
+  odelzaThemeCssVariables,
+  ThemeContext,
+} from 'twenty-ui/theme-constants';
 type WorkflowEditActionHttpRequestProps = {
   action: WorkflowHttpRequestAction;
   actionOptions: {
@@ -40,15 +43,15 @@ type WorkflowEditActionHttpRequestProps = {
 };
 
 const StyledTabListContainer = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  padding-left: ${themeCssVariables.spacing[2]};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTestTabContent = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   height: 100%;
   min-height: 400px;
 `;
@@ -57,7 +60,7 @@ const StyledConfigurationTabContent = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   height: 100%;
 `;
 

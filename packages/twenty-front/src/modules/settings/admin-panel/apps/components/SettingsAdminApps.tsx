@@ -21,7 +21,10 @@ import { H2Title } from 'twenty-ui/typography';
 import { Button, SearchInput } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
 import { MenuItemToggle } from 'twenty-ui/navigation';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { Tag } from 'twenty-ui/data-display';
 import {
   type ApplicationRegistrationFragmentFragment,
@@ -31,8 +34,8 @@ import {
 } from '~/generated-admin/graphql';
 
 const StyledTableContainer = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
-  margin-top: ${themeCssVariables.spacing[3]};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  margin-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const TABLE_GRID = '1fr 100px 100px 100px 40px';

@@ -1,6 +1,7 @@
 import { currentUserState } from '@/auth/states/currentUserState';
 import { currentUserWorkspaceState } from '@/auth/states/currentUserWorkspaceState';
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
+import { billingState } from '@/client-config/states/billingState';
 import { objectPermissionsFamilySelector } from '@/auth/states/objectPermissionsFamilySelector';
 import { CommandMenuContext } from '@/command-menu-item/contexts/CommandMenuContext';
 import { PinnedCommandMenuItemButtons } from '@/command-menu-item/display/components/PinnedCommandMenuItemButtons';
@@ -30,6 +31,8 @@ export const StandalonePageCommandMenu = () => {
   const currentUserWorkspace = useAtomStateValue(currentUserWorkspaceState);
   const currentUser = useAtomStateValue(currentUserState);
   const currentPageLayoutId = useAtomStateValue(currentPageLayoutIdState);
+  const isBillingEnabled =
+    useAtomStateValue(billingState)?.isBillingEnabled === true;
   const isLayoutCustomizationModeEnabled = useAtomStateValue(
     isLayoutCustomizationModeEnabledState,
   );
@@ -89,6 +92,7 @@ export const StandalonePageCommandMenu = () => {
       targetObjectWritePermissions,
       canImpersonate: currentUser?.canImpersonate === true,
       canAccessFullAdminPanel: currentUser?.canAccessFullAdminPanel === true,
+      isBillingEnabled,
       objectMetadataItem: {},
       objectMetadataLabel: '',
     };
@@ -97,6 +101,7 @@ export const StandalonePageCommandMenu = () => {
     currentUserWorkspace?.permissionFlags,
     currentUser?.canImpersonate,
     currentUser?.canAccessFullAdminPanel,
+    isBillingEnabled,
     isLayoutCustomizationModeEnabled,
     objectMetadataItems,
     store,

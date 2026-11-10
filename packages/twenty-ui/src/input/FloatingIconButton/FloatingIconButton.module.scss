@@ -7,22 +7,22 @@
 .button {
   align-items: center;
   backdrop-filter: none;
-  background: var(--t-background-primary);
-  border: 1px solid var(--t-border-color-strong);
-  border-radius: var(--floating-icon-button-radius, var(--t-border-radius-md));
+  background: var(--odz-background-primary);
+  border: 1px solid var(--odz-border-color-strong);
+  border-radius: var(--floating-icon-button-radius, var(--odz-border-radius-md));
   box-shadow: none;
   box-sizing: border-box;
-  color: var(--t-font-color-tertiary);
+  color: var(--odz-font-color-tertiary);
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  font-family: var(--t-font-family);
-  font-weight: var(--t-font-weight-regular);
-  gap: var(--t-spacing-1);
+  font-family: var(--odz-font-family);
+  font-weight: var(--odz-font-weight-regular);
+  gap: var(--odz-spacing-1);
   justify-content: center;
   padding: 0;
   position: relative;
-  transition: background calc(var(--t-animation-duration-instant) * 1s) ease;
+  transition: background calc(var(--odz-animation-duration-instant) * 1s) ease;
   white-space: nowrap;
 }
 
@@ -52,8 +52,8 @@
 // because at these sizes (24-32px) md would exceed 50% of the box, clamp to a
 // full squircle, and break concentricity — see the group stylesheet.
 .button[data-position='left'] {
-  --floating-icon-button-radius: calc(var(--t-border-radius-sm) - 2px) 0px 0px
-    calc(var(--t-border-radius-sm) - 2px);
+  --floating-icon-button-radius: calc(var(--odz-border-radius-sm) - 2px) 0px 0px
+    calc(var(--odz-border-radius-sm) - 2px);
 }
 
 .button[data-position='middle'] {
@@ -61,26 +61,26 @@
 }
 
 .button[data-position='right'] {
-  --floating-icon-button-radius: 0px calc(var(--t-border-radius-sm) - 2px)
-    calc(var(--t-border-radius-sm) - 2px) 0px;
+  --floating-icon-button-radius: 0px calc(var(--odz-border-radius-sm) - 2px)
+    calc(var(--odz-border-radius-sm) - 2px) 0px;
 }
 
 .button[data-apply-blur] {
-  backdrop-filter: var(--t-blur-medium);
+  backdrop-filter: var(--odz-blur-medium);
 }
 
 .button[data-is-active] {
-  background: var(--t-background-transparent-medium);
+  background: var(--odz-background-transparent-medium);
 }
 
 // Declared after [data-is-active] so hover/active win over it, like the
 // legacy &:hover/&:active beating the base background.
 .button:hover {
-  background: var(--t-background-transparent-lighter);
+  background: var(--odz-background-transparent-lighter);
 }
 
 .button:active {
-  background: var(--t-background-transparent-medium);
+  background: var(--odz-background-transparent-medium);
 }
 
 .button:focus {
@@ -94,18 +94,18 @@
 // data-focus is gated by !disabled in the component, like the legacy
 // call-site passing focus={focus && !disabled}.
 .button[data-focus] {
-  border-color: var(--t-color-blue);
-  box-shadow: 0 0 0 3px var(--t-color-blue3);
-  color: var(--t-color-blue);
+  border-color: var(--odz-color-primary);
+  box-shadow: 0 0 0 3px var(--odz-color-primary3);
+  color: var(--odz-color-primary);
 }
 
 // applyShadow wins over the focus ring, replicating the legacy ternary order.
 .button[data-apply-shadow] {
-  box-shadow: var(--t-box-shadow-light);
+  box-shadow: var(--odz-box-shadow-light);
 }
 
 .button[data-disabled] {
-  color: var(--t-font-color-extra-light);
+  color: var(--odz-font-color-extra-light);
   cursor: not-allowed;
 }
 

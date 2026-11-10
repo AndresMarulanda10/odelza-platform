@@ -9,24 +9,24 @@
   align-items: center;
   background: transparent;
   border: var(--light-button-border, none);
-  border-radius: var(--t-border-radius-md);
+  border-radius: var(--odz-border-radius-md);
   box-shadow: var(--light-button-box-shadow, none);
   color: var(--light-button-color);
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  font-family: var(--t-font-family);
-  font-weight: var(--t-font-weight-regular);
-  gap: var(--t-spacing-1);
+  font-family: var(--odz-font-family);
+  font-weight: var(--odz-font-weight-regular);
+  gap: var(--odz-spacing-1);
   height: 24px;
-  padding: 0 var(--t-spacing-2);
+  padding: 0 var(--odz-spacing-2);
   transition: background 0.1s ease;
   white-space: nowrap;
 
   &:hover {
     background: var(
       --light-button-hover-bg,
-      var(--t-background-transparent-light)
+      var(--odz-background-transparent-light)
     );
   }
 
@@ -39,7 +39,7 @@
   &:active {
     background: var(
       --light-button-active-bg,
-      var(--t-background-transparent-medium)
+      var(--odz-background-transparent-medium)
     );
   }
 
@@ -49,15 +49,15 @@
 }
 
 .button[data-accent='secondary'] {
-  --light-button-color: var(--t-font-color-secondary);
+  --light-button-color: var(--odz-font-color-secondary);
 }
 
 .button[data-accent='tertiary'] {
-  --light-button-color: var(--t-font-color-tertiary);
+  --light-button-color: var(--odz-font-color-tertiary);
 }
 
 .button[data-disabled] {
-  --light-button-color: var(--t-font-color-extra-light);
+  --light-button-color: var(--odz-font-color-extra-light);
   --light-button-hover-bg: transparent;
   --light-button-active-bg: transparent;
 }
@@ -66,11 +66,11 @@
 // switch where the (active || focus) branch came first.
 .button[data-active],
 .button[data-focus] {
-  --light-button-color: var(--t-color-blue);
+  --light-button-color: var(--odz-color-primary);
 }
 
 // focus is gated by !disabled in the component, like the legacy call-site.
 .button[data-focus] {
-  --light-button-border: 1px solid var(--t-color-blue);
-  --light-button-box-shadow: 0 0 0 3px var(--t-color-blue3);
+  --light-button-border: 1px solid var(--odz-color-primary);
+  --light-button-box-shadow: 0 0 0 3px var(--odz-color-primary3);
 }

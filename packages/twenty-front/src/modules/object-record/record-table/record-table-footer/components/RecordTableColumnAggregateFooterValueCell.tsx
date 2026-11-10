@@ -11,30 +11,33 @@ import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/use
 import { styled } from '@linaria/react';
 import { useContext, useState } from 'react';
 import { IconChevronDown } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledCell = styled.div<{ isUnfolded: boolean; isFirstCell: boolean }>`
   align-items: center;
   background: ${({ isUnfolded }) =>
-    isUnfolded ? themeCssVariables.background.tertiary : 'none'};
+    isUnfolded ? odelzaThemeCssVariables.background.tertiary : 'none'};
   cursor: pointer;
   display: flex;
   flex-direction: row;
 
   flex-grow: 1;
   flex-shrink: 0;
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[8]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   justify-content: space-between;
 
   max-width: 100%;
 
-  min-width: ${themeCssVariables.spacing[7]};
+  min-width: ${odelzaThemeCssVariables.spacing[7]};
 
   padding-left: ${({ isFirstCell }) =>
     isFirstCell
-      ? `calc(${RECORD_TABLE_COLUMN_CHECKBOX_WIDTH} + ${themeCssVariables.spacing[1]})`
+      ? `calc(${RECORD_TABLE_COLUMN_CHECKBOX_WIDTH} + ${odelzaThemeCssVariables.spacing[1]})`
       : '0'};
 `;
 
@@ -45,7 +48,7 @@ const StyledIconContainer = styled.div`
   flex-shrink: 0;
   height: 20px;
   justify-content: center;
-  padding-right: ${themeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const RecordTableColumnAggregateFooterValueCell = ({

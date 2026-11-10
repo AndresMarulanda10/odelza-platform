@@ -4,7 +4,7 @@ import { type ReactNode } from 'react';
 import { type IconComponent, IconGripVertical } from '@ui/icon';
 import { OverflowingTextWithTooltip } from '@ui/surfaces';
 import { type ThemeColor } from '@ui/theme';
-import { themeCssVariables, useTheme } from '@ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from '@ui/theme-constants';
 import { type MenuItemDraggableGripMode } from '@ui/navigation/MenuItem/types/MenuItemDraggableGripMode';
 import { MenuItemIcon } from '@ui/navigation/MenuItem/parts/MenuItemIcon';
 import { MenuItemIconBoxContainer } from '@ui/navigation/MenuItem/parts/MenuItemIconBoxContainer';
@@ -49,10 +49,10 @@ export const MenuItemLeftContent = ({
   const theme = useTheme();
 
   const gripIconColor = withIconContainer
-    ? themeCssVariables.font.color.tertiary
+    ? odelzaThemeCssVariables.font.color.tertiary
     : disabled
-      ? themeCssVariables.font.color.extraLight
-      : themeCssVariables.font.color.light;
+      ? odelzaThemeCssVariables.font.color.extraLight
+      : odelzaThemeCssVariables.font.color.light;
 
   return (
     <StyledMenuItemLeftContent className={className}>

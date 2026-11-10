@@ -1,6 +1,7 @@
 import { currentUserState } from '@/auth/states/currentUserState';
 import { currentUserWorkspaceState } from '@/auth/states/currentUserWorkspaceState';
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
+import { billingState } from '@/client-config/states/billingState';
 import { objectPermissionsFamilySelector } from '@/auth/states/objectPermissionsFamilySelector';
 import { ContextStoreComponentInstanceContext } from '@/context-store/states/contexts/ContextStoreComponentInstanceContext';
 import { contextStoreCurrentObjectMetadataItemIdComponentState } from '@/context-store/states/contextStoreCurrentObjectMetadataItemIdComponentState';
@@ -155,6 +156,8 @@ export const useCurrentCommandMenuContextApi = (): CommandMenuContextApi => {
   const currentUser = useAtomStateValue(currentUserState);
   const canImpersonate = currentUser?.canImpersonate === true;
   const canAccessFullAdminPanel = currentUser?.canAccessFullAdminPanel === true;
+  const isBillingEnabled =
+    useAtomStateValue(billingState)?.isBillingEnabled === true;
 
   const targetObjectReadPermissions: Record<string, boolean> = {};
   const targetObjectWritePermissions: Record<string, boolean> = {};
@@ -195,6 +198,7 @@ export const useCurrentCommandMenuContextApi = (): CommandMenuContextApi => {
     targetObjectWritePermissions,
     canImpersonate,
     canAccessFullAdminPanel,
+    isBillingEnabled,
     objectMetadataItem: objectMetadataItem ?? {},
     objectMetadataLabel,
   };

@@ -3,7 +3,7 @@
   flex-direction: row;
 
   > * + * {
-    margin-left: var(--t-spacing-4);
+    margin-left: var(--odz-spacing-4);
   }
 
   @include respond-to(mobile) {
@@ -17,8 +17,8 @@
 }
 
 .label {
-  margin-top: var(--t-spacing-2);
-  color: var(--t-font-color-secondary);
-  font-size: var(--t-font-size-xs);
-  font-weight: var(--t-font-weight-medium);
+  margin-top: var(--odz-spacing-2);
+  color: var(--odz-font-color-secondary);
+  font-size: var(--odz-font-size-xs);
+  font-weight: var(--odz-font-weight-medium);
 }

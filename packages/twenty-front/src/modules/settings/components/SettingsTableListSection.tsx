@@ -10,11 +10,11 @@ import { IconChevronRight, IconPlus } from 'twenty-ui/icon';
 import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledTableRows = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledRowWrapper = styled.div<{ clickable: boolean }>`
@@ -23,7 +23,7 @@ const StyledRowWrapper = styled.div<{ clickable: boolean }>`
       ? `
         > * {
           &:hover {
-            background-color: ${themeCssVariables.background.transparent.light};
+            background-color: ${odelzaThemeCssVariables.background.transparent.light};
             cursor: pointer;
           }
         }
@@ -32,13 +32,13 @@ const StyledRowWrapper = styled.div<{ clickable: boolean }>`
 `;
 
 const StyledFooter = styled.div`
-  border-top: 1px solid ${themeCssVariables.border.color.light};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
   justify-content: flex-end;
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
-const HEADER_PADDING = `0 ${themeCssVariables.spacing[2]} 0 ${themeCssVariables.spacing[2]}`;
+const HEADER_PADDING = `0 ${odelzaThemeCssVariables.spacing[2]} 0 ${odelzaThemeCssVariables.spacing[2]}`;
 
 export type SettingsTableListSectionColumn<Item> = {
   label: string;
@@ -113,7 +113,7 @@ export const SettingsTableListSection = <
                   {showRowChevron && (
                     <TableCell
                       align="right"
-                      color={themeCssVariables.font.color.light}
+                      color={odelzaThemeCssVariables.font.color.light}
                     >
                       <IconChevronRight size={16} />
                     </TableCell>

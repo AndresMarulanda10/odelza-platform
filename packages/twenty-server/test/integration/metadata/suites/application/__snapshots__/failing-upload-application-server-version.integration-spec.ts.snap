@@ -5,9 +5,9 @@ exports[`Publish application is gated by the instance server version rejects pub
   "extensions": {
     "code": "BAD_USER_INPUT",
     "subCode": "SERVER_VERSION_INCOMPATIBLE",
-    "userFriendlyMessage": "This app requires a newer version of the Twenty server. Please upgrade your server or use a compatible app version.",
+    "userFriendlyMessage": "This app requires a newer version of the Odelza server. Please upgrade your server or use a compatible app version.",
   },
-  "message": "App requires Twenty server >=999.0.0 but this server is <instance-version>.",
+  "message": "App requires Odelza server >=999.0.0 but this server is <instance-version>.",
   "name": "UserInputError",
 }
 `;

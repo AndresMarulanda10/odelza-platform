@@ -8,7 +8,10 @@ import { BACKGROUND_MOCK_TABLE_DIMENSIONS } from '@/sign-in-background-mock/cons
 import { IconChevronDown, IconPlus, useIcons } from 'twenty-ui/icon';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
 import { Checkbox } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledTableWrapper = styled.div`
   display: flex;
@@ -19,23 +22,23 @@ const StyledTableWrapper = styled.div`
 `;
 
 const StyledTable = styled.div`
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   display: flex;
   flex: 1;
   flex-direction: column;
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   overflow: hidden;
   position: relative;
 `;
 
 const StyledHeaderRow = styled.div`
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   display: flex;
   height: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.rowHeight}px;
 `;
 
 const StyledDragHandleColumn = styled.div`
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   flex-shrink: 0;
   height: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.rowHeight}px;
   width: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.dragHandleColumnWidth}px;
@@ -43,31 +46,31 @@ const StyledDragHandleColumn = styled.div`
 
 const StyledCheckboxHeaderColumn = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.primary};
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   box-sizing: border-box;
   display: flex;
   flex-shrink: 0;
   height: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.rowHeight}px;
   justify-content: center;
-  padding-right: ${themeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
   width: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.checkboxColumnWidth}px;
 `;
 
 const StyledHeaderCell = styled.div<{ width: number }>`
   align-items: center;
-  background: ${themeCssVariables.background.primary};
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
-  border-right: 1px solid ${themeCssVariables.border.color.light};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-right: 1px solid ${odelzaThemeCssVariables.border.color.light};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex-shrink: 0;
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.rowHeight}px;
   overflow: hidden;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   width: ${({ width }) => width}px;
 `;
 
@@ -79,10 +82,10 @@ const StyledHeaderLabel = styled.span`
 
 const StyledAddColumnHeaderCell = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.primary};
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  background: ${odelzaThemeCssVariables.background.primary};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex: 1;
   height: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.rowHeight}px;
@@ -118,15 +121,15 @@ const StyledFooterCheckboxColumn = styled.div`
 const StyledFooterCell = styled.div<{ width: number }>`
   align-items: center;
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex-shrink: 0;
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.rowHeight}px;
   justify-content: space-between;
   overflow: hidden;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   white-space: nowrap;
   width: ${({ width }) => width}px;
 `;
@@ -137,7 +140,7 @@ const StyledFooterLabel = styled.div`
 `;
 
 const StyledFooterValue = styled.span`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   flex-shrink: 0;
 `;
 

@@ -25,7 +25,10 @@ import { currentRecordFiltersComponentState } from '@/object-record/record-filte
 import { type CompositeFieldType } from '@/settings/data-model/types/CompositeFieldType';
 import { createRecordLevelPermissionVariablePicker } from '@/settings/roles/role-permissions/object-level-permissions/record-level-permissions/components/SettingsRolePermissionsObjectLevelRecordLevelPermissionVariablePicker';
 import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: stretch;
@@ -38,41 +41,41 @@ const StyledContainer = styled.div`
 
 const StyledIconContainer = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-bottom-right-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-bottom-right-radius: ${odelzaThemeCssVariables.border.radius.sm};
   border-left: none;
-  border-top-right-radius: ${themeCssVariables.border.radius.sm};
-  color: ${themeCssVariables.font.color.tertiary};
+  border-top-right-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: pointer;
   display: flex;
   justify-content: center;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 
   &:hover {
-    background-color: ${themeCssVariables.background.transparent.light};
+    background-color: ${odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 
 const StyledReadOnlyInput = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-bottom-left-radius: ${themeCssVariables.border.radius.sm};
-  border-top-left-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-bottom-left-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  border-top-left-radius: ${odelzaThemeCssVariables.border.radius.sm};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex: 1;
-  font-size: ${themeCssVariables.font.size.md};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 32px;
   overflow: hidden;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledMeText = styled.span`
-  color: ${themeCssVariables.color.blue};
+  color: ${odelzaThemeCssVariables.color.primary};
   flex-shrink: 0;
 `;
 

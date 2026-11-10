@@ -1,7 +1,7 @@
 import { t } from '@lingui/core/macro';
 import { styled } from '@linaria/react';
 import { type Ref } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledOuterContainer = styled.div`
   align-items: center;
@@ -22,7 +22,7 @@ const StyledInnerContainer = styled.div`
 `;
 
 const StyledEmptyPlaceholderField = styled.div`
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   padding-left: 4px;
 `;
 

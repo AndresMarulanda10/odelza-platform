@@ -3,7 +3,7 @@ import { Tag } from 'twenty-ui/data-display';
 import { t } from '@lingui/core/macro';
 import { BillingPlanKey } from '~/generated-metadata/graphql';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export type PlansTagsProps = {
   plan: BillingPlanKey;
@@ -12,7 +12,7 @@ export type PlansTagsProps = {
 
 const StyledTagsWrapper = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const PlansTags = ({ plan, isTrialPeriod = false }: PlansTagsProps) => {

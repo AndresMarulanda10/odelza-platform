@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 
 import { useContext, useRef } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { RecordBoardColumnWidthEffect } from '@/object-record/record-board/components/RecordBoardColumnWidthEffect';
 import { RecordBoardColumns } from '@/object-record/record-board/components/RecordBoardColumns';
@@ -27,7 +27,7 @@ const StyledContainerContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: min-content;
-  min-height: calc(100% - ${themeCssVariables.spacing[2]});
+  min-height: calc(100% - ${odelzaThemeCssVariables.spacing[2]});
 `;
 
 const StyledBoardContentContainer = styled.div`

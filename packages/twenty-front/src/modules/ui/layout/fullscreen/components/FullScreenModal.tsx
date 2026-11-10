@@ -6,10 +6,10 @@ import {
 } from '@/ui/navigation/bread-crumb/components/Breadcrumb';
 import { styled } from '@linaria/react';
 import { forwardRef } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledFullScreenOverlay = styled.div`
-  background: ${themeCssVariables.background.noisy};
+  background: ${odelzaThemeCssVariables.background.noisy};
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -23,24 +23,24 @@ const StyledFullScreenOverlay = styled.div`
 `;
 
 const StyledFullScreenHeaderContainer = styled.div`
-  padding-left: ${themeCssVariables.spacing[3]};
+  padding-left: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledFullScreenContent = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   min-height: 0;
-  padding: 0 ${themeCssVariables.spacing[3]} ${themeCssVariables.spacing[3]}
-    ${themeCssVariables.spacing[3]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[3]}
+    ${odelzaThemeCssVariables.spacing[3]} ${odelzaThemeCssVariables.spacing[3]};
 
   > * {
     display: flex;
     flex: 1;
     flex-direction: column;
     min-height: 0;
-    row-gap: ${themeCssVariables.spacing[5]};
+    row-gap: ${odelzaThemeCssVariables.spacing[5]};
   }
 `;
 

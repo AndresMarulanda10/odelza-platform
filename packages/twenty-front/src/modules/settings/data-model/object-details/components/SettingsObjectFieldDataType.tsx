@@ -5,7 +5,10 @@ import { type SettingsFieldType } from '@/settings/data-model/types/SettingsFiel
 import { getSettingsFieldTypeConfig } from '@/settings/data-model/utils/getSettingsFieldTypeConfig';
 import { type IconComponent, IconTwentyStar } from 'twenty-ui/icon';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type SettingsObjectFieldDataTypeProps = {
   to?: string;
@@ -22,15 +25,15 @@ const StyledDataType = styled.div<{
 }>`
   align-items: center;
   border: 1px solid transparent;
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   color: ${({ to }) =>
     to
-      ? themeCssVariables.font.color.secondary
-      : themeCssVariables.font.color.primary};
+      ? odelzaThemeCssVariables.font.color.secondary
+      : odelzaThemeCssVariables.font.color.primary};
   cursor: ${({ to }) => (to ? 'pointer' : 'default')};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   height: 20px;
   overflow: hidden;
   text-decoration: ${({ to }) => (to ? 'underline' : 'none')};
@@ -39,8 +42,8 @@ const StyledDataType = styled.div<{
   &:hover {
     color: ${({ to }) =>
       to
-        ? themeCssVariables.font.color.primary
-        : themeCssVariables.font.color.primary};
+        ? odelzaThemeCssVariables.font.color.primary
+        : odelzaThemeCssVariables.font.color.primary};
   }
 `;
 
@@ -56,7 +59,7 @@ const StyledIconWrapper = styled.div`
 `;
 
 const StyledSpan = styled.span`
-  color: ${themeCssVariables.font.color.extraLight};
+  color: ${odelzaThemeCssVariables.font.color.extraLight};
 `;
 export const SettingsObjectFieldDataType = ({
   to,

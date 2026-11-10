@@ -8,7 +8,7 @@ import { useLingui } from '@lingui/react/macro';
 import { capitalize } from 'twenty-shared/utils';
 import { IconGoogle, IconMicrosoft, IconPassword } from 'twenty-ui/icon';
 import { Card } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useMutation } from '@apollo/client/react';
 import {
   type AuthProviders,
@@ -20,7 +20,7 @@ import { useAtomState } from '@/ui/utilities/state/jotai/hooks/useAtomState';
 const StyledSettingsSecurityOptionsList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 export const SettingsSecurityAuthBypassOptionsList = () => {

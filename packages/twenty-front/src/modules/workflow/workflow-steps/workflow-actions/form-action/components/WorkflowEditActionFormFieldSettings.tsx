@@ -10,7 +10,10 @@ import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { IconSettingsAutomation, IconX } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
-import { themeCssVariables, ThemeContext } from 'twenty-ui/theme-constants';
+import {
+  odelzaThemeCssVariables,
+  ThemeContext,
+} from 'twenty-ui/theme-constants';
 import { useContext } from 'react';
 type WorkflowEditActionFormFieldSettingsProps = {
   field: WorkflowFormActionField;
@@ -19,42 +22,42 @@ type WorkflowEditActionFormFieldSettingsProps = {
 };
 
 const StyledFormFieldSettingsContainer = styled.div`
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
-  margin-top: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  margin-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledSettingsContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledSettingsHeader = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: grid;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   grid-template-columns: 1fr 24px;
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-left: ${themeCssVariables.spacing[3]};
-  padding-right: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[3]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTitleContainer = styled.div`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[1]};
-  padding-top: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledCloseButtonContainer = styled.div`
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const WorkflowEditActionFormFieldSettings = ({

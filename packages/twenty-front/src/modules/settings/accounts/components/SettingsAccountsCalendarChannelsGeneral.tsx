@@ -9,7 +9,7 @@ import { Section } from '@react-email/components';
 import { addMinutes, endOfDay, min, startOfDay } from 'date-fns';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 import { H2Title } from 'twenty-ui/typography';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   CalendarChannelVisibility,
   type TimelineCalendarEvent,
@@ -18,8 +18,8 @@ import {
 const StyledGeneralContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[6]};
-  padding-top: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[6]};
+  padding-top: ${odelzaThemeCssVariables.spacing[6]};
 `;
 
 export const SettingsAccountsCalendarChannelsGeneral = () => {

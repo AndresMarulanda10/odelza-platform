@@ -19,7 +19,10 @@ import {
   LightIconButton,
 } from 'twenty-ui/input';
 import { type ThemeColor } from 'twenty-ui/theme';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 import { ICON_PICKER_DROPDOWN_CONTENT_WIDTH } from '@/ui/input/components/constants/IconPickerDropdownContentWidth';
 import { ThemeColorPickerMenu } from '@/ui/input/components/ThemeColorPickerMenu';
@@ -69,8 +72,8 @@ const StyledIconPickerSearchRow = styled.div`
   align-items: center;
   box-sizing: border-box;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  padding-right: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
@@ -155,15 +158,15 @@ const StyledMenuIconItemsContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[0.5]};
+  gap: ${odelzaThemeCssVariables.spacing[0.5]};
 `;
 
 const selectedIconButtonStyle = css`
-  background: ${themeCssVariables.background.transparent.medium};
+  background: ${odelzaThemeCssVariables.background.transparent.medium};
 `;
 
 const focusedIconButtonStyle = css`
-  background: ${themeCssVariables.background.transparent.light};
+  background: ${odelzaThemeCssVariables.background.transparent.light};
 `;
 
 type StyledLightIconButtonProps = React.ComponentProps<

@@ -4,30 +4,31 @@ import { Link } from 'react-router-dom';
 import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath } from 'twenty-shared/utils';
 import { IconLock } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { billingState } from '@/client-config/states/billingState';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 
 const pillClassName = css`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.pill};
-  color: ${themeCssVariables.font.color.tertiary};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   corner-shape: round;
   display: inline-flex;
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[2]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const pillLinkClassName = css`
   text-decoration: none;
 
   &:hover {
-    background: ${themeCssVariables.background.transparent.lighter};
-    color: ${themeCssVariables.font.color.secondary};
+    background: ${odelzaThemeCssVariables.background.transparent.lighter};
+    color: ${odelzaThemeCssVariables.font.color.secondary};
   }
 `;
 

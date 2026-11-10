@@ -8,14 +8,17 @@ import {
   type FinanceSection,
   type PersonalFinanceStateEnvelope,
 } from 'twenty-shared/types';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-width: 0;
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
   width: 100%;
 `;
 
@@ -23,16 +26,16 @@ const StyledState = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: center;
   min-height: 120px;
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
   text-align: center;
 `;
 
 const StyledGrid = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
@@ -41,35 +44,35 @@ const StyledGrid = styled.div`
 `;
 
 const StyledSection = styled.section`
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-width: 0;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledContext = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex-wrap: wrap;
-  font-size: ${themeCssVariables.font.size.sm};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledNotice = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const StyledError = styled(StyledNotice)`
-  color: ${themeCssVariables.font.color.danger};
+  color: ${odelzaThemeCssVariables.font.color.danger};
 `;
 
 const StyledValues = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   grid-template-columns: repeat(2, minmax(0, 1fr));
 `;
 
@@ -80,8 +83,8 @@ const StyledValue = styled.div`
 `;
 
 const StyledLabel = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const SectionContext = ({ section }: { section: FinanceSection }) => (

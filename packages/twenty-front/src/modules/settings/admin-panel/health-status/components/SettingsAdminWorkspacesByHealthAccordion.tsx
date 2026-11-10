@@ -7,19 +7,20 @@ import { getSettingsPath } from 'twenty-shared/utils';
 import { IconChevronDown, IconChevronRight } from 'twenty-ui/icon';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
 import { Card } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledAccordionHeaderButton = styled.button`
   align-items: center;
   background: transparent;
   border: none;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   cursor: pointer;
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   justify-content: space-between;
-  padding: ${themeCssVariables.spacing[3]} ${themeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[3]}
+    ${odelzaThemeCssVariables.spacing[4]};
   text-align: left;
   width: 100%;
 `;
@@ -29,8 +30,9 @@ const StyledAccordionHeaderButtonDisabled = styled(StyledAccordionHeaderButton)`
 `;
 
 const StyledAccordionContent = styled.div`
-  border-top: 1px solid ${themeCssVariables.border.color.medium};
-  padding: ${themeCssVariables.spacing[3]} ${themeCssVariables.spacing[4]};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  padding: ${odelzaThemeCssVariables.spacing[3]}
+    ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledWorkspaceList = styled.ul`
@@ -40,8 +42,8 @@ const StyledWorkspaceList = styled.ul`
 `;
 
 const StyledWorkspaceListItem = styled.li`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
-  font-size: ${themeCssVariables.font.size.sm};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 
   &:last-child {
     border-bottom: none;
@@ -49,13 +51,13 @@ const StyledWorkspaceListItem = styled.li`
 `;
 
 const StyledWorkspaceLink = styled(Link)`
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: block;
-  padding: ${themeCssVariables.spacing[2]} 0;
+  padding: ${odelzaThemeCssVariables.spacing[2]} 0;
   text-decoration: none;
 
   &:hover {
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
     text-decoration: underline;
   }
 `;

@@ -8,7 +8,7 @@ import {
   IconClock,
   IconTerminal,
 } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { MONOSPACE_FONT_FAMILY } from '@/ui/theme/constants/MonospaceFontFamily';
 import { formatDuration } from '@/workflow/workflow-run/observability/workflowRunStepLogsFormatters';
@@ -30,22 +30,22 @@ import {
 
 const StyledErrorHeader = styled.div`
   align-items: center;
-  color: ${themeCssVariables.color.red};
+  color: ${odelzaThemeCssVariables.color.red};
   display: flex;
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  gap: ${themeCssVariables.spacing[1]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledStackTrace = styled.pre`
-  background: ${themeCssVariables.background.tertiary};
-  border-radius: ${themeCssVariables.border.radius.xs};
-  color: ${themeCssVariables.font.color.tertiary};
+  background: ${odelzaThemeCssVariables.background.tertiary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.xs};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   font-family: ${MONOSPACE_FONT_FAMILY};
-  font-size: ${themeCssVariables.font.size.xs};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
   margin: 0;
   max-height: 240px;
   overflow: auto;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   white-space: pre-wrap;
   word-break: break-word;
 `;

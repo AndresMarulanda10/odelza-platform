@@ -1,7 +1,10 @@
 import { styled } from '@linaria/react';
 import { useContext, type ReactNode } from 'react';
 import { type IconComponent, IconX } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { isDefined } from 'twenty-shared/utils';
 
 const StyledChip = styled.div<{ variant: SortOrFilterChipVariant }>`
@@ -9,44 +12,44 @@ const StyledChip = styled.div<{ variant: SortOrFilterChipVariant }>`
   background-color: ${({ variant }) => {
     switch (variant) {
       case 'danger':
-        return themeCssVariables.background.danger;
+        return odelzaThemeCssVariables.background.danger;
       case 'default':
       default:
-        return themeCssVariables.accent.quaternary;
+        return odelzaThemeCssVariables.accent.quaternary;
     }
   }};
   border: 1px solid
     ${({ variant }) => {
       switch (variant) {
         case 'danger':
-          return themeCssVariables.border.color.danger;
+          return odelzaThemeCssVariables.border.color.danger;
         case 'default':
         default:
-          return themeCssVariables.accent.tertiary;
+          return odelzaThemeCssVariables.accent.tertiary;
       }
     }};
-  border-radius: ${themeCssVariables.border.radius.smRound};
+  border-radius: ${odelzaThemeCssVariables.border.radius.smRound};
   box-sizing: border-box;
   color: ${({ variant }) => {
     switch (variant) {
       case 'danger':
-        return themeCssVariables.color.red;
+        return odelzaThemeCssVariables.color.red;
       case 'default':
       default:
-        return themeCssVariables.color.blue;
+        return odelzaThemeCssVariables.color.primary;
     }
   }};
-  column-gap: ${themeCssVariables.spacing[1]};
+  column-gap: ${odelzaThemeCssVariables.spacing[1]};
   corner-shape: round;
   cursor: pointer;
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   height: 24px;
-  padding: ${themeCssVariables.spacing[0.5]};
-  padding-left: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[0.5]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
   user-select: none;
   white-space: nowrap;
 `;
@@ -64,7 +67,7 @@ const StyledDelete = styled.button<{ variant: SortOrFilterChipVariant }>`
   color: inherit;
   cursor: pointer;
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   height: 20px;
   justify-content: center;
   margin: 0;
@@ -76,36 +79,36 @@ const StyledDelete = styled.button<{ variant: SortOrFilterChipVariant }>`
     background-color: ${({ variant }) => {
       switch (variant) {
         case 'danger':
-          return themeCssVariables.color.red5;
+          return odelzaThemeCssVariables.color.red5;
         case 'default':
         default:
-          return themeCssVariables.accent.secondary;
+          return odelzaThemeCssVariables.accent.secondary;
       }
     }};
-    border-radius: ${themeCssVariables.border.radius.sm};
+    border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   }
 `;
 
 const StyledLabelKey = styled.div`
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledFilterValue = styled.span`
-  font-weight: ${themeCssVariables.font.weight.regular};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
 `;
 
 const StyledSortValue = styled.span`
-  font-weight: ${themeCssVariables.font.weight.medium};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledSubFieldSeparator = styled.span`
-  font-weight: ${themeCssVariables.font.weight.regular};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   opacity: 0.6;
-  padding: 0 ${themeCssVariables.spacing[1]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledSubFieldValue = styled.span`
-  font-weight: ${themeCssVariables.font.weight.regular};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
 `;
 
 const StyledKeyLabelContainer = styled.div`

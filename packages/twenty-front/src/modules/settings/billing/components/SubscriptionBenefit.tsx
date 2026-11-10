@@ -1,18 +1,21 @@
 import { styled } from '@linaria/react';
 import React, { useContext } from 'react';
 import { IconCheck } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledBenefitContainer = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledCheckContainer = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.tertiary};
+  background-color: ${odelzaThemeCssVariables.background.tertiary};
   border-radius: 50%;
   corner-shape: round;
   display: flex;

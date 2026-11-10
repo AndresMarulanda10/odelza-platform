@@ -1,4 +1,3 @@
-import { ACCENT_DARK } from '@ui/theme/constants/AccentDark';
 import { ANIMATION } from './Animation';
 import { ICON } from './Icon';
 import { MODAL } from './Modal';
@@ -21,7 +20,4 @@ export const THEME_COMMON = {
   sidePanelWidth: '500px',
   clickableElementBackgroundTransition: 'background 0.1s ease',
   lastLayerZIndex: 2147483647,
-  buttons: {
-    secondaryTextColor: ACCENT_DARK.accent11,
-  },
 };

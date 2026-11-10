@@ -14,12 +14,12 @@ import { isDefined } from 'twenty-shared/utils';
 import { ChipSize } from 'twenty-ui/data-display';
 import { AnimatedContainer } from 'twenty-ui/layout';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: space-between;
   min-width: 100%;
   width: 100%;
@@ -27,7 +27,7 @@ const StyledContainer = styled.div`
 
 const StyledChildrenContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   overflow: hidden;
   max-width: 100%;
   flex: 0 1 fit-content;
@@ -45,7 +45,7 @@ const StyledChildContainer = styled.div`
 `;
 
 const StyledUnShrinkableContainer = styled.div`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   flex-shrink: 0;
 
   width: 24px;

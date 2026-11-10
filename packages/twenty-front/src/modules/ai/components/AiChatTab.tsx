@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { useState } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { DropZone } from '@/activities/files/components/DropZone';
 import { AiChatEditorSection } from '@/ai/components/AiChatEditorSection';
@@ -14,13 +14,13 @@ import { AiChatQueuedMessages } from '@/ai/components/AiChatQueuedMessages';
 import { AiChatTabMessageList } from '@/ai/components/AiChatTabMessageList';
 
 const StyledContainer = styled.div<{ isDraggingFile: boolean }>`
-  background: ${themeCssVariables.background.primary};
+  background: ${odelzaThemeCssVariables.background.primary};
   display: flex;
   flex-direction: column;
   height: ${({ isDraggingFile }) =>
     isDraggingFile ? `calc(100% - 24px)` : '100%'};
   padding: ${({ isDraggingFile }) =>
-    isDraggingFile ? themeCssVariables.spacing[3] : '0'};
+    isDraggingFile ? odelzaThemeCssVariables.spacing[3] : '0'};
 `;
 
 export const AiChatTab = () => {

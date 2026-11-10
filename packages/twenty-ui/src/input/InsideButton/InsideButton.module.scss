@@ -4,8 +4,8 @@
   background-color: transparent;
   // Concentric with the IconButtonGroup sm container: its radius minus the
   // 2px padding and 1px border.
-  border-radius: calc(var(--t-border-radius-sm) - 3px);
-  color: var(--t-font-color-tertiary);
+  border-radius: calc(var(--odz-border-radius-sm) - 3px);
+  color: var(--odz-font-color-tertiary);
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -17,7 +17,7 @@
   transition: background-color 0.1s ease;
 
   &:hover {
-    background-color: var(--t-background-transparent-light);
+    background-color: var(--odz-background-transparent-light);
   }
 
   &[data-disabled] {

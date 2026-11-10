@@ -15,7 +15,7 @@ import { Avatar } from 'twenty-ui/data-display';
 import { IconCheck, IconPlus } from 'twenty-ui/icon';
 import { IconButton, MainButton } from 'twenty-ui/input';
 import { AnimatedIconCrossfade } from 'twenty-ui/layout';
-import { themeCssVariables, useTheme } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables, useTheme } from 'twenty-ui/theme-constants';
 import { getAbsoluteImageUrl } from '~/utils/image/getAbsoluteImageUrl';
 
 const StyledTitleRow = styled.div`
@@ -26,24 +26,24 @@ const StyledTitleRow = styled.div`
 
 const StyledBetaTag = styled.span`
   align-items: center;
-  background-color: ${themeCssVariables.grayScale.gray3};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.pill};
+  background-color: ${odelzaThemeCssVariables.grayScale.gray3};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   box-sizing: border-box;
-  color: ${themeCssVariables.grayScale.gray10};
+  color: ${odelzaThemeCssVariables.grayScale.gray10};
   corner-shape: round;
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  height: ${themeCssVariables.spacing[6]};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   line-height: 1.4;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledCard = styled.div`
-  background-color: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.primary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -54,11 +54,11 @@ const StyledCard = styled.div`
 const StyledAppRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[3]};
-  padding: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
 
   & + & {
-    border-top: 1px solid ${themeCssVariables.border.color.light};
+    border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
   }
 `;
 
@@ -71,15 +71,15 @@ const StyledAppText = styled.div`
 `;
 
 const StyledAppLabel = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   line-height: 1.4;
 `;
 
 const StyledAppDescription = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   line-height: 1.4;
 `;
 
@@ -87,7 +87,7 @@ const StyledFooter = styled.div`
   align-items: flex-end;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   max-width: 100%;
   width: ${ONBOARDING_CONTENT_BLOCK_WIDTH}px;
 `;
@@ -175,7 +175,7 @@ export const InstallAppsContent = ({
                   <IconButton
                     size="small"
                     variant="secondary"
-                    accent={isSelected ? 'blue' : 'default'}
+                    accent={isSelected ? 'primary' : 'default'}
                     ariaLabel={
                       isSelected
                         ? t`Deselect ${labelText}`

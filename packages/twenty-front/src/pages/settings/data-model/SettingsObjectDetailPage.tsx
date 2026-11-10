@@ -168,7 +168,7 @@ export const SettingsObjectDetailPage = () => {
                   title={t`New Field`}
                   variant="primary"
                   size="small"
-                  accent="blue"
+                  accent="primary"
                   Icon={IconPlus}
                 />
               </UndecoratedLink>

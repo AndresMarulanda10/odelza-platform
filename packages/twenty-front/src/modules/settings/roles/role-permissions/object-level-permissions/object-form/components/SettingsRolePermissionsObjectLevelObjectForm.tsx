@@ -19,7 +19,7 @@ import {
   isRecordFilterValueValid,
 } from 'twenty-shared/utils';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useQuery } from '@apollo/client/react';
 import {
   type BillingEntitlement,
@@ -150,7 +150,7 @@ export const SettingsRolePermissionsObjectLevelObjectForm = ({
   return (
     <SettingsPageLayout
       title={headerTitle}
-      titleColor={themeCssVariables.font.color.tertiary}
+      titleColor={odelzaThemeCssVariables.font.color.tertiary}
       links={breadcrumbLinks}
       secondaryBar={
         <SettingsWizardStepBar
@@ -161,7 +161,7 @@ export const SettingsRolePermissionsObjectLevelObjectForm = ({
               title={t`Finish`}
               variant="primary"
               size="small"
-              accent="blue"
+              accent="primary"
               to={isFinishDisabled ? undefined : finishButtonPath}
               disabled={isFinishDisabled}
             />

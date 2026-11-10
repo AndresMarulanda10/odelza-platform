@@ -55,7 +55,7 @@ export const SidePanelCampaignComposerPage = () => {
             key="send"
             size="small"
             variant="primary"
-            accent="blue"
+            accent="primary"
             title={t`Send campaign`}
             Icon={IconSend}
             hotkeys={[getOsControlSymbol(), '⏎']}

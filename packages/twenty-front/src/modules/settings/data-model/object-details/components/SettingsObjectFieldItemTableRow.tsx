@@ -28,7 +28,10 @@ import {
 } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
 import { UndecoratedLink } from 'twenty-ui/navigation';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { RelationType } from '~/generated-metadata/graphql';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
 import { type SettingsObjectDetailTableItem } from '~/pages/settings/data-model/types/SettingsObjectDetailTableItem';
@@ -47,7 +50,7 @@ const StyledNameContainer = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
@@ -59,7 +62,7 @@ const StyledNameLabel = styled.div`
 
 const StyledIconChevronRightContainer = styled.span`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
 `;
 
@@ -168,8 +171,8 @@ export const SettingsObjectFieldItemTableRow = ({
     >
       <UndecoratedLink to={linkToNavigate}>
         <TableCell
-          color={themeCssVariables.font.color.primary}
-          gap={themeCssVariables.spacing[2]}
+          color={odelzaThemeCssVariables.font.color.primary}
+          gap={odelzaThemeCssVariables.spacing[2]}
         >
           {isDefined(Icon) && (
             <Icon
@@ -224,7 +227,7 @@ export const SettingsObjectFieldItemTableRow = ({
       </TableCell>
       <TableCell
         align="center"
-        padding={`0 ${themeCssVariables.spacing[1]} 0 ${themeCssVariables.spacing[2]}`}
+        padding={`0 ${odelzaThemeCssVariables.spacing[1]} 0 ${odelzaThemeCssVariables.spacing[2]}`}
       >
         {status === 'active' ? (
           mode === 'view' ? (

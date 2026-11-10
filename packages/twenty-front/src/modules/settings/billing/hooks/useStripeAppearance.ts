@@ -1,7 +1,7 @@
 import { type Appearance } from '@stripe/stripe-js';
 import { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-import { THEME_DARK, THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_DARK, ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { ThemeContext } from 'twenty-ui/theme-constants';
 
 // Stripe's Appearance API rejects CSS color(display-p3 ...) values, which is
@@ -27,14 +27,14 @@ const toStripeColor = (color: string): string => {
 export const useStripeAppearance = (): Appearance => {
   const { colorScheme } = useContext(ThemeContext);
   const isDark = colorScheme === 'dark';
-  const theme = isDark ? THEME_DARK : THEME_LIGHT;
+  const theme = isDark ? ODELZA_THEME_DARK : ODELZA_THEME_LIGHT;
 
   return {
     theme: isDark ? 'night' : 'stripe',
     variables: {
       fontFamily: theme.font.family,
       fontSizeBase: '14px',
-      colorPrimary: toStripeColor(theme.color.blue),
+      colorPrimary: toStripeColor(theme.color.primary),
       colorBackground: toStripeColor(theme.background.primary),
       colorText: toStripeColor(theme.font.color.primary),
       colorTextSecondary: toStripeColor(theme.font.color.tertiary),
@@ -58,7 +58,7 @@ export const useStripeAppearance = (): Appearance => {
         padding: '8px 12px',
       },
       '.Input:focus': {
-        border: `1px solid ${toStripeColor(theme.border.color.blue)}`,
+        border: `1px solid ${toStripeColor(theme.border.color.accent)}`,
         boxShadow: 'none',
       },
       '.Input--invalid': {

@@ -10,7 +10,7 @@ import {
   IconClock,
   IconWorld,
 } from 'twenty-ui/icon';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { MONOSPACE_FONT_FAMILY } from '@/ui/theme/constants/MonospaceFontFamily';
 import {
@@ -37,68 +37,71 @@ import {
 } from '@/workflow/workflow-run/observability/workflowRunStepLogsStyles';
 
 const StyledMethodBadge = styled.span<{ method: string }>`
-  background: ${themeCssVariables.background.transparent.light};
-  border-radius: ${themeCssVariables.border.radius.xs};
-  color: ${themeCssVariables.font.color.primary};
-  font-family: ${themeCssVariables.font.family};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  padding: ${themeCssVariables.spacing['0.5']} ${themeCssVariables.spacing[1]};
+  background: ${odelzaThemeCssVariables.background.transparent.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.xs};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-family: ${odelzaThemeCssVariables.font.family};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  padding: ${odelzaThemeCssVariables.spacing['0.5']}
+    ${odelzaThemeCssVariables.spacing[1]};
   text-transform: uppercase;
 `;
 
 const StyledNetworkErrorBadge = styled.span`
   align-items: center;
-  background: ${themeCssVariables.background.transparent.danger};
-  border-radius: ${themeCssVariables.border.radius.xs};
-  color: ${themeCssVariables.color.red};
+  background: ${odelzaThemeCssVariables.background.transparent.danger};
+  border-radius: ${odelzaThemeCssVariables.border.radius.xs};
+  color: ${odelzaThemeCssVariables.color.red};
   display: inline-flex;
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing['0.5']} ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing['0.5']}
+    ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledUrl = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   font-family: ${MONOSPACE_FONT_FAMILY};
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   overflow-wrap: anywhere;
 `;
 
 const StyledHeaderTable = styled.div`
-  background: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: grid;
-  gap: ${themeCssVariables.spacing[1]} ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.spacing[3]};
   grid-template-columns: max-content 1fr;
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledHeaderName = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   font-family: ${MONOSPACE_FONT_FAMILY};
-  font-size: ${themeCssVariables.font.size.xs};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
 `;
 
 const StyledHeaderValue = styled.span`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   font-family: ${MONOSPACE_FONT_FAMILY};
-  font-size: ${themeCssVariables.font.size.xs};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
   overflow-wrap: anywhere;
 `;
 
 const StyledBodyPre = styled.pre`
-  background: ${themeCssVariables.background.tertiary};
-  border-radius: ${themeCssVariables.border.radius.sm};
-  color: ${themeCssVariables.font.color.primary};
+  background: ${odelzaThemeCssVariables.background.tertiary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   font-family: ${MONOSPACE_FONT_FAMILY};
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   margin: 0;
   max-height: 300px;
   overflow: auto;
-  padding: ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   white-space: pre-wrap;
   word-break: break-word;
 `;

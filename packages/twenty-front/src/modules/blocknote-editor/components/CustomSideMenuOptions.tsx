@@ -1,15 +1,18 @@
 import { styled } from '@linaria/react';
 import { useContext } from 'react';
 import { type IconComponent } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div<{ Variant: Variants }>`
   align-items: center;
   color: ${({ Variant }) =>
-    Variant === 'danger' ? themeCssVariables.color.red : 'inherit'};
+    Variant === 'danger' ? odelzaThemeCssVariables.color.red : 'inherit'};
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTextContainer = styled.div``;

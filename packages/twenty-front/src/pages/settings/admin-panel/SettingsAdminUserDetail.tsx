@@ -38,7 +38,7 @@ import { Avatar } from 'twenty-ui/data-display';
 import { H2Title } from 'twenty-ui/typography';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
 import {
   type UserLookupAdminPanelQuery,
@@ -46,7 +46,7 @@ import {
 } from '~/generated-admin/graphql';
 
 const StyledButtonContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[3]};
+  margin-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 export const SettingsAdminUserDetail = () => {

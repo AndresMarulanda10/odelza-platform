@@ -14,16 +14,16 @@ import { SettingsRolePermissionsObjectLevelRecordLevelPermissionFilterBuilder } 
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 import { SettingsPath } from 'twenty-shared/types';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
 import { OrganizationAdornment } from '~/pages/settings/enterprise/components/OrganizationAdornment';
 
 const StyledContent = styled.div`
-  padding-bottom: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledCardContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[4]};
+  margin-top: ${odelzaThemeCssVariables.spacing[4]};
   overflow: hidden;
 `;
 
@@ -60,7 +60,7 @@ export const SettingsRolePermissionsObjectLevelRecordLevelSection = ({
                 <Button
                   title={t`Upgrade`}
                   variant="primary"
-                  accent="blue"
+                  accent="primary"
                   size="small"
                   Icon={IconArrowUp}
                   onClick={() =>

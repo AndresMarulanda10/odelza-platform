@@ -5,13 +5,16 @@ import { useDropzone } from 'react-dropzone';
 
 import { useSpreadsheetImportInternal } from '@/spreadsheet-import/hooks/useSpreadsheetImportInternal';
 import { IconUpload } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
-  border: 2px dashed ${themeCssVariables.border.color.strong};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border: 2px dashed ${odelzaThemeCssVariables.border.color.strong};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -20,24 +23,24 @@ const StyledContainer = styled.div`
 `;
 
 const StyledUploadDragTitle = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.lg};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  line-height: ${themeCssVariables.text.lineHeight.md};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.lg};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.md};
   margin-bottom: 8px;
 `;
 
 const StyledUploadDragSubTitle = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  line-height: ${themeCssVariables.text.lineHeight.md};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.md};
 `;
 
 const StyledUploadIconContainer = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  margin-bottom: ${themeCssVariables.spacing[3]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 type DropZoneProps = {

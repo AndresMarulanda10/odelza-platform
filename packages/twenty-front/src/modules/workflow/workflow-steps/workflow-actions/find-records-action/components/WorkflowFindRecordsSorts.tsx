@@ -8,22 +8,22 @@ import { IconArrowsSort, IconTrash, useIcons } from 'twenty-ui/icon';
 import { Button, type SelectOption } from 'twenty-ui/input';
 import { v4 as uuidv4 } from 'uuid';
 import { ViewSortDirection } from '~/generated-metadata/graphql';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSortItemContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledAddButtonContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[1]};
+  margin-top: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type WorkflowFindRecordsSortsProps = {

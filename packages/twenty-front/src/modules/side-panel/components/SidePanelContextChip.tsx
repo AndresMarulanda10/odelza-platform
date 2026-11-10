@@ -5,7 +5,7 @@ import { Fragment } from 'react/jsx-runtime';
 import { type SidePanelPages } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { OverflowingTextWithTooltip } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledChip = styled.button<{
   withText: boolean;
@@ -14,32 +14,34 @@ const StyledChip = styled.button<{
 }>`
   align-items: center;
   all: unset;
-  background: ${themeCssVariables.background.transparent.light};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background: ${odelzaThemeCssVariables.background.transparent.light};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   cursor: ${({ onClick }) => (isDefined(onClick) ? 'pointer' : 'default')};
   display: flex;
   font-family: inherit;
   /* If the chip has text, we add extra padding to have a more balanced design */
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[6]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   justify-content: center;
-  line-height: ${themeCssVariables.text.lineHeight.lg};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.lg};
   max-width: ${({ maxWidth }) => maxWidth ?? ''};
 
   &:hover {
     background: ${({ onClick }) =>
       isDefined(onClick)
-        ? themeCssVariables.background.transparent.medium
-        : themeCssVariables.background.transparent.light};
+        ? odelzaThemeCssVariables.background.transparent.medium
+        : odelzaThemeCssVariables.background.transparent.light};
   }
   padding: 0
     ${({ withText }) =>
-      withText ? themeCssVariables.spacing[2] : themeCssVariables.spacing[1]};
+      withText
+        ? odelzaThemeCssVariables.spacing[2]
+        : odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledIconsContainer = styled.div`
@@ -48,7 +50,7 @@ const StyledIconsContainer = styled.div`
 `;
 
 const StyledEmptyText = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 export type SidePanelContextChipProps = {

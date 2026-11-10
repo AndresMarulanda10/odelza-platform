@@ -24,7 +24,7 @@ import { UndecoratedLink } from 'twenty-ui/navigation';
 import {
   MOBILE_VIEWPORT,
   ThemeContext,
-  themeCssVariables,
+  odelzaThemeCssVariables,
 } from 'twenty-ui/theme-constants';
 
 export enum SnackBarVariant {
@@ -53,14 +53,14 @@ export type SnackBarProps = Pick<ComponentPropsWithoutRef<'div'>, 'id'> & {
 };
 
 const StyledContainer = styled.div`
-  backdrop-filter: ${themeCssVariables.blur.medium};
-  background-color: ${themeCssVariables.background.transparent.primary};
-  border-radius: ${themeCssVariables.border.radius.md};
-  box-shadow: ${themeCssVariables.boxShadow.strong};
+  backdrop-filter: ${odelzaThemeCssVariables.blur.medium};
+  background-color: ${odelzaThemeCssVariables.background.transparent.primary};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.strong};
   box-sizing: border-box;
-  margin-top: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[2]}
-    ${themeCssVariables.spacing[1]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[2]} ${odelzaThemeCssVariables.spacing[1]};
   position: relative;
   width: 296px;
 
@@ -85,16 +85,16 @@ const StyledProgressBarContainer = styled.div`
 
 const StyledHeader = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[2]};
-  margin-bottom: ${themeCssVariables.spacing[1]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledMessage = styled.div`
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const StyledIcon = styled.div`
@@ -109,23 +109,23 @@ const StyledActions = styled.div`
 `;
 
 const StyledDescription = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   overflow: hidden;
-  padding-left: ${themeCssVariables.spacing[6]};
+  padding-left: ${odelzaThemeCssVariables.spacing[6]};
   text-overflow: ellipsis;
   width: 200px;
 `;
 
 const StyledBottomActionContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledBottomAction = styled.div`
   align-items: center;
   display: flex;
   justify-content: flex-end;
-  padding-top: ${themeCssVariables.spacing[1]};
+  padding-top: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const defaultAriaLabelByVariant: Record<

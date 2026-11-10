@@ -24,12 +24,12 @@ import { viewPickerReferenceViewIdComponentState } from '@/views/view-picker/sta
 import { useLingui } from '@lingui/react/macro';
 import { IconPlus } from 'twenty-ui/icon';
 import { MenuItem } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { ViewVisibility } from '~/generated-metadata/graphql';
 import { moveArrayItem } from '~/utils/array/moveArrayItem';
 
 const StyledBoldDropdownMenuItemsContainerWrapper = styled.div`
-  font-weight: ${themeCssVariables.font.weight.regular};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
 `;
 
 export const ViewPickerListContent = () => {

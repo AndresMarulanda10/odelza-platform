@@ -12,13 +12,13 @@ import { UndecoratedLink } from 'twenty-ui/navigation';
 import {
   MOBILE_VIEWPORT,
   ThemeContext,
-  themeCssVariables,
+  odelzaThemeCssVariables,
 } from 'twenty-ui/theme-constants';
 
 const StyledCardsContainer = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[4]};
-  margin-top: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
+  margin-top: ${odelzaThemeCssVariables.spacing[6]};
 
   @media (max-width: ${MOBILE_VIEWPORT}px) {
     flex-direction: column;

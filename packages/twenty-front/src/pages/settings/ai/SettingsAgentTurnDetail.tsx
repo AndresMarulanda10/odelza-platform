@@ -16,41 +16,41 @@ import { getSettingsPath } from 'twenty-shared/utils';
 import { Status } from 'twenty-ui/data-display';
 import { H2Title } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   type AgentMessage,
   GetAgentTurnsDocument,
 } from '~/generated-metadata/graphql';
 
 const StyledTableContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[3]};
+  margin-top: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledTableHeaderRowContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledMessagesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledMessageBubble = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledMessageRole = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   text-transform: uppercase;
 `;
 
 const StyledMessageContent = styled.div`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   max-width: 100%;
 `;
 
@@ -209,7 +209,9 @@ export const SettingsAgentTurnDetail = () => {
                       key={evaluation.id}
                       gridTemplateColumns="140px 80px 1fr"
                     >
-                      <TableCell color={themeCssVariables.font.color.tertiary}>
+                      <TableCell
+                        color={odelzaThemeCssVariables.font.color.tertiary}
+                      >
                         {new Date(evaluation.createdAt).toLocaleDateString(
                           'en-US',
                           {
@@ -220,7 +222,7 @@ export const SettingsAgentTurnDetail = () => {
                           },
                         )}
                       </TableCell>
-                      <TableCell gap={themeCssVariables.spacing[2]}>
+                      <TableCell gap={odelzaThemeCssVariables.spacing[2]}>
                         <Status
                           color={getScoreColor(evaluation.score)}
                           text={`${evaluation.score}`}

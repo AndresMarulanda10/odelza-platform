@@ -1,11 +1,11 @@
 import { VariableChip } from '@/object-record/record-field/ui/form-types/components/VariableChip';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   align-items: center;
   display: flex;
-  margin-left: ${themeCssVariables.spacing[2]};
+  margin-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 type VariableChipStandaloneProps = {

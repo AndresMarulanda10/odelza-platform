@@ -2,7 +2,7 @@ import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 import { IconInfoCircle } from 'twenty-ui/icon';
 import { AppTooltip, TooltipDelay } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsBillingLabelValueItemProps = {
   label: string;
@@ -20,17 +20,17 @@ const StyledContainer = styled.div`
 const StyledLabelWrapper = styled.span`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledLabelSpan = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
 `;
 
 const StyledInfoIcon = styled(IconInfoCircle)`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: default;
   flex-shrink: 0;
 `;
@@ -38,10 +38,10 @@ const StyledInfoIcon = styled(IconInfoCircle)`
 const StyledValueSpan = styled.span<{ isPrimaryColor: boolean }>`
   color: ${({ isPrimaryColor }) =>
     isPrimaryColor
-      ? themeCssVariables.font.color.primary
-      : themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
+      ? odelzaThemeCssVariables.font.color.primary
+      : odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 export const SettingsBillingLabelValueItem = ({

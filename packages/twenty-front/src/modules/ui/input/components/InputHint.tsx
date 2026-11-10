@@ -1,4 +1,4 @@
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { styled } from '@linaria/react';
 
 const StyledInputHint = styled.div<{
@@ -6,11 +6,11 @@ const StyledInputHint = styled.div<{
 }>`
   color: ${({ danger }) =>
     danger
-      ? themeCssVariables.font.color.danger
-      : themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  margin-top: ${themeCssVariables.spacing[0.5]};
+      ? odelzaThemeCssVariables.font.color.danger
+      : odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  margin-top: ${odelzaThemeCssVariables.spacing[0.5]};
 `;
 
 export { StyledInputHint as InputHint };

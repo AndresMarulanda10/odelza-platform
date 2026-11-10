@@ -6,7 +6,7 @@ import { type ReactNode } from 'react';
 import { matchPath, useLocation } from 'react-router-dom';
 import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath, isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const SETTINGS_CONTENT_MAX_WIDTH = 760;
 const SETTINGS_PATHS_BY_LENGTH = Object.values(SettingsPath).sort(
@@ -29,13 +29,13 @@ const StyledSettingsPageContainer = styled.div<{
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[8]};
+  gap: ${odelzaThemeCssVariables.spacing[8]};
   margin: 0 auto;
   max-width: ${SETTINGS_CONTENT_MAX_WIDTH}px;
   overflow: ${({ overflow = 'auto' }) => overflow};
-  padding: ${themeCssVariables.spacing[6]} ${themeCssVariables.spacing[8]}
-    ${themeCssVariables.spacing[8]};
-  padding-bottom: ${themeCssVariables.spacing[20]};
+  padding: ${odelzaThemeCssVariables.spacing[6]}
+    ${odelzaThemeCssVariables.spacing[8]} ${odelzaThemeCssVariables.spacing[8]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[20]};
   width: ${({ width, isMobile }) => {
     if (isDefined(width)) {
       return width + 'px';

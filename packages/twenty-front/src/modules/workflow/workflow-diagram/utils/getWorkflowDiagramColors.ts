@@ -1,5 +1,5 @@
 import type { WorkflowRunStepStatus } from '@/workflow/types/Workflow';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type WorkflowDiagramColors = {
   background: string;
@@ -24,18 +24,18 @@ export const getWorkflowDiagramColors = ({
     case 'RUNNING': {
       return {
         selected: {
-          background: themeCssVariables.color.yellow2,
-          borderColor: themeCssVariables.color.yellow,
-          color: themeCssVariables.tag.text.yellow,
-          titleColor: themeCssVariables.font.color.primary,
-          tagBackground: themeCssVariables.tag.background.yellow,
+          background: odelzaThemeCssVariables.color.yellow2,
+          borderColor: odelzaThemeCssVariables.color.yellow,
+          color: odelzaThemeCssVariables.tag.text.yellow,
+          titleColor: odelzaThemeCssVariables.font.color.primary,
+          tagBackground: odelzaThemeCssVariables.tag.background.yellow,
         },
         unselected: {
-          background: themeCssVariables.background.secondary,
-          borderColor: themeCssVariables.border.color.strong,
-          color: themeCssVariables.tag.text.yellow,
-          titleColor: themeCssVariables.font.color.primary,
-          tagBackground: themeCssVariables.tag.background.yellow,
+          background: odelzaThemeCssVariables.background.secondary,
+          borderColor: odelzaThemeCssVariables.border.color.strong,
+          color: odelzaThemeCssVariables.tag.text.yellow,
+          titleColor: odelzaThemeCssVariables.font.color.primary,
+          tagBackground: odelzaThemeCssVariables.tag.background.yellow,
         },
       };
     }
@@ -43,18 +43,18 @@ export const getWorkflowDiagramColors = ({
     case 'FAILED_SAFELY': {
       return {
         selected: {
-          background: themeCssVariables.color.red2,
-          borderColor: themeCssVariables.color.red,
-          color: themeCssVariables.tag.text.red,
-          titleColor: themeCssVariables.font.color.primary,
-          tagBackground: themeCssVariables.tag.background.red,
+          background: odelzaThemeCssVariables.color.red2,
+          borderColor: odelzaThemeCssVariables.color.red,
+          color: odelzaThemeCssVariables.tag.text.red,
+          titleColor: odelzaThemeCssVariables.font.color.primary,
+          tagBackground: odelzaThemeCssVariables.tag.background.red,
         },
         unselected: {
-          background: themeCssVariables.background.secondary,
-          borderColor: themeCssVariables.border.color.strong,
-          color: themeCssVariables.tag.text.red,
-          titleColor: themeCssVariables.font.color.primary,
-          tagBackground: themeCssVariables.tag.background.red,
+          background: odelzaThemeCssVariables.background.secondary,
+          borderColor: odelzaThemeCssVariables.border.color.strong,
+          color: odelzaThemeCssVariables.tag.text.red,
+          titleColor: odelzaThemeCssVariables.font.color.primary,
+          tagBackground: odelzaThemeCssVariables.tag.background.red,
         },
       };
     }
@@ -62,36 +62,36 @@ export const getWorkflowDiagramColors = ({
     case 'SUCCESS': {
       return {
         selected: {
-          background: themeCssVariables.color.turquoise2,
-          borderColor: themeCssVariables.color.turquoise,
-          color: themeCssVariables.tag.text.green,
-          titleColor: themeCssVariables.font.color.primary,
-          tagBackground: themeCssVariables.tag.background.turquoise,
+          background: odelzaThemeCssVariables.color.turquoise2,
+          borderColor: odelzaThemeCssVariables.color.turquoise,
+          color: odelzaThemeCssVariables.tag.text.green,
+          titleColor: odelzaThemeCssVariables.font.color.primary,
+          tagBackground: odelzaThemeCssVariables.tag.background.turquoise,
         },
         unselected: {
-          background: themeCssVariables.background.secondary,
-          borderColor: themeCssVariables.border.color.strong,
-          color: themeCssVariables.tag.text.green,
-          titleColor: themeCssVariables.font.color.primary,
-          tagBackground: themeCssVariables.tag.background.turquoise,
+          background: odelzaThemeCssVariables.background.secondary,
+          borderColor: odelzaThemeCssVariables.border.color.strong,
+          color: odelzaThemeCssVariables.tag.text.green,
+          titleColor: odelzaThemeCssVariables.font.color.primary,
+          tagBackground: odelzaThemeCssVariables.tag.background.turquoise,
         },
       };
     }
     default: {
       return {
         selected: {
-          background: themeCssVariables.color.blue2,
-          borderColor: themeCssVariables.color.blue,
-          color: themeCssVariables.tag.text.blue,
-          titleColor: themeCssVariables.font.color.primary,
-          tagBackground: themeCssVariables.border.color.strong,
+          background: odelzaThemeCssVariables.color.primary2,
+          borderColor: odelzaThemeCssVariables.color.primary,
+          color: odelzaThemeCssVariables.tag.text.blue,
+          titleColor: odelzaThemeCssVariables.font.color.primary,
+          tagBackground: odelzaThemeCssVariables.border.color.strong,
         },
         unselected: {
-          background: themeCssVariables.background.secondary,
-          borderColor: themeCssVariables.border.color.strong,
-          color: themeCssVariables.font.color.tertiary,
-          titleColor: themeCssVariables.font.color.light,
-          tagBackground: themeCssVariables.border.color.strong,
+          background: odelzaThemeCssVariables.background.secondary,
+          borderColor: odelzaThemeCssVariables.border.color.strong,
+          color: odelzaThemeCssVariables.font.color.tertiary,
+          titleColor: odelzaThemeCssVariables.font.color.light,
+          tagBackground: odelzaThemeCssVariables.border.color.strong,
         },
       };
     }

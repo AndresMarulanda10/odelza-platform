@@ -17,7 +17,10 @@ import '@xyflow/react/dist/style.css';
 import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath, isDefined } from 'twenty-shared/utils';
 import { IconChevronDown, IconChevronUp } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type SettingsDataModelOverviewObjectNode = Node<
   EnrichedObjectMetadataItem,
@@ -27,14 +30,14 @@ type SettingsDataModelOverviewObjectProps =
   NodeProps<SettingsDataModelOverviewObjectNode>;
 
 const StyledNode = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
-  box-shadow: ${themeCssVariables.boxShadow.light};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
+  box-shadow: ${odelzaThemeCssVariables.boxShadow.light};
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   width: 220px;
 `;
 
@@ -46,30 +49,31 @@ const StyledHeader = styled.div`
 
 const StyledObjectName = styled.div`
   border: 0;
-  border-radius: ${themeCssVariables.border.radius.sm}
-    ${themeCssVariables.border.radius.sm} 0 0;
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm}
+    ${odelzaThemeCssVariables.border.radius.sm} 0 0;
   display: flex;
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   position: relative;
   text-align: center;
 `;
 
 const StyledInnerCard = styled.div`
-  background-color: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
-  color: ${themeCssVariables.font.color.tertiary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex-flow: column nowrap;
-  gap: ${themeCssVariables.spacing['0.5']};
-  padding: ${themeCssVariables.spacing[2]} 0 ${themeCssVariables.spacing[2]} 0;
+  gap: ${odelzaThemeCssVariables.spacing['0.5']};
+  padding: ${odelzaThemeCssVariables.spacing[2]} 0
+    ${odelzaThemeCssVariables.spacing[2]} 0;
 `;
 
 const StyledCardRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 24px;
 `;
 
@@ -77,31 +81,31 @@ const StyledCardRowOther = styled.div`
   align-items: center;
   cursor: pointer;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   height: 24px;
-  padding: 0 ${themeCssVariables.spacing[2]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
 
   &:hover {
-    background-color: ${themeCssVariables.background.tertiary};
+    background-color: ${odelzaThemeCssVariables.background.tertiary};
   }
 `;
 
 const StyledCardRowText = styled.div``;
 
 const StyledObjectInstanceCount = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 const StyledObjectLinkContainer = styled.div`
   > a {
     align-items: center;
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
     display: flex;
-    gap: ${themeCssVariables.spacing[1]};
+    gap: ${odelzaThemeCssVariables.spacing[1]};
     text-decoration: none;
 
     &:hover {
-      color: ${themeCssVariables.font.color.secondary};
+      color: ${odelzaThemeCssVariables.font.color.secondary};
     }
   }
 `;

@@ -6,7 +6,10 @@ import { Card, CardContent } from 'twenty-ui/surfaces';
 import { IconChevronRight } from 'twenty-ui/icon';
 import { Pill } from 'twenty-ui/data-display';
 import { isDefined } from 'twenty-shared/utils';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type SettingsCardProps = {
   description?: string;
@@ -26,8 +29,8 @@ const StyledCardWrapper = styled.div<{
 }>`
   color: ${({ disabled }) =>
     disabled
-      ? themeCssVariables.font.color.extraLight
-      : themeCssVariables.font.color.tertiary};
+      ? odelzaThemeCssVariables.font.color.extraLight
+      : odelzaThemeCssVariables.font.color.tertiary};
   cursor: ${({ disabled, clickable }) =>
     disabled ? 'not-allowed' : clickable ? 'pointer' : 'default'};
   width: 100%;
@@ -41,11 +44,12 @@ const StyledCardContentContainer = styled.div`
   > * {
     display: flex;
     flex-direction: column;
-    gap: ${themeCssVariables.spacing[2]};
-    padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[2]};
+    gap: ${odelzaThemeCssVariables.spacing[2]};
+    padding: ${odelzaThemeCssVariables.spacing[2]}
+      ${odelzaThemeCssVariables.spacing[2]};
 
     &:hover {
-      background-color: ${themeCssVariables.background.quaternary};
+      background-color: ${odelzaThemeCssVariables.background.quaternary};
       cursor: pointer;
     }
   }
@@ -54,31 +58,31 @@ const StyledCardContentContainer = styled.div`
 const StyledHeader = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTitle = styled.div<{ disabled?: boolean }>`
   color: ${({ disabled }) =>
     disabled
-      ? themeCssVariables.font.color.extraLight
-      : themeCssVariables.font.color.secondary};
+      ? odelzaThemeCssVariables.font.color.extraLight
+      : odelzaThemeCssVariables.font.color.secondary};
   display: flex;
   flex: 1 0 auto;
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[2]};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: flex-start;
 `;
 
 const StyledIconChevronRightContainer = styled.span`
   align-items: center;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: flex;
 `;
 
 const StyledDescription = styled.div`
-  line-height: ${themeCssVariables.text.lineHeight.lg};
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-left: ${themeCssVariables.spacing[7]};
+  line-height: ${odelzaThemeCssVariables.text.lineHeight.lg};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[7]};
 `;
 
 const StyledIconContainer = styled.div<{
@@ -88,7 +92,7 @@ const StyledIconContainer = styled.div<{
   align-items: center;
   color: ${({ disabled, iconColor }) =>
     disabled
-      ? themeCssVariables.font.color.extraLight
+      ? odelzaThemeCssVariables.font.color.extraLight
       : (iconColor ?? 'inherit')};
   display: flex;
   height: 24px;

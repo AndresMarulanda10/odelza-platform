@@ -1933,7 +1933,7 @@ export class ConfigVariables {
 
   @ConfigVariablesMetadata({
     group: ConfigVariablesGroup.SERVER_CONFIG,
-    description: 'Twenty server version',
+    description: 'Odelza server version',
     type: ConfigVariableType.STRING,
     isEnvOnly: true,
     isHiddenInAdminPanel: true,
@@ -1958,28 +1958,6 @@ export class ConfigVariables {
   })
   @ValidateIf((env) => env.IS_MAPS_AND_ADDRESS_AUTOCOMPLETE_ENABLED)
   GOOGLE_MAP_API_KEY: string;
-
-  @ConfigVariablesMetadata({
-    group: ConfigVariablesGroup.ADVANCED_SETTINGS,
-    isSensitive: true,
-    description: 'Mintlify API key for documentation search',
-    isEnvOnly: true,
-    isHiddenInAdminPanel: true,
-    type: ConfigVariableType.STRING,
-  })
-  @IsOptional()
-  MINTLIFY_API_KEY: string;
-
-  @ConfigVariablesMetadata({
-    group: ConfigVariablesGroup.ADVANCED_SETTINGS,
-    isSensitive: true,
-    description: 'Mintlify subdomain for documentation search',
-    isEnvOnly: true,
-    isHiddenInAdminPanel: true,
-    type: ConfigVariableType.STRING,
-  })
-  @IsOptional()
-  MINTLIFY_SUBDOMAIN: string;
 
   @ConfigVariablesMetadata({
     group: ConfigVariablesGroup.AWS_SES_SETTINGS,

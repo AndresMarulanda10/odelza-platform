@@ -3,37 +3,37 @@
   box-sizing: border-box;
   display: flex;
   font-family: Inter;
-  font-size: var(--t-font-size-md);
+  font-size: var(--odz-font-size-md);
   font-style: normal;
-  font-weight: var(--t-font-weight-medium);
-  gap: var(--t-spacing-3);
+  font-weight: var(--odz-font-weight-medium);
+  gap: var(--odz-spacing-3);
   justify-content: center;
   line-height: 150%;
   min-height: 40px;
-  padding: var(--t-spacing-2);
+  padding: var(--odz-spacing-2);
   width: 100%;
 }
 
-.primaryBlue {
+.primaryAccent {
   backdrop-filter: blur(5px);
-  background: var(--t-color-blue);
-  color: var(--t-font-color-inverted);
+  background: var(--odz-color-primary);
+  color: var(--odz-buttons-on-primary);
 }
 
 .primaryDanger {
   backdrop-filter: blur(5px);
-  background: var(--t-color-red);
-  color: var(--t-font-color-inverted);
+  background: var(--odz-color-red);
+  color: var(--odz-font-color-inverted);
 }
 
-.secondaryBlue {
+.secondaryAccent {
   backdrop-filter: none;
-  background: var(--t-background-transparent-blue);
-  color: var(--t-color-blue);
+  background: var(--odz-background-transparent-accent);
+  color: var(--odz-color-primary);
 }
 
 .secondaryDanger {
   backdrop-filter: none;
-  background: var(--t-background-transparent-danger);
-  color: var(--t-color-red);
+  background: var(--odz-background-transparent-danger);
+  color: var(--odz-color-red);
 }

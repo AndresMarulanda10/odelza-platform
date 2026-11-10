@@ -9,7 +9,10 @@ import { useSetAtomState } from '@/ui/utilities/state/jotai/hooks/useSetAtomStat
 import { ScrollWrapper } from '@/ui/utilities/scroll/components/ScrollWrapper';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 export type SidePanelListProps = {
   selectableItemIds: string[];
@@ -23,9 +26,9 @@ const StyledInnerList = styled.div`
   max-height: calc(
     100dvh - ${SIDE_PANEL_TOP_BAR_HEIGHT}px - ${SIDE_PANEL_LIST_PADDING * 2}px
   );
-  padding-left: ${themeCssVariables.spacing[2]};
-  padding-right: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 
   @media (min-width: ${MOBILE_VIEWPORT}px) {
@@ -37,9 +40,9 @@ const StyledInnerList = styled.div`
 
 const StyledEmpty = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   height: 64px;
   justify-content: center;
   white-space: pre-wrap;

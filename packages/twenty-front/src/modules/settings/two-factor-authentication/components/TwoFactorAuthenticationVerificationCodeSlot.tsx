@@ -1,26 +1,26 @@
 import { styled } from '@linaria/react';
 import { type SlotProps } from 'input-otp';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledSlot = styled.div<{ isActive: boolean }>`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
   height: 32px;
   justify-content: center;
   outline: 0;
   outline-color: ${({ isActive }) =>
     isActive
-      ? themeCssVariables.border.color.strong
-      : themeCssVariables.border.color.medium};
-  outline-color: ${themeCssVariables.border.color.medium};
+      ? odelzaThemeCssVariables.border.color.strong
+      : odelzaThemeCssVariables.border.color.medium};
+  outline-color: ${odelzaThemeCssVariables.border.color.medium};
 
   .group:hover &,
   .group:focus-within & {
-    border-color: ${themeCssVariables.border.color.medium};
+    border-color: ${odelzaThemeCssVariables.border.color.medium};
   }
 
   outline-style: ${({ isActive }) => (isActive ? 'solid' : 'none')};
@@ -60,7 +60,7 @@ const StyledInputChar = styled.div`
 `;
 
 const StyledCaret = styled.div`
-  background-color: ${themeCssVariables.font.color.primary};
+  background-color: ${odelzaThemeCssVariables.font.color.primary};
   height: 20px;
   width: 1px;
 `;

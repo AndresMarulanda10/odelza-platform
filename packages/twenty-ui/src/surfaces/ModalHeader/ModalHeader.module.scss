@@ -5,7 +5,7 @@
   flex-shrink: 0;
   height: 60px;
   overflow: hidden;
-  padding: var(--t-spacing-5);
+  padding: var(--odz-spacing-5);
 }
 
 .autoHeight {
@@ -21,11 +21,11 @@
   padding: 0 var(--modal-header-padding-horizontal);
 
   @include respond-to(mobile) {
-    padding-left: var(--t-spacing-4);
-    padding-right: var(--t-spacing-4);
+    padding-left: var(--odz-spacing-4);
+    padding-right: var(--odz-spacing-4);
   }
 }
 
 .withBorderBottom {
-  border-bottom: 1px solid var(--t-border-color-medium);
+  border-bottom: 1px solid var(--odz-border-color-medium);
 }

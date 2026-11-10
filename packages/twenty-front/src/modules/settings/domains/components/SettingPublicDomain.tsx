@@ -27,7 +27,7 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { useState } from 'react';
 import { SaveAndCancelButtons } from '@/settings/components/SaveAndCancelButtons/SaveAndCancelButtons';
 import { getDomainValidationSchema } from '@/settings/domains/utils/getDomainValidationSchema';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledButtonGroupContainer = styled.div`
   > * > :not(:first-of-type) > button {
@@ -41,14 +41,14 @@ const StyledButtonContainer = styled.div`
 
 const StyledDomainFormWrapper = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledRecordsWrapper = styled.div`
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 
   & > :not(:first-of-type) {
-    margin-top: ${themeCssVariables.spacing[4]};
+    margin-top: ${odelzaThemeCssVariables.spacing[4]};
   }
 `;
 

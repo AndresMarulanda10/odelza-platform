@@ -19,14 +19,14 @@ import {
 } from 'twenty-ui/icon';
 import { type SelectOption } from 'twenty-ui/input';
 import { MenuItemMultiSelect } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { useMutation } from '@apollo/client/react';
 import { UpdateWorkspaceDocument } from '~/generated-metadata/graphql';
 
 const StyledDropdownContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 type ProfileFieldOption = {

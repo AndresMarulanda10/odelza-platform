@@ -9,7 +9,7 @@ import { type FieldMetadataItem } from '@/object-metadata/types/FieldMetadataIte
 import { type EnrichedObjectMetadataItem } from '@/object-metadata/types/EnrichedObjectMetadataItem';
 import { Trans } from '@lingui/react/macro';
 import { FieldMetadataType } from 'twenty-shared/types';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type EventFieldDiffProps = {
   fieldDiff: { before: unknown; after: unknown };
@@ -22,7 +22,7 @@ const StyledEventFieldDiffContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   height: 24px;
   max-width: 100%;
   overflow: hidden;
@@ -31,11 +31,11 @@ const StyledEventFieldDiffContainer = styled.div`
 `;
 
 const StyledEmptyValue = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 const StyledArrowContainer = styled.span`
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
 `;
 
 export const EventFieldDiff = ({

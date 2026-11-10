@@ -7,7 +7,10 @@ import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
 import { ResponsiveLine } from '@nivo/line';
 import { useContext } from 'react';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useQuery } from '@apollo/client/react';
 import {
   QueueMetricsTimeRange,
@@ -15,18 +18,18 @@ import {
 } from '~/generated-admin/graphql';
 
 const StyledGraphContainer = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   height: 240px;
-  margin-bottom: ${themeCssVariables.spacing[4]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
   padding-top: 10px;
   width: 100%;
 `;
 
 const StyledNoDataMessage = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
   display: flex;
   height: 100%;
   justify-content: center;
@@ -34,8 +37,8 @@ const StyledNoDataMessage = styled.div`
 
 const StyledSettingsTableCardContainer = styled.div`
   > * {
-    padding-left: ${themeCssVariables.spacing[2]};
-    padding-right: ${themeCssVariables.spacing[2]};
+    padding-left: ${odelzaThemeCssVariables.spacing[2]};
+    padding-right: ${odelzaThemeCssVariables.spacing[2]};
   }
 `;
 

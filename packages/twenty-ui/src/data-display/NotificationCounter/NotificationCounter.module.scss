@@ -6,16 +6,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--t-font-size-xxs);
-  font-weight: var(--t-font-weight-semi-bold);
+  font-size: var(--odz-font-size-xxs);
+  font-weight: var(--odz-font-weight-semi-bold);
 }
 
 .primary {
-  background: var(--t-color-blue);
-  color: white;
+  background: var(--odz-color-primary);
+  color: var(--odz-buttons-on-primary);
 }
 
 .secondary {
-  background: var(--t-background-transparent-light);
-  color: var(--t-font-color-secondary);
+  background: var(--odz-background-transparent-light);
+  color: var(--odz-font-color-secondary);
 }

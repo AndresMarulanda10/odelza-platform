@@ -1,6 +1,6 @@
 import { useLayoutRenderingContext } from '@/ui/layout/contexts/LayoutRenderingContext';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { PageLayoutType } from '~/generated-metadata/graphql';
 
 const StyledListItem = styled.div<{
@@ -9,20 +9,20 @@ const StyledListItem = styled.div<{
 }>`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[10]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[10]};
   justify-content: space-between;
   padding-left: ${({ noHorizontalPadding }) =>
-    noHorizontalPadding ? 0 : themeCssVariables.spacing[3]};
+    noHorizontalPadding ? 0 : odelzaThemeCssVariables.spacing[3]};
   padding-right: ${({ noHorizontalPadding }) =>
-    noHorizontalPadding ? 0 : themeCssVariables.spacing[2]};
+    noHorizontalPadding ? 0 : odelzaThemeCssVariables.spacing[2]};
 
   .displayOnHover {
     opacity: ${({ isDropdownOpen }) => (isDropdownOpen ? 1 : 0)};
     pointer-events: ${({ isDropdownOpen }) =>
       isDropdownOpen ? 'auto' : 'none'};
     transition: opacity
-      calc(${themeCssVariables.animation.duration.instant} * 1s) ease;
+      calc(${odelzaThemeCssVariables.animation.duration.instant} * 1s) ease;
   }
 
   &:hover .displayOnHover {

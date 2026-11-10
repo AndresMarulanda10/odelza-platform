@@ -24,21 +24,21 @@ import {
 import { IconFileText, IconKey } from 'twenty-ui/icon';
 import { type JsonValue } from 'type-fest';
 import { KeyValuePairInput } from './KeyValuePairInput';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSelectDropdownContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
 `;
 const StyledNoBodyMessage = styled.div`
-  color: ${themeCssVariables.font.color.light};
-  font-size: ${themeCssVariables.font.size.md};
-  padding: ${themeCssVariables.spacing[2]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  padding: ${odelzaThemeCssVariables.spacing[2]};
   text-align: left;
 `;
 

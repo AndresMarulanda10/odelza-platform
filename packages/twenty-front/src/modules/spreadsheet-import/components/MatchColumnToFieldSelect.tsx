@@ -11,7 +11,7 @@ import { hasNestedFields } from '@/spreadsheet-import/utils/spreadsheetImportHas
 import { Dropdown } from '@/ui/layout/dropdown/components/Dropdown';
 import { useCloseDropdown } from '@/ui/layout/dropdown/hooks/useCloseDropdown';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { isDefined } from 'twenty-shared/utils';
 import { IconChevronDown } from 'twenty-ui/icon';
 import { type SelectOption } from 'twenty-ui/input';
@@ -28,9 +28,9 @@ interface MatchColumnToFieldSelectProps {
 
 const StyledMenuItemContainer = styled.div`
   > div {
-    background-color: ${themeCssVariables.background.transparent.lighter};
-    border: 1px solid ${themeCssVariables.border.color.medium};
-    border-radius: ${themeCssVariables.border.radius.sm};
+    background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+    border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+    border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   }
 `;
 

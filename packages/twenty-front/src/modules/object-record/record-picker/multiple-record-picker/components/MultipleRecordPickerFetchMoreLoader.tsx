@@ -18,16 +18,16 @@ import { styled } from '@linaria/react';
 import { useCallback } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useStore } from 'jotai';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledText = styled.div`
   align-items: center;
   box-shadow: none;
-  color: ${themeCssVariables.grayScale.gray9};
+  color: ${odelzaThemeCssVariables.grayScale.gray9};
   display: flex;
   height: 32px;
-  margin-left: ${themeCssVariables.spacing[8]};
-  padding-left: ${themeCssVariables.spacing[2]};
+  margin-left: ${odelzaThemeCssVariables.spacing[8]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledIntersectionObserver = styled.div`

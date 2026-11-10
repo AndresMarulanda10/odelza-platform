@@ -6,15 +6,15 @@ import { styled } from '@linaria/react';
 import { useLingui } from '@lingui/react/macro';
 import { IconSearch } from 'twenty-ui/icon';
 import { MenuItem } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import { VIEW_BAR_FILTER_BOTTOM_MENU_ITEM_IDS } from '@/views/constants/ViewBarFilterBottomMenuItemIds';
 
 import { objectFilterDropdownSearchInputComponentState } from '@/object-record/object-filter-dropdown/states/objectFilterDropdownSearchInputComponentState';
 
 const StyledSearchText = styled.span`
-  color: ${themeCssVariables.font.color.light};
-  margin-left: ${themeCssVariables.spacing[1]};
+  color: ${odelzaThemeCssVariables.font.color.light};
+  margin-left: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type ViewBarFilterDropdownAnyFieldSearchButtonMenuItemProps = {

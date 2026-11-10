@@ -25,7 +25,10 @@ import { isDefined } from 'twenty-shared/utils';
 import { VisibilityHidden } from 'twenty-ui/accessibility';
 import { IconChevronDown } from 'twenty-ui/icon';
 import { type SelectOption } from 'twenty-ui/input';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type FormMultiSelectFieldInputProps = {
   label?: string;
@@ -46,7 +49,7 @@ const StyledDisplayModeReadonlyContainer = styled.div`
   border: none;
   display: flex;
   font-family: inherit;
-  padding-inline: ${themeCssVariables.spacing[2]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
@@ -57,13 +60,13 @@ const StyledDisplayModeContainer = styled.div`
   cursor: pointer;
   display: flex;
   font-family: inherit;
-  padding-inline: ${themeCssVariables.spacing[2]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
 const StyledSelectInputContainer = styled.div`
   position: absolute;
-  top: ${themeCssVariables.spacing[9]};
+  top: ${odelzaThemeCssVariables.spacing[9]};
   z-index: 1;
 `;
 

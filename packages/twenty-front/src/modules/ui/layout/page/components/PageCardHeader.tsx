@@ -10,7 +10,7 @@ import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type PageCardHeaderProps = {
   links?: BreadcrumbProps['links'];
@@ -25,24 +25,24 @@ type PageCardHeaderProps = {
 
 const StyledHeader = styled.div<{ centerTitle?: boolean }>`
   align-items: center;
-  background-color: ${themeCssVariables.background.secondary};
-  border-bottom: 1px solid ${themeCssVariables.border.color.medium};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   box-sizing: border-box;
-  column-gap: ${themeCssVariables.spacing[2]};
+  column-gap: ${odelzaThemeCssVariables.spacing[2]};
   display: grid;
   grid-template-columns: ${({ centerTitle }) =>
     centerTitle
       ? 'minmax(0, 1fr) minmax(0, auto) minmax(0, 1fr)'
       : 'minmax(0, auto) minmax(0, 1fr)'};
   min-height: ${SIDE_PANEL_TOP_BAR_HEIGHT}px;
-  padding: 0 ${themeCssVariables.spacing[3]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[3]};
   width: 100%;
 `;
 
 const StyledLeft = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   grid-column: 1;
   min-width: 0;
   overflow: hidden;
@@ -52,11 +52,11 @@ const StyledLeft = styled.div`
 const StyledTitle = styled.div<{ titleColor?: string }>`
   align-items: center;
   color: ${({ titleColor }) =>
-    titleColor ?? themeCssVariables.font.color.primary};
+    titleColor ?? odelzaThemeCssVariables.font.color.primary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   min-width: 0;
 `;
 
@@ -72,7 +72,7 @@ const StyledCenteredTitle = styled(StyledTitle)`
 const StyledRight = styled.div<{ centerTitle?: boolean }>`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   grid-column: ${({ centerTitle }) => (centerTitle ? 3 : 2)};
   justify-content: flex-end;
   justify-self: end;

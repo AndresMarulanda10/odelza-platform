@@ -25,7 +25,7 @@ import {
   IconClock,
 } from 'twenty-ui/icon';
 import { LightIconButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import {
   MONTH_AND_YEAR_DROPDOWN_MONTH_SELECT_ID,
@@ -43,12 +43,12 @@ const YEARS_SELECT_OPTIONS = Array.from(
 const StyledTimeRow = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
   justify-content: flex-start;
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-left: ${themeCssVariables.spacing[2]};
-  padding-right: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTimeInputWrapper = styled.div`
@@ -57,26 +57,27 @@ const StyledTimeInputWrapper = styled.div`
 
 const StyledTimeInputContainer = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.medium};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
   border-radius: calc(
-    ${themeCssVariables.border.radius.md} - ${themeCssVariables.spacing[1]}
+    ${odelzaThemeCssVariables.border.radius.md} -
+      ${odelzaThemeCssVariables.spacing[1]}
   );
   box-sizing: border-box;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  height: ${themeCssVariables.spacing[8]};
-  padding: 0 ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
+  padding: 0 ${odelzaThemeCssVariables.spacing[2]};
   transition: border-color 0.15s ease;
 
   &:hover {
-    border-color: ${themeCssVariables.border.color.strong};
+    border-color: ${odelzaThemeCssVariables.border.color.strong};
   }
 `;
 
 const StyledClockIcon = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
   flex-shrink: 0;
 `;
@@ -84,38 +85,38 @@ const StyledClockIcon = styled.div`
 const StyledTimeInput = styled.input`
   background: transparent;
   border: none;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   flex: 1;
-  font-family: ${themeCssVariables.font.family};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.regular};
+  font-family: ${odelzaThemeCssVariables.font.family};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
   letter-spacing: 0.05em;
   outline: none;
   width: 100%;
 
   &::placeholder {
-    color: ${themeCssVariables.font.color.light};
-    font-weight: ${themeCssVariables.font.weight.medium};
+    color: ${odelzaThemeCssVariables.font.color.light};
+    font-weight: ${odelzaThemeCssVariables.font.weight.medium};
   }
 
   &:disabled {
-    color: ${themeCssVariables.font.color.tertiary};
+    color: ${odelzaThemeCssVariables.font.color.tertiary};
   }
 `;
 
 const StyledRightControls = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledNavigationButtons = styled.div`
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledSeparator = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   height: 1px;
   width: 100%;
 `;
@@ -123,8 +124,8 @@ const StyledSeparator = styled.div`
 const StyledMonthYearSelector = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
   width: 160px;
 `;
 

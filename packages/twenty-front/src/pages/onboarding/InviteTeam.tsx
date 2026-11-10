@@ -20,12 +20,12 @@ import { Controller } from 'react-hook-form';
 import { isDefined } from 'twenty-shared/utils';
 import { IconX } from 'twenty-ui/icon';
 import { MainButton } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
   max-width: 100%;
   width: ${ONBOARDING_CONTENT_BLOCK_WIDTH}px;
 `;
@@ -34,7 +34,7 @@ const StyledFooter = styled.div`
   align-items: flex-end;
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[3]};
+  gap: ${odelzaThemeCssVariables.spacing[3]};
   max-width: 100%;
   width: ${ONBOARDING_CONTENT_BLOCK_WIDTH}px;
 `;

@@ -1,6 +1,6 @@
 declare const classNames: {
   readonly info: 'info';
-  readonly accentBlue: 'accentBlue';
+  readonly accentPrimary: 'accentPrimary';
   readonly accentDanger: 'accentDanger';
   readonly textContainer: 'textContainer';
   readonly linkContainer: 'linkContainer';

@@ -1,9 +1,9 @@
 import { styled } from '@linaria/react';
 import { forwardRef } from 'react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledDropdownMenuSeparator = styled.div`
-  background-color: ${themeCssVariables.border.color.light};
+  background-color: ${odelzaThemeCssVariables.border.color.light};
   min-height: 1px;
   width: 100%;
 `;

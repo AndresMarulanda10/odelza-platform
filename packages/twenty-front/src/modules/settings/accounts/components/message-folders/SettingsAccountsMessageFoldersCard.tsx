@@ -19,7 +19,7 @@ import { useMemo, useState } from 'react';
 import { Label } from 'twenty-ui/typography';
 import { Checkbox, CheckboxSize } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledTreeList = styled.ul`
   list-style: none;
@@ -30,33 +30,33 @@ const StyledTreeList = styled.ul`
 const StyledFoldersContainer = styled.div`
   max-height: 400px;
   overflow-y: auto;
-  padding-bottom: ${themeCssVariables.spacing[2]};
-  padding-top: ${themeCssVariables.spacing[2]};
+  padding-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  padding-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSearchInputContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
   width: 100%;
 `;
 
 const StyledSectionHeader = styled.div`
   align-items: center;
-  background-color: ${themeCssVariables.background.transparent.lighter};
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  background-color: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   cursor: pointer;
   display: flex;
-  height: ${themeCssVariables.spacing[6]};
+  height: ${odelzaThemeCssVariables.spacing[6]};
   justify-content: space-between;
-  padding-left: ${themeCssVariables.spacing[1]};
+  padding-left: ${odelzaThemeCssVariables.spacing[1]};
   text-align: left;
 `;
 
 const StyledLabelContainer = styled.span`
   align-items: center;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   display: flex;
-  margin-bottom: ${themeCssVariables.spacing[2]};
-  margin-top: ${themeCssVariables.spacing[2]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[2]};
+  margin-top: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 export const SettingsAccountsMessageFoldersCard = () => {
@@ -154,7 +154,7 @@ export const SettingsAccountsMessageFoldersCard = () => {
           <Label>{t`Toggle all folders`}</Label>
           <TableCell
             align="right"
-            padding={`0 ${themeCssVariables.spacing[1]} 0 ${themeCssVariables.spacing[2]}`}
+            padding={`0 ${odelzaThemeCssVariables.spacing[1]} 0 ${odelzaThemeCssVariables.spacing[2]}`}
           >
             <Checkbox
               checked={allSynced}

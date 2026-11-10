@@ -6,7 +6,7 @@ import { TableHeader } from '@/ui/layout/table/components/TableHeader';
 import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { styled } from '@linaria/react';
 import { t } from '@lingui/core/macro';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 type SettingsAccountsBlocklistTableProps = {
   blocklist: BlocklistItem[];
@@ -14,11 +14,11 @@ type SettingsAccountsBlocklistTableProps = {
 };
 
 const StyledTableContainer = styled.div`
-  margin-top: ${themeCssVariables.spacing[4]};
+  margin-top: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledTableBodyContainer = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
 `;
 
 export const SettingsAccountsBlocklistTable = ({

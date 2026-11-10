@@ -31,7 +31,7 @@ export const Default: Story = {
     variant: CheckboxVariant.Primary,
     size: CheckboxSize.Small,
     shape: CheckboxShape.Squared,
-    accent: CheckboxAccent.Blue,
+    accent: CheckboxAccent.Primary,
     'aria-label': 'Checkbox',
   },
   decorators: [ComponentDecorator],

@@ -7,14 +7,17 @@ import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { StyledText } from 'twenty-ui/typography';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledFullWidthMotionDiv = styled(motion.div)`
   width: 100%;
 `;
 
 const StyledInputContainer = styled.div`
-  margin-bottom: ${themeCssVariables.spacing[3]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 export const SignInUpPasswordField = ({

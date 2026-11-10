@@ -1,6 +1,9 @@
 import { styled } from '@linaria/react';
 import { Link } from 'react-router-dom';
-import { MOBILE_VIEWPORT, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  MOBILE_VIEWPORT,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledTableRow = styled.div<{
   isSelected?: boolean;
@@ -16,11 +19,11 @@ const StyledTableRow = styled.div<{
 }>`
   background-color: ${({ isSelected, isExpanded }) =>
     isSelected
-      ? themeCssVariables.accent.quaternary
+      ? odelzaThemeCssVariables.background.selection
       : isExpanded === true
-        ? themeCssVariables.background.transparent.light
+        ? odelzaThemeCssVariables.background.transparent.light
         : 'transparent'};
-  border-radius: ${themeCssVariables.border.radius.md};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   cursor: ${({ cursor }) => cursor ?? 'default'};
   display: grid;
   grid-auto-columns: ${({ gridAutoColumns }) => gridAutoColumns ?? '1fr'};
@@ -36,14 +39,14 @@ const StyledTableRow = styled.div<{
   height: ${({ height }) => height ?? 'auto'};
   text-decoration: none;
   transition: background-color
-    calc(${themeCssVariables.animation.duration.normal} * 1s);
+    calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s);
   width: 100%;
 
   &:hover {
     background-color: ${({ onClick, to, hoverBackgroundColor }) =>
       hoverBackgroundColor ??
       (onClick || to
-        ? themeCssVariables.background.transparent.light
+        ? odelzaThemeCssVariables.background.transparent.light
         : 'transparent')};
     cursor: ${({ onClick, to, cursor }) =>
       cursor ?? (onClick || to ? 'pointer' : 'default')};

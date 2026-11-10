@@ -10,8 +10,8 @@
 
 .radio {
   background-color: transparent;
-  border: 1px solid var(--t-font-color-secondary);
-  border-radius: var(--t-border-radius-rounded);
+  border: 1px solid var(--odz-font-color-secondary);
+  border-radius: var(--odz-border-radius-rounded);
   corner-shape: round;
   // The border sits outside the declared size, matching the legacy input rendering.
   box-sizing: content-box;
@@ -34,22 +34,22 @@
 }
 
 .radio:hover {
-  background-color: var(--t-background-tertiary);
-  outline: 4px solid var(--t-background-tertiary);
+  background-color: var(--odz-background-tertiary);
+  outline: 4px solid var(--odz-background-tertiary);
 }
 
 .radio[data-checked] {
-  background-color: var(--t-color-blue);
+  background-color: var(--odz-color-primary);
   border: none;
   transform: scale(1.05);
 }
 
 .radio[data-checked]:hover {
-  outline-color: var(--t-color-transparent-blue2);
+  outline-color: var(--odz-color-transparent-primary2);
 }
 
 .radio[data-checked]::after {
-  background-color: var(--t-gray-scale-gray1);
+  background-color: var(--odz-gray-scale-gray1);
   border-radius: 50%;
   corner-shape: round;
   content: '';
@@ -72,18 +72,18 @@
 }
 
 .label {
-  color: var(--t-font-color-primary);
+  color: var(--odz-font-color-primary);
   cursor: pointer;
-  font-size: var(--t-font-size-sm);
-  font-weight: var(--t-font-weight-regular);
+  font-size: var(--odz-font-size-sm);
+  font-weight: var(--odz-font-weight-regular);
 }
 
 .labelRight {
-  margin-left: var(--t-spacing-2);
+  margin-left: var(--odz-spacing-2);
 }
 
 .labelLeft {
-  margin-right: var(--t-spacing-2);
+  margin-right: var(--odz-spacing-2);
 }
 
 .label[data-disabled] {

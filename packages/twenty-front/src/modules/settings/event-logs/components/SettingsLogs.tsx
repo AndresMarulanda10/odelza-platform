@@ -25,7 +25,7 @@ import {
 } from 'twenty-ui/icon';
 import { Button, IconButton } from 'twenty-ui/input';
 import { Card } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 import {
   BillingEntitlementKey,
@@ -39,26 +39,26 @@ const StyledRoot = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[6]};
   margin: 0 auto;
   max-width: 760px;
   min-height: 0;
-  padding: ${themeCssVariables.spacing[6]} ${themeCssVariables.spacing[8]}
-    ${themeCssVariables.spacing[8]};
+  padding: ${odelzaThemeCssVariables.spacing[6]}
+    ${odelzaThemeCssVariables.spacing[8]} ${odelzaThemeCssVariables.spacing[8]};
   width: 100%;
 `;
 
 const StyledCardContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
-  padding: ${themeCssVariables.spacing[4]};
+  gap: ${odelzaThemeCssVariables.spacing[4]};
+  padding: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledSelectorRow = styled.div`
   align-items: flex-end;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledSelectorGrow = styled.div`
@@ -70,14 +70,14 @@ const StyledResults = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   min-height: 0;
 `;
 
 const StyledRecordCount = styled.span`
   align-self: flex-end;
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
 `;
 
 const StyledTableWrapper = styled.div`
@@ -164,7 +164,10 @@ export const SettingsLogs = () => {
   };
 
   const renderUpgradeCard = () => (
-    <Card rounded backgroundColor={themeCssVariables.background.secondary}>
+    <Card
+      rounded
+      backgroundColor={odelzaThemeCssVariables.background.secondary}
+    >
       <SettingsOptionCardContentButton
         Icon={IconLock}
         title={t`Upgrade to access audit logs`}
@@ -173,7 +176,7 @@ export const SettingsLogs = () => {
           <Button
             title={t`Upgrade`}
             variant="primary"
-            accent="blue"
+            accent="primary"
             size="small"
             Icon={IconArrowUp}
             onClick={() =>
@@ -235,7 +238,7 @@ export const SettingsLogs = () => {
       <Card
         rounded
         fullWidth
-        backgroundColor={themeCssVariables.background.secondary}
+        backgroundColor={odelzaThemeCssVariables.background.secondary}
       >
         <StyledCardContent>
           <StyledSelectorRow>

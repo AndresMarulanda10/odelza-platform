@@ -16,7 +16,7 @@ import { type ChangeEvent, useMemo, useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconArrowUp, IconCircleX, IconCreditCard } from 'twenty-ui/icon';
 import { Button } from 'twenty-ui/input';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   SetResourceCreditSubscriptionPriceDocument,
   SubscriptionInterval,
@@ -29,7 +29,7 @@ const StyledActionContainer = styled.div`
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: flex-end;
 `;
 
@@ -422,7 +422,7 @@ export const ResourceCreditPriceSelector = ({
             : t`Confirm changing your current resource credit allocation.`
         }
         confirmButtonText={isUpgrade() ? t`Upgrade` : t`Downgrade`}
-        confirmButtonAccent={isUpgrade() ? 'blue' : 'danger'}
+        confirmButtonAccent={isUpgrade() ? 'primary' : 'danger'}
         loading={isUpdating}
         onConfirmClick={handleConfirmClick}
       />

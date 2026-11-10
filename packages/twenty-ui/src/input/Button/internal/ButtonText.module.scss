@@ -20,19 +20,19 @@ $base-transition-timing: 300ms;
   white-space: nowrap;
 
   &[data-loading] {
-    clip-path: inset(0 var(--t-spacing-12) 0 0);
-    transform: translateX(var(--t-spacing-7));
+    clip-path: inset(0 var(--odz-spacing-12) 0 0);
+    transform: translateX(var(--odz-spacing-7));
     transition-delay: 0ms;
   }
 
   &[data-loading][data-has-icon] {
-    clip-path: inset(0 var(--t-spacing-6) 0 0);
-    transform: translateX(var(--t-spacing-3));
+    clip-path: inset(0 var(--odz-spacing-6) 0 0);
+    transform: translateX(var(--odz-spacing-3));
   }
 }
 
 .ellipsis {
-  clip-path: inset(0 0 0 var(--t-spacing-6));
+  clip-path: inset(0 0 0 var(--odz-spacing-6));
   overflow: hidden;
   position: absolute;
   right: 0;

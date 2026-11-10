@@ -13,7 +13,10 @@ import {
   ChipVariant,
 } from 'twenty-ui/data-display';
 import { IconLink } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { Checkbox } from 'twenty-ui/input';
 import { getLogoUrlFromDomainName } from 'twenty-shared/utils';
 
@@ -30,27 +33,27 @@ const StyledDragHandleColumn = styled.div`
 
 const StyledCheckboxColumn = styled.div`
   align-items: center;
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   box-sizing: border-box;
   display: flex;
   flex-shrink: 0;
   height: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.rowHeight}px;
   justify-content: center;
-  padding-right: ${themeCssVariables.spacing[1]};
+  padding-right: ${odelzaThemeCssVariables.spacing[1]};
   width: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.checkboxColumnWidth}px;
 `;
 
 const StyledCell = styled.div<{ width: number }>`
   align-items: center;
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
-  border-right: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-right: 1px solid ${odelzaThemeCssVariables.border.color.light};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   display: flex;
   flex-shrink: 0;
   height: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.rowHeight}px;
   overflow: hidden;
-  padding-left: ${themeCssVariables.spacing[2]};
+  padding-left: ${odelzaThemeCssVariables.spacing[2]};
   white-space: nowrap;
   width: ${({ width }) => width}px;
 `;
@@ -61,13 +64,13 @@ const StyledTruncated = styled.span`
 `;
 
 const StyledMutedText = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 
 const StyledLastEmptyCell = styled.div`
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   flex: 1;
   height: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.rowHeight}px;
   min-width: ${BACKGROUND_MOCK_TABLE_DIMENSIONS.addColumnButtonWidth}px;

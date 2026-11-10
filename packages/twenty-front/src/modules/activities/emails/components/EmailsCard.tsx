@@ -15,7 +15,7 @@ import { useTargetRecord } from '@/ui/layout/contexts/useTargetRecord';
 import { Trans } from '@lingui/react/macro';
 import { H1Title, H1TitleFontColor } from 'twenty-ui/typography';
 import { Section } from 'twenty-ui/layout';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import {
   type TimelineThread,
   type TimelineThreadsWithTotal,
@@ -24,28 +24,28 @@ import {
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[6]};
+  gap: ${odelzaThemeCssVariables.spacing[6]};
   height: 100%;
   overflow: auto;
-  padding: ${themeCssVariables.spacing[6]} ${themeCssVariables.spacing[6]}
-    ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing[6]}
+    ${odelzaThemeCssVariables.spacing[6]} ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledHeaderRow = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-bottom: ${themeCssVariables.spacing[4]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[4]};
 `;
 
 const StyledH1Title = styled(H1Title)`
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   margin-bottom: 0;
 `;
 
 const StyledEmailCount = styled.span`
-  color: ${themeCssVariables.font.color.light};
+  color: ${odelzaThemeCssVariables.font.color.light};
 `;
 
 export const EmailsCard = () => {

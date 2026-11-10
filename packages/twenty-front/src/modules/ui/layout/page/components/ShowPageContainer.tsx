@@ -3,7 +3,7 @@ import { type CSSProperties, type ReactNode } from 'react';
 
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { ScrollWrapper } from '@/ui/utilities/scroll/components/ScrollWrapper';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledOuterContainer = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ const StyledInnerContainer = styled.div`
 `;
 
 const StyledScrollWrapperContainer = styled.div`
-  background-color: ${themeCssVariables.background.secondary};
+  background-color: ${odelzaThemeCssVariables.background.secondary};
   overflow: hidden;
 `;
 
@@ -33,7 +33,7 @@ export const ShowPageContainer = ({ children }: ShowPageContainerProps) => {
 
   const mobileStyle = isMobile
     ? ({
-        '--show-page-gap': themeCssVariables.spacing[3],
+        '--show-page-gap': odelzaThemeCssVariables.spacing[3],
         '--show-page-direction': 'column',
       } as CSSProperties)
     : undefined;

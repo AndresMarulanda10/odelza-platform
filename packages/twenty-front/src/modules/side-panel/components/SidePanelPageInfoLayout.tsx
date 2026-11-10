@@ -1,46 +1,46 @@
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 export const StyledPageInfoContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[0.5]};
+  gap: ${odelzaThemeCssVariables.spacing[0.5]};
 `;
 
 export const StyledPageInfoIcon = styled.div<{ iconColor?: string }>`
   align-items: center;
-  background: ${themeCssVariables.background.transparent.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background: ${odelzaThemeCssVariables.background.transparent.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   color: ${({ iconColor }) => iconColor ?? ''};
   display: flex;
   flex-shrink: 0;
   justify-content: center;
-  padding: ${themeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const StyledPageInfoTextContainer = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[0.5]};
+  gap: ${odelzaThemeCssVariables.spacing[0.5]};
   min-width: 0;
 `;
 
 export const StyledPageInfoTitleContainer = styled.div`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.semiBold};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.semiBold};
   max-width: 150px;
   min-width: 0;
-  padding-inline: ${themeCssVariables.spacing[1]};
+  padding-inline: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 export const StyledPageInfoLabel = styled.div`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   flex-shrink: 0;
-  font-size: ${themeCssVariables.font.size.sm};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   white-space: nowrap;
 `;
 

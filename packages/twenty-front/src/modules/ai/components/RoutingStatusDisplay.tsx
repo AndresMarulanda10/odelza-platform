@@ -6,55 +6,59 @@ import { type DataMessagePart } from 'twenty-shared/ai';
 import { isDefined } from 'twenty-shared/utils';
 import { IconChevronDown, IconChevronUp, IconCpu } from 'twenty-ui/icon';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledToggleButton = styled.div<{ isExpandable: boolean }>`
   align-items: center;
   background: none;
   border: none;
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   cursor: ${({ isExpandable }) => (isExpandable ? 'pointer' : 'auto')};
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing[1]} 0;
-  transition: color calc(${themeCssVariables.animation.duration.normal} * 1s);
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing[1]} 0;
+  transition: color
+    calc(${odelzaThemeCssVariables.animation.duration.normal} * 1s);
 
   &:hover {
     color: ${({ isExpandable }) =>
       isExpandable
-        ? themeCssVariables.font.color.secondary
-        : themeCssVariables.font.color.tertiary};
+        ? odelzaThemeCssVariables.font.color.secondary
+        : odelzaThemeCssVariables.font.color.tertiary};
   }
 `;
 
 const StyledDisplayMessage = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledIconTextContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 
   svg {
-    min-width: calc(${themeCssVariables.icon.size.sm} * 1px);
+    min-width: calc(${odelzaThemeCssVariables.icon.size.sm} * 1px);
   }
 `;
 
 const StyledContentContainer = styled.div`
-  background: ${themeCssVariables.background.transparent.lighter};
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  background: ${odelzaThemeCssVariables.background.transparent.lighter};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   min-width: 0;
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 export const RoutingStatusDisplay = ({

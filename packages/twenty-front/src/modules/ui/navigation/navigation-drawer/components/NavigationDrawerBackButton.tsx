@@ -11,7 +11,10 @@ import { WorkspaceActivationStatus } from 'twenty-shared/workspace';
 import { useContext } from 'react';
 import { IconX } from 'twenty-ui/icon';
 import { UndecoratedLink } from 'twenty-ui/navigation';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 type NavigationDrawerBackButtonProps = {
   title: string;
@@ -21,21 +24,21 @@ const StyledIconAndButtonContainer = styled.button`
   align-items: center;
   background: inherit;
   border: 1px solid transparent;
-  border-radius: ${themeCssVariables.border.radius.md};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   box-sizing: border-box;
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  font-family: ${themeCssVariables.font.family};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[2]};
-  height: ${themeCssVariables.spacing[7]};
-  padding: 2px ${themeCssVariables.spacing[1]} 2px 2px;
+  font-family: ${odelzaThemeCssVariables.font.family};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
+  height: ${odelzaThemeCssVariables.spacing[7]};
+  padding: 2px ${odelzaThemeCssVariables.spacing[1]} 2px 2px;
   width: fit-content;
   &:hover {
-    background: ${themeCssVariables.background.transparent.light};
+    background: ${odelzaThemeCssVariables.background.transparent.light};
   }
 `;
 
@@ -44,7 +47,7 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
-  height: ${themeCssVariables.spacing[8]};
+  height: ${odelzaThemeCssVariables.spacing[8]};
   justify-content: space-between;
 `;
 

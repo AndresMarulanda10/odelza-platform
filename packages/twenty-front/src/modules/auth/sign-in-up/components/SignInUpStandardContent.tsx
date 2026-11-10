@@ -8,20 +8,20 @@ import { type JSX } from 'react';
 import { AppPath } from 'twenty-shared/types';
 import { AnimatedEaseIn } from 'twenty-ui/layout';
 import { ModalContent } from 'twenty-ui/surfaces';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 import { type PublicWorkspaceData } from '~/generated-metadata/graphql';
 
 const StyledTitleContainer = styled.div`
   line-height: 1.2;
-  margin-top: ${themeCssVariables.spacing[10]};
+  margin-top: ${odelzaThemeCssVariables.spacing[10]};
 `;
 
 const StyledFormContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-bottom: ${themeCssVariables.spacing[6]};
-  margin-top: ${themeCssVariables.spacing[6]};
+  margin-bottom: ${odelzaThemeCssVariables.spacing[6]};
+  margin-top: ${odelzaThemeCssVariables.spacing[6]};
   min-width: 0;
   width: 100%;
 `;
@@ -64,9 +64,7 @@ export const SignInUpStandardContent = ({
         SignInUpStep.TwoFactorAuthenticationVerification,
         SignInUpStep.WorkspaceSelection,
         SignInUpStep.WorkspaceCreation,
-      ].includes(signInUpStep) && (
-        <FooterNote secondaryAgreement="dataProcessingAgreement" />
-      )}
+      ].includes(signInUpStep) && <FooterNote />}
     </ModalContent>
   );
 };

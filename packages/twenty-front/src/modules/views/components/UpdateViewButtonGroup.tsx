@@ -24,12 +24,12 @@ import { t } from '@lingui/core/macro';
 import { IconChevronDown, IconPlus } from 'twenty-ui/icon';
 import { Button, ButtonGroup, IconButton } from 'twenty-ui/input';
 import { MenuItem } from 'twenty-ui/navigation';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledContainer = styled.div`
-  border-radius: ${themeCssVariables.border.radius.md};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: inline-flex;
-  margin-right: ${themeCssVariables.spacing[2]};
+  margin-right: ${odelzaThemeCssVariables.spacing[2]};
   position: relative;
 `;
 
@@ -106,7 +106,7 @@ export const UpdateViewButtonGroup = () => {
   return (
     <StyledContainer>
       {currentView?.key !== 'INDEX' ? (
-        <ButtonGroup size="small" accent="blue">
+        <ButtonGroup size="small" accent="primary">
           <Button
             title={t`Update view`}
             onClick={handleUpdateViewClick}
@@ -117,7 +117,7 @@ export const UpdateViewButtonGroup = () => {
             clickableComponent={
               <IconButton
                 size="small"
-                accent="blue"
+                accent="primary"
                 Icon={IconChevronDown}
                 position="right"
               />
@@ -139,7 +139,7 @@ export const UpdateViewButtonGroup = () => {
         <Button
           title={t`Save as new view`}
           onClick={handleSaveAsNewViewClick}
-          accent="blue"
+          accent="primary"
           size="small"
           variant="secondary"
         />

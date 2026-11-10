@@ -9,7 +9,10 @@ import { t } from '@lingui/core/macro';
 import { CoreObjectNameSingular } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { Avatar, Tag } from 'twenty-ui/data-display';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import {
   MessageChannelVisibility,
   type TimelineThread,
@@ -30,38 +33,39 @@ const StyledParticipantsContainer = styled.div`
 `;
 
 const StyledAvatarWrapper = styled.div`
-  margin-left: calc(-1 * ${themeCssVariables.spacing[1]});
+  margin-left: calc(-1 * ${odelzaThemeCssVariables.spacing[1]});
 `;
 
 const StyledSenderNames = styled.span`
   display: flex;
-  margin: ${themeCssVariables.spacing[0]} ${themeCssVariables.spacing[1]};
+  margin: ${odelzaThemeCssVariables.spacing[0]}
+    ${odelzaThemeCssVariables.spacing[1]};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const StyledThreadCount = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
 `;
 
 const StyledSubjectAndBody = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   overflow: hidden;
 `;
 
 const StyledSubject = styled.span`
-  color: ${themeCssVariables.font.color.primary};
+  color: ${odelzaThemeCssVariables.font.color.primary};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const StyledBody = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: ${odelzaThemeCssVariables.font.color.tertiary};
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -69,9 +73,10 @@ const StyledBody = styled.span`
 `;
 
 const StyledReceivedAt = styled.div`
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.regular};
-  padding: ${themeCssVariables.spacing[0]} ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.regular};
+  padding: ${odelzaThemeCssVariables.spacing[0]}
+    ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 type EmailThreadPreviewProps = {

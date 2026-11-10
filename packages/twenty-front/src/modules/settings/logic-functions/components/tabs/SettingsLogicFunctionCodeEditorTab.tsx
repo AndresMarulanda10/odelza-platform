@@ -40,7 +40,7 @@ export const SettingsLogicFunctionCodeEditorTab = ({
     <Button
       title={t`Test`}
       variant="primary"
-      accent="blue"
+      accent="primary"
       size="small"
       Icon={IconPlayerPlay}
       disabled={isTesting}

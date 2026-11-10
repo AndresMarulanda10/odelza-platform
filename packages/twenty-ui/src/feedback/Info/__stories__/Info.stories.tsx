@@ -19,7 +19,7 @@ type Story = StoryObj<typeof Info>;
 export const Default: Story = {
   parameters: { a11y: A11Y_DEFER_COLOR_CONTRAST },
   args: {
-    accent: 'blue',
+    accent: 'primary',
     text: 'An info component',
     buttonTitle: 'Update',
   },
@@ -40,7 +40,7 @@ export const Catalog: CatalogStory<Story, typeof Info> = {
       dimensions: [
         {
           name: 'accents',
-          values: ['blue', 'danger'] satisfies InfoAccent[],
+          values: ['primary', 'danger'] satisfies InfoAccent[],
           props: (accent: InfoAccent) => ({ accent }),
         },
       ],

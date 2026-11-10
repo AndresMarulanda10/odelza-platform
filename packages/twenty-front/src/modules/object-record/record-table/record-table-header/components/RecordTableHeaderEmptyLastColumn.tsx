@@ -11,15 +11,15 @@ import { useAtomComponentSelectorValue } from '@/ui/utilities/state/jotai/hooks/
 import { useAtomComponentStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomComponentStateValue';
 import { cx } from '@linaria/core';
 import { styled } from '@linaria/react';
-import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { odelzaThemeCssVariables } from 'twenty-ui/theme-constants';
 
 const StyledEmptyHeaderCell = styled.div<{
   shouldDisplayBorderBottom: boolean;
 }>`
-  background-color: ${themeCssVariables.background.primary};
+  background-color: ${odelzaThemeCssVariables.background.primary};
   border-bottom: ${({ shouldDisplayBorderBottom }) =>
     shouldDisplayBorderBottom
-      ? `1px solid ${themeCssVariables.border.color.light}`
+      ? `1px solid ${odelzaThemeCssVariables.border.color.light}`
       : 'none'};
   height: ${RECORD_TABLE_ROW_HEIGHT}px;
   max-height: ${RECORD_TABLE_ROW_HEIGHT}px;

@@ -28,7 +28,10 @@ import { QUERY_MAX_RECORDS } from 'twenty-shared/constants';
 import { isDefined, isValidUuid } from 'twenty-shared/utils';
 import { mapArrayToObject } from '~/utils/array/mapArrayToObject';
 import { IconChevronDown } from 'twenty-ui/icon';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 
 const StyledFormSelectContainerWrapper = styled.div<{ readonly?: boolean }>`
   cursor: ${({ readonly }) => (readonly ? 'default' : 'pointer')};
@@ -40,7 +43,7 @@ const StyledFormSelectContainerWrapper = styled.div<{ readonly?: boolean }>`
 
 const StyledIconButton = styled.div`
   display: flex;
-  padding-right: ${themeCssVariables.spacing[2]};
+  padding-right: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledDropdownContainer = styled.div`

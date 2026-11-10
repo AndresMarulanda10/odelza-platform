@@ -15,38 +15,42 @@ import {
 } from 'twenty-ui/icon';
 import { CodeEditor, LightIconButton } from 'twenty-ui/input';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
-import { ThemeContext, themeCssVariables } from 'twenty-ui/theme-constants';
+import {
+  ThemeContext,
+  odelzaThemeCssVariables,
+} from 'twenty-ui/theme-constants';
 import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
 const StyledContainer = styled.div`
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.md};
   display: flex;
   flex-direction: column;
-  margin: ${themeCssVariables.spacing[2]} 0;
+  margin: ${odelzaThemeCssVariables.spacing[2]} 0;
   overflow: hidden;
 `;
 
 const StyledHeader = styled.div<{ status: 'success' | 'error' | 'running' }>`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
-  border-bottom: 1px solid ${themeCssVariables.border.color.light};
+  background: ${odelzaThemeCssVariables.background.secondary};
+  border-bottom: 1px solid ${odelzaThemeCssVariables.border.color.light};
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: space-between;
-  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledHeaderLeft = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledHeaderRight = styled.div`
   align-items: center;
   display: flex;
-  gap: ${themeCssVariables.spacing[1]};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledStatusBadge = styled.div<{
@@ -55,57 +59,60 @@ const StyledStatusBadge = styled.div<{
   align-items: center;
   background: ${({ status }) =>
     status === 'success'
-      ? themeCssVariables.background.transparent.success
+      ? odelzaThemeCssVariables.background.transparent.success
       : status === 'error'
-        ? themeCssVariables.background.transparent.danger
-        : themeCssVariables.background.transparent.medium};
-  border-radius: ${themeCssVariables.border.radius.pill};
+        ? odelzaThemeCssVariables.background.transparent.danger
+        : odelzaThemeCssVariables.background.transparent.medium};
+  border-radius: ${odelzaThemeCssVariables.border.radius.pill};
   color: ${({ status }) =>
     status === 'success'
-      ? themeCssVariables.color.turquoise
+      ? odelzaThemeCssVariables.color.turquoise
       : status === 'error'
-        ? themeCssVariables.color.red
-        : themeCssVariables.font.color.secondary};
+        ? odelzaThemeCssVariables.color.red
+        : odelzaThemeCssVariables.font.color.secondary};
   corner-shape: round;
   display: flex;
-  font-size: ${themeCssVariables.font.size.xs};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
-  padding: ${themeCssVariables.spacing['0.5']} ${themeCssVariables.spacing[2]};
+  font-size: ${odelzaThemeCssVariables.font.size.xs};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
+  padding: ${odelzaThemeCssVariables.spacing['0.5']}
+    ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledTitle = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.md};
-  font-weight: ${themeCssVariables.font.weight.medium};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.md};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
 `;
 
 const StyledSection = styled.div`
-  border-top: 1px solid ${themeCssVariables.border.color.light};
+  border-top: 1px solid ${odelzaThemeCssVariables.border.color.light};
 `;
 
 const StyledSectionHeader = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
+  background: ${odelzaThemeCssVariables.background.secondary};
   cursor: pointer;
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: space-between;
-  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[3]};
-  transition: background calc(${themeCssVariables.animation.duration.fast} * 1s);
+  padding: ${odelzaThemeCssVariables.spacing[2]}
+    ${odelzaThemeCssVariables.spacing[3]};
+  transition: background
+    calc(${odelzaThemeCssVariables.animation.duration.fast} * 1s);
 
   &:hover {
-    background: ${themeCssVariables.background.tertiary};
+    background: ${odelzaThemeCssVariables.background.tertiary};
   }
 `;
 
 const StyledSectionHeaderLeft = styled.div`
   align-items: center;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
-  font-size: ${themeCssVariables.font.size.sm};
-  font-weight: ${themeCssVariables.font.weight.medium};
-  gap: ${themeCssVariables.spacing[1]};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
+  font-weight: ${odelzaThemeCssVariables.font.weight.medium};
+  gap: ${odelzaThemeCssVariables.spacing[1]};
 `;
 
 const StyledCodeEditorContainer = styled.div`
@@ -115,14 +122,14 @@ const StyledCodeEditorContainer = styled.div`
 
 const StyledFilesGrid = styled.div`
   display: grid;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  padding: ${themeCssVariables.spacing[3]};
+  padding: ${odelzaThemeCssVariables.spacing[3]};
 `;
 
 const StyledFileCard = styled.div`
-  border: 1px solid ${themeCssVariables.border.color.light};
-  border-radius: ${themeCssVariables.border.radius.sm};
+  border: 1px solid ${odelzaThemeCssVariables.border.color.light};
+  border-radius: ${odelzaThemeCssVariables.border.radius.sm};
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -131,7 +138,7 @@ const StyledFileCard = styled.div`
 const StyledFilePreview = styled.div`
   align-items: center;
   aspect-ratio: 16 / 9;
-  background: ${themeCssVariables.background.tertiary};
+  background: ${odelzaThemeCssVariables.background.tertiary};
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -145,16 +152,17 @@ const StyledPreviewImage = styled.img`
 
 const StyledFileInfo = styled.div`
   align-items: center;
-  background: ${themeCssVariables.background.secondary};
+  background: ${odelzaThemeCssVariables.background.secondary};
   display: flex;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${odelzaThemeCssVariables.spacing[2]};
   justify-content: space-between;
-  padding: ${themeCssVariables.spacing['1.5']} ${themeCssVariables.spacing[2]};
+  padding: ${odelzaThemeCssVariables.spacing['1.5']}
+    ${odelzaThemeCssVariables.spacing[2]};
 `;
 
 const StyledFileName = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: ${themeCssVariables.font.size.sm};
+  color: ${odelzaThemeCssVariables.font.color.primary};
+  font-size: ${odelzaThemeCssVariables.font.size.sm};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -162,11 +170,11 @@ const StyledFileName = styled.span`
 
 const StyledDownloadLink = styled.a`
   align-items: center;
-  color: ${themeCssVariables.font.color.secondary};
+  color: ${odelzaThemeCssVariables.font.color.secondary};
   display: flex;
 
   &:hover {
-    color: ${themeCssVariables.font.color.primary};
+    color: ${odelzaThemeCssVariables.font.color.primary};
   }
 `;
 
