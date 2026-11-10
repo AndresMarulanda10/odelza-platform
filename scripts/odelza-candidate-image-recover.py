@@ -191,8 +191,10 @@ class TarBoundary:
             except (tarfile.TarError, ValueError, UnicodeError):
                 raise RecoveryError('archive_header_invalid') from None
             self.members += 1
-            require(self.members <= 200000 and (item.isfile() or item.isdir())
-                    and not item.sparse, 'archive_type_or_format_unsupported')
+            require(self.members <= 200000
+                    and item.type in (tarfile.REGTYPE, tarfile.AREGTYPE, tarfile.DIRTYPE)
+                    and not item.issparse() and not item.pax_headers,
+                    'archive_type_or_format_unsupported')
             require(0 <= item.size <= ARCHIVE_LIMIT, 'archive_member_size')
             require(not item.isdir() or item.size == 0, 'archive_directory_payload')
             self.skip = ((item.size + 511) // 512) * 512
@@ -358,8 +360,10 @@ def validate_archive(path):
                     break
                 item = tarfile.TarInfo.frombuf(header, 'utf-8', 'strict')
                 headers += 1
-                require(headers <= 200000 and (item.isfile() or item.isdir())
-                        and not item.sparse, 'archive_type_or_format_unsupported')
+                require(headers <= 200000
+                        and item.type in (tarfile.REGTYPE, tarfile.AREGTYPE, tarfile.DIRTYPE)
+                        and not item.issparse() and not item.pax_headers,
+                        'archive_type_or_format_unsupported')
                 require(0 <= item.size <= ARCHIVE_LIMIT, 'archive_member_size')
                 require(not item.isdir() or item.size == 0, 'archive_directory_payload')
                 end = raw.tell() + ((item.size + 511) // 512) * 512
@@ -373,7 +377,9 @@ def validate_archive(path):
                         and '..' not in parts and name.rstrip('/') == '/'.join(parts)
                         and name not in members and len(members) < 200000,
                         'archive_path_invalid')
-                require(member.isfile() or member.isdir(), 'archive_type_invalid')
+                require(member.type in (tarfile.REGTYPE, tarfile.AREGTYPE, tarfile.DIRTYPE)
+                        and not member.issparse() and not member.pax_headers,
+                        'archive_type_or_format_unsupported')
                 require(0 <= member.size <= ARCHIVE_LIMIT, 'archive_member_size')
                 digest = hashlib.sha256()
                 if member.isfile():

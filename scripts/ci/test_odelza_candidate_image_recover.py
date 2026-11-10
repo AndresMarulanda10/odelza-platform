@@ -22,6 +22,34 @@ recover = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(recover)
 
 
+class PortableTests(unittest.TestCase):
+    def test_setup_uses_available_tmpdir_without_host_specific_directories(self):
+        with tempfile.TemporaryDirectory() as base:
+            script = '''
+import importlib.util, os, pathlib, sys, tempfile
+spec = importlib.util.spec_from_file_location('offline_tests', sys.argv[1])
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+base = pathlib.Path(sys.argv[2]).resolve()
+os.environ['TMPDIR'] = str(base)
+tempfile.tempdir = None
+mkdir = os.mkdir
+def isolated_mkdir(path, *args, **kwargs):
+    if base not in pathlib.Path(path).resolve().parents:
+        raise FileNotFoundError('directory unavailable on portable runner')
+    return mkdir(path, *args, **kwargs)
+os.mkdir = isolated_mkdir
+module.OfflineTests.setUpClass()
+try:
+    assert module.OfflineTests.root.parent == base
+finally:
+    module.OfflineTests.tearDownClass()
+'''
+            result = subprocess.run([sys.executable, '-B', '-c', script, __file__, base],
+                                    capture_output=True, text=True, timeout=40)
+            self.assertEqual(result.returncode, 0, result.stderr)
+
+
 class IdentityTests(unittest.TestCase):
     def test_wrong_identity_denies_export(self):
         with self.assertRaises(recover.RecoveryError):
@@ -106,9 +134,7 @@ def synthetic_archive(config=None, extras=(), oci=False):
 class OfflineTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.scratch = tempfile.TemporaryDirectory(
-            prefix='recovery-offline-',
-            dir='/private/var/folders/5q/j0cmnbmd3b54y_strvlmjngw0000gn/T/opencode')
+        cls.scratch = tempfile.TemporaryDirectory(prefix='recovery-offline-')
         cls.root = Path(cls.scratch.name)
         cls.key = cls.root / 'local-only.key'
         cls.cert = cls.root / 'local-only.pem'
@@ -316,6 +342,77 @@ else:
                 recover.recover(self.environment())
             child.assert_not_called()
 
+    def test_actual_export_shell_with_denying_local_tools(self):
+        tools = self.directory / 'tools'
+        tools.mkdir()
+        (tools / 'openssl').symlink_to(shutil.which('openssl'))
+        scenario = self.directory / 'scenario.json'
+        calls = self.directory / 'export-calls.jsonl'
+        archive, _ = synthetic_archive()
+        fake_docker = tools / 'docker'
+        fake_docker.write_text(f'''#!{sys.executable}
+import base64, json, sys
+from pathlib import Path
+args = sys.argv[1:]
+with Path({str(calls)!r}).open('a') as log:
+    log.write(json.dumps(args) + '\\n')
+state = json.loads(Path({str(scenario)!r}).read_text())
+if args == ['image', 'inspect', '--format', '{{{{.Id}}}} {{{{.Os}}}} {{{{.Architecture}}}} {{{{.Size}}}}', {recover.TAG!r}]:
+    if state.get('unavailable'): sys.exit(20)
+    print(state['metadata'])
+elif args == ['image', 'save', {recover.IMAGE_ID!r}]:
+    sys.stdout.buffer.write(base64.b64decode({base64.b64encode(archive).decode()!r}))
+    if state.get('save_failure'): sys.exit(23)
+else:
+    sys.exit(90)
+''')
+        fake_timeout = tools / 'timeout'
+        fake_timeout.write_text(f'''#!{sys.executable}
+import os, sys
+args = sys.argv[1:]
+if not (args[:4] in [['-k', '2s', '10s', 'docker'],
+                     ['-k', '5s', '580s', 'docker']]):
+    sys.exit(91)
+os.execv({str(fake_docker)!r}, ['docker'] + args[4:])
+''')
+        for tool in [fake_docker, fake_timeout]:
+            tool.chmod(0o700)
+        good = recover.IMAGE_ID + ' linux amd64 ' + str(len(archive))
+        cases = [('matched', good, {}, 0, 1),
+                 ('id', 'sha256:wrong linux amd64 1024', {}, 21, 0),
+                 ('os', recover.IMAGE_ID + ' windows amd64 1024', {}, 21, 0),
+                 ('arch', recover.IMAGE_ID + ' linux arm64 1024', {}, 21, 0),
+                 ('unavailable', good, {'unavailable': True}, 20, 0),
+                 ('oversized', recover.IMAGE_ID + ' linux amd64 8589934593', {}, 21, 0),
+                 ('zero', recover.IMAGE_ID + ' linux amd64 0', {}, 21, 0),
+                 ('invalid-size', recover.IMAGE_ID + ' linux amd64 nope', {}, 21, 0),
+                 ('save-failure', good, {'save_failure': True}, 23, 1)]
+        # PATH contains only the two fakes and explicit local OpenSSL. No host Docker, SSH or timeout
+        # can be found; /bin/sh and the fake shebang interpreter are explicit.
+        with mock.patch.dict(os.environ, {'PATH': str(tools)}):
+            for name, metadata, options, status, saves in cases:
+                with self.subTest(case=name):
+                    scenario.write_text(json.dumps(dict(metadata=metadata, **options)))
+                    calls.unlink(missing_ok=True)
+                    result = subprocess.run(['/bin/sh', '-c', recover.EXPORT],
+                                            env={'PATH': str(tools), 'LC_ALL': 'C'},
+                                            capture_output=True, timeout=5)
+                    self.assertEqual(result.returncode, status)
+                    logged = [json.loads(line) for line in calls.read_text().splitlines()]
+                    self.assertEqual(logged[0], ['image', 'inspect', '--format',
+                                                '{{.Id}} {{.Os}} {{.Architecture}} {{.Size}}', recover.TAG])
+                    self.assertEqual(logged[1:], [['image', 'save', recover.IMAGE_ID]] * saves)
+                    self.assertEqual(result.stdout, archive if saves else b'')
+                    output = self.directory / 'shell-export.cms'
+                    if status:
+                        calls.unlink()
+                        with self.assertRaises(recover.RecoveryError):
+                            recover.encrypt_stream(['/bin/sh', '-c', recover.EXPORT],
+                                                   self.cert, output, seconds=5)
+                        self.assertFalse(output.exists())
+                        logged = [json.loads(line) for line in calls.read_text().splitlines()]
+                        self.assertEqual(logged[1:], [['image', 'save', recover.IMAGE_ID]] * saves)
+
     def test_ssh_input_injection_and_options(self):
         environment = self.environment()
         options = recover.ssh_command(environment, self.directory)
@@ -338,6 +435,47 @@ else:
         for oci in [False, True]:
             with self.subTest(oci=oci):
                 self.validate(*synthetic_archive(oci=oci))
+
+    def unsupported_archives(self):
+        item = tarfile.TarInfo('sparse')
+        item.type = tarfile.GNUTYPE_SPARSE
+        yield 'gnu-sparse', item.tobuf(format=tarfile.GNU_FORMAT) + bytes(1024)
+        for metadata in [{'GNU.sparse.size': '4096'}, {'GNU.sparse.map': '0,1'},
+                         {'GNU.sparse.realsize': '4096'}, {'GNU.sparse.numblocks': '1'},
+                         {'GNU.sparse.offset': '0', 'GNU.sparse.numbytes': '1'},
+                         {'GNU.sparse.name': 'sparse'},
+                         {'GNU.sparse.major': '1', 'GNU.sparse.minor': '0'},
+                         {'SCHILY.realsize': '4096'}]:
+            output = io.BytesIO()
+            with tarfile.open(fileobj=output, mode='w', format=tarfile.PAX_FORMAT) as archive:
+                item = tarfile.TarInfo('sparse')
+                item.pax_headers = metadata
+                archive.addfile(item)
+            yield repr(metadata), output.getvalue()
+        for kind in [tarfile.XGLTYPE, tarfile.LNKTYPE, tarfile.SYMTYPE,
+                     tarfile.CHRTYPE, tarfile.BLKTYPE, tarfile.FIFOTYPE,
+                     tarfile.GNUTYPE_LONGNAME, tarfile.GNUTYPE_LONGLINK,
+                     tarfile.CONTTYPE]:
+            item = tarfile.TarInfo('unsupported')
+            item.type = kind
+            yield repr(kind), item.tobuf(format=tarfile.GNU_FORMAT) + bytes(1024)
+
+    def test_runner_rejects_sparse_and_extensions_before_publication(self):
+        for name, archive in self.unsupported_archives():
+            with self.subTest(format=name):
+                output = self.directory / 'unsupported.cms'
+                output.unlink(missing_ok=True)
+                with self.assertRaisesRegex(recover.RecoveryError, 'archive_type_or_format_unsupported'):
+                    recover.encrypt_stream(self.producer(
+                        f'import sys;sys.stdout.buffer.write({archive!r})'),
+                        self.cert, output, seconds=5)
+                self.assertFalse(output.exists())
+
+    def test_local_preflight_rejects_sparse_and_extensions(self):
+        for name, archive in self.unsupported_archives():
+            with self.subTest(format=name), self.assertRaisesRegex(
+                    recover.RecoveryError, 'archive_type_or_format_unsupported'):
+                self.validate(archive, recover.IMAGE_ID)
 
     def directory_archive(self, payload, oci=False):
         archive, digest = synthetic_archive(oci=oci)
