@@ -497,6 +497,14 @@ Fuera de la fase: los avatares y logos de `twentyhq.github.io` en el dev-seeder 
   - Typecheck de server y front: solo los errores previos por paquetes sin compilar.
   - Lint: reglas estándar de oxlint sin errores. Las reglas propias (`twenty-oxlint-rules`) no corrieron: oxlint no logra reservar memoria para su plugin JS en esta máquina. Formato con oxfmt corregido.
 - **Respaldo:** `backups/20261110T125253Z-pre-phase5`.
+- **Docker (2026-11-10):** los tres primeros builds tumbaron la VM de Docker. Causa: el servidor de lint de VS Code (`oxlint --lsp`, con el plugin JS de `twenty-oxlint-rules`) compromete unos 37 GB de memoria y deja a Windows casi en su límite (56 de 63,5 GB). Si se detiene, VS Code lo reabre al instante. El cuarto build, con el mismo comando de siempre, terminó bien: imagen `odelza-local` `6f1c333a`.
+  - Stack recreado: app healthy, jobs arriba, sin reinicios, `/healthz` 200.
+  - En el arranque: `UpdateStandardHelperAgentPromptCommand` actualizó 1 agente y `UpdateCommunityAndBillingCommandMenuItemsCommand` 2 ítems; resumen 1 workspace bien, 0 fallos.
+  - Base: el agente `helper` tiene el prompt nuevo, sin `search_help_center`; el ítem del Cmd+K dice "Go to Beta Features Settings" (`/settings/lab`, `IconFlask`) y el de billing tiene `permissionFlags.WORKSPACE and isBillingEnabled`.
+  - `/.well-known/mcp/server-card.json`: `com.odelza/odelza`, `https://odelza.com`, sin `repository`. La consulta GraphQL `dpaPreview` ya no existe en el schema.
+  - Bundle servido: tiene "Funciones beta" y el enlace a la ayuda de OpenAI; no tiene `chatgpt.com/apps/twenty`, `twenty.com/legal`, `trust-badges` ni "By using Odelza".
+  - Los tipos GraphQL no se pudieron regenerar contra Docker: la imagen corre en modo producción, con la introspección apagada. La edición a mano se sostiene con el typecheck del front y con la respuesta del server.
+  - Las reglas propias de oxlint siguen sin correr por la misma falta de memoria.
 - **Nota para producción:** esta fase agrega comandos en `upgrade-version-command/`, así que el CD de imagen se detiene y hace falta el despliegue manual guardado (igual que la fase 4).
 
 ## Insumos pendientes
