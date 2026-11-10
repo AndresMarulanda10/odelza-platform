@@ -1,0 +1,55 @@
+name: Recover exact Odelza candidate image (encrypted only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      recipient_cert_base64:
+        description: 'Base64 of one public X.509 RSA certificate; never a private key'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: odelza-production
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    if: github.repository == 'AndresMarulanda10/odelza-platform' && github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # Existing protected production environment, ID 22950075734. Do not create
+    # another environment or bypass its native approval/protection rules.
+    environment:
+      name: production
+      url: https://second-brain.odelza.com/
+    steps:
+      - name: Check out reviewed revision
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Recover ciphertext only for the fixed log-bound candidate image
+        shell: bash
+        env:
+          ODELZA_DEPLOY_HOST: ${{ secrets.ODELZA_DEPLOY_HOST }}
+          ODELZA_DEPLOY_PORT: ${{ secrets.ODELZA_DEPLOY_PORT }}
+          ODELZA_DEPLOY_USER: ${{ secrets.ODELZA_DEPLOY_USER }}
+          ODELZA_DEPLOY_SSH_KEY: ${{ secrets.ODELZA_DEPLOY_SSH_KEY }}
+          ODELZA_DEPLOY_KNOWN_HOSTS: ${{ secrets.ODELZA_DEPLOY_KNOWN_HOSTS }}
+          RECIPIENT_CERT_BASE64: ${{ inputs.recipient_cert_base64 }}
+        run: python3 -B scripts/odelza-candidate-image-recover.py recover
+
+      - name: Retain only recipient-encrypted image for one day
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: odelza-candidate-image-encrypted
+          path: ${{ runner.temp }}/odelza-candidate-image.cms
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+          include-hidden-files: false
+          overwrite: false
