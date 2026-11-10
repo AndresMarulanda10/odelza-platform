@@ -75,3 +75,7 @@ Anonymous GitHub REST reads on 2026-11-10 confirm run `42549926656` targeted the
 4. Image save is read-only but consumes production disk reads, CPU and network; shared concurrency is not a resource throttle. Remote timeout bounds the save even if SSH disconnects. Reproduction, Docker load/emulation and service startup remain R3 gates; no database, volume or runtime production configuration may be transferred.
 
 Rollback boundary: remove the new workflow, recovery helper, its focused test and this task document only; no existing behavior needs reverting. Preserve unrelated `.atl/` and PR62 work.
+
+## Publication checkpoint
+
+Source work-unit commit: `3b54d41` (tree `8385939975e91b51e394a063ddb87e92875fbdb7`). On the refreshed base, the exact ResourceWarning-as-error command above passed all 29 tests; AST, Ruby YAML, actionlint 1.7.12 and all four whitespace checks passed. Three source SHA-256/mode freezes and the expected index tree matched after normal commit hooks. This passive documentation checkpoint does not change executable sources. R2 remains incomplete: publication is not merge, production approval, export, decryption or archive validation. No recipient private key has been created. Only the two verified owned actionlint scratch files are eligible for cleanup; no installed tools or unrelated files are removed.
