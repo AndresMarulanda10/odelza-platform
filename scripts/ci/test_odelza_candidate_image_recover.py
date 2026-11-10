@@ -22,6 +22,190 @@ recover = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(recover)
 
 
+class DiagnosticTests(unittest.TestCase):
+    def test_malformed_presence_is_unavailable_with_unknown_fields(self):
+        repro = recover.diagnostic_report(
+            b'{}\nnull\n{"Id":"private-invalid"}\nnull\nnull\nnull\n')
+        self.assertEqual([image['status'] for image in repro['images']],
+                         ['unavailable', 'unavailable'])
+        valid = {'Id': recover.IMAGE_ID, 'Os': 'linux', 'Architecture': 'amd64',
+                 'Size': 1, 'RepoTags': [recover.TAG]}
+        descriptor = {'digest': recover.IMAGE_ID,
+                      'mediaType': 'application/vnd.oci.image.index.v1+json'}
+        cases = [None, {}, {'Id': 'private-invalid'}]
+        cases.extend({k: v for k, v in valid.items() if k != missing} for missing in valid)
+        for field, invalid in [('Id', None), ('Id', 12), ('Id', ''),
+                               ('Id', '::error::private-canary'), ('Id', 'sha256:bad'),
+                               ('Os', None), ('Architecture', []), ('Size', True),
+                               ('RepoTags', [12])]:
+            cases.append({**valid, field: invalid})
+        for value in cases:
+            with self.subTest(value=value):
+                raw = '\n'.join(json.dumps(v) for v in
+                                [value, descriptor, value, descriptor, None, None]).encode()
+                for image in recover.diagnostic_report(raw)['images']:
+                    self.assertEqual(image['status'], 'unavailable')
+                    self.assertTrue(all(v is None for k, v in image.items()
+                                        if k not in ('selector', 'status')))
+
+    def test_different_valid_identity_and_platform_remain_found(self):
+        value = {'Id': 'sha256:' + 'b' * 64, 'Os': 'windows',
+                 'Architecture': 'arm64', 'Size': 1, 'RepoTags': None}
+        raw = '\n'.join(json.dumps(v) for v in
+                        [value, None, value, {'digest': '::error::private-canary'},
+                         None, None]).encode()
+        report = recover.diagnostic_report(raw)
+        for image in report['images']:
+            self.assertEqual(image['status'], 'found')
+            self.assertEqual(image['id'], value['Id'])
+            self.assertIs(image['idMatchesExpected'], False)
+            self.assertIs(image['linuxAmd64'], False)
+            self.assertIsNone(image['descriptorDigest'])
+        self.assertNotIn('private-canary', json.dumps(report))
+
+    def test_default_route_is_metadata_only(self):
+        with mock.patch.object(recover, 'recover') as export, \
+                mock.patch.object(recover, 'diagnose', create=True) as diagnose, \
+                mock.patch.object(sys, 'argv', ['helper', 'operation']), \
+                mock.patch.dict(os.environ, {}, clear=True), \
+                contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(recover.main(), 0)
+            diagnose.assert_called_once()
+            export.assert_not_called()
+
+    def test_invalid_operation_rejects_before_children(self):
+        for operation in ('', 'other', 'recover; echo private', '::error::private'):
+            with self.subTest(operation=operation), \
+                    mock.patch.object(sys, 'argv', ['helper', 'operation']), \
+                    mock.patch.dict(os.environ, {'RECOVERY_OPERATION': operation}, clear=True), \
+                    mock.patch.object(recover, 'child') as child, \
+                    contextlib.redirect_stderr(io.StringIO()) as errors:
+                self.assertEqual(recover.main(), 1)
+                self.assertEqual(errors.getvalue(), 'recovery=operation_denied\n')
+                child.assert_not_called()
+
+    def test_actual_diagnostic_shell_and_private_whitelist(self):
+        with tempfile.TemporaryDirectory() as scratch:
+            directory = Path(scratch)
+            docker = directory / 'docker'
+            timeout = directory / 'timeout'
+            timeout.write_text('#!/bin/sh\nshift 3\nexec "$@"\n')
+            timeout.chmod(0o700)
+            for identity, expected_available, descriptor in (
+                    (recover.IMAGE_ID, True, 'sha256:' + 'a' * 64),
+                    ('sha256:' + 'b' * 64, False, 'private-canary::error::'),
+                    ('private-canary', True, None),
+                    (recover.IMAGE_ID, True, 'private-canary' * 4000)):
+                with self.subTest(identity=identity):
+                    log = directory / 'commands.jsonl'
+                    log.unlink(missing_ok=True)
+                    responses = [
+                        {'Id': identity, 'Os': 'linux', 'Architecture': 'amd64',
+                         'Size': 1234, 'RepoTags': [recover.TAG, 'private-canary']},
+                        {'digest': descriptor, 'mediaType': 'private-canary'},
+                        {'server': '29.0.0', 'client': 'private-canary'}, True]
+                    # Every allowed argv is exact, including selected templates;
+                    # a save, full Config request or any extra command exits 91.
+                    script = 'import sys, json\ncommands = ' + repr(recover._DIAGNOSTIC_QUERIES)
+                    script += '\nresponses = ' + repr(responses)
+                    script += '\nargs = ["docker"] + sys.argv[1:]\n'
+                    script += 'with open(' + repr(str(log)) + ', "a") as log: log.write(json.dumps(args) + "\\n")\n'
+                    script += 'assert args in commands, "unexpected command"\n'
+                    script += 'i = commands.index(args)\n'
+                    if not expected_available:
+                        script += 'if i in (2, 3): sys.exit(1)\n'
+                    script += 'print("private-canary", file=sys.stderr)\n'
+                    script += 'print(json.dumps(responses[[0, 1, 0, 1, 2, 3][i]]))\n'
+                    docker.write_text('#!' + sys.executable + '\n' + script)
+                    docker.chmod(0o700)
+                    result = subprocess.run(['/bin/sh', '-c', recover.DIAGNOSTIC],
+                                            env={'PATH': str(directory) + ':/usr/bin:/bin'},
+                                            capture_output=True, timeout=10)
+                    self.assertEqual(result.returncode, 0)
+                    self.assertEqual(result.stderr, b'')
+                    self.assertEqual([json.loads(line) for line in log.read_text().splitlines()],
+                                     recover._DIAGNOSTIC_QUERIES)
+                    report = recover.diagnostic_report(result.stdout)
+                    public = json.dumps(report)
+                    self.assertNotIn('private-canary', public)
+                    self.assertNotIn('::error::', public)
+                    self.assertEqual(report['images'][0]['idMatchesExpected'],
+                                     identity == recover.IMAGE_ID if identity.startswith('sha256:') else None)
+                    self.assertEqual(report['images'][1]['status'],
+                                     'found' if expected_available and identity.startswith('sha256:')
+                                     else 'unavailable')
+                    self.assertEqual(report['images'][0]['descriptorDigest'],
+                                     descriptor if descriptor and descriptor.startswith('sha256:') else None)
+                    self.assertTrue(report['containerdSnapshotter'])
+                    self.assertEqual(report['versions'], {'server': '29.0.0', 'client': None})
+
+    def test_diagnose_without_recipient_uses_one_ssh_and_no_export(self):
+        with tempfile.TemporaryDirectory() as scratch:
+            environment = {'GITHUB_REPOSITORY': 'AndresMarulanda10/odelza-platform',
+                           'GITHUB_REF': 'refs/heads/main', 'GITHUB_EVENT_NAME': 'workflow_dispatch',
+                           'GITHUB_SHA': 'a' * 40, 'RUNNER_TEMP': scratch}
+            with mock.patch.object(recover, 'ssh_command', return_value=['fake-ssh']), \
+                    mock.patch.object(recover, 'bounded_capture', return_value=b'null\n' * 6) as capture, \
+                    mock.patch.object(recover, 'recipient') as recipient, \
+                    mock.patch.object(recover, 'encrypt_stream') as encrypt, \
+                    contextlib.redirect_stdout(io.StringIO()) as output:
+                recover.diagnose(environment)
+                capture.assert_called_once_with(['fake-ssh', recover.DIAGNOSTIC], seconds=90,
+                                                limit=6 * (recover.META_LIMIT + 1),
+                                                failure='diagnostic_unavailable')
+                recipient.assert_not_called()
+                encrypt.assert_not_called()
+                self.assertTrue(output.getvalue().endswith('recovery=metadata_only\n'))
+                self.assertEqual(list(Path(scratch).iterdir()), [])
+
+    def test_recover_without_recipient_denies_before_ssh(self):
+        with tempfile.TemporaryDirectory() as scratch:
+            environment = {'GITHUB_REPOSITORY': 'AndresMarulanda10/odelza-platform',
+                           'GITHUB_REF': 'refs/heads/main', 'GITHUB_EVENT_NAME': 'workflow_dispatch',
+                           'GITHUB_SHA': 'a' * 40, 'RUNNER_TEMP': scratch}
+            with mock.patch.object(shutil, 'disk_usage', return_value=shutil._ntuple_diskusage(1, 0, 20 * 1024**3)), \
+                    mock.patch.object(recover, 'ssh_command') as ssh:
+                with self.assertRaisesRegex(recover.RecoveryError, 'recipient_invalid'):
+                    recover.recover(environment)
+                ssh.assert_not_called()
+
+    def test_optional_queries_and_protocol_bounds(self):
+        report = recover.diagnostic_report(b'null\n' * 6)
+        self.assertIsNone(report['containerdSnapshotter'])
+        self.assertEqual(report['images'][0]['status'], 'unavailable')
+        for raw in (b'private-canary', b'null\n' * 7,
+                    b' ' * (recover.META_LIMIT + 1) + b'\nnull\n' * 5):
+            with self.assertRaises(recover.RecoveryError):
+                recover.diagnostic_report(raw)
+
+    def test_export_and_validation_source_remain_byte_identical_to_base(self):
+        import ast
+        baseline = subprocess.check_output([
+            'git', 'show', 'b8a0ca362f8729342348d71c5f0a1298b62213cb:scripts/odelza-candidate-image-recover.py'],
+            cwd=ROOT, timeout=10).decode()
+        current = (ROOT / 'scripts/odelza-candidate-image-recover.py').read_text()
+        def boundaries(source):
+            result = {}
+            for node in ast.parse(source).body:
+                name = node.name if isinstance(node, (ast.FunctionDef, ast.ClassDef)) else (
+                    node.targets[0].id if isinstance(node, ast.Assign)
+                    and isinstance(node.targets[0], ast.Name) else None)
+                if name in ('EXPORT', 'PROBE', 'PROVENANCE_IMAGE', 'check_identity',
+                            'recover', 'recipient', 'validate_archive', 'encrypt_stream',
+                            'TarBoundary', 'ssh_command'):
+                    result[name] = ast.get_source_segment(source, node)
+            return result
+        self.assertEqual(boundaries(current), boundaries(baseline))
+
+    def test_workflow_closed_choice_and_upload_guard(self):
+        workflow = (ROOT / '.github/workflows/recover-odelza-candidate-image.yaml').read_text()
+        self.assertIn('default: diagnose', workflow)
+        self.assertIn("if: success() && inputs.operation == 'recover'", workflow)
+        self.assertIn('RECOVERY_OPERATION: ${{ inputs.operation }}', workflow)
+        self.assertIn('image-recover.py operation', workflow)
+        self.assertNotIn('image-recover.py ${{', workflow)
+
+
 class PortableTests(unittest.TestCase):
     def test_setup_uses_available_tmpdir_without_host_specific_directories(self):
         with tempfile.TemporaryDirectory() as base:
