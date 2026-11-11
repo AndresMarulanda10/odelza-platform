@@ -154,6 +154,17 @@ export const PageChangeEffect = () => {
 
   useEffect(() => {
     if (
+      isAppEffectRedirectEnabled &&
+      !isDefined(pageChangeEffectNavigateLocation) &&
+      getReturnToPath() ===
+        `${location.pathname}${location.search}${location.hash}`
+    ) {
+      // Scheduling navigation is not a commit. Keep the return available to
+      // auth-derived decisions until React observes the exact destination.
+      clearReturnToPath();
+    }
+
+    if (
       isDefined(pageChangeEffectNavigateLocation) &&
       isAppEffectRedirectEnabled
     ) {
@@ -165,9 +176,6 @@ export const PageChangeEffect = () => {
           `${window.location.pathname}${window.location.search}${window.location.hash}`,
         );
       }
-
-      const consumedReturnToPath =
-        getReturnToPath() === pageChangeEffectNavigateLocation;
 
       const isNavigatingToOnboardingOrAuthPath =
         ONBOARDING_OR_AUTH_NAVIGATE_PATHS.some(
@@ -185,13 +193,12 @@ export const PageChangeEffect = () => {
       }
 
       navigate(pageChangeEffectNavigateLocation);
-
-      if (consumedReturnToPath) {
-        clearReturnToPath();
-      }
     }
   }, [
     navigate,
+    location.pathname,
+    location.search,
+    location.hash,
     pageChangeEffectNavigateLocation,
     isAppEffectRedirectEnabled,
     isOnAuthOrOnboardingPage,

@@ -1,4 +1,4 @@
-import { type Locator, type Page } from '@playwright/test';
+import { errors, expect, type Locator, type Page } from '@playwright/test';
 
 export class LoginPage {
   private readonly loginWithGoogleButton: Locator;
@@ -106,6 +106,66 @@ export class LoginPage {
 
   async clickContinueButton() {
     await this.continueButton.click();
+  }
+
+  async signInWithCredentials(
+    email: string,
+    password: string,
+    timeout = 30000,
+  ) {
+    const deadline = Date.now() + timeout;
+    const remaining = () => Math.max(1, deadline - Date.now());
+    const controls = this.loginWithEmailButton
+      .or(this.continueButton)
+      .or(this.signInButton)
+      .filter({ visible: true });
+
+    while (Date.now() < deadline) {
+      await controls
+        .first()
+        .waitFor({ state: 'visible', timeout: remaining() });
+
+      if (await this.emailField.isVisible()) {
+        await this.emailField.fill(email, { timeout: remaining() });
+        await expect(this.emailField).toHaveValue(email, {
+          timeout: remaining(),
+        });
+      }
+
+      if (await this.signInButton.isVisible()) {
+        await expect(this.emailField).toHaveValue(email, {
+          timeout: remaining(),
+        });
+        await this.passwordField.fill(password, { timeout: remaining() });
+        await expect(this.passwordField).toHaveValue(password, {
+          timeout: remaining(),
+        });
+        await this.signInButton.click({ timeout: remaining() });
+        return;
+      }
+
+      const advance = this.loginWithEmailButton
+        .or(this.continueButton)
+        .filter({ visible: true });
+      const previousStep = (await this.continueButton.isVisible())
+        ? this.continueButton
+        : this.loginWithEmailButton;
+      try {
+        await advance.click({ timeout: Math.min(1000, remaining()) });
+        await previousStep.waitFor({ state: 'hidden', timeout: remaining() });
+      } catch (error) {
+        // A workspace effect can replace the initial button during actionability.
+        // Retry only that transition; missing/unexpected forms still fail below.
+        if (
+          !(error instanceof errors.TimeoutError) ||
+          !(await this.signInButton.isVisible())
+        ) {
+          throw error;
+        }
+      }
+    }
+
+    throw new Error('Credential form did not reach the sign-in step');
   }
 
   async clickTermsLink() {
