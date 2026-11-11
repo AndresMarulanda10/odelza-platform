@@ -5,8 +5,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export PATH
 export LC_ALL=C
 failure=precondition_or_observation_failed
+condition=runtime_guard
 # Only source-literal reasons reach stdout; SSH deliberately discards stderr.
-fail() { printf '%s\n' "worker_start=$failure"; exit 1; }
+fail() { printf '%s\n' "worker_start=$failure"; [ -z "${condition:-}" ] || printf '%s\n' "preflight=$condition"; exit 1; }
 [ "$#" -eq 0 ] || fail
 for tool in timeout docker python3 sleep; do
     command -v "$tool" >/dev/null 2>&1 || {
@@ -21,7 +22,8 @@ timeout -k 1s 1s python3 -c 'pass' >/dev/null 2>&1 || fail
 tag=twentycrm/twenty:odelza-2c449260b87aef0dc90e4eb8cd6ceca0fa02149f
 common='{{.Id}}|{{.Image}}|{{eq .Name "NAME"}}|{{eq .Config.Image "TAG"}}|{{if eq (len .Config.Entrypoint) 1}}{{eq (index .Config.Entrypoint 0) "/app/entrypoint.sh"}}{{else}}false{{end}}|{{if eq (len .Config.Cmd) 2}}{{and (eq (index .Config.Cmd 0) "COMMAND") (eq (index .Config.Cmd 1) "ARGUMENT")}}{{else}}false{{end}}|'
 flags='{{range .Config.Env}}{{if eq (index (split . "=") 0) "DISABLE_DB_MIGRATIONS"}}{{if eq . "DISABLE_DB_MIGRATIONS=true"}}T{{else}}F{{end}}{{end}}{{end}}|{{range .Config.Env}}{{if eq (index (split . "=") 0) "DISABLE_CRON_JOBS_REGISTRATION"}}{{if eq . "DISABLE_CRON_JOBS_REGISTRATION=true"}}T{{else}}F{{end}}{{end}}{{end}}'
-state='|{{eq .HostConfig.RestartPolicy.Name "always"}}|{{.State.Status}}|{{.State.Paused}}|{{.State.Restarting}}|{{.State.ExitCode}}|{{.RestartCount}}|{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}'
+# Only absent/null Health is optional; malformed present values still fail closed.
+state='|{{eq .HostConfig.RestartPolicy.Name "always"}}|{{.State.Status}}|{{.State.Paused}}|{{.State.Restarting}}|{{.State.ExitCode}}|{{.RestartCount}}|{{if eq (json (index .State "Health")) "null"}}none{{else}}{{.State.Health.Status}}{{end}}'
 
 # All substitutions are fixed source literals, never environment or runtime input.
 app_template=$(printf '%s' "$common" | python3 -c 'import sys; print(sys.stdin.read().replace("NAME", "/odelza-app").replace("TAG", sys.argv[1]).replace("COMMAND", "node").replace("ARGUMENT", "dist/main"), end="")' "$tag")
@@ -71,12 +73,16 @@ EOF
     [ "$paused|$restarting|$exit_code|$restarts" = 'false|false|0|0' ] || fail
 }
 
+condition=app_inspection
 app=$(inspect odelza-app "$app_template") || fail
+condition=app_contract
 parse "$app"
 [ "$status|$health" = 'running|healthy' ] || fail
 app_id=$id
 image_id=$image
+condition=worker_inspection
 worker=$(inspect odelza-jobs "$worker_template") || fail
+condition=worker_contract
 parse "$worker"
 [ "$image" = "$image_id" ] || fail
 worker_id=$id
@@ -90,9 +96,13 @@ esac
 
 # Re-resolve both names immediately before mutation and compare the full proof.
 # Actions concurrency is not a lock against privileged external Docker changes.
+condition=pre_start_app_inspection
 again_app=$(inspect odelza-app "$app_template") || fail
+condition=pre_start_worker_inspection
 again_worker=$(inspect odelza-jobs "$worker_template") || fail
+condition=pre_start_contract
 [ "$again_app" = "$app" ] && [ "$again_worker" = "$worker" ] || fail
+condition=
 outcome=already_running_not_started_by_this_run
 if [ "$initial_status" = created ]; then
     # Sole mutation; full validated ID prevents name replacement retargeting.
