@@ -273,4 +273,6 @@ Independent acceptance PASS: fresh Git-object versus filesystem bytes/modes chec
 
 ## Mirror and handoff
 
+R11 source work-unit `e86d2efeab189d474563ce88e92035a393992ec6`, tree `99292e34ca4cb80ad7008354272fdcf6018c84b6`: normal commit preserved expected staged tree. This passive documentation checkpoint records identity before ONE ordinary same-PR push; head-specific CI/publication receipts remain external to avoid repeated CI-triggering commits.
+
 Fullmirror10812/topic odd/production-image-startup-reproduction/tasks,projectodelza-platform,prefix Locator: odd/tasks/production-image-startup-reproduction.md,capture_promptfalse; exactreadback receipt required. History10812/10917/interruption10994/finding11163/summary11164 and protectedreceipts retain full chronology/argv/times/errors. Compaction removes repeatedoperator narration for tracking headroom,not review-budget trimming. R8/R9 finalacceptance supersedes phase-specificpending;R5/R7/production gaps remain. NORMAL image base8826+two frozen overlays matches laterauthcommit blobs,not a newlybuiltcommitimage. No invented session;parent owns independentreview/publication.
