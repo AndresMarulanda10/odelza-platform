@@ -47,6 +47,18 @@ const extractRadiusPx = (css: string, token: string) => {
 describe('generated Odelza theme files', () => {
   const generatedFiles = buildOdelzaThemeFiles();
 
+  it.each(['odelza-theme-light.css', 'odelza-theme-dark.css'] as const)(
+    'serializes hex colors in %s with the formatter canonical casing',
+    (fileName) => {
+      const colors = generatedFiles[fileName].match(/#[\da-fA-F]+\b/g);
+
+      expect(colors).not.toBeNull();
+      for (const color of colors ?? []) {
+        expect(color).toBe(color.toLowerCase());
+      }
+    },
+  );
+
   it.each(Object.keys(generatedFiles))(
     'keeps %s in sync with the theme constants',
     (fileName) => {

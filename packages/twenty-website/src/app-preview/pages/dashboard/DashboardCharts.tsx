@@ -5,7 +5,7 @@ import { useEffect, useId, useState, type CSSProperties } from 'react';
 
 import { createAnimationFrameLoop } from '@/platform/motion';
 import { EASING, REDUCED_MOTION } from '@/tokens';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { APP_PREVIEW_TONES } from '@/tokens/app-preview/app-preview-tones';
 
 import {
@@ -24,7 +24,7 @@ const ChartFrame = styled.div`
 `;
 
 const AxisLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   font-family: var(--font-product), sans-serif;
   font-size: 10px;
   line-height: 1;
@@ -54,7 +54,7 @@ const Gridlines = styled.div<{ $bottom: number }>`
 `;
 
 const GridLine = styled.span`
-  border-top: 1px dashed ${THEME_LIGHT.border.color.light};
+  border-top: 1px dashed ${ODELZA_THEME_LIGHT.border.color.light};
   display: block;
   width: 100%;
 `;
@@ -197,8 +197,8 @@ const Bar = styled.div<{ $heightPct: number; $index: number }>`
   animation: barGrow 460ms ${EASING.standard} both;
   animation-delay: ${({ $index }) => `${$index * 90}ms`};
   background: ${ACCENT};
-  border-radius: ${THEME_LIGHT.border.radius.sm} ${THEME_LIGHT.border.radius.sm}
-    0 0;
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm}
+    ${ODELZA_THEME_LIGHT.border.radius.sm} 0 0;
   height: ${({ $heightPct }) => `${$heightPct}%`};
   margin: 0 auto;
   max-width: 28px;
@@ -298,15 +298,15 @@ const DonutCenter = styled.div`
 `;
 
 const DonutValue = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 22px;
-  font-weight: ${THEME_LIGHT.font.weight.semiBold};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.semiBold};
   line-height: 1;
 `;
 
 const DonutLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   font-family: var(--font-product), sans-serif;
   font-size: 11px;
   line-height: 1.4;
@@ -329,14 +329,14 @@ const LegendRow = styled.div`
 
 const LegendDot = styled.span<{ $color: string }>`
   background: ${({ $color }) => $color};
-  border-radius: ${THEME_LIGHT.border.radius.xs};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.xs};
   flex-shrink: 0;
   height: 8px;
   width: 8px;
 `;
 
 const LegendLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   font-family: var(--font-product), sans-serif;
   font-size: 12px;
   overflow: hidden;

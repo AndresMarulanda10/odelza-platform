@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { sharedAssetUrls } from '@/app-preview/data/shared-asset-urls';
 import { Chip } from '@/app-preview/primitives/Chip';
 import { useHorizontalDragScroll } from '@/platform/motion';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { APP_PREVIEW_CHROME } from '@/app-preview/app-preview-chrome';
 import { LIVE_DATA_SCENE } from '@/tokens/feature-scenes/live-data-scene';
@@ -21,7 +21,7 @@ import { LIVE_DATA_SCENE } from '@/tokens/feature-scenes/live-data-scene';
 // The mini companies table renders the app-preview vocabulary (the same
 // Chip and generated theme the mockup uses); the live-data tints are the
 // scene's own.
-const theme = THEME_LIGHT;
+const theme = ODELZA_THEME_LIGHT;
 const SCENE = LIVE_DATA_SCENE;
 const APP_FONT = 'var(--font-product), sans-serif';
 const TABLE_CELL_HORIZONTAL_PADDING = 8;

@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 
 import { REDUCED_MOTION } from '@/tokens';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { WORKFLOW_THEME } from './workflow-theme';
 import { type WorkflowBranchLabelDef } from '../../types';
@@ -14,12 +14,12 @@ const BranchLabelPill = styled.div<{ $centered?: boolean }>`
   animation-delay: 700ms;
   background: ${colors.nodeSurface};
   border: 1px solid ${colors.nodeBorder};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   color: ${colors.textLight};
   display: inline-flex;
   font-family: var(--font-product), sans-serif;
   font-size: 11px;
-  font-weight: ${THEME_LIGHT.font.weight.semiBold};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.semiBold};
   height: 20px;
   justify-content: center;
   min-width: 20px;

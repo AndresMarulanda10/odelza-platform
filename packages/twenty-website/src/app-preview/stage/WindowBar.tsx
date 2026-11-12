@@ -2,7 +2,7 @@ import { styled } from '@linaria/react';
 import type React from 'react';
 
 import { APP_PREVIEW_STAGE } from '@/tokens/app-preview/app-preview-stage';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { TrafficLights } from './TrafficLights';
 
@@ -27,7 +27,7 @@ const Title = styled.span`
   color: ${stage.titleColor};
   font-family: var(--font-product), sans-serif;
   font-size: 12px;
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   justify-self: center;
   letter-spacing: 0.1px;
   text-align: center;

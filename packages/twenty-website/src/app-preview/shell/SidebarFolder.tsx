@@ -3,7 +3,7 @@
 import { styled } from '@linaria/react';
 import { IconChevronDown } from '@tabler/icons-react';
 
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { APP_PREVIEW_CHROME } from '@/app-preview/app-preview-chrome';
 
@@ -16,9 +16,11 @@ const FolderButton = styled.button<{ $expanded?: boolean }>`
   align-items: center;
   appearance: none;
   background: ${({ $expanded }) =>
-    $expanded ? THEME_LIGHT.background.transparent.light : 'transparent'};
+    $expanded
+      ? ODELZA_THEME_LIGHT.background.transparent.light
+      : 'transparent'};
   border: 0;
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   cursor: pointer;
   display: flex;
   height: ${APP_PREVIEW_CHROME.navigationItemHeightPx}px;
@@ -30,7 +32,7 @@ const FolderButton = styled.button<{ $expanded?: boolean }>`
   width: 100%;
 
   &:hover {
-    background: ${THEME_LIGHT.background.transparent.light};
+    background: ${ODELZA_THEME_LIGHT.background.transparent.light};
   }
 `;
 
@@ -43,10 +45,10 @@ const FolderRowMain = styled.div`
 `;
 
 const FolderText = styled.span`
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   line-height: 1.4;
   min-width: 0;
   overflow: hidden;
@@ -55,7 +57,7 @@ const FolderText = styled.span`
 `;
 
 const FolderChevron = styled.div<{ $expanded?: boolean }>`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: flex;
   flex: 0 0 auto;
   margin-left: auto;
@@ -71,7 +73,7 @@ const ChildStack = styled.div`
 `;
 
 const BranchLine = styled.div`
-  background: ${THEME_LIGHT.border.color.strong};
+  background: ${ODELZA_THEME_LIGHT.border.color.strong};
   bottom: 14px;
   left: 11px;
   position: absolute;
@@ -110,7 +112,7 @@ export function SidebarFolder({
         </FolderRowMain>
         <FolderChevron $expanded={expanded}>
           <MiniIcon
-            color={THEME_LIGHT.font.color.tertiary}
+            color={ODELZA_THEME_LIGHT.font.color.tertiary}
             icon={IconChevronDown}
             size={12}
           />

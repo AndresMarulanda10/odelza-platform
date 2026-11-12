@@ -250,6 +250,8 @@ Independent audit confirms62mechanical consumers/739renamed identifiers/8semanti
 
 Work units: SDK fixture plus its regression is independently reversible at its single test path; the theme unit couples generator/regressions, four generated CSS copies, three formatting-only SCSS files and all owned website consumers/tone coverage. Runtime harness N/A for these source/test compatibility corrections: native package commands exercise the affected boundaries; no production execution claim. Preserve original auth/Home/UI3 and public ABI25. The existing ONE PR67 size exception covers this necessary correction of three base-resident CI faults, not new features. Remote CI for the next published head remains unobserved; local PASS does not mark R10 complete.
 
+SDK work-unit commit: `d843b4de2cf78c01b89c1f7584d12ceb817ac093`, tree `77ee045b767c593c1b24ff216b3c5851dced4816`. Expected staged tree matched after normal commit hooks; all84technical hashes/modes remained frozen, including unstaged theme changes. Theme work-unit identity follows in a passive verification checkpoint before the single push.
+
 Original failed jobs (head28903, attempt1): [UI lint](https://github.com/AndresMarulanda10/odelza-platform/actions/runs/43104200878/job/130803300275), [SDK typecheck](https://github.com/AndresMarulanda10/odelza-platform/actions/runs/43104200947/job/130803366040), [website tests](https://github.com/AndresMarulanda10/odelza-platform/actions/runs/43104200807/job/130803314424). Observe only native new-head checks after the single ordinary source push; no rerun/cancel/dispatch/bypass. Finance, workflow execution, populated upgrades and the original startup cause remain unvalidated.
 
 ## Mirror and handoff

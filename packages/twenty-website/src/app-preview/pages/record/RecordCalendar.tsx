@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { IconArrowRight, IconPlus } from '@tabler/icons-react';
 
 import { EASING } from '@/tokens';
@@ -17,7 +17,7 @@ const CalendarDayRow = styled.div<{ $index: number }>`
   padding: 8px 12px;
 
   & + & {
-    border-top: 1px solid ${THEME_LIGHT.border.color.light};
+    border-top: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   }
 
   @keyframes calendarDayAppear {
@@ -39,7 +39,7 @@ const DayBadge = styled.div`
 `;
 
 const WeekDay = styled.div`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   font-family: var(--font-product), sans-serif;
   font-size: 10px;
   font-weight: 600;
@@ -48,7 +48,7 @@ const WeekDay = styled.div`
 `;
 
 const MonthDay = styled.div`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -71,8 +71,10 @@ const CalEventRow = styled.div`
 
 const AttendanceBar = styled.span<{ $active?: boolean }>`
   background: ${({ $active }) =>
-    $active ? THEME_LIGHT.accent.accent9 : THEME_LIGHT.border.color.strong};
-  border-radius: ${THEME_LIGHT.border.radius.xs};
+    $active
+      ? ODELZA_THEME_LIGHT.accent.accent9
+      : ODELZA_THEME_LIGHT.border.color.strong};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.xs};
   flex-shrink: 0;
   height: 24px;
   width: 4px;
@@ -88,7 +90,7 @@ const CalLabels = styled.div`
 
 const CalTime = styled.div`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: flex;
   flex-shrink: 0;
   font-family: var(--font-product), sans-serif;
@@ -97,7 +99,7 @@ const CalTime = styled.div`
 `;
 
 const CalTitle = styled.div`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   font-weight: 500;
@@ -151,7 +153,7 @@ export function RecordCalendar({
                       {event.start}
                       <IconArrowRight
                         size={14}
-                        stroke={THEME_LIGHT.icon.stroke.sm}
+                        stroke={ODELZA_THEME_LIGHT.icon.stroke.sm}
                       />
                       {event.end}
                     </CalTime>

@@ -6,7 +6,7 @@ import {
 } from '@tabler/icons-react';
 
 import { mediaUp } from '@/tokens';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
 const Root = styled.div`
@@ -28,11 +28,11 @@ const SegmentedRail = styled.div`
     /* The old hand-mixed #fcfcfccc: the secondary surface at 80%. */
     background-color: color-mix(
       in srgb,
-      ${THEME_LIGHT.background.secondary} 80%,
+      ${ODELZA_THEME_LIGHT.background.secondary} 80%,
       transparent
     );
-    border: 1px solid ${THEME_LIGHT.border.color.medium};
-    border-radius: ${THEME_LIGHT.border.radius.pill};
+    border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+    border-radius: ${ODELZA_THEME_LIGHT.border.radius.pill};
     column-gap: 2px;
     height: 26px;
     padding: 3px;
@@ -42,8 +42,10 @@ const SegmentedRail = styled.div`
 const Segment = styled.div<{ $selected?: boolean }>`
   align-items: center;
   background: ${({ $selected }) =>
-    $selected ? THEME_LIGHT.background.transparent.light : 'transparent'};
-  border-radius: ${THEME_LIGHT.border.radius.pill};
+    $selected
+      ? ODELZA_THEME_LIGHT.background.transparent.light
+      : 'transparent'};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.pill};
   display: flex;
   height: 20px;
   justify-content: center;
@@ -52,10 +54,10 @@ const Segment = styled.div<{ $selected?: boolean }>`
 
 const NewChat = styled.div`
   align-items: center;
-  background-color: ${THEME_LIGHT.background.secondary};
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.pill};
-  color: ${THEME_LIGHT.font.color.secondary};
+  background-color: ${ODELZA_THEME_LIGHT.background.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.pill};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: flex;
   height: 32px;
   justify-content: center;
@@ -75,8 +77,8 @@ const NewChatLabel = styled.span`
   ${mediaUp('md')} {
     display: block;
     font-family: var(--font-product), sans-serif;
-    font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-    font-weight: ${THEME_LIGHT.font.weight.medium};
+    font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+    font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
     line-height: 1.4;
   }
 `;
@@ -90,26 +92,26 @@ export function SidebarControls() {
         <Segment $selected>
           <IconHome
             aria-hidden
-            color={THEME_LIGHT.font.color.primary}
+            color={ODELZA_THEME_LIGHT.font.color.primary}
             size={16}
-            strokeWidth={THEME_LIGHT.icon.stroke.md}
+            strokeWidth={ODELZA_THEME_LIGHT.icon.stroke.md}
           />
         </Segment>
         <Segment>
           <IconMessageCircle2
             aria-hidden
-            color={THEME_LIGHT.font.color.tertiary}
+            color={ODELZA_THEME_LIGHT.font.color.tertiary}
             size={16}
-            strokeWidth={THEME_LIGHT.icon.stroke.md}
+            strokeWidth={ODELZA_THEME_LIGHT.icon.stroke.md}
           />
         </Segment>
       </SegmentedRail>
       <NewChat aria-hidden>
         <IconMessageCirclePlus
           aria-hidden
-          color={THEME_LIGHT.font.color.secondary}
+          color={ODELZA_THEME_LIGHT.font.color.secondary}
           size={16}
-          strokeWidth={THEME_LIGHT.icon.stroke.md}
+          strokeWidth={ODELZA_THEME_LIGHT.icon.stroke.md}
         />
         <NewChatLabel>New chat</NewChatLabel>
       </NewChat>

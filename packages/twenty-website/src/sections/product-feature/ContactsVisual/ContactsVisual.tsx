@@ -5,7 +5,7 @@ import { useLingui } from '@lingui/react';
 import { styled } from '@linaria/react';
 import { IconCheck, IconPlus } from '@tabler/icons-react';
 import { useState } from 'react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { useHorizontalDragScroll } from '@/platform/motion';
@@ -17,7 +17,7 @@ import { COMPANIES } from './data/companies';
 import { HEADER_ICONS } from './data/header-icons';
 
 const Root = styled.div`
-  background-color: ${THEME_LIGHT.background.primary};
+  background-color: ${ODELZA_THEME_LIGHT.background.primary};
   display: flex;
   flex-direction: column;
   font-family: var(--font-product), sans-serif;
@@ -28,7 +28,7 @@ const Root = styled.div`
 
 const ViewHeader = styled.div`
   align-items: center;
-  border-bottom: 1px solid ${THEME_LIGHT.border.color.light};
+  border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   display: flex;
   gap: 4px;
   height: 34px;
@@ -36,14 +36,14 @@ const ViewHeader = styled.div`
 `;
 
 const ViewTitle = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
 `;
 
 const ViewCount = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
 `;
 
 const TableShell = styled.div`
@@ -54,7 +54,7 @@ const TableShell = styled.div`
 `;
 
 const GripRail = styled.div`
-  background-color: ${THEME_LIGHT.background.primary};
+  background-color: ${ODELZA_THEME_LIGHT.background.primary};
   display: grid;
   flex: 0 0 12px;
   grid-auto-rows: 32px;
@@ -62,7 +62,7 @@ const GripRail = styled.div`
 `;
 
 const GripCell = styled.div`
-  border-bottom: 1px solid ${THEME_LIGHT.border.color.light};
+  border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
 `;
 
 const TableViewport = styled.div`
@@ -110,9 +110,9 @@ const HeaderRow = styled.div`
 
 const Cell = styled.div<{ $width: number }>`
   align-items: center;
-  background-color: ${THEME_LIGHT.background.primary};
-  border-bottom: 1px solid ${THEME_LIGHT.border.color.light};
-  border-right: 1px solid ${THEME_LIGHT.border.color.light};
+  background-color: ${ODELZA_THEME_LIGHT.background.primary};
+  border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
+  border-right: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   box-sizing: border-box;
   display: flex;
   flex: 0 0 ${({ $width }) => `${$width}px`};
@@ -128,7 +128,7 @@ const DataRow = styled.div<{ $index: number }>`
   display: flex;
 
   &:hover > div {
-    background-color: ${THEME_LIGHT.background.transparent.light};
+    background-color: ${ODELZA_THEME_LIGHT.background.transparent.light};
   }
 
   @keyframes rowIn {
@@ -153,9 +153,9 @@ const HeaderContent = styled.div`
 `;
 
 const HeaderLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -163,7 +163,7 @@ const HeaderLabel = styled.span`
 
 const HeaderIcon = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: inline-flex;
   flex-shrink: 0;
   height: 16px;
@@ -171,7 +171,7 @@ const HeaderIcon = styled.span`
 `;
 
 const EdgePlus = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: inline-flex;
   margin-left: auto;
 `;
@@ -188,7 +188,7 @@ const CheckboxWrap = styled.div`
 
 const CheckboxBox = styled.div`
   align-items: center;
-  border: 1px solid ${THEME_LIGHT.border.color.strong};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.strong};
   border-radius: 3px;
   display: flex;
   height: 14px;
@@ -200,11 +200,11 @@ const CheckboxBox = styled.div`
 
   &:hover,
   &[data-checked] {
-    border-color: ${THEME_LIGHT.border.color.blue};
+    border-color: ${ODELZA_THEME_LIGHT.border.color.accent};
   }
 
   &[data-checked] {
-    background-color: ${THEME_LIGHT.background.transparent.blue};
+    background-color: ${ODELZA_THEME_LIGHT.background.transparent.accent};
   }
 `;
 
@@ -315,7 +315,7 @@ export function ContactsVisual({ active: _active }: { active: boolean }) {
                             >
                               {isChecked ? (
                                 <IconCheck
-                                  color={THEME_LIGHT.border.color.blue}
+                                  color={ODELZA_THEME_LIGHT.border.color.accent}
                                   size={9}
                                   stroke={2}
                                 />

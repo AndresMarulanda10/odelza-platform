@@ -4,16 +4,16 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { styled } from '@linaria/react';
 import { IconChevronDown } from '@tabler/icons-react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
 import { type ColumnMapping } from '../types/column-mapping';
 
 const Row = styled.div`
-  border-bottom: 1px solid ${THEME_LIGHT.border.color.medium};
+  border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
   display: flex;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
   min-height: 64px;
 
   &:last-child {
@@ -32,17 +32,17 @@ const ImportedCell = styled.div`
 `;
 
 const ColumnHeader = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const ColumnExample = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.sm)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.sm)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -58,11 +58,11 @@ const FieldCell = styled.div`
 
 const FieldSelect = styled.span`
   align-items: center;
-  background-color: ${THEME_LIGHT.background.transparent.lighter};
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  background-color: ${ODELZA_THEME_LIGHT.background.transparent.lighter};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   box-sizing: border-box;
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: flex;
   gap: 6px;
   min-width: 0;
@@ -71,7 +71,7 @@ const FieldSelect = styled.span`
 `;
 
 const FieldName = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   flex: 1;
   min-width: 0;
   overflow: hidden;

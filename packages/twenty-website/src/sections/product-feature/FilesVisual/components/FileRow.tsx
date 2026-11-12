@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { IconCalendar, IconDotsVertical } from '@tabler/icons-react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
@@ -9,10 +9,10 @@ import { type FileEntry } from '../types/file-entry';
 
 const Row = styled.div`
   align-items: center;
-  background-color: ${THEME_LIGHT.background.secondary};
+  background-color: ${ODELZA_THEME_LIGHT.background.secondary};
   box-sizing: border-box;
   display: flex;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
   gap: 8px;
   height: 48px;
   padding: 0 16px;
@@ -33,29 +33,29 @@ const Left = styled.div`
 
 const FileIconBox = styled.span`
   align-items: center;
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.font.color.inverted};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.font.color.inverted};
   display: flex;
   flex-shrink: 0;
   justify-content: center;
   padding: 5px;
 
   &[data-category='document'] {
-    background: ${THEME_LIGHT.color.blue};
+    background: ${ODELZA_THEME_LIGHT.color.blue};
   }
   &[data-category='image'] {
-    background: ${THEME_LIGHT.color.amber};
+    background: ${ODELZA_THEME_LIGHT.color.amber};
   }
   &[data-category='presentation'] {
-    background: ${THEME_LIGHT.color.orange};
+    background: ${ODELZA_THEME_LIGHT.color.orange};
   }
   &[data-category='spreadsheet'] {
-    background: ${THEME_LIGHT.color.turquoise};
+    background: ${ODELZA_THEME_LIGHT.color.turquoise};
   }
 `;
 
 const FileName = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -64,14 +64,14 @@ const FileName = styled.span`
 
 const Right = styled.div`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   display: inline-flex;
   flex-shrink: 0;
   gap: 2px;
 `;
 
 const DateText = styled.span`
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   white-space: nowrap;
 `;
 

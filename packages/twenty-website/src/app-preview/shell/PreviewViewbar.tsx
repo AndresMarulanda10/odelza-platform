@@ -6,7 +6,7 @@ import {
 } from '@tabler/icons-react';
 
 import { mediaUp } from '@/tokens';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
 import { MiniIcon } from '../primitives/MiniIcon';
@@ -14,8 +14,8 @@ import { type PageType } from '../types';
 
 const ViewbarBar = styled.div`
   align-items: center;
-  background: ${THEME_LIGHT.background.primary};
-  border-bottom: 1px solid ${THEME_LIGHT.border.color.light};
+  background: ${ODELZA_THEME_LIGHT.background.primary};
+  border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   display: flex;
   justify-content: space-between;
   min-width: 0;
@@ -39,26 +39,26 @@ const ViewSwitcher = styled.div<{ $tableAligned?: boolean }>`
 `;
 
 const ViewName = styled.span`
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   line-height: 1.4;
   white-space: nowrap;
 `;
 
 const ViewCount = styled.span`
-  color: ${THEME_LIGHT.font.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   line-height: 1.4;
   white-space: nowrap;
 `;
 
 const TinyDot = styled.div`
-  background: ${THEME_LIGHT.border.color.strong};
-  border-radius: ${THEME_LIGHT.border.radius.pill};
+  background: ${ODELZA_THEME_LIGHT.border.color.strong};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.pill};
   height: 2px;
   width: 2px;
 `;
@@ -79,12 +79,12 @@ const ViewActions = styled.div`
 
 const ViewAction = styled.span`
   align-items: center;
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.font.color.secondary};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: flex;
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.regular};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.regular};
   height: 24px;
   line-height: 1.4;
   padding: 4px 8px;
@@ -116,7 +116,7 @@ export function PreviewViewbar({
           <>
             <MiniIcon
               icon={pageType === 'kanban' ? IconLayoutKanban : IconList}
-              color={THEME_LIGHT.font.color.secondary}
+              color={ODELZA_THEME_LIGHT.font.color.secondary}
               size={16}
             />
             <ViewName>{title}</ViewName>
@@ -126,7 +126,7 @@ export function PreviewViewbar({
                 <ViewCount>{count}</ViewCount>
                 <MiniIcon
                   icon={IconChevronDown}
-                  color={THEME_LIGHT.font.color.light}
+                  color={ODELZA_THEME_LIGHT.font.color.light}
                 />
               </>
             ) : null}

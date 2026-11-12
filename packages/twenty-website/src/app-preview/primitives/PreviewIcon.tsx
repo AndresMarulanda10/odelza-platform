@@ -21,7 +21,7 @@ import {
 import { type ReactNode } from 'react';
 
 import { APP_PREVIEW_MOTION } from '@/tokens/app-preview/app-preview-motion';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { TwentyLogo } from '@/icons';
 
@@ -63,7 +63,7 @@ const SidebarIconSurface = styled.div<{
       : 'none'};
   background: ${({ $background }) => $background};
   border: 1px solid ${({ $border }) => $border};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   color: ${({ $color }) => $color};
   display: flex;
   flex: 0 0 auto;
@@ -104,7 +104,7 @@ const SidebarAvatar = styled.div<{
   flex: 0 0 auto;
   font-family: var(--font-product), sans-serif;
   font-size: 10px;
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   height: 16px;
   justify-content: center;
   line-height: 1;
@@ -113,8 +113,8 @@ const SidebarAvatar = styled.div<{
 
 const LinkOverlayFrame = styled.div`
   align-items: center;
-  background: ${THEME_LIGHT.border.color.light};
-  border-radius: ${THEME_LIGHT.border.radius.xs};
+  background: ${ODELZA_THEME_LIGHT.border.color.light};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.xs};
   bottom: -1px;
   display: flex;
   height: 7px;
@@ -129,9 +129,9 @@ function LinkOverlay() {
     <LinkOverlayFrame>
       <IconLink
         aria-hidden
-        color={THEME_LIGHT.font.color.secondary}
+        color={ODELZA_THEME_LIGHT.font.color.secondary}
         size={7}
-        stroke={THEME_LIGHT.icon.stroke.sm}
+        stroke={ODELZA_THEME_LIGHT.icon.stroke.sm}
       />
     </LinkOverlayFrame>
   );
@@ -146,7 +146,7 @@ export function renderPreviewIcon(
       <SidebarIconSurface
         $background="transparent"
         $border="transparent"
-        $color={THEME_LIGHT.font.color.secondary}
+        $color={ODELZA_THEME_LIGHT.font.color.secondary}
         $pulse={pulse}
       >
         {icon.brand === 'twenty' ? (
@@ -192,7 +192,7 @@ export function renderPreviewIcon(
           aria-hidden
           color={tone.color}
           size={14}
-          stroke={THEME_LIGHT.icon.stroke.md}
+          stroke={ODELZA_THEME_LIGHT.icon.stroke.md}
         />
       ) : null}
       {icon.overlay === 'link' ? <LinkOverlay /> : null}

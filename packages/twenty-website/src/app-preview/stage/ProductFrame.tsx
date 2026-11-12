@@ -3,7 +3,7 @@ import { type ReactNode } from 'react';
 
 import { mediaUp } from '@/tokens';
 import { APP_PREVIEW_STAGE } from '@/tokens/app-preview/app-preview-stage';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { WindowBar } from './WindowBar';
 
@@ -21,9 +21,9 @@ const FrameRoot = styled.div`
 // reflow the board full-bleed; the default centers under the scene cap.
 // floatingShadow is the product hero's downward-biased presentation.
 const Shell = styled.div<{ $compact: boolean; $floatingShadow: boolean }>`
-  background-color: ${THEME_LIGHT.background.primary};
+  background-color: ${ODELZA_THEME_LIGHT.background.primary};
   background-image: url('${APP_PREVIEW_STAGE.frame.noiseImageUrl}');
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
   border-radius: ${APP_PREVIEW_STAGE.frame.borderRadiusPx}px;
   box-shadow: ${({ $floatingShadow }) =>
     $floatingShadow

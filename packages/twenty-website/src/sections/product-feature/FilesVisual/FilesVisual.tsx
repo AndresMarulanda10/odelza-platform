@@ -2,7 +2,7 @@
 
 import { styled } from '@linaria/react';
 import { IconPlus } from '@tabler/icons-react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
@@ -11,7 +11,7 @@ import { FileRow } from './components/FileRow';
 import { FILES } from './data/files';
 
 const Root = styled.div`
-  background-color: ${THEME_LIGHT.background.primary};
+  background-color: ${ODELZA_THEME_LIGHT.background.primary};
   display: flex;
   flex-direction: column;
   font-family: var(--font-product), sans-serif;
@@ -39,37 +39,37 @@ const TitleBar = styled.div`
 
 const Title = styled.span`
   align-items: baseline;
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   display: flex;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.lg)};
-  font-weight: ${THEME_LIGHT.font.weight.semiBold};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.lg)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.semiBold};
 `;
 
 const Count = styled.span`
-  color: ${THEME_LIGHT.font.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   margin-left: 8px;
 `;
 
 const AddButton = styled.span`
   align-items: center;
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.font.color.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: inline-flex;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.sm)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.sm)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   gap: 4px;
   padding: 4px 8px;
 `;
 
 const FileCard = styled.div`
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   margin: 0 16px;
   overflow: hidden;
 
   & > * + * {
-    border-top: 1px solid ${THEME_LIGHT.border.color.light};
+    border-top: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   }
 `;
 

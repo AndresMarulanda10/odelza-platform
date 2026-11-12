@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { IconCalendar, IconCheck, IconPlus } from '@tabler/icons-react';
 
 import { FaviconLogo } from '../../primitives/FaviconLogo';
@@ -17,12 +17,14 @@ const TaskLeft = styled.div`
 const TaskCheckbox = styled.span<{ $done?: boolean }>`
   align-items: center;
   background: ${({ $done }) =>
-    $done ? THEME_LIGHT.accent.accent9 : 'transparent'};
+    $done ? ODELZA_THEME_LIGHT.accent.accent9 : 'transparent'};
   border: 1px solid
     ${({ $done }) =>
-      $done ? THEME_LIGHT.accent.accent9 : THEME_LIGHT.font.color.primary};
+      $done
+        ? ODELZA_THEME_LIGHT.accent.accent9
+        : ODELZA_THEME_LIGHT.font.color.primary};
   border-radius: 50%;
-  color: ${THEME_LIGHT.font.color.inverted};
+  color: ${ODELZA_THEME_LIGHT.font.color.inverted};
   display: flex;
   flex-shrink: 0;
   height: 16px;
@@ -31,7 +33,7 @@ const TaskCheckbox = styled.span<{ $done?: boolean }>`
 `;
 
 const TaskTitle = styled.span<{ $done?: boolean }>`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   font-weight: 500;
@@ -43,7 +45,7 @@ const TaskTitle = styled.span<{ $done?: boolean }>`
 `;
 
 const TaskBody = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   overflow: hidden;
@@ -61,7 +63,7 @@ const TaskRight = styled.div`
 
 const DueDate = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: flex;
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
@@ -71,10 +73,10 @@ const DueDate = styled.span`
 
 const TargetChip = styled.span`
   align-items: center;
-  background: ${THEME_LIGHT.background.secondary};
-  border: 1px solid ${THEME_LIGHT.border.color.light};
+  background: ${ODELZA_THEME_LIGHT.background.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   border-radius: 50px;
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   display: inline-flex;
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
@@ -126,7 +128,10 @@ export function RecordTasks({ tasks }: { tasks: RecordTask[] }) {
             </TaskLeft>
             <TaskRight>
               <DueDate>
-                <IconCalendar size={16} stroke={THEME_LIGHT.icon.stroke.sm} />
+                <IconCalendar
+                  size={16}
+                  stroke={ODELZA_THEME_LIGHT.icon.stroke.sm}
+                />
                 {task.due}
               </DueDate>
               <TargetChip>

@@ -2,7 +2,7 @@ import { styled } from '@linaria/react';
 import { IconCheck, IconCopy, IconPencil, IconX } from '@tabler/icons-react';
 import { type ReactNode } from 'react';
 
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
 import { TableCheckbox } from './TableCheckbox';
@@ -51,10 +51,10 @@ const CellHoverAnchor = styled.div`
 `;
 
 const InlineText = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.regular};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.regular};
   line-height: 1.4;
   min-width: 0;
   overflow: hidden;
@@ -75,12 +75,12 @@ const BooleanRow = styled.div`
 
 const HoverActions = styled.div<{ $visible: boolean }>`
   align-items: center;
-  background: ${THEME_LIGHT.background.transparent.primary};
-  border: 1px solid ${THEME_LIGHT.background.transparent.light};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  background: ${ODELZA_THEME_LIGHT.background.transparent.primary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.background.transparent.light};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   bottom: 4px;
   box-sizing: border-box;
-  box-shadow: ${THEME_LIGHT.boxShadow.light};
+  box-shadow: ${ODELZA_THEME_LIGHT.boxShadow.light};
   display: flex;
   gap: 0;
   justify-content: center;
@@ -99,8 +99,8 @@ const HoverActions = styled.div<{ $visible: boolean }>`
 
 const MiniAction = styled.div`
   align-items: center;
-  border-radius: ${THEME_LIGHT.border.radius.xs};
-  color: ${THEME_LIGHT.font.color.secondary};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.xs};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: flex;
   height: 16px;
   justify-content: center;
@@ -126,7 +126,7 @@ function HoverAction({
   return (
     <HoverActions $visible={visible}>
       <MiniAction aria-hidden>
-        <MiniIcon icon={icon} color={THEME_LIGHT.font.color.secondary} />
+        <MiniIcon icon={icon} color={ODELZA_THEME_LIGHT.font.color.secondary} />
       </MiniAction>
     </HoverActions>
   );
@@ -297,13 +297,13 @@ export function renderTableCellValue({
           {cell.value ? (
             <MiniIcon
               icon={IconCheck}
-              color={THEME_LIGHT.font.color.primary}
+              color={ODELZA_THEME_LIGHT.font.color.primary}
               size={11}
             />
           ) : (
             <MiniIcon
               icon={IconX}
-              color={THEME_LIGHT.font.color.primary}
+              color={ODELZA_THEME_LIGHT.font.color.primary}
               size={11}
             />
           )}

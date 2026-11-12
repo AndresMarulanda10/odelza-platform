@@ -6,7 +6,7 @@ import { EASING } from '@/tokens';
 import { IconChevronDown, IconPlus } from '@tabler/icons-react';
 import { useState } from 'react';
 
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { APP_PREVIEW_CHROME } from '@/app-preview/app-preview-chrome';
 
@@ -109,14 +109,14 @@ const TableCell = styled.div<{
   align-items: center;
   background: ${({ $header, $hovered }) => {
     if ($header) {
-      return THEME_LIGHT.background.primary;
+      return ODELZA_THEME_LIGHT.background.primary;
     }
     return $hovered
-      ? THEME_LIGHT.background.secondary
-      : THEME_LIGHT.background.primary;
+      ? ODELZA_THEME_LIGHT.background.secondary
+      : ODELZA_THEME_LIGHT.background.primary;
   }};
-  border-bottom: 1px solid ${THEME_LIGHT.border.color.light};
-  border-right: 1px solid ${THEME_LIGHT.border.color.light};
+  border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
+  border-right: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   box-sizing: border-box;
   display: flex;
   flex: 0 0 ${({ $width }) => `${$width}px`};
@@ -152,13 +152,13 @@ const EmptyFillCell = styled.div<{
 }>`
   background: ${({ $header, $hovered, $footer }) => {
     if ($header || $footer) {
-      return THEME_LIGHT.background.primary;
+      return ODELZA_THEME_LIGHT.background.primary;
     }
     return $hovered
-      ? THEME_LIGHT.background.secondary
-      : THEME_LIGHT.background.primary;
+      ? ODELZA_THEME_LIGHT.background.secondary
+      : ODELZA_THEME_LIGHT.background.primary;
   }};
-  border-bottom: 1px solid ${THEME_LIGHT.border.color.light};
+  border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   flex: 0 0 ${({ $width }) => `${$width}px`};
   min-width: ${({ $width }) => `${$width}px`};
 `;
@@ -173,10 +173,10 @@ const HeaderCellContent = styled.div`
 `;
 
 const HeaderLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   line-height: 1.4;
   min-width: 0;
   overflow: hidden;
@@ -185,10 +185,10 @@ const HeaderLabel = styled.span`
 `;
 
 const MutedText = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.regular};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.regular};
   line-height: 1.4;
   white-space: nowrap;
 `;
@@ -269,7 +269,7 @@ export function TablePage({ page }: { page: TablePageDefinition }) {
                       <EdgePlus aria-hidden>
                         <MiniIcon
                           icon={IconPlus}
-                          color={THEME_LIGHT.font.color.tertiary}
+                          color={ODELZA_THEME_LIGHT.font.color.tertiary}
                           size={12}
                         />
                       </EdgePlus>
@@ -288,7 +288,7 @@ export function TablePage({ page }: { page: TablePageDefinition }) {
                 <HeaderFillContent>
                   <MiniIcon
                     icon={IconPlus}
-                    color={THEME_LIGHT.font.color.tertiary}
+                    color={ODELZA_THEME_LIGHT.font.color.tertiary}
                     size={16}
                   />
                 </HeaderFillContent>
@@ -367,7 +367,7 @@ export function TablePage({ page }: { page: TablePageDefinition }) {
                   <MutedText>Calculate</MutedText>
                   <MiniIcon
                     icon={IconChevronDown}
-                    color={THEME_LIGHT.font.color.tertiary}
+                    color={ODELZA_THEME_LIGHT.font.color.tertiary}
                   />
                 </FooterFirstContent>
               </TableCell>

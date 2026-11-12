@@ -1,7 +1,7 @@
 'use client';
 
 import { styled } from '@linaria/react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import {
   IconChecklist,
   IconChevronRight,
@@ -65,8 +65,8 @@ const SummaryButton = styled.button`
   animation: aiSummaryAppear 240ms ${EASING.standard} both;
   background: none;
   border: none;
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.font.color.tertiary};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   cursor: pointer;
   display: flex;
   font-family: var(--font-product), sans-serif;
@@ -89,7 +89,7 @@ const SummaryButton = styled.button`
 
 const SummaryChevron = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   display: flex;
   justify-content: center;
   transition: transform 150ms ease-in-out;
@@ -104,7 +104,7 @@ const SummaryText = styled.span`
 
 const StepIcon = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   display: flex;
   flex-shrink: 0;
   justify-content: center;
@@ -113,7 +113,7 @@ const StepIcon = styled.span`
 
 const StepLoaderIcon = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: flex;
   flex-shrink: 0;
   justify-content: center;
@@ -121,7 +121,7 @@ const StepLoaderIcon = styled.span`
 `;
 
 const StepLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   font-family: var(--font-product), sans-serif;
   font-size: 12px;
   font-weight: 400;

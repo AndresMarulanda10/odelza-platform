@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import {
   IconBrandLinkedin,
   IconBrandX,
@@ -24,7 +24,7 @@ const FieldValueSlot = styled.div`
 `;
 
 const FieldValue = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   line-height: 1.4;
@@ -36,7 +36,7 @@ const FieldValue = styled.span`
 
 const FieldValuePerson = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   display: flex;
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
@@ -53,7 +53,7 @@ const FieldValuePersonName = styled.span`
 `;
 
 function FieldIconGlyph({ iconName }: { iconName: string }) {
-  const stroke = THEME_LIGHT.icon.stroke.sm;
+  const stroke = ODELZA_THEME_LIGHT.icon.stroke.sm;
   switch (iconName) {
     case 'link':
       return <IconLink aria-hidden size={16} stroke={stroke} />;

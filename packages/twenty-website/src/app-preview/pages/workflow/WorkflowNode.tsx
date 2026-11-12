@@ -12,7 +12,7 @@ import {
 } from '@tabler/icons-react';
 
 import { EASING, REDUCED_MOTION } from '@/tokens';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
 import { WORKFLOW_THEME } from './workflow-theme';
@@ -45,7 +45,7 @@ const Node = styled.div<{ $index: number }>`
   animation-delay: ${({ $index }) => `${150 + $index * 120}ms`};
   background: ${colors.nodeSurface};
   border: 1px solid ${colors.nodeBorder};
-  border-radius: ${THEME_LIGHT.border.radius.md};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.md};
   box-sizing: border-box;
   display: flex;
   gap: 8px;
@@ -73,7 +73,7 @@ const NodeIconContainer = styled.div`
   animation: workflowNodeContentAppear 320ms ease both;
   animation-delay: 80ms;
   background: ${colors.nodeIconSurface};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   display: flex;
   flex: 0 0 auto;
   height: 32px;
@@ -116,15 +116,15 @@ const NodeLabel = styled.div`
   color: ${colors.textLight};
   font-family: var(--font-product), sans-serif;
   font-size: 11px;
-  font-weight: ${THEME_LIGHT.font.weight.semiBold};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.semiBold};
   line-height: 1;
 `;
 
 const NodeTitle = styled.div`
   color: ${colors.textPrimary};
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -132,7 +132,7 @@ const NodeTitle = styled.div`
 `;
 
 const SkeletonIcon = styled(PREVIEW_SKELETON.Block)`
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   flex: 0 0 auto;
   height: 32px;
   width: 32px;
@@ -169,7 +169,7 @@ export function WorkflowNode({
               aria-hidden
               color={iconColor}
               size={20}
-              stroke={THEME_LIGHT.icon.stroke.sm}
+              stroke={ODELZA_THEME_LIGHT.icon.stroke.sm}
             />
           </NodeIconContainer>
           <NodeContent>

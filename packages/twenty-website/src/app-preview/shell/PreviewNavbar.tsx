@@ -16,7 +16,7 @@ import {
 } from '@tabler/icons-react';
 
 import { EASING, mediaUp } from '@/tokens';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { APP_PREVIEW_CHROME } from '@/app-preview/app-preview-chrome';
 
@@ -80,10 +80,10 @@ const BreadcrumbIconSlot = styled.span`
 `;
 
 const CrumbLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   line-height: 1.4;
   min-width: 0;
   overflow: hidden;
@@ -115,13 +115,13 @@ const DesktopOnlyAction = styled.div`
 const ActionButton = styled.div<{ $iconOnly?: boolean }>`
   align-items: center;
   background: transparent;
-  border: 1px solid ${THEME_LIGHT.background.transparent.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border: 1px solid ${ODELZA_THEME_LIGHT.background.transparent.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   display: inline-flex;
   flex: 0 1 auto;
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   gap: ${APP_PREVIEW_CHROME.spacingBasePx}px;
   height: 24px;
   justify-content: center;
@@ -134,7 +134,7 @@ const ActionButton = styled.div<{ $iconOnly?: boolean }>`
 
 const ActionIconWrap = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: flex;
   flex: 0 0 auto;
   justify-content: center;
@@ -142,7 +142,9 @@ const ActionIconWrap = styled.span`
 
 const ActionLabel = styled.span<{ $light?: boolean }>`
   color: ${({ $light }) =>
-    $light ? THEME_LIGHT.font.color.light : THEME_LIGHT.font.color.secondary};
+    $light
+      ? ODELZA_THEME_LIGHT.font.color.light
+      : ODELZA_THEME_LIGHT.font.color.secondary};
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
@@ -165,7 +167,7 @@ const DesktopOnlyTrailing = styled.div`
 `;
 
 const ActionSeparator = styled.div`
-  background: ${THEME_LIGHT.background.transparent.medium};
+  background: ${ODELZA_THEME_LIGHT.background.transparent.medium};
   border-radius: 56px;
   height: 100%;
   width: 1px;
@@ -213,8 +215,8 @@ function renderProvidedAction(action: NavbarAction, index: number) {
         <ActionIconWrap>
           <Icon
             aria-hidden
-            size={THEME_LIGHT.icon.size.sm}
-            stroke={THEME_LIGHT.icon.stroke.md}
+            size={ODELZA_THEME_LIGHT.icon.size.sm}
+            stroke={ODELZA_THEME_LIGHT.icon.stroke.md}
           />
         </ActionIconWrap>
       ) : null}
@@ -245,8 +247,8 @@ function renderPinnedAction(
         <ActionIconWrap>
           <Icon
             aria-hidden
-            size={THEME_LIGHT.icon.size.sm}
-            stroke={THEME_LIGHT.icon.stroke.md}
+            size={ODELZA_THEME_LIGHT.icon.size.sm}
+            stroke={ODELZA_THEME_LIGHT.icon.stroke.md}
           />
         </ActionIconWrap>
       ) : null}
@@ -314,8 +316,8 @@ function DefaultActions({
           <ActionIconWrap>
             <IconPlus
               aria-hidden
-              size={THEME_LIGHT.icon.size.sm}
-              stroke={THEME_LIGHT.icon.stroke.md}
+              size={ODELZA_THEME_LIGHT.icon.size.sm}
+              stroke={ODELZA_THEME_LIGHT.icon.stroke.md}
             />
           </ActionIconWrap>
           <ActionLabel>New</ActionLabel>
@@ -325,8 +327,8 @@ function DefaultActions({
         <ActionIconWrap>
           <IconDotsVertical
             aria-hidden
-            size={THEME_LIGHT.icon.size.sm}
-            stroke={THEME_LIGHT.icon.stroke.md}
+            size={ODELZA_THEME_LIGHT.icon.size.sm}
+            stroke={ODELZA_THEME_LIGHT.icon.stroke.md}
           />
         </ActionIconWrap>
         <DesktopOnlyTrailing>

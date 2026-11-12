@@ -1,7 +1,7 @@
 import { useLingui } from '@lingui/react';
 import { styled } from '@linaria/react';
 import { IconTrendingDown, IconTrendingUp } from '@tabler/icons-react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
@@ -17,15 +17,15 @@ const Body = styled.div`
 `;
 
 const Label = styled.span`
-  color: ${THEME_LIGHT.font.color.secondary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
 `;
 
 const Value = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.xxl)};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.xxl)};
   font-variant-numeric: tabular-nums;
-  font-weight: ${THEME_LIGHT.font.weight.semiBold};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.semiBold};
   line-height: 1.1;
 `;
 
@@ -40,16 +40,16 @@ const TrendIcon = styled.span`
   display: inline-flex;
 
   &[data-direction='up'] {
-    color: ${THEME_LIGHT.color.turquoise8};
+    color: ${ODELZA_THEME_LIGHT.color.turquoise8};
   }
   &[data-direction='down'] {
-    color: ${THEME_LIGHT.color.red8};
+    color: ${ODELZA_THEME_LIGHT.color.red8};
   }
 `;
 
 const TrendPercent = styled.span`
-  color: ${THEME_LIGHT.font.color.light};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.xs)};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.xs)};
 `;
 
 export function KpiCard({ kpi }: { kpi: DashboardKpi }) {

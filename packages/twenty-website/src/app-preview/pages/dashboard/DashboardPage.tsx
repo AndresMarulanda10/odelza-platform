@@ -2,7 +2,7 @@ import { styled } from '@linaria/react';
 import { IconTrendingDown, IconTrendingUp } from '@tabler/icons-react';
 
 import { EASING, mediaUp, REDUCED_MOTION } from '@/tokens';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { APP_PREVIEW_TONES } from '@/tokens/app-preview/app-preview-tones';
 
@@ -37,9 +37,9 @@ const DashboardGrid = styled.div`
 
 const WidgetCard = styled.div`
   animation: dashboardWidgetAppear 360ms ${EASING.standard} both;
-  background: ${THEME_LIGHT.background.secondary};
-  border: 1px solid ${THEME_LIGHT.border.color.light};
-  border-radius: ${THEME_LIGHT.border.radius.md};
+  background: ${ODELZA_THEME_LIGHT.background.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.md};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -65,11 +65,11 @@ const WidgetCard = styled.div`
 `;
 
 const WidgetTitle = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   flex-shrink: 0;
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   line-height: 1.4;
   overflow: hidden;
   padding: 0 2px;
@@ -101,10 +101,10 @@ const KpiValueRow = styled.div`
 `;
 
 const KpiValue = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 25px;
-  font-weight: ${THEME_LIGHT.font.weight.semiBold};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.semiBold};
   line-height: 1.1;
 `;
 
@@ -118,7 +118,7 @@ const KpiTrend = styled.span<{ $up: boolean }>`
   flex-shrink: 0;
   font-family: var(--font-product), sans-serif;
   font-size: 12px;
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   gap: 2px;
 `;
 
@@ -144,9 +144,15 @@ function KpiWidget({ kpi }: { kpi: DashboardKpi }) {
         {kpi.trend ? (
           <KpiTrend $up={isUp}>
             {isUp ? (
-              <IconTrendingUp size={14} stroke={THEME_LIGHT.icon.stroke.md} />
+              <IconTrendingUp
+                size={14}
+                stroke={ODELZA_THEME_LIGHT.icon.stroke.md}
+              />
             ) : (
-              <IconTrendingDown size={14} stroke={THEME_LIGHT.icon.stroke.md} />
+              <IconTrendingDown
+                size={14}
+                stroke={ODELZA_THEME_LIGHT.icon.stroke.md}
+              />
             )}
             {kpi.trend.value}
           </KpiTrend>

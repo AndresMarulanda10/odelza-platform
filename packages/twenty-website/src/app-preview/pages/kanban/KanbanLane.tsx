@@ -2,7 +2,7 @@ import { styled } from '@linaria/react';
 import { IconPlus } from '@tabler/icons-react';
 
 import { EASING } from '@/tokens';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
 import { KanbanCard } from './KanbanCard';
@@ -14,7 +14,7 @@ const Lane = styled.div<{ $index: number; $last?: boolean }>`
   animation: kanbanLaneAppear 420ms ${EASING.standard} both;
   animation-delay: ${({ $index }) => `${120 + $index * 80}ms`};
   border-right: ${({ $last }) =>
-    $last ? 'none' : `1px solid ${THEME_LIGHT.border.color.light}`};
+    $last ? 'none' : `1px solid ${ODELZA_THEME_LIGHT.border.color.light}`};
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -46,41 +46,41 @@ const LaneHeader = styled.div`
 // the unknown-tone fallback the old hand-mixed table carried).
 const LaneTag = styled.span`
   align-items: center;
-  background: ${THEME_LIGHT.tag.background.gray};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.tag.text.gray};
+  background: ${ODELZA_THEME_LIGHT.tag.background.gray};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.tag.text.gray};
   display: inline-flex;
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.regular};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.regular};
   height: 20px;
   line-height: 1.4;
   padding: 0 8px;
   white-space: nowrap;
 
   &[data-tone='blue'] {
-    background: ${THEME_LIGHT.tag.background.blue};
-    color: ${THEME_LIGHT.tag.text.blue};
+    background: ${ODELZA_THEME_LIGHT.tag.background.blue};
+    color: ${ODELZA_THEME_LIGHT.tag.text.blue};
   }
   &[data-tone='green'] {
-    background: ${THEME_LIGHT.tag.background.green};
-    color: ${THEME_LIGHT.tag.text.green};
+    background: ${ODELZA_THEME_LIGHT.tag.background.green};
+    color: ${ODELZA_THEME_LIGHT.tag.text.green};
   }
   &[data-tone='pink'] {
-    background: ${THEME_LIGHT.tag.background.pink};
-    color: ${THEME_LIGHT.tag.text.pink};
+    background: ${ODELZA_THEME_LIGHT.tag.background.pink};
+    color: ${ODELZA_THEME_LIGHT.tag.text.pink};
   }
   &[data-tone='purple'] {
-    background: ${THEME_LIGHT.tag.background.purple};
-    color: ${THEME_LIGHT.tag.text.purple};
+    background: ${ODELZA_THEME_LIGHT.tag.background.purple};
+    color: ${ODELZA_THEME_LIGHT.tag.text.purple};
   }
 `;
 
 const LaneCount = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.regular};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.regular};
   line-height: 1.4;
   white-space: nowrap;
 `;
@@ -96,11 +96,11 @@ const LaneBody = styled.div`
 
 const AddCardButton = styled.div`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: inline-flex;
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.regular};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.regular};
   gap: 4px;
   height: 24px;
   line-height: 1.4;
@@ -111,9 +111,9 @@ const AddCardButton = styled.div`
 const SkeletonCardShell = styled.div<{ $index: number }>`
   animation: kanbanSkeletonCardAppear 320ms ${EASING.standard} both;
   animation-delay: ${({ $index }) => `${$index * 90}ms`};
-  background: ${THEME_LIGHT.background.secondary};
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  background: ${ODELZA_THEME_LIGHT.background.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -181,7 +181,7 @@ export function KanbanLane({
         <AddCardButton aria-hidden>
           <MiniIcon
             icon={IconPlus}
-            color={THEME_LIGHT.font.color.light}
+            color={ODELZA_THEME_LIGHT.font.color.light}
             size={12}
           />
           New
