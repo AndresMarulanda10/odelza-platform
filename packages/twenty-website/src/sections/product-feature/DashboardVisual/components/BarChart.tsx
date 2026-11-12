@@ -2,7 +2,7 @@
 
 import { useLingui } from '@lingui/react';
 import { styled } from '@linaria/react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { EASING } from '@/tokens';
@@ -35,8 +35,8 @@ const YAxis = styled.div`
 `;
 
 const YLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.light};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.xs)};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.xs)};
   font-variant-numeric: tabular-nums;
   line-height: 1;
   text-align: right;
@@ -56,7 +56,7 @@ const PlotArea = styled.div`
 `;
 
 const GridLine = styled.div`
-  border-top: 1px dashed ${THEME_LIGHT.border.color.light};
+  border-top: 1px dashed ${ODELZA_THEME_LIGHT.border.color.light};
   left: 0;
   position: absolute;
   right: 0;
@@ -80,9 +80,9 @@ const BarColumn = styled.div`
 `;
 
 const Bar = styled.div`
-  background-color: ${THEME_LIGHT.color.blue8};
-  border-radius: ${THEME_LIGHT.border.radius.sm} ${THEME_LIGHT.border.radius.sm}
-    0 0;
+  background-color: ${ODELZA_THEME_LIGHT.color.blue8};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm}
+    ${ODELZA_THEME_LIGHT.border.radius.sm} 0 0;
   max-width: ${BAR_MAX_WIDTH}px;
   transform-origin: bottom;
   transition:
@@ -96,8 +96,8 @@ const Bar = styled.div`
 `;
 
 const ValueLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.light};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.xs)};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.xs)};
   font-variant-numeric: tabular-nums;
   left: 0;
   position: absolute;
@@ -114,9 +114,9 @@ const XLabels = styled.div`
 `;
 
 const XLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   flex: 1;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.xs)};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.xs)};
   padding-top: 6px;
   text-align: center;
 `;

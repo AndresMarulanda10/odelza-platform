@@ -3,7 +3,7 @@
 import { useLingui } from '@lingui/react';
 import { styled } from '@linaria/react';
 import { IconCalendar, IconCheck } from '@tabler/icons-react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { Chip } from '@/app-preview/primitives/Chip';
 import { PersonAvatar } from '@/app-preview/primitives/PersonAvatar';
@@ -13,7 +13,7 @@ import { type Task } from '../types/task';
 
 const Row = styled.div`
   align-items: center;
-  background-color: ${THEME_LIGHT.background.secondary};
+  background-color: ${ODELZA_THEME_LIGHT.background.secondary};
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
@@ -36,44 +36,44 @@ const RowLeft = styled.div`
 
 const CheckboxButton = styled.span`
   align-items: center;
-  border-radius: ${THEME_LIGHT.border.radius.rounded};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.rounded};
   display: inline-flex;
   flex-shrink: 0;
   justify-content: center;
   padding: 5px;
 
   &:hover {
-    background-color: ${THEME_LIGHT.background.transparent.light};
+    background-color: ${ODELZA_THEME_LIGHT.background.transparent.light};
   }
 
   &[data-done]:hover {
-    background-color: ${THEME_LIGHT.background.transparent.blue};
+    background-color: ${ODELZA_THEME_LIGHT.background.transparent.accent};
   }
 `;
 
 const Checkbox = styled.span`
   align-items: center;
-  border: 1px solid ${THEME_LIGHT.border.color.inverted};
-  border-radius: ${THEME_LIGHT.border.radius.rounded};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.inverted};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.rounded};
   box-sizing: border-box;
-  color: ${THEME_LIGHT.font.color.inverted};
+  color: ${ODELZA_THEME_LIGHT.font.color.inverted};
   display: flex;
   height: 14px;
   justify-content: center;
   width: 14px;
 
   &[data-done] {
-    background-color: ${THEME_LIGHT.color.blue};
-    border-color: ${THEME_LIGHT.color.blue};
+    background-color: ${ODELZA_THEME_LIGHT.color.blue};
+    border-color: ${ODELZA_THEME_LIGHT.color.blue};
   }
 `;
 
 const Title = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   overflow: hidden;
-  padding: 0 ${THEME_LIGHT.spacing(2)};
+  padding: 0 ${ODELZA_THEME_LIGHT.spacing(2)};
   text-overflow: ellipsis;
   white-space: nowrap;
 
@@ -83,8 +83,8 @@ const Title = styled.span`
 `;
 
 const Body = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -101,11 +101,11 @@ const RowRight = styled.div`
 
 const Due = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: flex;
   flex-shrink: 0;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  gap: ${THEME_LIGHT.spacing(1)};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  gap: ${ODELZA_THEME_LIGHT.spacing(1)};
   white-space: nowrap;
 `;
 

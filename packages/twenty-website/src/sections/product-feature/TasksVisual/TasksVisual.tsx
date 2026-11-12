@@ -4,7 +4,7 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { styled } from '@linaria/react';
 import { useState } from 'react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
@@ -15,7 +15,7 @@ import { TASKS } from './data/tasks';
 import { toggleTaskDone } from './utils/toggle-task-done';
 
 const Root = styled.div`
-  background-color: ${THEME_LIGHT.background.primary};
+  background-color: ${ODELZA_THEME_LIGHT.background.primary};
   display: flex;
   flex-direction: column;
   font-family: var(--font-product), sans-serif;
@@ -41,26 +41,26 @@ const Group = styled.div`
 
 const GroupHeader = styled.div`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   display: flex;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.semiBold};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.semiBold};
   justify-content: space-between;
-  margin: ${THEME_LIGHT.spacing(4)} 0;
+  margin: ${ODELZA_THEME_LIGHT.spacing(4)} 0;
 `;
 
 const GroupCount = styled.span`
-  color: ${THEME_LIGHT.font.color.light};
-  margin-left: ${THEME_LIGHT.spacing(2)};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
+  margin-left: ${ODELZA_THEME_LIGHT.spacing(2)};
 `;
 
 const GroupCard = styled.div`
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   overflow: hidden;
 
   & > * + * {
-    border-top: 1px solid ${THEME_LIGHT.border.color.light};
+    border-top: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   }
 `;
 

@@ -74,8 +74,8 @@
 }
 
 .button[data-position='right'] {
-  --icon-button-radius: 0px var(--odz-border-radius-md) var(--odz-border-radius-md)
-    0px;
+  --icon-button-radius: 0px var(--odz-border-radius-md)
+    var(--odz-border-radius-md) 0px;
 }
 
 // Default border widths: tertiary is borderless and middle collapses the

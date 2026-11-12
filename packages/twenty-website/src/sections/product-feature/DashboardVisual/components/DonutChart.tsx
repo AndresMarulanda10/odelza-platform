@@ -5,7 +5,7 @@ import { useLingui } from '@lingui/react';
 import { styled } from '@linaria/react';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
 import { useState } from 'react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { EASING } from '@/tokens';
@@ -59,19 +59,19 @@ const Slice = styled.circle`
   }
 
   &[data-tone='red'] {
-    stroke: ${THEME_LIGHT.color.red8};
+    stroke: ${ODELZA_THEME_LIGHT.color.red8};
   }
   &[data-tone='purple'] {
-    stroke: ${THEME_LIGHT.color.purple8};
+    stroke: ${ODELZA_THEME_LIGHT.color.purple8};
   }
   &[data-tone='sky'] {
-    stroke: ${THEME_LIGHT.color.sky8};
+    stroke: ${ODELZA_THEME_LIGHT.color.sky8};
   }
   &[data-tone='turquoise'] {
-    stroke: ${THEME_LIGHT.color.turquoise8};
+    stroke: ${ODELZA_THEME_LIGHT.color.turquoise8};
   }
   &[data-tone='yellow'] {
-    stroke: ${THEME_LIGHT.color.yellow8};
+    stroke: ${ODELZA_THEME_LIGHT.color.yellow8};
   }
 `;
 
@@ -85,16 +85,16 @@ const Center = styled.div`
 `;
 
 const CenterValue = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.xl)};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.xl)};
   font-variant-numeric: tabular-nums;
-  font-weight: ${THEME_LIGHT.font.weight.semiBold};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.semiBold};
   line-height: 1;
 `;
 
 const CenterLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.xs)};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.xs)};
   margin-top: 2px;
 `;
 
@@ -115,19 +115,19 @@ const Pager = styled.div`
 
 const PagerArrow = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   cursor: pointer;
   display: inline-flex;
   transition: color 0.15s ease;
 
   &:hover {
-    color: ${THEME_LIGHT.font.color.secondary};
+    color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   }
 `;
 
 const PagerText = styled.span`
-  color: ${THEME_LIGHT.font.color.light};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.sm)};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.sm)};
   font-variant-numeric: tabular-nums;
 `;
 
@@ -139,32 +139,32 @@ const Item = styled.div`
 `;
 
 const ItemDot = styled.span`
-  border-radius: ${THEME_LIGHT.border.radius.xs};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.xs};
   flex-shrink: 0;
   height: 9px;
   width: 9px;
 
   &[data-tone='red'] {
-    background-color: ${THEME_LIGHT.color.red8};
+    background-color: ${ODELZA_THEME_LIGHT.color.red8};
   }
   &[data-tone='purple'] {
-    background-color: ${THEME_LIGHT.color.purple8};
+    background-color: ${ODELZA_THEME_LIGHT.color.purple8};
   }
   &[data-tone='sky'] {
-    background-color: ${THEME_LIGHT.color.sky8};
+    background-color: ${ODELZA_THEME_LIGHT.color.sky8};
   }
   &[data-tone='turquoise'] {
-    background-color: ${THEME_LIGHT.color.turquoise8};
+    background-color: ${ODELZA_THEME_LIGHT.color.turquoise8};
   }
   &[data-tone='yellow'] {
-    background-color: ${THEME_LIGHT.color.yellow8};
+    background-color: ${ODELZA_THEME_LIGHT.color.yellow8};
   }
 `;
 
 const ItemLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.sm)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.sm)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   white-space: nowrap;
 `;
 

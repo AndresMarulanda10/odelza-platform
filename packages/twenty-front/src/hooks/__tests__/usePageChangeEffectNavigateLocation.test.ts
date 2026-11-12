@@ -45,7 +45,7 @@ const setupMockHasAccessTokenPair = (hasAccessTokenPair: boolean) => {
   jest.mocked(useHasAccessTokenPair).mockReturnValueOnce(hasAccessTokenPair);
 };
 
-const defaultHomePagePath = '/objects/companies';
+const defaultHomePagePath = '/objects/dashboards';
 
 jest.mock('@/navigation/hooks/useDefaultHomePagePath');
 jest.mocked(useDefaultHomePagePath).mockReturnValue({

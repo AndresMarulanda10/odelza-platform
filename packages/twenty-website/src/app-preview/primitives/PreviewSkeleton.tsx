@@ -3,15 +3,15 @@
 import { styled } from '@linaria/react';
 
 import { REDUCED_MOTION } from '@/tokens';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 const SkeletonBase = styled.div`
   animation: previewSkeletonShimmer 1.4s ease infinite;
   background: linear-gradient(
     90deg,
-    ${THEME_LIGHT.border.color.light} 25%,
-    ${THEME_LIGHT.background.secondary} 37%,
-    ${THEME_LIGHT.border.color.light} 63%
+    ${ODELZA_THEME_LIGHT.border.color.light} 25%,
+    ${ODELZA_THEME_LIGHT.background.secondary} 37%,
+    ${ODELZA_THEME_LIGHT.border.color.light} 63%
   );
   background-size: 400% 100%;
 

@@ -14,7 +14,7 @@ import {
 } from '@tabler/icons-react';
 import { type ReactNode } from 'react';
 
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 const HEADER_ICON_MAP: Record<string, typeof IconCalendarEvent> = {
   added: IconCalendarEvent,
@@ -36,9 +36,9 @@ export function renderTableHeaderIcon(columnId: string): ReactNode {
   return (
     <Icon
       aria-hidden
-      color={THEME_LIGHT.font.color.tertiary}
+      color={ODELZA_THEME_LIGHT.font.color.tertiary}
       size={16}
-      stroke={THEME_LIGHT.icon.stroke.sm}
+      stroke={ODELZA_THEME_LIGHT.icon.stroke.sm}
     />
   );
 }

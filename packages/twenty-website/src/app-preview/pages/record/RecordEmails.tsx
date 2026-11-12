@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { IconPlus } from '@tabler/icons-react';
 
 import { type RecordEmail } from '../../types';
@@ -15,7 +15,7 @@ const EmailHeading = styled.div`
 `;
 
 const SenderNames = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   margin: 0 6px;
@@ -25,7 +25,7 @@ const SenderNames = styled.span`
 `;
 
 const ThreadCount = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
 `;
@@ -39,7 +39,7 @@ const SubjectBody = styled.div`
 `;
 
 const EmailSubject = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   overflow: hidden;
@@ -48,7 +48,7 @@ const EmailSubject = styled.span`
 `;
 
 const EmailBody = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   flex: 1;
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
@@ -58,7 +58,7 @@ const EmailBody = styled.span`
 `;
 
 const ReceivedAt = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   flex-shrink: 0;
   font-family: var(--font-product), sans-serif;
   font-size: 13px;

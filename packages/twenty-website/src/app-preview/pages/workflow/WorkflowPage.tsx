@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
 import { WORKFLOW_GRAPH } from './workflow-data';
@@ -75,12 +75,12 @@ const ActiveBadge = styled.div`
 const ActiveBadgeLabel = styled.span`
   align-items: center;
   background: ${colors.activeBadgeBackground};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   color: ${colors.activeBadgeText};
   display: inline-flex;
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.regular};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.regular};
   height: 20px;
   line-height: 1.4;
   padding: 0 8px;

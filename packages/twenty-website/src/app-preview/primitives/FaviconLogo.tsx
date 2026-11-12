@@ -2,7 +2,7 @@
 
 import { styled } from '@linaria/react';
 import { useState } from 'react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { createBoundedFailureCache } from '@/platform/visuals/engine/bounded-failure-cache';
 
@@ -13,12 +13,12 @@ const failedFaviconUrls = createBoundedFailureCache(256);
 
 const FaviconFrame = styled.div<{ $size: number }>`
   align-items: center;
-  border-radius: ${THEME_LIGHT.border.radius.xs};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.xs};
   display: flex;
   flex: 0 0 auto;
   font-family: var(--font-product), sans-serif;
   font-size: ${({ $size }) => ($size <= 14 ? '8px' : '9px')};
-  font-weight: ${THEME_LIGHT.font.weight.semiBold};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.semiBold};
   height: ${({ $size }) => `${$size}px`};
   justify-content: center;
   line-height: 1;
@@ -27,8 +27,8 @@ const FaviconFrame = styled.div<{ $size: number }>`
 `;
 
 const FaviconFallbackFrame = styled(FaviconFrame)`
-  background: ${THEME_LIGHT.border.color.medium};
-  color: ${THEME_LIGHT.font.color.secondary};
+  background: ${ODELZA_THEME_LIGHT.border.color.medium};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
 `;
 
 const FaviconImage = styled.img`

@@ -96,9 +96,13 @@ const renderHooks = ({
   withCurrentUser,
   withExistingView,
   withObjectMetadataLoaded = true,
-  objectMetadataItems = getTestEnrichedObjectMetadataItemsMock(),
+  objectMetadataItems = getTestEnrichedObjectMetadataItemsMock().filter(
+    (item) => item.namePlural !== 'dashboards',
+  ),
   navigationMenuItems = [],
   withNavigationMenuItemsLoaded = true,
+  viewObjectMetadataId = getMockObjectMetadataItemOrThrow('company').id,
+  denyDashboard = false,
 }: {
   withCurrentUser: boolean;
   withExistingView: boolean;
@@ -106,6 +110,8 @@ const renderHooks = ({
   objectMetadataItems?: EnrichedObjectMetadataItem[];
   navigationMenuItems?: NavigationMenuItem[];
   withNavigationMenuItemsLoaded?: boolean;
+  viewObjectMetadataId?: string;
+  denyDashboard?: boolean;
 }) => {
   if (withObjectMetadataLoaded) {
     setTestObjectMetadataItemsInMetadataStore(jotaiStore, objectMetadataItems);
@@ -136,7 +142,7 @@ const renderHooks = ({
             {
               id: 'viewId',
               name: 'Test View',
-              objectMetadataId: getMockObjectMetadataItemOrThrow('company').id,
+              objectMetadataId: viewObjectMetadataId,
               type: ViewType.TABLE,
               key: null,
               isCompact: false,
@@ -163,7 +169,21 @@ const renderHooks = ({
 
         if (withCurrentUser) {
           setCurrentUser(mockedUserData);
-          setCurrentUserWorkspace(mockedUserData.currentUserWorkspace);
+          setCurrentUserWorkspace({
+            ...mockedUserData.currentUserWorkspace,
+            objectsPermissions:
+              mockedUserData.currentUserWorkspace.objectsPermissions.map(
+                (permission) =>
+                  denyDashboard &&
+                  permission.objectMetadataId ===
+                    getMockObjectMetadataItemOrThrow('dashboard').id
+                    ? { ...permission, canReadObjectRecords: false }
+                    : permission,
+              ),
+          });
+        } else {
+          setCurrentUser(null);
+          setCurrentUserWorkspace(null);
         }
       }, [setCurrentUser, setCurrentUserWorkspace]);
 
@@ -177,6 +197,56 @@ const renderHooks = ({
 };
 
 describe('useDefaultHomePagePath', () => {
+  it.each(['absent', 'denied', 'inactive', 'system'] as const)(
+    'preserves menu fallback when Dashboard is %s',
+    async (state) => {
+      const dashboard = {
+        ...getMockObjectMetadataItemOrThrow('dashboard'),
+        isActive: state !== 'inactive',
+        isSystem: state === 'system',
+      };
+      const { result } = renderHooks({
+        withCurrentUser: true,
+        withExistingView: false,
+        denyDashboard: state === 'denied',
+        objectMetadataItems: [
+          getMockObjectMetadataItemOrThrow('company'),
+          ...(state === 'absent' ? [] : [dashboard]),
+        ],
+        navigationMenuItems: [buildPageLayoutNavigationMenuItem('fallback', 0)],
+      });
+      await waitFor(() =>
+        expect(result.current.defaultHomePagePath).toBe('/page/fallback'),
+      );
+    },
+  );
+  it.each([false, true])(
+    'prefers readable Dashboards over Companies menu, view=%s',
+    async (withExistingView) => {
+      const dashboard = {
+        ...getMockObjectMetadataItemOrThrow('dashboard'),
+        isActive: true,
+        isSystem: false,
+      };
+      const { result } = renderHooks({
+        withCurrentUser: true,
+        withExistingView,
+        objectMetadataItems: [
+          getMockObjectMetadataItemOrThrow('company'),
+          dashboard,
+        ],
+        viewObjectMetadataId: dashboard.id,
+        navigationMenuItems: [buildObjectNavigationMenuItem('company', 0)],
+      });
+      await waitFor(() =>
+        expect(result.current.defaultHomePagePath).toBe(
+          withExistingView
+            ? '/objects/dashboards?viewId=viewId'
+            : '/objects/dashboards',
+        ),
+      );
+    },
+  );
   it('should return proper path when no currentUser', async () => {
     const { result } = renderHooks({
       withCurrentUser: false,
@@ -197,7 +267,7 @@ describe('useDefaultHomePagePath', () => {
       expect(result.current.defaultHomePagePath).toEqual(AppPath.SignInUp);
     });
   });
-  it('should redirect to the first object of the navigation menu', async () => {
+  it('should redirect to the first object of the navigation menu when Dashboard is unavailable', async () => {
     const { result } = renderHooks({
       withCurrentUser: true,
       withExistingView: false,

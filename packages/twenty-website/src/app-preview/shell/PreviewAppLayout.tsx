@@ -4,7 +4,7 @@ import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 
 import { mediaUp } from '@/tokens';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { renderPage } from '../pages/RenderPage';
 import { PreviewNavbar } from './PreviewNavbar';
@@ -54,9 +54,9 @@ const ContentRow = styled.div`
 
 // The morph squeezes the named workflow's canvas into the compact frame.
 const IndexSurface = styled.div`
-  background: ${THEME_LIGHT.background.primary};
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.md};
+  background: ${ODELZA_THEME_LIGHT.background.primary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.md};
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;

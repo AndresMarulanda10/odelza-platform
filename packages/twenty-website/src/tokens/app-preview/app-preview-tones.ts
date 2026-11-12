@@ -6,16 +6,16 @@
 // Only genuinely authored marketing art remains: TERMINAL + EDITOR (the
 // bespoke AI window), the PRODUCT_VISUAL collaborator-cursor inks, and the
 // box-shadows (e.g. RECORD_NOTE_HIGHLIGHT_SHADOW).
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT, parseHexColor } from 'twenty-ui/theme';
 
 type ToneSurface = { background: string; border: string; color: string };
 type TonePair = { background: string; color: string };
 
 // Our tone names map 1:1 onto twenty-ui's tag colors, except `teal` is the
 // product's `turquoise`.
-const tagTone = (name: keyof typeof THEME_LIGHT.tag.text): TonePair => ({
-  background: THEME_LIGHT.tag.background[name],
-  color: THEME_LIGHT.tag.text[name],
+const tagTone = (name: keyof typeof ODELZA_THEME_LIGHT.tag.text): TonePair => ({
+  background: ODELZA_THEME_LIGHT.tag.background[name],
+  color: ODELZA_THEME_LIGHT.tag.text[name],
 });
 
 // Object nav items render as the product's TintedIconTile: color5 surface,
@@ -33,9 +33,9 @@ const sidebarTone = (
     | 'turquoise'
     | 'violet',
 ): ToneSurface => ({
-  background: THEME_LIGHT.color[`${name}5`],
-  border: THEME_LIGHT.color[`${name}6`],
-  color: THEME_LIGHT.color[`${name}11`],
+  background: ODELZA_THEME_LIGHT.color[`${name}5`],
+  border: ODELZA_THEME_LIGHT.color[`${name}6`],
+  color: ODELZA_THEME_LIGHT.color[`${name}11`],
 });
 
 const SIDEBAR: Record<string, ToneSurface> = {
@@ -63,24 +63,22 @@ const TAG: Record<string, TonePair> = {
   teal: tagTone('turquoise'),
 };
 
-// twenty-ui colors are `color(display-p3 r g b)` strings with 0–1 channels;
-// the reveal pulse needs an `r, g, b` 0–255 tuple to feed rgba().
+// Odelza theme inks are hex colors; the reveal pulse needs an `r, g, b`
+// 0–255 tuple to feed rgba().
 function colorStringToRgbTuple(color: string): string {
-  const channels = color.match(/display-p3\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)/);
-  return (channels ?? ['', '0', '0', '0'])
-    .slice(1, 4)
-    .map((channel) => Math.round(Number(channel) * 255))
-    .join(', ');
+  const { red, green, blue } = parseHexColor(color);
+
+  return `${red}, ${green}, ${blue}`;
 }
 
 // The Ask-AI panel washes map onto twenty-ui's transparent ramp + primary
 // ink. The three collaborator-cursor inks have no product equivalent
 // (authored marketing identities).
 const PRODUCT_VISUAL = {
-  userMessageBackground: THEME_LIGHT.background.transparent.medium,
-  entityChipBackground: THEME_LIGHT.background.transparent.light,
-  inputBoxBackground: THEME_LIGHT.background.transparent.lighter,
-  cursorLabelInk: THEME_LIGHT.font.color.primary,
+  userMessageBackground: ODELZA_THEME_LIGHT.background.transparent.medium,
+  entityChipBackground: ODELZA_THEME_LIGHT.background.transparent.light,
+  inputBoxBackground: ODELZA_THEME_LIGHT.background.transparent.lighter,
+  cursorLabelInk: ODELZA_THEME_LIGHT.font.color.primary,
   heroCursorInks: {
     alice: '#ffb08d',
     ben: '#8db4ff',
@@ -90,33 +88,33 @@ const PRODUCT_VISUAL = {
 
 // The product's spreadsheet file-icon color (useFileIconColors); documents
 // reuse the accent.
-const RECORD_FILE_SHEET_INK = THEME_LIGHT.color.turquoise;
+const RECORD_FILE_SHEET_INK = ODELZA_THEME_LIGHT.color.turquoise;
 
 // The lift shadow under a scenario-highlighted note card (authored).
 const RECORD_NOTE_HIGHLIGHT_SHADOW = '0 4px 14px rgba(0, 0, 0, 0.06)';
 
 // The product assigns gray to workflow objects (getObjectColorWithFallback),
 // so the named-workflow avatar letter inks gray (matching the gray tone).
-const WORKFLOW_AVATAR_INK = THEME_LIGHT.color.gray11;
+const WORKFLOW_AVATAR_INK = ODELZA_THEME_LIGHT.color.gray11;
 
 // The product's workflow-node colors: blue trigger, red action, a turquoise
 // "completed" tag, and the neutral medium border for edges.
 const WORKFLOW_CANVAS = {
-  activeBadgeBackground: THEME_LIGHT.tag.background.turquoise,
-  activeBadgeText: THEME_LIGHT.tag.text.turquoise,
-  arrowStroke: THEME_LIGHT.border.color.medium,
-  triggerIcon: THEME_LIGHT.color.blue,
-  actionIcon: THEME_LIGHT.color.red,
+  activeBadgeBackground: ODELZA_THEME_LIGHT.tag.background.turquoise,
+  activeBadgeText: ODELZA_THEME_LIGHT.tag.text.turquoise,
+  arrowStroke: ODELZA_THEME_LIGHT.border.color.medium,
+  triggerIcon: ODELZA_THEME_LIGHT.color.blue,
+  actionIcon: ODELZA_THEME_LIGHT.color.red,
 };
 
 // twenty-front's graph-color registry assigns chart series from the color8
 // shade; trend arrows use the turquoise8/red8 success/danger pair.
 const DASHBOARD_CHART = {
-  accent: THEME_LIGHT.color.blue8,
-  trendUp: THEME_LIGHT.color.turquoise8,
-  trendDown: THEME_LIGHT.color.red8,
-  slicePurple: THEME_LIGHT.color.purple8,
-  sliceOrange: THEME_LIGHT.color.orange8,
+  accent: ODELZA_THEME_LIGHT.color.blue8,
+  trendUp: ODELZA_THEME_LIGHT.color.turquoise8,
+  trendDown: ODELZA_THEME_LIGHT.color.red8,
+  slicePurple: ODELZA_THEME_LIGHT.color.purple8,
+  sliceOrange: ODELZA_THEME_LIGHT.color.orange8,
 };
 
 // The AI terminal's authored chrome (a Cursor-class agent window: warm

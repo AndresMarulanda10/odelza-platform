@@ -6,6 +6,7 @@ import { type ObjectPathInfo } from '@/navigation/types/ObjectPathInfo';
 import { getFirstNavigationMenuItemLink } from '@/navigation/utils/getFirstNavigationMenuItemLink';
 import { useFilteredObjectMetadataItems } from '@/object-metadata/hooks/useFilteredObjectMetadataItems';
 import { objectMetadataItemsSelector } from '@/object-metadata/states/objectMetadataItemsSelector';
+import { CoreObjectNamePlural } from '@/object-metadata/types/CoreObjectNamePlural';
 import { filterReadableActiveObjectMetadataItems } from '@/object-metadata/utils/filterReadableActiveObjectMetadataItems';
 import { useObjectPermissions } from '@/object-record/hooks/useObjectPermissions';
 import { useAtomFamilySelectorValue } from '@/ui/utilities/state/jotai/hooks/useAtomFamilySelectorValue';
@@ -74,7 +75,10 @@ export const useDefaultHomePagePath = () => {
   );
 
   const firstObjectPathInfo = useMemo<ObjectPathInfo | null>(() => {
-    const [firstObjectMetadataItem] = readableNonSystemObjectMetadataItems;
+    const firstObjectMetadataItem =
+      readableNonSystemObjectMetadataItems.find(
+        (item) => item.namePlural === CoreObjectNamePlural.Dashboard,
+      ) ?? readableNonSystemObjectMetadataItems[0];
 
     if (!isDefined(firstObjectMetadataItem)) {
       return null;
@@ -103,14 +107,16 @@ export const useDefaultHomePagePath = () => {
       return getSettingsPath(SettingsPath.ProfilePage);
     }
 
-    // The navigation menu drives the redirect and loads after the minimal-
-    // metadata fast path. Wait for it instead of falling back to the
-    // alphabetically-first object during the post-login window.
+    // Preserve the metadata readiness boundary during the post-login window.
     if (!areNavigationMenuItemsLoaded) {
       return AppPath.Index;
     }
 
-    if (isDefined(firstNavigationMenuItemLink)) {
+    if (
+      firstObjectPathInfo?.objectMetadataItem.namePlural !==
+        CoreObjectNamePlural.Dashboard &&
+      isDefined(firstNavigationMenuItemLink)
+    ) {
       return firstNavigationMenuItemLink;
     }
 

@@ -1,6 +1,6 @@
 import { type ComponentType } from 'react';
 
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 type MiniIconProps = {
   color?: string;
@@ -17,8 +17,8 @@ type MiniIconProps = {
 export function MiniIcon({
   color,
   icon: Icon,
-  size = THEME_LIGHT.icon.size.sm,
-  stroke = THEME_LIGHT.icon.stroke.sm,
+  size = ODELZA_THEME_LIGHT.icon.size.sm,
+  stroke = ODELZA_THEME_LIGHT.icon.stroke.sm,
 }: MiniIconProps) {
   return <Icon aria-hidden color={color} size={size} stroke={stroke} />;
 }

@@ -11,7 +11,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { PreviewTag } from '@/app-preview/primitives/PreviewTag';
@@ -33,7 +33,7 @@ import { movePipelineCard } from './utils/pipeline-move-card';
 const TOTAL_CARD_COUNT = Object.keys(CARDS).length;
 
 const Root = styled.div`
-  background: ${THEME_LIGHT.background.primary};
+  background: ${ODELZA_THEME_LIGHT.background.primary};
   display: flex;
   flex-direction: column;
   font-family: var(--font-product), sans-serif;
@@ -45,8 +45,8 @@ const Root = styled.div`
 
 const BoardHeader = styled.div`
   align-items: center;
-  border-bottom: 1px solid ${THEME_LIGHT.border.color.light};
-  color: ${THEME_LIGHT.font.color.secondary};
+  border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: flex;
   flex-shrink: 0;
   gap: 6px;
@@ -55,22 +55,22 @@ const BoardHeader = styled.div`
 `;
 
 const BoardTitle = styled.span`
-  color: ${THEME_LIGHT.font.color.secondary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.regular};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.regular};
 `;
 
 const BoardAdornments = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.color.gray8};
+  color: ${ODELZA_THEME_LIGHT.color.gray8};
   display: flex;
   flex-shrink: 0;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
   gap: 4px;
 `;
 
 const ColumnsHeaderGrid = styled.div`
-  border-bottom: 1px solid ${THEME_LIGHT.border.color.light};
+  border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   display: grid;
   flex-shrink: 0;
   grid-template-columns: repeat(3, 1fr);
@@ -84,8 +84,8 @@ const LaneHeader = styled.div`
 `;
 
 const LaneCount = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
 `;
 
 const ColumnsGrid = styled.div`
@@ -97,7 +97,7 @@ const ColumnsGrid = styled.div`
 `;
 
 const LaneBody = styled.div`
-  border-right: 1px solid ${THEME_LIGHT.border.color.light};
+  border-right: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -112,9 +112,9 @@ const LaneBody = styled.div`
 `;
 
 const DealCard = styled.div`
-  background: ${THEME_LIGHT.background.secondary};
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  background: ${ODELZA_THEME_LIGHT.background.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -124,7 +124,7 @@ const DealCard = styled.div`
   user-select: none;
 
   &:hover {
-    border-color: ${THEME_LIGHT.border.color.strong};
+    border-color: ${ODELZA_THEME_LIGHT.border.color.strong};
   }
 
   &:hover .deal-card-checkbox {
@@ -140,9 +140,9 @@ const DealCard = styled.div`
 
 const AddCardRow = styled.div`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: flex;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
   gap: 4px;
   padding: 4px 8px;
 `;
@@ -154,7 +154,7 @@ const InteractionLayer = styled.div`
 `;
 
 const FloatingCardShell = styled.div`
-  box-shadow: ${THEME_LIGHT.boxShadow.strong};
+  box-shadow: ${ODELZA_THEME_LIGHT.boxShadow.strong};
   left: 0;
   pointer-events: none;
   position: absolute;

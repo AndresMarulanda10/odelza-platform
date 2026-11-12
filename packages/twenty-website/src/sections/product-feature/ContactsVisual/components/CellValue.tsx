@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { IconCheck, IconX } from '@tabler/icons-react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { Chip } from '@/app-preview/primitives/Chip';
 import { FaviconLogo } from '@/app-preview/primitives/FaviconLogo';
@@ -12,9 +12,9 @@ import { type ContactCompany } from '../types/contact-company';
 import { ActorAvatar } from './ActorAvatar';
 
 const CellText = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.regular};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.regular};
   max-width: 100%;
   min-width: 0;
   overflow: hidden;
@@ -24,14 +24,14 @@ const CellText = styled.span`
 
 const BooleanRow = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   display: inline-flex;
   gap: 4px;
 `;
 
 const BooleanText = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
 `;
 
 export function CellValue({

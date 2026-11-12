@@ -4,7 +4,7 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { styled } from '@linaria/react';
 import { IconDotsVertical, IconLayoutDashboard } from '@tabler/icons-react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { mediaUp } from '@/tokens';
@@ -15,7 +15,7 @@ import { KpiCard } from './components/KpiCard';
 import { DASHBOARD_VISUAL_DATA } from './data/dashboard-visual-data';
 
 const Window = styled.div`
-  background-color: ${THEME_LIGHT.background.primary};
+  background-color: ${ODELZA_THEME_LIGHT.background.primary};
   display: flex;
   flex-direction: column;
   font-family: var(--font-product), sans-serif;
@@ -26,7 +26,7 @@ const Window = styled.div`
 
 const Topbar = styled.div`
   align-items: center;
-  border-bottom: 1px solid ${THEME_LIGHT.border.color.light};
+  border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   display: flex;
   flex-shrink: 0;
   gap: 8px;
@@ -42,26 +42,26 @@ const Breadcrumb = styled.div`
 
 const BreadcrumbIcon = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: inline-flex;
 `;
 
 const BreadcrumbText = styled.span`
-  color: ${THEME_LIGHT.font.color.secondary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.sm)};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.sm)};
 
   ${mediaUp('md')} {
-    font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
+    font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
   }
 `;
 
 const BreadcrumbCurrent = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.sm)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.sm)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
 
   ${mediaUp('md')} {
-    font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
+    font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
   }
 `;
 
@@ -74,9 +74,9 @@ const Actions = styled.div`
 
 const IconButton = styled.span`
   align-items: center;
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.font.color.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: inline-flex;
   justify-content: center;
   padding: 4px;
@@ -84,16 +84,16 @@ const IconButton = styled.span`
 
 const SearchChip = styled.span`
   align-items: center;
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.font.color.light};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   display: inline-flex;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.sm)};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.sm)};
   padding: 4px 8px;
 `;
 
 const Body = styled.div`
-  background-color: ${THEME_LIGHT.background.primary};
+  background-color: ${ODELZA_THEME_LIGHT.background.primary};
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -129,9 +129,9 @@ const ChartRow = styled.div`
 `;
 
 const WidgetCard = styled.div`
-  background-color: ${THEME_LIGHT.background.secondary};
-  border: 1px solid ${THEME_LIGHT.border.color.light};
-  border-radius: ${THEME_LIGHT.border.radius.md};
+  background-color: ${ODELZA_THEME_LIGHT.background.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.md};
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -158,11 +158,11 @@ const WidgetCard = styled.div`
 
 const WidgetHeader = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   display: flex;
   flex-shrink: 0;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   height: 24px;
 `;
 

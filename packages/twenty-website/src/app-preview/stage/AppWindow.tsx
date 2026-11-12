@@ -5,7 +5,7 @@ import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 
 import { mediaUp } from '@/tokens';
 import { APP_PREVIEW_STAGE } from '@/tokens/app-preview/app-preview-stage';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { useWindowOrder } from './use-window-order';
 import { useWindowPointerInteractions } from './use-window-pointer-interactions';
@@ -19,9 +19,9 @@ const MIN_EDGE_GAP = 0;
 const INITIAL_MAX_WIDTH = APP_PREVIEW_STAGE.windowScene.widthPx;
 
 const Shell = styled.div<{ $isActive: boolean; $isReady: boolean }>`
-  background-color: ${THEME_LIGHT.background.primary};
+  background-color: ${ODELZA_THEME_LIGHT.background.primary};
   background-image: url('${APP_PREVIEW_STAGE.frame.noiseImageUrl}');
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
   border-radius: ${APP_PREVIEW_STAGE.frame.borderRadiusPx}px;
   box-shadow: ${({ $isActive }) =>
     $isActive

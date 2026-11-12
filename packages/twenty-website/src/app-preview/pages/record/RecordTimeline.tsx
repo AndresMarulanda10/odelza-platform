@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import {
   IconCalendarEvent,
   IconChevronUp,
@@ -28,7 +28,7 @@ const TimelineFeed = styled.div`
 
 const MonthSeparator = styled.div`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   display: flex;
   font-family: var(--font-product), sans-serif;
   font-size: 12px;
@@ -38,7 +38,7 @@ const MonthSeparator = styled.div`
 `;
 
 const MonthSeparatorLine = styled.div`
-  background: ${THEME_LIGHT.border.color.light};
+  background: ${ODELZA_THEME_LIGHT.border.color.light};
   border-radius: 50px;
   flex: 1;
   height: 1px;
@@ -50,9 +50,9 @@ const TimelineGroup = styled.div`
 
 // The 24px rounded rail twenty-front renders behind the event icons.
 const TimelineRail = styled.div`
-  background: ${THEME_LIGHT.background.secondary};
-  border: 1px solid ${THEME_LIGHT.border.color.light};
-  border-radius: ${THEME_LIGHT.border.radius.md};
+  background: ${ODELZA_THEME_LIGHT.background.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.md};
   bottom: 0;
   left: 0;
   position: absolute;
@@ -91,7 +91,7 @@ const TimelineGutter = styled.div`
 
 const TimelineIconBox = styled.div`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: flex;
   flex-shrink: 0;
   height: 16px;
@@ -100,7 +100,7 @@ const TimelineIconBox = styled.div`
 `;
 
 const TimelineConnector = styled.div<{ $hidden: boolean }>`
-  background: ${THEME_LIGHT.border.color.light};
+  background: ${ODELZA_THEME_LIGHT.border.color.light};
   flex: 1;
   margin: 4px 0;
   min-height: 12px;
@@ -134,7 +134,7 @@ const TimelineSummaryLeft = styled.div`
 `;
 
 const TimelineActor = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   font-weight: 500;
@@ -142,14 +142,14 @@ const TimelineActor = styled.span`
 `;
 
 const TimelineAction = styled.span`
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   white-space: nowrap;
 `;
 
 const TimelineSubject = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   font-weight: 500;
@@ -157,20 +157,20 @@ const TimelineSubject = styled.span`
 `;
 
 const TimelineDiffLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   white-space: nowrap;
 `;
 
 const TimelineArrow = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
 `;
 
 const TimelineValueText = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   white-space: nowrap;
@@ -183,7 +183,7 @@ const TimelineDiffPerson = styled.span`
 `;
 
 const TimelineLinkedTitle = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   overflow: hidden;
@@ -193,7 +193,7 @@ const TimelineLinkedTitle = styled.span`
 `;
 
 const TimelineTime = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   flex-shrink: 0;
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
@@ -203,9 +203,9 @@ const TimelineTime = styled.span`
 
 const TimelineToggle = styled.span`
   align-items: center;
-  border: 1px solid ${THEME_LIGHT.border.color.light};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.font.color.tertiary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: inline-flex;
   flex-shrink: 0;
   height: 20px;
@@ -220,9 +220,9 @@ const TimelineCardOuter = styled.div`
 `;
 
 const TimelineCardInner = styled.div`
-  background: ${THEME_LIGHT.background.secondary};
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.md};
+  background: ${ODELZA_THEME_LIGHT.background.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.md};
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -237,21 +237,21 @@ const TimelineDiffRow = styled.div`
 `;
 
 const TimelineCardTitle = styled.div`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   font-weight: 500;
 `;
 
 const TimelineCardText = styled.div`
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   line-height: 1.4;
 `;
 
 function TimelineEventIcon({ kind }: { kind: TimelineEvent['kind'] }) {
-  const stroke = THEME_LIGHT.icon.stroke.sm;
+  const stroke = ODELZA_THEME_LIGHT.icon.stroke.sm;
   switch (kind) {
     case 'created':
       return <IconCirclePlus size={16} stroke={stroke} />;
@@ -294,7 +294,7 @@ function TimelineDiffValue({ value }: { value: RecordFieldValue }) {
 }
 
 function TimelineEventSummary({ event }: { event: TimelineEvent }) {
-  const stroke = THEME_LIGHT.icon.stroke.sm;
+  const stroke = ODELZA_THEME_LIGHT.icon.stroke.sm;
   switch (event.kind) {
     case 'created':
       return (

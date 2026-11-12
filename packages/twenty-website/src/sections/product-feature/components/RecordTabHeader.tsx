@@ -1,7 +1,7 @@
 'use client';
 
 import { styled } from '@linaria/react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
@@ -10,7 +10,7 @@ import { type RecordTabLabel } from '../types/record-tab-label';
 
 const Bar = styled.div`
   align-items: stretch;
-  border-bottom: 1px solid ${THEME_LIGHT.border.color.light};
+  border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   box-sizing: border-box;
   display: flex;
   flex-shrink: 0;
@@ -21,7 +21,7 @@ const Bar = styled.div`
 
 const TabButton = styled.div`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: flex;
   position: relative;
 
@@ -36,26 +36,26 @@ const TabButton = styled.div`
   }
 
   &[data-active] {
-    color: ${THEME_LIGHT.font.color.primary};
+    color: ${ODELZA_THEME_LIGHT.font.color.primary};
   }
 
   &[data-active]::after {
-    background-color: ${THEME_LIGHT.border.color.inverted};
+    background-color: ${ODELZA_THEME_LIGHT.border.color.inverted};
   }
 `;
 
 const TabContent = styled.span`
   align-items: center;
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   display: flex;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
-  gap: ${THEME_LIGHT.spacing(1)};
-  padding: ${THEME_LIGHT.spacing(1)} ${THEME_LIGHT.spacing(2)};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
+  gap: ${ODELZA_THEME_LIGHT.spacing(1)};
+  padding: ${ODELZA_THEME_LIGHT.spacing(1)} ${ODELZA_THEME_LIGHT.spacing(2)};
   white-space: nowrap;
 
   &:hover {
-    background-color: ${THEME_LIGHT.background.tertiary};
+    background-color: ${ODELZA_THEME_LIGHT.background.tertiary};
   }
 `;
 

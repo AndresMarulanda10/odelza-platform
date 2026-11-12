@@ -3,7 +3,7 @@
 import { styled } from '@linaria/react';
 
 import { APP_PREVIEW_MOTION } from '@/tokens/app-preview/app-preview-motion';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { APP_PREVIEW_CHROME } from '@/app-preview/app-preview-chrome';
 import { APP_PREVIEW_TONES } from '@/tokens/app-preview/app-preview-tones';
@@ -18,7 +18,8 @@ const ItemRow = styled.button<{
   $highlightRgb?: string;
 }>`
   --highlight-rgb: ${({ $highlightRgb }) => $highlightRgb ?? '237, 95, 0'};
-  --highlight-rest-background: ${THEME_LIGHT.background.transparent.light};
+  --highlight-rest-background: ${ODELZA_THEME_LIGHT.background.transparent
+    .light};
   appearance: none;
   border: 0;
   text-align: left;
@@ -28,8 +29,8 @@ const ItemRow = styled.button<{
       ? `sidebarItemAppear 1800ms ${APP_PREVIEW_MOTION.revealPulseEase} both`
       : 'none'};
   background: ${({ $active }) =>
-    $active ? THEME_LIGHT.background.transparent.light : 'transparent'};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+    $active ? ODELZA_THEME_LIGHT.background.transparent.light : 'transparent'};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   cursor: pointer;
   display: flex;
   height: ${APP_PREVIEW_CHROME.navigationItemHeightPx}px;
@@ -41,7 +42,7 @@ const ItemRow = styled.button<{
   width: 100%;
 
   &:hover {
-    background: ${THEME_LIGHT.background.transparent.light};
+    background: ${ODELZA_THEME_LIGHT.background.transparent.light};
   }
 
   @keyframes sidebarItemAppear {
@@ -56,7 +57,7 @@ const BranchCell = styled.div<{ $isLastChild?: boolean }>`
   position: relative;
 
   &::before {
-    background: ${THEME_LIGHT.border.color.strong};
+    background: ${ODELZA_THEME_LIGHT.border.color.strong};
     content: '';
     inset: 0 8px 0 0;
     opacity: ${({ $isLastChild }) => ($isLastChild ? 0 : 1)};
@@ -64,9 +65,9 @@ const BranchCell = styled.div<{ $isLastChild?: boolean }>`
   }
 
   &::after {
-    border-bottom: 1px solid ${THEME_LIGHT.border.color.strong};
-    border-left: 1px solid ${THEME_LIGHT.border.color.strong};
-    border-radius: 0 0 0 ${THEME_LIGHT.border.radius.sm};
+    border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.strong};
+    border-left: 1px solid ${ODELZA_THEME_LIGHT.border.color.strong};
+    border-radius: 0 0 0 ${ODELZA_THEME_LIGHT.border.radius.sm};
     content: '';
     inset: 0 0 12px 0;
     position: absolute;
@@ -92,11 +93,11 @@ const ItemText = styled.div`
 const ItemLabel = styled.span<{ $active?: boolean }>`
   color: ${({ $active }) =>
     $active
-      ? THEME_LIGHT.font.color.primary
-      : THEME_LIGHT.font.color.secondary};
+      ? ODELZA_THEME_LIGHT.font.color.primary
+      : ODELZA_THEME_LIGHT.font.color.secondary};
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   line-height: 1.4;
   min-width: 0;
   overflow: hidden;
@@ -105,10 +106,10 @@ const ItemLabel = styled.span<{ $active?: boolean }>`
 `;
 
 const ItemMeta = styled.span`
-  color: ${THEME_LIGHT.font.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   line-height: 1.4;
   min-width: 0;
   overflow: hidden;

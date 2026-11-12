@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { type ComponentType, type ReactNode } from 'react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 type FieldIconComponent = ComponentType<{
   'aria-hidden'?: boolean;
@@ -18,7 +18,7 @@ const FieldRowShell = styled.div`
 
 const FieldIconBox = styled.div`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: flex;
   flex: 0 0 16px;
   height: 16px;

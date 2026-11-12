@@ -9,7 +9,7 @@ import {
 
 import { AppleRainbowMark } from '@/icons';
 import { mediaUp } from '@/tokens';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { APP_PREVIEW_CHROME } from '@/app-preview/app-preview-chrome';
 
@@ -76,10 +76,10 @@ const WorkspaceName = styled.span`
   ${mediaUp('md')} {
     [data-desktop-mode='expanded'] & {
       display: block;
-      color: ${THEME_LIGHT.font.color.primary};
+      color: ${ODELZA_THEME_LIGHT.font.color.primary};
       font-family: var(--font-product), sans-serif;
-      font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-      font-weight: ${THEME_LIGHT.font.weight.medium};
+      font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+      font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
       line-height: 1.4;
     }
   }
@@ -118,10 +118,10 @@ const SectionLabelRow = styled.div`
 `;
 
 const SectionLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   font-family: var(--font-product), sans-serif;
   font-size: 11px;
-  font-weight: ${THEME_LIGHT.font.weight.semiBold};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.semiBold};
   line-height: 1;
 `;
 
@@ -206,16 +206,19 @@ export function PreviewSidebar({
           <WorkspaceName>Apple</WorkspaceName>
           <DesktopOnly>
             <IconChevronDown
-              color={THEME_LIGHT.font.color.extraLight}
+              color={ODELZA_THEME_LIGHT.font.color.extraLight}
               size={16}
             />
           </DesktopOnly>
         </HeaderLeft>
         <HeaderRight>
-          <IconSearch color={THEME_LIGHT.font.color.secondary} size={16} />
+          <IconSearch
+            color={ODELZA_THEME_LIGHT.font.color.secondary}
+            size={16}
+          />
           <DesktopOnly>
             <IconLayoutSidebarLeftCollapse
-              color={THEME_LIGHT.font.color.secondary}
+              color={ODELZA_THEME_LIGHT.font.color.secondary}
               size={16}
             />
           </DesktopOnly>

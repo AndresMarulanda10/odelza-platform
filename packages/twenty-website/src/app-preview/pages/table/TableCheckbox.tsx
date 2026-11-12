@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { type ReactNode } from 'react';
 
 const CheckboxContainer = styled.div`
@@ -14,12 +14,14 @@ const CheckboxContainer = styled.div`
 const CheckboxBox = styled.div<{ $checked?: boolean }>`
   align-items: center;
   background: ${({ $checked }) =>
-    $checked ? THEME_LIGHT.background.transparent.blue : 'transparent'};
+    $checked
+      ? ODELZA_THEME_LIGHT.background.transparent.accent
+      : 'transparent'};
   border: 1px solid
     ${({ $checked }) =>
       $checked
-        ? THEME_LIGHT.border.color.blue
-        : THEME_LIGHT.font.color.primary};
+        ? ODELZA_THEME_LIGHT.border.color.accent
+        : ODELZA_THEME_LIGHT.font.color.primary};
   border-radius: 3px;
   display: flex;
   flex: 0 0 auto;

@@ -7,7 +7,7 @@ import {
   type PointerEvent,
   type ReactNode,
 } from 'react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '../preview-font-size';
 
@@ -34,21 +34,21 @@ type ChipProps = {
 // runtime bundle. Sized against the content box like twenty-front's chip:
 // 12px content + 4px padding = 20px.
 const StyledContainer = styled.div<{ $maxWidth?: number }>`
-  --chip-horizontal-padding: ${THEME_LIGHT.spacing(1)};
-  --chip-vertical-padding: ${THEME_LIGHT.spacing(1)};
+  --chip-horizontal-padding: ${ODELZA_THEME_LIGHT.spacing(1)};
+  --chip-vertical-padding: ${ODELZA_THEME_LIGHT.spacing(1)};
   align-items: center;
   background-color: inherit;
   border: none;
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   box-sizing: content-box;
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   cursor: inherit;
   display: inline-flex;
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.regular};
-  gap: ${THEME_LIGHT.spacing(1)};
-  height: ${THEME_LIGHT.spacing(3)};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.regular};
+  gap: ${ODELZA_THEME_LIGHT.spacing(1)};
+  height: ${ODELZA_THEME_LIGHT.spacing(3)};
   justify-content: flex-start;
   line-height: 1.4;
   max-width: ${({ $maxWidth }) =>
@@ -64,7 +64,7 @@ const StyledContainer = styled.div<{ $maxWidth?: number }>`
   }
 
   &[data-bold] {
-    font-weight: ${THEME_LIGHT.font.weight.medium};
+    font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   }
 
   &[data-clickable] {
@@ -72,29 +72,29 @@ const StyledContainer = styled.div<{ $maxWidth?: number }>`
   }
 
   &[data-variant='highlighted'] {
-    background-color: ${THEME_LIGHT.background.transparent.light};
+    background-color: ${ODELZA_THEME_LIGHT.background.transparent.light};
   }
   &[data-variant='highlighted']:hover {
-    background-color: ${THEME_LIGHT.background.transparent.medium};
+    background-color: ${ODELZA_THEME_LIGHT.background.transparent.medium};
   }
   &[data-variant='highlighted']:active {
-    background-color: ${THEME_LIGHT.background.transparent.strong};
+    background-color: ${ODELZA_THEME_LIGHT.background.transparent.strong};
   }
 
   &[data-variant='rounded'] {
-    border-radius: ${THEME_LIGHT.border.radius.pill};
+    border-radius: ${ODELZA_THEME_LIGHT.border.radius.pill};
   }
 
   &[data-variant='static'] {
-    background-color: ${THEME_LIGHT.background.transparent.lighter};
-    border: 1px solid ${THEME_LIGHT.border.color.strong};
-    border-radius: ${THEME_LIGHT.border.radius.pill};
-    padding-left: ${THEME_LIGHT.spacing(2)};
-    padding-right: ${THEME_LIGHT.spacing(2)};
+    background-color: ${ODELZA_THEME_LIGHT.background.transparent.lighter};
+    border: 1px solid ${ODELZA_THEME_LIGHT.border.color.strong};
+    border-radius: ${ODELZA_THEME_LIGHT.border.radius.pill};
+    padding-left: ${ODELZA_THEME_LIGHT.spacing(2)};
+    padding-right: ${ODELZA_THEME_LIGHT.spacing(2)};
   }
   &[data-variant='static']:hover,
   &[data-variant='static']:active {
-    background-color: ${THEME_LIGHT.background.transparent.lighter};
+    background-color: ${ODELZA_THEME_LIGHT.background.transparent.lighter};
   }
 
   &[data-variant='transparent'] {
@@ -103,10 +103,10 @@ const StyledContainer = styled.div<{ $maxWidth?: number }>`
   }
 
   &[data-clickable][data-variant='regular']:hover {
-    background-color: ${THEME_LIGHT.background.transparent.light};
+    background-color: ${ODELZA_THEME_LIGHT.background.transparent.light};
   }
   &[data-clickable][data-variant='regular']:active {
-    background-color: ${THEME_LIGHT.background.transparent.medium};
+    background-color: ${ODELZA_THEME_LIGHT.background.transparent.medium};
   }
 `;
 

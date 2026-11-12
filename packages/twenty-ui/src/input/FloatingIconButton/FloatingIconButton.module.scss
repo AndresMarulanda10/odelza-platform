@@ -9,7 +9,10 @@
   backdrop-filter: none;
   background: var(--odz-background-primary);
   border: 1px solid var(--odz-border-color-strong);
-  border-radius: var(--floating-icon-button-radius, var(--odz-border-radius-md));
+  border-radius: var(
+    --floating-icon-button-radius,
+    var(--odz-border-radius-md)
+  );
   box-shadow: none;
   box-sizing: border-box;
   color: var(--odz-font-color-tertiary);

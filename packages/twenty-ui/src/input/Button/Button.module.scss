@@ -108,17 +108,17 @@ $inverted-border-color: #ffffff;
 $primary-accents: (
   // Odelza secondary button: Butter in light mode, Coffee in dark mode
   'default': (
-    bg: var(--odz-buttons-secondary-background),
-    bg-disabled: var(--odz-background-transparent-lighter),
-    border: var(--odz-background-transparent-light),
-    border-focus: var(--odz-border-color-focus),
-    focus-needs-enabled: true,
-    shadow-focus: var(--odz-accent-tertiary),
-    color: var(--odz-buttons-on-secondary),
-    color-disabled: var(--odz-font-color-extra-light),
-    hover: var(--odz-buttons-secondary-background-hover),
-    active: var(--odz-buttons-secondary-background-pressed),
-  ),
+      bg: var(--odz-buttons-secondary-background),
+      bg-disabled: var(--odz-background-transparent-lighter),
+      border: var(--odz-background-transparent-light),
+      border-focus: var(--odz-border-color-focus),
+      focus-needs-enabled: true,
+      shadow-focus: var(--odz-accent-tertiary),
+      color: var(--odz-buttons-on-secondary),
+      color-disabled: var(--odz-font-color-extra-light),
+      hover: var(--odz-buttons-secondary-background-hover),
+      active: var(--odz-buttons-secondary-background-pressed),
+    ),
   'primary': (
     bg: var(--odz-color-primary),
     bg-disabled: var(--odz-accent-accent4060),
@@ -154,7 +154,7 @@ $primary-accents: (
     color-disabled: var(--odz-color-green9),
     hover: var(--odz-color-green10),
     active: var(--odz-color-green12),
-  ),
+  )
 );
 
 @each $accent, $tokens in $primary-accents {

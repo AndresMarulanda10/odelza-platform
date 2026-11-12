@@ -1,6 +1,25 @@
 import { isValidReturnToPath } from '@/auth/utils/isValidReturnToPath';
 
 describe('isValidReturnToPath', () => {
+  it.each([
+    '/settings/accounts?tab=emails&filter=unread#inbox',
+    '/objects/people#selected',
+    '/settings/accounts?reference=https://example.com',
+  ])('accepts relative application destination %s', (path) => {
+    expect(isValidReturnToPath(path)).toBe(true);
+  });
+
+  it.each([
+    'https://evil.example/settings/accounts',
+    '//evil.example/settings/accounts',
+    '/settings\\accounts?tab=emails',
+    '/welcome?returnToPath=/settings/accounts',
+    '/create/profile#pending',
+    '/reset-password?tab=emails',
+  ])('rejects unsafe or excluded destination %s', (path) => {
+    expect(isValidReturnToPath(path)).toBe(false);
+  });
+
   it('should return false for empty string', () => {
     expect(isValidReturnToPath('')).toBe(false);
   });

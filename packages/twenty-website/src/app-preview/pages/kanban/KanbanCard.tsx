@@ -13,7 +13,7 @@ import { type ComponentType, type ReactNode } from 'react';
 
 import { RatingStar } from '@/icons';
 import { EASING } from '@/tokens';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import { previewFontSize } from '@/app-preview/preview-font-size';
 
 import { Chip } from '../../primitives/Chip';
@@ -49,9 +49,9 @@ function toneForTitle(title: string): string {
 
 const Card = styled.div`
   animation: kanbanCardAppear 320ms ${EASING.standard} both;
-  background: ${THEME_LIGHT.background.secondary};
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  background: ${ODELZA_THEME_LIGHT.background.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -98,14 +98,16 @@ const CheckboxContainer = styled.div`
 const CheckboxBox = styled.div<{ $checked?: boolean }>`
   align-items: center;
   background: ${({ $checked }) =>
-    $checked ? THEME_LIGHT.background.transparent.blue : 'transparent'};
+    $checked
+      ? ODELZA_THEME_LIGHT.background.transparent.accent
+      : 'transparent'};
   border: 1px solid
     ${({ $checked }) =>
       $checked
-        ? THEME_LIGHT.border.color.blue
-        : THEME_LIGHT.border.color.strong};
+        ? ODELZA_THEME_LIGHT.border.color.accent
+        : ODELZA_THEME_LIGHT.border.color.strong};
   border-radius: 3px;
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: flex;
   height: 14px;
   justify-content: center;
@@ -129,7 +131,7 @@ const FieldRowShell = styled.div`
 
 const FieldIcon = styled.div`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: flex;
   flex: 0 0 16px;
   height: 16px;
@@ -146,10 +148,10 @@ const FieldValueWrap = styled.div`
 `;
 
 const FieldText = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.regular};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.regular};
   line-height: 1.4;
   min-width: 0;
   overflow: hidden;
@@ -213,9 +215,9 @@ function FieldRow({
       <FieldIcon>
         <Icon
           aria-hidden
-          color={THEME_LIGHT.font.color.tertiary}
+          color={ODELZA_THEME_LIGHT.font.color.tertiary}
           size={16}
-          stroke={THEME_LIGHT.icon.stroke.sm}
+          stroke={ODELZA_THEME_LIGHT.icon.stroke.sm}
         />
       </FieldIcon>
       <FieldValueWrap>{children}</FieldValueWrap>
@@ -244,9 +246,9 @@ export function KanbanCard({ card }: { card: KanbanCardData }) {
             <CheckboxBox $checked>
               <IconCheck
                 aria-hidden
-                color={THEME_LIGHT.font.color.secondary}
+                color={ODELZA_THEME_LIGHT.font.color.secondary}
                 size={10}
-                stroke={THEME_LIGHT.icon.stroke.sm}
+                stroke={ODELZA_THEME_LIGHT.icon.stroke.sm}
               />
             </CheckboxBox>
           </CheckboxContainer>
@@ -269,8 +271,8 @@ export function KanbanCard({ card }: { card: KanbanCardData }) {
                 <RatingStar
                   fillColor={
                     index < card.rating
-                      ? THEME_LIGHT.font.color.secondary
-                      : THEME_LIGHT.border.color.strong
+                      ? ODELZA_THEME_LIGHT.font.color.secondary
+                      : ODELZA_THEME_LIGHT.border.color.strong
                   }
                 />
               </StarGlyph>

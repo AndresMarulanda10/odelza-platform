@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { EASING } from '@/tokens';
 
@@ -28,14 +28,14 @@ const TabHeaderLabel = styled.span`
 `;
 
 const TabHeaderTitle = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   font-weight: 600;
 `;
 
 const TabHeaderCount = styled.span`
-  color: ${THEME_LIGHT.font.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   margin-left: 8px;
@@ -43,9 +43,9 @@ const TabHeaderCount = styled.span`
 
 const TabAddButton = styled.span`
   align-items: center;
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.font.color.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: inline-flex;
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
@@ -55,9 +55,9 @@ const TabAddButton = styled.span`
 `;
 
 const ListCard = styled.div`
-  background: ${THEME_LIGHT.background.secondary};
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.md};
+  background: ${ODELZA_THEME_LIGHT.background.secondary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.md};
   overflow: hidden;
 `;
 
@@ -73,7 +73,7 @@ const ActivityRowBox = styled.div<{ $index: number }>`
   padding: 0 16px;
 
   & + & {
-    border-top: 1px solid ${THEME_LIGHT.border.color.light};
+    border-top: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   }
 
   @keyframes activityRowAppear {

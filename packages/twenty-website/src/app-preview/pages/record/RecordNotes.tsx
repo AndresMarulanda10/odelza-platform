@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { EASING } from '@/tokens';
 import { APP_PREVIEW_TONES } from '@/tokens/app-preview/app-preview-tones';
@@ -16,14 +16,14 @@ const NotesHeader = styled.div`
 `;
 
 const NotesCount = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   font-weight: 600;
 `;
 
 const AddNoteButton = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   line-height: 1.4;
@@ -52,14 +52,14 @@ const NoteCard = styled.div<{
   animation-delay: ${({ $index }) => `${120 + $index * 70}ms`};
   background: ${({ $highlighted }) =>
     $highlighted
-      ? THEME_LIGHT.background.primary
-      : THEME_LIGHT.background.secondary};
+      ? ODELZA_THEME_LIGHT.background.primary
+      : ODELZA_THEME_LIGHT.background.secondary};
   border: 1px solid
     ${({ $highlighted }) =>
       $highlighted
-        ? THEME_LIGHT.border.color.medium
-        : THEME_LIGHT.border.color.light};
-  border-radius: ${THEME_LIGHT.border.radius.md};
+        ? ODELZA_THEME_LIGHT.border.color.medium
+        : ODELZA_THEME_LIGHT.border.color.light};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.md};
   display: flex;
   flex-direction: column;
   height: 300px;
@@ -98,7 +98,7 @@ const NoteContent = styled.div`
 `;
 
 const NoteTitle = styled.div`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -106,7 +106,7 @@ const NoteTitle = styled.div`
 `;
 
 const NoteBody = styled.div`
-  color: ${THEME_LIGHT.font.color.secondary};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   line-height: 1.5;
@@ -117,7 +117,7 @@ const NoteBody = styled.div`
 
 const NoteRelation = styled.div`
   align-items: center;
-  border-top: 1px solid ${THEME_LIGHT.border.color.light};
+  border-top: 1px solid ${ODELZA_THEME_LIGHT.border.color.light};
   display: flex;
   gap: 6px;
   justify-content: center;
@@ -132,14 +132,14 @@ const NoteRelationArrow = styled.svg`
 `;
 
 const NoteRelationLabel = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   font-family: var(--font-product), sans-serif;
   font-size: 12px;
   line-height: 1.4;
 `;
 
 const NoteRelationName = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 12px;
   line-height: 1.4;
@@ -178,7 +178,7 @@ export function RecordNotes({ notes }: { notes: RecordNote[] }) {
               <NoteRelation>
                 <NoteRelationArrow
                   fill="none"
-                  stroke={THEME_LIGHT.font.color.tertiary}
+                  stroke={ODELZA_THEME_LIGHT.font.color.tertiary}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="1"

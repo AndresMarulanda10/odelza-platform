@@ -1,7 +1,7 @@
 'use client';
 
 import { styled } from '@linaria/react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 import {
   IconArrowUp,
   IconChevronDown,
@@ -22,9 +22,11 @@ const MAX_VISIBLE_RESPONSE_CHIPS = 3;
 const inks = APP_PREVIEW_TONES.productVisual;
 
 const PanelShell = styled.aside<{ $panelOnly: boolean }>`
-  background: ${THEME_LIGHT.background.primary};
+  background: ${ODELZA_THEME_LIGHT.background.primary};
   border: ${({ $panelOnly }) =>
-    $panelOnly ? 'none' : `1px solid ${THEME_LIGHT.border.color.medium}`};
+    $panelOnly
+      ? 'none'
+      : `1px solid ${ODELZA_THEME_LIGHT.border.color.medium}`};
   border-radius: ${({ $panelOnly }) => ($panelOnly ? '0' : '8px')};
   display: flex;
   flex-direction: column;
@@ -37,8 +39,8 @@ const PanelShell = styled.aside<{ $panelOnly: boolean }>`
 
 const PanelHeader = styled.div`
   align-items: center;
-  background-color: ${THEME_LIGHT.background.secondary};
-  border-bottom: 1px solid ${THEME_LIGHT.border.color.medium};
+  background-color: ${ODELZA_THEME_LIGHT.background.secondary};
+  border-bottom: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
   display: flex;
   flex-shrink: 0;
   gap: 4px;
@@ -48,8 +50,8 @@ const PanelHeader = styled.div`
 
 const HeaderButton = styled.span`
   align-items: center;
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.font.color.tertiary};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: flex;
   height: 20px;
   justify-content: center;
@@ -57,7 +59,7 @@ const HeaderButton = styled.span`
 `;
 
 const PanelTitle = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   flex: 1;
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
@@ -77,8 +79,8 @@ const Messages = styled.div`
 const UserMessage = styled.div`
   align-self: flex-end;
   background: ${inks.userMessageBackground};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.font.color.secondary};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   font-weight: 500;
@@ -88,7 +90,7 @@ const UserMessage = styled.div`
 `;
 
 const AnswerText = styled.div`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   font-weight: 400;
@@ -97,7 +99,7 @@ const AnswerText = styled.div`
 `;
 
 const AnswerStrong = styled.strong`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-weight: 500;
 `;
 
@@ -124,7 +126,7 @@ const EntityChips = styled.div`
 const EntityChip = styled.div`
   align-items: center;
   background: ${inks.entityChipBackground};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   display: flex;
   gap: 4px;
   max-width: 100%;
@@ -133,14 +135,14 @@ const EntityChip = styled.div`
 `;
 
 const EntityChipIcon = styled.img`
-  border-radius: ${THEME_LIGHT.border.radius.xs};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.xs};
   height: 14px;
   object-fit: cover;
   width: 14px;
 `;
 
 const EntityChipName = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   font-weight: 400;
@@ -151,8 +153,8 @@ const EntityChipName = styled.span`
 const EntityOverflowChip = styled.div`
   align-items: center;
   background: ${inks.entityChipBackground};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.font.color.secondary};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.font.color.secondary};
   display: flex;
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
@@ -162,7 +164,7 @@ const EntityOverflowChip = styled.div`
 `;
 
 const ThinkingText = styled.span`
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   font-family: var(--font-product), sans-serif;
   font-size: 12px;
   font-weight: 500;
@@ -177,8 +179,8 @@ const InputArea = styled.div`
 
 const InputBox = styled.div`
   background-color: ${inks.inputBoxBackground};
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   display: flex;
   flex-direction: column;
   height: 80px;
@@ -189,7 +191,7 @@ const InputBox = styled.div`
 `;
 
 const InputPlaceholder = styled.span`
-  color: ${THEME_LIGHT.font.color.light};
+  color: ${ODELZA_THEME_LIGHT.font.color.light};
   font-family: var(--font-product), sans-serif;
   font-size: 13px;
   font-weight: 400;
@@ -204,7 +206,7 @@ const InputButtonRow = styled.div`
 
 const InputLeftButtons = styled.div`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: flex;
   gap: 2px;
 `;
@@ -217,9 +219,9 @@ const InputRightButtons = styled.div`
 
 const ModelChip = styled.span`
   align-items: center;
-  border: 1px solid ${THEME_LIGHT.border.color.medium};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
-  color: ${THEME_LIGHT.font.color.primary};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.medium};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   display: flex;
   font-family: var(--font-product), sans-serif;
   font-size: 12px;
@@ -229,15 +231,15 @@ const ModelChip = styled.span`
 
 const ModelChipChevron = styled.span`
   align-items: center;
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: flex;
 `;
 
 const SendButton = styled.span`
   align-items: center;
-  background: ${THEME_LIGHT.border.color.medium};
+  background: ${ODELZA_THEME_LIGHT.border.color.medium};
   border-radius: 50%;
-  color: ${THEME_LIGHT.font.color.tertiary};
+  color: ${ODELZA_THEME_LIGHT.font.color.tertiary};
   display: flex;
   height: 20px;
   justify-content: center;

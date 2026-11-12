@@ -43,6 +43,7 @@ const buildMockCommandMenuContextApi = (
   canAccessFullAdminPanel: false,
   objectMetadataItem: {},
   objectMetadataLabel: '',
+  isBillingEnabled: false,
   ...overrides,
 });
 
@@ -84,6 +85,13 @@ const transformMockAndEvaluate = (
 };
 
 describe('transformConditionalAvailabilityExpressionsForEsBuildPlugin', () => {
+  it('defaults billing to disabled while allowing an enabled override', () => {
+    expect(buildMockCommandMenuContextApi().isBillingEnabled).toBe(false);
+    expect(
+      buildMockCommandMenuContextApi({ isBillingEnabled: true }).isBillingEnabled,
+    ).toBe(true);
+  });
+
   describe('transform correctness', () => {
     it('should convert && to and', () => {
       const source = '{ conditionalAvailabilityExpression: a && b }';

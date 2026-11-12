@@ -6,7 +6,7 @@ import {
   IconCurrencyDollar,
   IconUser,
 } from '@tabler/icons-react';
-import { THEME_LIGHT } from 'twenty-ui/theme';
+import { ODELZA_THEME_LIGHT } from 'twenty-ui/theme';
 
 import { previewFontSize } from '@/app-preview/preview-font-size';
 import { PreviewAvatar } from '@/app-preview/primitives/PreviewAvatar';
@@ -33,10 +33,10 @@ const CardIdentifier = styled.div`
 `;
 
 const CardTitle = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
   flex: 1 1 auto;
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.medium};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.medium};
   line-height: 1.4;
   min-width: 0;
   overflow: hidden;
@@ -59,8 +59,8 @@ const CardCheckbox = styled.div`
 `;
 
 const CheckboxBox = styled.div`
-  border: 1px solid ${THEME_LIGHT.border.color.secondaryInverted};
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border: 1px solid ${ODELZA_THEME_LIGHT.border.color.secondaryInverted};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   flex-shrink: 0;
   height: 14px;
   width: 14px;
@@ -74,9 +74,9 @@ const CardFields = styled.div`
 `;
 
 const FieldText = styled.span`
-  color: ${THEME_LIGHT.font.color.primary};
-  font-size: ${previewFontSize(THEME_LIGHT.font.size.md)};
-  font-weight: ${THEME_LIGHT.font.weight.regular};
+  color: ${ODELZA_THEME_LIGHT.font.color.primary};
+  font-size: ${previewFontSize(ODELZA_THEME_LIGHT.font.size.md)};
+  font-weight: ${ODELZA_THEME_LIGHT.font.weight.regular};
   line-height: 1.4;
   min-width: 0;
   overflow: hidden;
@@ -86,7 +86,7 @@ const FieldText = styled.span`
 
 const HoverableValue = styled.div`
   align-items: center;
-  border-radius: ${THEME_LIGHT.border.radius.sm};
+  border-radius: ${ODELZA_THEME_LIGHT.border.radius.sm};
   cursor: pointer;
   display: inline-flex;
   max-width: 100%;
@@ -97,7 +97,7 @@ const HoverableValue = styled.div`
   padding: 2px 4px;
 
   &:hover {
-    background-color: ${THEME_LIGHT.background.transparent.light};
+    background-color: ${ODELZA_THEME_LIGHT.background.transparent.light};
   }
 
   &[data-readonly] {
@@ -106,7 +106,7 @@ const HoverableValue = styled.div`
 
   &[data-readonly]:hover {
     background-color: transparent;
-    outline-color: ${THEME_LIGHT.border.color.medium};
+    outline-color: ${ODELZA_THEME_LIGHT.border.color.medium};
   }
 `;
 
